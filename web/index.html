@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AskAmerica — Query US Government Data</title>
+<meta name="description" content="Query SEC filings, FEC campaign finance, weather data, and more with a single line of Python. Free tier available.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #080b0f;
+    --bg2:       #0d1117;
+    --bg3:       #111820;
+    --border:    #1e2d3d;
+    --amber:     #e8a24a;
+    --amber-dim: #7a5120;
+    --amber-glow:rgba(232,162,74,0.12);
+    --green:     #3fb950;
+    --red:       #f85149;
+    --text:      #cdd9e5;
+    --text-dim:  #768390;
+    --white:     #f0f6fc;
+    --mono:      'JetBrains Mono', monospace;
+    --serif:     'Instrument Serif', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* Grid background */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,162,74,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,162,74,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 56px;
+    background: rgba(8,11,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo-mark {
+    width: 28px; height: 28px;
+    background: var(--amber);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--amber);
+    color: #000 !important;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 13px !important;
+    transition: opacity 0.15s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 2rem 4rem;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--amber-glow);
+    border: 1px solid var(--amber-dim);
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--amber);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 820px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Terminal window */
+  .terminal {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 0 0 1px rgba(232,162,74,0.06), 0 40px 80px rgba(0,0,0,0.6);
+    animation: fadeUp 0.6s 0.3s ease both;
+    margin-bottom: 3rem;
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terminal-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+  .terminal-dot.red   { background: #ff5f57; }
+  .terminal-dot.yellow{ background: #febc2e; }
+  .terminal-dot.green { background: #28c840; }
+
+  .terminal-title {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .terminal-body {
+    padding: 20px 24px;
+    font-size: 13px;
+    line-height: 2;
+  }
+
+  .t-prompt { color: var(--amber); }
+  .t-cmd    { color: var(--white); }
+  .t-comment{ color: var(--text-dim); }
+  .t-import { color: #79c0ff; }
+  .t-string { color: #a5d6ff; }
+  .t-fn     { color: #d2a8ff; }
+  .t-output { color: var(--green); display: block; margin-top: 4px; }
+  .t-blank  { display: block; height: 8px; }
+
+  .cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--amber);
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Install badge */
+  .install-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeUp 0.6s 0.4s ease both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .install-cmd {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    position: relative;
+  }
+  .install-cmd:hover { border-color: var(--amber-dim); }
+
+  .install-cmd code {
+    color: var(--amber);
+    font-size: 14px;
+  }
+
+  .copy-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    transition: color 0.15s;
+  }
+  .copy-btn:hover { color: var(--white); }
+
+  .hero-stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+  .hero-stat::before {
+    content: '★';
+    color: var(--amber);
+  }
+
+  /* SECTION layout */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+
+  .section-heading {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--text-dim);
+    max-width: 500px;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  hr.section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* DATASETS */
+  .datasets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .dataset-card {
+    background: var(--bg2);
+    padding: 24px;
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .dataset-card:hover { background: var(--bg3); }
+
+  .dataset-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .dataset-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .dataset-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .dataset-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: var(--amber-glow);
+    border: 1px solid var(--amber-dim);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+
+  /* SIGNUP */
+  .signup-wrap {
+    max-width: 480px;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .field-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  input[type="email"],
+  input[type="text"] {
+    width: 100%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  input:focus {
+    border-color: var(--amber-dim);
+    box-shadow: 0 0 0 3px var(--amber-glow);
+  }
+  input::placeholder { color: var(--text-dim); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-primary {
+    background: var(--amber);
+    color: #000;
+    width: 100%;
+  }
+  .btn-primary:hover:not(:disabled) { opacity: 0.88; }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-ghost:hover { border-color: var(--text-dim); }
+
+  .form-step { display: none; }
+  .form-step.active { display: block; }
+
+  .signup-success {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    display: none;
+  }
+
+  .signup-success.active { display: block; }
+
+  .key-display {
+    background: var(--bg);
+    border: 1px solid var(--amber-dim);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .key-value {
+    color: var(--amber);
+    font-size: 13px;
+    word-break: break-all;
+    flex: 1;
+  }
+
+  .msg-error {
+    color: var(--red);
+    font-size: 12px;
+    margin-top: 8px;
+    display: none;
+  }
+  .msg-error.active { display: block; }
+
+  .otp-hint {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .plan-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .plan-card:hover { border-color: var(--amber-dim); }
+
+  .plan-card.featured {
+    border-color: var(--amber-dim);
+    background: linear-gradient(135deg, var(--bg2), rgba(232,162,74,0.04));
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -1px; right: 20px;
+    background: var(--amber);
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 0 0 6px 6px;
+  }
+
+  .plan-name {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .plan-price {
+    font-family: var(--serif);
+    font-size: 3rem;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .plan-price span {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text-dim);
+    font-style: normal;
+  }
+
+  .plan-quota {
+    font-size: 12px;
+    color: var(--amber);
+    margin-bottom: 24px;
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .plan-features li {
+    font-size: 13px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .plan-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .plan-cta {
+    width: 100%;
+    padding: 11px;
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    transition: all 0.15s;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+  }
+  .plan-cta:hover { border-color: var(--amber-dim); color: var(--white); }
+
+  .plan-card.featured .plan-cta {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: #000;
+  }
+  .plan-card.featured .plan-cta:hover { opacity: 0.88; }
+
+  /* HOW IT WORKS */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .step {
+    background: var(--bg2);
+    padding: 28px 24px;
+  }
+
+  .step-num {
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .install-row { flex-direction: column; align-items: stretch; }
+    .install-cmd { justify-content: space-between; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">AA</div>
+    AskAmerica
+  </a>
+  <ul class="nav-links">
+    <li><a href="#datasets">Datasets</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#signup" class="nav-cta">Get free API key</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Free public beta — 1 GB/month free</div>
+
+  <h1>The <em>entire US government</em><br>in one SQL query</h1>
+
+  <p class="hero-sub">
+    SEC filings. FEC campaign finance. NOAA weather. Census data.
+    Query it all with Python — no ETL, no data engineering, no infrastructure.
+  </p>
+
+  <!-- Terminal -->
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot red"></div>
+      <div class="terminal-dot yellow"></div>
+      <div class="terminal-dot green"></div>
+      <span class="terminal-title">python3</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-comment"># Who funded the 2024 Senate campaigns?</span><br>
+      <span class="t-import">import</span> <span class="t-cmd">askamerica</span><br>
+      <span class="t-blank"></span>
+      <span class="t-fn">askamerica</span>.<span class="t-fn">configure</span>(<span class="t-string">api_key=</span><span class="t-string">"aa_free_..."</span>)<br>
+      <span class="t-blank"></span>
+      <span class="t-cmd">df</span> = <span class="t-fn">askamerica</span>.<span class="t-fn">query</span>(<span class="t-string">"""</span><br>
+      &nbsp;&nbsp;<span class="t-string">SELECT candidate_name, SUM(contribution_receipt_amount) AS total</span><br>
+      &nbsp;&nbsp;<span class="t-string">FROM fec.contributions</span><br>
+      &nbsp;&nbsp;<span class="t-string">WHERE election_year = 2024 AND office = 'S'</span><br>
+      &nbsp;&nbsp;<span class="t-string">GROUP BY 1 ORDER BY 2 DESC LIMIT 10</span><br>
+      <span class="t-string">"""</span>)<br>
+      <span class="t-blank"></span>
+      <span class="t-cmd">print</span>(<span class="t-cmd">df</span>)<br>
+      <span class="t-output">   candidate_name            total</span>
+      <span class="t-output">0  Jon Tester            $12.4M</span>
+      <span class="t-output">1  Ted Cruz               $9.8M</span>
+      <span class="t-output">2  Sherrod Brown          $9.1M</span>
+      <span class="t-output">...                        ...</span>
+      <span class="cursor"></span>
+    </div>
+  </div>
+
+  <!-- Install -->
+  <div class="install-row">
+    <div class="install-cmd" onclick="copyInstall(this)">
+      <code>pip install askamerica</code>
+      <button class="copy-btn" id="copy-install-btn">copy</button>
+    </div>
+    <div class="hero-stat">Returns a pandas DataFrame</div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- DATASETS -->
+<section id="datasets">
+  <div class="reveal">
+    <div class="section-label">Available datasets</div>
+    <h2 class="section-heading">Every major federal<br><em>data source, unified</em></h2>
+    <p class="section-sub">Updated daily from primary government sources. No API keys per dataset — one AskAmerica key accesses everything.</p>
+  </div>
+
+  <div class="datasets-grid reveal">
+    <div class="dataset-card">
+      <span class="dataset-icon">🏦</span>
+      <div class="dataset-name">SEC Filings (EDGAR)</div>
+      <div class="dataset-desc">10-K, 10-Q, 8-K, and other filings from all public companies. Full-text searchable.</div>
+      <span class="dataset-tag">sec.filings</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🗳️</span>
+      <div class="dataset-name">FEC Campaign Finance</div>
+      <div class="dataset-desc">Every contribution and expenditure reported to the FEC since 1980. Candidate and PAC level.</div>
+      <span class="dataset-tag">fec.contributions</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🌦️</span>
+      <div class="dataset-name">NOAA Weather (GHCND)</div>
+      <div class="dataset-desc">Daily weather observations from 100,000+ stations worldwide. Temperature, precipitation, wind.</div>
+      <span class="dataset-tag">noaa.ghcnd</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🌲</span>
+      <div class="dataset-name">USFS Forest Inventory</div>
+      <div class="dataset-desc">National forest inventory data — tree species, biomass, carbon stocks by region.</div>
+      <span class="dataset-tag">usfs.forest</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🏛️</span>
+      <div class="dataset-name">Federal Contracts (USASpending)</div>
+      <div class="dataset-desc">All federal contract awards — agency, vendor, amount, and performance data.</div>
+      <span class="dataset-tag">usaspending.contracts</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">📊</span>
+      <div class="dataset-name">Census ACS</div>
+      <div class="dataset-desc">American Community Survey — population, income, housing, and demographics at every geography.</div>
+      <span class="dataset-tag">census.acs</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">💊</span>
+      <div class="dataset-name">CMS Medicare Data</div>
+      <div class="dataset-desc">Provider utilization, drug spending, and claims data across all Medicare programs.</div>
+      <span class="dataset-tag">cms.medicare</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">✈️</span>
+      <div class="dataset-name">BTS Flight Data</div>
+      <div class="dataset-desc">On-time performance, causes of delay, and carrier statistics for all US domestic flights.</div>
+      <span class="dataset-tag">bts.flights</span>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="reveal">
+    <div class="section-label">How it works</div>
+    <h2 class="section-heading">Zero infrastructure.<br><em>One pip install.</em></h2>
+    <p class="section-sub">AskAmerica handles ingestion, formatting, and serving. You write SQL.</p>
+  </div>
+
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01 —</div>
+      <div class="step-title">Sign up for a free key</div>
+      <div class="step-desc">Enter your email. Receive a 6-digit code. No password, no credit card.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02 —</div>
+      <div class="step-title">pip install askamerica</div>
+      <div class="step-desc">Python 3.8+. Installs DuckDB under the hood — no Spark, no Hadoop.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03 —</div>
+      <div class="step-title">Write SQL</div>
+      <div class="step-desc">Query any dataset with standard SQL. Results come back as a pandas DataFrame.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04 —</div>
+      <div class="step-title">Pay only for what you read</div>
+      <div class="step-desc">Metered by bytes scanned. Free tier: 1 GB/month. Upgrade when you need more.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="reveal">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-heading">Start free.<br><em>Scale when you're ready.</em></h2>
+    <p class="section-sub">All plans include every dataset. You pay for bytes scanned, not seats.</p>
+  </div>
+
+  <div class="pricing-grid reveal">
+    <div class="plan-card">
+      <div class="plan-name">Free</div>
+      <div class="plan-price">$0<span>/mo</span></div>
+      <div class="plan-quota">1 GB / month</div>
+      <ul class="plan-features">
+        <li>All datasets included</li>
+        <li>Email OTP auth — no password</li>
+        <li>pandas DataFrame output</li>
+        <li>Community support</li>
+      </ul>
+      <a href="#signup" class="plan-cta">Get free key →</a>
+    </div>
+
+    <div class="plan-card featured">
+      <div class="plan-badge">Most popular</div>
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">$19<span>/mo</span></div>
+      <div class="plan-quota">50 GB / month</div>
+      <ul class="plan-features">
+        <li>Everything in Free</li>
+        <li>50× more data per month</li>
+        <li>Email support</li>
+        <li>Usage dashboard</li>
+      </ul>
+      <a href="https://askamerica.ai/upgrade" class="plan-cta">Start Starter →</a>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price">$99<span>/mo</span></div>
+      <div class="plan-quota">500 GB / month</div>
+      <ul class="plan-features">
+        <li>Everything in Starter</li>
+        <li>500 GB monthly quota</li>
+        <li>Priority support</li>
+        <li>Early access to new datasets</li>
+      </ul>
+      <a href="https://askamerica.ai/upgrade" class="plan-cta">Go Pro →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- SIGNUP -->
+<section id="signup">
+  <div class="reveal">
+    <div class="section-label">Get started</div>
+    <h2 class="section-heading">Your free API key<br><em>in 60 seconds.</em></h2>
+    <p class="section-sub">Enter your email. We'll send a one-time code — no password required.</p>
+  </div>
+
+  <div class="signup-wrap reveal">
+    <!-- Step 1: email -->
+    <div class="form-step active" id="step-email">
+      <div class="field-group">
+        <label class="field-label" for="email-input">Email address</label>
+        <input type="email" id="email-input" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="msg-error" id="email-error"></div>
+      <button class="btn btn-primary" id="send-otp-btn" onclick="sendOtp()">
+        Send access code →
+      </button>
+    </div>
+
+    <!-- Step 2: OTP -->
+    <div class="form-step" id="step-otp">
+      <div class="field-group">
+        <label class="field-label" for="otp-input">6-digit code</label>
+        <input type="text" id="otp-input" placeholder="000000" maxlength="6"
+               inputmode="numeric" autocomplete="one-time-code">
+        <div class="otp-hint" id="otp-hint"></div>
+      </div>
+      <div class="msg-error" id="otp-error"></div>
+      <button class="btn btn-primary" id="verify-otp-btn" onclick="verifyOtp()">
+        Verify &amp; get API key →
+      </button>
+      <br><br>
+      <button class="btn btn-ghost" onclick="resetForm()" style="width:100%">← Use different email</button>
+    </div>
+
+    <!-- Success -->
+    <div class="signup-success" id="signup-success">
+      <div class="section-label" style="margin-bottom:8px">✓ You're in</div>
+      <p style="color:var(--text-dim);font-size:13px;margin-bottom:16px">
+        Your free API key is below. Keep it safe — it grants access to your quota.
+      </p>
+      <div class="key-display">
+        <code class="key-value" id="key-display"></code>
+        <button class="copy-btn" onclick="copyKey()">copy</button>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:16px;">
+        <div style="font-size:11px;color:var(--text-dim);margin-bottom:8px;">Quick start:</div>
+        <code style="font-size:12px;color:var(--amber);">pip install askamerica</code><br>
+        <code style="font-size:12px;color:var(--text);">import askamerica</code><br>
+        <code style="font-size:12px;color:var(--text);">askamerica.configure(api_key=<span style="color:var(--amber)" id="key-snippet"></span>)</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <strong style="color:var(--white)">AskAmerica</strong> &nbsp;—&nbsp;
+    US government data as a service
+  </div>
+  <div class="footer-links">
+    <a href="mailto:support@askamerica.ai">support@askamerica.ai</a>
+    <a href="https://pypi.org/project/askamerica/">PyPI</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+  <div>© 2026 AskAmerica</div>
+</footer>
+
+<script>
+const API = 'https://api.askamerica.ai';
+let currentEmail = '';
+
+// Copy install command
+function copyInstall(el) {
+  navigator.clipboard.writeText('pip install askamerica');
+  const btn = el.querySelector('#copy-install-btn');
+  const orig = btn.textContent;
+  btn.textContent = 'copied!';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+
+// Copy API key
+function copyKey() {
+  const key = document.getElementById('key-display').textContent;
+  navigator.clipboard.writeText(key);
+  const btn = event.target;
+  btn.textContent = 'copied!';
+  setTimeout(() => btn.textContent = 'copy', 1500);
+}
+
+// Send OTP
+async function sendOtp() {
+  const email = document.getElementById('email-input').value.trim();
+  const err = document.getElementById('email-error');
+  const btn = document.getElementById('send-otp-btn');
+
+  err.classList.remove('active');
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    err.textContent = 'Please enter a valid email address.';
+    err.classList.add('active');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    const res = await fetch(`${API}/v1/auth/request-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || 'Failed to send code.');
+    }
+
+    currentEmail = email;
+    document.getElementById('otp-hint').textContent = `Code sent to ${email}`;
+    document.getElementById('step-email').classList.remove('active');
+    document.getElementById('step-otp').classList.add('active');
+    document.getElementById('otp-input').focus();
+
+  } catch (e) {
+    err.textContent = e.message;
+    err.classList.add('active');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send access code →';
+  }
+}
+
+// Verify OTP
+async function verifyOtp() {
+  const code = document.getElementById('otp-input').value.trim();
+  const err = document.getElementById('otp-error');
+  const btn = document.getElementById('verify-otp-btn');
+
+  err.classList.remove('active');
+
+  if (!code || code.length !== 6) {
+    err.textContent = 'Enter the 6-digit code from your email.';
+    err.classList.add('active');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Verifying…';
+
+  try {
+    const res = await fetch(`${API}/v1/auth/verify-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: currentEmail, code }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      const msg = {
+        code_expired: 'Code expired. Go back and request a new one.',
+        invalid_code: 'Incorrect code. Please try again.',
+      }[data.error] || data.error || 'Verification failed.';
+      throw new Error(msg);
+    }
+
+    const key = data.api_key;
+    document.getElementById('key-display').textContent = key;
+    document.getElementById('key-snippet').textContent = `"${key}"`;
+    document.getElementById('step-otp').classList.remove('active');
+    document.getElementById('signup-success').classList.add('active');
+
+  } catch (e) {
+    err.textContent = e.message;
+    err.classList.add('active');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Verify & get API key →';
+  }
+}
+
+// Reset form
+function resetForm() {
+  currentEmail = '';
+  document.getElementById('otp-input').value = '';
+  document.getElementById('email-input').value = '';
+  document.getElementById('otp-error').classList.remove('active');
+  document.getElementById('email-error').classList.remove('active');
+  document.getElementById('step-otp').classList.remove('active');
+  document.getElementById('step-email').classList.add('active');
+  document.getElementById('email-input').focus();
+}
+
+// Allow Enter key in inputs
+document.getElementById('email-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') sendOtp();
+});
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('otp-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') verifyOtp();
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
