@@ -126,10 +126,13 @@ def start_jvm(api_key: str) -> None:
         creds = get_r2_credentials(api_key)
         os.environ["AWS_ACCESS_KEY_ID"] = creds["access_key_id"]
         os.environ["AWS_SECRET_ACCESS_KEY"] = creds["secret_access_key"]
-        os.environ.setdefault("AWS_REGION", creds.get("region", "auto"))
         endpoint = creds.get("endpoint", "")
         if endpoint:
             os.environ.setdefault("AWS_ENDPOINT_URL_S3", endpoint)
+        os.environ.setdefault("AWS_REGION", creds.get("region", "auto"))
+
+    # Driver requires AWS_REGION even when credentials are pre-set in environment.
+    os.environ.setdefault("AWS_REGION", "auto")
 
     jpype.startJVM(classpath=[jar_path], convertStrings=False)
     _jvm_started = True
