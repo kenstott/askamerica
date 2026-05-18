@@ -804,8 +804,11 @@
     gap: 10px;
     margin-bottom: 20px;
   }
-  @media (max-width: 860px) {
-    .two-paths { grid-template-columns: 1fr; }
+  @media (max-width: 1100px) {
+    .two-paths { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 680px) {
+    .two-paths { grid-template-columns: 1fr !important; }
   }
 
   /* ── Download & Connect section ─────────────────────────────────────── */
@@ -1070,7 +1073,7 @@
     <div class="step">
       <div class="step-num">02 —</div>
       <div class="step-title">pip install askamerica</div>
-      <div class="step-desc">Python 3.8+. Installs DuckDB under the hood — no Spark, no Hadoop.</div>
+      <div class="step-desc">Python 3.8+. One command installs the client. Run <code>askamerica install-engine</code> to pull the JDBC query engine.</div>
     </div>
     <div class="step">
       <div class="step-num">03 —</div>
@@ -1144,21 +1147,58 @@
 <section id="download">
   <div class="reveal">
     <div class="section-label">Download &amp; connect</div>
-    <h2 class="section-heading">Two ways in.<br><em>Pick yours.</em></h2>
-    <p class="section-sub">Claude Desktop users install the app. Developers download the JAR.</p>
+    <h2 class="section-heading">Three ways in.<br><em>Pick yours.</em></h2>
+    <p class="section-sub">Python, Claude Desktop, or raw JDBC — the same data, the same SQL.</p>
   </div>
 
-  <div class="two-paths reveal">
+  <div class="two-paths reveal" style="grid-template-columns:1fr 1fr 1fr">
 
-    <!-- MCP path -->
+    <!-- Python path -->
     <div class="path-card path-featured">
-      <div class="path-badge">Claude Desktop</div>
-      <h3 class="path-title">Install the app</h3>
+      <div class="path-badge">Recommended</div>
+      <h3 class="path-title">Python</h3>
       <p class="path-desc">
-        Native installer with bundled JRE — no Java, no Python, no config files.
-        Open the app, enter your API key, click Configure. Done.
+        One package, zero boilerplate. Returns a pandas DataFrame or a raw JDBC connection — JPype is managed internally.
       </p>
-      <div class="dl-grid dl-grid-3">
+      <div class="code-block" style="margin-bottom:16px">
+        <div class="code-header">install</div>
+        <pre>pip install <span class="s">'askamerica[engine]'</span>
+askamerica install-engine   <span class="c"># downloads JAR</span>
+askamerica login            <span class="c"># set your API key</span></pre>
+      </div>
+      <div class="code-block" style="margin-bottom:16px">
+        <div class="code-header">one-liner → DataFrame</div>
+        <pre><span class="k">import</span> askamerica <span class="k">as</span> aa
+
+df = aa.query(<span class="s">"""
+  SELECT company_name, value_dollars
+  FROM sec.financial_facts
+  WHERE canonical_name = 'Revenue'
+  ORDER BY value_dollars DESC
+  FETCH FIRST 10 ROWS ONLY
+"""</span>)
+<span class="k">print</span>(df)</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-header">raw JDBC connection</div>
+        <pre>conn = aa.connect()
+rs = conn.createStatement().executeQuery(
+    <span class="s">"SELECT cik, company_name FROM sec.filing_metadata"
+    " ORDER BY filing_date DESC FETCH FIRST 5 ROWS ONLY"</span>)
+<span class="k">while</span> rs.next():
+    <span class="k">print</span>(rs.getString(<span class="s">"company_name"</span>))
+conn.close()</pre>
+      </div>
+    </div>
+
+    <!-- Claude Desktop path -->
+    <div class="path-card">
+      <div class="path-badge path-badge-dim">Claude Desktop</div>
+      <h3 class="path-title">Native Installer</h3>
+      <p class="path-desc">
+        Bundled JRE — no Java, no Python, no config files. Open the app, enter your API key, click Configure.
+      </p>
+      <div class="dl-grid dl-grid-3" style="margin-bottom:16px">
         <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
           <div class="dl-icon">🍎</div>
           <div class="dl-label">macOS</div>
@@ -1177,75 +1217,82 @@
       </div>
       <p class="path-note">
         Installs <strong>AskAmerica MCP</strong> as a native app. Open it once to configure
-        Claude Desktop — it writes the MCP server entry automatically. Restart Claude, and
-        it gains four tools: <code>list_schemas</code>, <code>list_tables</code>,
+        Claude Desktop — it writes the MCP server entry automatically. Restart Claude and it gains
+        four tools: <code>list_schemas</code>, <code>list_tables</code>,
         <code>describe_table</code>, <code>query</code>.
+      </p>
+      <p class="path-note" style="margin-top:12px">
+        Or via pip: <code>pip install 'askamerica[mcp]'</code> then run <code>askamerica mcp-config</code> to print the Claude Desktop snippet.
       </p>
     </div>
 
-    <!-- Dev path -->
+    <!-- JDBC path -->
     <div class="path-card">
-      <div class="path-badge path-badge-dim">Developer</div>
-      <h3 class="path-title">Download the JAR</h3>
+      <div class="path-badge path-badge-dim">JDBC / Any language</div>
+      <h3 class="path-title">Raw JAR</h3>
       <p class="path-desc">
-        A single fat JAR — use from Python, Node, Go, Java, or any JDBC client.
+        A single fat JAR — use from Node, Go, Java, DBeaver, or any JDBC client.
       </p>
       <div class="dl-row" style="margin-bottom:20px">
-        <a class="btn btn-ghost" style="width:100%;text-align:center" href="https://github.com/kenstott/calcite/releases/latest/download/askamerica-engine.jar">
+        <a class="btn btn-ghost" style="width:100%;text-align:center;text-decoration:none" href="https://github.com/kenstott/calcite/releases/latest/download/askamerica-engine.jar">
           ↓ askamerica-engine.jar
         </a>
       </div>
 
       <div class="tab-bar" role="tablist" style="margin-bottom:0">
-        <button class="tab-btn active" onclick="switchTab('python')" id="tab-python">Python</button>
-        <button class="tab-btn" onclick="switchTab('node')" id="tab-node">Node</button>
+        <button class="tab-btn active" onclick="switchTab('node')" id="tab-node">Node</button>
         <button class="tab-btn" onclick="switchTab('go')" id="tab-go">Go</button>
         <button class="tab-btn" onclick="switchTab('java')" id="tab-java">Java</button>
+        <button class="tab-btn" onclick="switchTab('dbeaver')" id="tab-dbeaver">DBeaver</button>
       </div>
 
-      <div class="tab-panel active" id="panel-python">
-        <div class="code-block">
-          <pre><span class="k">import</span> jpype
-jpype.startJVM(classpath=[<span class="s">"askamerica-engine.jar"</span>])
-Driver = jpype.JClass(<span class="s">"org.apache.calcite.adapter.govdata.GovDataDriver"</span>)
-conn = Driver().connect(<span class="s">"jdbc:govdata:source=sec,geo"</span>, jpype.JClass(<span class="s">"java.util.Properties"</span>)())
-rs = conn.createStatement().executeQuery(<span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>)</pre>
-        </div>
-        <p class="path-note" style="margin-top:8px">Or: <code>pip install 'askamerica[engine]'</code> wraps this for you.</p>
-      </div>
-
-      <div class="tab-panel" id="panel-node">
+      <div class="tab-panel active" id="panel-node">
         <div class="code-block">
           <pre><span class="k">const</span> { createConnection } = require(<span class="s">'jdbc'</span>);
 <span class="k">const</span> conn = <span class="k">await</span> createConnection({
-  url: <span class="s">'jdbc:govdata:source=sec,geo'</span>,
-  drivername: <span class="s">'org.apache.calcite.adapter.govdata.GovDataDriver'</span>,
+  url: <span class="s">'jdbc:askamerica:source=sec,geo'</span>,
+  drivername: <span class="s">'org.apache.calcite.adapter.askamerica.AskAmericaDriver'</span>,
   minpoolsize: 1, maxpoolsize: 1,
   classpath: [<span class="s">'./askamerica-engine.jar'</span>]
 });
-<span class="k">const</span> rows = <span class="k">await</span> conn.query(<span class="s">'SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY'</span>);</pre>
+<span class="k">const</span> rows = <span class="k">await</span> conn.query(
+  <span class="s">'SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY'</span>);</pre>
         </div>
-        <p class="path-note" style="margin-top:8px">Uses <code>npm install jdbc</code> (node-jdbc wrapper around JDBC via node-java).</p>
+        <p class="path-note" style="margin-top:8px"><code>npm install jdbc</code> — node-jdbc wrapper over JDBC via node-java.</p>
       </div>
 
       <div class="tab-panel" id="panel-go">
         <div class="code-block">
           <pre><span class="c">// go-jdbc wraps the JVM via CGo</span>
-db, _ := sql.Open(<span class="s">"jdbc"</span>, <span class="s">"jdbc:govdata:source=sec,geo"</span>)
-rows, _ := db.Query(<span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>)</pre>
+db, _ := sql.Open(<span class="s">"jdbc"</span>, <span class="s">"jdbc:askamerica:source=sec,geo"</span>)
+rows, _ := db.Query(
+  <span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>)</pre>
         </div>
-        <p class="path-note" style="margin-top:8px">Uses <code>github.com/attic-labs/noms/go/d/jdbc</code> or spawn the JAR as a subprocess with a JSON bridge.</p>
+        <p class="path-note" style="margin-top:8px">Or spawn the JAR as a subprocess with a JSON bridge.</p>
       </div>
 
       <div class="tab-panel" id="panel-java">
         <div class="code-block">
-          <pre>GovDataDriver driver = <span class="k">new</span> GovDataDriver();
+          <pre>AskAmericaDriver driver = <span class="k">new</span> AskAmericaDriver();
 Connection conn = driver.connect(
-    <span class="s">"jdbc:govdata:source=sec,geo,econ,census,fec"</span>, <span class="k">new</span> Properties());
+    <span class="s">"jdbc:askamerica:source=sec,geo,econ,census,fec"</span>,
+    <span class="k">new</span> Properties());
 ResultSet rs = conn.createStatement().executeQuery(
     <span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>);</pre>
         </div>
         <p class="path-note" style="margin-top:8px">Add <code>askamerica-engine.jar</code> to your classpath. No other dependencies needed.</p>
+      </div>
+
+      <div class="tab-panel" id="panel-dbeaver">
+        <div class="code-block">
+          <div class="code-header">connection settings</div>
+          <pre><span class="c">JDBC URL:      </span><span class="s">jdbc:askamerica:source=geo,sec</span>
+<span class="c">Driver JAR:    </span><span class="s">askamerica-engine.jar</span>
+<span class="c">Driver class:  </span><span class="s">org.apache.calcite.adapter.askamerica.AskAmericaDriver</span>
+<span class="c">Username:      </span><span class="s">(leave blank)</span>
+<span class="c">Password:      </span><span class="s">(leave blank)</span></pre>
+        </div>
+        <p class="path-note" style="margin-top:8px">New Connection → JDBC → add the JAR → paste the driver class.</p>
       </div>
     </div>
 
@@ -1331,9 +1378,11 @@ let currentEmail = '';
 
 // Tab switcher for Download & Connect section
 function switchTab(name) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
+  const btn = document.getElementById('tab-' + name);
+  if (!btn) return;
+  btn.closest('.path-card').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.closest('.path-card').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
   document.getElementById('panel-' + name).classList.add('active');
 }
 
