@@ -715,6 +715,155 @@
     .install-row { flex-direction: column; align-items: stretch; }
     .install-cmd { justify-content: space-between; }
   }
+
+  /* ── Code block (used in download section) ──────────────────────────── */
+  .code-block {
+    background: #0d0d0d;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .code-header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 8px 16px;
+  }
+  .code-block pre {
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+    overflow-x: auto;
+    padding: 20px;
+  }
+  /* Inline syntax spans */
+  .code-block pre .c { color: #586069; }   /* comment */
+  .code-block pre .k { color: #f97583; }   /* keyword */
+  .code-block pre .s { color: var(--amber); } /* string */
+
+  /* ── Two-path layout ────────────────────────────────────────────────── */
+  .two-paths {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+    align-items: start;
+  }
+  .path-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .path-featured {
+    border-color: var(--amber-dim);
+  }
+  .path-badge {
+    display: inline-block;
+    background: var(--amber);
+    color: #0a0a0a;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .path-badge-dim {
+    background: var(--border);
+    color: var(--text-dim);
+  }
+  .path-title {
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+  .path-desc {
+    color: var(--text-dim);
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0 0 20px;
+  }
+  .path-note {
+    color: var(--text-dim);
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 16px 0 0;
+  }
+  .dl-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 860px) {
+    .two-paths { grid-template-columns: 1fr; }
+  }
+
+  /* ── Download & Connect section ─────────────────────────────────────── */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    padding: 10px 16px;
+    text-transform: uppercase;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { border-bottom-color: var(--amber); color: var(--amber); }
+  .tab-panel { display: none; padding-top: 24px; }
+  .tab-panel.active { display: block; }
+
+  .dl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .dl-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .dl-card:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .dl-icon { font-size: 28px; }
+  .dl-label { color: var(--white); font-size: 14px; font-weight: 600; }
+  .dl-detail { color: var(--text-dim); font-size: 12px; font-family: var(--mono); }
+  .dl-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  @media (max-width: 600px) {
+    .dl-grid { grid-template-columns: 1fr; }
+    .tab-bar { overflow-x: auto; }
+  }
 </style>
 </head>
 <body>
@@ -729,6 +878,7 @@
     <li><a href="#datasets">Datasets</a></li>
     <li><a href="#how">How it works</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#download">Download</a></li>
     <li><a href="#signup" class="nav-cta">Get free API key</a></li>
   </ul>
 </nav>
@@ -990,6 +1140,120 @@
 
 <hr class="section-divider">
 
+<!-- DOWNLOAD & CONNECT -->
+<section id="download">
+  <div class="reveal">
+    <div class="section-label">Download &amp; connect</div>
+    <h2 class="section-heading">Two ways in.<br><em>Pick yours.</em></h2>
+    <p class="section-sub">Claude Desktop users install the app. Developers download the JAR.</p>
+  </div>
+
+  <div class="two-paths reveal">
+
+    <!-- MCP path -->
+    <div class="path-card path-featured">
+      <div class="path-badge">Claude Desktop</div>
+      <h3 class="path-title">Install the app</h3>
+      <p class="path-desc">
+        Native installer with bundled JRE — no Java, no Python, no config files.
+        Open the app, enter your API key, click Configure. Done.
+      </p>
+      <div class="dl-grid dl-grid-3">
+        <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
+          <div class="dl-icon">🍎</div>
+          <div class="dl-label">macOS</div>
+          <div class="dl-detail">.dmg</div>
+        </a>
+        <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
+          <div class="dl-icon">🪟</div>
+          <div class="dl-label">Windows</div>
+          <div class="dl-detail">.msi</div>
+        </a>
+        <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
+          <div class="dl-icon">🐧</div>
+          <div class="dl-label">Linux</div>
+          <div class="dl-detail">.deb</div>
+        </a>
+      </div>
+      <p class="path-note">
+        Installs <strong>AskAmerica MCP</strong> as a native app. Open it once to configure
+        Claude Desktop — it writes the MCP server entry automatically. Restart Claude, and
+        it gains four tools: <code>list_schemas</code>, <code>list_tables</code>,
+        <code>describe_table</code>, <code>query</code>.
+      </p>
+    </div>
+
+    <!-- Dev path -->
+    <div class="path-card">
+      <div class="path-badge path-badge-dim">Developer</div>
+      <h3 class="path-title">Download the JAR</h3>
+      <p class="path-desc">
+        A single fat JAR — use from Python, Node, Go, Java, or any JDBC client.
+      </p>
+      <div class="dl-row" style="margin-bottom:20px">
+        <a class="btn btn-ghost" style="width:100%;text-align:center" href="https://github.com/kenstott/calcite/releases/latest/download/askamerica-engine.jar">
+          ↓ askamerica-engine.jar
+        </a>
+      </div>
+
+      <div class="tab-bar" role="tablist" style="margin-bottom:0">
+        <button class="tab-btn active" onclick="switchTab('python')" id="tab-python">Python</button>
+        <button class="tab-btn" onclick="switchTab('node')" id="tab-node">Node</button>
+        <button class="tab-btn" onclick="switchTab('go')" id="tab-go">Go</button>
+        <button class="tab-btn" onclick="switchTab('java')" id="tab-java">Java</button>
+      </div>
+
+      <div class="tab-panel active" id="panel-python">
+        <div class="code-block">
+          <pre><span class="k">import</span> jpype
+jpype.startJVM(classpath=[<span class="s">"askamerica-engine.jar"</span>])
+Driver = jpype.JClass(<span class="s">"org.apache.calcite.adapter.govdata.GovDataDriver"</span>)
+conn = Driver().connect(<span class="s">"jdbc:govdata:source=sec,geo"</span>, jpype.JClass(<span class="s">"java.util.Properties"</span>)())
+rs = conn.createStatement().executeQuery(<span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>)</pre>
+        </div>
+        <p class="path-note" style="margin-top:8px">Or: <code>pip install 'askamerica[engine]'</code> wraps this for you.</p>
+      </div>
+
+      <div class="tab-panel" id="panel-node">
+        <div class="code-block">
+          <pre><span class="k">const</span> { createConnection } = require(<span class="s">'jdbc'</span>);
+<span class="k">const</span> conn = <span class="k">await</span> createConnection({
+  url: <span class="s">'jdbc:govdata:source=sec,geo'</span>,
+  drivername: <span class="s">'org.apache.calcite.adapter.govdata.GovDataDriver'</span>,
+  minpoolsize: 1, maxpoolsize: 1,
+  classpath: [<span class="s">'./askamerica-engine.jar'</span>]
+});
+<span class="k">const</span> rows = <span class="k">await</span> conn.query(<span class="s">'SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY'</span>);</pre>
+        </div>
+        <p class="path-note" style="margin-top:8px">Uses <code>npm install jdbc</code> (node-jdbc wrapper around JDBC via node-java).</p>
+      </div>
+
+      <div class="tab-panel" id="panel-go">
+        <div class="code-block">
+          <pre><span class="c">// go-jdbc wraps the JVM via CGo</span>
+db, _ := sql.Open(<span class="s">"jdbc"</span>, <span class="s">"jdbc:govdata:source=sec,geo"</span>)
+rows, _ := db.Query(<span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>)</pre>
+        </div>
+        <p class="path-note" style="margin-top:8px">Uses <code>github.com/attic-labs/noms/go/d/jdbc</code> or spawn the JAR as a subprocess with a JSON bridge.</p>
+      </div>
+
+      <div class="tab-panel" id="panel-java">
+        <div class="code-block">
+          <pre>GovDataDriver driver = <span class="k">new</span> GovDataDriver();
+Connection conn = driver.connect(
+    <span class="s">"jdbc:govdata:source=sec,geo,econ,census,fec"</span>, <span class="k">new</span> Properties());
+ResultSet rs = conn.createStatement().executeQuery(
+    <span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>);</pre>
+        </div>
+        <p class="path-note" style="margin-top:8px">Add <code>askamerica-engine.jar</code> to your classpath. No other dependencies needed.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
 <!-- SIGNUP -->
 <section id="signup">
   <div class="reveal">
@@ -1064,6 +1328,14 @@
 <script>
 const API = 'https://api.askamerica.ai';
 let currentEmail = '';
+
+// Tab switcher for Download & Connect section
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
 
 // Copy install command
 function copyInstall(el) {
