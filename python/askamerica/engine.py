@@ -5,9 +5,7 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-import requests
-
-from .config import API_BASE_URL, load_config, save_config
+from .config import load_config, save_config
 from .exceptions import AuthError, EngineNotInstalledError
 
 DEFAULT_JAR_PATH = Path.home() / ".askamerica" / "engine" / "askamerica-engine.jar"
@@ -80,27 +78,6 @@ def get_engine_jar() -> str:
     return str(download_jar())
 
 
-def get_r2_credentials(api_key: str) -> dict:
-    config = load_config()
-    cached = config.get("r2_credentials")
-    if cached:
-        return cached
-
-    resp = requests.get(
-        f"{API_BASE_URL}/v1/catalog/credentials",
-        headers={"X-API-Key": api_key},
-        timeout=10,
-    )
-    if resp.status_code == 401:
-        raise AuthError("Invalid or expired API key. Run: askamerica login")
-    resp.raise_for_status()
-    creds = resp.json()
-
-    config["r2_credentials"] = creds
-    save_config(config)
-    return creds
-
-
 def start_jvm(api_key: str) -> None:
     global _jvm_started
 
@@ -121,18 +98,9 @@ def start_jvm(api_key: str) -> None:
 
     jar_path = get_engine_jar()
 
-    # Inject R2 credentials as env vars before JVM starts (govdata reads these).
-    if not os.environ.get("AWS_ACCESS_KEY_ID"):
-        creds = get_r2_credentials(api_key)
-        os.environ["AWS_ACCESS_KEY_ID"] = creds["access_key_id"]
-        os.environ["AWS_SECRET_ACCESS_KEY"] = creds["secret_access_key"]
-        endpoint = creds.get("endpoint", "")
-        if endpoint:
-            os.environ.setdefault("AWS_ENDPOINT_URL_S3", endpoint)
-        os.environ.setdefault("AWS_REGION", creds.get("region", "auto"))
-
-    # Driver requires AWS_REGION even when credentials are pre-set in environment.
-    os.environ.setdefault("AWS_REGION", "auto")
+    # Ensure ASKAMERICA_API_KEY is visible to the JVM for credential refresh if needed.
+    if api_key and not os.environ.get("ASKAMERICA_API_KEY"):
+        os.environ["ASKAMERICA_API_KEY"] = api_key
 
     jpype.startJVM(classpath=[jar_path], convertStrings=False)
     _jvm_started = True
