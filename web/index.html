@@ -746,23 +746,34 @@
   .code-block pre .k { color: #f97583; }   /* keyword */
   .code-block pre .s { color: var(--amber); } /* string */
 
-  /* ── Two-path layout ────────────────────────────────────────────────── */
-  .two-paths {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 48px;
-    align-items: start;
+  /* ── Distribution tabs ──────────────────────────────────────────────── */
+  .dist-tabs {
+    margin-top: 40px;
   }
-  .path-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
+  .dist-tab-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
   }
-  .path-featured {
-    border-color: var(--amber-dim);
+  .dist-tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 24px;
+    transition: color 0.15s, border-color 0.15s;
+    position: relative;
+    bottom: -1px;
   }
+  .dist-tab-btn:hover { color: var(--text); }
+  .dist-tab-btn.active { border-bottom-color: var(--amber); color: var(--amber); }
+  .dist-panel { display: none; padding: 32px 0 0; }
+  .dist-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+
   .path-badge {
     display: inline-block;
     background: var(--amber);
@@ -804,11 +815,9 @@
     gap: 10px;
     margin-bottom: 20px;
   }
-  @media (max-width: 1100px) {
-    .two-paths { grid-template-columns: 1fr 1fr !important; }
-  }
-  @media (max-width: 680px) {
-    .two-paths { grid-template-columns: 1fr !important; }
+  @media (max-width: 700px) {
+    .dist-panel.active { grid-template-columns: 1fr; }
+    .dist-tab-btn { padding: 10px 14px; font-size: 12px; }
   }
 
   /* ── Download & Connect section ─────────────────────────────────────── */
@@ -890,11 +899,10 @@
 <div class="hero">
   <div class="hero-eyebrow">Free public beta — 1 GB/month free</div>
 
-  <h1>The <em>entire US government</em><br>in one SQL query</h1>
+  <h1>Ask Claude anything about<br><em>the US government</em></h1>
 
   <p class="hero-sub">
-    17 federal datasets — SEC filings, FEC campaign finance, NOAA weather, Census, energy, crime, health, and more.
-    Query it all with Python — no ETL, no data engineering, no infrastructure.
+    17 federal datasets — SEC, FEC, Census, weather, energy, crime, and more — queryable in plain English via Claude Desktop, or directly from Python with one pip install.
   </p>
 
   <!-- Terminal -->
@@ -903,27 +911,22 @@
       <div class="terminal-dot red"></div>
       <div class="terminal-dot yellow"></div>
       <div class="terminal-dot green"></div>
-      <span class="terminal-title">python3</span>
+      <span class="terminal-title">Claude Desktop · AskAmerica MCP</span>
     </div>
     <div class="terminal-body">
-      <span class="t-comment"># Who funded the 2024 Senate campaigns?</span><br>
-      <span class="t-import">import</span> <span class="t-cmd">askamerica</span><br>
+      <span class="t-comment">You</span><br>
+      <span class="t-cmd">Which Senate candidates raised the most money in 2024,</span><br>
+      <span class="t-cmd">and where did it come from?</span><br>
       <span class="t-blank"></span>
-      <span class="t-fn">askamerica</span>.<span class="t-fn">configure</span>(<span class="t-string">api_key=</span><span class="t-string">"aa_free_..."</span>)<br>
-      <span class="t-blank"></span>
-      <span class="t-cmd">df</span> = <span class="t-fn">askamerica</span>.<span class="t-fn">query</span>(<span class="t-string">"""</span><br>
-      &nbsp;&nbsp;<span class="t-string">SELECT candidate_name, SUM(contribution_receipt_amount) AS total</span><br>
-      &nbsp;&nbsp;<span class="t-string">FROM fec.contributions</span><br>
-      &nbsp;&nbsp;<span class="t-string">WHERE election_year = 2024 AND office = 'S'</span><br>
-      &nbsp;&nbsp;<span class="t-string">GROUP BY 1 ORDER BY 2 DESC LIMIT 10</span><br>
-      <span class="t-string">"""</span>)<br>
-      <span class="t-blank"></span>
-      <span class="t-cmd">print</span>(<span class="t-cmd">df</span>)<br>
-      <span class="t-output">   candidate_name            total</span>
-      <span class="t-output">0  Jon Tester            $12.4M</span>
-      <span class="t-output">1  Ted Cruz               $9.8M</span>
-      <span class="t-output">2  Sherrod Brown          $9.1M</span>
-      <span class="t-output">...                        ...</span>
+      <span class="t-comment">Claude</span><br>
+      <span class="t-output">Here are the top 2024 Senate fundraisers by total receipts:</span>
+      <span class="t-output"></span>
+      <span class="t-output">  Jon Tester (D-MT)     $12.4M — 68% small donors, 32% PAC</span>
+      <span class="t-output">  Ted Cruz (R-TX)        $9.8M — 41% small donors, 59% PAC</span>
+      <span class="t-output">  Sherrod Brown (D-OH)   $9.1M — 72% small donors, 28% PAC</span>
+      <span class="t-output"></span>
+      <span class="t-output">Tester's race was the most expensive Senate contest of the cycle.</span>
+      <span class="t-output">Want a breakdown by contribution size or committee type?</span>
       <span class="cursor"></span>
     </div>
   </div>
@@ -931,10 +934,10 @@
   <!-- Install -->
   <div class="install-row">
     <div class="install-cmd" onclick="copyInstall(this)">
-      <code>pip install askamerica</code>
+      <code>pip install 'askamerica[engine]'</code>
       <button class="copy-btn" id="copy-install-btn">copy</button>
     </div>
-    <div class="hero-stat">Returns a pandas DataFrame</div>
+    <div class="hero-stat">Also works from Python, Node, Java, DBeaver</div>
   </div>
 </div>
 
@@ -1147,28 +1150,72 @@
 <section id="download">
   <div class="reveal">
     <div class="section-label">Download &amp; connect</div>
-    <h2 class="section-heading">Three ways in.<br><em>Pick yours.</em></h2>
-    <p class="section-sub">Python, Claude Desktop, or raw JDBC — the same data, the same SQL.</p>
+    <h2 class="section-heading">Get started.<br><em>Your way.</em></h2>
+    <p class="section-sub">Same data, same API key — choose the client that fits your workflow.</p>
   </div>
 
-  <div class="two-paths reveal" style="grid-template-columns:1fr 1fr 1fr">
+  <div class="dist-tabs reveal">
+    <div class="dist-tab-bar">
+      <button class="dist-tab-btn active" onclick="switchDist('mcp')">Claude Desktop</button>
+      <button class="dist-tab-btn" onclick="switchDist('python')">Python</button>
+      <button class="dist-tab-btn" onclick="switchDist('jdbc')">JDBC / DBeaver</button>
+    </div>
 
-    <!-- Python path -->
-    <div class="path-card path-featured">
-      <div class="path-badge">Recommended</div>
-      <h3 class="path-title">Python</h3>
-      <p class="path-desc">
-        One package, zero boilerplate. Returns a pandas DataFrame or a raw JDBC connection — JPype is managed internally.
-      </p>
-      <div class="code-block" style="margin-bottom:16px">
-        <div class="code-header">install</div>
-        <pre>pip install <span class="s">'askamerica[engine]'</span>
-askamerica install-engine   <span class="c"># downloads JAR</span>
-askamerica login            <span class="c"># set your API key</span></pre>
+    <!-- Claude Desktop panel -->
+    <div class="dist-panel active" id="dist-mcp">
+      <div>
+        <div class="path-badge">Recommended</div>
+        <h3 class="path-title">Native installer</h3>
+        <p class="path-desc">Bundled JRE — no Java, no Python, no config files. Open the app, enter your API key, click Configure. Claude Desktop gains four new tools instantly.</p>
+        <div class="dl-grid dl-grid-3">
+          <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
+            <div class="dl-icon">🍎</div>
+            <div class="dl-label">macOS</div>
+            <div class="dl-detail">.dmg</div>
+          </a>
+          <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
+            <div class="dl-icon">🪟</div>
+            <div class="dl-label">Windows</div>
+            <div class="dl-detail">.msi</div>
+          </a>
+          <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
+            <div class="dl-icon">🐧</div>
+            <div class="dl-label">Linux</div>
+            <div class="dl-detail">.deb</div>
+          </a>
+        </div>
+        <p class="path-note" style="margin-top:4px">Or via pip: <code>pip install 'askamerica[mcp]'</code> then <code>askamerica mcp-config</code>.</p>
       </div>
-      <div class="code-block" style="margin-bottom:16px">
-        <div class="code-header">one-liner → DataFrame</div>
-        <pre><span class="k">import</span> askamerica <span class="k">as</span> aa
+      <div>
+        <div class="code-block">
+          <div class="code-header">Claude Desktop gains these tools</div>
+          <pre><span class="s">list_schemas</span>    <span class="c">→ what datasets are available?</span>
+<span class="s">list_tables</span>     <span class="c">→ what tables are in fec?</span>
+<span class="s">describe_table</span>  <span class="c">→ what columns does contributions have?</span>
+<span class="s">query</span>           <span class="c">→ run any SQL and return results</span></pre>
+        </div>
+        <p class="path-note" style="margin-top:16px">Claude calls these automatically — you just ask questions in plain English. No SQL required on your end.</p>
+      </div>
+    </div>
+
+    <!-- Python panel -->
+    <div class="dist-panel" id="dist-python">
+      <div>
+        <div class="path-badge path-badge-dim">Developer</div>
+        <h3 class="path-title">pip install</h3>
+        <p class="path-desc">One package, zero boilerplate. Returns a pandas DataFrame or a raw JDBC connection — JPype is managed internally, never exposed.</p>
+        <div class="code-block" style="margin-bottom:16px">
+          <div class="code-header">setup</div>
+          <pre>pip install <span class="s">'askamerica[engine]'</span>
+askamerica install-engine   <span class="c"># downloads JAR once</span>
+askamerica login            <span class="c"># set API key</span></pre>
+        </div>
+        <p class="path-note">Python 3.8+. Java 11+ must be on your PATH (or set <code>JAVA_HOME</code>).</p>
+      </div>
+      <div>
+        <div class="code-block" style="margin-bottom:16px">
+          <div class="code-header">one-liner → DataFrame</div>
+          <pre><span class="k">import</span> askamerica <span class="k">as</span> aa
 
 df = aa.query(<span class="s">"""
   SELECT company_name, value_dollars
@@ -1178,124 +1225,78 @@ df = aa.query(<span class="s">"""
   FETCH FIRST 10 ROWS ONLY
 """</span>)
 <span class="k">print</span>(df)</pre>
-      </div>
-      <div class="code-block">
-        <div class="code-header">raw JDBC connection</div>
-        <pre>conn = aa.connect()
+        </div>
+        <div class="code-block">
+          <div class="code-header">raw JDBC connection</div>
+          <pre>conn = aa.connect()
 rs = conn.createStatement().executeQuery(
     <span class="s">"SELECT cik, company_name FROM sec.filing_metadata"
     " ORDER BY filing_date DESC FETCH FIRST 5 ROWS ONLY"</span>)
 <span class="k">while</span> rs.next():
     <span class="k">print</span>(rs.getString(<span class="s">"company_name"</span>))
 conn.close()</pre>
+        </div>
       </div>
     </div>
 
-    <!-- Claude Desktop path -->
-    <div class="path-card">
-      <div class="path-badge path-badge-dim">Claude Desktop</div>
-      <h3 class="path-title">Native Installer</h3>
-      <p class="path-desc">
-        Bundled JRE — no Java, no Python, no config files. Open the app, enter your API key, click Configure.
-      </p>
-      <div class="dl-grid dl-grid-3" style="margin-bottom:16px">
-        <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
-          <div class="dl-icon">🍎</div>
-          <div class="dl-label">macOS</div>
-          <div class="dl-detail">.dmg</div>
-        </a>
-        <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
-          <div class="dl-icon">🪟</div>
-          <div class="dl-label">Windows</div>
-          <div class="dl-detail">.msi</div>
-        </a>
-        <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
-          <div class="dl-icon">🐧</div>
-          <div class="dl-label">Linux</div>
-          <div class="dl-detail">.deb</div>
-        </a>
-      </div>
-      <p class="path-note">
-        Installs <strong>AskAmerica MCP</strong> as a native app. Open it once to configure
-        Claude Desktop — it writes the MCP server entry automatically. Restart Claude and it gains
-        four tools: <code>list_schemas</code>, <code>list_tables</code>,
-        <code>describe_table</code>, <code>query</code>.
-      </p>
-      <p class="path-note" style="margin-top:12px">
-        Or via pip: <code>pip install 'askamerica[mcp]'</code> then run <code>askamerica mcp-config</code> to print the Claude Desktop snippet.
-      </p>
-    </div>
-
-    <!-- JDBC path -->
-    <div class="path-card">
-      <div class="path-badge path-badge-dim">JDBC / Any language</div>
-      <h3 class="path-title">Raw JAR</h3>
-      <p class="path-desc">
-        A single fat JAR — use from Node, Go, Java, DBeaver, or any JDBC client.
-      </p>
-      <div class="dl-row" style="margin-bottom:20px">
-        <a class="btn btn-ghost" style="width:100%;text-align:center;text-decoration:none" href="https://github.com/kenstott/calcite/releases/latest/download/askamerica-engine.jar">
+    <!-- JDBC panel -->
+    <div class="dist-panel" id="dist-jdbc">
+      <div>
+        <div class="path-badge path-badge-dim">Any language</div>
+        <h3 class="path-title">Raw JAR</h3>
+        <p class="path-desc">A single fat JAR — use from Node, Go, Java, DBeaver, or any JDBC client. No other dependencies.</p>
+        <a class="btn btn-ghost" style="width:100%;text-align:center;text-decoration:none;display:block;margin-bottom:20px" href="https://github.com/kenstott/calcite/releases/latest/download/askamerica-engine.jar">
           ↓ askamerica-engine.jar
         </a>
-      </div>
-
-      <div class="tab-bar" role="tablist" style="margin-bottom:0">
-        <button class="tab-btn active" onclick="switchTab('node')" id="tab-node">Node</button>
-        <button class="tab-btn" onclick="switchTab('go')" id="tab-go">Go</button>
-        <button class="tab-btn" onclick="switchTab('java')" id="tab-java">Java</button>
-        <button class="tab-btn" onclick="switchTab('dbeaver')" id="tab-dbeaver">DBeaver</button>
-      </div>
-
-      <div class="tab-panel active" id="panel-node">
         <div class="code-block">
-          <pre><span class="k">const</span> { createConnection } = require(<span class="s">'jdbc'</span>);
+          <div class="code-header">DBeaver connection settings</div>
+          <pre><span class="c">JDBC URL:     </span><span class="s">jdbc:askamerica:source=geo,sec</span>
+<span class="c">Driver JAR:   </span><span class="s">askamerica-engine.jar</span>
+<span class="c">Driver class: </span><span class="s">org.apache.calcite.adapter
+              .askamerica.AskAmericaDriver</span>
+<span class="c">Username:     </span><span class="s">(leave blank)</span></pre>
+        </div>
+      </div>
+      <div>
+        <div class="tab-bar" role="tablist" style="margin-bottom:0">
+          <button class="tab-btn active" onclick="switchTab('node')" id="tab-node">Node</button>
+          <button class="tab-btn" onclick="switchTab('go')" id="tab-go">Go</button>
+          <button class="tab-btn" onclick="switchTab('java')" id="tab-java">Java</button>
+        </div>
+        <div class="tab-panel active" id="panel-node">
+          <div class="code-block">
+            <pre><span class="k">const</span> { createConnection } = require(<span class="s">'jdbc'</span>);
 <span class="k">const</span> conn = <span class="k">await</span> createConnection({
   url: <span class="s">'jdbc:askamerica:source=sec,geo'</span>,
-  drivername: <span class="s">'org.apache.calcite.adapter.askamerica.AskAmericaDriver'</span>,
-  minpoolsize: 1, maxpoolsize: 1,
+  drivername: <span class="s">'org.apache.calcite.adapter
+    .askamerica.AskAmericaDriver'</span>,
   classpath: [<span class="s">'./askamerica-engine.jar'</span>]
 });
 <span class="k">const</span> rows = <span class="k">await</span> conn.query(
   <span class="s">'SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY'</span>);</pre>
+          </div>
         </div>
-        <p class="path-note" style="margin-top:8px"><code>npm install jdbc</code> — node-jdbc wrapper over JDBC via node-java.</p>
-      </div>
-
-      <div class="tab-panel" id="panel-go">
-        <div class="code-block">
-          <pre><span class="c">// go-jdbc wraps the JVM via CGo</span>
-db, _ := sql.Open(<span class="s">"jdbc"</span>, <span class="s">"jdbc:askamerica:source=sec,geo"</span>)
+        <div class="tab-panel" id="panel-go">
+          <div class="code-block">
+            <pre><span class="c">// go-jdbc wraps the JVM via CGo</span>
+db, _ := sql.Open(<span class="s">"jdbc"</span>,
+  <span class="s">"jdbc:askamerica:source=sec,geo"</span>)
 rows, _ := db.Query(
   <span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>)</pre>
+          </div>
         </div>
-        <p class="path-note" style="margin-top:8px">Or spawn the JAR as a subprocess with a JSON bridge.</p>
-      </div>
-
-      <div class="tab-panel" id="panel-java">
-        <div class="code-block">
-          <pre>AskAmericaDriver driver = <span class="k">new</span> AskAmericaDriver();
+        <div class="tab-panel" id="panel-java">
+          <div class="code-block">
+            <pre>AskAmericaDriver driver = <span class="k">new</span> AskAmericaDriver();
 Connection conn = driver.connect(
-    <span class="s">"jdbc:askamerica:source=sec,geo,econ,census,fec"</span>,
+    <span class="s">"jdbc:askamerica:source=sec,geo,econ"</span>,
     <span class="k">new</span> Properties());
 ResultSet rs = conn.createStatement().executeQuery(
     <span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>);</pre>
+          </div>
         </div>
-        <p class="path-note" style="margin-top:8px">Add <code>askamerica-engine.jar</code> to your classpath. No other dependencies needed.</p>
-      </div>
-
-      <div class="tab-panel" id="panel-dbeaver">
-        <div class="code-block">
-          <div class="code-header">connection settings</div>
-          <pre><span class="c">JDBC URL:      </span><span class="s">jdbc:askamerica:source=geo,sec</span>
-<span class="c">Driver JAR:    </span><span class="s">askamerica-engine.jar</span>
-<span class="c">Driver class:  </span><span class="s">org.apache.calcite.adapter.askamerica.AskAmericaDriver</span>
-<span class="c">Username:      </span><span class="s">(leave blank)</span>
-<span class="c">Password:      </span><span class="s">(leave blank)</span></pre>
-        </div>
-        <p class="path-note" style="margin-top:8px">New Connection → JDBC → add the JAR → paste the driver class.</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1376,12 +1377,20 @@ ResultSet rs = conn.createStatement().executeQuery(
 const API = 'https://api.askamerica.ai';
 let currentEmail = '';
 
-// Tab switcher for Download & Connect section
+// Distribution top-level tab switcher
+function switchDist(name) {
+  document.querySelectorAll('.dist-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.dist-panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('dist-' + name).classList.add('active');
+}
+
+// Language sub-tab switcher (inside JDBC panel)
 function switchTab(name) {
   const btn = document.getElementById('tab-' + name);
   if (!btn) return;
-  btn.closest('.path-card').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.closest('.path-card').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.closest('.tab-bar').nextElementSibling && btn.closest('.dist-panel').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('panel-' + name).classList.add('active');
 }
