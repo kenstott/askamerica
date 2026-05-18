@@ -22,17 +22,62 @@ _jvm_started = False
 _conn = None
 
 
+def download_jar(version: str = None, dest: Path = DEFAULT_JAR_PATH) -> Path:
+    import json
+    import urllib.request
+
+    dest.parent.mkdir(parents=True, exist_ok=True)
+
+    if version:
+        tag = f"engine-v{version}"
+        url = f"https://api.github.com/repos/kenstott/calcite/releases/tags/{tag}"
+        with urllib.request.urlopen(url, timeout=15) as r:
+            release = json.loads(r.read())
+    else:
+        url = "https://api.github.com/repos/kenstott/calcite/releases"
+        with urllib.request.urlopen(url, timeout=15) as r:
+            releases = json.loads(r.read())
+        engine_releases = [
+            rel for rel in releases
+            if rel.get("tag_name", "").startswith("engine-v")
+            and not rel.get("prerelease")
+        ]
+        if not engine_releases:
+            raise EngineNotInstalledError(
+                "No engine releases found on GitHub. "
+                "Set ASKAMERICA_ENGINE_JAR to a local JAR path."
+            )
+        release = engine_releases[0]
+
+    assets = release.get("assets", [])
+    jar_asset = next((a for a in assets if a["name"] == "askamerica-engine.jar"), None)
+    if not jar_asset:
+        raise EngineNotInstalledError(
+            f"No askamerica-engine.jar asset in release {release['tag_name']}."
+        )
+
+    download_url = jar_asset["browser_download_url"]
+    size_mb = jar_asset["size"] / (1024 * 1024)
+    print(f"Downloading askamerica-engine.jar ({size_mb:.0f} MB)...")
+
+    def _progress(block_num, block_size, total_size):
+        if total_size > 0:
+            pct = min(100, block_num * block_size * 100 // total_size)
+            print(f"\r  {pct}%", end="", flush=True)
+
+    urllib.request.urlretrieve(download_url, dest, reporthook=_progress)
+    print(f"\nEngine ready: {dest}")
+    return dest
+
+
 def get_engine_jar() -> str:
     jar = os.environ.get("ASKAMERICA_ENGINE_JAR")
     if jar and Path(jar).exists():
         return jar
     if DEFAULT_JAR_PATH.exists():
         return str(DEFAULT_JAR_PATH)
-    raise EngineNotInstalledError(
-        "askamerica-engine JAR not found.\n"
-        "Run: askamerica install-engine\n"
-        "Or set: export ASKAMERICA_ENGINE_JAR=/path/to/askamerica-engine.jar"
-    )
+    # Auto-download on first use
+    return str(download_jar())
 
 
 def get_r2_credentials(api_key: str) -> dict:

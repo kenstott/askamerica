@@ -44,67 +44,12 @@ def cmd_whoami(args: argparse.Namespace) -> None:
 
 
 def cmd_install_engine(args: argparse.Namespace) -> None:
-    import os
-    import platform
-    import urllib.request
-    from pathlib import Path
-
-    install_dir = Path.home() / ".askamerica" / "engine"
-    install_dir.mkdir(parents=True, exist_ok=True)
-    jar_path = install_dir / "askamerica-engine.jar"
-
-    # Resolve version: explicit arg, or latest from GitHub
-    version = getattr(args, "version", None)
-    if not version:
-        import json
-        api_url = "https://api.github.com/repos/kenstott/calcite/releases"
-        with urllib.request.urlopen(api_url, timeout=15) as r:
-            releases = json.loads(r.read())
-        engine_releases = [
-            rel for rel in releases
-            if rel.get("tag_name", "").startswith("engine-v")
-            and not rel.get("prerelease")
-        ]
-        if not engine_releases:
-            print("No engine releases found on GitHub. Build manually:")
-            print("  ./gradlew :askamerica-engine:shadowJar")
-            sys.exit(1)
-        version = engine_releases[0]["tag_name"].lstrip("engine-v")
-        tag = engine_releases[0]["tag_name"]
-        assets = engine_releases[0].get("assets", [])
-    else:
-        tag = f"engine-v{version}"
-        import json
-        api_url = f"https://api.github.com/repos/kenstott/calcite/releases/tags/{tag}"
-        with urllib.request.urlopen(api_url, timeout=15) as r:
-            release = json.loads(r.read())
-        assets = release.get("assets", [])
-
-    # Find the JAR asset (not an installer)
-    jar_asset = next(
-        (a for a in assets if a["name"] == "askamerica-engine.jar"), None
-    )
-    if not jar_asset:
-        print(f"No askamerica-engine.jar asset found in release {tag}.")
-        print("Available assets:")
-        for a in assets:
-            print(f"  {a['name']}")
+    from .engine import download_jar
+    try:
+        download_jar(version=getattr(args, "version", None))
+    except Exception as e:
+        print(f"Error: {e}")
         sys.exit(1)
-
-    url = jar_asset["browser_download_url"]
-    size_mb = jar_asset["size"] / (1024 * 1024)
-    print(f"Downloading askamerica-engine.jar ({size_mb:.0f} MB) ...")
-    print(f"  from: {url}")
-    print(f"  to:   {jar_path}")
-
-    def progress(block_num, block_size, total_size):
-        if total_size > 0:
-            pct = min(100, block_num * block_size * 100 // total_size)
-            print(f"\r  {pct}%", end="", flush=True)
-
-    urllib.request.urlretrieve(url, jar_path, reporthook=progress)
-    print(f"\nInstalled: {jar_path}")
-    print("Test with: python -c \"import askamerica as aa; print(aa.query.__doc__)\"")
 
 
 def cmd_mcp_config(args: argparse.Namespace) -> None:
