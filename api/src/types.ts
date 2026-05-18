@@ -17,6 +17,7 @@ export interface Env {
   R2_ACCOUNT_ID: string;
   R2_BUCKET: string;
   LS_WEBHOOK_SECRET: string;   // LemonSqueezy webhook signing secret
+  ADMIN_SECRET: string;        // shared secret for admin key issuance
 
   // Vars
   ENVIRONMENT: string;
@@ -29,9 +30,10 @@ export interface QuotaRecord {
 }
 
 export const TIER_LIMITS: Record<string, number> = {
-  free:    1  * 1024 * 1024 * 1024,  // 1 GB
-  starter: 50 * 1024 * 1024 * 1024,  // 50 GB
-  pro:     500 * 1024 * 1024 * 1024, // 500 GB
+  free:     1   * 1024 * 1024 * 1024,         // 1 GB
+  starter:  50  * 1024 * 1024 * 1024,         // 50 GB
+  pro:      500 * 1024 * 1024 * 1024,         // 500 GB
+  internal: Number.MAX_SAFE_INTEGER,           // unlimited
 };
 
 export const LS_VARIANT_TIERS: Record<string, string> = {

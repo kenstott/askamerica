@@ -4,6 +4,7 @@ import { handleUsageReport, handleQuotaStatus } from './metering';
 import { handleLemonSqueezyWebhook } from './webhook';
 import { handleCheckout } from './checkout';
 import { handleCredentials } from './credentials';
+import { handleAdminCreateKey } from './admin';
 
 function cors(response: Response): Response {
   const headers = new Headers(response.headers);
@@ -54,6 +55,8 @@ export default {
       response = await handleLemonSqueezyWebhook(request, env);
     } else if (method === 'GET' && path === '/v1/catalog/credentials') {
       response = await handleCredentials(request, env);
+    } else if (method === 'POST' && path === '/v1/admin/keys') {
+      response = await handleAdminCreateKey(request, env);
     } else {
       response = notFound();
     }
