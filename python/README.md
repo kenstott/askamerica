@@ -15,6 +15,12 @@ The query engine JAR (~80 MB) is downloaded automatically on first use. To pre-d
 askamerica install-engine   # optional — runs automatically on first query otherwise
 ```
 
+Set your API key as an environment variable (or let `askamerica login` store it):
+
+```bash
+export ASKAMERICA_API_KEY=aa_free_...
+```
+
 ## Query
 
 **One-liner — returns a pandas DataFrame:**
