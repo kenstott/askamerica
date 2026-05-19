@@ -14,14 +14,11 @@ jobs:
       matrix:
         include:
           - os: macos-latest
-            artifact: askamerica-mcp-macos
-            binary: dist/askamerica-mcp
+            artifact: askamerica-mcp-macos.dmg
           - os: ubuntu-latest
             artifact: askamerica-mcp-linux
-            binary: dist/askamerica-mcp
           - os: windows-latest
-            artifact: askamerica-mcp-windows
-            binary: dist/askamerica-mcp.exe
+            artifact: askamerica-mcp-windows.exe
 
     steps:
       - uses: actions/checkout@v4
@@ -44,22 +41,38 @@ jobs:
         working-directory: python
         run: python build_mcp_binary.py
 
-      - name: Rename artifact
-        shell: bash
+      # ── macOS: wrap .app in a .dmg ──────────────────────────────────────
+      - name: Create DMG (macOS)
+        if: runner.os == 'macOS'
         working-directory: python
         run: |
-          src="${{ matrix.binary }}"
-          if [[ "$src" == *.exe ]]; then
-            mv "$src" "dist/${{ matrix.artifact }}.exe"
-          else
-            mv "$src" "dist/${{ matrix.artifact }}"
-          fi
+          mkdir -p dmg_stage
+          cp -r dist/askamerica-mcp.app dmg_stage/
+          ln -s /Applications dmg_stage/Applications
+          hdiutil create \
+            -volname "AskAmerica MCP Installer" \
+            -srcfolder dmg_stage \
+            -ov -format UDZO \
+            dist/askamerica-mcp-macos.dmg
+
+      # ── Linux: rename binary ────────────────────────────────────────────
+      - name: Rename Linux binary
+        if: runner.os == 'Linux'
+        working-directory: python
+        run: mv dist/askamerica-mcp dist/askamerica-mcp-linux
+
+      # ── Windows: rename binary ──────────────────────────────────────────
+      - name: Rename Windows binary
+        if: runner.os == 'Windows'
+        shell: bash
+        working-directory: python
+        run: mv dist/askamerica-mcp.exe dist/askamerica-mcp-windows.exe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact }}
-          path: python/dist/${{ matrix.artifact }}*
+          path: python/dist/${{ matrix.artifact }}
           retention-days: 7
 
   release:
@@ -77,7 +90,7 @@ jobs:
         with:
           path: binaries
 
-      - name: Attach binaries to release
+      - name: Attach to release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

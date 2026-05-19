@@ -39,7 +39,8 @@ def main():
         sys.executable, "-m", "PyInstaller",
         "--onefile",
         "--name", "askamerica-mcp",
-        # Windowed mode on macOS/Windows so double-click doesn't open a terminal
+        # macOS/Windows: no terminal window on double-click (produces .app / windowed .exe)
+        # Linux: keep console so MCP stdio works reliably
         "--windowed" if system in ("Darwin", "Windows") else "--console",
         # Bundle the jdk4py JDK
         "--add-data", f"{JAVA_HOME}{sep}jdk4py/java-runtime",

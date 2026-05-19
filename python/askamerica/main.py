@@ -1,19 +1,19 @@
 """
 Unified entry point for the askamerica-mcp binary.
 
-  Interactive (double-click / terminal with tty): show installer UI
-  Piped (launched by Claude Desktop via stdio):   run MCP server
+  --mcp flag (set in Claude Desktop config): run MCP server over stdio
+  No flag (double-click .app / .exe):        show installer UI
 """
 import sys
 
 
 def main():
-    if sys.stdin.isatty():
-        from askamerica.installer import run_installer
-        run_installer()
-    else:
+    if "--mcp" in sys.argv:
         from askamerica.mcp_server import mcp
         mcp.run()
+    else:
+        from askamerica.installer import run_installer
+        run_installer()
 
 
 if __name__ == "__main__":

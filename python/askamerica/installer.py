@@ -56,6 +56,7 @@ def _do_install(api_key: str, on_status, on_done, on_error):
 
         config.setdefault("mcpServers", {})["askamerica"] = {
             "command": str(install_path),
+            "args": ["--mcp"],
             "env": {"ASKAMERICA_API_KEY": api_key},
         }
         config_path.write_text(json.dumps(config, indent=2), encoding="utf-8")
