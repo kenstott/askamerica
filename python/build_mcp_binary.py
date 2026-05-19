@@ -71,8 +71,8 @@ def main():
     print(f"\nBinary ready: {out}")
     print("\nUser workflow:")
     print("  1. Download the binary")
-    print("  2. Double-click → installer UI appears")
-    print("  3. Enter API key → click Install")
+    print("  2. Double-click -> installer UI appears")
+    print("  3. Enter API key -> click Install")
     print("  4. Restart Claude Desktop")
 
 
