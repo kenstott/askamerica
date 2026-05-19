@@ -1,0 +1,90 @@
+name: Build MCP binary
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            artifact: askamerica-mcp-macos
+            binary: dist/askamerica-mcp
+          - os: ubuntu-latest
+            artifact: askamerica-mcp-linux
+            binary: dist/askamerica-mcp
+          - os: windows-latest
+            artifact: askamerica-mcp-windows
+            binary: dist/askamerica-mcp.exe
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install build deps
+        working-directory: python
+        run: pip install pyinstaller jpype1 "jdk4py>=21.0.7.1" "mcp>=1.0.0" anyio starlette sse-starlette
+
+      - name: Install askamerica package
+        working-directory: python
+        run: pip install -e .
+
+      - name: Build binary
+        working-directory: python
+        run: python build_mcp_binary.py
+
+      - name: Rename binary
+        shell: bash
+        working-directory: python
+        run: |
+          src="${{ matrix.binary }}"
+          ext="${src##*.}"
+          if [ "$ext" = "exe" ]; then
+            mv "$src" "dist/${{ matrix.artifact }}.exe"
+          else
+            mv "$src" "dist/${{ matrix.artifact }}"
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: python/dist/${{ matrix.artifact }}*
+          retention-days: 7
+
+  release:
+    name: Attach to GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: binaries
+
+      - name: List binaries
+        run: find binaries -type f
+
+      - name: Attach to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          # Create release if it doesn't exist yet (PyPI publish job may have beaten us)
+          gh release create "$tag" --title "$tag" --notes "MCP binary release $tag" 2>/dev/null || true
+          find binaries -type f | xargs gh release upload "$tag" --clobber

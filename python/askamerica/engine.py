@@ -79,21 +79,33 @@ def get_engine_jar() -> str:
 
 
 def _get_jvm_path() -> Optional[str]:
-    """Return libjvm path from jdk4py bundle, or None to let JPype use the system JVM."""
+    """Return libjvm path — prefers jdk4py bundle, falls back to system JVM."""
+    import platform
+    import sys
+    system = platform.system()
+
+    def _lib_for(base: Path) -> Path:
+        if system == "Darwin":
+            return base / "lib" / "server" / "libjvm.dylib"
+        if system == "Windows":
+            return base / "bin" / "server" / "jvm.dll"
+        return base / "lib" / "server" / "libjvm.so"
+
+    # PyInstaller one-file bundle: jdk4py data files are extracted to _MEIPASS
+    if getattr(sys, "frozen", False):
+        lib = _lib_for(Path(sys._MEIPASS) / "jdk4py" / "java-runtime")
+        if lib.exists():
+            return str(lib)
+
+    # Normal Python env with jdk4py installed
     try:
         from jdk4py import JAVA_HOME
-        import platform
-        system = platform.system()
-        if system == "Darwin":
-            lib = JAVA_HOME / "lib" / "server" / "libjvm.dylib"
-        elif system == "Windows":
-            lib = JAVA_HOME / "bin" / "server" / "jvm.dll"
-        else:
-            lib = JAVA_HOME / "lib" / "server" / "libjvm.so"
+        lib = _lib_for(JAVA_HOME)
         if lib.exists():
             return str(lib)
     except ImportError:
         pass
+
     return None
 
 
