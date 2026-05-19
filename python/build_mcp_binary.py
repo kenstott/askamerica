@@ -28,8 +28,7 @@ def main():
         sys.exit("jdk4py not installed. Run: pip install jdk4py")
 
     try:
-        import jpype
-        jpype_dir = Path(jpype.__file__).parent
+        import jpype  # noqa: F401 — verify installed
     except ImportError:
         sys.exit("jpype1 not installed. Run: pip install jpype1")
 
@@ -44,15 +43,14 @@ def main():
         "--windowed" if system in ("Darwin", "Windows") else "--console",
         # Bundle the jdk4py JDK
         "--add-data", f"{JAVA_HOME}{sep}jdk4py/java-runtime",
-        # Bundle JPype native libs
-        "--add-data", f"{jpype_dir}{sep}jpype",
         "--hidden-import", "askamerica.engine",
         "--hidden-import", "askamerica.config",
         "--hidden-import", "askamerica.exceptions",
         "--hidden-import", "askamerica.installer",
         "--hidden-import", "askamerica.mcp_server",
         "--hidden-import", "jpype",
-        "--hidden-import", "jpype._jpype",
+        # jpype._jpype is a native extension — collect the whole jpype package
+        "--collect-all", "jpype",
         "--hidden-import", "tkinter",
         "--hidden-import", "tkinter.ttk",
         "--hidden-import", "tkinter.font",
@@ -66,7 +64,7 @@ def main():
         str(entry),
     ]
 
-    print(f"Building askamerica-mcp for {system}…")
+    print(f"Building askamerica-mcp for {system}...")
     subprocess.run(cmd, check=True, cwd=here)
 
     out = here / "dist" / ("askamerica-mcp.exe" if system == "Windows" else "askamerica-mcp")
