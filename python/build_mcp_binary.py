@@ -56,8 +56,13 @@ def main():
         "--hidden-import", "tkinter",
         "--hidden-import", "tkinter.ttk",
         "--hidden-import", "tkinter.font",
-        "--collect-all", "mcp",
-        "--collect-all", "anyio",
+        "--hidden-import", "mcp.server",
+        "--hidden-import", "mcp.server.stdio",
+        "--hidden-import", "mcp.server.models",
+        "--hidden-import", "mcp.types",
+        "--hidden-import", "anyio",
+        "--hidden-import", "anyio._backends._asyncio",
+        "--hidden-import", "anyio._backends._trio",
         str(entry),
     ]
 
