@@ -78,6 +78,25 @@ def get_engine_jar() -> str:
     return str(download_jar())
 
 
+def _get_jvm_path() -> Optional[str]:
+    """Return libjvm path from jdk4py bundle, or None to let JPype use the system JVM."""
+    try:
+        from jdk4py import JAVA_HOME
+        import platform
+        system = platform.system()
+        if system == "Darwin":
+            lib = JAVA_HOME / "lib" / "server" / "libjvm.dylib"
+        elif system == "Windows":
+            lib = JAVA_HOME / "bin" / "server" / "jvm.dll"
+        else:
+            lib = JAVA_HOME / "lib" / "server" / "libjvm.so"
+        if lib.exists():
+            return str(lib)
+    except ImportError:
+        pass
+    return None
+
+
 def start_jvm(api_key: str) -> None:
     global _jvm_started
 
@@ -102,7 +121,11 @@ def start_jvm(api_key: str) -> None:
     if api_key and not os.environ.get("ASKAMERICA_API_KEY"):
         os.environ["ASKAMERICA_API_KEY"] = api_key
 
-    jpype.startJVM(classpath=[jar_path], convertStrings=False)
+    jvm_path = _get_jvm_path()
+    if jvm_path:
+        jpype.startJVM(jvm_path, classpath=[jar_path], convertStrings=False)
+    else:
+        jpype.startJVM(classpath=[jar_path], convertStrings=False)
     _jvm_started = True
 
 

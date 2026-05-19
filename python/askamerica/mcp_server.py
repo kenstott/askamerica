@@ -96,7 +96,7 @@ def list_tables(schema: str) -> str:
     """
     conn = get_connection(_key())
     meta = get_metadata(conn)
-    rs = meta.getTables(None, schema.upper(), "%", None)
+    rs = meta.getTables(None, schema.lower(), "%", None)
     tables = []
     while rs.next():
         tables.append({
@@ -121,7 +121,7 @@ def describe_table(schema: str, table: str) -> str:
     """
     conn = get_connection(_key())
     meta = get_metadata(conn)
-    rs = meta.getColumns(None, schema.upper(), table.upper(), "%")
+    rs = meta.getColumns(None, schema.lower(), table.lower(), "%")
     columns = []
     while rs.next():
         columns.append({
