@@ -34,12 +34,15 @@ def main():
 
     entry = here / "askamerica" / "main.py"
 
+    # macOS requires --onedir for .app bundles; onefile + windowed is deprecated
+    bundle_mode = "--onedir" if system == "Darwin" else "--onefile"
+
     cmd = [
         sys.executable, "-m", "PyInstaller",
-        "--onefile",
+        bundle_mode,
         "--name", "askamerica-mcp",
-        # macOS/Windows: no terminal window on double-click (produces .app / windowed .exe)
-        # Linux: keep console so MCP stdio works reliably
+        # macOS/Windows: suppress terminal window on double-click
+        # Linux: keep console so MCP stdio works cleanly
         "--windowed" if system in ("Darwin", "Windows") else "--console",
         # Bundle the jdk4py JDK
         "--add-data", f"{JAVA_HOME}{sep}jdk4py/java-runtime",
