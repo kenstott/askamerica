@@ -139,12 +139,12 @@ def get_connection(api_key: str):
     if _conn is None:
         import jpype
         schemas = os.environ.get("ASKAMERICA_SCHEMAS", DEFAULT_SCHEMAS)
-        GovDataDriver = jpype.JClass(
-            "org.apache.calcite.adapter.govdata.GovDataDriver"
+        AskAmericaDriver = jpype.JClass(
+            "org.apache.calcite.adapter.askamerica.AskAmericaDriver"
         )
-        driver = GovDataDriver()
+        driver = AskAmericaDriver()
         props = jpype.JClass("java.util.Properties")()
-        url = f"jdbc:govdata:source={schemas}"
+        url = f"jdbc:askamerica:source={schemas}"
         _conn = driver.connect(url, props)
 
     return _conn
