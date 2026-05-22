@@ -10,6 +10,9 @@ from .exceptions import AuthError, EngineNotInstalledError
 
 DEFAULT_JAR_PATH = Path.home() / ".askamerica" / "engine" / "askamerica-engine.jar"
 
+# Pinned at publish time by the engine release workflow — matches engine-v<version> tag.
+BUNDLED_ENGINE_VERSION = "0.2.42"
+
 # Schemas loaded by default — publicly accessible without per-schema API keys.
 DEFAULT_SCHEMAS = (
     "sec,geo,econ,census,crime,weather,ref,fec,"
@@ -26,26 +29,14 @@ def download_jar(version: str = None, dest: Path = DEFAULT_JAR_PATH) -> Path:
 
     dest.parent.mkdir(parents=True, exist_ok=True)
 
-    if version:
-        tag = f"engine-v{version}"
-        url = f"https://api.github.com/repos/kenstott/calcite/releases/tags/{tag}"
-        with urllib.request.urlopen(url, timeout=15) as r:
-            release = json.loads(r.read())
-    else:
-        url = "https://api.github.com/repos/kenstott/calcite/releases"
-        with urllib.request.urlopen(url, timeout=15) as r:
-            releases = json.loads(r.read())
-        engine_releases = [
-            rel for rel in releases
-            if rel.get("tag_name", "").startswith("engine-v")
-            and not rel.get("prerelease")
-        ]
-        if not engine_releases:
-            raise EngineNotInstalledError(
-                "No engine releases found on GitHub. "
-                "Set ASKAMERICA_ENGINE_JAR to a local JAR path."
-            )
-        release = engine_releases[0]
+    # Default to the version bundled at package-publish time so pip install
+    # askamerica==X.Y.Z always fetches the matching engine JAR.
+    effective_version = version or BUNDLED_ENGINE_VERSION
+
+    tag = f"engine-v{effective_version}"
+    url = f"https://api.github.com/repos/kenstott/calcite/releases/tags/{tag}"
+    with urllib.request.urlopen(url, timeout=15) as r:
+        release = json.loads(r.read())
 
     assets = release.get("assets", [])
     jar_asset = next((a for a in assets if a["name"] == "askamerica-engine.jar"), None)
