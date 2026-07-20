@@ -844,6 +844,7 @@
   .tab-btn.active { border-bottom-color: var(--amber); color: var(--amber); }
   .tab-panel { display: none; padding-top: 24px; }
   .tab-panel.active { display: block; }
+  .tab-panel .steps { border-radius: 12px; }
 
   .dl-grid {
     display: grid;
@@ -902,7 +903,7 @@
   <h1>Ask Claude anything about<br><em>the US government</em></h1>
 
   <p class="hero-sub">
-    17 federal datasets — SEC, FEC, Census, weather, energy, crime, and more — queryable in plain English via Claude Desktop, or directly from Python with one pip install.
+    420+ datasets from 40+ federal agencies — cross-linked by legal entity, geography, and time since 2010. Includes text similarity search across SEC filings and the Federal Register. Query everything in plain English via Claude Desktop, or directly from Python with one pip install.
   </p>
 
   <!-- Terminal -->
@@ -947,112 +948,160 @@
 <section id="datasets">
   <div class="reveal">
     <div class="section-label">Available datasets</div>
-    <h2 class="section-heading">Every major federal<br><em>data source, unified</em></h2>
-    <p class="section-sub">Updated daily from primary government sources. No API keys per dataset — one AskAmerica key accesses everything.</p>
+    <h2 class="section-heading">420+ datasets.<br><em>40 agencies. One key.</em></h2>
+    <p class="section-sub">Updated daily from primary government sources, with history back to 2010. All schemas cross-linked by legal entity, geography, and time. No API keys per dataset — one AskAmerica key accesses everything.</p>
   </div>
 
   <div class="datasets-grid reveal">
     <div class="dataset-card">
       <span class="dataset-icon">🏦</span>
-      <div class="dataset-name">SEC Filings (EDGAR)</div>
-      <div class="dataset-desc">10-K, 10-Q, 8-K filings, XBRL financials, insider transactions, institutional holdings. Updated daily.</div>
+      <div class="dataset-name">SEC Filings &amp; Market Data</div>
+      <div class="dataset-desc">16 datasets — 10-K, 10-Q, 8-K filings, XBRL financials, insider transactions, institutional holdings, company facts, and end-of-day stock prices for all EDGAR filers. Includes text similarity search across footnotes and MD&amp;A sections. Updated daily.</div>
       <span class="dataset-tag">sec.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">🗳️</span>
       <div class="dataset-name">FEC Campaign Finance</div>
-      <div class="dataset-desc">Every contribution and expenditure reported to the FEC. Candidates, committees, and PACs.</div>
+      <div class="dataset-desc">14 datasets — every contribution, expenditure, and independent expenditure reported to the FEC. Candidates, committees, PACs, and super PACs.</div>
       <span class="dataset-tag">fec.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">🌦️</span>
-      <div class="dataset-name">NOAA Weather (GHCND)</div>
-      <div class="dataset-desc">Daily weather observations from 100,000+ stations worldwide. Temperature, precipitation, snow.</div>
+      <div class="dataset-name">NOAA Weather</div>
+      <div class="dataset-desc">14 datasets — daily observations from 100,000+ stations (GHCND), storm events, drought monitor, NWS forecasts, and EPA air quality. Since 2010.</div>
       <span class="dataset-tag">weather.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">📊</span>
-      <div class="dataset-name">Census ACS</div>
-      <div class="dataset-desc">American Community Survey 5-year estimates — population, income, housing, demographics at every geography.</div>
+      <div class="dataset-name">Census Bureau</div>
+      <div class="dataset-desc">44 datasets — ACS 5-year estimates, decennial census, population estimates, business dynamics, county business patterns, and commuter flows at every geography.</div>
       <span class="dataset-tag">census.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">📈</span>
       <div class="dataset-name">Economic Indicators</div>
-      <div class="dataset-desc">BLS unemployment and CPI, BEA GDP and PCE, Federal Reserve interest rates. Monthly updates.</div>
+      <div class="dataset-desc">45 datasets — BLS jobs and CPI, BEA GDP and PCE, Federal Reserve rates and M2, Treasury yields, and Census trade flows. Monthly and quarterly.</div>
       <span class="dataset-tag">econ.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">🔵</span>
       <div class="dataset-name">Federal Register</div>
-      <div class="dataset-desc">All federal rules, proposed rules, and notices. Full text, agency metadata, and CFR citations. Daily.</div>
+      <div class="dataset-desc">Every federal rule, proposed rule, and notice — full text, agency metadata, CFR citations, and comment periods. Supports text similarity search across the full document corpus. Updated daily.</div>
       <span class="dataset-tag">fedregister.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">🔒</span>
-      <div class="dataset-name">CVE Vulnerabilities (NVD)</div>
-      <div class="dataset-desc">NIST National Vulnerability Database — CVE records, CVSS scores, and CPE matches. Updated daily.</div>
+      <div class="dataset-name">Cyber Vulnerabilities</div>
+      <div class="dataset-desc">13 datasets — NIST NVD CVE records, CVSS scores, CPE matches, OSV open-source advisories, and CISA remediation deadlines. Updated daily.</div>
       <span class="dataset-tag">cyber_vuln.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">⚠️</span>
-      <div class="dataset-name">CISA Known Exploits</div>
-      <div class="dataset-desc">CISA's catalog of actively exploited vulnerabilities with remediation due dates. Weekly updates.</div>
+      <div class="dataset-name">Cyber Threat Intelligence</div>
+      <div class="dataset-desc">12 datasets — MITRE ATT&CK techniques and groups, CISA known exploited vulnerabilities, IOC feeds, and NIST/CIS security controls.</div>
       <span class="dataset-tag">cyber_threat.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">⚡</span>
-      <div class="dataset-name">EIA Energy Data</div>
-      <div class="dataset-desc">Electricity generation, natural gas, petroleum, and coal by state and fuel type. Monthly.</div>
+      <div class="dataset-name">EIA Energy</div>
+      <div class="dataset-desc">18 datasets — electricity generation and retail sales, natural gas, petroleum, coal, and renewables by state and fuel type. Includes MSHA mine safety data.</div>
       <span class="dataset-tag">energy.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">🏥</span>
-      <div class="dataset-name">Health (CDC / CMS)</div>
-      <div class="dataset-desc">CDC Wonder, CMS Open Payments, and ClinicalTrials.gov data in one schema. Monthly updates.</div>
+      <div class="dataset-name">Health (FDA / CDC / CMS)</div>
+      <div class="dataset-desc">29 datasets — FDA drug approvals and adverse events, CDC Wonder mortality, CMS Open Payments, ClinicalTrials.gov, and RxNorm drug codes.</div>
       <span class="dataset-tag">health.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">🎓</span>
       <div class="dataset-name">Education (NCES)</div>
-      <div class="dataset-desc">IPEDS college data and Common Core of Data K-12 school statistics. Annual updates.</div>
+      <div class="dataset-desc">23 datasets — IPEDS college finance and outcomes, Common Core K-12 school statistics, CRDC civil rights data, NAEP assessments, and College Scorecard.</div>
       <span class="dataset-tag">edu.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">🚨</span>
-      <div class="dataset-name">FBI Crime Statistics</div>
-      <div class="dataset-desc">UCR and NIBRS offense data by agency and state. Property crime, violent crime, and more.</div>
+      <div class="dataset-name">Crime (FBI / BJS)</div>
+      <div class="dataset-desc">17 datasets — FBI UCR and NIBRS offense and arrest data by agency and state, plus BJS victimization surveys. Property crime, violent crime, and more.</div>
       <span class="dataset-tag">crime.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">🗺️</span>
       <div class="dataset-name">Geographic Boundaries</div>
-      <div class="dataset-desc">Census TIGER/Line boundaries and FIPS codes for states, counties, tracts, places, and CBSAs.</div>
+      <div class="dataset-desc">32 datasets — Census TIGER/Line boundaries, FIPS codes, HUD crosswalks, and USGS place names for states, counties, tracts, ZCTAs, places, and CBSAs.</div>
       <span class="dataset-tag">geo.*</span>
-    </div>
-    <div class="dataset-card">
-      <span class="dataset-icon">📋</span>
-      <div class="dataset-name">Reference Tables</div>
-      <div class="dataset-desc">NAICS/SIC codes, state lookups, country codes — shared dimensions for joining across schemas.</div>
-      <span class="dataset-tag">ref.*</span>
-    </div>
-    <div class="dataset-card">
-      <span class="dataset-icon">🔤</span>
-      <div class="dataset-name">Econ Reference</div>
-      <div class="dataset-desc">BLS area, industry, and occupation classification tables for joining with economic series data.</div>
-      <span class="dataset-tag">econ_reference.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">🌲</span>
       <div class="dataset-name">Federal Lands</div>
-      <div class="dataset-desc">National Forests, NPS units, BLM field offices, timber sales, forest inventory, and ONRR mineral revenues.</div>
+      <div class="dataset-desc">21 datasets — USFS national forests and timber sales, NPS units, BLM field offices, forest inventory, and ONRR mineral and energy revenues.</div>
       <span class="dataset-tag">lands.*</span>
     </div>
     <div class="dataset-card">
       <span class="dataset-icon">💡</span>
       <div class="dataset-name">Patents (USPTO)</div>
-      <div class="dataset-desc">US patent filings, grants, inventors, and assignees from the USPTO bulk data archive.</div>
+      <div class="dataset-desc">11 datasets — US patent and trademark filings, grants, citations, inventors, and assignees from the USPTO bulk data archive.</div>
       <span class="dataset-tag">patents.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">📉</span>
+      <div class="dataset-name">CFTC Derivatives</div>
+      <div class="dataset-desc">8 datasets — swap trade repository data, commitments of traders, large trader positions, and cleared derivatives from the Commodity Futures Trading Commission.</div>
+      <span class="dataset-tag">cftc.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">📋</span>
+      <div class="dataset-name">Reference Tables</div>
+      <div class="dataset-desc">5 datasets — GLEIF legal entity identifiers, FIGI instrument codes, SEC company tickers, and NAICS/SIC codes for joining across schemas.</div>
+      <span class="dataset-tag">ref.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🔤</span>
+      <div class="dataset-name">Econ Reference</div>
+      <div class="dataset-desc">7 datasets — BLS area, industry, and occupation classification tables plus NIPA accounts and Federal Reserve series codes for joining with economic data.</div>
+      <span class="dataset-tag">econ_reference.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🚜</span>
+      <div class="dataset-name">Agriculture (USDA)</div>
+      <div class="dataset-desc">7 datasets — USDA NASS crop production and livestock inventory, ERS farm income and wealth, RMA crop-insurance experience, FSA commodity payments, and FAO global production. County and state level.</div>
+      <span class="dataset-tag">ag.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🌀</span>
+      <div class="dataset-name">Disasters (FEMA / NOAA / NIFC)</div>
+      <div class="dataset-desc">11 datasets — FEMA disaster declarations, Public Assistance and Hazard Mitigation grants, NFIP flood-insurance policies and paid claims, NOAA storm events, and NIFC wildfire perimeters. Each row is a bounded incident with a date and damage.</div>
+      <span class="dataset-tag">disasters.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🌎</span>
+      <div class="dataset-name">Environment (EPA / USGS)</div>
+      <div class="dataset-desc">17 datasets — EPA air quality (AQS), toxics and greenhouse-gas emissions (TRI, GHGRP), USGS streamflow and water sites, EPA drinking-water systems (SDWIS), Superfund and RCRA sites, and facility compliance (ECHO/FRS).</div>
+      <span class="dataset-tag">environment.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🏘️</span>
+      <div class="dataset-name">Housing (FHFA / HUD / CFPB)</div>
+      <div class="dataset-desc">18 datasets — FHFA house price indexes, Census new-residential building permits, HUD Fair Market Rents and income limits, CFPB HMDA mortgage data, opportunity zones, and HUD subsidized housing. By state, county, and CBSA.</div>
+      <span class="dataset-tag">housing.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🚗</span>
+      <div class="dataset-name">Transportation (DOT / NTSB)</div>
+      <div class="dataset-desc">19 datasets — NHTSA vehicle recalls, complaints, and FARS fatal crashes, BTS airline on-time and T-100 traffic, FAA aircraft registry, FTA transit ridership, FHWA vehicle registrations, FMCSA carriers, and NTSB aviation accidents.</div>
+      <span class="dataset-tag">transport.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">💵</span>
+      <div class="dataset-name">Federal Fiscal (IRS / USAspending)</div>
+      <div class="dataset-desc">13 datasets — IRS Statistics of Income by ZIP and county, county-to-county migration, tax-exempt org financials, USAspending obligations by agency and state, SBA 7(a)/504 loan approvals, and SSA benefits by geography.</div>
+      <span class="dataset-tag">fiscal.*</span>
+    </div>
+    <div class="dataset-card">
+      <span class="dataset-icon">🔬</span>
+      <div class="dataset-name">Research &amp; Development (NSF)</div>
+      <div class="dataset-desc">4 datasets — NSF NCSES national R&amp;D expenditure by sector and funding source, federal R&amp;D obligations by agency, and Higher Education R&amp;D (HERD) by institution, field, and funding source.</div>
+      <span class="dataset-tag">research.*</span>
     </div>
   </div>
 </section>
@@ -1063,30 +1112,93 @@
 <section id="how">
   <div class="reveal">
     <div class="section-label">How it works</div>
-    <h2 class="section-heading">Zero infrastructure.<br><em>One pip install.</em></h2>
-    <p class="section-sub">AskAmerica handles ingestion, formatting, and serving. You write SQL.</p>
+    <h2 class="section-heading">Zero infrastructure.<br><em>Pick your interface.</em></h2>
+    <p class="section-sub">AskAmerica handles ingestion, formatting, and serving. Choose how you want to query.</p>
   </div>
 
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01 —</div>
-      <div class="step-title">Sign up for a free key</div>
-      <div class="step-desc">Enter your email. Receive a 6-digit code. No password, no credit card.</div>
+  <div class="reveal">
+    <div class="tab-bar" role="tablist">
+      <button class="tab-btn active" onclick="switchHow('mcp')" id="howtab-mcp">MCP / Claude Desktop</button>
+      <button class="tab-btn" onclick="switchHow('python')" id="howtab-python">Python</button>
+      <button class="tab-btn" onclick="switchHow('jdbc')" id="howtab-jdbc">JDBC / DBeaver</button>
     </div>
-    <div class="step">
-      <div class="step-num">02 —</div>
-      <div class="step-title">pip install askamerica</div>
-      <div class="step-desc">Python 3.8+. One command installs the client. Run <code>askamerica install-engine</code> to pull the JDBC query engine.</div>
+
+    <!-- MCP -->
+    <div class="tab-panel active" id="howpanel-mcp">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01 —</div>
+          <div class="step-title">Get a free API key</div>
+          <div class="step-desc">Enter your email below. Receive a 6-digit code. No password, no credit card.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02 —</div>
+          <div class="step-title">Install the MCP server</div>
+          <div class="step-desc">Download the native installer for macOS, Windows, or Linux — bundled JRE, no Java or Python required. Or: <code>pip install 'askamerica[mcp]'</code></div>
+        </div>
+        <div class="step">
+          <div class="step-num">03 —</div>
+          <div class="step-title">Configure Claude Desktop</div>
+          <div class="step-desc">Enter your API key in the installer and click Configure. AskAmerica registers itself as an MCP tool — no config files to edit.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04 —</div>
+          <div class="step-title">Ask in plain English</div>
+          <div class="step-desc">Claude writes and runs the SQL for you. Ask about any agency, company, geography, or time range — no SQL required on your end.</div>
+        </div>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-num">03 —</div>
-      <div class="step-title">Write SQL</div>
-      <div class="step-desc">Query any dataset with standard SQL. Results come back as a pandas DataFrame.</div>
+
+    <!-- Python -->
+    <div class="tab-panel" id="howpanel-python">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01 —</div>
+          <div class="step-title">Get a free API key</div>
+          <div class="step-desc">Enter your email below. Receive a 6-digit code. No password, no credit card.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02 —</div>
+          <div class="step-title">pip install askamerica</div>
+          <div class="step-desc">Python 3.8+. <code>pip install 'askamerica[engine]'</code> then <code>askamerica install-engine</code> to pull the query engine once. Java 11+ required.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03 —</div>
+          <div class="step-title">Set your API key</div>
+          <div class="step-desc">Run <code>askamerica login</code> to store your key, or pass it directly: <code>aa.configure(api_key="...")</code></div>
+        </div>
+        <div class="step">
+          <div class="step-num">04 —</div>
+          <div class="step-title">Query → DataFrame</div>
+          <div class="step-desc">Call <code>aa.query("SELECT ...")</code> and get a pandas DataFrame back. Standard SQL across all 420+ datasets.</div>
+        </div>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-num">04 —</div>
-      <div class="step-title">Pay only for what you read</div>
-      <div class="step-desc">Metered by bytes scanned. Free tier: 1 GB/month. Upgrade when you need more.</div>
+
+    <!-- JDBC -->
+    <div class="tab-panel" id="howpanel-jdbc">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01 —</div>
+          <div class="step-title">Get a free API key</div>
+          <div class="step-desc">Enter your email below. Receive a 6-digit code. No password, no credit card.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02 —</div>
+          <div class="step-title">Download the JAR</div>
+          <div class="step-desc">Grab <code>askamerica-engine.jar</code> from the GitHub releases page. A single fat JAR — no other dependencies.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03 —</div>
+          <div class="step-title">Configure your client</div>
+          <div class="step-desc">Point DBeaver, IntelliJ, or any JDBC client at the JAR. Use the URL <code>jdbc:askamerica:source=sec,geo</code> and your API key as the password.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04 —</div>
+          <div class="step-title">Write SQL</div>
+          <div class="step-desc">Query any dataset from Node, Go, Java, or any language with a JDBC bridge. Pay only for bytes scanned — free tier: 1 GB/month.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1171,7 +1283,7 @@
           <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
             <div class="dl-icon">🍎</div>
             <div class="dl-label">macOS</div>
-            <div class="dl-detail">.dmg</div>
+            <div class="dl-detail">.pkg</div>
           </a>
           <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
             <div class="dl-icon">🪟</div>
@@ -1376,6 +1488,14 @@ ResultSet rs = conn.createStatement().executeQuery(
 <script>
 const API = 'https://api.askamerica.ai';
 let currentEmail = '';
+
+// How it works tab switcher
+function switchHow(name) {
+  document.querySelectorAll('#howtab-mcp, #howtab-python, #howtab-jdbc').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#howpanel-mcp, #howpanel-python, #howpanel-jdbc').forEach(p => p.classList.remove('active'));
+  document.getElementById('howtab-' + name).classList.add('active');
+  document.getElementById('howpanel-' + name).classList.add('active');
+}
 
 // Distribution top-level tab switcher
 function switchDist(name) {

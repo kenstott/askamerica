@@ -1,0 +1,36 @@
+# Deploy config for the askamerica-api Worker.
+# Binding names + D1/KV ids are taken from the live deployment (version 23).
+# Secret VALUES are never stored here — set them with `wrangler secret put <NAME>`.
+name = "askamerica-api"
+main = "src/index.ts"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[vars]
+ENVIRONMENT = "production"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "askamerica"   # confirm against `wrangler d1 list` if it differs
+database_id = "0727a657-3e22-4bf0-86d8-4d216051f9a9"
+
+[[kv_namespaces]]
+binding = "KEYS"      # sha256(api_key) → user_id
+id = "e512531ce7dd45a3ab5847a79c7a928c"
+
+[[kv_namespaces]]
+binding = "OTP"       # "otp:{email}" → 6-digit code (10-min TTL)
+id = "bbb3707095c04cba9e12d03520aabafe"
+
+[[kv_namespaces]]
+binding = "QUOTA"     # "{user_id}:{period}" → QuotaRecord JSON
+id = "f1f24513a081478887fb4c4594c3c8a9"
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "query_events"
+
+# ── Secrets (set with `wrangler secret put <NAME>`; do NOT commit values) ─────
+#   RESEND_API_KEY, ADMIN_SECRET, LS_WEBHOOK_SECRET,
+#   R2_ACCOUNT_ID, R2_BUCKET, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY
