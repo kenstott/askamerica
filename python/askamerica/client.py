@@ -1,10 +1,8 @@
-import time
-import uuid
 from typing import Any, Optional
 
-from .config import get_api_key
+from .config import get_api_key, _is_selftest_session
 from .exceptions import AuthError, QueryError
-from .quota import check_quota, report_usage
+from .quota import check_quota, estimate_egress_bytes
 
 
 def query(
@@ -34,9 +32,11 @@ def query(
     if not key:
         raise AuthError("No API key configured. Run: askamerica login")
 
-    quota = check_quota(key)
-    query_id = str(uuid.uuid4())
-    start_ms = time.time() * 1000
+    # Pre-flight quota gate (fail fast). Usage itself is metered in the engine
+    # (AskAmerica JDBC driver), so every access path — JDBC, Python, MCP — reports
+    # uniformly and we must NOT double-count here. Internal self-test / warm-up
+    # sessions are synthetic and skip the gate.
+    quota = None if _is_selftest_session(key) else check_quota(key)
 
     try:
         conn = get_connection(key)
@@ -44,12 +44,7 @@ def query(
     except Exception as e:
         raise QueryError(str(e)) from e
 
-    duration_ms = int(time.time() * 1000 - start_ms)
-
     if return_type == "records":
-        actual_bytes = sum(
-            sum(len(str(v)) for v in row.values()) for row in rows
-        )
         result = rows
     else:
         try:
@@ -59,22 +54,10 @@ def query(
                 "pandas is not installed. "
                 "Run: pip install pandas  or use return_type='records'"
             )
-        df = pd.DataFrame(rows)
-        actual_bytes = int(df.memory_usage(deep=True).sum())
-        result = df
+        result = pd.DataFrame(rows)
 
-    report_usage(
-        query_id=query_id,
-        table=_extract_table(sql),
-        planned_bytes=actual_bytes,
-        actual_bytes=actual_bytes,
-        row_count=len(rows),
-        duration_ms=duration_ms,
-        query_text=sql,
-        api_key=key,
-    )
-
-    _print_quota_reminder(quota, actual_bytes)
+    if quota is not None:
+        _print_quota_reminder(quota, estimate_egress_bytes(rows))
     return result
 
 

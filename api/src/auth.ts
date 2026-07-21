@@ -1,6 +1,10 @@
 import { Env } from './types';
 
 const OTP_TTL_SECONDS = 600; // 10 minutes
+const MAX_OTP_SENDS = 3;          // codes emailed per email address per window
+const MAX_OTP_SENDS_PER_IP = 15;  // codes requested per source IP per window
+const OTP_SEND_WINDOW = 900;      // 15 minutes
+const MAX_VERIFY_ATTEMPTS = 5;    // wrong-code guesses before the code is burned
 
 function currentPeriod(): string {
   const d = new Date();
@@ -28,9 +32,23 @@ export async function handleRequestOtp(request: Request, env: Env): Promise<Resp
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return json({ error: 'invalid_email' }, 400);
   }
+  const emailLc = email.toLowerCase();
+
+  // Abuse control: cap codes emailed per address (email-bombing a victim) and per
+  // source IP (mass enumeration). KV is eventually consistent, so this is a soft
+  // cap — enough to stop abuse without being an exact quota.
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  const emailSends = parseInt((await env.OTP.get(`otp_send:${emailLc}`)) || '0', 10);
+  if (emailSends >= MAX_OTP_SENDS) return json({ error: 'rate_limited' }, 429);
+  const ipSends = parseInt((await env.OTP.get(`otp_send_ip:${ip}`)) || '0', 10);
+  if (ipSends >= MAX_OTP_SENDS_PER_IP) return json({ error: 'rate_limited' }, 429);
 
   const code = generateOtp();
-  await env.OTP.put(`otp:${email.toLowerCase()}`, code, { expirationTtl: OTP_TTL_SECONDS });
+  await env.OTP.put(`otp:${emailLc}`, code, { expirationTtl: OTP_TTL_SECONDS });
+  // Fresh code → reset the wrong-guess counter for this address.
+  await env.OTP.put(`otp_att:${emailLc}`, '0', { expirationTtl: OTP_TTL_SECONDS });
+  await env.OTP.put(`otp_send:${emailLc}`, String(emailSends + 1), { expirationTtl: OTP_SEND_WINDOW });
+  await env.OTP.put(`otp_send_ip:${ip}`, String(ipSends + 1), { expirationTtl: OTP_SEND_WINDOW });
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -64,19 +82,34 @@ export async function handleVerifyOtp(request: Request, env: Env): Promise<Respo
   const { email, code } = await request.json<{ email: string; code: string }>();
   if (!email || !code) return json({ error: 'missing_fields' }, 400);
 
-  const key = `otp:${email.toLowerCase()}`;
+  const emailLc = email.toLowerCase();
+  const key = `otp:${emailLc}`;
+  const attemptsKey = `otp_att:${emailLc}`;
   const stored = await env.OTP.get(key);
   if (!stored) return json({ error: 'code_expired' }, 401);
+
+  // Brute-force cap: burn the code once too many wrong guesses are made, so the
+  // 6-digit space can't be walked within the 10-minute TTL.
+  const attempts = parseInt((await env.OTP.get(attemptsKey)) || '0', 10);
+  if (attempts >= MAX_VERIFY_ATTEMPTS) {
+    await env.OTP.delete(key);
+    await env.OTP.delete(attemptsKey);
+    return json({ error: 'too_many_attempts' }, 429);
+  }
 
   // constant-time comparison
   const codeBytes = new TextEncoder().encode(code.trim());
   const storedBytes = new TextEncoder().encode(stored);
-  if (codeBytes.length !== storedBytes.length) return json({ error: 'invalid_code' }, 401);
+  let match = codeBytes.length === storedBytes.length;
   let diff = 0;
-  for (let i = 0; i < codeBytes.length; i++) diff |= codeBytes[i] ^ storedBytes[i];
-  if (diff !== 0) return json({ error: 'invalid_code' }, 401);
+  for (let i = 0; i < codeBytes.length && match; i++) diff |= codeBytes[i] ^ storedBytes[i];
+  if (!match || diff !== 0) {
+    await env.OTP.put(attemptsKey, String(attempts + 1), { expirationTtl: OTP_TTL_SECONDS });
+    return json({ error: 'invalid_code' }, 401);
+  }
 
   await env.OTP.delete(key);
+  await env.OTP.delete(attemptsKey);
 
   // upsert user
   const userId = await sha256hex(email.toLowerCase());

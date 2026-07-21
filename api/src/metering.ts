@@ -36,7 +36,7 @@ export async function handleUsageReport(request: Request, env: Env): Promise<Res
     indexes: [userId],
   });
 
-  await recordActualUsage(userId, actual_bytes, planned_bytes, env);
+  await recordActualUsage(userId, actual_bytes, env);
 
   return json({ ok: true });
 }

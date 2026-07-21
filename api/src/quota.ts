@@ -70,18 +70,28 @@ export async function checkAndReserveQuota(
 
 export async function recordActualUsage(
   userId: string,
-  actualBytes: number,
-  plannedBytes: number,
+  egressBytes: number,
   env: Env
 ): Promise<void> {
+  // Client reports estimated R2 egress per query; add it to this period's usage.
+  const bytes = Math.max(0, Math.floor(egressBytes || 0));
+  if (bytes === 0) return;
+
   const period = currentPeriod();
-  const delta = actualBytes - plannedBytes;
-  if (delta === 0) return;
+
+  // Seed the period row from the user's tier if this is their first query of the
+  // period, then add the egress — both in one upsert so usage is never dropped.
+  const user = await env.DB.prepare(
+    'SELECT tier FROM users WHERE id = ?'
+  ).bind(userId).first<{ tier: string }>();
+  const limit = TIER_LIMITS[user?.tier ?? 'free'] ?? TIER_LIMITS['free'];
 
   await env.DB.prepare(
-    'UPDATE quota_periods SET used_bytes = used_bytes + ? WHERE user_id = ? AND period = ?'
-  ).bind(delta, userId, period).run();
+    `INSERT INTO quota_periods (user_id, period, limit_bytes, used_bytes)
+     VALUES (?, ?, ?, ?)
+     ON CONFLICT(user_id, period) DO UPDATE SET used_bytes = used_bytes + excluded.used_bytes`
+  ).bind(userId, period, limit, bytes).run();
 
-  // invalidate KV so next request re-reads from D1
+  // invalidate KV so the next quota read re-reads from D1
   await env.QUOTA.delete(`${userId}:${period}`);
 }
