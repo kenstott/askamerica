@@ -37,10 +37,16 @@ interface LSEvent {
       variant_id?: number;
       customer_id?: number;
       status?: string;
+      user_email?: string;
       first_subscription_item?: { subscription_id?: number };
       first_order_item?: { variant_id?: number };
     };
   };
+}
+
+async function sha256hex(input: string): Promise<string> {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
 export async function handleLemonSqueezyWebhook(request: Request, env: Env): Promise<Response> {
@@ -57,9 +63,15 @@ export async function handleLemonSqueezyWebhook(request: Request, env: Env): Pro
   }
 
   const eventName = event.meta?.event_name ?? '';
-  const userId = event.meta?.custom_data?.user_id;
   const attrs = event.data?.attributes ?? {};
   const dataId = String(event.data?.id ?? '');
+
+  // Connect the purchase to an AskAmerica user: the explicit custom.user_id from
+  // our /upgrade flow, else derive it from the buyer's email (user_id = sha256(email)).
+  let userId = event.meta?.custom_data?.user_id;
+  if (!userId && attrs.user_email) {
+    userId = await sha256hex(String(attrs.user_email).toLowerCase());
+  }
   if (!userId) {
     return new Response('OK'); // no user context — nothing to attribute
   }

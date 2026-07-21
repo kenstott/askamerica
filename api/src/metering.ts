@@ -1,6 +1,5 @@
 import { Env } from './types';
 import { resolveUser, recordActualUsage } from './quota';
-import { upgradeUrl, VARIANT_IDS } from './checkout';
 
 export async function handleUsageReport(request: Request, env: Env): Promise<Response> {
   const apiKey = request.headers.get('X-API-Key');
@@ -62,8 +61,10 @@ export async function handleQuotaStatus(request: Request, env: Env): Promise<Res
     'SELECT tier FROM users WHERE id = ?'
   ).bind(userId).first<{ tier: string }>())?.tier ?? 'free';
 
+  // Upgrade points at the /upgrade page, which mints a per-user checkout via
+  // /v1/checkout (the LS Checkouts API) — no stale hardcoded product links.
   const nextTier = tier === 'free' ? 'starter' : tier === 'starter' ? 'pro' : null;
-  const upgrade = nextTier ? upgradeUrl(VARIANT_IDS[nextTier], userId) : null;
+  const upgrade = nextTier ? 'https://askamerica.ai/upgrade' : null;
 
   return json({
     period,
