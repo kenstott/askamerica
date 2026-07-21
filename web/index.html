@@ -1612,6 +1612,7 @@ async function verifyOtp() {
     }
 
     const key = data.api_key;
+    try { localStorage.setItem('askamerica_api_key', key); } catch (e) {}
     document.getElementById('key-display').textContent = key;
     document.getElementById('key-snippet').textContent = `"${key}"`;
     document.getElementById('step-otp').classList.remove('active');

@@ -31,6 +31,50 @@ def cmd_quota(args: argparse.Namespace) -> None:
         sys.exit(1)
 
 
+def cmd_upgrade(args: argparse.Namespace) -> None:
+    import webbrowser
+    from .quota import get_checkout
+
+    key = get_api_key()
+    if not key:
+        print("Not logged in. Run: askamerica login")
+        sys.exit(1)
+    try:
+        opts = get_checkout(key)
+    except AuthError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
+    plans = []
+    for name in ("starter", "pro"):
+        p = opts.get(name)
+        if p:
+            plans.append((name, p["price_usd"], p["quota_gb"], False, p["checkout_url"]))
+    for p in opts.get("prepaid", []):
+        plans.append((f"prepaid{p['quota_gb']}", p["price_usd"], p["quota_gb"], True, p["checkout_url"]))
+
+    chosen = getattr(args, "plan", None)
+    if chosen:
+        match = next((pl for pl in plans if pl[0] == chosen), None)
+        if not match:
+            print(f"Unknown plan '{chosen}'. Available: {', '.join(pl[0] for pl in plans)}")
+            sys.exit(1)
+        cadence = "one-time" if match[3] else "per month"
+        print(f"Opening checkout for {match[0]} — ${match[1]} {cadence}, {match[2]} GB…")
+        print(match[4])
+        webbrowser.open(match[4])
+        return
+
+    if not plans:
+        print("No upgrade plans available.")
+        return
+    print("Available plans:\n")
+    for name, price, gb, one_time, _ in plans:
+        cadence = "one-time" if one_time else "per month"
+        print(f"  {name:12} ${price:<5} {gb} GB / {cadence}")
+    print("\nStart checkout:  askamerica upgrade --plan <name>")
+
+
 def cmd_whoami(args: argparse.Namespace) -> None:
     from .config import load_config
     config = load_config()
@@ -121,6 +165,9 @@ def main() -> None:
     sub.add_parser("quota", help="Show current quota usage")
     sub.add_parser("whoami", help="Show current login info")
 
+    p_upgrade = sub.add_parser("upgrade", help="View plans / open checkout")
+    p_upgrade.add_argument("--plan", help="Plan to buy (e.g. starter, pro); opens checkout")
+
     p_engine = sub.add_parser("install-engine", help="Download the query engine JAR")
     p_engine.add_argument(
         "--version", help="Engine version to install (default: latest)"
@@ -139,6 +186,8 @@ def main() -> None:
         cmd_quota(args)
     elif args.command == "whoami":
         cmd_whoami(args)
+    elif args.command == "upgrade":
+        cmd_upgrade(args)
     elif args.command == "install-engine":
         cmd_install_engine(args)
     elif args.command == "mcp-config":

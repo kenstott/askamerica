@@ -28,8 +28,9 @@ import sys
 from typing import Optional
 
 from .config import get_api_key
-from .exceptions import AuthError, EngineNotInstalledError
+from .exceptions import AuthError, EngineNotInstalledError, QuotaExceededError
 from .engine import execute_query, get_connection, get_metadata
+from .quota import check_quota
 
 try:
     from mcp.server.fastmcp import FastMCP
@@ -160,6 +161,18 @@ def query(sql: str, limit: int = 500) -> str:
     ORDER BY total_offenses DESC
     FETCH FIRST 10 ROWS ONLY
     """
+    # Quota gate: if the user is out of quota, prompt to upgrade instead of running.
+    try:
+        check_quota(_key())
+    except QuotaExceededError as e:
+        return json.dumps({
+            "error": "quota_exceeded",
+            "message": str(e),
+            "upgrade_url": e.upgrade_url,
+        })
+    except AuthError as e:
+        return json.dumps({"error": "unauthorized", "message": str(e)})
+
     effective_limit = min(max(1, limit), 5000)
     lower = sql.lower()
     if "fetch first" not in lower and "limit" not in lower:
