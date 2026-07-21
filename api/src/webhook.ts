@@ -1,4 +1,5 @@
 import { Env, TIER_LIMITS, LS_VARIANT_TIERS } from './types';
+import { prepaidBytesFor } from './checkout';
 
 async function verifyLemonSqueezySignature(request: Request, env: Env): Promise<boolean> {
   const signature = request.headers.get('X-Signature');
@@ -30,6 +31,7 @@ export async function handleLemonSqueezyWebhook(request: Request, env: Env): Pro
         customer_id:     number;
         status:          string;
         first_subscription_item?: { subscription_id: number };
+        first_order_item?: { variant_id: number };
       };
     };
   }>();
@@ -65,6 +67,22 @@ export async function handleLemonSqueezyWebhook(request: Request, env: Env): Pro
     await env.DB.prepare(
       'UPDATE users SET tier = ? WHERE id = ?'
     ).bind('free', userId).run();
+  }
+
+  // One-time prepaid pass: top up THIS month's quota only. No tier change and no
+  // renewal — next period reverts to the user's standing tier.
+  if (eventName === 'order_created') {
+    const orderVariant = String(event.data.attributes.first_order_item?.variant_id ?? '');
+    const bytes = prepaidBytesFor(orderVariant);
+    if (bytes > 0) {
+      const d = new Date();
+      const period = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+      await env.DB.prepare(`
+        INSERT INTO quota_periods (user_id, period, limit_bytes, used_bytes) VALUES (?, ?, ?, 0)
+        ON CONFLICT(user_id, period) DO UPDATE SET limit_bytes = limit_bytes + excluded.limit_bytes
+      `).bind(userId, period, bytes).run();
+      await env.QUOTA.delete(`${userId}:${period}`);
+    }
   }
 
   return new Response('OK');
