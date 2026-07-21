@@ -18,23 +18,52 @@ export async function handleCredentials(request: Request, env: Env): Promise<Res
   const keyHash = await lookupKeyHash(env, apiKey);
   const userId = await env.KEYS.get(keyHash);
   if (!userId) {
-    return new Response(JSON.stringify({ error: 'invalid_api_key' }), {
-      status: 401,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ error: 'invalid_api_key' }, 401);
   }
 
-  // Return shared read-only R2 credentials.
-  // All authenticated users share these read-only credentials.
-  // Quota enforcement happens via self-reported metering.
-  return new Response(
-    JSON.stringify({
-      access_key_id: env.R2_ACCESS_KEY_ID,
-      secret_access_key: env.R2_SECRET_ACCESS_KEY,
-      region: 'auto',
-      endpoint: `https://${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-      bucket: env.R2_BUCKET,
-    }),
-    { headers: { 'Content-Type': 'application/json' } },
+  // Mint short-lived, read-only, bucket-scoped R2 credentials for this user.
+  // Per-user + expiring + revocable: disabling the key stops future mints, and
+  // any live credential dies within the TTL. The parent secret is never shipped.
+  const ttlSeconds = 3600;
+  const res = await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${env.R2_ACCOUNT_ID}/r2/temp-access-credentials`,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.R2_TEMP_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        bucket: env.R2_BUCKET,
+        parentAccessKeyId: env.R2_ACCESS_KEY_ID,
+        permission: 'object-read-only',
+        ttlSeconds,
+      }),
+    },
   );
+
+  const data = await res.json<{
+    success: boolean;
+    result?: { accessKeyId: string; secretAccessKey: string; sessionToken: string };
+  }>();
+  if (!res.ok || !data.success || !data.result) {
+    return json({ error: 'credential_mint_failed' }, 502);
+  }
+
+  return json({
+    access_key_id: data.result.accessKeyId,
+    secret_access_key: data.result.secretAccessKey,
+    session_token: data.result.sessionToken,
+    region: 'auto',
+    endpoint: `https://${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+    bucket: env.R2_BUCKET,
+    expires_in: ttlSeconds,
+  });
+}
+
+function json(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }

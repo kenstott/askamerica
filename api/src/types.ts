@@ -12,10 +12,11 @@ export interface Env {
 
   // Secrets (set via: wrangler secret put <NAME>)
   RESEND_API_KEY: string;
-  R2_ACCESS_KEY_ID: string;
-  R2_SECRET_ACCESS_KEY: string;
+  R2_ACCESS_KEY_ID: string;      // parent R2 access key id (for temp-cred minting)
+  R2_SECRET_ACCESS_KEY: string;  // parent R2 secret (never shipped to clients)
   R2_ACCOUNT_ID: string;
   R2_BUCKET: string;
+  R2_TEMP_TOKEN: string;         // Cloudflare API token to mint scoped temp R2 creds
   LS_WEBHOOK_SECRET: string;   // LemonSqueezy webhook signing secret
   ADMIN_SECRET: string;        // shared secret for admin key issuance
 
