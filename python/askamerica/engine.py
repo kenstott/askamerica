@@ -31,10 +31,13 @@ def download_jar(version: str = None, dest: Path = DEFAULT_JAR_PATH) -> Path:
 
     # Default to the version bundled at package-publish time so pip install
     # askamerica==X.Y.Z always fetches the matching engine JAR.
-    effective_version = version or BUNDLED_ENGINE_VERSION
-
-    tag = f"engine-v{effective_version}"
-    url = f"https://api.github.com/repos/kenstott/calcite/releases/tags/{tag}"
+    # With no explicit version, track the latest engine release. A pinned version
+    # fetches that exact tag (BUNDLED_ENGINE_VERSION records what shipped with this
+    # package but is no longer the default).
+    if version:
+        url = f"https://api.github.com/repos/kenstott/calcite/releases/tags/engine-v{version}"
+    else:
+        url = "https://api.github.com/repos/kenstott/calcite/releases/latest"
     with urllib.request.urlopen(url, timeout=15) as r:
         release = json.loads(r.read())
 
