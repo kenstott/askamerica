@@ -59,3 +59,8 @@ askamerica = "askamerica.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["askamerica"]
+# The unshaded engine jar-set is staged into askamerica/engine_jars/ at build time by
+# CI (gradle :askamerica-engine:stageEngineRuntime). It is not git-tracked, so it must
+# be listed as an artifact for hatchling to include it in the wheel. When absent (a
+# source-only build), the package falls back to downloading the fat jar on first use.
+artifacts = ["askamerica/engine_jars/**/*.jar"]

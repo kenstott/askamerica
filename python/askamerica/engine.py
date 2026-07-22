@@ -62,7 +62,53 @@ def download_jar(version: str = None, dest: Path = DEFAULT_JAR_PATH) -> Path:
     return dest
 
 
+def _bundled_jars_dir() -> Path:
+    """Directory of unshaded engine jars shipped inside the wheel, if present.
+
+    The wheel-set packaging (distribution.md) ships the engine as a set of plain
+    jars under askamerica/engine_jars/ rather than one downloaded fat jar. When that
+    directory exists and is non-empty, it is the classpath — nothing is downloaded.
+    """
+    return Path(__file__).resolve().parent / "engine_jars"
+
+
+def get_engine_classpath() -> List[str]:
+    """Return the JVM classpath for the engine.
+
+    Resolution order:
+      1. ASKAMERICA_ENGINE_JAR / ASKAMERICA_ENGINE_DIR overrides (explicit).
+      2. Bundled unshaded jar-set inside the wheel (askamerica/engine_jars/*.jar).
+      3. Single fat jar at DEFAULT_JAR_PATH (legacy download location).
+      4. Download the fat jar on first use (legacy fallback).
+    """
+    override_dir = os.environ.get("ASKAMERICA_ENGINE_DIR")
+    if override_dir:
+        jars = sorted(str(p) for p in Path(override_dir).glob("*.jar"))
+        if jars:
+            return jars
+        raise EngineNotInstalledError(
+            f"ASKAMERICA_ENGINE_DIR={override_dir} contains no .jar files."
+        )
+
+    override_jar = os.environ.get("ASKAMERICA_ENGINE_JAR")
+    if override_jar and Path(override_jar).exists():
+        return [override_jar]
+
+    bundled = _bundled_jars_dir()
+    if bundled.is_dir():
+        jars = sorted(str(p) for p in bundled.glob("*.jar"))
+        if jars:
+            return jars
+
+    if DEFAULT_JAR_PATH.exists():
+        return [str(DEFAULT_JAR_PATH)]
+
+    # Legacy fallback: download the single fat jar on first use.
+    return [str(download_jar())]
+
+
 def get_engine_jar() -> str:
+    """Legacy single-jar accessor (used by `askamerica install-engine`)."""
     jar = os.environ.get("ASKAMERICA_ENGINE_JAR")
     if jar and Path(jar).exists():
         return jar
@@ -121,7 +167,7 @@ def start_jvm(api_key: str) -> None:
     if _jvm_started:
         return
 
-    jar_path = get_engine_jar()
+    classpath = get_engine_classpath()
 
     # Ensure ASKAMERICA_API_KEY is visible to the JVM for credential refresh if needed.
     if api_key and not os.environ.get("ASKAMERICA_API_KEY"):
@@ -129,9 +175,9 @@ def start_jvm(api_key: str) -> None:
 
     jvm_path = _get_jvm_path()
     if jvm_path:
-        jpype.startJVM(jvm_path, classpath=[jar_path], convertStrings=False)
+        jpype.startJVM(jvm_path, classpath=classpath, convertStrings=False)
     else:
-        jpype.startJVM(classpath=[jar_path], convertStrings=False)
+        jpype.startJVM(classpath=classpath, convertStrings=False)
     _jvm_started = True
 
 
