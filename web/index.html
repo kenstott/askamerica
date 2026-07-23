@@ -1117,87 +1117,26 @@
   </div>
 
   <div class="reveal">
-    <div class="tab-bar" role="tablist">
-      <button class="tab-btn active" onclick="switchHow('mcp')" id="howtab-mcp">MCP / Claude Desktop</button>
-      <button class="tab-btn" onclick="switchHow('python')" id="howtab-python">Python</button>
-      <button class="tab-btn" onclick="switchHow('jdbc')" id="howtab-jdbc">JDBC / DBeaver</button>
-    </div>
-
-    <!-- MCP -->
-    <div class="tab-panel active" id="howpanel-mcp">
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01 —</div>
-          <div class="step-title">Get a free API key</div>
-          <div class="step-desc">Enter your email below. Receive a 6-digit code. No password, no credit card.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">02 —</div>
-          <div class="step-title">Install the MCP server</div>
-          <div class="step-desc">Download the native installer for macOS, Windows, or Linux — bundled JRE, no Java or Python required. Or: <code>pip install 'askamerica[mcp]'</code></div>
-        </div>
-        <div class="step">
-          <div class="step-num">03 —</div>
-          <div class="step-title">Configure Claude Desktop</div>
-          <div class="step-desc">Enter your API key in the installer and click Configure. AskAmerica registers itself as an MCP tool — no config files to edit.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">04 —</div>
-          <div class="step-title">Ask in plain English</div>
-          <div class="step-desc">Claude writes and runs the SQL for you. Ask about any agency, company, geography, or time range — no SQL required on your end.</div>
-        </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01 —</div>
+        <div class="step-title">Get a free API key</div>
+        <div class="step-desc">Enter your email below. Receive a 6-digit code. No password, no credit card.</div>
       </div>
-    </div>
-
-    <!-- Python -->
-    <div class="tab-panel" id="howpanel-python">
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01 —</div>
-          <div class="step-title">Get a free API key</div>
-          <div class="step-desc">Enter your email below. Receive a 6-digit code. No password, no credit card.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">02 —</div>
-          <div class="step-title">pip install askamerica</div>
-          <div class="step-desc">Python 3.8+. <code>pip install 'askamerica[engine]'</code> — the query engine ships in the package, nothing else to download. On 3.10+ a JVM is bundled; on 3.8–3.9, Java 11+ required.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">03 —</div>
-          <div class="step-title">Set your API key</div>
-          <div class="step-desc">Run <code>askamerica login</code> to store your key, or pass it directly: <code>aa.configure(api_key="...")</code></div>
-        </div>
-        <div class="step">
-          <div class="step-num">04 —</div>
-          <div class="step-title">Query → DataFrame</div>
-          <div class="step-desc">Call <code>aa.query("SELECT ...")</code> and get a pandas DataFrame back. Standard SQL across all 420+ datasets.</div>
-        </div>
+      <div class="step">
+        <div class="step-num">02 —</div>
+        <div class="step-title">Pick your interface</div>
+        <div class="step-desc">Claude Desktop (MCP), Python, or any JDBC client — same key, same data. Grab it in <a href="#download">Download &amp; connect</a> below.</div>
       </div>
-    </div>
-
-    <!-- JDBC -->
-    <div class="tab-panel" id="howpanel-jdbc">
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01 —</div>
-          <div class="step-title">Get a free API key</div>
-          <div class="step-desc">Enter your email below. Receive a 6-digit code. No password, no credit card.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">02 —</div>
-          <div class="step-title">Download the JAR</div>
-          <div class="step-desc">Grab <code>askamerica-engine.jar</code> from the GitHub releases page. A single fat JAR — no other dependencies.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">03 —</div>
-          <div class="step-title">Configure your client</div>
-          <div class="step-desc">Point DBeaver, IntelliJ, or any JDBC client at the JAR. Use the URL <code>jdbc:askamerica:source=sec,geo</code> and your API key as the password.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">04 —</div>
-          <div class="step-title">Write SQL</div>
-          <div class="step-desc">Query any dataset from Node, Go, Java, or any language with a JDBC bridge. Pay only for bytes scanned — free tier: 1 GB/month.</div>
-        </div>
+      <div class="step">
+        <div class="step-num">03 —</div>
+        <div class="step-title">Connect once</div>
+        <div class="step-desc">Run the native installer, <code>pip install 'askamerica[engine]'</code>, or point a JDBC client at the driver JAR. Nothing to host — AskAmerica serves the data.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04 —</div>
+        <div class="step-title">Ask in plain English — or SQL</div>
+        <div class="step-desc">In Claude Desktop, just ask; it writes and runs the SQL for you. From Python or JDBC, query directly. Standard SQL across all 420+ datasets.</div>
       </div>
     </div>
   </div>
@@ -1321,7 +1260,7 @@
           <pre>pip install <span class="s">'askamerica[engine]'</span>
 askamerica login            <span class="c"># set your API key</span></pre>
         </div>
-        <p class="path-note">Python 3.8+. The query engine ships inside the package — no separate download. On Python 3.10+ a JVM is bundled too; on 3.8–3.9, Java 11+ must be on your PATH.</p>
+        <p class="path-note">Python 3.8+. The engine JAR downloads automatically on first query (cached under <code>~/.askamerica</code>). On Python 3.10+ a JVM is bundled too; on 3.8–3.9, Java 11+ must be on your PATH.</p>
       </div>
       <div>
         <div class="code-block" style="margin-bottom:16px">
@@ -1487,14 +1426,6 @@ ResultSet rs = conn.createStatement().executeQuery(
 <script>
 const API = 'https://api.askamerica.ai';
 let currentEmail = '';
-
-// How it works tab switcher
-function switchHow(name) {
-  document.querySelectorAll('#howtab-mcp, #howtab-python, #howtab-jdbc').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('#howpanel-mcp, #howpanel-python, #howpanel-jdbc').forEach(p => p.classList.remove('active'));
-  document.getElementById('howtab-' + name).classList.add('active');
-  document.getElementById('howpanel-' + name).classList.add('active');
-}
 
 // Distribution top-level tab switcher
 function switchDist(name) {
