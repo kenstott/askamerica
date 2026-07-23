@@ -1112,8 +1112,8 @@
 <section id="how">
   <div class="reveal">
     <div class="section-label">How it works</div>
-    <h2 class="section-heading">Zero infrastructure.<br><em>Pick your interface.</em></h2>
-    <p class="section-sub">AskAmerica handles ingestion, formatting, and serving. Choose how you want to query.</p>
+    <h2 class="section-heading">Zero infrastructure.<br><em>Nothing to host.</em></h2>
+    <p class="section-sub">AskAmerica handles ingestion, formatting, and serving. You get a key, connect a client, and query — three steps, no data to deploy or maintain.</p>
   </div>
 
   <div class="reveal">
@@ -1125,16 +1125,11 @@
       </div>
       <div class="step">
         <div class="step-num">02 —</div>
-        <div class="step-title">Pick your interface</div>
-        <div class="step-desc">Claude Desktop (MCP), Python, or any JDBC client — same key, same data. Grab it in <a href="#download">Download &amp; connect</a> below.</div>
+        <div class="step-title">Connect a client</div>
+        <div class="step-desc">Install once and point it at your key — same key, same data across every client. Pick yours in <a href="#download">Download &amp; connect</a> below.</div>
       </div>
       <div class="step">
         <div class="step-num">03 —</div>
-        <div class="step-title">Connect once</div>
-        <div class="step-desc">Run the native installer, <code>pip install 'askamerica[engine]'</code>, or point a JDBC client at the driver JAR. Nothing to host — AskAmerica serves the data.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">04 —</div>
         <div class="step-title">Ask in plain English — or SQL</div>
         <div class="step-desc">In Claude Desktop, just ask; it writes and runs the SQL for you. From Python or JDBC, query directly. Standard SQL across all 420+ datasets.</div>
       </div>
@@ -1219,17 +1214,17 @@
         <h3 class="path-title">Native installer</h3>
         <p class="path-desc">Bundled JRE — no Java, no Python, no config files. Open the app, enter your API key, click Configure. Works with Claude Desktop and any other MCP-compatible client.</p>
         <div class="dl-grid dl-grid-3">
-          <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
+          <a class="dl-card" href="/dl/macos">
             <div class="dl-icon">🍎</div>
             <div class="dl-label">macOS</div>
             <div class="dl-detail">.pkg</div>
           </a>
-          <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
+          <a class="dl-card" href="/dl/windows">
             <div class="dl-icon">🪟</div>
             <div class="dl-label">Windows</div>
             <div class="dl-detail">.msi</div>
           </a>
-          <a class="dl-card" href="https://github.com/kenstott/calcite/releases/latest" target="_blank">
+          <a class="dl-card" href="/dl/linux">
             <div class="dl-icon">🐧</div>
             <div class="dl-label">Linux</div>
             <div class="dl-detail">.deb</div>
@@ -1401,9 +1396,10 @@ ResultSet rs = conn.createStatement().executeQuery(
       </div>
       <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:16px;">
         <div style="font-size:11px;color:var(--text-dim);margin-bottom:8px;">Quick start:</div>
-        <code style="font-size:12px;color:var(--amber);">pip install askamerica</code><br>
-        <code style="font-size:12px;color:var(--text);">import askamerica</code><br>
-        <code style="font-size:12px;color:var(--text);">askamerica.configure(api_key=<span style="color:var(--amber)" id="key-snippet"></span>)</code>
+        <code style="font-size:12px;color:var(--amber);">pip install 'askamerica[engine]'</code><br>
+        <code style="font-size:12px;color:var(--text);">askamerica login <span style="color:var(--text-dim)"># key: <span style="color:var(--amber)" id="key-snippet"></span></span></code><br>
+        <code style="font-size:12px;color:var(--text);">import askamerica as aa</code><br>
+        <code style="font-size:12px;color:var(--text);">df = aa.query(<span style="color:var(--amber)">"SELECT 1"</span>)</code>
       </div>
     </div>
   </div>
@@ -1447,7 +1443,7 @@ function switchTab(name) {
 
 // Copy install command
 function copyInstall(el) {
-  navigator.clipboard.writeText('pip install askamerica');
+  navigator.clipboard.writeText("pip install 'askamerica[engine]'");
   const btn = el.querySelector('#copy-install-btn');
   const orig = btn.textContent;
   btn.textContent = 'copied!';
