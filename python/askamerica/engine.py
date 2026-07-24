@@ -11,7 +11,7 @@ from .exceptions import AuthError, EngineNotInstalledError
 DEFAULT_JAR_PATH = Path.home() / ".askamerica" / "engine" / "askamerica-engine.jar"
 
 # Pinned at publish time by the engine release workflow — matches engine-v<version> tag.
-BUNDLED_ENGINE_VERSION = "0.41.0"
+BUNDLED_ENGINE_VERSION = "0.42.0"
 
 # Schemas loaded by default — publicly accessible without per-schema API keys.
 DEFAULT_SCHEMAS = (
