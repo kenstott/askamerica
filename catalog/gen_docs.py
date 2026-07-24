@@ -51,6 +51,20 @@ def esc(s):
     return clean(s).replace("|", "\\|")
 
 
+def col_code(name):
+    """Render an identifier so it wraps only at underscores, not mid-token."""
+    return "<code>" + esc(name).replace("_", "_<wbr>") + "</code>"
+
+
+EXTRA_CSS = """/* snake_case identifiers break only at the <wbr> after each underscore */
+.md-typeset table td code {
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: normal;
+}
+"""
+
+
 def load():
     files = sorted(glob.glob(os.path.join(GOVDATA, "*", "*-schema.yaml")))
     files = [f for f in files if "deprecated" not in f]
@@ -92,7 +106,7 @@ def write_schema_page(sch):
             for c in t["columns"]:
                 null = "yes" if c.get("nullable", True) else "no"
                 lines.append(
-                    f"| `{esc(c['name'])}` | {esc(c['type'] or '')} | {null} | {esc(c['comment'])} |")
+                    f"| {col_code(c['name'])} | {esc(c['type'] or '')} | {null} | {esc(c['comment'])} |")
             lines.append("")
         else:
             lines += ["*View — columns are resolved by the query engine at runtime.*", ""]
@@ -142,6 +156,9 @@ site_description: >
 repo_url: https://github.com/kenstott/askamerica
 edit_uri: ""
 use_directory_urls: true
+
+extra_css:
+  - stylesheets/extra.css
 
 theme:
   name: material
@@ -196,6 +213,9 @@ nav:
 def main():
     cat = load()
     os.makedirs(os.path.join(DOCS, "schemas"), exist_ok=True)
+    css_dir = os.path.join(DOCS, "stylesheets")
+    os.makedirs(css_dir, exist_ok=True)
+    open(os.path.join(css_dir, "extra.css"), "w").write(EXTRA_CSS)
     write_index(cat)
     for s in cat:
         write_schema_page(s)

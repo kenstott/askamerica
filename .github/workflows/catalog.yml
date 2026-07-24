@@ -1,0 +1,76 @@
+name: Update data catalog
+
+# Rebuilds the MkDocs data catalog (askamerica.ai/catalog) from the govdata
+# *-schema.yaml files and redeploys the whole site to Cloudflare Pages.
+#
+# Triggers:
+#   - push to main touching the catalog generator or the web site
+#   - daily schedule (catches govdata schema edits in the calcite repo)
+#   - manual dispatch
+#   - repository_dispatch (type: catalog-update) — fire from the calcite repo
+#     when a *-schema.yaml changes, for immediate updates.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'catalog/**'
+      - 'web/**'
+      - '.github/workflows/catalog.yml'
+  schedule:
+    - cron: '17 7 * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [catalog-update]
+
+concurrency:
+  group: catalog-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout askamerica
+        uses: actions/checkout@v4
+
+      - name: Checkout govdata schema YAMLs (calcite)
+        uses: actions/checkout@v4
+        with:
+          repository: kenstott/calcite
+          path: calcite
+          sparse-checkout: govdata/src/main/resources
+          sparse-checkout-cone-mode: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install MkDocs
+        run: pip install mkdocs mkdocs-material
+
+      - name: Generate + build catalog
+        env:
+          GOVDATA_RESOURCES: ${{ github.workspace }}/calcite/govdata/src/main/resources
+        run: |
+          python catalog/gen_docs.py
+          mkdocs build -f catalog/mkdocs.yml
+
+      - name: Assemble deploy dir (site + functions + catalog)
+        run: |
+          mkdir -p deploy
+          cp web/*.html web/*.png web/*.ico web/*.svg deploy/ 2>/dev/null || true
+          rm -f deploy/make-icons.py deploy/._* 2>/dev/null || true
+          cp -r web/functions deploy/functions
+          cp -r catalog/site deploy/catalog
+          find deploy -name '._*' -delete 2>/dev/null || true
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 21cd637936a05913431a608f3f6d73bb
+          # Run from inside the deploy dir so wrangler picks up ./functions.
+          workingDirectory: deploy
+          command: pages deploy . --project-name=askamerica --branch=main --commit-dirty=true
