@@ -4,7 +4,8 @@ import { handleUsageReport, handleQuotaStatus } from './metering';
 import { handleLemonSqueezyWebhook } from './webhook';
 import { handleCheckout } from './checkout';
 import { handleCredentials } from './credentials';
-import { handleAdminCreateKey } from './admin';
+import { handleAdminCreateKey, handleAdminGrant } from './admin';
+import { handleIssueReport } from './issues';
 
 function cors(response: Response): Response {
   const headers = new Headers(response.headers);
@@ -55,8 +56,14 @@ export default {
       response = await handleLemonSqueezyWebhook(request, env);
     } else if (method === 'GET' && path === '/v1/catalog/credentials') {
       response = await handleCredentials(request, env);
+    } else if (method === 'POST' && path === '/v1/issues') {
+      // Awaited, unlike metering's waitUntil: the caller has just written up a report and
+      // must be told whether it was stored, rather than getting an unconditional ok.
+      response = await handleIssueReport(request, env);
     } else if (method === 'POST' && path === '/v1/admin/keys') {
       response = await handleAdminCreateKey(request, env);
+    } else if (method === 'POST' && path === '/v1/admin/grant') {
+      response = await handleAdminGrant(request, env);
     } else {
       response = notFound();
     }
