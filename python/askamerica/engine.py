@@ -10,9 +10,6 @@ from .exceptions import AuthError, EngineNotInstalledError
 
 DEFAULT_JAR_PATH = Path.home() / ".askamerica" / "engine" / "askamerica-engine.jar"
 
-# Pinned at publish time by the engine release workflow — matches engine-v<version> tag.
-BUNDLED_ENGINE_VERSION = "0.51.0"
-
 # Schemas loaded by default — publicly accessible without per-schema API keys.
 DEFAULT_SCHEMAS = (
     "sec,geo,econ,census,crime,weather,ref,fec,"
@@ -29,11 +26,8 @@ def download_jar(version: str = None, dest: Path = DEFAULT_JAR_PATH) -> Path:
 
     dest.parent.mkdir(parents=True, exist_ok=True)
 
-    # Default to the version bundled at package-publish time so pip install
-    # askamerica==X.Y.Z always fetches the matching engine JAR.
-    # With no explicit version, track the latest engine release. A pinned version
-    # fetches that exact tag (BUNDLED_ENGINE_VERSION records what shipped with this
-    # package but is no longer the default).
+    # With no explicit version, track the latest engine release; a pinned version
+    # fetches that exact engine-v<version> tag.
     if version:
         url = f"https://api.github.com/repos/kenstott/calcite/releases/tags/engine-v{version}"
     else:
