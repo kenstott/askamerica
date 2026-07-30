@@ -31,6 +31,13 @@ id = "f1f24513a081478887fb4c4594c3c8a9"
 binding = "ANALYTICS"
 dataset = "query_events"
 
+# MCP tool telemetry. A separate dataset rather than reusing query_events: Analytics
+# Engine blobs and doubles are positional, so two event shapes in one dataset makes
+# every later query guess which shape a row is.
+[[analytics_engine_datasets]]
+binding = "TELEMETRY"
+dataset = "mcp_telemetry"
+
 # ── Secrets (set with `wrangler secret put <NAME>`; do NOT commit values) ─────
 #   RESEND_API_KEY, ADMIN_SECRET, LS_WEBHOOK_SECRET,
 #   R2_ACCOUNT_ID, R2_BUCKET, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY,

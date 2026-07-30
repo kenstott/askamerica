@@ -9,6 +9,7 @@ export interface Env {
 
   // Analytics Engine
   ANALYTICS: AnalyticsEngineDataset;
+  TELEMETRY: AnalyticsEngineDataset;  // MCP tool telemetry — separate event shape
 
   // Secrets (set via: wrangler secret put <NAME>)
   RESEND_API_KEY: string;

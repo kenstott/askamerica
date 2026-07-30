@@ -6,6 +6,7 @@ import { handleCheckout } from './checkout';
 import { handleCredentials } from './credentials';
 import { handleAdminCreateKey, handleAdminGrant } from './admin';
 import { handleIssueReport } from './issues';
+import { handleTelemetry } from './telemetry';
 
 function cors(response: Response): Response {
   const headers = new Headers(response.headers);
@@ -56,6 +57,12 @@ export default {
       response = await handleLemonSqueezyWebhook(request, env);
     } else if (method === 'GET' && path === '/v1/catalog/credentials') {
       response = await handleCredentials(request, env);
+    } else if (method === 'POST' && path === '/v1/telemetry') {
+      // Awaited, despite this being fire-and-forget for the client. writeDataPoint does
+      // no I/O in the request path, so deferring bought no latency -- and returning a
+      // canned ok meant the stamp filter could not reject, so the route answered 200 to
+      // any POST and advertised itself.
+      response = await handleTelemetry(request, env);
     } else if (method === 'POST' && path === '/v1/issues') {
       // Awaited, unlike metering's waitUntil: the caller has just written up a report and
       // must be told whether it was stored, rather than getting an unconditional ok.
