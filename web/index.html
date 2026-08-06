@@ -916,7 +916,7 @@
   <h1>Argue about what it means.<br><em>Not about what it is.</em></h1>
 
   <p class="hero-sub">
-    The important questions of the day deserve better than dueling talking points. AskAmerica turns the government's own records — 480+ datasets from 40+ federal agencies, cross-linked by entity, geography, and time since 2010 — into a common evidence base anyone can query. Ask Claude to run the numbers and show its work, or run the statistics yourself from Python or SQL. Every answer traces back to a primary source.
+    AskAmerica won't settle the big debates — those turn on values and judgment, and no dataset decides them. But most arguments die in the shallow end, disputing facts that are actually checkable. This puts the government's own records — 480+ datasets from 40+ federal agencies, cross-linked by entity, geography, and time since 2010 — one query away. Ask Claude to run the numbers and show its work, or run the statistics yourself from Python or SQL. Every answer traces back to a primary source.
   </p>
 
   <!-- Terminal -->
@@ -929,20 +929,21 @@
     </div>
     <div class="terminal-body">
       <span class="t-comment">You</span><br>
-      <span class="t-cmd">Do states that spend more per student actually get</span><br>
-      <span class="t-cmd">better reading scores? Be honest with me.</span><br>
+      <span class="t-cmd">If I had one more dollar to spend on teachers, should I</span><br>
+      <span class="t-cmd">raise pay or hire more of them?</span><br>
       <span class="t-blank"></span>
       <span class="t-comment">Claude</span><br>
-      <span class="t-output">Joining NCES per-pupil spending with NAEP grade-4 reading,</span>
-      <span class="t-output">all 50 states:</span>
+      <span class="t-output">That's a measurable tradeoff. At the same per-pupil</span>
+      <span class="t-output">spending, some states choose fewer, better-paid teachers —</span>
+      <span class="t-output">others choose more of them. So: hold total spending</span>
+      <span class="t-output">constant, put salaries in real dollars, control for child</span>
+      <span class="t-output">poverty, and compare the two groups on NAEP scores.</span>
       <span class="t-output"></span>
-      <span class="t-output">  Correlation: +0.34 — positive, but weak.</span>
-      <span class="t-output">  Top spender (NY, $29.9K/pupil) ranks 23rd in scores.</span>
-      <span class="t-output">  Massachusetts leads scores at $22.9K per pupil.</span>
+      <span class="t-output">  SELECT state, real_salary, pupil_teacher_ratio, score</span>
+      <span class="t-output">  FROM ...  -- NCES staffing × NAEP × Census ACS,</span>
+      <span class="t-output">            -- joined by state and year</span>
       <span class="t-output"></span>
-      <span class="t-output">Spending alone explains ~12% of the variance — so neither</span>
-      <span class="t-output">side's slogan survives contact with the data. Want me to</span>
-      <span class="t-output">control for child poverty using Census ACS?</span>
+      <span class="t-output">The record has an answer. Run it and see for yourself.</span>
       <span class="cursor"></span>
     </div>
   </div>
@@ -968,15 +969,15 @@
 <section id="concerns">
   <div class="reveal">
     <div class="section-label">The questions of the day</div>
-    <h2 class="section-heading">Everyone's got a theory.<br><em>Test every one of them.</em></h2>
-    <p class="section-sub">Crime, healthcare costs, inflation — the things people actually worry about come with competing explanations, each backed by somebody's cherry-picked chart. AskAmerica won't tell you which theory is right. It gives you the primary records and the statistical tools to check each one yourself — and Claude to run the numbers while you watch.</p>
+    <h2 class="section-heading">It won't settle the debate.<br><em>It will raise the floor.</em></h2>
+    <p class="section-sub">Crime, healthcare costs, inflation — the big questions come with competing explanations, each backed by somebody's cherry-picked chart, and the data alone won't crown a winner. What it can do is pin down the checkable part — what happened, where, when, to whom — so the argument moves to the part that's genuinely hard. Framed well, a surprising number of questions have answers sitting in the record. Claude runs the numbers while you watch.</p>
   </div>
 
   <div class="datasets-grid reveal">
     <div class="dataset-card">
       <span class="dataset-icon">🚔</span>
       <div class="dataset-name">Concerned about crime?</div>
-      <div class="dataset-desc">Is it immigration? Education? Unemployment? Police staffing? Public investment? Join FBI incident data with Census demographics, BLS employment, school statistics, and federal spending — by county, by year — and see which theories survive.</div>
+      <div class="dataset-desc">Is it immigration? Education? Unemployment? Police staffing? Public investment? Join FBI incident data with Census demographics, BLS employment, school statistics, and federal spending — by county, by year — and see what the record supports and what it doesn't.</div>
       <span class="dataset-tag">crime + census + econ + edu + fiscal</span>
     </div>
     <div class="dataset-card">
@@ -1000,7 +1001,7 @@
     <div class="dataset-card">
       <span class="dataset-icon">🎓</span>
       <div class="dataset-name">Concerned about schools?</div>
-      <div class="dataset-desc">Is it funding? Class size? Poverty? Choice? Join NAEP outcomes with per-pupil spending, district statistics, and Census poverty rates — and find out how much each theory actually explains.</div>
+      <div class="dataset-desc">Is it funding? Class size? Poverty? Choice? Join NAEP outcomes with per-pupil spending, district statistics, and Census poverty rates — and see how much of the variation each factor actually accounts for.</div>
       <span class="dataset-tag">edu + census + fiscal</span>
     </div>
     <div class="dataset-card">
@@ -1025,7 +1026,7 @@
   <div class="reveal">
     <div class="section-label">Who runs on AskAmerica</div>
     <h2 class="section-heading">Civic mission.<br><em>Professional grade.</em></h2>
-    <p class="section-sub">The properties an honest public debate needs — provenance, reproducibility, entities and geographies that actually join — are the same ones professionals bill hours against. One key, pay only for bytes scanned, first GB every month free.</p>
+    <p class="section-sub">Provenance, reproducibility, entities and geographies that actually join — the properties professionals bill hours against, wherever the work has to be data-driven. One key, pay only for bytes scanned, first GB every month free.</p>
   </div>
 
   <div class="datasets-grid reveal">
