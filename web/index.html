@@ -889,6 +889,205 @@
     .dl-grid { grid-template-columns: 1fr; }
     .tab-bar { overflow-x: auto; }
   }
+
+  /* --- #value / #mechanism --- */
+  .compare-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .compare-col {
+    background: var(--bg2);
+    padding: 26px 26px 22px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .compare-col.generic { opacity: 0.88; }
+
+  .compare-tag {
+    display: inline-flex;
+    align-self: flex-start;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .compare-tag.dim {
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+  .compare-tag.amber {
+    color: var(--amber);
+    border: 1px solid var(--amber-dim);
+    background: var(--amber-glow);
+  }
+
+  .compare-q {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  .compare-q::before { content: '"'; }
+  .compare-q::after { content: '"'; }
+
+  .compare-verdict {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .compare-verdict.amber { color: var(--amber); }
+
+  .term-lines { font-size: 12.5px; line-height: 1.95; flex: 1; }
+  .term-lines .t-prompt { color: var(--amber); }
+  .term-lines .t-cmd    { color: var(--white); }
+  .term-lines .t-comment{ color: var(--text-dim); }
+  .term-lines .t-sql    { color: #a5d6ff; }
+  .term-lines .t-out    { color: var(--green); display: block; margin-top: 2px; }
+
+  .compare-caption {
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--text-dim);
+    margin-bottom: 3.5rem;
+    font-style: italic;
+  }
+
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .insight-card {
+    background: var(--bg2);
+    padding: 30px 26px;
+  }
+
+  .insight-glyph {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 18px;
+  }
+
+  .insight-title {
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .insight-desc {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.75;
+  }
+  .insight-desc em { font-style: italic; color: var(--text); }
+
+  .value-close {
+    margin-top: 3.5rem;
+    padding-top: 2.25rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .value-close-mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--amber);
+  }
+  .value-close p {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 640px;
+  }
+  .value-close p em { font-style: italic; color: var(--amber); }
+
+  .mech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .mech-card {
+    background: var(--bg2);
+    padding: 28px 26px;
+  }
+
+  .mech-title {
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .mech-desc {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .mech-desc em { font-style: italic; color: var(--text); }
+
+  .mech-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .mech-tool {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber);
+    background: var(--amber-glow);
+    border: 1px solid var(--amber-dim);
+    border-radius: 5px;
+    padding: 2px 8px;
+  }
+
+  @media (max-width: 900px) {
+    .insight-grid { grid-template-columns: repeat(2, 1fr); }
+    .mech-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .compare { grid-template-columns: 1fr; }
+    .insight-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -902,6 +1101,7 @@
   <ul class="nav-links">
     <li><a href="#datasets">Datasets</a></li>
     <li><a href="/catalog/">Catalog</a></li>
+    <li><a href="/studies/">Studies</a></li>
     <li><a href="#how">How it works</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#download">Download</a></li>
@@ -916,7 +1116,7 @@
   <h1>Argue about what it means.<br><em>Not about what it is.</em></h1>
 
   <p class="hero-sub">
-    The government's own records — 480+ datasets from 40+ federal agencies — cross-linked by entity, geography, and time since 2010, vintages reconciled, every field normalized, one query away. Ask Claude to run the numbers and show its work, or run the statistics yourself from Python or SQL. Every answer traces back to a primary source.
+    The government's own records — 490+ datasets from 40+ federal agencies — cross-linked by entity, geography, and time since 2010, vintages reconciled, every field normalized, one query away. Ask Claude to run the numbers and show its work, or run the statistics yourself from Python or SQL. Every answer traces back to a primary source.
   </p>
 
   <!-- Terminal -->
@@ -1063,7 +1263,7 @@
 <section id="datasets">
   <div class="reveal">
     <div class="section-label">Available datasets</div>
-    <h2 class="section-heading">480+ datasets.<br><em>40 agencies. One key.</em></h2>
+    <h2 class="section-heading">490+ datasets.<br><em>40 agencies. One key.</em></h2>
     <p class="section-sub">Updated daily from primary government sources, with history back to 2010. All schemas cross-linked by legal entity, geography, and time. No API keys per dataset — one AskAmerica key accesses everything. <a href="/catalog/" style="color:var(--amber)">Browse the full schema, table &amp; column catalog →</a></p>
   </div>
 
@@ -1201,6 +1401,12 @@
       <span class="dataset-tag">housing.*</span>
     </div>
     <div class="dataset-card">
+      <span class="dataset-icon">💳</span>
+      <div class="dataset-name">Banking (FDIC / CFPB)</div>
+      <div class="dataset-desc">8 datasets — FDIC BankFind institutions, branch locations, structure-change history, failures, Summary of Deposits, call-report financials, and industry summaries, plus CFPB consumer complaints on checking, mortgage, credit card, and debt collection.</div>
+      <span class="dataset-tag">banking.*</span>
+    </div>
+    <div class="dataset-card">
       <span class="dataset-icon">🚗</span>
       <div class="dataset-name">Transportation (DOT / NTSB)</div>
       <div class="dataset-desc">19 datasets — NHTSA vehicle recalls, complaints, and FARS fatal crashes, BTS airline on-time and T-100 traffic, FAA aircraft registry, FTA transit ridership, FHWA vehicle registrations, FMCSA carriers, and NTSB aviation accidents.</div>
@@ -1232,43 +1438,131 @@
 <!-- VALUE ADD -->
 <section id="value">
   <div class="reveal">
-    <div class="section-label">"Why not just ask Claude directly?"</div>
-    <h2 class="section-heading">The hard part,<br><em>already done.</em></h2>
-    <p class="section-sub">You could — and for one number from one agency, it works. But the questions worth asking span sources and years, and that's where it breaks down: much of the data exists only as bulk files with no queryable API, identifiers don't match across agencies, figures get revised after you've quoted them, and formats and classification codes shift vintage to vintage. Improvise that pipeline per conversation and you get answers that look right and can't be reproduced. We did the plumbing once — cross-linked, vintage-reconciled, one stable SQL schema — so Claude stops summarizing other people's studies and runs the numbers itself, on the primary records, showing its work. Claude alone gives you an answer. This gives you a receipt.</p>
+    <div class="section-label">The honest version</div>
+    <h2 class="section-heading">Good prompting has a ceiling.<br><em>This is what's above it.</em></h2>
+    <p class="section-sub">Point a well-prompted model at a source it can reach, and it will pull real numbers and run real statistics — that part isn't in dispute anymore. What it won't do on its own: get past a bulk file with no API, a login wall, or a CAPTCHA gate that blocks the data outright; resolve the same organization or person across an SEC filing, an FEC contribution, and a USPTO patent without you doing that identity work by hand; or run an actual similarity search over filing text or patent claims — it'll try, but there's no index for it to search, scoped to one source or five. None of that is a prompting problem — it's a ceiling, and it's there no matter how good the researcher asking is.</p>
   </div>
 
   <div class="reveal">
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01 —</div>
-        <div class="step-title">Entity resolution across agencies</div>
-        <div class="step-desc">The same company resolves to one canonical entity whether it shows up in an SEC 10-K, a USPTO patent assignment, or an FEC contribution — via a GLEIF LEI↔CIK bridge and a cross-schema entity registry, not string matching at query time.</div>
+    <div class="compare-label">A real run, not a mockup — same question, two answers</div>
+    <div class="compare">
+      <div class="compare-col generic">
+        <span class="compare-tag dim">General assistant — well-prompted, asked to research</span>
+        <div class="compare-q">Have incomes grown more in Republican- or Democrat-represented states over the last ten years?</div>
+        <div class="term-lines">
+          <div class="t-comment">→ found a think-tank study: Red states' <em>aggregate</em> income up ~25–40% faster, driven by migration</div>
+          <div class="t-comment">→ found a Brookings study: Blue <em>districts'</em> median household income up, Red districts' flat — different decade, different unit</div>
+          <div class="t-comment">→ "no single, uncontested statistic... genuinely contested and highly sensitive to methodology"</div>
+        </div>
+        <div class="compare-verdict">Real research, honestly reported. But it's three other people's numbers, on three different definitions of the question — never the one actually asked.</div>
       </div>
-      <div class="step">
-        <div class="step-num">02 —</div>
-        <div class="step-title">Every field normalized, not just documented</div>
-        <div class="step-desc">Government CSVs ship dates in half a dozen formats, numbers as comma- or space-padded strings, and booleans as Y/N, 1/0, or blank. Every column, across every table, is cast to a real typed value before you ever see it.</div>
+      <div class="compare-col">
+        <span class="compare-tag amber">AskAmerica</span>
+        <div class="compare-q">Have incomes grown more in Republican- or Democrat-represented states over the last ten years?</div>
+        <div class="term-lines">
+          <div><span class="t-prompt">$</span> <span class="t-cmd">ask</span> <span class="t-sql">"real median HH income growth, R-lean vs D-lean states, 2014–2024"</span></div>
+          <div class="t-comment">→ census.acs1_income × officials.state_political_index, CPI-adjusted via econ.inflation_metrics</div>
+          <div class="t-out">→ +12.5% (R-lean, n=27) vs +14.1% (D-lean, n=23) — Welch's t-test p=0.45, not distinguishable from zero</div>
+          <div class="t-comment">→ confirmed on a continuous score (p=0.79) and a cost-of-living-adjusted rerun (p=0.94) — both null</div>
+        </div>
+        <div class="compare-verdict amber">One regression, on the actual metric asked about, with the robustness checks shown. The honest answer, for either side rooting for a gap: there isn't one.</div>
       </div>
-      <div class="step">
-        <div class="step-num">03 —</div>
-        <div class="step-title">Real foreign keys across agencies</div>
-        <div class="step-desc">Hundreds of declared relationships — an aircraft registration joins to its NTSB accident record, a Census tract joins to HUD rent limits — so a JOIN works the way it should, without you ever discovering the plumbing underneath.</div>
+    </div>
+    <p class="compare-caption">From an internal side-by-side evaluation, 2026-08-23 — four personas on one question, scored by an independent judge, who ranked this run's AskAmerica answer first: <em>"the most rigorous single answer... all converging on the same null."</em></p>
+  </div>
+
+  <div class="reveal">
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="insight-glyph">§</div>
+        <div class="insight-title">Gets past the wall a browser can't</div>
+        <div class="insight-desc">Bulk files with no API, login portals, CAPTCHA gates, formats that shift every vintage — resolved once during ingest, so a prompt never has to rediscover the workaround, or discover there isn't one.</div>
       </div>
-      <div class="step">
-        <div class="step-num">04 —</div>
-        <div class="step-title">The genuinely hard formats, tamed</div>
-        <div class="step-desc">SEC XBRL taxonomies, CFTC swap data with large-trade threshold markers and multi-value fields, USPTO's assignment-conveyance graph — each a multi-week parsing project on its own, solved once so you don't have to.</div>
+      <div class="insight-card">
+        <div class="insight-glyph">≡</div>
+        <div class="insight-title">Resolves entities across domains</div>
+        <div class="insight-desc">Go looking for complaints about Apple's credit card and you're actually looking for Goldman Sachs Bank USA — the card's real issuer, and the entity CFPB fined separately from Apple for the same program. Nothing about the word "Apple" points there; a model has to already happen to know it. Same problem one level up: "every Apple Inc. subsidiary across SEC, USPTO, and trading data" — entities get renamed and refiled under their own names across every system that touches them. <em>resolve_entity</em> and <em>entity_relationships</em> walk that chain instead of guessing it.</div>
       </div>
-      <div class="step">
-        <div class="step-num">05 —</div>
-        <div class="step-title">Composite indices, computed once</div>
-        <div class="step-desc">Need a state-level social-investment score? fiscal.state_social_infrastructure_index blends fiscal, health, and census data into one weighted, percent-ranked metric — no need to re-derive it from six source tables yourself.</div>
+      <div class="insight-card">
+        <div class="insight-glyph">↗</div>
+        <div class="insight-title">A similarity search that actually exists</div>
+        <div class="insight-desc">A model's own training gets it partway — it likely already has a decent list of, say, big tech companies baked in. Past that, it falls back to SEC's or USPTO's own full-text search and hand-crafts a keyword string that approximates what you meant, then does it again for the next corpus — real tools, but keyword-only, unranked, and each guess about what the underlying text says stacked on the last one. <em>semantic_search</em> is one real similarity index, ranked by meaning, across five corpora in a single call — not a guess re-guessed.</div>
       </div>
-      <div class="step">
-        <div class="step-num">06 —</div>
-        <div class="step-title">Classification vintages reconciled</div>
-        <div class="step-desc">NAICS and SIC codes change every few years; ref.naics_vintage_map keeps an old code and a current one joinable to the same series, so a decade-long time-series query doesn't silently break at the boundary.</div>
+      <div class="insight-card">
+        <div class="insight-glyph">↻</div>
+        <div class="insight-title">Keeps descending on the fifth "why"</div>
+        <div class="insight-desc">Round three of a general model's "why" usually needs a source it can't fetch or an entity it can't tie together, so it restates itself. Here, the next "why" just changes which table gets queried.</div>
       </div>
+    </div>
+
+    <div class="value-close">
+      <span class="value-close-mark">”</span>
+      <p>Everyone walking into that meeting already ran the obvious prompt the night before — same summary, same three bullet points. Be the person who brings the number <em>nobody else in the room has</em>, with a query behind it that holds up when someone asks where it came from.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- MECHANISM -->
+<section id="mechanism">
+  <div class="reveal">
+    <div class="section-label">How</div>
+    <h2 class="section-heading">Not a chatbot with a database.<br><em>A toolkit built for this.</em></h2>
+    <p class="section-sub">None of this is the model improvising. It's a fixed set of tools, purpose-built for the data, that the model calls the way it calls anything else — so the hard part happened at build time, not at answer time.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="mech-grid">
+      <div class="mech-card">
+        <div class="mech-title">The graph, not just the tables</div>
+        <div class="mech-desc">490+ datasets, already cross-linked by entity, geography, and time. The relationships are pre-built — a query joins across agencies without the model having to figure out how they connect first.</div>
+      </div>
+      <div class="mech-card">
+        <div class="mech-title">Standard tools. Used the way an analyst would.</div>
+        <div class="mech-desc">Regression, difference-in-differences, panel fixed effects, event studies, double-ML treatment effects — none of this is exotic; it's in every stats package. Having the tool was never the hard part. Piping the right data into it, specified the right way, checked with the right robustness test — that's the twenty-years-of-craft part, and it's enforced at call time, not hoped for.</div>
+        <div class="mech-tools">
+          <span class="mech-tool">ols_regression</span>
+          <span class="mech-tool">iv_2sls</span>
+          <span class="mech-tool">diff_in_diff</span>
+          <span class="mech-tool">panel_fixed_effects</span>
+          <span class="mech-tool">event_study</span>
+          <span class="mech-tool">sensitivity_analysis</span>
+          <span class="mech-tool">double_ml_ate</span>
+        </div>
+      </div>
+      <div class="mech-card">
+        <div class="mech-title">Entity resolution and semantic search, as tools</div>
+        <div class="mech-desc"><em>resolve_entity</em> ties a plain-language name to one canonical identity — LEI, CIK, FEC committee ID, patent assignee, and eighteen more source keys, each confidence-scored. <em>entity_relationships</em> walks the real GLEIF ownership chain, not the misleading single-hop shortcut. <em>semantic_search</em> finds meaning, not keywords, across filings, rules, and threat intel.</div>
+        <div class="mech-tools">
+          <span class="mech-tool">resolve_entity</span>
+          <span class="mech-tool">entity_relationships</span>
+          <span class="mech-tool">semantic_search</span>
+        </div>
+      </div>
+      <div class="mech-card">
+        <div class="mech-title">A vast recipe library of best practices</div>
+        <div class="mech-desc"><em>find_recipe</em> surfaces the documented best practice before a query runs — cost-of-living vs. inflation adjustment, ambiguous category drift, FBI crime-reporting coverage gaps, and hundreds more traps across the corpus. Not hypothetical guidance: every entry exists because an independent judge caught a real analyst — human or model — getting exactly that wrong.</div>
+        <div class="mech-tools">
+          <span class="mech-tool">find_recipe</span>
+        </div>
+      </div>
+      <div class="mech-card">
+        <div class="mech-title">A report that lays it out for you</div>
+        <div class="mech-desc">The output isn't a chat log to go re-assemble yourself. <em>render_chart</em> and <em>compose_dashboard</em> build the figures, <em>publish_report</em> lays out the finished page — methodology, caveats, sources, and all — into something you hand to someone, not a transcript they have to reconstruct.</div>
+        <div class="mech-tools">
+          <span class="mech-tool">render_chart</span>
+          <span class="mech-tool">compose_dashboard</span>
+          <span class="mech-tool">publish_report</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="value-close">
+      <span class="value-close-mark">”</span>
+      <p>Could you build this yourself? Sure — it's software, and given enough time and headcount, anything is buildable. The harder question: are you a software engineer? Are you <em>also</em> a data analyst who's spent twenty years learning exactly where government data lies to you? Most people are one or the other. This took both, for years, before the first query ever ran.</p>
     </div>
   </div>
 </section>

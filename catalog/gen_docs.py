@@ -28,7 +28,7 @@ ICONS = {
     "health": "🏥", "edu": "🎓", "crime": "🚨", "geo": "🗺️", "lands": "🌲",
     "patents": "💡", "cftc": "📉", "ref": "📋", "econ_reference": "🔤",
     "ag": "🚜", "disasters": "🌀", "environment": "🌎", "housing": "🏘️",
-    "transport": "🚗", "fiscal": "💵", "research": "🔬",
+    "transport": "🚗", "fiscal": "💵", "research": "🔬", "banking": "🏛️",
 }
 
 
