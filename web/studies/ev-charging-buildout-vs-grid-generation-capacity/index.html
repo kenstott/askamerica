@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Generating capacity additions have outpaced EV charging capacity additions roughly 35-to-1 nationally, 2018-2023</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Generating capacity additions have outpaced EV charging capacity additions roughly 35-to-1 nationally, 2018-2023</h1>
+<p class="subtitle">EIA-860 generator inventory vs. NREL AFDC public charging-station registry, aggregated by state</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 631" width="880" height="631" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="631" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:19px">EV Charging Capacity Added vs. Generating Capacity Added by State, 201…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">Charging = estimated MW-equivalent from AFDC port counts (150kW DC fast, 7.2kW L2, 1.4kW L1); Generating = EIA-860 nameplate MW of generators with operating_year 2018-2023</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="98" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="134" fill="#6b7280">US charging added (MW-equiv, est.)</text>
+  <text class="stat-value" x="36" y="164" fill="#1f2328">~5,691 MW</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">US generating capacity added (MW)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">~205,538 MW</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Charging added is about 2.8% of generating capacity added</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Ten biggest absolute gaps (Generating minus Charging MW added)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="84" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="76" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="76" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+      <line class="grid" x1="84" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="76" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+      <line class="grid" x1="84" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="76" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30,000</text>
+      <line class="grid" x1="84" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="76" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50,000</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="237" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Gap, MW</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-tx" class="tick" x="99.30" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">TX</text>
+      <text id="p3-xtick-ca" class="tick" x="129.90" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA</text>
+      <text id="p3-xtick-fl" class="tick" x="160.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FL</text>
+      <text id="p3-xtick-pa" class="tick" x="191.10" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">PA</text>
+      <text id="p3-xtick-il" class="tick" x="221.70" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">IL</text>
+      <text id="p3-xtick-oh" class="tick" x="252.30" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OH</text>
+      <text id="p3-xtick-ia" class="tick" x="282.90" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">IA</text>
+      <text id="p3-xtick-mi" class="tick" x="313.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MI</text>
+      <text id="p3-xtick-va" class="tick" x="344.10" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">VA</text>
+      <text id="p3-xtick-ok" class="tick" x="374.70" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OK</text>
+    </g>
+    <g id="p3-series-gap-gen-charge-mw" class="series">
+      <rect id="p3-mark-gap-gen-charge-mw-tx" class="bar" x="89.51" y="82.32" width="18.58" height="117.68" fill="#2563eb"/>
+      <rect id="p3-mark-gap-gen-charge-mw-ca" class="bar" x="120.11" y="144.60" width="18.58" height="55.40" fill="#2563eb"/>
+      <rect id="p3-mark-gap-gen-charge-mw-fl" class="bar" x="150.71" y="154.22" width="18.58" height="45.78" fill="#2563eb"/>
+      <rect id="p3-mark-gap-gen-charge-mw-pa" class="bar" x="181.31" y="169.95" width="18.58" height="30.05" fill="#2563eb"/>
+      <rect id="p3-mark-gap-gen-charge-mw-il" class="bar" x="211.91" y="178.05" width="18.58" height="21.95" fill="#2563eb"/>
+      <rect id="p3-mark-gap-gen-charge-mw-oh" class="bar" x="242.51" y="178.22" width="18.58" height="21.78" fill="#2563eb"/>
+      <rect id="p3-mark-gap-gen-charge-mw-ia" class="bar" x="273.11" y="182.20" width="18.58" height="17.80" fill="#2563eb"/>
+      <rect id="p3-mark-gap-gen-charge-mw-mi" class="bar" x="303.71" y="183.98" width="18.58" height="16.02" fill="#2563eb"/>
+      <rect id="p3-mark-gap-gen-charge-mw-va" class="bar" x="334.31" y="184.67" width="18.58" height="15.33" fill="#2563eb"/>
+      <rect id="p3-mark-gap-gen-charge-mw-ok" class="bar" x="364.91" y="186.07" width="18.58" height="13.93" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Dominated by the largest states/biggest generation buildouts (TX/IA/OK</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">wind, CA/FL grid growth) - reflects state size as much as any chargin…</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Ten worst relative ratios (Charging MW-equiv / Generating MW added, %)</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="63" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="55" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="164" x2="390" y2="164" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="55" y="168" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+      <line class="grid" x1="63" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="55" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
+      <line class="grid" x1="63" y1="92" x2="390" y2="92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="55" y="96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5</text>
+      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.0</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Ratio, %</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-sd" class="tick" x="79.35" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">SD</text>
+      <text id="p4-xtick-wy" class="tick" x="112.05" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WY</text>
+      <text id="p4-xtick-ia" class="tick" x="144.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">IA</text>
+      <text id="p4-xtick-tx" class="tick" x="177.45" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">TX</text>
+      <text id="p4-xtick-nm" class="tick" x="210.15" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NM</text>
+      <text id="p4-xtick-ne" class="tick" x="242.85" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NE</text>
+      <text id="p4-xtick-hi" class="tick" x="275.55" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">HI</text>
+      <text id="p4-xtick-nd" class="tick" x="308.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ND</text>
+      <text id="p4-xtick-ms" class="tick" x="340.95" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MS</text>
+      <text id="p4-xtick-la" class="tick" x="373.65" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">LA</text>
+    </g>
+    <g id="p4-series-charging-as-of-generating-added" class="series">
+      <rect id="p4-mark-charging-as-of-generating-added-sd" class="bar" x="68.89" y="168.32" width="19.93" height="31.68" fill="#2563eb"/>
+      <rect id="p4-mark-charging-as-of-generating-added-wy" class="bar" x="101.59" y="161.84" width="19.93" height="38.16" fill="#2563eb"/>
+      <rect id="p4-mark-charging-as-of-generating-added-ia" class="bar" x="134.29" y="149.60" width="19.93" height="50.40" fill="#2563eb"/>
+      <rect id="p4-mark-charging-as-of-generating-added-tx" class="bar" x="166.99" y="140.96" width="19.93" height="59.04" fill="#2563eb"/>
+      <rect id="p4-mark-charging-as-of-generating-added-nm" class="bar" x="199.69" y="136.64" width="19.93" height="63.36" fill="#2563eb"/>
+      <rect id="p4-mark-charging-as-of-generating-added-ne" class="bar" x="232.39" y="135.92" width="19.93" height="64.08" fill="#2563eb"/>
+      <rect id="p4-mark-charging-as-of-generating-added-hi" class="bar" x="265.09" y="132.32" width="19.93" height="67.68" fill="#2563eb"/>
+      <rect id="p4-mark-charging-as-of-generating-added-nd" class="bar" x="297.79" y="130.16" width="19.93" height="69.84" fill="#2563eb"/>
+      <rect id="p4-mark-charging-as-of-generating-added-ms" class="bar" x="330.49" y="86.96" width="19.93" height="113.04" fill="#2563eb"/>
+      <rect id="p4-mark-charging-as-of-generating-added-la" class="bar" x="363.19" y="119.36" width="19.93" height="80.64" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Where charging build-out lags generation build-out most,</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">proportionally - mostly low-EV-adoption states with large wind/gas…</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Estimates: charging MW-equivalent is a rough proxy from AFDC port counts x typical power ratings, not a published EIA figure. Generating additions</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">are gross (not netted against retirements) EIA-860 nameplate capacity by operating_year. DC and Puerto Rico excluded from rankings.</text>
+  <g id="brand">
+  <svg x="20" y="590" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="605" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:50515/a/db54b716b53f53bc6003db2512363e26.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Between 2018 and 2023, U.S. states added roughly <strong>205,500 MW</strong> of new electricity generating capacity (EIA-860 nameplate capacity of generators that entered service in that window) but only an estimated <strong>5,700 MW-equivalent</strong> of public EV charging capacity (converting AFDC's counts of newly-opened DC fast, Level 2, and Level 1 ports to power using typical charger ratings). Charging capacity added is therefore only about <strong>2.8% the size of</strong> generating capacity added, nationally. In absolute megawatts the gap is largest in the biggest states with the biggest generation buildouts — Texas (~40,900 MW gap, mostly wind and gas), California (~19,200 MW), and Florida (~15,900 MW) — but that ranking mostly reflects state size. Looking at the ratio of charging-to-generation growth instead, the states where charging investment lags generation investment MOST, proportionally, are smaller, lower-EV-adoption, generation-heavy states: South Dakota (0.44%), Wyoming (0.53%), Iowa (0.70%), Texas (0.82%), New Mexico (0.88%), and Nebraska (0.89%) — states that built enormous new wind/gas capacity with comparatively little new public charging infrastructure. States where charging kept better relative pace include the District of Columbia, New Hampshire, Delaware, Vermont, and Washington — small states that added little new generation, so even modest charger buildout looks proportionally large.</p>
+</section>
+<section>
+<h2>Why generating and charging capacity aren't directly comparable, and what this analysis does about it</h2>
+<p>"Charging capacity" and "generating capacity" are not natively the same unit in the data available here. EIA-860 (energy.eia_power_plants) reports true nameplate MW for every generator. NREL's Alternative Fuels Data Center (AFDC) station registry (energy.ev_charging_stations), by contrast, reports only <em>port counts</em> by charging level (DC fast, Level 2, Level 1) — it does not carry the kW rating of individual chargers. To make an MW-comparable estimate, this analysis multiplied each port type by an industry-typical power rating: 150 kW per DC fast port, 7.2 kW per Level 2 port, and 1.4 kW per Level 1 port. This is a rough, order-of-magnitude proxy, not a measured or EIA-published figure — DC fast chargers installed in this window ranged from 50 kW to 350 kW depending on vintage and network, so the true figure could plausibly be higher or lower by a factor of ~2 for the DC-fast component specifically, though it would not change the broad conclusion (charging capacity added is a small fraction of generating capacity added) by an order of magnitude.</p><p>The comparison window (2018-2023) was chosen because energy.eia_power_plants' observed data coverage runs 2012-2023 (EIA-860 publishes with roughly a 3-year lag, so 2024-2026 do not exist in this table yet), and AFDC station open-date records are populated well within that same window. Generating additions are <strong>gross</strong> additions — new generators entering service — not netted against retirements in the same period, since the question asked what states "added," not net capacity change.</p>
+</section>
+<section>
+<h2>Method</h2>
+<p><strong>Generating capacity added</strong>: distinct (plant_id, generator_id) rows from energy.eia_power_plants (report_year=2023 snapshot, so each generator counted once) with operating_year between 2018 and 2023, summed nameplate_capacity_mw by state_abbr.</p><p><strong>Charging capacity added</strong>: energy.ev_charging_stations filtered to country='US', status_code='E' (available stations), open_date year between 2018 and 2023, summed ev_dc_fast_num, ev_level2_evse_num, ev_level1_evse_num ports by state_abbr, then converted to MW-equivalent using the ratings above.</p><p><strong>Gap</strong> = generating MW added minus charging MW-equivalent added. <strong>Ratio</strong> = charging MW-equivalent added divided by generating MW added, as a percentage.</p><p>Full state-by-state results (50 states, sorted by absolute gap, largest first): TX 40,861 MW gap (ratio 0.82%); CA 19,235 MW (8.04%); FL 15,896 MW (2.07%); PA 10,433 MW (1.29%); IL 7,623 MW (1.70%); OH 7,561 MW (1.54%); IA 6,180 MW (0.70%); MI 5,563 MW (2.03%); VA 5,324 MW (2.81%); OK 4,836 MW (1.58%); NY 4,608 MW (5.17%); CO 4,356 MW (3.15%); NC 4,293 MW (3.22%); GA 4,282 MW (3.86%); AZ 4,199 MW (3.13%); KS 4,030 MW (0.77%); IN 3,981 MW (1.87%); NM 3,479 MW (0.88%); LA 2,985 MW (1.12%); NV 2,956 MW (2.73%); SD 2,820 MW (0.44%); MN 2,735 MW (2.23%); AL 2,693 MW (1.76%); WI 2,530 MW (2.30%); MD 2,266 MW (5.07%); MA 2,251 MW (5.40%); NE 2,140 MW (0.89%); SC 2,133 MW (2.77%); WY 1,756 MW (0.53%); CT 1,739 MW (4.08%); TN 1,578 MW (4.79%); OR 1,474 MW (6.69%); MO 1,461 MW (4.45%); ND 1,301 MW (0.97%); NJ 1,177 MW (10.90%); MT 1,069 MW (2.04%); MS 898 MW (1.57%); AR 803 MW (2.57%); UT 781 MW (5.90%); KY 732 MW (3.10%); HI 688 MW (0.94%); ME 598 MW (5.12%); WA 581 MW (21.93%); RI 382 MW (3.60%); ID 160 MW (7.64%); WV 155 MW (9.69%); AK 116 MW (5.02%); VT 72 MW (17.46%); DE 35 MW (42.84%); NH 29 MW (41.87%). (DC: 15 MW gap, 44.82% ratio, shown separately as a city rather than a state.)</p>
+</section>
+<section>
+<h2>Where the gap is biggest</h2>
+<ul><li><strong>In absolute megawatts:</strong> Texas, California, Florida, Pennsylvania, and Illinois — these are simply large states that also happened to add enormous generating capacity (Texas alone added over 41 GW, mostly wind and gas, more than 10x the next state). This ranking is driven by scale, not necessarily by charging under-investment specifically.</li><li><strong>In relative terms (the more meaningful "gap" for policy purposes):</strong> South Dakota, Wyoming, Iowa, Texas, New Mexico, Nebraska, Hawaii, and North Dakota show the smallest charging build-out as a share of their generation build-out (all under 1%). These are largely lower-population, lower-EV-adoption states that built out large amounts of wind, gas, or (Hawaii) other generation while adding comparatively few public chargers.</li><li><strong>Best relative pace:</strong> DC, New Hampshire, Delaware, Vermont, and Washington show the highest charging-to-generation ratios (17-45%), but this largely reflects that these states/DC added very little new generation in the period, not that they built unusually large charging networks in absolute terms.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>EIA Form 860 annual generator inventory (energy.eia_power_plants)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH gen AS (SELECT DISTINCT plant_id, generator_id, state_abbr, operating_year, nameplate_capacity_mw FROM energy.eia_power_plants WHERE report_year = 2023 AND operating_year BETWEEN 2018 AND 2023) SELECT state_abbr, SUM(nameplate_capacity_mw) AS gen_added_mw FROM gen GROUP BY state_abbr ORDER BY gen_added_mw DESC</code></pre></details></li>
+<li>NREL AFDC public EV charging station registry (energy.ev_charging_stations)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_abbr, SUM(COALESCE(ev_dc_fast_num,0)) AS dcfast, SUM(COALESCE(ev_level2_evse_num,0)) AS l2, SUM(COALESCE(ev_level1_evse_num,0)) AS l1 FROM energy.ev_charging_stations WHERE country='US' AND status_code='E' AND EXTRACT(YEAR FROM open_date) BETWEEN 2018 AND 2023 GROUP BY state_abbr</code></pre></details></li>
+<li><a href="https://afdc.energy.gov/fuels/electricity-infrastructure-trends">AFDC / EV charging infrastructure trend context (2024-2025 growth figures)</a> <span class="note">— Confirms ~180,000 to 242,000+ public charging ports 2024-2025, used as external corroboration of national EV charging growth trend</span></li>
+<li><a href="https://www.utilitydive.com/news/ev-charging-infrastructure-slowing-growth-here-technologies/760442/">Utility Dive: charging infrastructure growth lagging demand</a></li>
+<li><a href="https://driveelectric.gov/news/q4-2024-nevi-quarterly-update">Joint Office of Energy and Transportation, Q4 2024 NEVI quarterly update</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Charging MW-equivalent is an estimate from AFDC port counts using typical power ratings, not an EIA-measured or published figure — treat all charging-side numbers as order-of-magnitude, not precise. Generating additions are gross, not net of retirements.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NIH budget volatility does show up in what funded researchers produce — but mostly at the margin, amplified 30-70x, not proportionally across the whole portfolio</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>NIH budget volatility does show up in what funded researchers produce — but mostly at the margin, amplified 30-70x, not proportionally across the whole portfolio</h1>
+<p class="subtitle">Case study: NIH appropriations vs. research-grant output, FY1996-FY2026 (nominal $)</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 961" width="880" height="961" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="961" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">NIH budget moves are smoothed at the portfolio level but concentrated on new gr…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">NIH program-level appropriations vs. research-project-grant output, FY1996-FY2026 (nominal $, CRS R43341 / NIH RePORT)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">FY2024-&gt;FY2025 budget change</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">-0.6%</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">-$276M</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">NIH program level, nominal $ (CRS Table 2)</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">FY2024-&gt;FY2025 new competing grants</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">-39.6%</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">10,086 -&gt; 6,095 grants</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">~68x the budget's own % change (CRS, citing NIH FY2026 budget</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">justification)</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">NIH program-level appropriations, selected FYs (nominal $B)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fiscal year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">$ billions</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-fy1996" class="tick" x="83.57" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY1996</text>
+      <text id="p3-xtick-fy1998" class="tick" x="130.71" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY1998</text>
+      <text id="p3-xtick-fy2003" class="tick" x="177.86" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY2003</text>
+      <text id="p3-xtick-fy2013" class="tick" x="225" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY2013</text>
+      <text id="p3-xtick-fy2024" class="tick" x="272.14" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY2024</text>
+      <text id="p3-xtick-fy2025" class="tick" x="319.29" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY2025</text>
+      <text id="p3-xtick-fy2026" class="tick" x="366.43" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY2026</text>
+    </g>
+    <g id="p3-series-nih-program-level" class="series">
+      <path id="p3-line-nih-program-level" class="line" d="M 83.57 165.65 L 130.71 160.62 L 177.86 121.76 L 225 111.87 L 272.14 63.74 L 319.29 64.54 L 366.43 63.22" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-nih-program-level-fy1996" class="point" cx="83.57" cy="165.65" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nih-program-level-fy1998" class="point" cx="130.71" cy="160.62" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nih-program-level-fy2003" class="point" cx="177.86" cy="121.76" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nih-program-level-fy2013" class="point" cx="225" cy="111.87" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nih-program-level-fy2024" class="point" cx="272.14" cy="63.74" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nih-program-level-fy2025" class="point" cx="319.29" cy="64.54" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nih-program-level-fy2026" class="point" cx="366.43" cy="63.22" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">FY1999-2003 doubling (+14-16.5%/yr); nominal cuts in FY2006, FY2011,</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">FY2013 (sequestration, -5.0%); FY2016-2023 steady +3-9%/yr; FY2024-25…</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">New competing research grants funded, FY2024-FY2026</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="84" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="76" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="121" x2="390" y2="121" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="76" y="125" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="84" y1="108" x2="390" y2="108" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="76" y="112" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+      <line class="grid" x1="84" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="76" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6,000</text>
+      <line class="grid" x1="84" y1="82" x2="390" y2="82" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="76" y="86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8,000</text>
+      <line class="grid" x1="84" y1="69" x2="390" y2="69" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="76" y="73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">12,000</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="237" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fiscal year</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">New grants</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-fy2024-actual" class="tick" x="135" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 135 148)">FY2024 actual</text>
+      <text id="p4-xtick-fy2025-actual" class="tick" x="237" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 237 148)">FY2025 actual</text>
+      <text id="p4-xtick-fy2026-request-not-enacted" class="tick" x="339" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 339 148)">FY2026 request (not enacted)</text>
+    </g>
+    <g id="p4-series-new-competing-rpgs" class="series">
+      <rect id="p4-mark-new-competing-rpgs-fy2024-actual" class="bar" x="102.36" y="68.44" width="64.28" height="65.56" fill="#2563eb"/>
+      <rect id="p4-mark-new-competing-rpgs-fy2025-actual" class="bar" x="204.36" y="94.38" width="64.28" height="39.62" fill="#2563eb"/>
+      <rect id="p4-mark-new-competing-rpgs-fy2026-request-not-enacted" class="bar" x="306.36" y="105.97" width="64.28" height="28.03" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Driven only partly by dollars: FY2025's multiyear-grants policy and</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">slowed obligations (GAO: -$8B obligated Feb-Jun'25 vs FY24) cut…</text>
+  <rect class="panel-edge" x="20" y="554" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">NIH R01-equivalent success rate, selected years (%)</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="60" y1="147.52" x2="390" y2="147.52" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="52" y="151.52" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="134.45" x2="390" y2="134.45" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="52" y="138.45" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="121.37" x2="390" y2="121.37" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="52" y="125.37" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="108.30" x2="390" y2="108.30" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="52" y="112.30" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="95.22" x2="390" y2="95.22" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="52" y="99.22" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="82.15" x2="390" y2="82.15" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="52" y="86.15" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+      <line class="grid" x1="60" y1="69.07" x2="390" y2="69.07" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-6" class="tick" x="52" y="73.07" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-7" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">35</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="147.52" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="147.52" x2="390" y2="147.52" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fiscal year</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="101.76" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 101.76)">Success rate %</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-1993" class="tick" x="83.57" y="161.52" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 83.57 161.52)">1993</text>
+      <text id="p5-xtick-1997-2003-avg" class="tick" x="130.71" y="161.52" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 130.71 161.52)">1997-2003 avg</text>
+      <text id="p5-xtick-2004" class="tick" x="177.86" y="161.52" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 177.86 161.52)">2004</text>
+      <text id="p5-xtick-2007-2010-avg" class="tick" x="225" y="161.52" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 161.52)">2007-2010 avg</text>
+      <text id="p5-xtick-2013" class="tick" x="272.14" y="161.52" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 272.14 161.52)">2013</text>
+      <text id="p5-xtick-2018-2023-avg" class="tick" x="319.29" y="161.52" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 319.29 161.52)">2018-2023 avg</text>
+      <text id="p5-xtick-2024" class="tick" x="366.43" y="161.52" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 366.43 161.52)">2024</text>
+    </g>
+    <g id="p5-series-success-rate" class="series">
+      <path id="p5-line-success-rate" class="line" d="M 83.57 87.38 L 130.71 67.77 L 177.86 82.15 L 225 88.69 L 272.14 95.48 L 319.29 92.61 L 366.43 96.53" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p5-mark-success-rate-1993" class="point" cx="83.57" cy="87.38" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-success-rate-1997-2003-avg" class="point" cx="130.71" cy="67.77" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-success-rate-2004" class="point" cx="177.86" cy="82.15" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-success-rate-2007-2010-avg" class="point" cx="225" cy="88.69" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-success-rate-2013" class="point" cx="272.14" cy="95.48" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-success-rate-2018-2023-avg" class="point" cx="319.29" cy="92.61" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-success-rate-2024" class="point" cx="366.43" cy="96.53" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="835" fill="#6b7280">Success rate is the buffer: it absorbs budget swings so award SIZE and</text>
+  <text class="caption" x="24" y="848" fill="#6b7280">the continuing-grant portfolio stay comparatively stable</text>
+  <text class="footnote" x="20" y="880" fill="#6b7280">Sources: CRS Report R43341 (NIH Funding FY1996-FY2026, updated 2026-05-18); NIH RePORT/NIH Data Book success-rate series (via report.nih.gov,</text>
+  <text class="footnote" x="20" y="894" fill="#6b7280">compiled and cross-checked at drugmonkey.wordpress.com 2025-07-30); GAO B-337203 (Aug 2025) on FY2025 obligation delays. AskAmerica</text>
+  <text class="footnote" x="20" y="908" fill="#6b7280">research.nih_award_projects (2022-2024,2026) shows total NIH award counts nearly flat (~79,000-81,000/yr, ~$47-48B/yr) even across this period,…</text>
+  <g id="brand">
+  <svg x="20" y="920" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="935" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:57241/a/d8c9848af003e9898a2b3fbb6bfa217d.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Using NIH as the case study (the one agency where both budget history and grant-level output data are publicly detailed), year-to-year budget volatility shows up in what funded researchers produce <strong>very unevenly</strong>: the total funded portfolio (dollars committed, total number of active awards) is remarkably stable year to year, but the <em>margin</em> — new/competing grants, and the success rate applicants face — absorbs almost all of the volatility, often wildly amplified relative to the dollar change. In the one episode with exact matching primary-source figures, a budget change of -0.58% (FY2024 to FY2025) coincided with a -39.6% drop in new competing research grants funded, roughly a 68x amplification. A parallel, less precisely dated episode (the 2003-2006 post-doubling slowdown) shows the same pattern: NIH held average award value flat and absorbed the funding deceleration almost entirely by cutting the number of new awards and letting the success rate fall. The true 'output' economists and NIH itself care about most — papers, citations, trained researchers — lags this by roughly the multi-year length of a grant, and the literature confirms real hits there too (publication declines after the 2013 sequester; researcher-reported disruption after 2025's funding instability) but that output is not something we could measure directly from government microdata; it comes from academic literature and surveys, cited below.</p>
+</section>
+<section>
+<h2>What 'agency budget volatility' means here, precisely</h2>
+<p>NIH's total program-level appropriation (nominal dollars, from CRS Report R43341) has gone through four distinct volatility regimes since FY1996: (1) FY1999-FY2003, the 'budget doubling' era, +14.0% to +16.5% every single year; (2) FY2003-FY2015, much slower nominal growth punctuated by outright nominal <em>cuts</em> in FY2006, FY2011, and FY2013 (the FY2013 sequestration cut was -5.0%); (3) FY2016-FY2023, steady increases of 3%-9% a year; and (4) FY2024-FY2026, essentially flat (-0.8%, -0.6%, +1.0%). In inflation-adjusted (BRDPI) terms, NIH's purchasing power peaked in FY2003 and, per CRS, the FY2026 level remains about 10.3% below that 2003 peak even after two decades of subsequent nominal increases — a reminder that 'volatility' in nominal appropriations understates real volatility once biomedical-specific inflation is netted out.</p>
+</section>
+<section>
+<h2>What 'what funded researchers produce' means here, and the gap in this corpus</h2>
+<p>The AskAmerica connector has no table of publications, citations, or patents attributable to a specific funding agency's grantees — confirmed via search_catalog and describe_table across the research, patents, and sec schemas. The closest AskAmerica-native proxy is <code>research.nih_award_projects</code> (NIH RePORTER award microdata), which covers only FY2022-2024 and FY2026 (FY2025 is an interior gap in the table) and only measures award count/dollars, not output. Querying it directly shows the funded-award <em>count</em> for the whole NIH portfolio is nearly flat across the years it does cover: 79,708 (FY2022), 80,843 (FY2023), 79,245 (FY2024), and 51,142 for the partial FY2026 in progress, at roughly $47-48B/year — consistent with the CRS budget figures for the same years. That flatness is itself informative: it shows the *existing* funded-researcher population barely moves year to year, because most of a year's award total is continuing (already-committed) grants, not new ones. It is the marginal, competitively-awarded slice of the portfolio, and the resulting success rate, where volatility actually lands — a distinction this analysis had to go outside the AskAmerica corpus to establish, using CRS's report of new *competing* grants specifically (10,086 in FY2024 vs. 6,095 in FY2025, a distinction the connector's own table does not carry).</p>
+</section>
+<section>
+<h2>The sharpest documented episode: FY2024 to FY2025</h2>
+<p>This is the one episode where an exact, same-source, same-methodology pair of before/after numbers exists. Per CRS R43341 (citing NIH's own FY2026 budget justification, p.23): NIH's program-level budget fell from $47.311B (FY2024) to $47.035B (FY2025), a change of -0.58%. Over the same one-year span, the number of new competing research grants funded fell from 10,086 to 6,095, a change of -39.57% — roughly <strong>68 times</strong> the proportional size of the budget change. This was not purely a dollar story: CRS and GAO (B-337203, Aug. 2025) attribute the disproportionate drop to two mechanisms layered on top of the small budget cut — (1) a new FY2025 policy reserving half of competing-grant funds for grants paid in a single multi-year lump sum rather than year-by-year, which mechanically reduces the number of new starts per dollar, and (2) a documented slowdown in NIH's pace of obligating funds (GAO found NIH had obligated about $8 billion less between February and June 2025 than in the same months of FY2024, though CRS's later analysis found NIH ultimately obligated nearly all of its FY2025 budget authority by year-end). The lesson: the size of the output swing an agency's researchers experience is not simply a readout of the size of its budget swing — administrative and policy choices made *in response to* a small budget change can amplify it by an order of magnitude or more in what gets funded that year.</p>
+</section>
+<section>
+<h2>A parallel historical episode: the 2003-2006 post-doubling slowdown</h2>
+<p>The pattern recurs, though the primary-source figures for this earlier episode are less precisely dated in what could be retrieved here. Following NIH's five-year budget-doubling period (which ended in FY2003 at $27.167B), nominal budget growth decelerated sharply and the agency actually cut its FY2006 appropriation slightly (-0.1%, the first NIH nominal decrease since FY1970, per CRS). The R01-equivalent success rate — the share of grant applications that get funded — fell from roughly 30-31% during 1997-2003 (the doubling era, when application volume also surged) to 25% in FY2004 and into the low-to-mid 20s through the rest of the decade (NIH Data Book / RePORT series, compiled at drugmonkey.wordpress.com 2025-07-30). NIH's own budget-planning approach in this period, as documented in NIGMS and other IC funding-trend writeups, was to protect the real value of individual awards and the continuation of existing grants first, absorbing the funding slowdown mainly by reducing the number of *new* awards and letting the success rate fall — the same triage pattern seen again in FY2025.</p>
+</section>
+<section>
+<h2>Where the true output — publications, citations, trained scientists — is affected (literature, not computed here)</h2>
+<p>Because no government microdata table in this corpus links a funding agency's year-to-year budget to its grantees' publication or citation output, this link rests on the published literature rather than a number computed here. Findings worth weighing: after the 2013 Budget Control Act sequestration, the count of NIH-funded 'fundamental' and 'mixed mostly fundamental' papers declined while human-focused paper output plateaued (bioRxiv, 'Absolute and Relative Declines in NIH-Funded Basic Science Publications', 2025). A PNAS analysis found the 2025 wave of NIH grant terminations directly removed $2.45 billion from active research and disproportionately affected early-career researchers and women scientists (as summarized in STAT News, Aug. 26 2025, drawing on a survey of hundreds of biomedical researchers reporting funding instability's effects on their work). The Association of American Universities separately documented the FY2025 grantmaking slowdown from the recipient-institution side, corroborating the CRS/GAO figures above. None of these are re-derived from primary tables here; they are reported as literature findings, distinct from the CRS/GAO/AskAmerica-sourced numbers above.</p>
+</section>
+<section>
+<h2>Bottom line and caveats</h2>
+<p>Year-to-year NIH budget volatility shows up in researcher output disproportionately at the margin — new grants and success rates swing far more than the dollar totals that drive them, sometimes by an order of magnitude or more, because NIH's own triage behavior and administrative/policy responses amplify small budget moves into large changes in what gets newly funded. The stable core of the funded-researcher population (continuing grants) is comparatively insulated. What could not be established quantitatively here, for lack of any publications/citations-by-agency table anywhere in this corpus, is the size of the resulting effect on actual scientific output (papers, citations) a year or two downstream — that link is real and documented in the literature cited above, but not something this analysis computed directly. This is a single-agency (NIH) case study; the mechanism (a buffer of continuing grants, discretion over new-award count and size) is common to other large granting agencies (NSF, DOE Office of Science) but the specific FY2025 elasticity is NIH-specific and should not be assumed to transfer at the same magnitude to other agencies without their own primary data.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.congress.gov/crs_external_products/R/PDF/R43341/R43341.58.pdf">CRS Report R43341, National Institutes of Health (NIH) Funding: FY1996-FY2026 (updated 2026-05-18)</a> <span class="note">— Primary source for NIH program-level appropriations by FY, growth-rate narrative by era, FY2024-FY2026 new-competing-grant counts (footnote 22, sourcing NIH's FY2026 CJ Overview p.23), and the GAO obligation-delay finding.</span></li>
+<li><a href="https://www.gao.gov/assets/890/880607.pdf">GAO B-337203, HHS-NIH Application of Impoundment Control Act to Availability of Funds for Grants (Aug 5, 2025)</a> <span class="note">— Cited within CRS R43341; found NIH obligated ~$8B less Feb-Jun 2025 than the same period in FY2024.</span></li>
+<li><a href="https://www.report.nih.gov/nihdatabook/category/10">NIH RePORT / NIH Data Book, Success Rates: R01-Equivalent and Research Project Grants</a> <span class="note">— Official success-rate series; page did not render its table via fetch (JS-rendered), so figures were cross-checked against the compiled series below.</span></li>
+<li><a href="https://drugmonkey.wordpress.com/2025/07/30/fun-with-historical-nih-funding-success-rates/">DrugMonkey: Fun with historical NIH funding success rates (2025-07-30)</a> <span class="note">— Compiles official NIH Data Book and pre-1995 NIH success-rate figures (1962-2024) used for the success-rate chart's illustrative years; treated as a secondary compilation of primary NIH figures, not an independent estimate.</span></li>
+<li>AskAmerica research.nih_award_projects<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT fiscal_year, COUNT(*) AS n_awards, SUM(award_amount) AS total_award_usd, AVG(award_amount) AS avg_award_usd FROM research.nih_award_projects GROUP BY fiscal_year ORDER BY fiscal_year&quot;)</code></pre></details></li>
+<li><a href="https://www.statnews.com/2025/08/26/federal-research-funding-instability-survey-hundreds-sense-of-doom/">PNAS study on 2025 NIH grant terminations ($2.45B, early-career/women researchers), via STAT News coverage</a> <span class="note">— Figure attributed to a PNAS analysis as summarized in secondary coverage, not independently re-parsed from the PNAS article itself.</span></li>
+<li><a href="https://www.aau.edu/newsroom/data-show-dramatic-slowdown-nih-grantmaking">AAU: Data Show Dramatic Slowdown in NIH Grantmaking</a> <span class="note">— Independent corroboration of the FY2025 new-award slowdown.</span></li>
+<li><a href="https://www.biorxiv.org/content/10.1101/2025.07.15.664939.full.pdf">bioRxiv: Absolute and Relative Declines in NIH-Funded Basic Science Publications (2025)</a> <span class="note">— Literature on the funding-to-publication link, not independently re-parsed table-by-table.</span></li>
+<li><a href="https://elifesciences.org/articles/84245">eLife: National Institutes of Health research project grant inflation, 1998 to 2021</a> <span class="note">— Context on how rising per-grant cost interacts with a fixed/volatile budget to determine award count.</span></li>
+<li>AskAmerica research schema catalog search (search_catalog, describe_table) <span class="note">— Confirmed no publications, citations, or patent-output-by-funding-agency table exists in this corpus; research.nsf_federal_rd_obligations is single-latest-year only (not a time series) and nih_award_projects covers only FY2022-2024 and FY2026 (FY2025 is an interior gap), which is why the output side of this analysis leans on external CRS/NIH primary sources rather than an AskAmerica table.</span></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">NIH is a single-agency case study chosen because it is the one federal research funder with both a detailed public appropriations history and grant-level output data; the specific ~68x elasticity found for FY2024-FY2025 is not necessarily representative of other agencies or other years.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

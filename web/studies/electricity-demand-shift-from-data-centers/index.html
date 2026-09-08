@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Electricity Demand Has Grown 4-8x Faster in Data-Center-Concentrated States/Counties Than the US Average Since 2019</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s3-t1-s4:checked ~ table tbody.s0{display:none}
+#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
+#s3-t1-s4:checked ~ .srtreset{display:inline-block}
+#s3-t1-s5:checked ~ table tbody.s0{display:none}
+#s3-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"]{color:var(--link)}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"] .srtcue{opacity:1}
+#s3-t1-s5:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Electricity Demand Has Grown 4-8x Faster in Data-Center-Concentrated States/Counties Than the US Average Since 2019</h1>
+<p class="subtitle">EIA-861 commercial electricity sales, 2019-2024, cross-checked against Northern Virginia grid-operator peak-load data and Oak Ridge/DOE data-center location counts</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 613" width="880" height="613" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="613" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">Data-Center States See 4-8x Faster Commercial Electricity Growth Than the U.S. Average</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Commercial-sector retail electricity sales, 2019-2024 (EIA-861 via AskAmerica energy schema)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Virginia commercial sales growth, 2019-2024</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">+45.8%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">vs +6.6% US avg</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:10px">Loudoun Co., VA data-center share of county power use (2023)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">~24%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">exceeds residential share (18%)</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Commercial electricity sales growth, 2019-2024, by state</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="66" y1="182.08" x2="390" y2="182.08" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="58" y="186.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="164.07" x2="390" y2="164.07" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="58" y="168.07" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="146.06" x2="390" y2="146.06" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="58" y="150.06" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="66" y1="128.05" x2="390" y2="128.05" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="58" y="132.05" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="66" y1="110.03" x2="390" y2="110.03" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="58" y="114.03" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="66" y1="92.02" x2="390" y2="92.02" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="58" y="96.02" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="66" y1="74.01" x2="390" y2="74.01" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="58" y="78.01" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="66" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="58" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="182.08" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="182.08" x2="390" y2="182.08" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="119.04" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 119.04)">% growth</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-us-avg" class="tick" x="80.73" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 80.73 196.08)">US avg</text>
+      <text id="p3-xtick-mo" class="tick" x="110.18" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 110.18 196.08)">MO</text>
+      <text id="p3-xtick-ia" class="tick" x="139.64" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 139.64 196.08)">IA</text>
+      <text id="p3-xtick-nm" class="tick" x="169.09" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 169.09 196.08)">NM</text>
+      <text id="p3-xtick-oh" class="tick" x="198.55" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 198.55 196.08)">OH</text>
+      <text id="p3-xtick-tx" class="tick" x="228" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228 196.08)">TX</text>
+      <text id="p3-xtick-wa" class="tick" x="257.45" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 257.45 196.08)">WA</text>
+      <text id="p3-xtick-ne" class="tick" x="286.91" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 286.91 196.08)">NE</text>
+      <text id="p3-xtick-wy" class="tick" x="316.36" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 316.36 196.08)">WY</text>
+      <text id="p3-xtick-va" class="tick" x="345.82" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 345.82 196.08)">VA</text>
+      <text id="p3-xtick-or" class="tick" x="375.27" y="196.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 375.27 196.08)">OR</text>
+    </g>
+    <g id="p3-series-growth-2019-2024" class="series">
+      <rect id="p3-mark-growth-2019-2024-us-avg" class="bar" x="71.30" y="152.18" width="17.85" height="11.89" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-mo" class="bar" x="100.76" y="164.07" width="17.85" height="3.42" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-ia" class="bar" x="130.21" y="156.68" width="17.85" height="7.38" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-nm" class="bar" x="159.67" y="152.90" width="17.85" height="11.17" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-oh" class="bar" x="189.12" y="145.34" width="17.85" height="18.73" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-tx" class="bar" x="218.57" y="135.79" width="17.85" height="28.28" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-wa" class="bar" x="248.03" y="140.47" width="17.85" height="23.59" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-ne" class="bar" x="277.48" y="98.69" width="17.85" height="65.38" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-wy" class="bar" x="306.94" y="78.51" width="17.85" height="85.55" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-va" class="bar" x="336.39" y="81.58" width="17.85" height="82.49" fill="#2563eb"/>
+      <rect id="p3-mark-growth-2019-2024-or" class="bar" x="365.85" y="73.65" width="17.85" height="90.42" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="487" fill="#6b7280">States hosting the largest known data-center clusters (VA, OR, WY, NE)</text>
+  <text class="caption" x="24" y="500" fill="#6b7280">show 4x-8x the national commercial electricity growth rate; Missouri…</text>
+  <rect class="panel-edge" x="448" y="206" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">PJM Dominion zone (Northern Virginia) peak load, 2019 vs 2025</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="84" y1="208" x2="390" y2="208" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="76" y="212" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="182.67" x2="390" y2="182.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="76" y="186.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5,000</text>
+      <line class="grid" x1="84" y1="157.33" x2="390" y2="157.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="76" y="161.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+      <line class="grid" x1="84" y1="132" x2="390" y2="132" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="76" y="136" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15,000</text>
+      <line class="grid" x1="84" y1="106.67" x2="390" y2="106.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="76" y="110.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+      <line class="grid" x1="84" y1="81.33" x2="390" y2="81.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="76" y="85.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30,000</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="208" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="208" x2="390" y2="208" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="237" y="252" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Season</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="132" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 132)">Peak load (MW)</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-2019" class="tick" x="160.50" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
+      <text id="p4-xtick-2025" class="tick" x="313.50" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
+    </g>
+    <g id="p4-series-summer-peak-mw" class="series">
+      <path id="p4-line-summer-peak-mw" class="line" d="M 160.50 109.53 L 313.50 86.88" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p4-mark-summer-peak-mw-2019" class="point" cx="160.50" cy="109.53" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-summer-peak-mw-2025" class="point" cx="313.50" cy="86.88" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p4-series-winter-peak-mw" class="series">
+      <path id="p4-line-winter-peak-mw" class="line" d="M 160.50 119.20 L 313.50 79.24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p4-mark-winter-peak-mw-2019" class="point" cx="160.50" cy="119.20" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-winter-peak-mw-2025" class="point" cx="313.50" cy="79.24" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p4-legend">
+      <rect id="p4-legend-swatch-summer-peak-mw" x="86" y="266" width="11" height="11" fill="#2563eb"/>
+      <text id="p4-legend-label-summer-peak-mw" class="legend-label" x="102" y="275" fill="#1f2328" font-size="11" style="font-size:11px">Summer peak (MW)</text>
+      <rect id="p4-legend-swatch-winter-peak-mw" x="219" y="266" width="11" height="11" fill="#ea580c"/>
+      <text id="p4-legend-label-winter-peak-mw" class="legend-label" x="235" y="275" fill="#1f2328" font-size="11" style="font-size:11px">Winter peak (MW)</text>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="footnote" x="20" y="532" fill="#6b7280">State-level EIA-861 commercial sales are a proxy for county-level data-center load, since no county-grain EIA electricity dataset exists in this</text>
+  <text class="footnote" x="20" y="546" fill="#6b7280">connector. Summer 2019 Dominion peak backed out from the reported 23% increase to 23,905 MW in 2025; winter 2019-20 backed out from the reported</text>
+  <text class="footnote" x="20" y="560" fill="#6b7280">45% increase to 25,413 MW in 2025-26.</text>
+  <g id="brand">
+  <svg x="20" y="572" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="587" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:60790/a/f79b39a2ccc72db079b964cd1b617237.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Electricity demand has grown far faster in the counties/states where data centers are concentrating than in the country as a whole. The clearest case is <strong>Northern Virginia (Loudoun, Fairfax, Prince William counties)</strong>, the world's largest data-center market: Virginia's statewide <strong>commercial electricity sales grew 45.8% from 2019 to 2024</strong> (EIA-861), roughly <strong>7x the 6.6% national average</strong> over the same period. In Loudoun County specifically, data centers already consumed about <strong>24% of all county electricity in 2023</strong>, more than residential use (18%). At the grid-operator level, PJM's Dominion Virginia zone — the transmission zone serving Data Center Alley — saw <strong>summer peak load rise 23% and winter peak load rise 45% between 2019 and 2025</strong>, and PJM projects further peak growth averaging 5.4%/year through the mid-2030s, driven overwhelmingly by data-center load. Other states with major data-center clusters (Oregon, Wyoming, Nebraska) show similarly outsized commercial-sales growth (36%-50% over 2019-2024), while a state with a smaller, single-county cluster (Missouri/Platte County) shows essentially flat statewide commercial sales, since one county's load is too small to move a state total.</p>
+</section>
+<section>
+<h2>Which counties are 'data-center concentrated'</h2>
+<p>Per a Climate Crisis 24/7 analysis of U.S. Department of Energy (OSTI) known data-center locations (as of September 2025, ranked per 100,000 residents), the most concentrated counties include Morrow County, OR; Crook County, OR; Loudoun County, VA (46.6 known centers per 100k, 199 total); Grant County, WA; Umatilla County, OR; Douglas County, WA; Pottawattamie County, IA; Laramie County, WY; Prince William County, VA; and Sarpy County, NE. Northern Virginia (Loudoun/Fairfax/Prince William) is the largest cluster by absolute count, with nearly 300 facilities and roughly 70% of world internet traffic passing through the region.</p>
+</section>
+<section>
+<h2>Quantifying the demand growth</h2>
+<p>No county-grain EIA electricity-sales dataset exists in the AskAmerica connector (energy.eia_electricity_prices and energy.eia_electricity_generation are both state-grain), so state-level commercial electricity sales are used as the best available proxy, cross-checked against grid-operator (PJM) and news-reported county-specific figures where available. Commercial-sector sales (EIA-861, million kWh) 2019 vs 2024:</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s5"><table border='1' cellpadding='4'><tr><th><label class="srth" for="s3-t1-s1">State<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">2019 sales (million kWh)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">2024 sales (million kWh)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">% growth 2019-2024<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s5">Notes<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>Oregon (Morrow/Crook/Umatilla clusters)</td><td>16,423</td><td>24,662</td><td>+50.2%</td><td>Amazon/Meta/Apple hyperscale clusters</td></tr><tr><td>Wyoming (Laramie Co.)</td><td>3,575</td><td>5,275</td><td>+47.5%</td><td>Microsoft, MineOne</td></tr><tr><td>Virginia (Loudoun/Fairfax/Prince William)</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>World's largest data-center market</td></tr><tr><td>Nebraska (Sarpy Co.)</td><td>9,457</td><td>12,885</td><td>+36.3%</td><td>Meta, Google, Facebook</td></tr><tr><td>Texas (statewide, multiple clusters)</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>Large state; Dallas-Ft. Worth cluster diluted by statewide total</td></tr><tr><td>Washington (Grant/Douglas Co.)</td><td>29,270</td><td>33,102</td><td>+13.1%</td><td>Microsoft, cloud hyperscalers</td></tr><tr><td>Ohio (Licking Co.)</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>Amazon, Meta, Google in New Albany</td></tr><tr><td><strong>US average (all states)</strong></td><td>4,082,630</td><td>4,352,824</td><td><strong>+6.6%</strong></td><td>National baseline for comparison</td></tr><tr><td>New Mexico (Valencia Co.)</td><td>9,029</td><td>9,593</td><td>+6.2%</td><td>Meta Los Lunas</td></tr><tr><td>Iowa (Dallas/Warren/Pottawattamie Co.)</td><td>12,310</td><td>12,815</td><td>+4.1%</td><td>Apple, Microsoft, Google clusters diluted by statewide total</td></tr><tr><td>Missouri (Platte Co.)</td><td>30,133</td><td>29,570</td><td>-1.9%</td><td>Single small cluster, invisible at state grain</td></tr></tbody><tbody class="srt s1"><tr><td>Iowa (Dallas/Warren/Pottawattamie Co.)</td><td>12,310</td><td>12,815</td><td>+4.1%</td><td>Apple, Microsoft, Google clusters diluted by statewide total</td></tr><tr><td>Missouri (Platte Co.)</td><td>30,133</td><td>29,570</td><td>-1.9%</td><td>Single small cluster, invisible at state grain</td></tr><tr><td>Nebraska (Sarpy Co.)</td><td>9,457</td><td>12,885</td><td>+36.3%</td><td>Meta, Google, Facebook</td></tr><tr><td>New Mexico (Valencia Co.)</td><td>9,029</td><td>9,593</td><td>+6.2%</td><td>Meta Los Lunas</td></tr><tr><td>Ohio (Licking Co.)</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>Amazon, Meta, Google in New Albany</td></tr><tr><td>Oregon (Morrow/Crook/Umatilla clusters)</td><td>16,423</td><td>24,662</td><td>+50.2%</td><td>Amazon/Meta/Apple hyperscale clusters</td></tr><tr><td>Texas (statewide, multiple clusters)</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>Large state; Dallas-Ft. Worth cluster diluted by statewide total</td></tr><tr><td><strong>US average (all states)</strong></td><td>4,082,630</td><td>4,352,824</td><td><strong>+6.6%</strong></td><td>National baseline for comparison</td></tr><tr><td>Virginia (Loudoun/Fairfax/Prince William)</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>World's largest data-center market</td></tr><tr><td>Washington (Grant/Douglas Co.)</td><td>29,270</td><td>33,102</td><td>+13.1%</td><td>Microsoft, cloud hyperscalers</td></tr><tr><td>Wyoming (Laramie Co.)</td><td>3,575</td><td>5,275</td><td>+47.5%</td><td>Microsoft, MineOne</td></tr></tbody><tbody class="srt s2"><tr><td><strong>US average (all states)</strong></td><td>4,082,630</td><td>4,352,824</td><td><strong>+6.6%</strong></td><td>National baseline for comparison</td></tr><tr><td>Texas (statewide, multiple clusters)</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>Large state; Dallas-Ft. Worth cluster diluted by statewide total</td></tr><tr><td>Virginia (Loudoun/Fairfax/Prince William)</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>World's largest data-center market</td></tr><tr><td>Ohio (Licking Co.)</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>Amazon, Meta, Google in New Albany</td></tr><tr><td>Missouri (Platte Co.)</td><td>30,133</td><td>29,570</td><td>-1.9%</td><td>Single small cluster, invisible at state grain</td></tr><tr><td>Washington (Grant/Douglas Co.)</td><td>29,270</td><td>33,102</td><td>+13.1%</td><td>Microsoft, cloud hyperscalers</td></tr><tr><td>Oregon (Morrow/Crook/Umatilla clusters)</td><td>16,423</td><td>24,662</td><td>+50.2%</td><td>Amazon/Meta/Apple hyperscale clusters</td></tr><tr><td>Iowa (Dallas/Warren/Pottawattamie Co.)</td><td>12,310</td><td>12,815</td><td>+4.1%</td><td>Apple, Microsoft, Google clusters diluted by statewide total</td></tr><tr><td>Nebraska (Sarpy Co.)</td><td>9,457</td><td>12,885</td><td>+36.3%</td><td>Meta, Google, Facebook</td></tr><tr><td>New Mexico (Valencia Co.)</td><td>9,029</td><td>9,593</td><td>+6.2%</td><td>Meta Los Lunas</td></tr><tr><td>Wyoming (Laramie Co.)</td><td>3,575</td><td>5,275</td><td>+47.5%</td><td>Microsoft, MineOne</td></tr></tbody><tbody class="srt s3"><tr><td><strong>US average (all states)</strong></td><td>4,082,630</td><td>4,352,824</td><td><strong>+6.6%</strong></td><td>National baseline for comparison</td></tr><tr><td>Texas (statewide, multiple clusters)</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>Large state; Dallas-Ft. Worth cluster diluted by statewide total</td></tr><tr><td>Virginia (Loudoun/Fairfax/Prince William)</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>World's largest data-center market</td></tr><tr><td>Ohio (Licking Co.)</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>Amazon, Meta, Google in New Albany</td></tr><tr><td>Washington (Grant/Douglas Co.)</td><td>29,270</td><td>33,102</td><td>+13.1%</td><td>Microsoft, cloud hyperscalers</td></tr><tr><td>Missouri (Platte Co.)</td><td>30,133</td><td>29,570</td><td>-1.9%</td><td>Single small cluster, invisible at state grain</td></tr><tr><td>Oregon (Morrow/Crook/Umatilla clusters)</td><td>16,423</td><td>24,662</td><td>+50.2%</td><td>Amazon/Meta/Apple hyperscale clusters</td></tr><tr><td>Nebraska (Sarpy Co.)</td><td>9,457</td><td>12,885</td><td>+36.3%</td><td>Meta, Google, Facebook</td></tr><tr><td>Iowa (Dallas/Warren/Pottawattamie Co.)</td><td>12,310</td><td>12,815</td><td>+4.1%</td><td>Apple, Microsoft, Google clusters diluted by statewide total</td></tr><tr><td>New Mexico (Valencia Co.)</td><td>9,029</td><td>9,593</td><td>+6.2%</td><td>Meta Los Lunas</td></tr><tr><td>Wyoming (Laramie Co.)</td><td>3,575</td><td>5,275</td><td>+47.5%</td><td>Microsoft, MineOne</td></tr></tbody><tbody class="srt s4"><tr><td>Oregon (Morrow/Crook/Umatilla clusters)</td><td>16,423</td><td>24,662</td><td>+50.2%</td><td>Amazon/Meta/Apple hyperscale clusters</td></tr><tr><td>Wyoming (Laramie Co.)</td><td>3,575</td><td>5,275</td><td>+47.5%</td><td>Microsoft, MineOne</td></tr><tr><td>Virginia (Loudoun/Fairfax/Prince William)</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>World's largest data-center market</td></tr><tr><td>Nebraska (Sarpy Co.)</td><td>9,457</td><td>12,885</td><td>+36.3%</td><td>Meta, Google, Facebook</td></tr><tr><td>Texas (statewide, multiple clusters)</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>Large state; Dallas-Ft. Worth cluster diluted by statewide total</td></tr><tr><td>Washington (Grant/Douglas Co.)</td><td>29,270</td><td>33,102</td><td>+13.1%</td><td>Microsoft, cloud hyperscalers</td></tr><tr><td>Ohio (Licking Co.)</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>Amazon, Meta, Google in New Albany</td></tr><tr><td><strong>US average (all states)</strong></td><td>4,082,630</td><td>4,352,824</td><td><strong>+6.6%</strong></td><td>National baseline for comparison</td></tr><tr><td>New Mexico (Valencia Co.)</td><td>9,029</td><td>9,593</td><td>+6.2%</td><td>Meta Los Lunas</td></tr><tr><td>Iowa (Dallas/Warren/Pottawattamie Co.)</td><td>12,310</td><td>12,815</td><td>+4.1%</td><td>Apple, Microsoft, Google clusters diluted by statewide total</td></tr><tr><td>Missouri (Platte Co.)</td><td>30,133</td><td>29,570</td><td>-1.9%</td><td>Single small cluster, invisible at state grain</td></tr></tbody><tbody class="srt s5"><tr><td>Ohio (Licking Co.)</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>Amazon, Meta, Google in New Albany</td></tr><tr><td>Oregon (Morrow/Crook/Umatilla clusters)</td><td>16,423</td><td>24,662</td><td>+50.2%</td><td>Amazon/Meta/Apple hyperscale clusters</td></tr><tr><td>Iowa (Dallas/Warren/Pottawattamie Co.)</td><td>12,310</td><td>12,815</td><td>+4.1%</td><td>Apple, Microsoft, Google clusters diluted by statewide total</td></tr><tr><td>Texas (statewide, multiple clusters)</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>Large state; Dallas-Ft. Worth cluster diluted by statewide total</td></tr><tr><td>New Mexico (Valencia Co.)</td><td>9,029</td><td>9,593</td><td>+6.2%</td><td>Meta Los Lunas</td></tr><tr><td>Nebraska (Sarpy Co.)</td><td>9,457</td><td>12,885</td><td>+36.3%</td><td>Meta, Google, Facebook</td></tr><tr><td>Washington (Grant/Douglas Co.)</td><td>29,270</td><td>33,102</td><td>+13.1%</td><td>Microsoft, cloud hyperscalers</td></tr><tr><td>Wyoming (Laramie Co.)</td><td>3,575</td><td>5,275</td><td>+47.5%</td><td>Microsoft, MineOne</td></tr><tr><td><strong>US average (all states)</strong></td><td>4,082,630</td><td>4,352,824</td><td><strong>+6.6%</strong></td><td>National baseline for comparison</td></tr><tr><td>Missouri (Platte Co.)</td><td>30,133</td><td>29,570</td><td>-1.9%</td><td>Single small cluster, invisible at state grain</td></tr><tr><td>Virginia (Loudoun/Fairfax/Prince William)</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>World's largest data-center market</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>The pattern is consistent: every state whose data-center cluster is large relative to the state's overall economy (VA, OR, WY, NE) shows commercial electricity growth 4x-8x the national rate. States where the cluster is one county among many larger population/industrial centers (IA, MO, NM) show growth at or below the national average — the county-level effect is real but gets diluted away at state grain.</p>
+</section>
+<section>
+<h2>County- and grid-level corroboration</h2>
+<p>Because no county-grain EIA sales table exists, the following county/grid-specific figures come from primary reporting and grid-operator forecasts rather than the AskAmerica connector, and are reported as such:</p><ul><li><strong>Loudoun County, VA</strong>: data centers accounted for about 24% of total county electricity consumption in 2023, versus 18% for residential use (Loudoun County government / EIA commentary). Dominion Energy's demand forecast for the region rose 17% (adding ~7 GW) in a single forecast revision cycle (Dec 2024-2025).</li><li><strong>PJM Dominion zone</strong> (the transmission zone covering Northern Virginia's data-center cluster): summer peak load rose from roughly 19,435 MW in 2019 to 23,905 MW in 2025 (+23%); winter peak load rose from roughly 17,526 MW in 2019-20 to 25,413 MW in 2025-26 (+45%). All but 3 of the top 50 peak-hourly-load records in this zone's history occurred in 2024 or 2025. PJM's 2026 20-year forecast projects Dominion-zone peak demand growing ~5.4%/year through 2036, the largest absolute increase of any PJM zone, driven by data-center load.</li><li><strong>Northern Virginia region-wide</strong>: power demand is projected to nearly quadruple from about 4 GW to 15 GW by 2030 in some industry estimates, and Loudoun County alone could require 20-30 GW by 2030 under aggressive AI-driven demand scenarios (industry/utility filings), though these are forward projections, not measured outcomes.</li></ul>
+</section>
+<section>
+<h2>Method, caveats, and what was and was not computed here</h2>
+<p><strong>Computed directly from AskAmerica/EIA-861 data (energy.eia_electricity_prices):</strong> the 2019-2024 percent growth in commercial-sector electricity sales for each named state, and the national commercial-sales total for the same window (6.6% growth). These are exact, reproducible SQL aggregates.</p><p><strong>Passed through from primary/secondary sources, not computed here:</strong> the Loudoun County 24%-of-load figure, the PJM Dominion-zone peak-load percentages (backed out from EIA's own May 2026 'Today in Energy' article, which reports the percentage changes directly rather than the underlying 2019 absolute MW, so the 2019 figures in the chart are derived by reversing the reported 23%/45% growth), the DOE/OSTI-derived county rankings, and the forward-looking GW projections.</p><p><strong>Key limitation:</strong> no county-grain electricity-sales or generation table exists in this connector (energy.eia_electricity_generation and energy.eia_electricity_prices are both state x sector x year grain). State-level commercial sales is a reasonable proxy where the data-center cluster is large relative to the state (Virginia, Oregon, Wyoming, Nebraska) but understates or masks the true county-level effect in larger, more diversified states (Texas, Iowa, Missouri, Ohio, Washington) where a single county's hyperscale campus is a small share of a much larger statewide commercial base. The Missouri case (-1.9% statewide despite an active Platte County cluster) is the clearest illustration of this dilution.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>EIA-861 commercial electricity sales by state, 2019 &amp; 2024<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_abbr, price_year, sector_code, sales_million_kwh FROM energy.eia_electricity_prices WHERE state_abbr IN ('VA','OR','WA','NE','OH','IA','WY','NM','MO','TX') AND sector_code='COM' AND price_year IN (2019,2023,2024) ORDER BY state_abbr, price_year</code></pre></details><details class="sqltoggle"><summary>Show tool call</summary><pre><code>query</code></pre></details></li>
+<li>EIA-861 national commercial electricity sales total, 2019 &amp; 2024<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT price_year, SUM(sales_million_kwh) as total FROM energy.eia_electricity_prices WHERE sector_code='COM' AND price_year IN (2019,2024) GROUP BY price_year ORDER BY price_year</code></pre></details><details class="sqltoggle"><summary>Show tool call</summary><pre><code>query</code></pre></details></li>
+<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=67664">EIA Today in Energy: Commercial electricity sales have soared in Virginia, driven by data centers (May 5, 2026)</a></li>
+<li><a href="https://tech.yahoo.com/science/articles/counties-highest-concentration-data-centers-131000085.html">Climate Crisis 24/7 / Yahoo Tech: Counties With The Highest Concentration Of Data Centers In US (DOE/OSTI + Oak Ridge Power Stress Vulnerability Index)</a></li>
+<li><a href="https://cardinalnews.org/2024/12/10/data-centers-driving-immense-increase-in-virginia-energy-demand-report-says/">Cardinal News: Data centers driving 'immense increase' in Virginia's energy demand</a></li>
+<li><a href="https://cardinalnews.org/2025/04/11/energy-demand-will-outstrip-supply-in-virginia-as-data-centers-proliferate/">Cardinal News: Energy demand will outstrip supply in Virginia as data centers proliferate</a></li>
+<li><a href="https://www.loudoun.gov/ArchiveCenter/ViewFile/Item/13979">Loudoun County, VA: Data Center Capital of the World (county government report)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">State-level EIA-861 data is the finest grain available in this connector for electricity sales; true county-level effects are likely understated in larger, more diversified states. PJM peak-load 2019 baseline figures are back-calculated from EIA's reported percentage changes.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Almost none of the change in US overdose deaths tracks the drop in opioid prescribing</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Almost none of the change in US overdose deaths tracks the drop in opioid prescribing</h1>
+<p class="subtitle">National annual data, 2006-2024: CDC WONDER overdose mortality vs. CDC/IQVIA opioid dispensing rate</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 645" width="880" height="645" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:19px">Opioid Prescribing Fell 56% Since 2012 — Overdose Deaths Still Rose 92%…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">National annual data: CDC WONDER multiple-cause overdose deaths (2006-2024) vs. CDC/IQVIA opioid dispensing rate</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:10px">Year-over-year change correlation (deaths vs. prescribing rate)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">r = -0.17 (R² ≈ 0.03)</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">wrong-signed</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Annual up/down moves in overdose deaths track annual moves in the</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">prescribing rate for about 3% of the variance — and even that sliver…</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">2012 (prescribing peak) to 2024</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:19px">Prescribing -56.5% / Deaths +91.7%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">opposite direction for 10 of 12 years</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Only 2023-2024 saw both fall together; 2012-2022 they moved in</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">opposite directions.</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">US overdose deaths, all intents (CDC WONDER, national)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="91" y1="187.84" x2="390" y2="187.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="83" y="191.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="91" y1="165.87" x2="390" y2="165.87" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="83" y="169.87" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+      <line class="grid" x1="91" y1="143.89" x2="390" y2="143.89" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="83" y="147.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40,000</text>
+      <line class="grid" x1="91" y1="121.92" x2="390" y2="121.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="83" y="125.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60,000</text>
+      <line class="grid" x1="91" y1="99.95" x2="390" y2="99.95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="83" y="103.95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80,000</text>
+      <line class="grid" x1="91" y1="77.97" x2="390" y2="77.97" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="83" y="81.97" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100,000</text>
+      <line class="grid" x1="91" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="83" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120,000</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="91" y1="56" x2="91" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="91" y1="187.84" x2="390" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="240.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="121.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 121.92)">Deaths</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2006" class="tick" x="98.87" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 98.87 201.84)">2006</text>
+      <text id="p3-xtick-2007" class="tick" x="114.61" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 114.61 201.84)">2007</text>
+      <text id="p3-xtick-2008" class="tick" x="130.34" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 130.34 201.84)">2008</text>
+      <text id="p3-xtick-2009" class="tick" x="146.08" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 146.08 201.84)">2009</text>
+      <text id="p3-xtick-2010" class="tick" x="161.82" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 161.82 201.84)">2010</text>
+      <text id="p3-xtick-2011" class="tick" x="177.55" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 177.55 201.84)">2011</text>
+      <text id="p3-xtick-2012" class="tick" x="193.29" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 193.29 201.84)">2012</text>
+      <text id="p3-xtick-2013" class="tick" x="209.03" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 209.03 201.84)">2013</text>
+      <text id="p3-xtick-2014" class="tick" x="224.76" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 224.76 201.84)">2014</text>
+      <text id="p3-xtick-2015" class="tick" x="240.50" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 240.50 201.84)">2015</text>
+      <text id="p3-xtick-2016" class="tick" x="256.24" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 256.24 201.84)">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="271.97" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 271.97 201.84)">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="287.71" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 287.71 201.84)">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="303.45" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 303.45 201.84)">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="319.18" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 319.18 201.84)">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="334.92" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 334.92 201.84)">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="350.66" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 350.66 201.84)">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="366.39" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 366.39 201.84)">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="382.13" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 382.13 201.84)">2024</text>
+    </g>
+    <g id="p3-series-overdose-deaths" class="series">
+      <path id="p3-line-overdose-deaths" class="line" d="M 98.87 146.11 L 114.61 144.86 L 130.34 144.39 L 146.08 143.62 L 161.82 142.00 L 177.55 138.59 L 193.29 138.25 L 209.03 135.41 L 224.76 131.97 L 240.50 125.84 L 256.24 112.98 L 271.97 105.29 L 287.71 108.25 L 303.45 104.25 L 319.18 80.34 L 334.92 63.08 L 350.66 61.87 L 366.39 64.67 L 382.13 92.75" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-overdose-deaths-2006" class="point" cx="98.87" cy="146.11" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2007" class="point" cx="114.61" cy="144.86" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2008" class="point" cx="130.34" cy="144.39" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2009" class="point" cx="146.08" cy="143.62" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2010" class="point" cx="161.82" cy="142.00" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2011" class="point" cx="177.55" cy="138.59" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2012" class="point" cx="193.29" cy="138.25" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2013" class="point" cx="209.03" cy="135.41" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2014" class="point" cx="224.76" cy="131.97" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2015" class="point" cx="240.50" cy="125.84" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2016" class="point" cx="256.24" cy="112.98" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2017" class="point" cx="271.97" cy="105.29" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2018" class="point" cx="287.71" cy="108.25" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2019" class="point" cx="303.45" cy="104.25" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2020" class="point" cx="319.18" cy="80.34" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2021" class="point" cx="334.92" cy="63.08" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2022" class="point" cx="350.66" cy="61.87" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2023" class="point" cx="366.39" cy="64.67" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-overdose-deaths-2024" class="point" cx="382.13" cy="92.75" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Source: health.cdc_wonder_multiple_cause_of_death_1999_2024</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">(AskAmerica)</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">US opioid dispensing rate, per 100 persons (CDC/IQVIA)</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="67" y1="187.84" x2="390" y2="187.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="59" y="191.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="161.47" x2="390" y2="161.47" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="59" y="165.47" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="135.10" x2="390" y2="135.10" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="59" y="139.10" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="108.74" x2="390" y2="108.74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="59" y="112.74" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="82.37" x2="390" y2="82.37" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="59" y="86.37" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="187.84" x2="390" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="121.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 121.92)">Rx per 100 persons</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-2006" class="tick" x="83.15" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 83.15 201.84)">2006</text>
+      <text id="p4-xtick-2010" class="tick" x="115.45" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115.45 201.84)">2010</text>
+      <text id="p4-xtick-2012" class="tick" x="147.75" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.75 201.84)">2012</text>
+      <text id="p4-xtick-2015" class="tick" x="180.05" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 180.05 201.84)">2015</text>
+      <text id="p4-xtick-2016" class="tick" x="212.35" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 212.35 201.84)">2016</text>
+      <text id="p4-xtick-2019" class="tick" x="244.65" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 244.65 201.84)">2019</text>
+      <text id="p4-xtick-2020" class="tick" x="276.95" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 276.95 201.84)">2020</text>
+      <text id="p4-xtick-2022" class="tick" x="309.25" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.25 201.84)">2022</text>
+      <text id="p4-xtick-2023" class="tick" x="341.55" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 341.55 201.84)">2023</text>
+      <text id="p4-xtick-2024" class="tick" x="373.85" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.85 201.84)">2024</text>
+    </g>
+    <g id="p4-series-opioid-prescribing-rate" class="series">
+      <path id="p4-line-opioid-prescribing-rate" class="line" d="M 83.15 92.39 L 115.45 80.79 L 147.75 80.65 L 180.05 94.76 L 212.35 100.17 L 244.65 126.14 L 276.95 130.75 L 309.25 135.76 L 341.55 138.40 L 373.85 141.17" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2006" class="point" cx="83.15" cy="92.39" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2010" class="point" cx="115.45" cy="80.79" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2012" class="point" cx="147.75" cy="80.65" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2015" class="point" cx="180.05" cy="94.76" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2016" class="point" cx="212.35" cy="100.17" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2019" class="point" cx="244.65" cy="126.14" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2020" class="point" cx="276.95" cy="130.75" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2022" class="point" cx="309.25" cy="135.76" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2023" class="point" cx="341.55" cy="138.40" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-opioid-prescribing-rate-2024" class="point" cx="373.85" cy="141.17" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">CDC Opioid Dispensing Rate Maps / MMWR Vital Signs (milestone years;</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">not askamerica data)</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Overdose death counts are CDC WONDER multiple-cause-of-death (all intents: unintentional, suicide, homicide, undetermined), a slightly different</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">vintage/definition than NCHS provisional press-release totals; opioid prescribing rate is CDC's published IQVIA Xponent-based dispensing rate,</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">interpolated between published milestone years where an intermediate year was not published.</text>
+  <g id="brand">
+  <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:50759/a/3a8754bbcd897930b76f1cc53da08c5b.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Almost none of it.</strong> Opioid prescribing has fallen essentially every year since 2012 — from a peak of 81.3 prescriptions per 100 people to about 35 in 2024, a 56% drop. Over that same span overdose deaths did not fall in step; they rose 92% net, because people who had become dependent on prescription opioids increasingly shifted to heroin and then illicit fentanyl, whose supply and potency — not the prescribing rate — set the death toll. Correlating the two series' <em>year-to-year changes</em> (not just their levels, which are both trending and would show a spurious link) gives r = -0.17, R² ≈ 0.03: about 3% of the annual variation in overdose deaths lines up with the annual change in prescribing, and even that sliver runs the wrong way — years with the steepest prescribing declines were mostly years deaths rose fastest. The one exception is 2023-2024, when both prescribing and deaths fell together — but the leading explanation for that recent drop, per CDC and independent researchers, is a disruption in the illicit fentanyl supply, not a change in the pace of prescribing (which was decelerating, not accelerating, relative to the 2012-2019 period).</p>
+</section>
+<section>
+<h2>Step 1 — The two series, side by side</h2>
+<p>National opioid prescribing rate (CDC/IQVIA Xponent, retail pharmacy dispensing per 100 persons):</p><table border=1 cellpadding=4><tr><th>Year</th><th>2006</th><th>2010</th><th>2012</th><th>2015</th><th>2016</th><th>2019</th><th>2020</th><th>2022</th><th>2023</th><th>2024</th></tr><tr><td>Rx/100</td><td>72.4</td><td>81.2</td><td>81.3</td><td>70.6</td><td>66.5</td><td>46.8</td><td>43.3</td><td>39.5</td><td>37.5</td><td>35.4</td></tr></table><p>National overdose deaths, all intents (CDC WONDER multiple-cause-of-death, queried directly via AskAmerica's health.cdc_wonder_multiple_cause_of_death_1999_2024):</p><table border=1 cellpadding=4><tr><th>2012</th><th>2015</th><th>2017</th><th>2019</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr><tr><td>45,135</td><td>56,429</td><td>75,137</td><td>76,087</td><td>113,558</td><td>114,658</td><td>112,108</td><td>86,546</td></tr></table><p>Prescribing peaked in 2012 and has declined every measured year since. Deaths kept climbing for another decade, peaking in 2021-2022, then fell in 2023-2024.</p>
+</section>
+<section>
+<h2>Step 2 — Why levels correlate but changes don't (and why the change correlation is the right test)</h2>
+<p>If you correlate the raw <em>levels</em> of the two series 2006-2024, you get r ≈ -0.94 — deaths and the prescribing rate look tightly (inversely) related. That is a classic two-trending-series artifact: both series have a strong, mostly monotonic trend over this span (prescribing down, deaths up), so almost any two long-trending series will show a strong correlation in levels regardless of whether they are causally connected. The question — how much of the <em>change</em> in overdose deaths tracks the <em>drop</em> in prescribing — is better answered by correlating year-over-year changes in each series, which strips out the shared trend and asks whether the two move together on a year-by-year basis. That correlation is r = -0.17 (R² ≈ 0.03), computed in Python from the two series above. Only about 3% of the year-to-year swings in overdose deaths coincide with the swings in the prescribing rate, and the sign is backwards from what a causal 'less prescribing → fewer deaths' story would predict.</p>
+</section>
+<section>
+<h2>Step 3 — What the prescribing decline did and didn't do to the death toll</h2>
+<ul><li><strong>2012 → 2019:</strong> prescribing fell 42% (81.3 → 46.8 per 100); overdose deaths rose 69% (45,135 → 76,087).</li><li><strong>2019 → 2022 (peak):</strong> prescribing fell another 16% (46.8 → 39.5); deaths rose another 51% (76,087 → 114,658).</li><li><strong>2012 → 2024, full span:</strong> prescribing down 56.5%; overdose deaths still up 91.7% net, despite the recent decline.</li><li><strong>2022 → 2024, the recent decline:</strong> prescribing down another 10.4% (39.5 → 35.4) — a smaller, decelerating drop compared to 2012-2019 — while overdose deaths fell 24.5% (114,658 → 86,546), the sharpest two-year drop in the whole series.</li></ul><p>Deaths specifically involving prescription (natural/semisynthetic) opioids tell the same story at finer grain: they rose from 3,442 in 1999 to a peak of 17,029 in 2017, then declined to about 13,026 in 2023 — a drop of roughly 4,000 deaths. That entire decline is smaller than one-tenth of the ~41,000-death net increase in total overdose deaths between 2012 and 2024, so even the piece of the mortality trend that prescription opioids can plausibly explain does not explain the aggregate rise.</p>
+</section>
+<section>
+<h2>Step 4 — What does track the change, per the research literature</h2>
+<p>The research consensus, corroborated across CDC surveillance reports and independent studies, attributes the two big features of the trend to factors other than prescribing policy:</p><ul><li><strong>The 2013-2022 rise</strong> is attributed to the heroin/illicit-fentanyl transition: as prescription-opioid supply tightened, people already dependent shifted to heroin (the mid-2010s 'second wave'), then to much more lethal illicitly manufactured fentanyl (the 'third wave' from about 2013 onward), which by 2021 was involved in roughly 70,600 overdose deaths versus about 13,600 for prescription opioids alone.</li><li><strong>The 2023-2024 decline</strong> is attributed by CDC and by a 2026 University of Maryland/international research team to a disruption in the global illicit fentanyl supply chain (precursor-chemical restrictions reducing fentanyl potency/availability), not to any acceleration in prescribing reductions — the prescribing decline was in fact decelerating over this same window. One CDC finding that further undercuts a prescribing-driven story: the 2023-2024 decline was broad-based across cocaine, methamphetamine, heroin, methadone AND prescription-opioid-involved deaths together, which argues against a single drug-class-specific driver like the fentanyl-potency hypothesis alone, but still points away from prescribing as the mechanism, since prescribing itself did not change abruptly in 2023-2024.</li><li>Naloxone distribution expansion and broader access to medications for opioid use disorder are also cited by CDC and outside researchers as contributors to the recent decline, entirely independent of the prescribing rate.</li></ul>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li>The two series come from different sources and slightly different definitions: overdose death counts here are CDC WONDER's multiple-cause-of-death series (a cause counts if listed anywhere among up to 20 causes, all intents included), which runs a bit higher than the provisional NCHS press-release total (e.g., 112,108 for 2023 here vs. 105,007 in NCHS's provisional data brief, and 86,546 for 2024 here vs. roughly 79,384 in the NCHS 2024 estimate) — direction and magnitude of the trend agree across both, but the exact death counts should not be treated as interchangeable with the NCHS headline figures.</li><li>The opioid prescribing rate is CDC's published IQVIA Xponent-based dispensing rate; it is not carried in the AskAmerica connector's tables (confirmed via search_catalog — no opioid prescribing/dispensing-rate table exists in this warehouse), so those figures were read directly from CDC's own published pages (Opioid Dispensing Rate Maps, MMWR Vital Signs) rather than computed from a government dataset in this session. Years between CDC's published milestone points (2006, 2010, 2012, 2015, 2016, 2019, 2020, 2022, 2023, 2024) were linearly interpolated to build a full annual series for the correlation calculation — this could understate or overstate a mid-milestone inflection, but no published year in that window contradicts the milestone-to-milestone direction.</li><li>Correlation, whether on levels or on changes, does not establish causation in either direction; the change-correlation calculation here is offered as a quantification of co-movement, with the causal account (fentanyl supply/heroin substitution, not prescribing) drawn from the cited CDC and academic literature, not derived from the correlation itself.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>CDC WONDER Multiple Cause of Death, national overdose deaths by intent, 1999-2024<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT year, SUM(CAST(deaths AS DOUBLE)) AS total_od_deaths FROM health.cdc_wonder_multiple_cause_of_death_1999_2024 WHERE cause IN ('Drug poisonings (overdose) Homicide (X85)','Drug poisonings (overdose) Suicide (X60-X64)','Drug poisonings (overdose) Undetermined (Y10-Y14)','Drug poisonings (overdose) Unintentional (X40-X44)') GROUP BY year ORDER BY year&quot;)</code></pre></details></li>
+<li><a href="https://www.cdc.gov/overdose-prevention/data-research/facts-stats/opioid-dispensing-rate-maps.html">CDC Opioid Dispensing Rate Maps (national dispensing rate 2019-2023/2024)</a> <span class="note">— Fetched via restoredcdc.org mirror; 2019: 46.8, 2023: 37.5 per 100 persons; 2024 national figure (35.4) and state highs/lows corroborated via web search of CDC-sourced summaries</span></li>
+<li><a href="https://www.cdc.gov/mmwr/volumes/66/wr/mm6626a4.htm">CDC MMWR Vital Signs: Changes in Opioid Prescribing in the United States, 2006-2015</a> <span class="note">— 2006: 72.4, 2010: 81.2, 2012: 81.3 (peak, ~255M prescriptions), 2015: 70.6 per 100 persons</span></li>
+<li><a href="https://www.cdc.gov/nchs/products/databriefs/db549.htm">CDC NCHS Data Brief: Drug Overdose Deaths in the United States, 2023-2024</a> <span class="note">— Provisional national totals: 105,007 (2023) to 79,384 (2024), a different vintage than the WONDER multiple-cause figures used for the main trend line here</span></li>
+<li><a href="https://www.cdc.gov/nchs/products/databriefs/db522.htm">CDC NCHS Data Brief: Drug Overdose Deaths in the United States, 2003-2023 (prescription opioid category detail)</a> <span class="note">— Natural/semisynthetic (prescription) opioid-involved deaths: peaked 17,029 in 2017, declined to ~13,026 in 2023</span></li>
+<li><a href="https://cissm.umd.edu/news/new-study-finds-global-fentanyl-supply-disruption-linked-recent-drop-opioid-overdose-deaths">CISSM/University of Maryland: fentanyl supply disruption linked to 2023-2024 overdose death decline</a></li>
+<li><a href="https://www.statnews.com/2026/01/08/fentanyl-potency-overdose-deaths-decline/">STAT News: Decrease in drug deaths stems from 'shock' to fentanyl supply, new research suggests</a></li>
+<li><a href="https://www.medrxiv.org/content/10.64898/2025.12.04.25341579.full.pdf">medRxiv preprint: Decreased Fentanyl Potency as the Primary Driver of the 2024 Decline in U.S. Overdose Deaths</a></li>
+<li><a href="https://www.kff.org/mental-health/opioid-overdose-deaths-national-trends-and-variation-by-demographics-and-states/">KFF: Opioid Overdose Deaths — National Trends and Variation by Demographics and States</a></li>
+<li>AskAmerica connector coverage check: no opioid prescribing/dispensing-rate table in warehouse<details class="sqltoggle"><summary>Show tool call</summary><pre><code>search_catalog(query=&quot;opioid prescribing rate per 100 persons CDC&quot;)</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Overdose death figures are CDC WONDER multiple-cause-of-death totals queried live via AskAmerica; opioid prescribing rates are CDC's own published dispensing-rate series, read directly from CDC and not present as a table in this connector. Correlation is descriptive, not causal.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

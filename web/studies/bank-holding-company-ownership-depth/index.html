@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Foreign-owned banks sit under 2-4 layers of holding companies, and control about 17% of US banking system assets</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s2-t1-s1:checked ~ table tbody.s0{display:none}
+#s2-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"]{color:var(--link)}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"] .srtcue{opacity:1}
+#s2-t1-s1:checked ~ .srtreset{display:inline-block}
+#s2-t1-s2:checked ~ table tbody.s0{display:none}
+#s2-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"]{color:var(--link)}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"] .srtcue{opacity:1}
+#s2-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s3-t1-s4:checked ~ table tbody.s0{display:none}
+#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
+#s3-t1-s4:checked ~ .srtreset{display:inline-block}
+#s3-t1-s5:checked ~ table tbody.s0{display:none}
+#s3-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"]{color:var(--link)}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"] .srtcue{opacity:1}
+#s3-t1-s5:checked ~ .srtreset{display:inline-block}
+#s3-t1-s6:checked ~ table tbody.s0{display:none}
+#s3-t1-s6:checked ~ table tbody.s6{display:table-row-group}
+#s3-t1-s6:checked ~ table label[for="s3-t1-s6"]{color:var(--link)}
+#s3-t1-s6:checked ~ table label[for="s3-t1-s6"] .srtcue{opacity:1}
+#s3-t1-s6:checked ~ .srtreset{display:inline-block}
+#s3-t1-s7:checked ~ table tbody.s0{display:none}
+#s3-t1-s7:checked ~ table tbody.s7{display:table-row-group}
+#s3-t1-s7:checked ~ table label[for="s3-t1-s7"]{color:var(--link)}
+#s3-t1-s7:checked ~ table label[for="s3-t1-s7"] .srtcue{opacity:1}
+#s3-t1-s7:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Foreign-owned banks sit under 2-4 layers of holding companies, and control about 17% of US banking system assets</h1>
+<p class="subtitle">Federal Reserve IBA structure/share data and GLEIF corporate ownership graph, Q1 2026</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 613" width="880" height="613" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="613" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Foreign Ownership and Ownership Depth in the US Banking System</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Federal Reserve IBA share data (2026 Q1) and GLEIF ownership-ancestry graph</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:10px">Foreign-affiliated share of US banking system assets (2026 Q1)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">17.0%</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">down from 21.9% peak (2007)</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">HSBC Bank USA's depth below its ultimate parent</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">4 layers</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280" style="font-size:9px">HSBC Bank USA -&gt; HSBC USA Inc. -&gt; HSBC North America Holdings -&gt; HSBC Overseas Holdings (UK) -&gt; HSBC Holdings plc</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Foreign banking organizations' share of US commercial banking assets, 19…</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="132.32" x2="390" y2="132.32" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="136.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="113.24" x2="390" y2="113.24" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="117.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="94.16" x2="390" y2="94.16" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="98.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="75.08" x2="390" y2="75.08" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="79.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="132.32" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="132.32" x2="390" y2="132.32" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="200" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="94.16" fill="#1f2328" font-size="9" style="font-size:9px" text-anchor="middle" transform="rotate(-90 14 94.16)">% of total assets</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-1980" class="tick" x="71.79" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 71.79 146.32)">1980</text>
+      <text id="p3-xtick-1985" class="tick" x="95.36" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 95.36 146.32)">1985</text>
+      <text id="p3-xtick-1990" class="tick" x="118.93" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 118.93 146.32)">1990</text>
+      <text id="p3-xtick-1995" class="tick" x="142.50" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.50 146.32)">1995</text>
+      <text id="p3-xtick-2000" class="tick" x="166.07" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 166.07 146.32)">2000</text>
+      <text id="p3-xtick-2005" class="tick" x="189.64" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 189.64 146.32)">2005</text>
+      <text id="p3-xtick-2007" class="tick" x="213.21" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 213.21 146.32)">2007</text>
+      <text id="p3-xtick-2010" class="tick" x="236.79" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 236.79 146.32)">2010</text>
+      <text id="p3-xtick-2015" class="tick" x="260.36" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 260.36 146.32)">2015</text>
+      <text id="p3-xtick-2020" class="tick" x="283.93" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 283.93 146.32)">2020</text>
+      <text id="p3-xtick-2023" class="tick" x="307.50" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.50 146.32)">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="331.07" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 331.07 146.32)">2024</text>
+      <text id="p3-xtick-2025" class="tick" x="354.64" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 354.64 146.32)">2025</text>
+      <text id="p3-xtick-2026q1" class="tick" x="378.21" y="146.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 378.21 146.32)">2026Q1</text>
+    </g>
+    <g id="p3-series-foreign-owned-us-bank-subsidiaries" class="series">
+      <path id="p3-line-foreign-owned-us-bank-subsidiaries" class="line" d="M 71.79 119.73 L 95.36 113.62 L 118.93 112.86 L 142.50 112.10 L 166.07 112.48 L 189.64 104.46 L 213.21 108.28 L 236.79 106.75 L 260.36 105.99 L 283.93 106.75 L 307.50 112.10 L 331.07 112.10 L 354.64 113.24 L 378.21 114.00" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-1980" class="point" cx="71.79" cy="119.73" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-1985" class="point" cx="95.36" cy="113.62" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-1990" class="point" cx="118.93" cy="112.86" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-1995" class="point" cx="142.50" cy="112.10" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2000" class="point" cx="166.07" cy="112.48" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2005" class="point" cx="189.64" cy="104.46" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2007" class="point" cx="213.21" cy="108.28" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2010" class="point" cx="236.79" cy="106.75" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2015" class="point" cx="260.36" cy="105.99" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2020" class="point" cx="283.93" cy="106.75" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2023" class="point" cx="307.50" cy="112.10" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2024" class="point" cx="331.07" cy="112.10" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2025" class="point" cx="354.64" cy="113.24" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-foreign-owned-us-bank-subsidiaries-2026q1" class="point" cx="378.21" cy="114.00" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-us-branches-agencies-of-foreign-banks" class="series">
+      <path id="p3-line-us-branches-agencies-of-foreign-banks" class="line" d="M 71.79 103.70 L 95.36 92.63 L 118.93 72.03 L 142.50 74.32 L 166.07 80.04 L 189.64 81.57 L 213.21 72.79 L 236.79 80.04 L 260.36 80.42 L 283.93 91.87 L 307.50 87.29 L 331.07 88.44 L 354.64 86.15 L 378.21 85.76" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-1980" class="point" cx="71.79" cy="103.70" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-1985" class="point" cx="95.36" cy="92.63" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-1990" class="point" cx="118.93" cy="72.03" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-1995" class="point" cx="142.50" cy="74.32" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2000" class="point" cx="166.07" cy="80.04" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2005" class="point" cx="189.64" cy="81.57" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2007" class="point" cx="213.21" cy="72.79" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2010" class="point" cx="236.79" cy="80.04" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2015" class="point" cx="260.36" cy="80.42" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2020" class="point" cx="283.93" cy="91.87" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2023" class="point" cx="307.50" cy="87.29" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2024" class="point" cx="331.07" cy="88.44" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2025" class="point" cx="354.64" cy="86.15" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-us-branches-agencies-of-foreign-banks-2026q1" class="point" cx="378.21" cy="85.76" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-foreign-owned-us-bank-subsidiaries" x="100" y="214" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-foreign-owned-us-bank-subsidiaries" class="legend-label" x="116" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Foreign-owned US bank subsidiaries</text>
+      <rect id="p3-legend-swatch-us-branches-agencies-of-foreign-banks" x="92.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-us-branches-agencies-of-foreign-banks" class="legend-label" x="108.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">US branches/agencies of foreign banks</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="487" fill="#6b7280">Source: Federal Reserve, Structure and Share Data for U.S. Offices of</text>
+  <text class="caption" x="24" y="500" fill="#6b7280">Foreign Banking Organizations</text>
+  <rect class="panel-edge" x="448" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">GLEIF corporate ownership chains: entity count by depth below immediate…</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="91" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="83" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="91" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="83" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+      <line class="grid" x1="91" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="83" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40,000</text>
+      <line class="grid" x1="91" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="83" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60,000</text>
+      <line class="grid" x1="91" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="83" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80,000</text>
+      <line class="grid" x1="91" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="83" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100,000</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="91" y1="56" x2="91" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="91" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="240.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Depth (hops from entity)</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Distinct entities</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-1" class="tick" x="107.61" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1</text>
+      <text id="p4-xtick-2" class="tick" x="140.83" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2</text>
+      <text id="p4-xtick-3" class="tick" x="174.06" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">3</text>
+      <text id="p4-xtick-4" class="tick" x="207.28" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">4</text>
+      <text id="p4-xtick-5" class="tick" x="240.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5</text>
+      <text id="p4-xtick-6" class="tick" x="273.72" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">6</text>
+      <text id="p4-xtick-7" class="tick" x="306.94" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">7</text>
+      <text id="p4-xtick-8" class="tick" x="340.17" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">8</text>
+      <text id="p4-xtick-9" class="tick" x="373.39" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">9</text>
+    </g>
+    <g id="p4-series-entities-at-this-depth" class="series">
+      <rect id="p4-mark-entities-at-this-depth-1" class="bar" x="96.98" y="70.39" width="20.26" height="129.61" fill="#2563eb"/>
+      <rect id="p4-mark-entities-at-this-depth-2" class="bar" x="130.20" y="171.50" width="20.26" height="28.50" fill="#2563eb"/>
+      <rect id="p4-mark-entities-at-this-depth-3" class="bar" x="163.42" y="192.48" width="20.26" height="7.52" fill="#2563eb"/>
+      <rect id="p4-mark-entities-at-this-depth-4" class="bar" x="196.65" y="197.13" width="20.26" height="2.87" fill="#2563eb"/>
+      <rect id="p4-mark-entities-at-this-depth-5" class="bar" x="229.87" y="199.32" width="20.26" height="0.68" fill="#2563eb"/>
+      <rect id="p4-mark-entities-at-this-depth-6" class="bar" x="263.09" y="199.74" width="20.26" height="0.26" fill="#2563eb"/>
+      <rect id="p4-mark-entities-at-this-depth-7" class="bar" x="296.31" y="199.90" width="20.26" height="0.10" fill="#2563eb"/>
+      <rect id="p4-mark-entities-at-this-depth-8" class="bar" x="329.54" y="199.95" width="20.26" height="0.05" fill="#2563eb"/>
+      <rect id="p4-mark-entities-at-this-depth-9" class="bar" x="362.76" y="200.00" width="20.26" height="0.00" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="487" fill="#6b7280">Full GLEIF corporate universe (not banks alone); max observed depth is</text>
+  <text class="caption" x="452" y="500" fill="#6b7280">9, and 98% of chains resolve within 4 hops</text>
+  <text class="footnote" x="20" y="532" fill="#6b7280">Fed IBA series covers commercial banks (state member, non-member, national) plus branches/agencies of foreign banks; it excludes thrifts and</text>
+  <text class="footnote" x="20" y="546" fill="#6b7280">credit unions. GLEIF depth distribution is the whole corporate universe GLEIF covers, not banks in isolation -- individual bank examples (HSBC,</text>
+  <text class="footnote" x="20" y="560" fill="#6b7280">Santander) are shown separately.</text>
+  <g id="brand">
+  <svg x="20" y="572" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="587" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:59624/a/94340821c32cc76ca717b54bbf3f37ba.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Ownership depth:</strong> a foreign-owned US bank typically sits 2 to 4 corporate layers below its ultimate foreign parent -- not one hop, as a simple '% foreign owned' framing implies. Verified examples pulled directly from GLEIF's reported consolidation edges: <strong>HSBC Bank USA</strong> sits <strong>4 layers</strong> below HSBC Holdings plc (HSBC Bank USA &rarr; HSBC USA Inc. &rarr; HSBC North America Holdings Inc. &rarr; HSBC Overseas Holdings (UK) Ltd. &rarr; HSBC Holdings plc, London), and <strong>Santander Bank, N.A.</strong> sits <strong>2 layers</strong> below Banco Santander S.A. (Santander Bank N.A. &rarr; Santander Holdings USA, Inc. &rarr; Banco Santander S.A., Spain). Across GLEIF's full reported corporate ownership graph (not banks alone), chains can run up to 9 hops deep, but the distribution collapses fast: of ~118,000 entities with a reported parent, 76% sit only 1 hop from their immediate parent and 98% resolve within 4 hops -- so a 4-layer bank like HSBC is already deeper than nearly all reported corporate structures, consistent with academic findings that bank holding company hierarchy depth is 'small' and doesn't vary much across firms even as total subsidiary counts do.</p><p><strong>Foreign share of the system:</strong> as of Q1 2026, foreign banking organizations (FBOs) -- foreign-owned US-chartered bank subsidiaries plus US branches/agencies of foreign banks -- hold <strong>17.0% of total assets</strong> ($4.87 trillion of $28.68 trillion) in the Federal Reserve's tracked commercial banking universe: 4.8% in foreign-owned US bank subsidiaries and 12.2% in foreign branches/agencies. That combined share peaked around <strong>21.9% in 2007</strong> and has drifted down since the 2008 financial crisis and subsequent Dodd-Frank/IHC (intermediate holding company) regulation. Foreign banks are disproportionately active in commercial lending: they hold 25.1% of commercial and industrial (C&amp;I) loans, well above their 17.0% asset share, but only 11.9% of deposits, reflecting their reliance on wholesale funding rather than the retail deposit base.</p>
+</section>
+<section>
+<h2>How deep does ownership go</h2>
+<p>GLEIF's <code>ref.gleif_ownership_ancestry</code> table walks the actual direct (<code>IS_DIRECTLY_CONSOLIDATED_BY</code>) consolidation edges rather than relying on GLEIF's own 'ultimate parent' shortcut, which flattens multi-hop chains into a single reported hop. Querying it directly:</p><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><table border='1' cellpadding='4'><tr><th><label class="srth" for="s2-t1-s1">Depth (hops from entity)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s2">Distinct entities in the full GLEIF corporate universe<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>1</td><td>90,004</td></tr><tr><td>2</td><td>19,793</td></tr><tr><td>3</td><td>5,223</td></tr><tr><td>4</td><td>1,991</td></tr><tr><td>5</td><td>473</td></tr><tr><td>6</td><td>182</td></tr><tr><td>7</td><td>72</td></tr><tr><td>8</td><td>33</td></tr><tr><td>9 (max observed)</td><td>3</td></tr></tbody><tbody class="srt s1"><tr><td>9 (max observed)</td><td>3</td></tr><tr><td>8</td><td>33</td></tr><tr><td>7</td><td>72</td></tr><tr><td>6</td><td>182</td></tr><tr><td>5</td><td>473</td></tr><tr><td>4</td><td>1,991</td></tr><tr><td>3</td><td>5,223</td></tr><tr><td>2</td><td>19,793</td></tr><tr><td>1</td><td>90,004</td></tr></tbody><tbody class="srt s2"><tr><td>1</td><td>90,004</td></tr><tr><td>2</td><td>19,793</td></tr><tr><td>3</td><td>5,223</td></tr><tr><td>4</td><td>1,991</td></tr><tr><td>5</td><td>473</td></tr><tr><td>6</td><td>182</td></tr><tr><td>7</td><td>72</td></tr><tr><td>8</td><td>33</td></tr><tr><td>9 (max observed)</td><td>3</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>This is the whole corporate universe GLEIF tracks (roughly 89,000 distinct entities with a reported parent), not banks specifically -- GLEIF does not tag entities by industry, so there is no clean way to isolate 'all US banks' depth distribution from this table alone. To ground the question in real bank cases, two large foreign-owned US banks were traced individually:</p><ul><li><strong>HSBC Bank USA, N.A.</strong> &rarr; HSBC USA Inc. (depth 1) &rarr; HSBC North America Holdings Inc. (depth 2) &rarr; HSBC Overseas Holdings (UK) Limited (depth 3) &rarr; <strong>HSBC Holdings plc</strong>, London, the ultimate parent (depth 4).</li><li><strong>Santander Bank, N.A.</strong> &rarr; Santander Holdings USA, Inc. (depth 1) &rarr; <strong>Banco Santander S.A.</strong>, Spain, the ultimate parent (depth 2).</li></ul><p>Two other large OCC-supervised foreign-owned banks named in press/regulatory coverage -- BMO Bank, N.A. and MUFG Union Bank, N.A. -- returned no rows in GLEIF's direct-consolidation table, meaning their parent, BMO Financial Group and Mitsubishi UFJ Financial Group respectively, has not filed a reportable direct-consolidation edge for that US entity in GLEIF's Golden Copy publish; this is a reporting gap in GLEIF, not evidence those banks are unowned, and is disclosed here rather than papered over.</p><p>The OFR/NBER research literature on this question (Flood, Kenett, Lumsdaine &amp; Simon, 'The Complexity of Bank Holding Companies: A New Measurement Approach,' OFR Working Paper 17-03, and its companion 'A Topological Approach') finds the same qualitative pattern: maximum ownership-chain depth grows with a bank holding company's size, but 'tends to be small and lacks sufficient cross-firm variation' -- complexity in large BHCs shows up mainly in the sheer NUMBER of subsidiaries (into the thousands for the largest US banks) rather than in how many layers deep the chain runs. That is consistent with what both GLEIF and the two worked bank examples show here: 2-4 layers is typical even for globally systemic banking groups.</p>
+</section>
+<section>
+<h2>How much of the US banking system sits under foreign parents</h2>
+<p>The Federal Reserve's own 'Structure and Share Data for U.S. Offices of Foreign Banking Organizations' release (federalreserve.gov/releases/iba) is the authoritative, purpose-built series for this question. It reports total assets, loans, and deposits split three ways every quarter since 1980: domestically owned US commercial banks, foreign-owned US commercial bank subsidiaries, and US branches/agencies of foreign banks. Q1 2026 figures (amounts in millions):</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s5"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s6"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s7"><table border='1' cellpadding='4'><tr><th><label class="srth" for="s3-t1-s1">Type<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Assets ($M)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">% of assets<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">Deposits ($M)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s5">% of deposits<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s6">C&amp;I loans ($M)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s7">% of C&amp;I loans<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Domestically owned banks</td><td>23,811,521</td><td>83.0%</td><td>18,671,170</td><td>88.1%</td><td>2,177,539</td><td>74.9%</td></tr><tr><td>Foreign-owned US bank subsidiaries</td><td>1,376,109</td><td>4.8%</td><td>1,110,757</td><td>5.2%</td><td>130,210</td><td>4.5%</td></tr><tr><td>US branches/agencies of foreign banks</td><td>3,496,407</td><td>12.2%</td><td>1,405,614</td><td>6.6%</td><td>599,372</td><td>20.6%</td></tr><tr><td><strong>Combined foreign-affiliated</strong></td><td><strong>4,872,516</strong></td><td><strong>17.0%</strong></td><td><strong>2,516,371</strong></td><td><strong>11.9%</strong></td><td><strong>729,582</strong></td><td><strong>25.1%</strong></td></tr><tr><td>Total (all types)</td><td>28,684,037</td><td>100%</td><td>21,187,541</td><td>100%</td><td>2,907,121</td><td>100%</td></tr></tbody><tbody class="srt s1"><tr><td><strong>Combined foreign-affiliated</strong></td><td><strong>4,872,516</strong></td><td><strong>17.0%</strong></td><td><strong>2,516,371</strong></td><td><strong>11.9%</strong></td><td><strong>729,582</strong></td><td><strong>25.1%</strong></td></tr><tr><td>Domestically owned banks</td><td>23,811,521</td><td>83.0%</td><td>18,671,170</td><td>88.1%</td><td>2,177,539</td><td>74.9%</td></tr><tr><td>Foreign-owned US bank subsidiaries</td><td>1,376,109</td><td>4.8%</td><td>1,110,757</td><td>5.2%</td><td>130,210</td><td>4.5%</td></tr><tr><td>Total (all types)</td><td>28,684,037</td><td>100%</td><td>21,187,541</td><td>100%</td><td>2,907,121</td><td>100%</td></tr><tr><td>US branches/agencies of foreign banks</td><td>3,496,407</td><td>12.2%</td><td>1,405,614</td><td>6.6%</td><td>599,372</td><td>20.6%</td></tr></tbody><tbody class="srt s2"><tr><td>Total (all types)</td><td>28,684,037</td><td>100%</td><td>21,187,541</td><td>100%</td><td>2,907,121</td><td>100%</td></tr><tr><td>Domestically owned banks</td><td>23,811,521</td><td>83.0%</td><td>18,671,170</td><td>88.1%</td><td>2,177,539</td><td>74.9%</td></tr><tr><td><strong>Combined foreign-affiliated</strong></td><td><strong>4,872,516</strong></td><td><strong>17.0%</strong></td><td><strong>2,516,371</strong></td><td><strong>11.9%</strong></td><td><strong>729,582</strong></td><td><strong>25.1%</strong></td></tr><tr><td>US branches/agencies of foreign banks</td><td>3,496,407</td><td>12.2%</td><td>1,405,614</td><td>6.6%</td><td>599,372</td><td>20.6%</td></tr><tr><td>Foreign-owned US bank subsidiaries</td><td>1,376,109</td><td>4.8%</td><td>1,110,757</td><td>5.2%</td><td>130,210</td><td>4.5%</td></tr></tbody><tbody class="srt s3"><tr><td>Total (all types)</td><td>28,684,037</td><td>100%</td><td>21,187,541</td><td>100%</td><td>2,907,121</td><td>100%</td></tr><tr><td>Domestically owned banks</td><td>23,811,521</td><td>83.0%</td><td>18,671,170</td><td>88.1%</td><td>2,177,539</td><td>74.9%</td></tr><tr><td><strong>Combined foreign-affiliated</strong></td><td><strong>4,872,516</strong></td><td><strong>17.0%</strong></td><td><strong>2,516,371</strong></td><td><strong>11.9%</strong></td><td><strong>729,582</strong></td><td><strong>25.1%</strong></td></tr><tr><td>US branches/agencies of foreign banks</td><td>3,496,407</td><td>12.2%</td><td>1,405,614</td><td>6.6%</td><td>599,372</td><td>20.6%</td></tr><tr><td>Foreign-owned US bank subsidiaries</td><td>1,376,109</td><td>4.8%</td><td>1,110,757</td><td>5.2%</td><td>130,210</td><td>4.5%</td></tr></tbody><tbody class="srt s4"><tr><td>Total (all types)</td><td>28,684,037</td><td>100%</td><td>21,187,541</td><td>100%</td><td>2,907,121</td><td>100%</td></tr><tr><td>Domestically owned banks</td><td>23,811,521</td><td>83.0%</td><td>18,671,170</td><td>88.1%</td><td>2,177,539</td><td>74.9%</td></tr><tr><td><strong>Combined foreign-affiliated</strong></td><td><strong>4,872,516</strong></td><td><strong>17.0%</strong></td><td><strong>2,516,371</strong></td><td><strong>11.9%</strong></td><td><strong>729,582</strong></td><td><strong>25.1%</strong></td></tr><tr><td>US branches/agencies of foreign banks</td><td>3,496,407</td><td>12.2%</td><td>1,405,614</td><td>6.6%</td><td>599,372</td><td>20.6%</td></tr><tr><td>Foreign-owned US bank subsidiaries</td><td>1,376,109</td><td>4.8%</td><td>1,110,757</td><td>5.2%</td><td>130,210</td><td>4.5%</td></tr></tbody><tbody class="srt s5"><tr><td>Total (all types)</td><td>28,684,037</td><td>100%</td><td>21,187,541</td><td>100%</td><td>2,907,121</td><td>100%</td></tr><tr><td>Domestically owned banks</td><td>23,811,521</td><td>83.0%</td><td>18,671,170</td><td>88.1%</td><td>2,177,539</td><td>74.9%</td></tr><tr><td><strong>Combined foreign-affiliated</strong></td><td><strong>4,872,516</strong></td><td><strong>17.0%</strong></td><td><strong>2,516,371</strong></td><td><strong>11.9%</strong></td><td><strong>729,582</strong></td><td><strong>25.1%</strong></td></tr><tr><td>US branches/agencies of foreign banks</td><td>3,496,407</td><td>12.2%</td><td>1,405,614</td><td>6.6%</td><td>599,372</td><td>20.6%</td></tr><tr><td>Foreign-owned US bank subsidiaries</td><td>1,376,109</td><td>4.8%</td><td>1,110,757</td><td>5.2%</td><td>130,210</td><td>4.5%</td></tr></tbody><tbody class="srt s6"><tr><td>Total (all types)</td><td>28,684,037</td><td>100%</td><td>21,187,541</td><td>100%</td><td>2,907,121</td><td>100%</td></tr><tr><td>Domestically owned banks</td><td>23,811,521</td><td>83.0%</td><td>18,671,170</td><td>88.1%</td><td>2,177,539</td><td>74.9%</td></tr><tr><td><strong>Combined foreign-affiliated</strong></td><td><strong>4,872,516</strong></td><td><strong>17.0%</strong></td><td><strong>2,516,371</strong></td><td><strong>11.9%</strong></td><td><strong>729,582</strong></td><td><strong>25.1%</strong></td></tr><tr><td>US branches/agencies of foreign banks</td><td>3,496,407</td><td>12.2%</td><td>1,405,614</td><td>6.6%</td><td>599,372</td><td>20.6%</td></tr><tr><td>Foreign-owned US bank subsidiaries</td><td>1,376,109</td><td>4.8%</td><td>1,110,757</td><td>5.2%</td><td>130,210</td><td>4.5%</td></tr></tbody><tbody class="srt s7"><tr><td>Total (all types)</td><td>28,684,037</td><td>100%</td><td>21,187,541</td><td>100%</td><td>2,907,121</td><td>100%</td></tr><tr><td>Domestically owned banks</td><td>23,811,521</td><td>83.0%</td><td>18,671,170</td><td>88.1%</td><td>2,177,539</td><td>74.9%</td></tr><tr><td><strong>Combined foreign-affiliated</strong></td><td><strong>4,872,516</strong></td><td><strong>17.0%</strong></td><td><strong>2,516,371</strong></td><td><strong>11.9%</strong></td><td><strong>729,582</strong></td><td><strong>25.1%</strong></td></tr><tr><td>US branches/agencies of foreign banks</td><td>3,496,407</td><td>12.2%</td><td>1,405,614</td><td>6.6%</td><td>599,372</td><td>20.6%</td></tr><tr><td>Foreign-owned US bank subsidiaries</td><td>1,376,109</td><td>4.8%</td><td>1,110,757</td><td>5.2%</td><td>130,210</td><td>4.5%</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Two structural forms of 'foreign' presence are combined here and are worth distinguishing: (1) <strong>foreign-owned US bank subsidiaries</strong> are separately US-chartered, FDIC-insured banks (like HSBC Bank USA and Santander Bank N.A. above) that happen to sit under a foreign parent through the multi-layer chains described above; (2) <strong>US branches and agencies of foreign banks</strong> are not separately incorporated US entities at all -- they are direct extensions of the foreign bank's own balance sheet, uninsured by the FDIC, and (per Federal Reserve research, Liberty Street Economics, Jan. 2023) they fund themselves through wholesale markets rather than deposits and are the marginal price-setters for short-term dollar liquidity. Branches/agencies are the larger of the two foreign categories (12.2% of assets vs. 4.8%) and dominate foreign banks' outsized 25.1% share of C&amp;I lending.</p><p>Over time, the combined foreign share has moved with the cycle: it climbed from 10.8% of assets in 1980 to a series peak of roughly <strong>21.9% in December 2007</strong>, just before the financial crisis, then declined through the 2010s as US regulators (via Dodd-Frank's intermediate holding company requirement for large FBOs, effective 2016) tightened capital and liquidity rules on US operations of foreign banks. It has held in the 17%-18% range since roughly 2020 and stood at 17.0% in Q1 2026.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.federalreserve.gov/releases/iba/fboshr.htm">Federal Reserve -- Structure and Share Data for U.S. Offices of Foreign Banking Organizations</a> <span class="note">— Fetched Sep 2026; full quarterly series 1980-2026Q1 used for all asset/deposit/loan share figures</span></li>
+<li>GLEIF ownership ancestry (multi-hop direct-consolidation chains)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT depth, COUNT(DISTINCT lei) AS n_entities FROM ref.gleif_ownership_ancestry GROUP BY depth ORDER BY depth&quot;)</code></pre></details></li>
+<li>HSBC Bank USA and Santander Bank N.A. ownership chains (GLEIF direct-consolidation edges)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT lei, depth, ancestor_lei, path, ancestor_is_ultimate FROM ref.gleif_ownership_ancestry WHERE lei IN ('1IE8VN30JCEQV1H4R804','TR24TWEY5RVRQV65HD49') ORDER BY lei, depth&quot;)</code></pre></details></li>
+<li><a href="https://www.financialresearch.gov/working-papers/2017/09/29/complexity-of-bank-holding-companies/">OFR Working Paper 17-03, Flood, Kenett, Lumsdaine &amp; Simon, 'The Complexity of Bank Holding Companies: A New Measurement Approach'</a></li>
+<li><a href="https://www.nber.org/papers/w23755">NBER Working Paper 23755, 'The Complexity of Bank Holding Companies: A Topological Approach'</a></li>
+<li><a href="https://libertystreeteconomics.newyorkfed.org/2023/01/foreign-banking-organizations-in-the-united-states-and-the-price-of-dollar-liquidity/">Liberty Street Economics (NY Fed), 'Foreign Banking Organizations in the United States and the Price of Dollar Liquidity,' Jan. 2023</a></li>
+<li><a href="https://www.occ.gov/about/who-we-are/organizations/large-and-global-financial-institutions/large-and-global-financial-institutions-list.html">OCC -- Large and Global Financial Institution List (identifies OCC-supervised foreign-owned US national banks: HSBC Bank USA, TD Bank N.A., Santander Bank N.A., MUFG Union Bank N.A., BMO Bank N.A.)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Fed IBA series covers commercial banks (state member, non-member, national) plus US branches/agencies of foreign banks; it excludes thrifts, industrial loan companies, and credit unions, so 17.0% understates 'foreign share of all US depository institutions' slightly. GLEIF ownership data reflects only relationships GLEIF has been told about (an absent edge for BMO Bank N.A. and MUFG Union Bank N.A. is a reporting gap, not evidence of no foreign parent).</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

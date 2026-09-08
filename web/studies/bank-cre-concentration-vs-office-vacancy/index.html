@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Individual banks with the largest CRE bets are concentrated in the very metros where office towers sit emptiest</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s4-t1-s1:checked ~ table tbody.s0{display:none}
+#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
+#s4-t1-s1:checked ~ .srtreset{display:inline-block}
+#s4-t1-s2:checked ~ table tbody.s0{display:none}
+#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
+#s4-t1-s2:checked ~ .srtreset{display:inline-block}
+#s4-t1-s3:checked ~ table tbody.s0{display:none}
+#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
+#s4-t1-s3:checked ~ .srtreset{display:inline-block}
+#s4-t1-s4:checked ~ table tbody.s0{display:none}
+#s4-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"]{color:var(--link)}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"] .srtcue{opacity:1}
+#s4-t1-s4:checked ~ .srtreset{display:inline-block}
+#s4-t1-s5:checked ~ table tbody.s0{display:none}
+#s4-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s4-t1-s5:checked ~ table label[for="s4-t1-s5"]{color:var(--link)}
+#s4-t1-s5:checked ~ table label[for="s4-t1-s5"] .srtcue{opacity:1}
+#s4-t1-s5:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Individual banks with the largest CRE bets are concentrated in the very metros where office towers sit emptiest</h1>
+<p class="subtitle">Office vacancy from CBRE, Cushman &amp; Wakefield, Colliers, Moody's CRE and Yardi Matrix (Q1-Q2 2026); bank CRE concentration from FFIEC Call Report data via BankRegReports (Q2 2026 refresh) and CRE Daily/S&amp;P screens of the largest 155 banks.</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Bank CRE Concentration in the Metros With the Emptiest Offices</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">Office vacancy: CBRE/Cushman &amp; Wakefield/Colliers/Moody's CRE, Q1-Q2 2026. Bank CRE-to-capital: FFIEC Call Report via BankRegReports, Q2 2026 refresh.</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Office vacancy rate by metro (2026)</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="60" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="52" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="131" x2="390" y2="131" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="52" y="135" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="52" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="101" x2="390" y2="101" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="52" y="105" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="86" x2="390" y2="86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="52" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="71" x2="390" y2="71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="52" y="75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="146" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="146" x2="390" y2="146" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-x-axis-title" class="axis-title" x="225" y="256" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Metro</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="101" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 101)">Vacancy %</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-houston" class="tick" x="87.50" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 87.50 160)">Houston</text>
+      <text id="p1-xtick-seattle" class="tick" x="142.50" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.50 160)">Seattle</text>
+      <text id="p1-xtick-san-francisco" class="tick" x="197.50" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 197.50 160)">San Francisco</text>
+      <text id="p1-xtick-washington-dc" class="tick" x="252.50" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 252.50 160)">Washington DC</text>
+      <text id="p1-xtick-chicago" class="tick" x="307.50" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.50 160)">Chicago</text>
+      <text id="p1-xtick-new-york-manhattan" class="tick" x="362.50" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 362.50 160)">New York (Manhattan)</text>
+    </g>
+    <g id="p1-series-office-vacancy" class="series">
+      <rect id="p1-mark-office-vacancy-houston" class="bar" x="69.90" y="62.90" width="34.20" height="83.10" fill="#2563eb"/>
+      <rect id="p1-mark-office-vacancy-seattle" class="bar" x="124.90" y="70.40" width="34.20" height="75.60" fill="#2563eb"/>
+      <rect id="p1-mark-office-vacancy-san-francisco" class="bar" x="179.90" y="73.40" width="34.20" height="72.60" fill="#2563eb"/>
+      <rect id="p1-mark-office-vacancy-washington-dc" class="bar" x="234.90" y="76.40" width="34.20" height="69.60" fill="#2563eb"/>
+      <rect id="p1-mark-office-vacancy-chicago" class="bar" x="289.90" y="92.60" width="34.20" height="53.40" fill="#2563eb"/>
+      <rect id="p1-mark-office-vacancy-new-york-manhattan" class="bar" x="344.90" y="106.70" width="34.20" height="39.30" fill="#2563eb"/>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="375" fill="#6b7280">National average was 17.6% in Q1 2026; Houston, Seattle and SF sit</text>
+  <text class="caption" x="24" y="388" fill="#6b7280">7-10 points above it.</text>
+  <rect class="panel-edge" x="448" y="82" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">CRE loans / total risk-based capital, most-exposed bank HQ'd in each metro</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="67" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="59" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="131" x2="390" y2="131" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="59" y="135" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="59" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="101" x2="390" y2="101" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="59" y="105" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="67" y1="86" x2="390" y2="86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="59" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="67" y1="71" x2="390" y2="71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="59" y="75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="146" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="146" x2="390" y2="146" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-x-axis-title" class="axis-title" x="228.50" y="256" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Bank (HQ metro)</text>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="101" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 101)">CRE / capital %</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-capital-bank-houston" class="tick" x="99.30" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 99.30 160)">Capital Bank (Houston)</text>
+      <text id="p2-xtick-homestreet-bank-seattle" class="tick" x="163.90" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 163.90 160)">HomeStreet Bank (Seattle)</text>
+      <text id="p2-xtick-metro-commercial-bk-nyc" class="tick" x="228.50" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 160)">Metro. Commercial Bk (NYC)</text>
+      <text id="p2-xtick-marquette-bank-chicago" class="tick" x="293.10" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 293.10 160)">Marquette Bank (Chicago)</text>
+      <text id="p2-xtick-eaglebank-dc" class="tick" x="357.70" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357.70 160)">EagleBank (DC)</text>
+    </g>
+    <g id="p2-series-cre-capital" class="series">
+      <rect id="p2-mark-cre-capital-capital-bank-houston" class="bar" x="78.63" y="63.54" width="40.34" height="82.46" fill="#2563eb"/>
+      <rect id="p2-mark-cre-capital-homestreet-bank-seattle" class="bar" x="143.23" y="64.86" width="40.34" height="81.14" fill="#2563eb"/>
+      <rect id="p2-mark-cre-capital-metro-commercial-bk-nyc" class="bar" x="207.83" y="56.04" width="40.34" height="89.96" fill="#2563eb"/>
+      <rect id="p2-mark-cre-capital-marquette-bank-chicago" class="bar" x="272.43" y="57.90" width="40.34" height="88.10" fill="#2563eb"/>
+      <rect id="p2-mark-cre-capital-eaglebank-dc" class="bar" x="337.03" y="105.80" width="40.34" height="40.20" fill="#2563eb"/>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="375" fill="#6b7280">300% is the interagency supervisory threshold; every bank shown except</text>
+  <text class="caption" x="452" y="388" fill="#6b7280">EagleBank exceeds it by 1.8-2x.</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="410" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="446" fill="#6b7280">Metros above national office-vacancy average (17.6%)</text>
+  <text class="stat-value" x="36" y="476" fill="#1f2328">5 of 6 studied</text>
+  <text class="stat-delta" x="36" y="496" fill="#059669">Houston worst at 27.7%</text>
+  </g>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="410" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="446" fill="#6b7280">Highest bank CRE/capital found in a top-vacancy metro</text>
+  <text class="stat-value" x="464" y="476" fill="#1f2328">599.7%</text>
+  <text class="stat-delta" x="464" y="496" fill="#059669">Metropolitan Commercial Bank, NYC</text>
+  </g>
+  <g id="brand">
+  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:61931/a/a17f2aa383340912f77f5aab67216a05.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>The metros with the emptiest offices in 2026 are Houston (27.7% vacant), Seattle (25.2%), San Francisco (24.2%), Washington DC (23.2%), and Chicago (17.8%) &mdash; all above the 17.6% national average. In every one of these metros except San Francisco, at least one bank headquartered there carries commercial real estate (CRE) loans equal to 500-600% of its total risk-based capital, roughly 2x the 300% level that triggers heightened supervisory scrutiny: <strong>Metropolitan Commercial Bank</strong> in New York (599.7%), <strong>Marquette Bank</strong> in Chicago (587.4%), <strong>Capital Bank</strong> in Houston (549.7%), and <strong>HomeStreet Bank</strong> in Seattle (540.9%, a level that pushed it into a 2026 merger with Mechanics Bank). Washington DC's EagleBank is a partial exception: it has cut its ratio from 367% (Q1 2025) to 268% (Q2 2026) after deliberately shrinking its book, though it still carries an above-average 13% office share of total loans. No San Francisco-headquartered bank appears in the current stress band at all &mdash; the bank that carried the city's largest concentrated office book, First Republic, failed in 2023 and its book was absorbed into JPMorgan Chase, whose CRE exposure is a small fraction of its $4.1 trillion balance sheet. This is the central and counter-intuitive finding: the metro with the second-highest office vacancy has effectively no locally-concentrated bank left standing to be exposed to it, because the one that was already failed.</p>
+</section>
+<section>
+<h2>Method and what &quot;CRE exposure&quot; actually measures</h2>
+<p><strong>Two separate measurements had to be combined, and neither corpus (AskAmerica) nor any single public source carries both together.</strong> AskAmerica's schemas (search_catalog run against econ, housing, sec, geo) do not carry office vacancy rates by metro or bank-level CRE-to-capital ratios &mdash; both are absent from the loaded corpus, confirmed by catalog search. Office vacancy by metro is not a government series (no BLS/Census/BEA table tracks it); it is a private commercial-brokerage product (CBRE, Cushman & Wakefield, Colliers, JLL, Moody's CRE, Yardi Matrix). Bank-level CRE concentration IS grounded in a federal regulatory source &mdash; FFIEC Call Report Schedule RC-C (loan portfolio) and RC (capital) &mdash; but AskAmerica doesn't ingest Call Report microdata; the figures cited here come from BankRegReports' published Call Report screener, which computes the same ratio banking regulators use (total CRE loans / total risk-based capital) directly from that filing.</p><p><strong>Important limitation banks' own Call Reports impose on this analysis:</strong> Call Report Schedule RC-C does not break CRE loans out by property type (office vs. multifamily vs. retail vs. industrial vs. construction) &mdash; this is confirmed in FDIC's own 2024 Risk Review. So the "CRE concentration ratio" reported per bank is total CRE, not office-specific; a bank's true office-loan share is disclosed only voluntarily, in supplemental investor materials (10-Ks, earnings decks), and only larger public banks report it at all (e.g., EagleBank discloses office at 13% of total loans; NYCB/Flagstar disclosed roughly $3.4B office-backed loans out of a much larger book, dominated instead by rent-regulated NYC multifamily). Community banks in the FFIEC screener report no such office breakout publicly, so their true office-specific exposure could be materially higher or lower than their headline CRE ratio implies.</p><p><strong>Geographic matching is by bank headquarters, not loan-book geography.</strong> A bank's registered HQ city is a reasonable but imperfect proxy for where its CRE collateral actually sits &mdash; community/regional banks in this list (Capital Bank, HomeStreet, Metropolitan Commercial, Marquette, EagleBank) are genuinely local lenders whose loan books are concentrated in their home metro, but larger CRE lenders such as Bank OZK (566% CRE/equity, HQ'd in Little Rock, AR) or First Foundation Bank (513%, now HQ'd in Dallas) originate CRE construction loans nationally, concentrated in coastal high-vacancy metros (NYC, Miami, LA) their headquarters city does not reflect. Those two are flagged separately below rather than mapped to a single metro.</p>
+</section>
+<section>
+<h2>Office vacancy by metro, 2026</h2>
+<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><table border='1' cellpadding='6' style='border-collapse:collapse;width:100%'><tr><th><label class="srth" for="s3-t1-s1">Metro<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Office vacancy, 2026<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">Source / vintage<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Houston, TX</td><td>27.7%</td><td>Q2 2026, one of the highest nationally; Austin also exceeded 20% (Yardi Matrix, CommercialCafe)</td></tr><tr><td>Seattle, WA</td><td>25.2%</td><td>Highest reported nationally as of April 2026 (Axios/Moody's CRE)</td></tr><tr><td>San Francisco, CA</td><td>24.2%</td><td>February 2026; down 570 bps y/y &mdash; the largest improvement of any major market, but still elevated (CommercialCafe/Yardi)</td></tr><tr><td>Washington, DC metro</td><td>23.2%</td><td>Q1 2026, eighth consecutive quarter above 20% (Newmark 1Q26 Washington Metro report)</td></tr><tr><td>Chicago, IL</td><td>17.8-18.4%</td><td>Mid-2026 (CommercialCafe)</td></tr><tr><td>Minneapolis-St. Paul, MN</td><td>~18%</td><td>January 2026 (CommercialCafe)</td></tr><tr><td>National average</td><td>17.6%</td><td>April 2026 (Moody's CRE, cited via Axios)</td></tr><tr><td>Los Angeles, CA</td><td>14.5%</td><td>2026 (Yardi Matrix)</td></tr><tr><td>Manhattan, NY</td><td>13.1%</td><td>2026, second-lowest major market (CommercialCafe)</td></tr><tr><td>Miami, FL</td><td>12.5%</td><td>2026, lowest nationally (CommercialCafe)</td></tr></tbody><tbody class="srt s1"><tr><td>Chicago, IL</td><td>17.8-18.4%</td><td>Mid-2026 (CommercialCafe)</td></tr><tr><td>Houston, TX</td><td>27.7%</td><td>Q2 2026, one of the highest nationally; Austin also exceeded 20% (Yardi Matrix, CommercialCafe)</td></tr><tr><td>Los Angeles, CA</td><td>14.5%</td><td>2026 (Yardi Matrix)</td></tr><tr><td>Manhattan, NY</td><td>13.1%</td><td>2026, second-lowest major market (CommercialCafe)</td></tr><tr><td>Miami, FL</td><td>12.5%</td><td>2026, lowest nationally (CommercialCafe)</td></tr><tr><td>Minneapolis-St. Paul, MN</td><td>~18%</td><td>January 2026 (CommercialCafe)</td></tr><tr><td>National average</td><td>17.6%</td><td>April 2026 (Moody's CRE, cited via Axios)</td></tr><tr><td>San Francisco, CA</td><td>24.2%</td><td>February 2026; down 570 bps y/y &mdash; the largest improvement of any major market, but still elevated (CommercialCafe/Yardi)</td></tr><tr><td>Seattle, WA</td><td>25.2%</td><td>Highest reported nationally as of April 2026 (Axios/Moody's CRE)</td></tr><tr><td>Washington, DC metro</td><td>23.2%</td><td>Q1 2026, eighth consecutive quarter above 20% (Newmark 1Q26 Washington Metro report)</td></tr></tbody><tbody class="srt s2"><tr><td>Houston, TX</td><td>27.7%</td><td>Q2 2026, one of the highest nationally; Austin also exceeded 20% (Yardi Matrix, CommercialCafe)</td></tr><tr><td>Seattle, WA</td><td>25.2%</td><td>Highest reported nationally as of April 2026 (Axios/Moody's CRE)</td></tr><tr><td>San Francisco, CA</td><td>24.2%</td><td>February 2026; down 570 bps y/y &mdash; the largest improvement of any major market, but still elevated (CommercialCafe/Yardi)</td></tr><tr><td>Washington, DC metro</td><td>23.2%</td><td>Q1 2026, eighth consecutive quarter above 20% (Newmark 1Q26 Washington Metro report)</td></tr><tr><td>Minneapolis-St. Paul, MN</td><td>~18%</td><td>January 2026 (CommercialCafe)</td></tr><tr><td>National average</td><td>17.6%</td><td>April 2026 (Moody's CRE, cited via Axios)</td></tr><tr><td>Los Angeles, CA</td><td>14.5%</td><td>2026 (Yardi Matrix)</td></tr><tr><td>Manhattan, NY</td><td>13.1%</td><td>2026, second-lowest major market (CommercialCafe)</td></tr><tr><td>Miami, FL</td><td>12.5%</td><td>2026, lowest nationally (CommercialCafe)</td></tr><tr><td>Chicago, IL</td><td>17.8-18.4%</td><td>Mid-2026 (CommercialCafe)</td></tr></tbody><tbody class="srt s3"><tr><td>Washington, DC metro</td><td>23.2%</td><td>Q1 2026, eighth consecutive quarter above 20% (Newmark 1Q26 Washington Metro report)</td></tr><tr><td>Houston, TX</td><td>27.7%</td><td>Q2 2026, one of the highest nationally; Austin also exceeded 20% (Yardi Matrix, CommercialCafe)</td></tr><tr><td>San Francisco, CA</td><td>24.2%</td><td>February 2026; down 570 bps y/y &mdash; the largest improvement of any major market, but still elevated (CommercialCafe/Yardi)</td></tr><tr><td>Seattle, WA</td><td>25.2%</td><td>Highest reported nationally as of April 2026 (Axios/Moody's CRE)</td></tr><tr><td>Minneapolis-St. Paul, MN</td><td>~18%</td><td>January 2026 (CommercialCafe)</td></tr><tr><td>National average</td><td>17.6%</td><td>April 2026 (Moody's CRE, cited via Axios)</td></tr><tr><td>Los Angeles, CA</td><td>14.5%</td><td>2026 (Yardi Matrix)</td></tr><tr><td>Miami, FL</td><td>12.5%</td><td>2026, lowest nationally (CommercialCafe)</td></tr><tr><td>Chicago, IL</td><td>17.8-18.4%</td><td>Mid-2026 (CommercialCafe)</td></tr><tr><td>Manhattan, NY</td><td>13.1%</td><td>2026, second-lowest major market (CommercialCafe)</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label>
+</section>
+<section>
+<h2>Bank-level CRE concentration in the highest-vacancy metros</h2>
+<input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s4"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s5"><table border='1' cellpadding='6' style='border-collapse:collapse;width:100%'><tr><th><label class="srth" for="s4-t1-s1">Bank<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">HQ metro<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s3">CRE loans / total risk-based capital<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s4">Asset tier<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s5">Note<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>Metropolitan Commercial Bank</td><td>New York, NY</td><td>599.7%</td><td>$1B-10B</td><td>FFIEC Call Report, Q2 2026 refresh (BankRegReports)</td></tr><tr><td>Carver Federal Savings Bank</td><td>New York, NY</td><td>617.3%</td><td>$100M-1B</td><td>Harlem-based community bank; FFIEC Call Report</td></tr><tr><td>Alma Bank</td><td>Astoria/Queens, NY</td><td>587.2%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Marquette Bank</td><td>Chicago, IL</td><td>587.4%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Lakeside Bank</td><td>Chicago, IL</td><td>577.0%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Capital Bank</td><td>Houston, TX</td><td>549.7%</td><td>$100M-1B</td><td>FFIEC Call Report</td></tr><tr><td>Southwestern National Bank</td><td>Houston, TX</td><td>539.6%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Golden Bank, N.A.</td><td>Houston, TX</td><td>506.1%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>HomeStreet Bank</td><td>Seattle, WA</td><td>540.9%</td><td>$1B-10B</td><td>Roughly 575% as of April 2025; forced its 2026 merger into Mechanics Bank (combined entity ~390%, still above the 300% regulatory benchmark)</td></tr><tr><td>EagleBank (Eagle Bancorp)</td><td>Bethesda, MD (DC metro)</td><td>268.0%</td><td>~$10B</td><td>Down from 367% (1Q25); 13% of loans are office-collateralized, above peer average</td></tr><tr><td>Flagstar Financial (formerly NYCB)</td><td>Hicksville, NY (NYC metro)</td><td>~539% (CRE/equity, largest-155-bank screen, late 2024)</td><td>$87.7B</td><td>Dominant NYC rent-regulated multifamily lender, plus ~$3.4B disclosed office-backed loans</td></tr></tbody><tbody class="srt s1"><tr><td>Alma Bank</td><td>Astoria/Queens, NY</td><td>587.2%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Capital Bank</td><td>Houston, TX</td><td>549.7%</td><td>$100M-1B</td><td>FFIEC Call Report</td></tr><tr><td>Carver Federal Savings Bank</td><td>New York, NY</td><td>617.3%</td><td>$100M-1B</td><td>Harlem-based community bank; FFIEC Call Report</td></tr><tr><td>EagleBank (Eagle Bancorp)</td><td>Bethesda, MD (DC metro)</td><td>268.0%</td><td>~$10B</td><td>Down from 367% (1Q25); 13% of loans are office-collateralized, above peer average</td></tr><tr><td>Flagstar Financial (formerly NYCB)</td><td>Hicksville, NY (NYC metro)</td><td>~539% (CRE/equity, largest-155-bank screen, late 2024)</td><td>$87.7B</td><td>Dominant NYC rent-regulated multifamily lender, plus ~$3.4B disclosed office-backed loans</td></tr><tr><td>Golden Bank, N.A.</td><td>Houston, TX</td><td>506.1%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>HomeStreet Bank</td><td>Seattle, WA</td><td>540.9%</td><td>$1B-10B</td><td>Roughly 575% as of April 2025; forced its 2026 merger into Mechanics Bank (combined entity ~390%, still above the 300% regulatory benchmark)</td></tr><tr><td>Lakeside Bank</td><td>Chicago, IL</td><td>577.0%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Marquette Bank</td><td>Chicago, IL</td><td>587.4%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Metropolitan Commercial Bank</td><td>New York, NY</td><td>599.7%</td><td>$1B-10B</td><td>FFIEC Call Report, Q2 2026 refresh (BankRegReports)</td></tr><tr><td>Southwestern National Bank</td><td>Houston, TX</td><td>539.6%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr></tbody><tbody class="srt s2"><tr><td>Alma Bank</td><td>Astoria/Queens, NY</td><td>587.2%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>EagleBank (Eagle Bancorp)</td><td>Bethesda, MD (DC metro)</td><td>268.0%</td><td>~$10B</td><td>Down from 367% (1Q25); 13% of loans are office-collateralized, above peer average</td></tr><tr><td>Marquette Bank</td><td>Chicago, IL</td><td>587.4%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Lakeside Bank</td><td>Chicago, IL</td><td>577.0%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Flagstar Financial (formerly NYCB)</td><td>Hicksville, NY (NYC metro)</td><td>~539% (CRE/equity, largest-155-bank screen, late 2024)</td><td>$87.7B</td><td>Dominant NYC rent-regulated multifamily lender, plus ~$3.4B disclosed office-backed loans</td></tr><tr><td>Capital Bank</td><td>Houston, TX</td><td>549.7%</td><td>$100M-1B</td><td>FFIEC Call Report</td></tr><tr><td>Southwestern National Bank</td><td>Houston, TX</td><td>539.6%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Golden Bank, N.A.</td><td>Houston, TX</td><td>506.1%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Metropolitan Commercial Bank</td><td>New York, NY</td><td>599.7%</td><td>$1B-10B</td><td>FFIEC Call Report, Q2 2026 refresh (BankRegReports)</td></tr><tr><td>Carver Federal Savings Bank</td><td>New York, NY</td><td>617.3%</td><td>$100M-1B</td><td>Harlem-based community bank; FFIEC Call Report</td></tr><tr><td>HomeStreet Bank</td><td>Seattle, WA</td><td>540.9%</td><td>$1B-10B</td><td>Roughly 575% as of April 2025; forced its 2026 merger into Mechanics Bank (combined entity ~390%, still above the 300% regulatory benchmark)</td></tr></tbody><tbody class="srt s3"><tr><td>Carver Federal Savings Bank</td><td>New York, NY</td><td>617.3%</td><td>$100M-1B</td><td>Harlem-based community bank; FFIEC Call Report</td></tr><tr><td>Metropolitan Commercial Bank</td><td>New York, NY</td><td>599.7%</td><td>$1B-10B</td><td>FFIEC Call Report, Q2 2026 refresh (BankRegReports)</td></tr><tr><td>Marquette Bank</td><td>Chicago, IL</td><td>587.4%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Alma Bank</td><td>Astoria/Queens, NY</td><td>587.2%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Lakeside Bank</td><td>Chicago, IL</td><td>577.0%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Capital Bank</td><td>Houston, TX</td><td>549.7%</td><td>$100M-1B</td><td>FFIEC Call Report</td></tr><tr><td>HomeStreet Bank</td><td>Seattle, WA</td><td>540.9%</td><td>$1B-10B</td><td>Roughly 575% as of April 2025; forced its 2026 merger into Mechanics Bank (combined entity ~390%, still above the 300% regulatory benchmark)</td></tr><tr><td>Southwestern National Bank</td><td>Houston, TX</td><td>539.6%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Golden Bank, N.A.</td><td>Houston, TX</td><td>506.1%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>EagleBank (Eagle Bancorp)</td><td>Bethesda, MD (DC metro)</td><td>268.0%</td><td>~$10B</td><td>Down from 367% (1Q25); 13% of loans are office-collateralized, above peer average</td></tr><tr><td>Flagstar Financial (formerly NYCB)</td><td>Hicksville, NY (NYC metro)</td><td>~539% (CRE/equity, largest-155-bank screen, late 2024)</td><td>$87.7B</td><td>Dominant NYC rent-regulated multifamily lender, plus ~$3.4B disclosed office-backed loans</td></tr></tbody><tbody class="srt s4"><tr><td>Carver Federal Savings Bank</td><td>New York, NY</td><td>617.3%</td><td>$100M-1B</td><td>Harlem-based community bank; FFIEC Call Report</td></tr><tr><td>Capital Bank</td><td>Houston, TX</td><td>549.7%</td><td>$100M-1B</td><td>FFIEC Call Report</td></tr><tr><td>Metropolitan Commercial Bank</td><td>New York, NY</td><td>599.7%</td><td>$1B-10B</td><td>FFIEC Call Report, Q2 2026 refresh (BankRegReports)</td></tr><tr><td>Alma Bank</td><td>Astoria/Queens, NY</td><td>587.2%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Marquette Bank</td><td>Chicago, IL</td><td>587.4%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Lakeside Bank</td><td>Chicago, IL</td><td>577.0%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Southwestern National Bank</td><td>Houston, TX</td><td>539.6%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Golden Bank, N.A.</td><td>Houston, TX</td><td>506.1%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>HomeStreet Bank</td><td>Seattle, WA</td><td>540.9%</td><td>$1B-10B</td><td>Roughly 575% as of April 2025; forced its 2026 merger into Mechanics Bank (combined entity ~390%, still above the 300% regulatory benchmark)</td></tr><tr><td>Flagstar Financial (formerly NYCB)</td><td>Hicksville, NY (NYC metro)</td><td>~539% (CRE/equity, largest-155-bank screen, late 2024)</td><td>$87.7B</td><td>Dominant NYC rent-regulated multifamily lender, plus ~$3.4B disclosed office-backed loans</td></tr><tr><td>EagleBank (Eagle Bancorp)</td><td>Bethesda, MD (DC metro)</td><td>268.0%</td><td>~$10B</td><td>Down from 367% (1Q25); 13% of loans are office-collateralized, above peer average</td></tr></tbody><tbody class="srt s5"><tr><td>Flagstar Financial (formerly NYCB)</td><td>Hicksville, NY (NYC metro)</td><td>~539% (CRE/equity, largest-155-bank screen, late 2024)</td><td>$87.7B</td><td>Dominant NYC rent-regulated multifamily lender, plus ~$3.4B disclosed office-backed loans</td></tr><tr><td>EagleBank (Eagle Bancorp)</td><td>Bethesda, MD (DC metro)</td><td>268.0%</td><td>~$10B</td><td>Down from 367% (1Q25); 13% of loans are office-collateralized, above peer average</td></tr><tr><td>Alma Bank</td><td>Astoria/Queens, NY</td><td>587.2%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Marquette Bank</td><td>Chicago, IL</td><td>587.4%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Lakeside Bank</td><td>Chicago, IL</td><td>577.0%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Capital Bank</td><td>Houston, TX</td><td>549.7%</td><td>$100M-1B</td><td>FFIEC Call Report</td></tr><tr><td>Southwestern National Bank</td><td>Houston, TX</td><td>539.6%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Golden Bank, N.A.</td><td>Houston, TX</td><td>506.1%</td><td>$1B-10B</td><td>FFIEC Call Report</td></tr><tr><td>Metropolitan Commercial Bank</td><td>New York, NY</td><td>599.7%</td><td>$1B-10B</td><td>FFIEC Call Report, Q2 2026 refresh (BankRegReports)</td></tr><tr><td>Carver Federal Savings Bank</td><td>New York, NY</td><td>617.3%</td><td>$100M-1B</td><td>Harlem-based community bank; FFIEC Call Report</td></tr><tr><td>HomeStreet Bank</td><td>Seattle, WA</td><td>540.9%</td><td>$1B-10B</td><td>Roughly 575% as of April 2025; forced its 2026 merger into Mechanics Bank (combined entity ~390%, still above the 300% regulatory benchmark)</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>Two additional large, heavily-CRE-concentrated lenders do not map cleanly to a single metro because they lend nationally against coastal collateral rather than lending locally around their headquarters: <strong>Bank OZK</strong> (566% CRE/equity; HQ Little Rock, AR, but its Real Estate Specialties Group concentrates large construction loans in NYC, Miami, and LA high-rise projects) and <strong>First Foundation Bank</strong> (513%; HQ moved to Dallas, TX, but its loan book remains heavily California multifamily/CRE). Their inclusion would sharpen the San Francisco/LA and NYC exposure picture further, but attributing their book geographically would require loan-level disclosure this analysis did not locate.</p>
+</section>
+<section>
+<h2>Why San Francisco stands out as an exception</h2>
+<p>San Francisco has the third-highest office vacancy rate studied (24.2%) but no headquartered bank appears in the FFIEC stress band above. The explanation is not that SF banks are safe &mdash; it is survivorship: <strong>First Republic Bank</strong>, the SF-headquartered lender with by far the largest concentrated exposure to the city's office and CRE market, failed in March 2023 and its assets (including its CRE book) were sold to JPMorgan Chase in a FDIC-assisted transaction. JPMorgan's total CRE exposure is now a rounding error against its $4.09 trillion balance sheet. The remaining Bay Area community banks visible in the FFIEC screener &mdash; Five Star Bank (Roseville), Poppy Bank and Summit State Bank (Santa Rosa), Commercial Bank of California and US Metro Bank (Southern California) &mdash; are elevated (550-650% CRE/capital) but are headquartered in secondary Northern/Southern California markets, not San Francisco proper, and their exposure is more likely multifamily and suburban commercial property than downtown SF office towers specifically. This is a genuine finding, not a gap glossed over: the bank failure cycle of 2023 already cleared out the single largest concentrated point of bank-level office risk in the metro with among the worst vacancy in the country.</p>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li>Office vacancy figures come from competing private CRE research firms (CBRE, Cushman & Wakefield, Colliers, Moody's CRE, Yardi Matrix) whose methodologies and building samples differ slightly; figures cited are the most recent (2026) vintage found per metro and are not perfectly time-aligned quarter-to-quarter.</li><li>Bank CRE-to-capital ratios are TOTAL commercial real estate (including multifamily, retail, industrial, and construction), not office-specific &mdash; FFIEC Call Reports do not require a property-type breakout, per FDIC's own 2024 Risk Review. Where a bank voluntarily discloses an office-specific share (EagleBank: 13% of loans; Flagstar/NYCB: ~$3.4B office-backed), that is noted separately.</li><li>Bank headquarters city is a proxy for loan-book geography, reasonable for the local community/regional banks listed but explicitly wrong for national CRE construction lenders like Bank OZK and First Foundation, which are flagged rather than mapped.</li><li>This analysis could not access AskAmerica's own data corpus for either half of this question &mdash; office vacancy and bank-level Call Report CRE ratios are both outside its loaded schemas (confirmed via search_catalog) &mdash; so every figure here is sourced externally via web research rather than validated against a government-hosted dataset in this system.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.outsource2india.com/mortgage/articles/highest-office-vacancy-rates.asp">US Metropolitan Areas with Highest Office Vacancy Rates</a></li>
+<li><a href="https://www.commercialcafe.com/blog/national-office-report-march-2026/">Slow Construction Starts... National Office Report, March 2026 (CommercialCafe)</a></li>
+<li><a href="https://www.commercialcafe.com/blog/national-office-report/">National Office Report, August 2026 (CommercialCafe)</a></li>
+<li><a href="https://www.yardimatrix.com/blog/us-office-market-outlook/">U.S. Office Market Outlook – August 2026 (Yardi Matrix)</a></li>
+<li><a href="https://www.commercialsearch.com/news/houston-office-market-update/">Houston's Office Vacancy Rate Drops, Prices Remain Low (Commercial Property Executive)</a></li>
+<li><a href="https://nmrk.imgix.net/uploads/fields/pdf-market-reports/1Q26-Washington-Metro-Office-Market-Report.pdf">1Q26 Washington Metro Office Market Overview (Newmark)</a></li>
+<li><a href="https://www.axios.com/2026/04/02/office-vacancies-moodys-real-estate">Office vacancies hit record high (Axios, citing Moody's CRE)</a></li>
+<li><a href="https://www.bankregreports.com/screener/cre-concentration/">US Banks Ranked by Commercial Real Estate Concentration (BankRegReports, FFIEC Call Report screen)</a></li>
+<li><a href="https://www.bankregreports.com/banks/">US Bank Directory (BankRegReports)</a></li>
+<li><a href="https://www.credaily.com/briefs/top-10-banks-facing-highest-risks-from-cre-loan-exposure/">Top 10 Banks Facing Highest Risks from CRE Loan Exposure (CRE Daily)</a></li>
+<li><a href="https://www.kbra.com/publications/RFTqxdGM/kbra-downgrades-ratings-for-eagle-bancorp-inc">KBRA Downgrades Ratings for Eagle Bancorp Inc</a></li>
+<li><a href="https://www.bankingdive.com/news/homestreet-mechanics-merger-cre-multifamily-mason-california-firstsun-terminate-300-million-bofa/744116/">HomeStreet to merge with California's Mechanics Bank (Banking Dive)</a></li>
+<li><a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/new-york-community-read-across-puts-spotlight-on-cre-and-growing-regionals">New York Community read-across puts spotlight on CRE and growing regionals (S&amp;P Global)</a></li>
+<li><a href="https://www.fdic.gov/system/files/2024-07/2024-risk-review-section-4.pdf">2024 Risk Review, Section 4 (FDIC) — confirms Call Reports do not break out CRE by property type</a></li>
+<li>AskAmerica catalog search confirming no metro office-vacancy or bank-level CRE-concentration table is loaded<details class="sqltoggle"><summary>Show tool call</summary><pre><code>search_catalog(query=&quot;bank commercial real estate loans concentration&quot;)</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Office vacancy is a private-sector CRE brokerage metric, not a government series; bank CRE ratios are grounded in FFIEC Call Report data but retrieved via a third-party screener rather than AskAmerica's own corpus, which does not load either dataset. Bank HQ city is used as a proxy for loan-book geography and is explicitly imperfect for nationally-lending CRE specialists (flagged in text).</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

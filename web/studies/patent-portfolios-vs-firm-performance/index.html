@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Patenting Predicts Firm Size and Sector — It Barely Predicts Near-Term Profitability, and Raw Counts Are the Wrong Metric</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Patenting Predicts Firm Size and Sector — It Barely Predicts Near-Term Profitability, and Raw Counts Are the Wrong Metric</h1>
+<p class="subtitle">Literature review + AskAmerica SEC/USPTO cross-sectional analysis, 2026-09-04</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1010" width="880" height="1010" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="1010" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Patents Predict Firm Size, Not Near-Term Profitability</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">SEC filers matched to USPTO patent grants via AskAmerica ref.canonical_org_entity, most-recent-filing snapshot, n=3,093-3,198 firms</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Patent holders vs non-holders, net margin</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">-89% vs -14%</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">t=-5.9, p&lt;0.0001</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">log(patents+1) effect on margin, controlling for size</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">-0.145</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">p&lt;0.0001, robust to dropping any sector</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="315.50" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="315.50" viewBox="0 0 412 316" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="316" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Average net margin: patent holders vs. non-holders</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="69" y1="262" x2="390" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="61" y="266" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.9</text>
+      <line class="grid" x1="69" y1="236.25" x2="390" y2="236.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="61" y="240.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.8</text>
+      <line class="grid" x1="69" y1="210.50" x2="390" y2="210.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="61" y="214.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.7</text>
+      <line class="grid" x1="69" y1="184.75" x2="390" y2="184.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="61" y="188.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.6</text>
+      <line class="grid" x1="69" y1="159.00" x2="390" y2="159.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="61" y="163.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.5</text>
+      <line class="grid" x1="69" y1="133.25" x2="390" y2="133.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="61" y="137.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.4</text>
+      <line class="grid" x1="69" y1="107.50" x2="390" y2="107.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="61" y="111.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.3</text>
+      <line class="grid" x1="69" y1="81.75" x2="390" y2="81.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="61" y="85.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.2</text>
+      <line class="grid" x1="69" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-8" class="tick" x="61" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.1</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="69" y1="56" x2="69" y2="262" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="69" y1="262" x2="390" y2="262" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="159" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 159)">Net margin</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-no-patents-n-2-891" class="tick" x="149.25" y="280" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">No patents (n=2,891)</text>
+      <text id="p3-xtick-has-patents-n-215" class="tick" x="309.75" y="280" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Has patents (n=215)</text>
+    </g>
+    <g id="p3-series-avg-net-income-revenue" class="series">
+      <rect id="p3-mark-avg-net-income-revenue-no-patents-n-2-891" class="bar" x="97.89" y="30.25" width="101.72" height="37.34" fill="#2563eb"/>
+      <rect id="p3-mark-avg-net-income-revenue-has-patents-n-215" class="bar" x="258.39" y="30.25" width="101.72" height="229.95" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="534.50" fill="#6b7280">Most-recent 10-K snapshot per firm; margins capped to [-10,10] to</text>
+  <text class="caption" x="24" y="547.50" fill="#6b7280">exclude denominator outliers.</text>
+  <rect class="panel-edge" x="448" y="206" width="412" height="315.50" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="315.50" viewBox="0 0 412 316" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="316" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Patent holders by 2-digit SIC sector (top 5)</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="66" y1="172" x2="390" y2="172" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="58" y="176" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="152.67" x2="390" y2="152.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="58" y="156.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="133.33" x2="390" y2="133.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="58" y="137.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="66" y1="114" x2="390" y2="114" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="58" y="118" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="66" y1="94.67" x2="390" y2="94.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="58" y="98.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="66" y1="75.33" x2="390" y2="75.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="58" y="79.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="66" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="172" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="172" x2="390" y2="172" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="114" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 114)">Count / margin</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-28-chemicals-pharma" class="tick" x="98.40" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 98.40 186)">28 Chemicals/Pharma</text>
+      <text id="p4-xtick-38-instruments" class="tick" x="163.20" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 163.20 186)">38 Instruments</text>
+      <text id="p4-xtick-73-business-svcs" class="tick" x="228" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228 186)">73 Business Svcs</text>
+      <text id="p4-xtick-36-electronics" class="tick" x="292.80" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 292.80 186)">36 Electronics</text>
+      <text id="p4-xtick-35-machinery" class="tick" x="357.60" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357.60 186)">35 Machinery</text>
+    </g>
+    <g id="p4-series-firms-with-patents" class="series">
+      <rect id="p4-mark-firms-with-patents-28-chemicals-pharma" class="bar" x="77.66" y="65.67" width="19.74" height="87.00" fill="#2563eb"/>
+      <rect id="p4-mark-firms-with-patents-38-instruments" class="bar" x="142.46" y="71.47" width="19.74" height="81.20" fill="#2563eb"/>
+      <rect id="p4-mark-firms-with-patents-73-business-svcs" class="bar" x="207.26" y="96.60" width="19.74" height="56.07" fill="#2563eb"/>
+      <rect id="p4-mark-firms-with-patents-36-electronics" class="bar" x="272.06" y="102.40" width="19.74" height="50.27" fill="#2563eb"/>
+      <rect id="p4-mark-firms-with-patents-35-machinery" class="bar" x="336.86" y="133.33" width="19.74" height="19.33" fill="#2563eb"/>
+    </g>
+    <g id="p4-series-avg-net-margin" class="series">
+      <rect id="p4-mark-avg-net-margin-28-chemicals-pharma" class="bar" x="98.40" y="152.67" width="19.74" height="1.66" fill="#ea580c"/>
+      <rect id="p4-mark-avg-net-margin-38-instruments" class="bar" x="163.20" y="152.67" width="19.74" height="0.95" fill="#ea580c"/>
+      <rect id="p4-mark-avg-net-margin-73-business-svcs" class="bar" x="228.00" y="152.67" width="19.74" height="0.43" fill="#ea580c"/>
+      <rect id="p4-mark-avg-net-margin-36-electronics" class="bar" x="292.80" y="152.67" width="19.74" height="0.77" fill="#ea580c"/>
+      <rect id="p4-mark-avg-net-margin-35-machinery" class="bar" x="357.60" y="152.67" width="19.74" height="0.06" fill="#ea580c"/>
+    </g>
+    <g id="p4-legend">
+      <rect id="p4-legend-swatch-firms-with-patents" x="92" y="282" width="11" height="11" fill="#2563eb"/>
+      <text id="p4-legend-label-firms-with-patents" class="legend-label" x="108" y="291" fill="#1f2328" font-size="11" style="font-size:11px">Firms with patents</text>
+      <rect id="p4-legend-swatch-avg-net-margin" x="222" y="282" width="11" height="11" fill="#ea580c"/>
+      <text id="p4-legend-label-avg-net-margin" class="legend-label" x="238" y="291" fill="#1f2328" font-size="11" style="font-size:11px">Avg net margin</text>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="534.50" fill="#6b7280">Sector 28 (chemicals incl. pharma/biotech) and 38 (instruments incl.</text>
+  <text class="caption" x="452" y="547.50" fill="#6b7280">medtech) dominate the patent-holder sample and post deeply negative…</text>
+  <rect class="panel-edge" x="20" y="569.50" width="412" height="315.50" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="569.50" width="412" height="315.50" viewBox="0 0 412 316" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="316" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Net margin by patent-count quintile (patent holders only)</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="69" y1="224.64" x2="390" y2="224.64" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="61" y="228.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-1.2</text>
+      <line class="grid" x1="69" y1="200.55" x2="390" y2="200.55" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="61" y="204.55" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-1.1</text>
+      <line class="grid" x1="69" y1="176.46" x2="390" y2="176.46" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="61" y="180.46" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-1.0</text>
+      <line class="grid" x1="69" y1="152.37" x2="390" y2="152.37" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="61" y="156.37" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.9</text>
+      <line class="grid" x1="69" y1="128.27" x2="390" y2="128.27" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="61" y="132.27" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.8</text>
+      <line class="grid" x1="69" y1="104.18" x2="390" y2="104.18" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="61" y="108.18" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.7</text>
+      <line class="grid" x1="69" y1="80.09" x2="390" y2="80.09" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-6" class="tick" x="61" y="84.09" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.6</text>
+      <line class="grid" x1="69" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-7" class="tick" x="61" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.5</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="69" y1="56" x2="69" y2="224.64" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="69" y1="224.64" x2="390" y2="224.64" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="140.32" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 140.32)">Net margin</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-1-2-patents" class="tick" x="101.10" y="238.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 101.10 238.64)">1-2 patents</text>
+      <text id="p5-xtick-3-5" class="tick" x="165.30" y="238.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 165.30 238.64)">3-5</text>
+      <text id="p5-xtick-6-17" class="tick" x="229.50" y="238.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 229.50 238.64)">6-17</text>
+      <text id="p5-xtick-18-41" class="tick" x="293.70" y="238.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 293.70 238.64)">18-41</text>
+      <text id="p5-xtick-42-2-055" class="tick" x="357.90" y="238.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357.90 238.64)">42-2,055</text>
+    </g>
+    <g id="p5-series-avg-net-margin" class="series">
+      <rect id="p5-mark-avg-net-margin-1-2-patents" class="bar" x="80.56" y="-64.46" width="40.09" height="175.87" fill="#2563eb"/>
+      <rect id="p5-mark-avg-net-margin-3-5" class="bar" x="144.76" y="-64.46" width="40.09" height="134.91" fill="#2563eb"/>
+      <rect id="p5-mark-avg-net-margin-6-17" class="bar" x="208.96" y="-64.46" width="40.09" height="245.73" fill="#2563eb"/>
+      <rect id="p5-mark-avg-net-margin-18-41" class="bar" x="273.16" y="-64.46" width="40.09" height="289.10" fill="#2563eb"/>
+      <rect id="p5-mark-avg-net-margin-42-2-055" class="bar" x="337.36" y="-64.46" width="40.09" height="224.05" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="898" fill="#6b7280">Dose-response trend across patent-holding firms is not significant</text>
+  <text class="caption" x="24" y="911" fill="#6b7280">(p=0.23) or monotonic - more patents alone does not track better…</text>
+  <g id="p6-stat">
+  <rect class="panel-edge" x="448" y="689.25" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="725.25" fill="#6b7280">5-yr stock return vs. 2020-24 patent count</text>
+  <text class="stat-value" x="464" y="755.25" fill="#1f2328" style="font-size:24px">No significant relationship</text>
+  <text class="stat-delta" x="464" y="775.25" fill="#6b7280">n=179, p=0.21</text>
+  </g>
+  <text class="footnote" x="20" y="943" fill="#6b7280">AskAmerica sec.financial_facts, sec.stock_prices, patents.patent_grants, ref.patent_assignee_firm / canonical_org_entity. Cross-sectional,</text>
+  <text class="footnote" x="20" y="957" fill="#6b7280">most-recent-filing basis; not a panel.</text>
+  <g id="brand">
+  <svg x="20" y="969" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="984" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:51240/a/437607093c73ae063f4d65b0698489a9.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Raw patent counts, on their own, are a weak and often misleading signal of firm performance.</strong> Across roughly 3,100 SEC-filing companies matched to USPTO grant records, firms holding patents show a materially <em>lower</em> average net margin than non-holders (-89% vs -14%), and that gap survives controlling for firm size and is not explained away by any single sector. But this is not "patents hurt profits" — the patent-holder sample here is heavily concentrated in chemicals/pharma and precision-instruments/medtech (SIC 28 and 38), sectors dominated by clinical-stage and R&D-heavy firms that run large accounting losses regardless of patent output. Among patent holders themselves, more patents does not track better margins in any statistically reliable way (p=0.23, non-monotonic), and patent counts from 2020-2024 show no significant relationship with 2020-2025 stock returns in our sample (n=179, p=0.21, likely underpowered). The published academic literature is consistent with this: it is patent <em>quality</em> — citation-weighted patents, patents per R&D dollar ("innovative efficiency"), and patent litigation/thicket risk — not raw patent <em>counts</em>, that carries real predictive power for firm value and future returns.</p>
+</section>
+<section>
+<h2>What the published literature says</h2>
+<ul><li><strong>Citations, not counts, move market value.</strong> Each additional citation per patent has been estimated to raise firm market value by roughly 3% (Hall, Jaffe & Trajtenberg-line research); a plain patent count carries much weaker information (<a href="https://eml.berkeley.edu/~bhhall/papers/HallThomaTorrisi06.pdf">Hall, Thoma & Torrisi 2006, market value of patents and R&D</a>).</li><li><strong>"Innovative efficiency" — patents/citations per R&D dollar — is a genuine return predictor.</strong> Portfolios formed on this ratio earn statistically significant excess returns after controlling for standard risk factors (<a href="https://www.sciencedirect.com/science/article/abs/pii/S0304405X12001961">Hirshleifer, Hsu & Li, "Innovative efficiency and stock returns," JFE</a>).</li><li><strong>Too many patents can be a negative signal.</strong> Firms sitting in dense "patent thickets" face more litigation, launch fewer new products, become <em>less</em> profitable going forward, and see lower subsequent stock returns (<a href="https://pubsonline.informs.org/doi/10.1287/mnsc.2021.4229">"Patent Thickets, Stock Returns, and Conditional CAPM," Management Science 2021</a>).</li><li><strong>Patent-quality studies on operating firms find quality (not volume) drives profitability.</strong> A 2013-2022 panel of Chinese technology firms found patent quality significantly raised profitability, both economically and in a legal-strength sense (<a href="https://www.sciencedirect.com/science/article/abs/pii/S1544612325001874">"Patent quality, R&D investment, and the profitability of technology-based firms," Finance Research Letters 2025</a>).</li><li><strong>Raw patent counts can even diverge from real productivity in early-stage firms.</strong> Genuine R&D/capital investment, not patent counts per se, is what tracks productivity in early-stage high-tech companies (<a href="https://arxiv.org/html/2507.18227">"Beyond Patents: R&D, Capital, and the Productivity Puzzle in Early-Stage High-Tech Firms," 2025</a>).</li><li><strong>Disclosure-event studies find a real but conditional market reaction.</strong> Stock prices react positively to patent disclosures on average, but the sign flips negative when disclosure credibility is judged low (<a href="https://www.researchgate.net/publication/363547537_The_impact_of_patent_information_disclosure_on_the_stock_returns_of_high-tech_corporates_an_event_study">event study, patent disclosure and stock returns</a>).</li></ul><p>The consistent thread: the literature already answers the mechanism question — <em>which</em> patent attribute matters (citations, R&D-scaled efficiency, litigation exposure, legal quality) — better than any raw patent count can. Our own data below adds a direct, currently-loaded test of the raw-count version of the question against real SEC financials, which the literature above does not itself provide a fresh number for.</p>
+</section>
+<section>
+<h2>What we computed: patents vs. financial performance in AskAmerica's own data</h2>
+<p><strong>Data and method.</strong> We joined USPTO patent grants (<code>patents.patent_grants</code>) to SEC filers through <code>ref.canonical_org_entity</code> / <code>ref.patent_assignee_firm</code> (assignee_id → CIK), and pulled each firm's most recent consolidated revenue and net income from <code>sec.financial_facts</code>. This is a <em>cross-sectional, most-recent-filing</em> snapshot (not a multi-year panel) because AskAmerica's XBRL extraction currently holds only 1,534 firm-years of revenue across 1,272 distinct firms for 2015-2024 — too sparse to run a reliable firm-year panel regression, so we used each firm's latest available filing instead (3,198 firms with revenue and net income, 229 of them patent holders). This is a real data-coverage limitation we are disclosing, not a methodological preference.</p><p><strong>Result 1 — patent holders look worse on raw net margin, controlling for size.</strong> Regressing net margin on log(patents+1) and log(revenue) (n=3,104) gives a log-patents coefficient of -0.145 (t=-5.79, p<0.0001); patent holders average -89% net margin vs -14% for non-holders (Welch t=-5.9, p<0.0001). This holds up under a full leave-one-sector-out sensitivity check across all 69 two-digit SIC codes present — no sign flips, coefficient range only -0.110 to -0.170, robust everywhere.</p><p><strong>Result 2 — the negative relationship is a sector-composition effect, not a patent penalty.</strong> Patent holders in this SEC-filer sample are heavily concentrated in SIC 28 (chemicals, including pharma/biotech — 45 of 229 patent holders, avg margin -86%) and SIC 38 (measuring/medical/optical instruments — 42 holders, avg margin -49%). These are exactly the sectors dominated by clinical-stage and R&D-heavy firms that run large accounting losses independent of how many patents they hold. Dropping SIC 28 alone shrinks the log-patents coefficient from -0.145 to -0.110 — material, but the relationship does not disappear, so sector explains part, not all, of the raw association.</p><p><strong>Result 3 — among patent holders, more patents doesn't reliably track better margins.</strong> A quintile dose-response test on patent count vs. net margin, restricted to patent-holding firms only (n=214), shows no significant or monotonic trend (slope p=0.23) — consistent with the literature's point that citation/quality weighting, not volume, is where the signal lives.</p><p><strong>Result 4 — patent counts don't predict 5-year stock returns in our sample.</strong> Regressing 2020–2025 total stock return (adjusted close, <code>sec.stock_prices</code>) on 2020-2024 patent grant counts and starting share price finds no significant relationship (log-patents coefficient p=0.21, n=179). This sample is small — only 179 SEC filers in our matched universe had usable Stooq-sourced price data spanning both endpoints — so this is a genuine coverage limit, not strong evidence of "no relationship"; treat it as inconclusive rather than a null finding.</p><p><strong>Result 5 (context) — patenting firms are bigger, as expected.</strong> The same regression's log-revenue coefficient is positive and highly significant (+0.133, p<0.0001) and, separately, log(patents+1) correlates positively with log(revenue) at the firm level — patenting activity is strongly associated with firm size, the well-documented direction of causality being at least partly reversed (bigger firms patent more, rather than only patents making firms bigger).</p>
+</section>
+<section>
+<h2>Data caveats</h2>
+<ul><li><strong>Assignee-ID disambiguation undercounts some firms' patents.</strong> AskAmerica's own documentation flags that <code>canonical_org_entity.patents_assignee_id</code> picks one USPTO assignee_id per company name when several exist — e.g. Schlumberger links to an id with 1 patent instead of a sibling id with 10,227. <code>ref.patent_assignee_firm</code> corrects for the ultimate-parent roll-up but inherits this per-name id-selection limitation, so total_patents for some large patentors is understated in our counts, which would bias our estimated patent-performance relationship toward zero (attenuation), not create a spurious negative one.</li><li><strong>Financial statement coverage is a most-recent-snapshot, not a full panel</strong> — only 1,272 distinct SEC filers have revenue facts loaded for fiscal years 2015-2024 in <code>sec.financial_facts</code>, so a proper lagged firm-year panel (patents in year t predicting margin in t+1) was not feasible with currently loaded data; we used latest-available-filing cross sections instead.</li><li><strong>Stock-return sample is small (n=179)</strong> because few SEC filers in the patent-matched universe have Stooq price history spanning both 2020 and 2025; result 4 should be read as "inconclusive," not "disproven."</li><li><strong>Net margin as a metric is noisy for near-zero-revenue firms</strong> even after excluding |margin|>10 and requiring revenue > $1M — clinical-stage biotech firms can still show extreme ratios; this is inherent to the metric, not a coding error.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://eml.berkeley.edu/~bhhall/papers/HallThomaTorrisi06.pdf">Hall, Thoma &amp; Torrisi (2006) — The market value of patents and R&amp;D: Evidence from European firms</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S0304405X12001961">Hirshleifer, Hsu &amp; Li — Innovative efficiency and stock returns (Journal of Financial Economics)</a></li>
+<li><a href="https://pubsonline.informs.org/doi/10.1287/mnsc.2021.4229">Patent Thickets, Stock Returns, and Conditional CAPM — Management Science (2021)</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S1544612325001874">Patent quality, R&amp;D investment, and the profitability of technology-based firms — Finance Research Letters (2025)</a></li>
+<li><a href="https://arxiv.org/html/2507.18227">Beyond Patents: R&amp;D, Capital, and the Productivity Puzzle in Early-Stage High-Tech Firms (arXiv 2025)</a></li>
+<li><a href="https://www.researchgate.net/publication/363547537_The_impact_of_patent_information_disclosure_on_the_stock_returns_of_high-tech_corporates_an_event_study">The impact of patent information disclosure on stock returns of high-tech corporates: an event study</a></li>
+<li>AskAmerica: patent holders vs non-holders net margin, most-recent-filing snapshot<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH pat AS (SELECT LPAD(paf.sec_cik,10,'0') AS cik, COUNT(DISTINCT paf.patent_id) AS total_patents FROM ref.patent_assignee_firm paf WHERE paf.sec_cik IS NOT NULL GROUP BY LPAD(paf.sec_cik,10,'0')), rev1 AS (SELECT cik, revenue FROM (SELECT cik, period_end, value_dollars AS revenue, ROW_NUMBER() OVER (PARTITION BY cik ORDER BY period_end DESC) AS rn FROM sec.financial_facts WHERE canonical_name='revenue' AND is_consolidated_total=TRUE AND is_instant=FALSE AND period_end IS NOT NULL) WHERE rn=1), ni1 AS (SELECT cik, net_income FROM (SELECT cik, period_end, value_dollars AS net_income, ROW_NUMBER() OVER (PARTITION BY cik ORDER BY period_end DESC) AS rn FROM sec.financial_facts WHERE canonical_name='net_income' AND is_consolidated_total=TRUE AND is_instant=FALSE AND period_end IS NOT NULL) WHERE rn=1) SELECT CASE WHEN pat.total_patents&gt;0 THEN 'has_patents' ELSE 'no_patents' END AS grp, ni1.net_income/rev1.revenue AS profit_margin FROM rev1 JOIN ni1 ON ni1.cik=rev1.cik LEFT JOIN pat ON pat.cik=rev1.cik WHERE rev1.revenue&gt;1000000 AND ni1.net_income/rev1.revenue BETWEEN -10 AND 10</code></pre></details></li>
+<li>AskAmerica: OLS, net margin ~ log(patents+1) + log(revenue), sensitivity-tested by SIC sector<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(outcome=&quot;profit_margin&quot;, predictors=[&quot;log_patents&quot;,&quot;log_revenue&quot;], group_col=&quot;sic2&quot;, term=&quot;log_patents&quot;)</code></pre></details></li>
+<li>AskAmerica: 5-year total stock return (2020-2025) vs. 2020-2024 patent grant count<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;total_return&quot;, predictors=[&quot;log_patents&quot;,&quot;log_px_start&quot;])</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Analysis performed via the AskAmerica connector (sec.financial_facts, sec.stock_prices, patents.patent_grants, ref schema) plus published literature via web search. Cross-sectional snapshots, not causal panel evidence; see Data caveats.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-04</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

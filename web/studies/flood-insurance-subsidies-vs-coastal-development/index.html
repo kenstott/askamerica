@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flood-prone coastal counties host ~25% of new US home construction but ~70-78% of national flood-insurance claims and losses</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Flood-prone coastal counties host ~25% of new US home construction but ~70-78% of national flood-insurance claims and losses</h1>
+<p class="subtitle">FEMA OpenFEMA NFIP claims/policies + Census Building Permits Survey, via AskAmerica; supplemented with FEMA/GAO repetitive-loss statistics</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 737" width="880" height="737" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="737" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">Building in Flood-Prone Coastal Counties vs. National Construction and Flood Losses</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">193 US counties with paid NFIP claims in V/VE coastal high-hazard flood zones, 2009-2024 permits / 2010-2026 claims (FEMA OpenFEMA, Census BPS)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Share of national new housing units permitted 2009-2024 in flood-prone coastal counties</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">24.8%</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">4.69M of 18.95M units</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Share of national NFIP paid flood claims 2010-2026 falling in those same counties</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">70.0%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">676,905 of 966,722 claims</text>
+  </g>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="206" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="242" fill="#6b7280">Share of national NFIP dollars paid out landing in those counties</text>
+  <text class="stat-value" x="36" y="272" fill="#1f2328">78.2%</text>
+  <text class="stat-delta" x="36" y="292" fill="#059669">$43.6B of $55.8B paid</text>
+  </g>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="206" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="242" fill="#6b7280">FEMA-listed repetitive/severe-repetitive-loss structures nationwide (Aug 2026)</text>
+  <text class="stat-value" x="464" y="272" fill="#1f2328">240,651</text>
+  <text class="stat-delta" x="464" y="292" fill="#6b7280" style="font-size:12px">~1% of policies, ~38% of historical claims (GAO 2004)</text>
+  </g>
+  <rect class="panel-edge" x="20" y="330" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="330" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Annual new housing units permitted: coastal high-hazard counties vs. USA</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="91" y1="176" x2="818" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="83" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="91" y1="146" x2="818" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="83" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500,000</text>
+      <line class="grid" x1="91" y1="116" x2="818" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="83" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1M</text>
+      <line class="grid" x1="91" y1="86" x2="818" y2="86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="83" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5M</text>
+      <line class="grid" x1="91" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="83" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2M</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="91" y1="56" x2="91" y2="176" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="91" y1="176" x2="818" y2="176" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="454.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 116)">Housing units</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-2009" class="tick" x="113.72" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2009</text>
+      <text id="p5-xtick-2010" class="tick" x="159.16" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2010</text>
+      <text id="p5-xtick-2011" class="tick" x="204.59" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2011</text>
+      <text id="p5-xtick-2012" class="tick" x="250.03" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2012</text>
+      <text id="p5-xtick-2013" class="tick" x="295.47" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2013</text>
+      <text id="p5-xtick-2014" class="tick" x="340.91" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2014</text>
+      <text id="p5-xtick-2015" class="tick" x="386.34" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2015</text>
+      <text id="p5-xtick-2016" class="tick" x="431.78" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2016</text>
+      <text id="p5-xtick-2017" class="tick" x="477.22" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+      <text id="p5-xtick-2018" class="tick" x="522.66" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2018</text>
+      <text id="p5-xtick-2019" class="tick" x="568.09" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
+      <text id="p5-xtick-2020" class="tick" x="613.53" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p5-xtick-2021" class="tick" x="658.97" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
+      <text id="p5-xtick-2022" class="tick" x="704.41" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p5-xtick-2023" class="tick" x="749.84" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p5-xtick-2024" class="tick" x="795.28" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+    </g>
+    <g id="p5-series-flood-prone-coastal-counties-193" class="series">
+      <path id="p5-line-flood-prone-coastal-counties-193" class="line" d="M 113.72 168.30 L 159.16 167.77 L 204.59 166.95 L 250.03 164.29 L 295.47 160.95 L 340.91 159.85 L 386.34 155.72 L 431.78 158.18 L 477.22 156.83 L 522.66 156.04 L 568.09 154.70 L 613.53 154.69 L 658.97 151.13 L 704.41 150.83 L 749.84 153.28 L 795.28 155.03" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2009" class="point" cx="113.72" cy="168.30" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2010" class="point" cx="159.16" cy="167.77" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2011" class="point" cx="204.59" cy="166.95" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2012" class="point" cx="250.03" cy="164.29" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2013" class="point" cx="295.47" cy="160.95" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2014" class="point" cx="340.91" cy="159.85" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2015" class="point" cx="386.34" cy="155.72" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2016" class="point" cx="431.78" cy="158.18" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2017" class="point" cx="477.22" cy="156.83" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2018" class="point" cx="522.66" cy="156.04" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2019" class="point" cx="568.09" cy="154.70" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2020" class="point" cx="613.53" cy="154.69" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2021" class="point" cx="658.97" cy="151.13" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2022" class="point" cx="704.41" cy="150.83" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2023" class="point" cx="749.84" cy="153.28" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-flood-prone-coastal-counties-193-2024" class="point" cx="795.28" cy="155.03" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p5-series-usa-total" class="series">
+      <path id="p5-line-usa-total" class="line" d="M 113.72 141.02 L 159.16 139.72 L 204.59 138.56 L 250.03 126.22 L 295.47 116.55 L 340.91 113.13 L 386.34 104.95 L 431.78 103.60 L 477.22 99.08 L 522.66 96.27 L 568.09 92.84 L 613.53 87.73 L 658.97 71.78 L 704.41 75.18 L 749.84 85.33 L 795.28 87.32" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p5-mark-usa-total-2009" class="point" cx="113.72" cy="141.02" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2010" class="point" cx="159.16" cy="139.72" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2011" class="point" cx="204.59" cy="138.56" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2012" class="point" cx="250.03" cy="126.22" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2013" class="point" cx="295.47" cy="116.55" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2014" class="point" cx="340.91" cy="113.13" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2015" class="point" cx="386.34" cy="104.95" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2016" class="point" cx="431.78" cy="103.60" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2017" class="point" cx="477.22" cy="99.08" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2018" class="point" cx="522.66" cy="96.27" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2019" class="point" cx="568.09" cy="92.84" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2020" class="point" cx="613.53" cy="87.73" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2021" class="point" cx="658.97" cy="71.78" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2022" class="point" cx="704.41" cy="75.18" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2023" class="point" cx="749.84" cy="85.33" r="3" fill="#ea580c"/>
+      <circle id="p5-mark-usa-total-2024" class="point" cx="795.28" cy="87.32" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p5-legend">
+      <rect id="p5-legend-swatch-flood-prone-coastal-counties-193" x="276.50" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p5-legend-label-flood-prone-coastal-counties-193" class="legend-label" x="292.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Flood-prone coastal counties (193)</text>
+      <rect id="p5-legend-swatch-usa-total" x="498.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p5-legend-label-usa-total" class="legend-label" x="514.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">USA total</text>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="611" fill="#6b7280">Coastal high-hazard counties' share of national permitting held roughly 22-28% every year of the cycle.</text>
+  <text class="footnote" x="20" y="656" fill="#6b7280">Coastal set = 193 counties with &gt;=1 paid NFIP claim in a V/VE (open-coast, wave-action) flood zone, 2010-2026 (nfip_claims has a data gap in</text>
+  <text class="footnote" x="20" y="670" fill="#6b7280">2018). This undercounts true coastal flood exposure since many oceanfront properties sit in AE/A zones, not V/VE. No property-level identifier</text>
+  <text class="footnote" x="20" y="684" fill="#6b7280">exists in the claims data, so a FEMA-standard repetitive-loss calculation (same address, 2+ claims in 10 years) could not be run directly against…</text>
+  <g id="brand">
+  <svg x="20" y="696" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="711" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:63193/a/d065c41010fe4521d529301b3dd6ffe5.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Using FEMA's own coastal high-hazard flood-zone codes (V/VE, the open-coast, wave-action zones) to define "flood-prone coastal areas," 193 U.S. counties qualify. From 2009-2024 these counties absorbed <strong>4.69 million of the nation's 18.95 million newly permitted housing units (24.8%)</strong> and <strong>$1.01 trillion of $3.91 trillion in permit valuation (25.8%)</strong> — construction has kept pace with, not fallen behind, the national building cycle. Those same 193 counties also accounted for <strong>676,905 of 966,722 NFIP paid claims nationally (70.0%)</strong> and <strong>$43.6 billion of $55.8 billion in paid flood losses (78.2%)</strong> since 2010. On repeated claims specifically: the connector's claims data has no property-level identifier, so a true FEMA-standard repetitive-loss count (same address, 2+ paid claims within 10 years) could not be computed directly. Falling back to FEMA's own published Multiple Loss Properties registry, <strong>240,651 structures nationwide</strong> currently meet repetitive- or severe-repetitive-loss criteria, and a 2004 GAO analysis found such properties are about 1% of all NFIP policies but generated 38% of all claims from 1978-2004 — a concentration other researchers have since put as high as 30% of all claims paid since 1978 from repetitive-loss properties, and roughly 40% of paid losses from the smaller "severe repetitive loss" subset (about 1% of insured properties). Given that coastal counties already account for 70-78% of the nation's flood claims and dollars paid, and that repetitive-loss properties are known to be concentrated overwhelmingly in coastal states (Florida, Louisiana, Texas together account for roughly half of all NFIP claims ever filed), it is a reasonable inference — not a directly computed figure — that a large share of the repetitive-loss inventory sits inside these same 193 counties. That inference could not be confirmed at the property level with the data available.</p>
+</section>
+<section>
+<h2>How &quot;flood-prone coastal areas&quot; was defined</h2>
+<p>There is no single official U.S. list of "flood-prone coastal counties." NOAA's own coastal-county definitions (452 shoreline counties, or a broader 15%-of-land-in-a-coastal-watershed definition) are geographic, not flood-risk-based, and were not available as a ready-made table in this connector. Rather than guess at a boundary, the analysis anchored the definition in FEMA's own risk classification: a county was counted as "flood-prone coastal" if it has ever recorded a paid NFIP claim in a <strong>V or VE flood zone</strong> — the FEMA zone codes reserved for open-coast areas subject to storm-wave action, the most severe coastal flood hazard category. That test returned <strong>193 counties</strong>, concentrated in Florida, the Gulf Coast, and the mid-Atlantic/Northeast shoreline (the ten highest-claim counties were all in FL, NC, NJ, NY, LA, AL, CT, TX).</p><p>This is a conservative, hazard-grounded definition, but it understates true coastal flood exposure two ways: (1) many oceanfront and near-coast properties sit in AE or A zones rather than V/VE, so this undercounts the full coastal floodplain; (2) it only captures counties that have actually filed a V/VE claim during 2010-2026 — a coastal county that has so far avoided a wave-damage claim would not appear even if it carries V/VE-zoned properties.</p>
+</section>
+<section>
+<h2>Building activity in these counties</h2>
+<p>Source: Census Bureau Building Permits Survey (housing.building_permits), county-annual totals, 2009-2024 (the table's full, gap-free observed window).</p><table border="1" cellpadding="6" style="border-collapse:collapse"><tr><th>Metric</th><th>Flood-prone coastal counties</th><th>USA total</th><th>Coastal share</th></tr><tr><td>New housing units permitted, 2009-2024</td><td>4,690,997</td><td>18,945,160</td><td>24.8%</td></tr><tr><td>Construction valuation, 2009-2024</td><td>$1.007 trillion</td><td>$3.907 trillion</td><td>25.8%</td></tr></table><p>The annual coastal share ranged narrowly (roughly 22-28%) across the full cycle — it was not a one-time spike. Annual coastal permitting nearly tripled between 2009 (128,288 units) and its 2022 peak (419,465 units), tracking the same recovery-boom-plateau shape as the national series (see chart). In short, building in these flood-hazard coastal counties has moved in lockstep with the national housing cycle rather than slowing down after loss events.</p>
+</section>
+<section>
+<h2>Flood claims and losses concentrated in the same counties</h2>
+<p>Source: FEMA OpenFEMA NFIP paid claims (disasters.nfip_claims), 2010-2026 (this table has a confirmed interior gap: no rows loaded for 2018, so all totals below are undercounts by one year's claims).</p><table border="1" cellpadding="6" style="border-collapse:collapse"><tr><th>Metric</th><th>Flood-prone coastal counties</th><th>USA total</th><th>Coastal share</th></tr><tr><td>Paid claims, 2010-2026 (ex. 2018)</td><td>676,905</td><td>966,722</td><td>70.0%</td></tr><tr><td>Total paid (building+contents+ICC)</td><td>$43.60 billion</td><td>$55.76 billion</td><td>78.2%</td></tr></table><p>These 193 counties are about 6% of all U.S. counties/county-equivalents by count, yet they generate seven out of every ten NFIP claims and nearly four out of every five dollars paid out nationally — a concentration far beyond their 25% share of new construction.</p>
+</section>
+<section>
+<h2>Repeated claims / repetitive-loss properties — what could and could not be computed</h2>
+<p>FEMA defines a <strong>Repetitive Loss (RL)</strong> property as one with two or more paid claims of $1,000+ within any 10-year period, and a <strong>Severe Repetitive Loss (SRL)</strong> property as one with four or more claims each exceeding $5,000 (cumulative $20,000+). Both definitions require tracking claims back to a specific insured structure over time.</p><p>The askamerica NFIP claims table (disasters.nfip_claims) carries no policy or property identifier — only a census tract, ZIP code, and latitude/longitude rounded to one decimal degree (roughly county-scale precision, far too coarse to distinguish individual addresses). A tract-level proxy was tried (grouping claims by census tract and flagging tracts with 2+ claims over the full 2010-2026 span), but this measures something different and much looser than FEMA's address-level definition — over a 16-year window spanning many separate storms, 11,443 of 14,039 coastal tracts (99.0% of coastal claims) had at least two claims, which mostly reflects that flood-prone tracts get hit by more than one storm over 16 years, not that individual properties are repeat claimants. That proxy was discarded as too crude to report as a finding.</p><p>Falling back to FEMA's own published property-level dataset instead: OpenFEMA's <em>NFIP Multiple Loss Properties</em> registry (last refreshed August 2026) lists <strong>240,651 structures</strong> nationwide currently meeting RL or SRL criteria. A 2004 GAO study (cited via Resources for the Future's retrospective analysis) found that such properties made up about <strong>1% of all NFIP policies but generated 38% of all paid claims from 1978-2004</strong>; more recent tallies put repetitive-loss claims at roughly 30% of all claims paid since 1978, and severe-repetitive-loss properties alone (about 1% of insured properties) at roughly 40% of paid losses. The same literature shows claims are heavily concentrated in coastal states — Florida, Louisiana and Texas together account for close to half of all NFIP claims ever filed, and Florida alone carries over 33,000 multiple-loss properties including 5,400+ severe repetitive loss properties. Because this connector could not join the national repetitive-loss registry to the 193-county coastal set at the property level, the true "how much coastal new construction sits in repeat-claim areas" question is answered qualitatively here (coastal counties dominate both the national repetitive-loss inventory in the cited literature and the raw claims/dollars in askamerica's own data) rather than with a single computed percentage.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Quantify how much of that building is in places with repeated insurance claims</strong>: Could not be computed directly: the NFIP claims table has no property-level identifier, so FEMA's actual repetitive-loss definition (same address, 2+ claims in 10 years) cannot be applied, and therefore cannot be joined back to specific building-permit locations. Reported instead: (a) the 193 coastal counties' claims/dollar share of the national total (70-78%) as a place-level proxy for loss concentration, and (b) FEMA's own national repetitive-loss property counts and their historical claims share, cited from FEMA/GAO sources, with the gap to a true coastal-building-permits-in-repeat-loss-areas figure stated explicitly.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>NFIP paid claims by coastal county (V/VE flood zone) and national total<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT COUNT(*), SUM(amount_paid_building+amount_paid_contents+amount_paid_icc) FROM disasters.nfip_claims</code></pre></details></li>
+<li>New housing units permitted, coastal V/VE counties vs. USA, 2009-2024<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT bp.&quot;year&quot;, SUM(...) FROM housing.building_permits bp LEFT JOIN (SELECT DISTINCT county_fips FROM disasters.nfip_claims WHERE flood_zone IN ('V','VE')) c ON bp.county_fips=c.county_fips GROUP BY bp.&quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.fema.gov/openfema-data-page/nfip-multiple-loss-properties-v1">OpenFEMA: NFIP Multiple Loss Properties dataset (240,651 structures, definitions of RL/SRL)</a> <span class="note">— Fetched 2026-09-03; dataset last refreshed by FEMA August 2026</span></li>
+<li><a href="https://www.resources.org/archives/a-look-at-35-years-of-flood-insurance-claims/">Resources for the Future: &quot;A Look at 35 Years of Flood Insurance Claims&quot; (GAO 2004 finding: repetitive-loss properties = 1% of policies, 38% of claims 1978-2004; state concentration figures)</a> <span class="note">— Fetched 2026-09-03</span></li>
+<li><a href="https://coast.noaa.gov/data/digitalcoast/pdf/qrt-coastal-county-definitions.pdf">NOAA coastal county definitions (452 shoreline counties) — consulted for definitional context, not used as the analysis boundary</a></li>
+<li><a href="https://www.fludzone.com/guides/nfip-claims-data">Florida-specific NFIP claims/repetitive-loss counts (fludzone.com, citing FEMA data)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Coastal-county set is a data-derived proxy (counties with any paid V/VE-zone claim), not an official government coastal-county list. nfip_claims is missing all 2018 rows (interior gap); all claims/paid totals are undercounts by one year. Property-level repetitive-loss analysis could not be run against askamerica data (no property identifier); those figures are sourced from FEMA/GAO literature and are not directly joined to the 193-county set.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

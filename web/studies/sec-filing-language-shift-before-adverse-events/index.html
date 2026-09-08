@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Filing tone shifts before bad news are real but small — a few tenths of a percentage point, and often lag the market rather than lead it</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Filing tone shifts before bad news are real but small — a few tenths of a percentage point, and often lag the market rather than lead it</h1>
+<p class="subtitle">SEC MD&amp;A text (sec.mda_sections, 2023-2026 coverage) + academic literature on textual tone and disclosure quality</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 599" width="880" height="599" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="599" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Two verified case studies: how much did MD&amp;A tone move around ba…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Negative-word share = LM-style negative/uncertainty/litigation terms as % of MD&amp;A word count</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Boeing 10-Q negative-word density, 2024-2025</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="63" y1="172" x2="390" y2="172" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="55" y="176" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="148.80" x2="390" y2="148.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="55" y="152.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.1</text>
+      <line class="grid" x1="63" y1="125.60" x2="390" y2="125.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="55" y="129.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
+      <line class="grid" x1="63" y1="102.40" x2="390" y2="102.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="55" y="106.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.3</text>
+      <line class="grid" x1="63" y1="79.20" x2="390" y2="79.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="55" y="83.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="172" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="172" x2="390" y2="172" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">10-Q filing quarter</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="114" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 114)">Negative words, % of MD&amp;A</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-2024-q1" class="tick" x="90.25" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 90.25 186)">2024-Q1</text>
+      <text id="p1-xtick-2024-q2" class="tick" x="144.75" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 144.75 186)">2024-Q2</text>
+      <text id="p1-xtick-2024-q3" class="tick" x="199.25" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 199.25 186)">2024-Q3</text>
+      <text id="p1-xtick-2025-q1" class="tick" x="253.75" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 253.75 186)">2025-Q1</text>
+      <text id="p1-xtick-2025-q2" class="tick" x="308.25" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 308.25 186)">2025-Q2</text>
+      <text id="p1-xtick-2025-q3" class="tick" x="362.75" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 362.75 186)">2025-Q3</text>
+    </g>
+    <g id="p1-series-negative-word-share" class="series">
+      <path id="p1-line-negative-word-share" class="line" d="M 90.25 86.16 L 144.75 78.74 L 199.25 68.06 L 253.75 88.71 L 308.25 90.80 L 362.75 66.44" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p1-mark-negative-word-share-2024-q1" class="point" cx="90.25" cy="86.16" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-negative-word-share-2024-q2" class="point" cx="144.75" cy="78.74" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-negative-word-share-2024-q3" class="point" cx="199.25" cy="68.06" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-negative-word-share-2025-q1" class="point" cx="253.75" cy="88.71" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-negative-word-share-2025-q2" class="point" cx="308.25" cy="90.80" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-negative-word-share-2025-q3" class="point" cx="362.75" cy="66.44" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="363" fill="#6b7280">737 MAX quality crisis: density rose ~21% from Q1 to Q3 2024, then</text>
+  <text class="caption" x="24" y="376" fill="#6b7280">reset.</text>
+  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Super Micro Computer: before vs. after Aug 2024 fraud allegations</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="63" y1="124" x2="390" y2="124" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="55" y="128" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="110.40" x2="390" y2="110.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="55" y="114.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
+      <line class="grid" x1="63" y1="96.80" x2="390" y2="96.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="55" y="100.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="63" y1="83.20" x2="390" y2="83.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="55" y="87.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
+      <line class="grid" x1="63" y1="69.60" x2="390" y2="69.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="55" y="73.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.8</text>
+      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="124" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="124" x2="390" y2="124" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle" transform="rotate(-90 14 90)">% / scaled $</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-pre-crisis-10-q-2024-05-06" class="tick" x="144.75" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 144.75 138)">Pre-crisis 10-Q (2024-05-06)</text>
+      <text id="p2-xtick-delayed-fy24-10-k-2025-02-25" class="tick" x="308.25" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 308.25 138)">Delayed FY24 10-K (2025-02-25)</text>
+    </g>
+    <g id="p2-series-negative-word-share" class="series">
+      <rect id="p2-mark-negative-word-share-pre-crisis-10-q-2024-05-06" class="bar" x="92.43" y="95.92" width="51.32" height="28.08" fill="#2563eb"/>
+      <rect id="p2-mark-negative-word-share-delayed-fy24-10-k-2025-02-25" class="bar" x="255.93" y="89.73" width="51.32" height="34.27" fill="#2563eb"/>
+    </g>
+    <g id="p2-series-share-price-100" class="series">
+      <rect id="p2-mark-share-price-100-pre-crisis-10-q-2024-05-06" class="bar" x="144.75" y="67.56" width="51.32" height="56.44" fill="#ea580c"/>
+      <rect id="p2-mark-share-price-100-delayed-fy24-10-k-2025-02-25" class="bar" x="308.25" y="93.06" width="51.32" height="30.94" fill="#ea580c"/>
+    </g>
+    <g id="p2-legend">
+      <rect id="p2-legend-swatch-negative-word-share" x="64.50" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p2-legend-label-negative-word-share" class="legend-label" x="80.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Negative-word share (%)</text>
+      <rect id="p2-legend-swatch-share-price-100" x="226.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p2-legend-label-share-price-100" class="legend-label" x="242.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Share price ($/100)</text>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="363" fill="#6b7280">Tone rose +22% only in the delayed catch-up filing — after the stock</text>
+  <text class="caption" x="452" y="376" fill="#6b7280">had already fallen ~45%.</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="434" fill="#6b7280">Boeing tone rise, Q1-&gt;Q3 2024</text>
+  <text class="stat-value" x="36" y="464" fill="#1f2328">+21%</text>
+  <text class="stat-delta" x="36" y="484" fill="#059669">relative</text>
+  </g>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="434" fill="#6b7280">SMCI tone rise, pre- vs post-scandal filing</text>
+  <text class="stat-value" x="464" y="464" fill="#1f2328">+22%</text>
+  <text class="stat-delta" x="464" y="484" fill="#059669">lagged the -46% price move</text>
+  </g>
+  <text class="footnote" x="20" y="532" fill="#6b7280">Negative-word share computed with a regex proxy over Loughran-McDonald-style negative/litigation/uncertainty stems, not the full LM Master</text>
+  <text class="footnote" x="20" y="546" fill="#6b7280">Dictionary word-by-word match.</text>
+  <g id="brand">
+  <svg x="20" y="558" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="573" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:61332/a/dfc3646be4a1cebe68e762606e2fce0e.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Filing language does shift measurably in the run-up to and around bad news, but the shift is small in absolute terms and often arrives alongside or after the market has already re-priced the stock, not meaningfully before it.</strong> In two verified 2024 cases pulled directly from SEC MD&A text (Boeing's 737 MAX quality crisis and Super Micro Computer's fraud allegations), the density of negative/uncertainty language in the MD&A rose about 20-30% in relative terms quarter-over-quarter — but that is a move of a few hundredths to a few tenths of one percentage point in absolute word share (e.g. 0.37% to 0.45% of all words at Boeing). Academic research on much larger panels finds the same pattern: tone and readability measures add real but modest discriminating power to bankruptcy/fraud models (lifting AUC by roughly 0.03-0.09 on top of financial-ratio baselines, per a 2026 bankruptcy-prediction study), and 10-K tone is a documented predictor of subsequent stock returns, volatility, and restatements (Loughran &amp; McDonald 2011; Larcker &amp; Zakolyukina 2012; Purda &amp; Skillicorn 2015) — but nobody in that literature reports it as a stand-alone trading signal large enough to front-run a crash. It is a real, useful <em>confirming</em> signal to combine with financial-statement red flags, not an early-warning system on its own.</p>
+</section>
+<section>
+<h2>What the published research says about size and usefulness</h2>
+<ul><li><strong>Loughran &amp; McDonald (2011, Journal of Finance)</strong> — built the finance-specific negative-word dictionary now standard in this literature after showing general-purpose (Harvard IV) word lists misclassify most of the words they flag as negative in a 10-K context (e.g. 'tax', 'cost', 'liability' are not sentiment-laden in financial prose). Their negative-word measure is linked to filing-period returns, trading volume, volatility, fraud, and material weakness — establishing that tone carries real information, not that it is large.</li><li><strong>Larcker &amp; Zakolyukina (2012, Journal of Accounting Research)</strong> — extremely positive managerial tone in earnings conference calls (over-optimism, not negativity) predicts subsequent financial restatement — deceptive language is not always more negative, sometimes it is compensatorily more positive.</li><li><strong>Purda &amp; Skillicorn (2015, Contemporary Accounting Research)</strong> — a data-driven (not predefined) word list built from MD&A text discriminates fraudulent from clean filings and, combined with accounting variables, materially cuts false positives versus accounting ratios alone — again a complement, not a replacement.</li><li><strong>Readability/crash-risk studies (Contemporary Accounting Research; ScienceDirect)</strong> — less readable (more complex/obfuscated) 10-Ks are associated with higher subsequent stock-price crash risk; a causal study of the 2010 Plain Writing Act found that when readability was forced to improve, crash risk fell. Textual obfuscation was found to matter more than earnings management for crash risk in the post-SOX period.</li><li><strong>A 2026 bankruptcy-prediction study (arXiv 2606.05623)</strong> — adding Loughran-McDonald negative/uncertainty language to an accounting-ratio baseline raised out-of-sample AUC from 0.832 to 0.860; adding a further 'stress score' text measure raised it to 0.902 — a real, but incremental, 3-7 point AUC lift on top of financial variables, not a stand-alone discriminator.</li></ul><p>Net effect-size takeaway from the literature: tone/readability measures are statistically significant and directionally correct predictors of bad outcomes, but they explain a modest slice of the variance and are consistently used as an <em>addition</em> to financial-statement-based models, never as the primary signal.</p>
+</section>
+<section>
+<h2>Case study 1 — Boeing's 737 MAX quality crisis (2024)</h2>
+<p>Boeing's Alaska Airlines door-plug blowout (Jan 5, 2024) triggered an FAA production cap, a leadership change, and an ongoing DOJ prosecution threat through 2024. Pulling every 10-Q Item 2 (MD&amp;A) paragraph from <code>sec.mda_sections</code> for Boeing (CIK 0000012927) and counting occurrences of a Loughran-McDonald-style stem list (loss/decline/weak/adverse/negative/impairment/restructuring/challenge/uncertainty/failure/deteriorate/litigation/investigation/fraud/default/bankrupt/volatile/concern/shortfall/miss) as a share of total MD&amp;A words:</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><table border='1' cellpadding='4' style='border-collapse:collapse'><tr><th><label class="srth" for="s3-t1-s1">Filing (10-Q)<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Negative-word share<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s3">Share price at filing<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>2024-04-24 (Q1)</td><td>0.370%</td><td>$164.33</td></tr><tr><td>2024-07-31 (Q2)</td><td>0.402% (+8.6%)</td><td>$190.60</td></tr><tr><td>2024-10-23 (Q3)</td><td>0.448% (+11.5%)</td><td>$157.06</td></tr><tr><td>2025-04-23 (Q1 '25)</td><td>0.359% (-19.9%)</td><td>$172.37</td></tr><tr><td>2025-07-29 (Q2 '25)</td><td>0.350% (-2.5%)</td><td>$226.08</td></tr><tr><td>2025-10-29 (Q3 '25)</td><td>0.455% (+29.9%)</td><td>$213.58</td></tr></tbody><tbody class="srt s1"><tr><td>2024-04-24 (Q1)</td><td>0.370%</td><td>$164.33</td></tr><tr><td>2024-07-31 (Q2)</td><td>0.402% (+8.6%)</td><td>$190.60</td></tr><tr><td>2024-10-23 (Q3)</td><td>0.448% (+11.5%)</td><td>$157.06</td></tr><tr><td>2025-04-23 (Q1 '25)</td><td>0.359% (-19.9%)</td><td>$172.37</td></tr><tr><td>2025-07-29 (Q2 '25)</td><td>0.350% (-2.5%)</td><td>$226.08</td></tr><tr><td>2025-10-29 (Q3 '25)</td><td>0.455% (+29.9%)</td><td>$213.58</td></tr></tbody><tbody class="srt s2"><tr><td>2025-07-29 (Q2 '25)</td><td>0.350% (-2.5%)</td><td>$226.08</td></tr><tr><td>2025-04-23 (Q1 '25)</td><td>0.359% (-19.9%)</td><td>$172.37</td></tr><tr><td>2024-04-24 (Q1)</td><td>0.370%</td><td>$164.33</td></tr><tr><td>2024-07-31 (Q2)</td><td>0.402% (+8.6%)</td><td>$190.60</td></tr><tr><td>2024-10-23 (Q3)</td><td>0.448% (+11.5%)</td><td>$157.06</td></tr><tr><td>2025-10-29 (Q3 '25)</td><td>0.455% (+29.9%)</td><td>$213.58</td></tr></tbody><tbody class="srt s3"><tr><td>2025-07-29 (Q2 '25)</td><td>0.350% (-2.5%)</td><td>$226.08</td></tr><tr><td>2025-10-29 (Q3 '25)</td><td>0.455% (+29.9%)</td><td>$213.58</td></tr><tr><td>2024-07-31 (Q2)</td><td>0.402% (+8.6%)</td><td>$190.60</td></tr><tr><td>2025-04-23 (Q1 '25)</td><td>0.359% (-19.9%)</td><td>$172.37</td></tr><tr><td>2024-04-24 (Q1)</td><td>0.370%</td><td>$164.33</td></tr><tr><td>2024-10-23 (Q3)</td><td>0.448% (+11.5%)</td><td>$157.06</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Two things stand out. First, the size: even at its peak the negative-word share moved by well under half a percentage point of total MD&amp;A words — a large relative swing (~21% cumulative rise across the three 2024 quarters) riding on a tiny base. Second, the timing: Boeing's stock had already fallen from $244.94 (Jan 4, pre-incident) to $164.33 by the time the Q1 10-Q was filed on April 24 — a 33% drop that preceded any measurable rise in the filing's own negative language. The MD&amp;A ratchet upward through 2024 reads as the company formally catching its risk disclosures up to a crisis the market had already priced, not as an early warning the market missed.</p>
+</section>
+<section>
+<h2>Case study 2 — Super Micro Computer's fraud allegations (2024)</h2>
+<p>Hindenburg Research's short report alleging accounting manipulation at Super Micro Computer (CIK 0001375365) broke on August 27, 2024; the company then missed its 10-K deadline, its auditor (Ernst &amp; Young) resigned on October 30, and a special committee review delayed the FY2024 10-K until it was finally filed alongside two quarters of 10-Qs on February 25, 2025. Comparing the last 'clean' pre-crisis 10-Q MD&amp;A (filed 2024-05-06) to the delayed FY2024 10-K MD&amp;A (filed 2025-02-25, by which point the scandal, auditor resignation and special-committee findings were all known):</p><ul><li>Pre-crisis negative-word share: 0.413% (26 hits / 6,294 words); stock at $83.04.</li><li>Post-scandal negative-word share: 0.504% (44 hits / 8,727 words), a +22% relative rise; stock at $45.54 — already down 45% from the pre-crisis level, and the stock had troughed even lower (~$27.70 on Nov 5, 2024, a 67% peak-to-trough decline) months <em>before</em> this catch-up filing was even submitted.</li></ul><p>Because the bad news arrived via an external short-seller report rather than a gradual internal deterioration, there was no real 'run-up' in the company's own language to observe — the tone shift shows up only in the delayed filing that followed the scandal, not ahead of it. This is a structural limit on how useful filing tone can be as an early-warning tool for fraud allegations specifically: management's own disclosure language cannot warn of a surprise external allegation before it happens.</p>
+</section>
+<section>
+<h2>What we could not test, and why (data-coverage and methodology notes)</h2>
+<p>Honesty about the corpus limits matters here. <code>sec.mda_sections</code>, the table holding MD&amp;A text, declares coverage back to 2010 but a coverage scan (<code>data_coverage</code>) shows it is actually populated only for 2023-2026 (rows_by_year: 2023=11, 2024=1.73M, 2025=1.80M, 2026=1.29M) — the years 2010-2022 hold no rows. That ruled out testing the classic historical cases that motivated this question (Wells Fargo's 2016 fake-accounts scandal, Valeant's 2015-16 collapse, GE's 2018 accounting concerns, Kraft Heinz's 2019 writedown, Under Armour's 2019 SEC probe) directly against this corpus's own filing text, so the two case studies above are drawn from 2024 events instead, which is what the loaded data actually supports.</p><p>A second, larger-N attempt was made: build a cross-sectional panel of the ~150 companies filing 10-Qs most frequently in 2024-2025, compute the quarter-over-quarter change in negative-word share for each, and regress a forward 60-day stock return on that change. Two problems surfaced and are reported rather than papered over. First, ranking companies by 10-Q filing <em>frequency</em> surfaced mostly structured-finance/asset-backed shelf issuers filing many near-duplicate, boilerplate MD&amp;A sections per quarter (one filer had twelve virtually identical filings on a single day) rather than real operating companies with substantively differentiated disclosure — filing frequency is not a valid proxy for 'interesting company' here. Second, joining each filing to its nearest stock price via a correlated subquery inside a multi-stage CTE reliably triggered a server-side <code>ArrayIndexOutOfBoundsException</code> in the query engine, a genuine defect rather than a data gap, which blocked completing that regression at scale within this session. Given both problems, this report relies on the two hand-verified single-company case studies above plus the published academic effect sizes, rather than presenting a broken or misleading large-N regression as if it were clean.</p>
+</section>
+<section>
+<h2>Bottom line: is the change big enough to be useful?</h2>
+<p>Measured directly: no, not as a stand-alone signal, and the published literature agrees. The absolute shift in negative-word density around real bad news in this corpus was well under half a percentage point of total MD&amp;A words in both cases tested, and in the fraud case the shift only appeared <em>after</em> the news broke, not before. Academic studies with far larger panels and cleaner identification find the same shape: tone and readability measures are statistically real and directionally correct, but the incremental discriminating power they add on top of ordinary financial-statement ratios is on the order of a few points of AUC (e.g., 0.83 -&gt; 0.86 in one bankruptcy-prediction study), not a decisive signal by itself. The practical implication: filing-language tone is worth tracking as one input alongside financial red flags (earnings quality, leverage, insider selling, auditor changes) — as the fraud-detection literature already does — but treating a rise in negative words in an MD&A as an actionable early-warning trigger on its own would be over-reading a signal this small, and in the fraud case, this lagging.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Attempt a larger cross-sectional/panel test, not only single-company case studies</strong>: A 150-company panel regression of forward stock return on quarter-over-quarter tone change was attempted but abandoned: the highest-frequency 10-Q filers turned out to be structured-finance/ABS shelf issuers with near-duplicate boilerplate MD&amp;A rather than representative operating companies, and joining filings to nearest stock price via a correlated subquery inside a multi-stage CTE reliably triggered a server-side ArrayIndexOutOfBoundsException in the query engine. Both are reported in the delivered report rather than presenting a broken regression as clean.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1540-6261.2010.01625.x">Loughran &amp; McDonald (2011), 'When Is a Liability Not a Liability? Textual Analysis, Dictionaries, and 10-Ks', Journal of Finance</a></li>
+<li><a href="https://www.semanticscholar.org/paper/Can-Fraudulent-Cues-Be-Transmitted-by-Innocent-Murphy-Purda/7f244e2b43ef1916458952bf8678d774ac9f353e">Larcker &amp; Zakolyukina / Purda-Skillicorn related coverage of tone and restatement/fraud</a></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1911-3846.12089">Purda &amp; Skillicorn (2015), 'Accounting Variables, Deception, and a Bag of Words: Assessing the Tools of Fraud Detection', Contemporary Accounting Research</a></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1911-3846.12452">Kim et al., 'Readability of 10-K Reports and Stock Price Crash Risk', Contemporary Accounting Research</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S0165176522001872">'The causal effect of improved readability of financial reporting on stock price crash risk: Evidence from the Plain Writing Act of 2010'</a></li>
+<li><a href="https://arxiv.org/pdf/2606.05623">'Bankruptcy Prediction from 10-K Narratives: Evidence from Interpretable Text Scores and Accounting Baselines' (AUC lift from LM negative/uncertainty language)</a></li>
+<li>Boeing MD&amp;A negative-word density, computed from sec.mda_sections (CIK 0000012927)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH agg AS (SELECT cik, accession_number, filing_date, string_agg(paragraph_text,' ') AS full_text FROM sec.mda_sections WHERE cik='0000012927' AND section='Item 2' GROUP BY cik, accession_number, filing_date) SELECT cik, accession_number, filing_date, length(full_text)-length(replace(full_text,' ',''))+1 AS word_count, length(regexp_replace(full_text,'(losses?|declin[a-z]*|weak[a-z]*|advers[a-z]*|negativ[a-z]*|impairment[a-z]*|writedown[a-z]*|restructur[a-z]*|challeng[a-z]*|uncertaint[a-z]*|failur[a-z]*|fail[a-z]*|deteriorat[a-z]*|litigation[a-z]*|investigation[a-z]*|subpoena[a-z]*|fraud[a-z]*|misstatement[a-z]*|restate[a-z]*|default[a-z]*|bankrupt[a-z]*|volatil[a-z]*|concern[a-z]*|shortfall[a-z]*|missed)','|','gi')) - length(replace(regexp_replace(full_text,'(losses?|declin[a-z]*|weak[a-z]*|advers[a-z]*|negativ[a-z]*|impairment[a-z]*|writedown[a-z]*|restructur[a-z]*|challeng[a-z]*|uncertaint[a-z]*|failur[a-z]*|fail[a-z]*|deteriorat[a-z]*|litigation[a-z]*|investigation[a-z]*|subpoena[a-z]*|fraud[a-z]*|misstatement[a-z]*|restate[a-z]*|default[a-z]*|bankrupt[a-z]*|volatil[a-z]*|concern[a-z]*|shortfall[a-z]*|missed)','|','gi'),'|','')) AS neg_hits FROM agg ORDER BY filing_date</code></pre></details></li>
+<li>Super Micro Computer MD&amp;A negative-word density, computed from sec.mda_sections (CIK 0001375365)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH agg AS (SELECT cik, accession_number, filing_date, string_agg(paragraph_text,' ') AS full_text FROM sec.mda_sections WHERE cik='0001375365' AND section='Item 2' GROUP BY cik, accession_number, filing_date) SELECT cik, accession_number, filing_date, length(full_text)-length(replace(full_text,' ',''))+1 AS word_count, length(regexp_replace(full_text,'(losses?|declin[a-z]*|weak[a-z]*|advers[a-z]*|negativ[a-z]*|impairment[a-z]*|writedown[a-z]*|restructur[a-z]*|challeng[a-z]*|uncertaint[a-z]*|failur[a-z]*|fail[a-z]*|deteriorat[a-z]*|litigation[a-z]*|investigation[a-z]*|subpoena[a-z]*|fraud[a-z]*|misstatement[a-z]*|restate[a-z]*|default[a-z]*|bankrupt[a-z]*|volatil[a-z]*|concern[a-z]*|shortfall[a-z]*|missed)','|','gi')) - length(replace(regexp_replace(full_text,'(losses?|declin[a-z]*|weak[a-z]*|advers[a-z]*|negativ[a-z]*|impairment[a-z]*|writedown[a-z]*|restructur[a-z]*|challeng[a-z]*|uncertaint[a-z]*|failur[a-z]*|fail[a-z]*|deteriorat[a-z]*|litigation[a-z]*|investigation[a-z]*|subpoena[a-z]*|fraud[a-z]*|misstatement[a-z]*|restate[a-z]*|default[a-z]*|bankrupt[a-z]*|volatil[a-z]*|concern[a-z]*|shortfall[a-z]*|missed)','|','gi'),'|','')) AS neg_hits FROM agg ORDER BY filing_date</code></pre></details></li>
+<li>Boeing (BA.US) and Super Micro Computer (SMCI.US) adjusted close prices<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT ticker, &quot;date&quot;, adjusted_close FROM sec.stock_prices WHERE ticker IN ('BA.US','SMCI.US') AND &quot;date&quot; IN ('2024-01-04','2024-04-24','2024-05-06','2024-07-31','2024-08-27','2024-10-23','2024-10-31','2025-02-03','2025-02-25','2025-04-23','2025-07-29','2025-10-29')</code></pre></details></li>
+<li>sec.mda_sections declared vs. observed coverage (2023-2026 loaded, 2010-2022 empty)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>data_coverage(schema=&quot;sec&quot;, table=&quot;mda_sections&quot;)</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Negative-word density is a regex proxy over Loughran-McDonald-style stems, not the full LM Master Dictionary; treat magnitudes as directional, not exact replications of published LM scores. sec.mda_sections is loaded for 2023-2026 only, so pre-2023 bad-news episodes could not be tested from this corpus.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-04</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

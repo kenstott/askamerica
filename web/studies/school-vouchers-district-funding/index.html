@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>There is no single dollar figure — the honest answer depends on which &quot;loss&quot; you mean, and a state-level analysis finds no statistically detectable effect</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>There is no single dollar figure — the honest answer depends on which &quot;loss&quot; you mean, and a state-level analysis finds no statistically detectable effect</h1>
+<p class="subtitle">Census Bureau F-33 district finance data (2016, 2023, 2024) plus a literature review of district-level fiscal-externality research</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 805" width="880" height="805" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="805" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">State-level per-pupil public school funding: voucher-adopting vs. other states, 2016-2024</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">Census F-33 district finance (2016, 2023, 2024, real 2024$); EPI fiscal-externality tool for the district-level mechanism</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="162" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="198" fill="#6b7280">State-level diff-in-diff effect (11 voucher-adopting states vs. 39 others)</text>
+  <text class="stat-value" x="36" y="228" fill="#1f2328">-$702 per pupil</text>
+  <text class="stat-delta" x="36" y="248" fill="#6b7280">not significant, p=0.72</text>
+  </g>
+  <text class="caption" x="24" y="363" fill="#6b7280">95% CI roughly -$4,486 to +$3,083; robust to leave-one-state-out (no</text>
+  <text class="caption" x="24" y="376" fill="#6b7280">sign flip)</text>
+  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Real per-pupil current expenditure, group averages</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="84" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="76" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="76" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5,000</text>
+      <line class="grid" x1="84" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="76" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+      <line class="grid" x1="84" y1="86" x2="390" y2="86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="76" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="176" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-x-axis-title" class="axis-title" x="237" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 116)">2024$ per pupil</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-2016" class="tick" x="135" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2016</text>
+      <text id="p2-xtick-2023" class="tick" x="237" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p2-xtick-2024" class="tick" x="339" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+    </g>
+    <g id="p2-series-voucher-adopting-states-n-11" class="series">
+      <path id="p2-line-voucher-adopting-states-n-11" class="line" d="M 135 96.72 L 237 91.39 L 339 88.37" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p2-mark-voucher-adopting-states-n-11-2016" class="point" cx="135" cy="96.72" r="3" fill="#2563eb"/>
+      <circle id="p2-mark-voucher-adopting-states-n-11-2023" class="point" cx="237" cy="91.39" r="3" fill="#2563eb"/>
+      <circle id="p2-mark-voucher-adopting-states-n-11-2024" class="point" cx="339" cy="88.37" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p2-series-other-states-n-39" class="series">
+      <path id="p2-line-other-states-n-39" class="line" d="M 135 78.03 L 237 68.82 L 339 65.13" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p2-mark-other-states-n-39-2016" class="point" cx="135" cy="78.03" r="3" fill="#ea580c"/>
+      <circle id="p2-mark-other-states-n-39-2023" class="point" cx="237" cy="68.82" r="3" fill="#ea580c"/>
+      <circle id="p2-mark-other-states-n-39-2024" class="point" cx="339" cy="65.13" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p2-legend">
+      <rect id="p2-legend-swatch-voucher-adopting-states-n-11" x="41" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p2-legend-label-voucher-adopting-states-n-11" class="legend-label" x="57" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Voucher-adopting states (n=11)</text>
+      <rect id="p2-legend-swatch-other-states-n-39" x="248" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p2-legend-label-other-states-n-39" class="legend-label" x="264" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Other states (n=39)</text>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="363" fill="#6b7280">Both groups' real per-pupil spending rose ~10-11% 2016-2024, mostly</text>
+  <text class="caption" x="452" y="376" fill="#6b7280">ESSER/COVID-era funds and enrollment declines</text>
+  <rect class="panel-edge" x="20" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">District-level fiscal externality: Cleveland OH, 5% enrollment decline</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="77" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="69" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="69" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="77" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="69" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="77" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="69" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+      <line class="grid" x1="77" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="69" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="233.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Cost assumption</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">$ per remaining pupil</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-low-high-fixed-cost-share" class="tick" x="155.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Low (high fixed-cost share)</text>
+      <text id="p3-xtick-high-low-fixed-cost-share" class="tick" x="311.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">High (low fixed-cost share)</text>
+    </g>
+    <g id="p3-series-per-pupil-loss" class="series">
+      <rect id="p3-mark-per-pupil-loss-low-high-fixed-cost-share" class="bar" x="105.17" y="147.58" width="99.16" height="52.42" fill="#2563eb"/>
+      <rect id="p3-mark-per-pupil-loss-high-low-fixed-cost-share" class="bar" x="261.67" y="66.51" width="99.16" height="133.49" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="679" fill="#6b7280">EPI/Wething 2025 fiscal-externality estimate; districtwide loss</text>
+  <text class="caption" x="24" y="692" fill="#6b7280">$12M-$31M/yr</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="478" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="514" fill="#6b7280">Arizona universal ESA cost, funded from the same formula as public schools</text>
+  <text class="stat-value" x="464" y="544" fill="#1f2328">$708.5M (FY2023-24)</text>
+  <text class="stat-delta" x="464" y="564" fill="#059669">+211% vs FY2021-22 targeted-only program</text>
+  </g>
+  <text class="caption" x="452" y="679" fill="#6b7280">8.8% of the $6.7B Basic Student Aid formula in FY2022-23 (Learning</text>
+  <text class="caption" x="452" y="692" fill="#6b7280">Policy Institute, Feb 2024)</text>
+  <text class="footnote" x="20" y="724" fill="#6b7280">State-aggregate DiD (Census F-33, own analysis) finds no statistically significant state-level funding loss; district-level fiscal-externality</text>
+  <text class="footnote" x="20" y="738" fill="#6b7280">studies (EPI) find real per-remaining-pupil losses in high-voucher-uptake districts. The two are compatible: state totals include ESSER inflows</text>
+  <text class="footnote" x="20" y="752" fill="#6b7280">and non-voucher-affected districts that dilute a localized effect.</text>
+  <g id="brand">
+  <svg x="20" y="764" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="779" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:62638/a/8c0df9c620a976c4605d603150153da6.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>There is no single agreed-upon dollar figure for how much per-pupil funding public schools lose when a state starts a voucher program, because the honest answer depends entirely on what is being measured. Running our own state-level analysis of Census Bureau district finance data (11 states that adopted broad or universal voucher/ESA programs since 2016, versus 39 states that did not), we find <strong>no statistically significant difference</strong> in real per-pupil public school spending growth between the two groups: -$702 per pupil (95% CI roughly -$4,486 to +$3,083, p=0.72), robust to dropping any single state. Both groups of states saw real per-pupil spending rise by roughly 10-11% from 2016 to 2023-24, driven mainly by pandemic-era federal relief funds (ESSER) and enrollment declines that mechanically raise the funding-per-remaining-pupil ratio. That state-aggregate null does <em>not</em> settle the narrower, better-identified question researchers actually study: when a voucher pulls a student out of a <em>specific</em> district, that district loses per-pupil state aid while many costs (buildings, existing staff contracts, debt service) cannot shrink proportionally. The Economic Policy Institute's district-level "fiscal externality" modeling puts that loss, for a district like Cleveland OH seeing a 5% enrollment decline to vouchers, at $364-$927 per remaining pupil (EPI/Wething 2025). In Arizona, the state's universal Empowerment Scholarship Account program cost the state's Basic Student Aid formula — the same formula that funds public schools — $587.5 million in FY2022-23 (a 211% jump from the narrower pre-universal program) and at least $708.5 million in FY2023-24, competing directly for the same dollars unless the legislature backfills it (Learning Policy Institute, Feb 2024). Pro-voucher researchers (EdChoice) argue the opposite framing is also valid: because districts keep federal and local funds that are not enrollment-linked, remaining students' PER-PUPIL funding can rise even as total district revenue falls, and taxpayers can come out ahead if enough voucher users are genuine switchers from public schools with average variable costs above the voucher amount.</p>
+</section>
+<section>
+<h2>What we found in the data: a state-level test</h2>
+<p>We built a 51-jurisdiction (50 states, DC excluded) panel of enrollment-weighted, inflation-adjusted (2024$) per-pupil <em>current expenditure</em> from the Census Bureau's Annual Survey of School System Finances (F-33), the only years actually loaded in this warehouse being 2016, 2023, and 2024 (2017-2022 are not loaded — a real gap in this connector's F-33 table, not a true reporting gap in the underlying Census series). We classified 11 states as having adopted a new or dramatically expanded broad-eligibility voucher/ESA program since 2016 and reaching meaningful scale by FY2023-24: Arizona (universal ESA, 2022), Arkansas (LEARNS Act ESA, 2023), Florida (HB1 universal, 2023), Indiana (income cap raised to ~universal, 2023), Iowa (universal ESA, 2023), New Hampshire (Education Freedom Account, 2021), Ohio (EdChoice Expansion, near-universal 2023), Oklahoma (refundable Parental Choice Tax Credit, 2023), South Carolina (Education Scholarship Trust Fund, 2023), Utah (Utah Fits All, 2023), and West Virginia (Hope Scholarship, first cohort 2022). The remaining 39 states (and DC, excluded as an outlier city government) served as the comparison group.</p><p>Using 2016 as the pre-period and 2023/2024 pooled as the post-period, a difference-in-differences regression found a treatment×post coefficient of -$701.54 (SE $1,925.90, t=-0.36, p=0.72) — not distinguishable from zero. A leave-one-state-out sensitivity check confirmed the null is not being driven by any single state: the coefficient ranged only from -$858 to -$567 across all 50 single-state exclusions, with no sign flip and no crossing of statistical significance.</p><p>This is a genuinely weak research design and we say so plainly: with only 3 loaded years (one pre-period, two post), staggered and heterogeneous treatment timing collapsed into a single binary, and a state grain that averages away everything happening inside individual districts, this design cannot rule out a real effect — it can only say that at the scale of a whole state's public education budget, over this specific and unusually noisy window (COVID relief funds and enrollment shocks affected every state), no state-level signal is visible above the noise.</p>
+</section>
+<section>
+<h2>Why the state-level null and the district-level literature both make sense</h2>
+<p>Three real-world facts reconcile the null result with the documented harm literature. First, ESSER federal COVID relief funds (roughly $190 billion nationally, distributed 2020-2024) pushed per-pupil spending up sharply in every state regardless of voucher policy, which is exactly the confound the diff-in-differences design is built to net out via the common "post" trend — but it means the 2016-2024 window is a poor one for isolating a voucher effect, because state legislatures used unusually large budget surpluses in 2021-2023 to fund both traditional school formula increases and new voucher programs simultaneously, rather than funding one by cutting the other. Second, university- and think-tank-level fiscal-externality research (EPI, and the Century Foundation-linked school finance literature Bruce Baker has built) is explicitly a <em>district-level, marginal</em> calculation: it isolates what happens to a specific district's per-remaining-pupil budget when enrollment falls, holding fixed costs fixed — a mechanism a state-wide total, which pools voucher-heavy and voucher-untouched districts together, will always dilute. Third, most universal/near-universal programs only reached real financial scale in the single most recent fiscal year available in this dataset (FY2023-24), so the fiscal drag on public districts, if any, may not yet be fully visible in any dataset with a 1-2 year publication lag.</p>
+</section>
+<section>
+<h2>The best concrete numbers in the literature</h2>
+<p><strong>District-level fiscal externality (EPI, 2025):</strong> Hilary Wething's Economic Policy Institute report and its accompanying calculator estimate that for Cleveland Metropolitan School District, a 5% enrollment decline attributable to vouchers translates into $364 to $927 per remaining pupil in lost education spending (the range reflects different assumptions about what share of district costs are truly fixed vs. variable), or $12 million to $31 million per year district-wide. This concept — the "fiscal externality" — is specifically the dollar cost imposed on students who stay in public school when fixed costs can't be reduced in proportion to the students who leave.</p><p><strong>Arizona (Learning Policy Institute, Feb 2024, read directly from the primary report):</strong> Arizona's ESA program grew from 12,127 to 61,689 students (+409%) between 2021-22 and 2022-23 when it went universal; total program cost rose from roughly $188.8 million to $587.5 million (+211%), equal to 8.8% of the state's $6.7 billion Basic Student Aid formula that year. By FY2023-24, cost reached at least $708.5 million. Because ESA costs are paid out of the same Basic Student Aid formula that funds district and charter schools, LPI's authors conclude the increased ESA cost "will compete with public school funding unless the legislature increases the funding level sufficiently to account for the cost of the new students being covered."</p><p><strong>Tennessee (Chalkbeat, Aug 2025, read directly):</strong> for the 2025-26 school year, Tennessee's state education funding formula (TISA) allocates $7,023 in state per-pupil funding to public school students versus $7,295 to the new Education Freedom Scholarship voucher program — the voucher amount is fully state-funded, while the public-school figure is topped up by local and federal funds to an average of $9,810 total. Critics (Tennessee Education Association) call this a funding-priority disparity; the state's rebuttal is that total public per-pupil funding (including local/federal) remains higher.</p><p><strong>The counter-argument (EdChoice, 2016 methodology piece, read directly):</strong> Martin Lueken's widely cited framework argues that because public school districts retain federal and local funds that are not enrollment-linked, and can reduce short-run <em>variable</em> costs (not fixed costs) as enrollment falls, remaining students' PER-PUPIL funding can actually rise even as a district's total revenue declines. Applying this to Indiana's 2015-16 voucher program (the largest at the time), EdChoice calculated a net fiscal SAVING of about $27.8 million statewide ($850 per voucher user), because 78.6% of voucher users were estimated to be genuine switchers from public schools and the average voucher ($4,122) was well below the estimated average variable cost of educating a public school student ($6,329). The key empirical fork between the two camps is the share of voucher recipients who are true switchers from public school (raising the marginal fiscal saving) versus students who were already privately schooled or homeschooled (a pure new cost with no offsetting public-school saving) — and Arizona's own data shows that fork matters enormously: LPI found 71.2% of Arizona's new Universal ESA enrollees in 2022-23 had NOT previously attended public school, meaning most of that state's $587.5 million in new cost was new spending, not a substitution that freed up variable costs from departing public-school students.</p>
+</section>
+<section>
+<h2>Bottom line</h2>
+<p>If the question is "does a state's total public-school budget shrink, in dollars per pupil, in the first two-to-three years after adopting a voucher program" — our own analysis of Census F-33 data across 11 recent voucher-adopting states found no statistically detectable effect, likely because COVID relief funds and simultaneous state budget surpluses masked any effect over this window. If the question is "do individual public school districts with meaningful voucher uptake lose real dollars per remaining student because fixed costs can't shrink as fast as enrollment-linked revenue" — the peer-reviewed and think-tank fiscal-externality literature answers yes, with EPI's Cleveland case study putting that loss at roughly $364-$927 per remaining pupil for a 5% enrollment decline. And if the question is "does a voucher program's own cost compete directly with the public-school funding formula" — Arizona's experience shows unambiguously yes in dollar terms ($587.5M, then $708.5M, drawn from the same Basic Student Aid formula), though whether that produces a net loss to public-school students depends on whether the legislature backfills the formula, which Arizona's own analysts note it must do "sufficiently" to avoid a shortfall.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.census.gov/programs-surveys/school-finances.html">Census Bureau F-33 Annual Survey of School System Finances, state-aggregated per-pupil current expenditure, 2016/2023/2024</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH base AS (SELECT &quot;year&quot;, LEFT(county_fips,2) AS st_fips, SUM(enrollment) AS enroll, SUM(current_expenditure_thousand)*1000.0 AS cur_exp FROM edu.f33_district_finance WHERE enrollment &gt; 0 AND current_expenditure_thousand &gt; 0 AND county_fips IS NOT NULL GROUP BY &quot;year&quot;, LEFT(county_fips,2)) SELECT b.&quot;year&quot;, s.state_abbr, b.cur_exp/b.enroll AS pp_nominal FROM base b JOIN geo.state_ref s ON s.state_fips = b.st_fips WHERE s.state_abbr &lt;&gt; 'DC' ORDER BY s.state_abbr, b.&quot;year&quot;</code></pre></details></li>
+<li>Diff-in-differences: real per-pupil expenditure, voucher-adopting vs. other states, 2016 vs 2023-24<details class="sqltoggle"><summary>Show tool call</summary><pre><code>diff_in_diff(outcome=&quot;pp_real&quot;, treatment=&quot;treated&quot;, post=&quot;post&quot;)</code></pre></details></li>
+<li>Leave-one-state-out sensitivity check on the diff-in-diff estimate<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(outcome=&quot;pp_real&quot;, predictors=[&quot;treated&quot;,&quot;post&quot;,&quot;treated_post&quot;], group_col=&quot;state_abbr&quot;, term=&quot;treated_post&quot;)</code></pre></details></li>
+<li>BLS CPI-U deflator used to express all years in 2024 dollars<details class="sqltoggle"><summary>Show tool call</summary><pre><code>adjust_inflation(base_year=2024)</code></pre></details></li>
+<li><a href="https://www.epi.org/publication/vouchers-harm-public-schools/">How vouchers harm public schools: Calculating the cost of voucher programs to public school districts (EPI/Wething, 2025)</a> <span class="note">— fetch blocked (HTTP 403); figures taken from the AFT Summer 2025 reprint, read directly</span></li>
+<li><a href="https://www.aft.org/ae/summer2025/wething">The Hidden Costs of Vouchers Programs (Hilary Wething, American Educator / AFT, Summer 2025)</a> <span class="note">— read directly; Cleveland $364-$927/pupil, $12M-$31M/yr figures</span></li>
+<li><a href="https://learningpolicyinstitute.org/product/understanding-cost-universal-vouchers-report">Understanding the Cost of Universal School Vouchers: An Analysis of Arizona's ESA Program (Griffith &amp; Burns, Learning Policy Institute, Feb 2024)</a> <span class="note">— read directly</span></li>
+<li><a href="https://www.chalkbeat.org/tennessee/2025/08/19/voucher-amoung-public-school-funding-formula-tisa/">Tennessee to give more average per-pupil funding to voucher participants than public school students (Chalkbeat Tennessee, Aug 19 2025)</a> <span class="note">— read directly</span></li>
+<li><a href="https://www.edchoice.org/how-to-accurately-calculate-the-fiscal-impact-of-school-voucher-programs/">How to Accurately Calculate the Fiscal Impact of School Voucher Programs (Martin Lueken, EdChoice, Sept 2016)</a> <span class="note">— read directly</span></li>
+<li><a href="https://www.yourvalley.net/scottsdale-independent/stories/1-billion-in-voucher-spending-raises-new-budget-pressures-for-arizona-schools,645119">$1 Billion in voucher spending raises new budget pressures for Arizona schools (Scottsdale/Daily Independent)</a></li>
+<li><a href="https://www.future-ed.org/early-returns-first-results-from-the-new-wave-of-public-funding-of-private-schooling/">Early Returns: First Results from the New Wave of Public Funding of Private Schooling (FutureEd, Oct 2024)</a></li>
+<li><a href="https://ballotpedia.org/States_with_and_without_universal_school_choice_programs">States with and without universal school choice programs (Ballotpedia)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Census F-33 table in this connector loads only 2016, 2023, and 2024 (2017-2022 not ingested) — a real gap that limits how many voucher-adoption years can be tested and rules out a proper pre-trend/parallel-trends check. CBPP's research page and blog post on this topic returned HTTP 403 to our fetcher and were not read directly; any CBPP claims are omitted rather than reported second-hand.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-03</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

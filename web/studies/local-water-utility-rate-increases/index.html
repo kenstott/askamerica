@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U.S. water and sewer bills have risen about 25-50% over five to ten years, and the rate of increase varies nearly as much between communities as the bills themselves</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>U.S. water and sewer bills have risen about 25-50% over five to ten years, and the rate of increase varies nearly as much between communities as the bills themselves</h1>
+<p class="subtitle">BLS CPI (national) and Bluefield Research's 50-city household bill survey, cross-checked against each other, 2016-2026</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 947" width="880" height="947" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="947" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">U.S. Water and Sewer Rates: Rising Faster Than Inflation, Varying Sharply by City</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">BLS CPI water/sewer/trash index (national) and Bluefield Research 50-city household bill survey, 2016-2026</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">10-yr national CPI rise (water/sewer/trash)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">+48.8%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">vs +37.3% all-items CPI</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Jan 2016 to Jan 2026, BLS CUUR0000SEHG</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">5-yr household bill rise (50 cities)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">+24.2%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">2025 YoY +5.1%, a 5-yr high</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Bluefield Research, 50 largest U.S. cities, 2020-2025</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">BLS CPI Index: Water/Sewer/Trash vs All-Items (Jan values)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="163.84" x2="390" y2="163.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="167.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="148.43" x2="390" y2="148.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="152.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="67" y1="133.03" x2="390" y2="133.03" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="137.03" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="117.62" x2="390" y2="117.62" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="121.62" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150</text>
+      <line class="grid" x1="67" y1="102.22" x2="390" y2="102.22" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="106.22" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="86.81" x2="390" y2="86.81" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="90.81" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">250</text>
+      <line class="grid" x1="67" y1="71.41" x2="390" y2="71.41" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="59" y="75.41" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">350</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="163.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="163.84" x2="390" y2="163.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="109.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 109.92)">CPI Index</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2016" class="tick" x="81.68" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 81.68 177.84)">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="111.05" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 111.05 177.84)">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="140.41" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 140.41 177.84)">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="169.77" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 169.77 177.84)">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="199.14" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 199.14 177.84)">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="228.50" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 177.84)">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="257.86" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 257.86 177.84)">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="287.23" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 287.23 177.84)">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="316.59" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 316.59 177.84)">2024</text>
+      <text id="p3-xtick-2025" class="tick" x="345.95" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 345.95 177.84)">2025</text>
+      <text id="p3-xtick-2026" class="tick" x="375.32" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 375.32 177.84)">2026</text>
+    </g>
+    <g id="p3-series-water-sewer-trash-cpi" class="series">
+      <path id="p3-line-water-sewer-trash-cpi" class="line" d="M 81.68 96.56 L 111.05 94.08 L 140.41 92.06 L 169.77 89.40 L 199.14 87.17 L 228.50 84.43 L 257.86 81.23 L 287.23 77.12 L 316.59 72.31 L 345.95 68.25 L 375.32 63.73" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2016" class="point" cx="81.68" cy="96.56" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2017" class="point" cx="111.05" cy="94.08" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2018" class="point" cx="140.41" cy="92.06" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2019" class="point" cx="169.77" cy="89.40" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2020" class="point" cx="199.14" cy="87.17" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2021" class="point" cx="228.50" cy="84.43" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2022" class="point" cx="257.86" cy="81.23" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2023" class="point" cx="287.23" cy="77.12" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2024" class="point" cx="316.59" cy="72.31" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2025" class="point" cx="345.95" cy="68.25" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-water-sewer-trash-cpi-2026" class="point" cx="375.32" cy="63.73" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-all-items-cpi" class="series">
+      <path id="p3-line-all-items-cpi" class="line" d="M 81.68 90.84 L 111.05 89.02 L 140.41 87.47 L 169.77 86.28 L 199.14 84.36 L 228.50 83.24 L 257.86 77.21 L 287.23 71.66 L 316.59 68.81 L 345.95 65.96 L 375.32 63.63" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-all-items-cpi-2016" class="point" cx="81.68" cy="90.84" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2017" class="point" cx="111.05" cy="89.02" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2018" class="point" cx="140.41" cy="87.47" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2019" class="point" cx="169.77" cy="86.28" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2020" class="point" cx="199.14" cy="84.36" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2021" class="point" cx="228.50" cy="83.24" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2022" class="point" cx="257.86" cy="77.21" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2023" class="point" cx="287.23" cy="71.66" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2024" class="point" cx="316.59" cy="68.81" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2025" class="point" cx="345.95" cy="65.96" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-all-items-cpi-2026" class="point" cx="375.32" cy="63.63" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-water-sewer-trash-cpi" x="87" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-water-sewer-trash-cpi" class="legend-label" x="103" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Water/sewer/trash CPI</text>
+      <rect id="p3-legend-swatch-all-items-cpi" x="240" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-all-items-cpi" class="legend-label" x="256" y="243" fill="#1f2328" font-size="11" style="font-size:11px">All-items CPI</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Both indexed on the same base; water/sewer/trash has outpaced headline</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">inflation in 8 of the last 10 years.</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Year-over-Year % Change: Water/Sewer/Trash vs All-Items CPI</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="53" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="45" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="45" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="45" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="53" y1="86" x2="390" y2="86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="45" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="176" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="221.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 116)">% change</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-17" class="tick" x="69.85" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">17</text>
+      <text id="p4-xtick-18" class="tick" x="103.55" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">18</text>
+      <text id="p4-xtick-19" class="tick" x="137.25" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">19</text>
+      <text id="p4-xtick-20" class="tick" x="170.95" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <text id="p4-xtick-21" class="tick" x="204.65" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">21</text>
+      <text id="p4-xtick-22" class="tick" x="238.35" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">22</text>
+      <text id="p4-xtick-23" class="tick" x="272.05" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">23</text>
+      <text id="p4-xtick-24" class="tick" x="305.75" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">24</text>
+      <text id="p4-xtick-25" class="tick" x="339.45" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">25</text>
+      <text id="p4-xtick-26" class="tick" x="373.15" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">26</text>
+    </g>
+    <g id="p4-series-water-sewer-trash" class="series">
+      <rect id="p4-mark-water-sewer-trash-17" class="bar" x="59.07" y="120.50" width="9.78" height="55.50" fill="#2563eb"/>
+      <rect id="p4-mark-water-sewer-trash-18" class="bar" x="92.77" y="132.50" width="9.78" height="43.50" fill="#2563eb"/>
+      <rect id="p4-mark-water-sewer-trash-19" class="bar" x="126.47" y="120.50" width="9.78" height="55.50" fill="#2563eb"/>
+      <rect id="p4-mark-water-sewer-trash-20" class="bar" x="160.17" y="131" width="9.78" height="45" fill="#2563eb"/>
+      <rect id="p4-mark-water-sewer-trash-21" class="bar" x="193.87" y="122" width="9.78" height="54" fill="#2563eb"/>
+      <rect id="p4-mark-water-sewer-trash-22" class="bar" x="227.57" y="116" width="9.78" height="60" fill="#2563eb"/>
+      <rect id="p4-mark-water-sewer-trash-23" class="bar" x="261.27" y="101" width="9.78" height="75" fill="#2563eb"/>
+      <rect id="p4-mark-water-sewer-trash-24" class="bar" x="294.97" y="93.50" width="9.78" height="82.50" fill="#2563eb"/>
+      <rect id="p4-mark-water-sewer-trash-25" class="bar" x="328.67" y="110" width="9.78" height="66" fill="#2563eb"/>
+      <rect id="p4-mark-water-sewer-trash-26" class="bar" x="362.37" y="105.50" width="9.78" height="70.50" fill="#2563eb"/>
+    </g>
+    <g id="p4-series-all-items-cpi" class="series">
+      <rect id="p4-mark-all-items-cpi-17" class="bar" x="69.85" y="138.50" width="9.78" height="37.50" fill="#ea580c"/>
+      <rect id="p4-mark-all-items-cpi-18" class="bar" x="103.55" y="144.50" width="9.78" height="31.50" fill="#ea580c"/>
+      <rect id="p4-mark-all-items-cpi-19" class="bar" x="137.25" y="152" width="9.78" height="24" fill="#ea580c"/>
+      <rect id="p4-mark-all-items-cpi-20" class="bar" x="170.95" y="138.50" width="9.78" height="37.50" fill="#ea580c"/>
+      <rect id="p4-mark-all-items-cpi-21" class="bar" x="204.65" y="155" width="9.78" height="21" fill="#ea580c"/>
+      <rect id="p4-mark-all-items-cpi-22" class="bar" x="238.35" y="63.50" width="9.78" height="112.50" fill="#ea580c"/>
+      <rect id="p4-mark-all-items-cpi-23" class="bar" x="272.05" y="80" width="9.78" height="96" fill="#ea580c"/>
+      <rect id="p4-mark-all-items-cpi-24" class="bar" x="305.75" y="129.50" width="9.78" height="46.50" fill="#ea580c"/>
+      <rect id="p4-mark-all-items-cpi-25" class="bar" x="339.45" y="131" width="9.78" height="45" fill="#ea580c"/>
+      <rect id="p4-mark-all-items-cpi-26" class="bar" x="373.15" y="140" width="9.78" height="36" fill="#ea580c"/>
+    </g>
+    <g id="p4-legend">
+      <rect id="p4-legend-swatch-water-sewer-trash" x="97" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p4-legend-label-water-sewer-trash" class="legend-label" x="113" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Water/sewer/trash</text>
+      <rect id="p4-legend-swatch-all-items-cpi" x="230" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p4-legend-label-all-items-cpi" class="legend-label" x="246" y="243" fill="#1f2328" font-size="11" style="font-size:11px">All-items CPI</text>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Water/sewer rates rise steadily 3-5.5%/yr regardless of the broader</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">inflation cycle.</text>
+  <rect class="panel-edge" x="20" y="554" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Monthly Household Water+Sewer Bill: Range Across Cities (2024)</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="67" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="59" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="124.25" x2="390" y2="124.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="59" y="128.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="114.50" x2="390" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="59" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="104.75" x2="390" y2="104.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="59" y="108.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="59" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="85.25" x2="390" y2="85.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="59" y="89.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="75.50" x2="390" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-6" class="tick" x="59" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
+      <line class="grid" x1="67" y1="65.75" x2="390" y2="65.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-7" class="tick" x="59" y="69.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">140</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-8" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">160</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">City / Region</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">$ / month</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-phoenix-az-low" class="tick" x="99.30" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 99.30 148)">Phoenix, AZ (low)</text>
+      <text id="p5-xtick-south-region-avg" class="tick" x="163.90" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 163.90 148)">South region avg</text>
+      <text id="p5-xtick-national-avg-50-cities" class="tick" x="228.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 148)">National avg (~50 cities)</text>
+      <text id="p5-xtick-northeast-region-avg" class="tick" x="293.10" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 293.10 148)">Northeast region avg</text>
+      <text id="p5-xtick-san-francisco-ca-high" class="tick" x="357.70" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357.70 148)">San Francisco, CA (high)</text>
+    </g>
+    <g id="p5-series-monthly-bill" class="series">
+      <rect id="p5-mark-monthly-bill-phoenix-az-low" class="bar" x="78.63" y="123.39" width="40.34" height="10.61" fill="#2563eb"/>
+      <rect id="p5-mark-monthly-bill-south-region-avg" class="bar" x="143.23" y="76.37" width="40.34" height="57.63" fill="#2563eb"/>
+      <rect id="p5-mark-monthly-bill-national-avg-50-cities" class="bar" x="207.83" y="70.63" width="40.34" height="63.38" fill="#2563eb"/>
+      <rect id="p5-mark-monthly-bill-northeast-region-avg" class="bar" x="272.43" y="65.00" width="40.34" height="69.00" fill="#2563eb"/>
+      <rect id="p5-mark-monthly-bill-san-francisco-ca-high" class="bar" x="337.03" y="74.07" width="40.34" height="59.93" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="835" fill="#6b7280">Bluefield Research 2024: lowest and highest of 50 surveyed cities</text>
+  <text class="caption" x="24" y="848" fill="#6b7280">differ by nearly 6x; San Francisco figure is water-only, driving its…</text>
+  <text class="footnote" x="20" y="880" fill="#6b7280">Sources: BLS CPI series CUUR0000SEHG and CUUR0000SA0 (retrieved 2026-09-05); Bluefield Research U.S. Municipal Water &amp; Sewer Rate Index, press</text>
+  <text class="footnote" x="20" y="894" fill="#6b7280">releases 2025-02-17 and 2026-03-09.</text>
+  <g id="brand">
+  <svg x="20" y="906" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="921" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:50826/a/dc7031bb1d74bff9a64e75dfcae7bdc5.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Nationally, water and sewer bills have risen roughly <strong>25% over the past five years and about 49% over the past ten</strong>, consistently outpacing headline consumer inflation. The most recent year (2025) was the sharpest in at least five years, with combined water-and-sewer bills up 5.1% for a 50-city sample tracked by Bluefield Research, against BLS's national water/sewer/trash CPI component up roughly 4.4-4.7% year over year in 2025-2026. But the AVERAGE hides enormous variation: monthly bills across major U.S. cities range from under $22 in Phoenix to over $120 in San Francisco and Northeast metros — a roughly 5-6x spread — and even the direction of change differs: 5 of the 50 utilities Bluefield tracked in its most recent survey had flat or DECLINING rates while others posted double-digit percentage jumps driven by specific local cost shocks (e.g., Oklahoma City cited an 85% rise in electricity costs and a 155% rise in treatment-chemical costs behind its rate increase; Baltimore cited a 22% jump in treatment-chemical costs and a construction bid 14% over estimate).</p>
+</section>
+<section>
+<h2>How much rates have risen, nationally</h2>
+<p>Two independent measurements agree closely once put on a matching window, which is itself a useful check on both:</p><ul><li><strong>BLS CPI (recomputed here from the primary source):</strong> the BLS series for "Water and sewer and trash collection services, U.S. city average" (CUUR0000SEHG) rose from an index of 248.85 in January 2020 to 310.24 in January 2025 — a <strong>24.7% five-year increase</strong> — and to 324.92 by January 2026, a <strong>48.8% increase over the ten years from January 2016</strong>. Over the same ten years the headline all-items CPI (CUUR0000SA0) rose 37.3%, so water/sewer/trash costs rose about a third faster than overall prices.</li><li><strong>Bluefield Research's household-bill survey</strong> of 50 of the largest U.S. cities (about 20% of the U.S. population) reports a nearly identical <strong>24.2% cumulative five-year increase (2020-2025)</strong> in actual combined water-and-sewer bills, independently corroborating the BLS index. Within that, 2025 alone was the steepest single year in the survey's history: bills up 5.1%, with water rates (+6.0%) rising faster than wastewater/sewer rates (+4.8%).</li><li>Since 2000, Bluefield puts the cumulative rise in water/sewer/trash prices at 207%, versus 93% for overall consumer inflation over the same 25 years — a multi-decade pattern, not a recent spike.</li></ul><p>Year-over-year, the BLS series has posted 3.0-5.5% annual increases every year since at least 2016, including through periods (2020-2021) when headline inflation was much lower — utility capital and operating costs move on their own schedule, largely independent of the broader inflation cycle.</p>
+</section>
+<section>
+<h2>How much this varies between communities</h2>
+<p>The variation across communities is large on at least three distinct dimensions:</p><ul><li><strong>Bill level:</strong> In Bluefield's 2024 city survey, monthly water bills ranged from $21.76 in Phoenix, Arizona, to $122.94 in San Francisco, California — nearly a 6x spread for water charges alone. Combined water-and-sewer bills averaged $141.53/month in the Northeast versus $118.21/month in the South in 2024, a regional gap Bluefield attributes largely to the age of Northeast infrastructure (including combined sewer systems requiring costly separation/upgrades) and higher regional energy costs.</li><li><strong>Direction and pace of change:</strong> Rate changes are not uniform even within the same year. Bluefield's most recent index found 5 of the 50 tracked utilities had flat or declining rates, while others faced sharp increases tied to specific local cost shocks: Oklahoma City cited an 85% increase in electricity costs and a 155% increase in treatment-chemical costs as drivers of its upcoming rate schedule; Baltimore cited a 22% increase in water-treatment chemical costs and a wastewater construction bid 14% above estimate.</li><li><strong>System size / rural vs. urban:</strong> Outside the large-city surveys, small and rural water systems (serving under 3,300 people, roughly 81% of all U.S. public water systems) face structurally higher per-customer costs — spreading pipeline, treatment, and compliance costs over far fewer ratepayers than urban utilities do — and these systems account for a disproportionate 93% of federal drinking-water violations, which is itself a driver of future rate increases as deferred infrastructure comes due. Multiple industry sources describe small-system per-capita deferred-maintenance costs as more than double those of large urban systems.</li></ul><p>Affordability consequences follow directly from this variation: in cities such as Birmingham, Alabama, and Cleveland, Ohio, combined water-and-sewer bills already exceed the EPA's commonly cited affordability threshold of 4.5% of median household income, and Bluefield estimates that covering an average monthly water-and-sewer bill nationally now requires roughly 11.5 hours of minimum-wage labor — a burden that is far larger, proportionally, in lower-income and higher-bill communities than in others.</p>
+</section>
+<section>
+<h2>Methodology and what askamerica added</h2>
+<p>The AskAmerica connector's own government-data catalog was searched first (search_catalog, describe_table) for a water-rate or water-utility-billing table; it has none — only water quality, drinking-water system inventories (EPA SDWIS), and violation records, none of which carry price/rate data. This is a genuine coverage gap in the connector, not an oversight in the search. To answer the question, the BLS's own public CPI time series (CUUR0000SEHG for water/sewer/trash, and CUUR0000SA0 for all-items) were fetched directly and the 5-year and 10-year percentage changes were computed here (via Python) from the raw index values, rather than repeating a media-reported figure. That computed 24.7% five-year rise independently reproduces Bluefield Research's separately-collected 24.2% figure to within half a percentage point, which is a real cross-validation between two different methodologies (a national price index vs. a 50-city household-bill survey) rather than one number repeated twice.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://data.bls.gov/timeseries/CUUR0000SEHG">BLS CPI-U series CUUR0000SEHG - Water and sewer and trash collection services, U.S. city average</a> <span class="note">— Retrieved 2026-09-05; used to compute 5-yr and 10-yr % change directly from raw index values</span></li>
+<li><a href="https://data.bls.gov/timeseries/CUUR0000SA0">BLS CPI-U series CUUR0000SA0 - All items, U.S. city average</a> <span class="note">— Retrieved 2026-09-05; comparison baseline for headline inflation</span></li>
+<li><a href="https://www.bluefieldresearch.com/ns/national-water-and-sewer-bills-rise-5-1-outpacing-inflation-as-utilities-face-rising-cost-pressures/">Bluefield Research: National Water and Sewer Bills Rise 5.1%, Outpacing Inflation as Utilities Face Rising Cost Pressures</a> <span class="note">— Press release, 2026-03-09; 50-city U.S. Municipal Water &amp; Sewer Rate Index, 2020-2025</span></li>
+<li><a href="https://waterfm.com/report-u-s-water-sewer-bills-have-increased-24-in-five-years/">Water Finance &amp; Management: Report - U.S. water, sewer bills have increased 24% in five years</a> <span class="note">— 2025-02-17; summarizes Bluefield's 2024 index including city-level bill range ($21.76 Phoenix to $122.94 San Francisco) and regional averages</span></li>
+<li><a href="https://www.pew.org/en/research-and-analysis/articles/2026/05/22/states-find-innovative-ways-to-support-rural-and-small-water-systems">Pew Charitable Trusts: States Find Innovative Ways to Support Rural and Small Water Systems</a> <span class="note">— Rural/small-system cost structure and violation-rate context</span></li>
+<li><a href="https://www.waterworld.com/wastewater-treatment/article/16192858/rural-revenue-a-look-at-small-water-and-wastewater-utility-cost-challenges-and-solutions">WaterWorld: Rural Revenue - A Look at Small Water and Wastewater Utility Cost Challenges and Solutions</a> <span class="note">— Small vs. large system per-capita deferred-maintenance cost comparison</span></li>
+<li>AskAmerica connector: environment schema table search (drinking_water, drinking_water_violations, water_sites, water_quality_samples) <span class="note">— Confirms no water-rate/billing table exists in the connector's catalog; used to establish the coverage gap before turning to external sources</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>search_catalog(query='water utility rates') and describe_table calls against environment.drinking_water and environment.drinking_water_violations</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

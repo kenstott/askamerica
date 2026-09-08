@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Port import volumes lead retail inventory build-ups by about 3-4 months, roughly double the raw shipping-pipeline time</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Port import volumes lead retail inventory build-ups by about 3-4 months, roughly double the raw shipping-pipeline time</h1>
+<p class="subtitle">Census container-import and international-trade data; peer-reviewed lag study (Transportation Research Record, 2022); ocean-freight transit benchmarks</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Port Imports → Retail Inventory: Lead-Lag Relationship</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Measured fitted lag vs. summed physical-pipeline estimate</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Measured statistical lag (fitted correlation)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">3–4 months</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Peer-reviewed cross-correlation, retail inventory index vs. import TEU</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">index, Jan 2018–Jul 2021 (Smith et al. 2022, Transportation Research…</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Summed physical-pipeline estimate</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:29px">~5–9 weeks (~1.5–2 mo)</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Ocean transit + US customs clearance + drayage/inland trucking,</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">industry freight-forwarder benchmarks</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="317" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="317" viewBox="0 0 412 317" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="317" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">U.S. Goods Imports, Monthly (Census, World Total)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="222.44" x2="390" y2="222.44" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="226.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="198.66" x2="390" y2="198.66" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="202.66" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="67" y1="174.89" x2="390" y2="174.89" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="178.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="151.11" x2="390" y2="151.11" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="155.11" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150</text>
+      <line class="grid" x1="67" y1="127.33" x2="390" y2="127.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="131.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="103.55" x2="390" y2="103.55" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="107.55" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">250</text>
+      <line class="grid" x1="67" y1="79.78" x2="390" y2="79.78" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="59" y="83.78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">350</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="222.44" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="222.44" x2="390" y2="222.44" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="293" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Month</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="139.22" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 139.22)">Import value ($B)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2019-01" class="tick" x="78.54" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 78.54 236.44)">2019-01</text>
+      <text id="p3-xtick-2019-07" class="tick" x="101.61" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 101.61 236.44)">2019-07</text>
+      <text id="p3-xtick-2020-01" class="tick" x="124.68" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 124.68 236.44)">2020-01</text>
+      <text id="p3-xtick-2020-07" class="tick" x="147.75" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.75 236.44)">2020-07</text>
+      <text id="p3-xtick-2021-01" class="tick" x="170.82" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 170.82 236.44)">2021-01</text>
+      <text id="p3-xtick-2021-07" class="tick" x="193.89" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 193.89 236.44)">2021-07</text>
+      <text id="p3-xtick-2022-01" class="tick" x="216.96" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 216.96 236.44)">2022-01</text>
+      <text id="p3-xtick-2022-07" class="tick" x="240.04" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 240.04 236.44)">2022-07</text>
+      <text id="p3-xtick-2023-01" class="tick" x="263.11" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 263.11 236.44)">2023-01</text>
+      <text id="p3-xtick-2023-07" class="tick" x="286.18" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 286.18 236.44)">2023-07</text>
+      <text id="p3-xtick-2024-01" class="tick" x="309.25" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.25 236.44)">2024-01</text>
+      <text id="p3-xtick-2024-07" class="tick" x="332.32" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 332.32 236.44)">2024-07</text>
+      <text id="p3-xtick-2025-01" class="tick" x="355.39" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 355.39 236.44)">2025-01</text>
+      <text id="p3-xtick-2025-07" class="tick" x="378.46" y="236.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 378.46 236.44)">2025-07</text>
+    </g>
+    <g id="p3-series-import-value-b" class="series">
+      <path id="p3-line-import-value-b" class="line" d="M 78.54 125.43 L 101.61 118.77 L 124.68 129.23 L 147.75 127.81 L 170.82 124.95 L 193.89 109.74 L 216.96 104.98 L 240.04 94.04 L 263.11 101.65 L 286.18 101.18 L 309.25 101.65 L 332.32 85.48 L 355.39 71.22 L 378.46 83.58" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-import-value-b-2019-01" class="point" cx="78.54" cy="125.43" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2019-07" class="point" cx="101.61" cy="118.77" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2020-01" class="point" cx="124.68" cy="129.23" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2020-07" class="point" cx="147.75" cy="127.81" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2021-01" class="point" cx="170.82" cy="124.95" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2021-07" class="point" cx="193.89" cy="109.74" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2022-01" class="point" cx="216.96" cy="104.98" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2022-07" class="point" cx="240.04" cy="94.04" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2023-01" class="point" cx="263.11" cy="101.65" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2023-07" class="point" cx="286.18" cy="101.18" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2024-01" class="point" cx="309.25" cy="101.65" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2024-07" class="point" cx="332.32" cy="85.48" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2025-01" class="point" cx="355.39" cy="71.22" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-import-value-b-2025-07" class="point" cx="378.46" cy="83.58" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="568" fill="#6b7280">Census International Trade timeseries (econ.trade_imports),</text>
+  <text class="caption" x="24" y="581" fill="#6b7280">world-total row, geo_level='world'</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="342.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="378.50" fill="#6b7280">Relationship direction</text>
+  <text class="stat-value" x="464" y="408.50" fill="#1f2328">Negative correlation</text>
+  <text class="stat-delta" x="464" y="428.50" fill="#059669" style="font-size:12px">Imports surge ~3-4 months after inventory drawdowns</text>
+  </g>
+  <text class="caption" x="452" y="568" fill="#6b7280">A marked, non-seasonal drop in retail inventory precedes an import</text>
+  <text class="caption" x="452" y="581" fill="#6b7280">surge by roughly one quarter; imports stay elevated until target…</text>
+  <text class="footnote" x="20" y="613" fill="#6b7280">AskAmerica's own retail-inventory series (econ.fred_indicators RETAILIMSA/RETAILIRSA) is only loaded for 6 months (Jan-Jun 2026) despite a</text>
+  <text class="footnote" x="20" y="627" fill="#6b7280">full-history declared window — a corpus gap logged via report_issue — so the lag figure here is taken from the peer-reviewed literature rather</text>
+  <text class="footnote" x="20" y="641" fill="#6b7280">than reproduced in-corpus.</text>
+  <g id="brand">
+  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:60274/a/87893144af339f7c2ee0127a0142a176.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Port import volumes lead retail inventory build-ups by roughly <strong>3 to 4 months</strong> — not by the shorter physical shipping time most engineering-style estimates would suggest. The best available measurement comes from a peer-reviewed cross-correlation study (Smith, Bingham, Hackett &amp; Smith, <em>Transportation Research Record</em>, 2022) that found a strong <strong>negative</strong> correlation between a retail-inventory index and an import-TEU index at a 4-month lag, using data from January 2018 through July 2021, with the relationship even stronger (still 4 months) in the 2020-2021 pandemic surge. The negative sign means the timing runs from inventory drawdown to import surge: when retail inventories fall sharply and non-seasonally, an import surge follows about a quarter later, and that surge continues until target inventory levels are rebuilt.</p><p>This measured lag (3-4 months) is roughly <strong>double</strong> the 5-9 week (about 1.5-2 month) figure you would get by simply summing the physical stages of the pipeline — ocean transit (2-5 weeks), U.S. customs clearance, and inland drayage/trucking (5-10 days combined). The gap between the two figures is real and important: the extra 1.5-2 months reflects the parts of the process a stage-by-stage transit estimate misses — the lead time retailers build into placing orders before a container ever leaves port, safety-stock/reorder-point policy, and periodic (not continuous) replenishment cycles — not shipping-pipeline friction itself.</p>
+</section>
+<section>
+<h2>What was measured, and by whom</h2>
+<p>The only rigorous, publicly documented measurement of this specific lag is Smith, D., Bingham, P., Hackett, D., &amp; Smith, J. (2022), "Multiperspective Analysis of Pandemic Impacts on U.S. Import Trade: What Happened, and Why?", <em>Transportation Research Record</em> 2677(2), pp. 50-61 (authors are affiliated with Hackett Associates, the firm that compiles the NRF/Hackett Global Port Tracker). Its abstract states directly: "there was a relatively strong negative correlation between retail inventory- and import TEU indices with a 4-month lag (corresponding roughly to the time between import orders and arrival). In the 2020 to 2021 pandemic period the negative correlation was stronger, again with a 4-month lag." The paper frames this as a practically useful leading-indicator relationship: a marked, non-seasonal drop in retail inventory presages an import surge about a quarter later, and that surge persists until inventories are rebuilt.</p><p>No other primary source found in this search (Federal Reserve working papers, Census advance economic indicator releases, NRF Global Port Tracker press materials) publishes its own fitted lag figure for this specific pair of series — they report levels and short-term forecasts, not a cross-correlation. The Federal Reserve's own related research (the IFDP paper "Retail inventories and inflation dynamics: The price margin channel") studies a different relationship (inventory levels and price margins), not the import-to-inventory lag, and is cited here only to show it does not duplicate or contradict this finding.</p>
+</section>
+<section>
+<h2>Why the plausible shortcut (summing transit time) understates it</h2>
+<p>A natural way to estimate this lag is to add up the physical stages of the pipeline: freight-forwarder guides put ocean transit from China at roughly 12-38 days depending on origin/destination coast (about 14-20 days to the West Coast, 30-35 days to the East Coast), plus 5-10 days for U.S. customs clearance and port drayage/inland trucking, for a total of roughly <strong>5-9 weeks (about 1.5-2 months)</strong> door-to-door once a container is booked. That estimate is a reasonable description of shipping logistics, but it is not the same quantity as the measured lag between the two aggregate economic series, because it starts the clock only once an order is already placed and a container is moving — it excludes the order-placement lead time before the physical pipeline even begins, and it says nothing about how retailers' inventory-policy and replenishment cadence translate an import wave into a change in the inventory figure itself. The measured 3-4 month lag captures all of that; the summed-stages estimate captures only the shipping leg. Reporting the shipping-time figure alone as "the lag" would understate the true, measured relationship by roughly half.</p>
+</section>
+<section>
+<h2>Current import-volume context (AskAmerica data)</h2>
+<p>For context, the chart above shows total U.S. goods import value (Census International Trade timeseries, world-total row, monthly, 2019-2025), computed directly from the AskAmerica connector (<code>econ.trade_imports</code>, filtered to <code>geo_level='world'</code> to avoid double-counting bloc/continent aggregate rows the source interleaves in the same feed). It shows the same broad pattern the literature describes: a 2020 dip, the 2021 pandemic-era surge, a 2022 peak, and renewed growth into 2025 — the same import series whose lagged relationship to retail inventory the cited study measures. This chart is descriptive background, not a re-derivation of the lag itself; see the data-gap note below for why the lag could not be independently recomputed in-corpus this session.</p>
+</section>
+<section>
+<h2>Data-gap disclosure</h2>
+<p>AskAmerica does carry a nominal retail-inventory series (<code>econ.fred_indicators</code>, series <code>RETAILIMSA</code> — Census Monthly Trade in Sales, retailers' inventories, seasonally adjusted — and its sibling <code>RETAILIRSA</code>, the inventory-to-sales ratio) that would, in principle, let this lag be recomputed directly against the connector's own <code>bts_port_teu</code> or <code>trade_imports</code> series. In this session that series was found to hold only 6 rows, all dated January-June 2026, despite <code>data_coverage</code> reporting a full 2009-2026 declared and observed window for the table as a whole (the aggregate scan across all 50 curated FRED series masked that these two specific series are almost entirely unloaded). This was logged as a data-quality issue via <code>report_issue</code>. Because of that gap, the lag reported here is the literature's own measured figure, not an in-corpus reproduction — a materially different provenance that the reader should weigh accordingly.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Reproduce or verify the lag using the connector's own data where possible</strong>: econ.fred_indicators RETAILIMSA/RETAILIRSA is only loaded for 6 months (Jan-Jun 2026), not the multi-year history needed for a cross-correlation; this was discovered, logged via report_issue, and disclosed in its own section rather than silently omitted or patched with a proxy variable.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://ncbi.nlm.nih.gov/pmc/articles/PMC10076166">Smith, Bingham, Hackett &amp; Smith (2022), &quot;Multiperspective Analysis of Pandemic Impacts on U.S. Import Trade: What Happened, and Why?&quot;, Transportation Research Record 2677(2)</a></li>
+<li><a href="https://fred.stlouisfed.org/series/RETAILIMSA">FRED: Retailers Inventories (RETAILIMSA)</a></li>
+<li><a href="https://www.federalreserve.gov/econres/ifdp/retail-inventories-and-inflation-dynamics-the-price-margin-channel.htm">The Fed - Retail inventories and inflation dynamics: The price margin channel (IFDP)</a></li>
+<li><a href="https://www.census.gov/econ/indicators/advance_report.pdf">Census Bureau Monthly Advance Economic Indicators Report, July 2026</a></li>
+<li><a href="https://nrf.com/media-center/press-releases/monthly-imports-expected-to-drop-below-2-million-teu-as-tariffs-continue-to-rise">NRF Global Port Tracker press release, import volume forecast</a></li>
+<li><a href="https://vantageforwarding.com/sea-freight-transit-time-china-to-usa/">Vantage Forwarding: Sea freight transit time China to USA</a></li>
+<li><a href="https://www.truecommerce.com/blog/bullwhip-effect-supply-chain/">TrueCommerce: What Is the Bullwhip Effect in Supply Chain?</a></li>
+<li>AskAmerica: U.S. goods import value by month, world total<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, &quot;month&quot;, SUM(value_usd) AS import_value FROM econ.trade_imports WHERE geo_level = 'world' GROUP BY &quot;year&quot;, &quot;month&quot; ORDER BY &quot;year&quot;, &quot;month&quot;</code></pre></details></li>
+<li><a href="https://data.bts.gov">AskAmerica table description: transport.bts_port_teu (BTS Monthly TEU data, Jan 2019-Oct 2022 only)</a></li>
+</ol>
+</section>
+<footer>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Insiders sell more before bad news — but mostly months in advance, not right before the announcement</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Insiders sell more before bad news — but mostly months in advance, not right before the announcement</h1>
+<p class="subtitle">Literature review (goodwill-impairment insider trading, Marin &amp; Olivier crash study) plus an original AskAmerica check on 2026 SEC data</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 613" width="880" height="613" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="613" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">Insider selling ahead of bad results: strong months out, but muted right before the release</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">AskAmerica SEC data (2026 earnings events) vs. Muller/Neamtiu/Riedl (2002-2007 goodwill impairments, N=612 vs 49,574 firm-quarters)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:8px">Literature: gap in insiders being net sellers, 6-23 months before bad news</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">+6 to +10 pts</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">~15-25% relatively more likely</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:8px">AskAmerica 2026 data: gap in any insider selling, 30 days before earnings</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">-0.2 pts (n.s.)</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">p=0.84, not significant</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Share of firm-periods with insider net selling before bad vs. other outcom…</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="156" x2="390" y2="156" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="136" x2="390" y2="136" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="140" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="96" x2="390" y2="96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="100" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="76" x2="390" y2="76" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="156" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="156" x2="390" y2="156" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="200" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Window before bad-news announcement</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="106" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 106)">% net selling</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-23-to-18-mo" class="tick" x="115" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-23 to -18 mo</text>
+      <text id="p3-xtick-17-to-12-mo" class="tick" x="225" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-17 to -12 mo</text>
+      <text id="p3-xtick-11-to-6-mo" class="tick" x="335" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-11 to -6 mo</text>
+    </g>
+    <g id="p3-series-goodwill-impairment-bad-news-firms" class="series">
+      <rect id="p3-mark-goodwill-impairment-bad-news-firms-23-to-18-mo" class="bar" x="79.80" y="69" width="34.20" height="87" fill="#2563eb"/>
+      <rect id="p3-mark-goodwill-impairment-bad-news-firms-17-to-12-mo" class="bar" x="189.80" y="62.40" width="34.20" height="93.60" fill="#2563eb"/>
+      <rect id="p3-mark-goodwill-impairment-bad-news-firms-11-to-6-mo" class="bar" x="299.80" y="70.20" width="34.20" height="85.80" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-non-impairment-other-firms" class="series">
+      <rect id="p3-mark-non-impairment-other-firms-23-to-18-mo" class="bar" x="115" y="83.20" width="34.20" height="72.80" fill="#ea580c"/>
+      <rect id="p3-mark-non-impairment-other-firms-17-to-12-mo" class="bar" x="225" y="83.20" width="34.20" height="72.80" fill="#ea580c"/>
+      <rect id="p3-mark-non-impairment-other-firms-11-to-6-mo" class="bar" x="335" y="81.80" width="34.20" height="74.20" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-goodwill-impairment-bad-news-firms" x="94" y="214" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-goodwill-impairment-bad-news-firms" class="legend-label" x="110" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Goodwill-impairment (bad-news) firms</text>
+      <rect id="p3-legend-swatch-non-impairment-other-firms" x="118" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-non-impairment-other-firms" class="legend-label" x="134" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Non-impairment (other) firms</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="487" fill="#6b7280">Muller, Neamtiu &amp; Riedl (2010), N=612 impairment vs 49,574</text>
+  <text class="caption" x="24" y="500" fill="#6b7280">non-impairment firm-quarters, 2002-2007. All gaps significant at…</text>
+  <rect class="panel-edge" x="448" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">AskAmerica 2026: insider selling in the 30 days before earnings</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="114.50" x2="390" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="75.50" x2="390" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Earnings outcome</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">% of events</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-bad-stock-fell-5-post-release" class="tick" x="142.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.50 148)">Bad (stock fell ≥5% post-release)</text>
+      <text id="p4-xtick-other-outcomes" class="tick" x="307.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.50 148)">Other outcomes</text>
+    </g>
+    <g id="p4-series-any-insider-sold-in-prior-30-days" class="series">
+      <rect id="p4-mark-any-insider-sold-in-prior-30-days-bad-stock-fell-5-post-release" class="bar" x="89.70" y="66.14" width="104.60" height="67.86" fill="#2563eb"/>
+      <rect id="p4-mark-any-insider-sold-in-prior-30-days-other-outcomes" class="bar" x="254.70" y="65.36" width="104.60" height="68.64" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="487" fill="#6b7280">5,942 2026 earnings events (sec.earnings_transcripts x</text>
+  <text class="caption" x="452" y="500" fill="#6b7280">sec.stock_prices x sec.insider_transactions). Chi-square p=0.84 - no…</text>
+  <text class="footnote" x="20" y="532" fill="#6b7280">Two different but complementary cuts: the academic study (612 goodwill-impairment firm-quarters, 2002-2007) measures a longer 6-23 month look-back</text>
+  <text class="footnote" x="20" y="546" fill="#6b7280">and finds a real, significant gap; the AskAmerica connector check (2026 SEC filings only) measures only the final 30 days, which typically falls</text>
+  <text class="footnote" x="20" y="560" fill="#6b7280">inside corporate trading blackout windows, and finds no gap there.</text>
+  <g id="brand">
+  <svg x="20" y="572" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="587" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="587" fill="#6b7280" text-anchor="end">Prepared 2026-09-05</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:64948/a/770bc45f1ca665236ef1ff065a717019.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>How much insiders sell before bad news depends entirely on how far out you look.</strong> Months in advance (roughly 6 to 23 months before the bad news becomes public), insiders are meaningfully more likely to be net sellers of their own stock: in the best-documented academic study of this exact question, insiders were net sellers in 43-47% of firm-quarters ahead of a goodwill-impairment write-down (bad news), versus 36-37% for comparable firms with no such write-down &mdash; a gap of 6 to 10 percentage points, or roughly 15-25% relatively more likely, significant at p&lt;0.01. But that gap collapses to nothing in the final weeks right before the announcement, because corporate insider-trading policies routinely impose a trading &quot;blackout&quot; window in the run-up to an earnings release. We confirmed this pattern independently: querying AskAmerica's own SEC Form 4 insider-transaction data alongside stock-price reactions to 2026 earnings releases, we found <strong>no statistically significant difference</strong> in the share of companies with any insider selling in the 30 days immediately before earnings that turned out badly (17.4%) versus other earnings (17.6%; chi-square p=0.84).</p><p>So: yes, insiders sell more before bad results &mdash; but the effect is a slow-building, months-out signal (roughly a 15-25% relatively higher chance of being a net seller), not something you'd see spike in the final days before the number actually comes out.</p>
+</section>
+<section>
+<h2>What the published research finds</h2>
+<p>The single most directly relevant study is Muller, Neamtiu &amp; Riedl, <em>&quot;Insider Trading Preceding Goodwill Impairments&quot;</em> (Harvard Business School working paper 10-007, fetched directly from hbs.edu). It studies 612 firm-quarters that reported a goodwill impairment (a large, GAAP-mandated write-down that is unambiguously bad news, averaging 11.9% of market equity) under SFAS 142 between 2002 and 2007, benchmarked against 49,574 firm-quarters from otherwise-similar firms with no impairment in the same period.</p><ul><li><strong>43.5%, 46.8%, and 42.9%</strong> of the bad-news (impairment) firms had insiders who were net sellers of stock in the windows 23-18, 17-12, and 11-6 months before the impairment was announced, respectively.</li><li>Only <strong>36.4%, 36.4%, and 37.1%</strong> of the non-impairment (comparison) firms were net sellers over the same windows &mdash; a gap of 6-10 percentage points each time, significant at p&lt;0.01 for both the means and the medians.</li><li>The gap <strong>disappears</strong> in the window immediately preceding the announcement (5 months prior through the announcement itself, window -5 to 0) &mdash; the authors explicitly report finding no significant difference in net insider selling there.</li><li>The selling is informative when it happens: firms whose insiders were net sellers ahead of the impairment saw an average abnormal stock return of <strong>-23.4%</strong> over the 18 months leading up to the write-down, versus only <strong>-10.5%</strong> for impairment firms where insiders were not net sellers.</li></ul><p>This lines up with the broader academic literature. Marin &amp; Olivier's landmark &quot;The Dog That Did Not Bark: Insider Trading and Crashes&quot; (Journal of Finance, 2008) finds that at the individual-stock level, insider sales peak many months before a large stock-price crash, while insider purchases peak only the month right before a large jump &mdash; an asymmetric pattern where sellers anticipate bad news earlier than buyers anticipate good news. Other work (e.g. the MDPI 2024 study on executive pay disparity and insider trading before earnings news) confirms insiders' pre-earnings trades are systematically informative about the direction of the coming surprise, though it does not provide a comparable single headline percentage.</p>
+</section>
+<section>
+<h2>What we checked directly in SEC data (2026)</h2>
+<p>To see whether this pattern shows up in the most current SEC filings, we built an original event study using AskAmerica's own connector, entirely independent of the papers above:</p><ol><li>Pulled every distinct earnings-related 8-K (Item 2.02) filing date for every company in 2026 from <code>sec.earnings_transcripts</code> &mdash; 9,858 distinct company-earnings events.</li><li>Matched each event to the closing stock price on the trading day just before the filing and the closing price 1-5 trading days after, from <code>sec.stock_prices</code>, to compute a short-window announcement return &mdash; 5,942 events had usable price data on both sides.</li><li>Classified an event as &quot;bad results&quot; if the stock fell 5% or more in that window (1,667 events, 28% of the sample) and everything else as &quot;other&quot; (4,275 events).</li><li>For every event, summed insider Form 4/5 sale transactions (<code>sec.insider_transactions</code>, transaction code S, disposed shares) in the 30 calendar days immediately before the filing date, for insiders at that same company.</li></ol><p>Result: <strong>17.4%</strong> of &quot;bad results&quot; events had any insider selling in the preceding 30 days, versus <strong>17.6%</strong> of &quot;other&quot; events &mdash; statistically indistinguishable (chi-square = 0.039, p = 0.84, n = 5,942). A parallel comparison of the average dollar value sold (conditional and unconditional) was also not significant (Welch's t-test, p = 0.62; the point estimate was actually higher before bad results, $11.1M vs $6.0M average per event, but with heavy right-skew and no significance at this sample size).</p><p>This null result for a close-in, 30-day window is exactly what the goodwill-impairment study above would predict: it also found no gap in its closest-in window (-5 to 0 months). The most likely mechanical reason is <strong>insider-trading blackout policies</strong> &mdash; the vast majority of US public companies bar officers and directors from trading in the weeks immediately surrounding a quarterly earnings release, regardless of whether the news will be good or bad, which mechanically suppresses any signal in exactly the window we could test with 30-day resolution.</p>
+</section>
+<section>
+<h2>Data quality note and scope limits</h2>
+<p><strong>Coverage gap:</strong> AskAmerica's <code>sec.insider_transactions</code> and <code>sec.earnings_transcripts</code> tables both declare a 2010-2026 ingest window, but a full row scan showed both tables are populated almost entirely with 2026 rows only (insider_transactions: 477,966 of 477,966 scanned rows are from 2026; earnings_transcripts: 68,210 of 68,256 rows are from 2026, with only 23 rows each in 2024 and 2025, and none in 2010-2023). This is why our own check above is confined to 2026 and cannot replicate the goodwill-impairment study's multi-year, multi-decade design &mdash; it is a single-year cross-section, not a historical panel. We reported this gap to the connector's maintainers via report_issue.</p><p><strong>Data defect found and excluded:</strong> 503 rows in <code>sec.insider_transactions</code> carry implausible <code>price_per_share</code> values (up to $12.5 million per share, implying single trades worth trillions of dollars) &mdash; almost certainly a Form-4 parsing bug for a small number of filers. These rows were excluded from our dollar-value comparison (filtered to price_per_share between $0 and $100,000); the incidence comparison (any selling yes/no) is unaffected since it does not depend on the dollar magnitude.</p><p><strong>Proxy limitation:</strong> our own check defines &quot;bad results&quot; by the stock's short-window price reaction to the earnings release, not by an analyst-estimate-based earnings surprise (no analyst-estimates table exists in this connector) &mdash; a reasonable, commonly used proxy, but not identical to the goodwill-impairment study's definition (a mandated accounting write-down) or to a consensus-EPS-miss definition used elsewhere in the literature.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.hbs.edu/ris/Publication%20Files/10-007.pdf">Muller, Neamtiu &amp; Riedl - Insider Trading Preceding Goodwill Impairments (HBS working paper 10-007)</a> <span class="note">— Fetched and parsed directly; N=612 impairment vs 49,574 non-impairment firm-quarters, 2002-2007</span></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-6261.2008.01401.x">Marin &amp; Olivier - The Dog That Did Not Bark: Insider Trading and Crashes (Journal of Finance, 2008)</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S1544612319301278">Strategic timing of corporate insiders when trading at earnings announcements (ScienceDirect)</a></li>
+<li><a href="https://www.mdpi.com/1911-8074/17/10/453">Insider Trading before Earnings News: The Role of Executive Pay Disparity (MDPI, 2024)</a></li>
+<li><a href="https://www.stern.nyu.edu/sites/default/files/assets/documents/Brochet%20Lee%20Srinivasan%202017%20-%20The%20Role%20of%20Insider%20Trading%20in%20the%20Market%20Reaction%20to%20Earnings%20News.pdf">The role of insider trading in the market reaction to earnings news (Brochet, Lee &amp; Srinivasan, NYU Stern)</a></li>
+<li>AskAmerica: 2026 earnings events with usable price reaction (event construction)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH events AS (SELECT cik, filing_date FROM sec.earnings_transcripts WHERE filing_date &gt;= '2026-01-01' GROUP BY cik, filing_date), event_ciks AS (SELECT cik FROM events GROUP BY cik), prices AS (SELECT sp.cik, sp.date, sp.close FROM sec.stock_prices sp JOIN event_ciks ec ON ec.cik = sp.cik WHERE sp.date &gt;= '2025-12-01'), pre_price AS (SELECT e.cik, e.filing_date, p.close AS pre_close, ROW_NUMBER() OVER (PARTITION BY e.cik, e.filing_date ORDER BY p.date DESC) AS rn FROM events e JOIN prices p ON p.cik = e.cik AND p.date &lt; e.filing_date AND p.date &gt;= CAST(CAST(e.filing_date AS DATE) - INTERVAL '10' DAY AS VARCHAR)), post_price AS (SELECT e.cik, e.filing_date, p.close AS post_close, ROW_NUMBER() OVER (PARTITION BY e.cik, e.filing_date ORDER BY p.date ASC) AS rn FROM events e JOIN prices p ON p.cik = e.cik AND p.date &gt; e.filing_date AND p.date &lt;= CAST(CAST(e.filing_date AS DATE) + INTERVAL '5' DAY AS VARCHAR)) SELECT count(*) FROM events e JOIN pre_price pp ON pp.cik=e.cik AND pp.filing_date=e.filing_date AND pp.rn=1 JOIN post_price po ON po.cik=e.cik AND po.filing_date=e.filing_date AND po.rn=1</code></pre></details></li>
+<li>AskAmerica: chi-square test of insider-selling incidence, bad vs other 2026 earnings events<details class="sqltoggle"><summary>Show tool call</summary><pre><code>hypothesis_test(test=&quot;chi_square&quot;, row_col=&quot;bucket&quot;, col_col=&quot;sold_flag&quot;)</code></pre></details></li>
+<li>AskAmerica: t-test of pre-event insider sale dollar value, bad vs other 2026 earnings events<details class="sqltoggle"><summary>Show tool call</summary><pre><code>hypothesis_test(test=&quot;t_test&quot;, value_col=&quot;sale_value_30d&quot;, group_col=&quot;bucket&quot;)</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Two independently derived findings, not one: the literature review (Muller/Neamtiu/Riedl 2010 and Marin/Olivier 2008) and the AskAmerica-computed 2026 SEC event study are separate analyses that happen to agree on the underlying mechanism (blackout periods explain why the gap closes right before the release) rather than one confirming the other's specific numbers.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

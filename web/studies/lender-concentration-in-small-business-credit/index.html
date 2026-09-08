@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SBA Small Business Lending Is Not Concentrated Among Lenders (HHI≈94), But Loan Dollars Are Extremely Concentrated Geographically (Gini≈0.83) — and Slightly More So in Metro Counties</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s4-t1-s1:checked ~ table tbody.s0{display:none}
+#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
+#s4-t1-s1:checked ~ .srtreset{display:inline-block}
+#s4-t1-s2:checked ~ table tbody.s0{display:none}
+#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
+#s4-t1-s2:checked ~ .srtreset{display:inline-block}
+#s4-t1-s3:checked ~ table tbody.s0{display:none}
+#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
+#s4-t1-s3:checked ~ .srtreset{display:inline-block}
+#s4-t1-s4:checked ~ table tbody.s0{display:none}
+#s4-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"]{color:var(--link)}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"] .srtcue{opacity:1}
+#s4-t1-s4:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>SBA Small Business Lending Is Not Concentrated Among Lenders (HHI≈94), But Loan Dollars Are Extremely Concentrated Geographically (Gini≈0.83) — and Slightly More So in Metro Counties</h1>
+<p class="subtitle">SBA 7(a)/504 loan approvals, FY2019-2023, matched to USDA ERS Rural-Urban Continuum Codes</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1277" width="880" height="1277" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="1277" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">Small Business Lending Is Not Concentrated Among Lenders, But Very Concentrated Geograp…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">SBA 7(a) and 504 loan approvals, FY2019-2023 (data.sba.gov FOIA), matched to USDA ERS Rural-Urban Continuum Codes (2022 vintage)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">National lender HHI (0-10,000 scale)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">94</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Well under the 1,500 DOJ/FTC 'unconcentrated' threshold; 3,259</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">distinct SBA lenders 2019-2023</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Geographic Gini across counties</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">0.83</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Extreme concentration of loan dollars by county — top 10% of counties</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">hold ~75% of dollars</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Lender concentration (HHI) by county type</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County type</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">HHI (0-10,000)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-metro-counties" class="tick" x="147.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Metro counties</text>
+      <text id="p3-xtick-nonmetro-counties" class="tick" x="309.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Nonmetro counties</text>
+    </g>
+    <g id="p3-series-hhi" class="series">
+      <rect id="p3-mark-hhi-metro-counties" class="bar" x="96.07" y="58.89" width="102.36" height="141.11" fill="#2563eb"/>
+      <rect id="p3-mark-hhi-nonmetro-counties" class="bar" x="257.57" y="67.32" width="102.36" height="132.68" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Both far below 1,500 — many lenders compete in both settings; nonmetro</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">is marginally less concentrated despite fewer distinct lenders (2,838…</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Geographic concentration (Gini) of loan dollars, within county type</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="63" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="55" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="182" x2="390" y2="182" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="55" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.1</text>
+      <line class="grid" x1="63" y1="164" x2="390" y2="164" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="55" y="168" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
+      <line class="grid" x1="63" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="55" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.3</text>
+      <line class="grid" x1="63" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="55" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="63" y1="110" x2="390" y2="110" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="55" y="114" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+      <line class="grid" x1="63" y1="92.00" x2="390" y2="92.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="55" y="96.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
+      <line class="grid" x1="63" y1="74.00" x2="390" y2="74.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="55" y="78.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.7</text>
+      <line class="grid" x1="63" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-8" class="tick" x="55" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.8</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County type</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Gini coefficient</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-metro-counties" class="tick" x="144.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Metro counties</text>
+      <text id="p4-xtick-nonmetro-counties" class="tick" x="308.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Nonmetro counties</text>
+    </g>
+    <g id="p4-series-gini" class="series">
+      <rect id="p4-mark-gini-metro-counties" class="bar" x="92.43" y="65.36" width="103.64" height="134.64" fill="#2563eb"/>
+      <rect id="p4-mark-gini-nonmetro-counties" class="bar" x="255.93" y="93.26" width="103.64" height="106.74" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Dollars are unevenly spread across counties in both groups, but more</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">so among metro counties, where a handful of huge metros dominate</text>
+  <rect class="panel-edge" x="20" y="554" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">SBA lending intensity per resident, 2019-2023 total</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="67" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="59" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="59" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="59" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="59" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="67" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="59" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="67" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="59" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County type</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">$ per capita</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-metro-counties" class="tick" x="147.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Metro counties</text>
+      <text id="p5-xtick-nonmetro-counties" class="tick" x="309.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Nonmetro counties</text>
+    </g>
+    <g id="p5-series-gross-approvals-per-capita" class="series">
+      <rect id="p5-mark-gross-approvals-per-capita-metro-counties" class="bar" x="96.07" y="68.45" width="102.36" height="131.55" fill="#2563eb"/>
+      <rect id="p5-mark-gross-approvals-per-capita-nonmetro-counties" class="bar" x="257.57" y="114.33" width="102.36" height="85.67" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="835" fill="#6b7280">Metro counties received about 54% more SBA loan volume per resident</text>
+  <text class="caption" x="24" y="848" fill="#6b7280">than nonmetro counties over the period</text>
+  <rect class="panel-edge" x="20" y="870" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="870" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p6-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Top 10 SBA lenders' share of national loan volume, 2019-2023</text>
+    <g id="p6-gridlines">
+      <line class="grid" x1="53" y1="138.16" x2="818" y2="138.16" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-0" class="tick" x="45" y="142.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="124.47" x2="818" y2="124.47" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-1" class="tick" x="45" y="128.47" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
+      <line class="grid" x1="53" y1="110.77" x2="818" y2="110.77" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-2" class="tick" x="45" y="114.77" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="97.08" x2="818" y2="97.08" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-3" class="tick" x="45" y="101.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
+      <line class="grid" x1="53" y1="83.39" x2="818" y2="83.39" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-4" class="tick" x="45" y="87.39" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="53" y1="69.69" x2="818" y2="69.69" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-5" class="tick" x="45" y="73.69" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="53" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-6" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+    </g>
+    <g id="p6-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="138.16" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="138.16" x2="818" y2="138.16" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p6-x-axis-title" class="axis-title" x="435.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Lender</text>
+    <text id="p6-y-axis-title" class="axis-title" x="14" y="97.08" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 97.08)">% of $ volume</text>
+    <g id="p6-x-axis-labels">
+      <text id="p6-xtick-live-oak-banking" class="tick" x="91.25" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 91.25 152.16)">Live Oak Banking</text>
+      <text id="p6-xtick-huntington-nat-l" class="tick" x="167.75" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 167.75 152.16)">Huntington Nat'l</text>
+      <text id="p6-xtick-newtek-sbf" class="tick" x="244.25" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 244.25 152.16)">Newtek SBF</text>
+      <text id="p6-xtick-wells-fargo" class="tick" x="320.75" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 320.75 152.16)">Wells Fargo</text>
+      <text id="p6-xtick-u-s-bank" class="tick" x="397.25" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 397.25 152.16)">U.S. Bank</text>
+      <text id="p6-xtick-celtic-bank" class="tick" x="473.75" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 473.75 152.16)">Celtic Bank</text>
+      <text id="p6-xtick-byline-bank" class="tick" x="550.25" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 550.25 152.16)">Byline Bank</text>
+      <text id="p6-xtick-jpmorgan-chase" class="tick" x="626.75" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 626.75 152.16)">JPMorgan Chase</text>
+      <text id="p6-xtick-readycap-lending" class="tick" x="703.25" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 703.25 152.16)">Readycap Lending</text>
+      <text id="p6-xtick-enterprise-bank" class="tick" x="779.75" y="152.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 779.75 152.16)">Enterprise Bank</text>
+    </g>
+    <g id="p6-series-share-of-170-1b-total" class="series">
+      <rect id="p6-mark-share-of-170-1b-total-live-oak-banking" class="bar" x="66.77" y="66.27" width="47.96" height="71.89" fill="#2563eb"/>
+      <rect id="p6-mark-share-of-170-1b-total-huntington-nat-l" class="bar" x="143.27" y="84.07" width="47.96" height="54.09" fill="#2563eb"/>
+      <rect id="p6-mark-share-of-170-1b-total-newtek-sbf" class="bar" x="219.77" y="109.68" width="47.96" height="28.48" fill="#2563eb"/>
+      <rect id="p6-mark-share-of-170-1b-total-wells-fargo" class="bar" x="296.27" y="110.23" width="47.96" height="27.93" fill="#2563eb"/>
+      <rect id="p6-mark-share-of-170-1b-total-u-s-bank" class="bar" x="372.77" y="111.59" width="47.96" height="26.57" fill="#2563eb"/>
+      <rect id="p6-mark-share-of-170-1b-total-celtic-bank" class="bar" x="449.27" y="113.79" width="47.96" height="24.37" fill="#2563eb"/>
+      <rect id="p6-mark-share-of-170-1b-total-byline-bank" class="bar" x="525.77" y="114.47" width="47.96" height="23.69" fill="#2563eb"/>
+      <rect id="p6-mark-share-of-170-1b-total-jpmorgan-chase" class="bar" x="602.27" y="116.39" width="47.96" height="21.77" fill="#2563eb"/>
+      <rect id="p6-mark-share-of-170-1b-total-readycap-lending" class="bar" x="678.77" y="121.45" width="47.96" height="16.71" fill="#2563eb"/>
+      <rect id="p6-mark-share-of-170-1b-total-enterprise-bank" class="bar" x="755.27" y="121.86" width="47.96" height="16.30" fill="#2563eb"/>
+    </g>
+    <g id="p6-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="1151" fill="#6b7280">Top 10 lenders together hold about 22.8% of dollar volume — a visible top tier, but not enough to move the HHI out of the unconcentrated range</text>
+  <text class="footnote" x="20" y="1196" fill="#6b7280">RUCC 2022 vintage matched to SBA project_county/project_state by name (95.5% match rate). HHI on lender share of gross approval dollars; DOJ/FTC:</text>
+  <text class="footnote" x="20" y="1210" fill="#6b7280">&lt;1,500 unconcentrated, 1,500-2,500 moderate, &gt;2,500 highly concentrated. Gini computed across counties' summed gross-approval dollars within each</text>
+  <text class="footnote" x="20" y="1224" fill="#6b7280">group.</text>
+  <g id="brand">
+  <svg x="20" y="1236" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="1251" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:55256/a/47a7aa5f3433cd4e5dbdd93cb8c95c04.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Two different things can both be called 'concentration' here, and they point opposite directions. <strong>Among lenders</strong>, SBA 7(a)/504 small business lending is NOT concentrated: computing a Herfindahl-Hirschman Index (HHI) on each lender's share of $170.1 billion in gross loan approvals (FY2019-2023) gives a national HHI of about <strong>94</strong> on the standard 0-10,000 scale &mdash; far below the DOJ/FTC 'unconcentrated' cutoff of 1,500. 3,259 distinct lenders made SBA-guaranteed loans over the period; even the largest single lender (Live Oak Banking Company) holds only about 5.3% of dollar volume, and the top 10 lenders combined hold about 22.8%.</p><p><strong>Across geography</strong>, by contrast, loan dollars are extremely concentrated: a Gini coefficient of <strong>0.83</strong> across ~2,900 county-level markets means the top 10% of counties by lending volume capture roughly three-quarters of all dollars &mdash; the ordinary signature of business activity itself being concentrated in big metro areas, not a lending-market defect.</p><p>Splitting by USDA's Rural-Urban Continuum classification, lender-market concentration is nearly identical and unconcentrated in both settings (HHI 98 in metro counties vs. 92 in nonmetro counties). Geographic concentration of dollars is high in both but somewhat more extreme within metro counties (Gini 0.75) than within nonmetro counties (Gini 0.59) &mdash; a few giant metros dominate the metro total more than a few large rural counties dominate the rural total. On a per-resident basis, metro counties received about 54% more SBA loan volume per capita ($548 vs. $357, 2019-2023 cumulative) and more loans per 1,000 residents (0.91 vs. 0.66), consistent with published findings that bank branch presence and local GDP are the strongest predictors of small business lending volume, and that both are lower in rural areas.</p>
+</section>
+<section>
+<h2>What 'concentration' can mean here, and why both need reporting</h2>
+<p>The question does not specify which sense of 'concentrated' is meant, so this report computes both, because the literature on this topic uses both and they disagree in interesting ways:</p><ul><li><strong>Lender/market concentration</strong> &mdash; is a handful of banks writing most of the loans, which would raise pricing-power and access concerns? Standard measure: HHI on lender dollar share.</li><li><strong>Geographic concentration</strong> &mdash; is loan volume spatially clustered in a few places, leaving others underserved? Standard measure: Gini coefficient / Lorenz curve across counties.</li></ul><p>A market can be geographically lopsided (because business activity itself is lopsided) while still being competitively unconcentrated (many lenders operating in every market), which is exactly the pattern found here.</p>
+</section>
+<section>
+<h2>Data and method</h2>
+<p><strong>Source:</strong> SBA 7(a) and 504 loan approvals, FOIA public data (data.sba.gov), accessed via AskAmerica's <code>fiscal.sba_loan_approvals</code> table (one row per approved loan, borrower/project geography, lender, gross approval amount, fiscal year). Window: fiscal years 2019-2023 (pre-pandemic through post-pandemic recovery, avoiding both the small early-2010s sample and the 2020-21 PPP-adjacent lending surge as the sole basis for a multi-year figure). Total volume in window: $170.1 billion across roughly 287,000 approved loans.</p><p><strong>Rural/urban classification:</strong> USDA Economic Research Service Rural-Urban Continuum Codes (RUCC), 2022 vintage (<code>geo.rural_urban_continuum</code>), which classifies every U.S. county into a 9-category code and a binary Metro/Nonmetro flag. RUCC is decennial-ish (updated roughly every 10 years) so a single 2022 vintage was applied across the whole 2019-2023 loan window; county boundaries and metro/nonmetro status do not typically change year to year, so this is a reasonable simplification, but it is a fixed-point classification, not a per-loan-year one.</p><p><strong>Matching loans to counties:</strong> the SBA table carries a free-text <code>project_county</code> name and USPS state abbreviation, not a FIPS code, so counties were matched by uppercasing and appending 'COUNTY' to the SBA name and joining on state FIPS + county name against <code>geo.rural_urban_continuum</code>. This matched 274,008 of 286,833 loan rows (95.5%); the remaining 4.5% (independent cities, parishes, boroughs, and other county-equivalents whose SBA-recorded name doesn't take the 'X County' form, plus any misspellings) could not be matched and were excluded from the county-level and rural/urban splits. This exclusion is not expected to materially change the concentration findings given the sample size, but it means the county-level figures are not a complete census of the $170.1B total.</p><p><strong>HHI:</strong> computed as the sum of squared percentage shares (0-100 scale, so the ceiling is 10,000 for a pure monopoly) of each lender's share of total gross-approval dollars, computed once nationally and once within each RUCC group. DOJ/FTC Horizontal Merger Guidelines treat HHI below 1,500 as unconcentrated, 1,500-2,500 as moderately concentrated, and above 2,500 as highly concentrated &mdash; conventions built for merger review of firms, applied here descriptively to a lending market, not as a regulatory finding.</p><p><strong>Gini coefficient:</strong> computed across counties' total gross-approval dollars (summed loans per state+county-name group) within each population (all counties matched; metro counties only; nonmetro counties only), using the standard Lorenz-curve definition (0 = perfectly even, 1 = one unit holds everything).</p>
+</section>
+<section>
+<h2>Findings in detail</h2>
+<input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s4"><table border='1' cellpadding='6' cellspacing='0'><tr><th><label class="srth" for="s4-t1-s1">Metric<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">All counties<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s3">Metro counties<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s4">Nonmetro counties<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Lender HHI (0-10,000)</td><td>94.1 (national)</td><td>98.0</td><td>92.1</td></tr><tr><td>Distinct lenders active</td><td>3,259</td><td>2,838</td><td>1,649</td></tr><tr><td>Gini coefficient (loan $ across counties)</td><td>0.828 (n=2,913)</td><td>0.748 (n=1,070)</td><td>0.593 (n=1,674)</td></tr><tr><td>Gross approvals per capita, 2019-2023 total</td><td>&mdash;</td><td>$548</td><td>$357</td></tr><tr><td>Loans per 1,000 residents, 2019-2023 total</td><td>&mdash;</td><td>0.91</td><td>0.66</td></tr></tbody><tbody class="srt s1"><tr><td>Distinct lenders active</td><td>3,259</td><td>2,838</td><td>1,649</td></tr><tr><td>Gini coefficient (loan $ across counties)</td><td>0.828 (n=2,913)</td><td>0.748 (n=1,070)</td><td>0.593 (n=1,674)</td></tr><tr><td>Gross approvals per capita, 2019-2023 total</td><td>&mdash;</td><td>$548</td><td>$357</td></tr><tr><td>Lender HHI (0-10,000)</td><td>94.1 (national)</td><td>98.0</td><td>92.1</td></tr><tr><td>Loans per 1,000 residents, 2019-2023 total</td><td>&mdash;</td><td>0.91</td><td>0.66</td></tr></tbody><tbody class="srt s2"><tr><td>Distinct lenders active</td><td>3,259</td><td>2,838</td><td>1,649</td></tr><tr><td>Lender HHI (0-10,000)</td><td>94.1 (national)</td><td>98.0</td><td>92.1</td></tr><tr><td>Gini coefficient (loan $ across counties)</td><td>0.828 (n=2,913)</td><td>0.748 (n=1,070)</td><td>0.593 (n=1,674)</td></tr><tr><td>Gross approvals per capita, 2019-2023 total</td><td>&mdash;</td><td>$548</td><td>$357</td></tr><tr><td>Loans per 1,000 residents, 2019-2023 total</td><td>&mdash;</td><td>0.91</td><td>0.66</td></tr></tbody><tbody class="srt s3"><tr><td>Distinct lenders active</td><td>3,259</td><td>2,838</td><td>1,649</td></tr><tr><td>Gross approvals per capita, 2019-2023 total</td><td>&mdash;</td><td>$548</td><td>$357</td></tr><tr><td>Lender HHI (0-10,000)</td><td>94.1 (national)</td><td>98.0</td><td>92.1</td></tr><tr><td>Loans per 1,000 residents, 2019-2023 total</td><td>&mdash;</td><td>0.91</td><td>0.66</td></tr><tr><td>Gini coefficient (loan $ across counties)</td><td>0.828 (n=2,913)</td><td>0.748 (n=1,070)</td><td>0.593 (n=1,674)</td></tr></tbody><tbody class="srt s4"><tr><td>Distinct lenders active</td><td>3,259</td><td>2,838</td><td>1,649</td></tr><tr><td>Gross approvals per capita, 2019-2023 total</td><td>&mdash;</td><td>$548</td><td>$357</td></tr><tr><td>Lender HHI (0-10,000)</td><td>94.1 (national)</td><td>98.0</td><td>92.1</td></tr><tr><td>Loans per 1,000 residents, 2019-2023 total</td><td>&mdash;</td><td>0.91</td><td>0.66</td></tr><tr><td>Gini coefficient (loan $ across counties)</td><td>0.828 (n=2,913)</td><td>0.748 (n=1,070)</td><td>0.593 (n=1,674)</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>Nonmetro counties have fewer distinct SBA lenders in absolute terms (1,649 vs. 2,838), which might suggest less lender choice for a rural borrower &mdash; but their HHI is nevertheless slightly LOWER than metro (92 vs. 98), meaning the lending that does happen in nonmetro counties is spread slightly more evenly among the lenders present, not more concentrated in a dominant few. This is consistent with the composition of top nonmetro lenders (Live Oak Banking, Huntington National Bank, First Financial Bank, Celtic Bank, Newtek) overlapping heavily with the national top 10, i.e. the same handful of active national SBA lenders serve rural markets too, rather than rural markets being captured by a single regional monopolist.</p><p>The geographic-concentration finding is the sharper one: even restricted to nonmetro counties only, dollar volume is still highly unequal (Gini 0.59) &mdash; a small number of larger or more commercially active rural counties still receive a disproportionate share of the rural total. But this inequality is less extreme than the corresponding metro-only figure (0.75), where a handful of major metro counties (containing large numbers of bank branches and much higher local GDP, per Federal Reserve and NCRC research on lending drivers) command an outsized share of even the metro total.</p>
+</section>
+<section>
+<h2>How this compares to published research</h2>
+<p>Federal Reserve small business survey data (Fed Small Business Credit Survey) and NCRC's 'Relationships Matter' branch-location research both find that bank branch presence and county GDP are the two strongest predictors of small business lending volume, and that rural areas systematically have fewer branches per business &mdash; consistent with the lower per-capita SBA volume found here for nonmetro counties. NCRC estimates large-bank business lending generates roughly $2.5-3.0 million per branch per year in urban areas versus roughly $1.9 million per branch in rural areas, reinforcing that the gap is a branch-density and local-economy story rather than an SBA-program-specific one.</p><p>One industry source (iBusinessFunding, covering FY2025 SBA data specifically) reported that rural borrowers received 43% MORE approved loans than urban borrowers in FY2025 with a larger average loan size &mdash; the opposite direction from the five-year, per-capita pattern found here. This is not necessarily a contradiction: that figure appears to be a raw loan-count comparison for a single fiscal year rather than a per-capita, multi-year figure, and SBA loan volume is volatile year to year with programmatic changes (guarantee-fee waivers, rural-initiative pushes) that can shift a single year's mix without changing the five-year structural pattern. This report's own multi-year, population-adjusted calculation should be read as the more durable structural measure; the single-year raw-count figure is flagged here as a genuine point of disagreement in the literature rather than smoothed over.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://data.sba.gov/dataset/7-a-504-foia">SBA 7(a)/504 Loan Approvals (FOIA public data)</a> <span class="note">— Queried via AskAmerica fiscal.sba_loan_approvals, FY2019-2023</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT lender_name, SUM(gross_approval) AS amt FROM fiscal.sba_loan_approvals WHERE &quot;year&quot; BETWEEN 2019 AND 2023 GROUP BY lender_name ORDER BY amt DESC</code></pre></details></li>
+<li>National lender HHI, 2019-2023<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;WITH totals AS (SELECT lender_name, SUM(gross_approval) AS amt FROM fiscal.sba_loan_approvals WHERE year BETWEEN 2019 AND 2023 GROUP BY lender_name), grand AS (SELECT SUM(amt) AS g FROM totals) SELECT SUM(POWER(100.0*amt/g,2)) AS national_hhi FROM totals, grand GROUP BY g&quot;)</code></pre></details></li>
+<li>Geographic Gini of loan dollars across counties (all/metro/nonmetro)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>gini_coefficient(value_col=&quot;county_amt&quot;, sql=&quot;county-level SUM(gross_approval) grouped by state_fips + project_county, filtered by metro_nonmetro&quot;)</code></pre></details></li>
+<li><a href="https://www.ers.usda.gov/data-products/rural-urban-continuum-codes">USDA ERS Rural-Urban Continuum Codes, 2022</a> <span class="note">— Queried via AskAmerica geo.rural_urban_continuum</span></li>
+<li><a href="https://ncrc.org/relationships-matter-small-business-and-bank-branch-locations/">NCRC — Relationships Matter: Small Business and Bank Branch Locations</a></li>
+<li><a href="https://ibusinessfunding.com/resources/rural-vs-urban-lending-trends">iBusinessFunding — What SBA Data Tells Us About Rural vs. Urban Lending Trends</a></li>
+<li><a href="https://www.kansascityfed.org/surveys/small-business-lending-survey/">Federal Reserve Bank of Kansas City — Small Business Lending Survey</a></li>
+<li><a href="https://www.fedsmallbusiness.org/reports/survey">Fed Small Business Credit Survey</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">SBA 7(a)/504 loans are a slice of total small business lending (bank commercial &amp;amp; industrial loans to small firms are much larger in aggregate but not available at this county x lender grain in this corpus); findings describe the federally-guaranteed SBA loan market specifically, not all small business credit.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

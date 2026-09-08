@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Speculative positioning mostly follows the market narrative, not the physical supply picture -- and where it leads, it does so weakly</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Speculative positioning mostly follows the market narrative, not the physical supply picture -- and where it leads, it does so weakly</h1>
+<p class="subtitle">CFTC managed-money WTI positioning vs. EIA crude inventories, weekly 2010-2026; literature review of Kilian-Murphy, CFTC staff studies, and Granger-causality research</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 631" width="880" height="631" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="631" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Speculative Positioning vs. Physical Oil Supply: Who Moves First?</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">CFTC managed-money net WTI positions vs. EIA U.S. crude stocks, weekly 2010-2026 (n=881 weeks)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:11px">Same-week correlation (delta position vs delta inventory)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">r ~ 0.01</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Weekly noise-level changes are essentially uncorrelated</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Strongest lead-lag signal found</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:17px">r ~ 0.13 (positioning leads by 4-8 wks)</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Weak, and easily a shared-trend artifact, not a clean anticipatory</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">signal</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Correlation of managed-money position change with crude inventory cha…</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="76" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="68" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.10</text>
+      <line class="grid" x1="76" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="68" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.05</text>
+      <line class="grid" x1="76" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="68" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.00</text>
+      <line class="grid" x1="76" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="68" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.05</text>
+      <line class="grid" x1="76" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="68" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.10</text>
+      <line class="grid" x1="76" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="68" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.15</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="76" y1="56" x2="76" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="76" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="233" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Lag weeks (negative = positioning moves first)</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Correlation r</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-12" class="tick" x="98.43" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-12</text>
+      <text id="p3-xtick-8" class="tick" x="143.29" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-8</text>
+      <text id="p3-xtick-4" class="tick" x="188.14" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-4</text>
+      <text id="p3-xtick-0" class="tick" x="233" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p3-xtick-4" class="tick" x="277.86" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+4</text>
+      <text id="p3-xtick-8" class="tick" x="322.71" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+8</text>
+      <text id="p3-xtick-12" class="tick" x="367.57" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+12</text>
+    </g>
+    <g id="p3-series-8-week-rolling-delta" class="series">
+      <rect id="p3-mark-8-week-rolling-delta-12" class="bar" x="84.07" y="118.21" width="27.71" height="24.19" fill="#2563eb"/>
+      <rect id="p3-mark-8-week-rolling-delta-8" class="bar" x="128.93" y="65.79" width="27.71" height="76.61" fill="#2563eb"/>
+      <rect id="p3-mark-8-week-rolling-delta-4" class="bar" x="173.79" y="70.98" width="27.71" height="71.42" fill="#2563eb"/>
+      <rect id="p3-mark-8-week-rolling-delta-0" class="bar" x="218.65" y="114.18" width="27.71" height="28.22" fill="#2563eb"/>
+      <rect id="p3-mark-8-week-rolling-delta-4" class="bar" x="263.50" y="142.17" width="27.71" height="0.23" fill="#2563eb"/>
+      <rect id="p3-mark-8-week-rolling-delta-8" class="bar" x="308.36" y="142.40" width="27.71" height="16.13" fill="#2563eb"/>
+      <rect id="p3-mark-8-week-rolling-delta-12" class="bar" x="353.22" y="142.40" width="27.71" height="50.69" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Positive lag = inventory change happens first, position follows</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Correlation using single-week delta position vs delta inventory</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="76" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="68" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.04</text>
+      <line class="grid" x1="76" y1="182" x2="390" y2="182" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="68" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.03</text>
+      <line class="grid" x1="76" y1="164" x2="390" y2="164" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="68" y="168" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.02</text>
+      <line class="grid" x1="76" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="68" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.01</text>
+      <line class="grid" x1="76" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="68" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.00</text>
+      <line class="grid" x1="76" y1="110" x2="390" y2="110" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="68" y="114" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.01</text>
+      <line class="grid" x1="76" y1="92" x2="390" y2="92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="68" y="96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.02</text>
+      <line class="grid" x1="76" y1="74.00" x2="390" y2="74.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="68" y="78.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.03</text>
+      <line class="grid" x1="76" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-8" class="tick" x="68" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.04</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="76" y1="56" x2="76" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="76" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="233" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Lag (weeks)</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Correlation r</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-4" class="tick" x="98.43" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-4</text>
+      <text id="p4-xtick-2" class="tick" x="143.29" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-2</text>
+      <text id="p4-xtick-1" class="tick" x="188.14" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-1</text>
+      <text id="p4-xtick-0" class="tick" x="233" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p4-xtick-1" class="tick" x="277.86" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+1</text>
+      <text id="p4-xtick-2" class="tick" x="322.71" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+2</text>
+      <text id="p4-xtick-4" class="tick" x="367.57" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+4</text>
+    </g>
+    <g id="p4-series-weekly-delta" class="series">
+      <rect id="p4-mark-weekly-delta-4" class="bar" x="84.07" y="86.60" width="27.71" height="41.40" fill="#2563eb"/>
+      <rect id="p4-mark-weekly-delta-2" class="bar" x="128.93" y="57.80" width="27.71" height="70.20" fill="#2563eb"/>
+      <rect id="p4-mark-weekly-delta-1" class="bar" x="173.79" y="106.40" width="27.71" height="21.60" fill="#2563eb"/>
+      <rect id="p4-mark-weekly-delta-0" class="bar" x="218.65" y="104.60" width="27.71" height="23.40" fill="#2563eb"/>
+      <rect id="p4-mark-weekly-delta-1" class="bar" x="263.50" y="128" width="27.71" height="55.80" fill="#2563eb"/>
+      <rect id="p4-mark-weekly-delta-2" class="bar" x="308.36" y="86.60" width="27.71" height="41.40" fill="#2563eb"/>
+      <rect id="p4-mark-weekly-delta-4" class="bar" x="353.22" y="86.60" width="27.71" height="41.40" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">No lag shows a meaningful relationship at weekly grain</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Computed from cftc.cot_disaggregated_futures (WTI Light Sweet, code 067411) and energy.eia_petroleum_stocks (WCRSTUS1). Overlapping rolling</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">windows inflate apparent significance of the 8-week series -- treat magnitudes as suggestive, not confirmatory.</text>
+  <g id="brand">
+  <svg x="20" y="590" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="605" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:62005/a/ff491abed197c79bb291127cbfe892e5.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Mostly after, and only loosely even then.</strong> Both the published research and an original weekly correlation test built from CFTC and EIA data agree: speculative (managed-money) positioning in crude oil futures does not move meaningfully ahead of the physical supply picture. Contemporaneous and short-lag correlations between week-over-week changes in managed-money net WTI positioning and week-over-week changes in U.S. crude inventories are essentially zero (r &asymp; 0.01-0.04 across &plusmn;4 weeks, n=881 weekly observations, 2010-2026). The only signal that emerges at all is a weak, statistically fragile positive correlation (r &asymp; 0.13) between a positioning shift and an inventory move 4-8 weeks LATER -- i.e. positioning very mildly leads a slower-moving inventory trend rather than the reverse -- but this uses overlapping rolling windows that inflate apparent significance, and it disappears going the other direction (inventory changes do not predict later positioning any better). The published literature is more decisive: several studies using Granger-causality tests find that price changes precede speculative position changes, not the other way around, and Kilian &amp; Murphy's (2014) structural model finds inventories move mainly on genuine flow-supply/demand and precautionary-storage shocks, with only a modest, mostly reactive role for a distinct 'speculative demand' shock. The practical picture: speculators are largely trend-followers reacting to prices (which themselves reflect the market's evolving read of the supply picture) rather than analysts front-running physical fundamentals with foresight the physical data hasn't yet shown.</p>
+</section>
+<section>
+<h2>What the published research says</h2>
+<p>The most-cited structural analysis of this question is <a href='https://onlinelibrary.wiley.com/doi/abs/10.1002/jae.2322'>Kilian and Murphy (2014)</a>, which builds a VAR of the global oil market that separately identifies flow-supply shocks, flow-demand shocks, and a 'speculative demand' shock proxied through above-ground inventories. Their headline finding: the 2003-2008 price surge cannot be explained by unexpected supply shortfalls OR by a speculative-inventory-hoarding story, because inventories did not rise the way a speculative run-up would require -- the speculative component was small relative to the flow-fundamentals-driven component. Follow-on work (Kim et al. 2020; the <a href='https://www.dallasfed.org/-/media/documents/research/papers/2019/wp1907.pdf'>Dallas Fed working paper</a>) refines this to say inventories serve a dual role -- physical buffering AND facilitating speculative trades -- but generally corroborates that inventories respond to the totality of shocks rather than being driven ahead of time by speculative flows.</p><p>On the positioning side specifically, the <a href='https://www.cftc.gov/sites/default/files/idc/groups/public/@swaps/documents/file/plstudy_19_cftc.pdf'>CFTC's own staff study of speculators in the crude oil futures market</a> and subsequent Granger-causality literature (summarized in the <a href='https://www.everycrsreport.com/reports/R41902.html'>CRS report on hedge fund speculation and oil prices</a> and the <a href='https://www.mdpi.com/2227-7072/6/4/89'>MDPI literature review of the oil futures/spot lead-lag relationship</a>) generally finds little evidence that non-commercial (speculative) position changes Granger-cause price changes; instead, price changes tend to precede position changes. Since prices themselves are the market's fastest-updating read on the supply/demand balance, this points to speculators reacting to information the market has already priced, rather than anticipating physical data releases (like the weekly EIA inventory report) ahead of time. Contemporary market commentary (<a href='https://jkempenergy.com/2025/03/17/hedge-funds-turn-cautious-as-oil-and-gas-positions-become-stretched/'>Kemp, 2025</a>; <a href='https://www.cnbc.com/2026/06/05/oil-price-iran-hedge-funds-quant-traders-trends-energy-shock.html'>CNBC, 2026</a>) reinforces this qualitatively: large commodity trading advisors (CTAs) are described as trend-following, black-box momentum traders reacting to realized price moves, and 'lopsided positioning often precedes a sharp REVERSAL' in price -- a pattern consistent with positioning as a lagging, extrapolative signal rather than a forward-looking one on fundamentals.</p>
+</section>
+<section>
+<h2>What the direct data test shows</h2>
+<p>To check this against real data rather than relying on the literature alone, weekly managed-money net positioning in NYMEX WTI (CFTC Disaggregated COT, contract code 067411, long minus short) was aligned against weekly U.S. crude oil ending stocks (EIA series WCRSTUS1), 2010-2026, 881 aligned weekly observations (COT reports Tuesday; the matching EIA stocks report is the following Friday).</p><p>At the raw weekly grain, correlating the week-over-week change in net managed-money positioning against the week-over-week change in inventories at lags from -4 to +4 weeks produced correlations all below |r|=0.04 -- no meaningful relationship in either direction at the weekly-noise level. Repeating the test on smoother, economically more meaningful 8-week rolling changes (to filter weekly EIA-print noise and look at trend-level co-movement) surfaced a modest positive correlation of the positioning change leading the inventory change by 4-8 weeks (r=0.124 to r=0.133), while the reverse direction (inventory change leading a LATER positioning change) was flat to slightly negative (r=0.0004 down to r=-0.088 at 12 weeks). Read plainly, this is a weak signal that positioning shifts show up a little before slower-moving inventory trends turn, and essentially no signal that inventory trends predict positioning. But two things temper that finding: the 8-week rolling-difference construction uses heavily overlapping windows, which mechanically inflates apparent correlation and understates the true degrees of freedom, and no covariate (price, macro news, seasonal refinery patterns) was controlled for, so a shared third driver -- most obviously, a price/news shock that moves both series without either causing the other -- cannot be ruled out with a bivariate correlation alone.</p>
+</section>
+<section>
+<h2>Bottom line and caveats</h2>
+<p>Putting the two pieces together: the balance of evidence, both from the literature's Granger-causality tests and from this original correlation test, points toward speculative positioning changing AFTER (or at best only very weakly and unreliably ahead of) the physical supply picture, and mostly in reaction to price moves rather than to physical fundamentals data directly. There is no strong, robust evidence that speculators systematically front-run EIA inventory reports or turning points in physical supply. The one positive signal found here (r&asymp;0.13, positioning leading inventory trend by 4-8 weeks) is real in the data but too weak and too methodologically fragile (overlapping windows, no confound controls, and it is a correlation rather than a validated causal estimate) to describe as speculators anticipating supply changes with real foresight -- it is much more consistent with both series drifting with a shared, slower-moving market narrative (e.g., an emerging OPEC+ supply decision or demand outlook) than with speculators reading the physical tape ahead of the physical data itself.</p><p><strong>Coverage note:</strong> the direct empirical test was run only for WTI crude oil against EIA crude stocks; natural gas COT and storage data exist in this warehouse but were not run through the identical lead-lag test in this pass, so the quantitative correlation figures above are crude-oil-specific even though the cited literature (CFTC staff study, Buyuksahin et al.) speaks to energy futures speculation more broadly.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Address 'energy futures' broadly, not only crude oil</strong>: The direct empirical lead-lag test was run only on WTI crude oil (CFTC managed-money net positions vs EIA crude stocks). Natural gas storage/COT data exist in the corpus but were not run through the same test in this pass; the literature review (CFTC staff study, Buyuksahin/Haigh) covers energy futures more generally including natural gas, so the qualitative conclusion is not crude-only, but the quantitative lead-lag numbers are WTI-specific.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jae.2322">Kilian, L. and Murphy, D. (2014), 'The Role of Inventories and Speculative Trading in the Global Market for Crude Oil', Journal of Applied Econometrics 29(3)</a></li>
+<li><a href="https://www.cftc.gov/sites/default/files/idc/groups/public/@swaps/documents/file/plstudy_19_cftc.pdf">CFTC Office of Chief Economist, 'The Role of Speculators in the Crude Oil Futures Market'</a></li>
+<li><a href="https://www.dallasfed.org/-/media/documents/research/papers/2019/wp1907.pdf">Dallas Fed working paper, 'Facts and Fiction in Oil Market Modeling'</a></li>
+<li><a href="https://www.dallasfed.org/-/media/documents/banking/occasional/1603.pdf">Dallas Fed Occasional Paper, 'Speculation in Commodity Futures Markets, Inventories and the Financialization Hypothesis'</a></li>
+<li><a href="https://www.everycrsreport.com/reports/R41902.html">EveryCRSReport, 'Hedge Fund Speculation and Oil Prices' (CRS R41902)</a></li>
+<li><a href="https://www.mdpi.com/2227-7072/6/4/89">Lead-Lag Relationship between Oil Futures and Spot Prices -- Literature Review, MDPI Economies 6(4):89 (2018)</a></li>
+<li><a href="https://jkempenergy.com/2025/03/17/hedge-funds-turn-cautious-as-oil-and-gas-positions-become-stretched/">J. Kemp, 'Hedge funds turn cautious as oil and gas positions become stretched' (2025)</a></li>
+<li><a href="https://www.cnbc.com/2026/06/05/oil-price-iran-hedge-funds-quant-traders-trends-energy-shock.html">CNBC, 'Meet the big winners of 2026 oil price volatility -- and why their strategies are now shifting focus'</a></li>
+<li>AskAmerica: CFTC Disaggregated COT, managed-money net WTI positions vs EIA crude stocks, weekly 2010-2026, correlation at multiple lags<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH cot AS (SELECT report_date AS cot_date, money_manager_long_all - money_manager_short_all AS net_mm FROM cftc.cot_disaggregated_futures WHERE cftc_contract_market_code = '067411'), stocks AS (SELECT CAST(report_date AS DATE) AS eia_date, stocks_kbbl FROM energy.eia_petroleum_stocks WHERE series_id = 'WCRSTUS1'), joined AS (SELECT c.cot_date, c.net_mm, s.stocks_kbbl FROM cot c JOIN stocks s ON s.eia_date = c.cot_date + INTERVAL '3' DAY) SELECT corr(...) FROM joined -- full lag structure computed via LAG/LEAD window functions, see report</code></pre></details></li>
+<li><a href="https://www.eia.gov/opendata/">EIA Open Data (weekly petroleum stocks, series WCRSTUS1)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">The 4-8 week lead correlation (r~0.13) uses overlapping rolling windows, which inflates apparent statistical significance; treat it as a weak, not-fully-reliable signal rather than a confirmed causal lead. No controls for confounds (both series can be driven by a shared price/news shock) were applied -- this is a descriptive correlation, not a causal estimate. Quantitative test is WTI-crude-specific; natural gas was not re-run through the identical test.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

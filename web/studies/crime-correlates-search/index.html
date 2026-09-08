@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Poorer, Southern/Western states have more violent crime than average — not denser or more urban ones</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Poorer, Southern/Western states have more violent crime than average — not denser or more urban ones</h1>
+<p class="subtitle">FBI CDE state violent-crime rates 2015-2024 vs. Census poverty, income inequality, and USDA metro-population share, 50 states</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 915" width="880" height="915" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="915" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">Violent Crime Across US States, 2015-2024: Poverty and Region, Not Density, Are the Signal</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">FBI CDE state offense rates (2021 excluded, SRS-to-NIBRS reporting gap); Census ACS poverty; USDA RUCC metro share</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Poverty rate effect (multivariate, controlling for metro share &amp; density)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328" style="font-size:17px">+19.4 violent crimes/100k per +1pp poverty</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">p = 0.009</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Raw density effect, controlling for poverty &amp; metro share</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:27px">-69.7 per +1 ln(density)</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">p = 0.0002 (denser lower rate)</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Population-weighted violent crime rate by Census region</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="67" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Region</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Rate per 100k</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-northeast" class="tick" x="107.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Northeast</text>
+      <text id="p3-xtick-midwest" class="tick" x="188.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Midwest</text>
+      <text id="p3-xtick-south" class="tick" x="268.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">South</text>
+      <text id="p3-xtick-west" class="tick" x="349.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">West</text>
+    </g>
+    <g id="p3-series-pop-weighted-avg-annual-rate" class="series">
+      <rect id="p3-mark-pop-weighted-avg-annual-rate-northeast" class="bar" x="81.54" y="112.51" width="50.68" height="87.49" fill="#2563eb"/>
+      <rect id="p3-mark-pop-weighted-avg-annual-rate-midwest" class="bar" x="162.29" y="92.12" width="50.68" height="107.88" fill="#2563eb"/>
+      <rect id="p3-mark-pop-weighted-avg-annual-rate-south" class="bar" x="243.04" y="83.33" width="50.68" height="116.67" fill="#2563eb"/>
+      <rect id="p3-mark-pop-weighted-avg-annual-rate-west" class="bar" x="323.79" y="76.25" width="50.68" height="123.75" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="487" fill="#6b7280">South and West run 33-42% above the Northeast; Midwest in between.</text>
+  <rect class="panel-edge" x="448" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Highest vs. lowest violent-crime states (10-yr avg rate/100k)</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="77" y1="195.04" x2="390" y2="195.04" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="69" y="199.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="167.23" x2="390" y2="167.23" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="69" y="171.23" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="77" y1="139.42" x2="390" y2="139.42" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="69" y="143.42" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="77" y1="111.62" x2="390" y2="111.62" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="69" y="115.62" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+      <line class="grid" x1="77" y1="83.81" x2="390" y2="83.81" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="69" y="87.81" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="195.04" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="195.04" x2="390" y2="195.04" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="233.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="125.52" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 125.52)">Rate per 100k</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-ak" class="tick" x="84.83" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 84.83 209.04)">AK</text>
+      <text id="p4-xtick-nm" class="tick" x="100.48" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 100.48 209.04)">NM</text>
+      <text id="p4-xtick-tn" class="tick" x="116.13" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 116.13 209.04)">TN</text>
+      <text id="p4-xtick-ar" class="tick" x="131.78" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 131.78 209.04)">AR</text>
+      <text id="p4-xtick-la" class="tick" x="147.43" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.43 209.04)">LA</text>
+      <text id="p4-xtick-nv" class="tick" x="163.08" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 163.08 209.04)">NV</text>
+      <text id="p4-xtick-mo" class="tick" x="178.73" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 178.73 209.04)">MO</text>
+      <text id="p4-xtick-sc" class="tick" x="194.38" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 194.38 209.04)">SC</text>
+      <text id="p4-xtick-ca" class="tick" x="210.03" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 210.03 209.04)">CA</text>
+      <text id="p4-xtick-az" class="tick" x="225.68" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225.68 209.04)">AZ</text>
+      <text id="p4-xtick-me" class="tick" x="241.33" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 241.33 209.04)">ME</text>
+      <text id="p4-xtick-nh" class="tick" x="256.98" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 256.98 209.04)">NH</text>
+      <text id="p4-xtick-vt" class="tick" x="272.63" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 272.63 209.04)">VT</text>
+      <text id="p4-xtick-ct" class="tick" x="288.28" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 288.28 209.04)">CT</text>
+      <text id="p4-xtick-ri" class="tick" x="303.93" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 303.93 209.04)">RI</text>
+      <text id="p4-xtick-va" class="tick" x="319.58" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 319.58 209.04)">VA</text>
+      <text id="p4-xtick-wy" class="tick" x="335.23" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 335.23 209.04)">WY</text>
+      <text id="p4-xtick-nj" class="tick" x="350.88" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 350.88 209.04)">NJ</text>
+      <text id="p4-xtick-ky" class="tick" x="366.53" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 366.53 209.04)">KY</text>
+      <text id="p4-xtick-id" class="tick" x="382.18" y="209.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 382.18 209.04)">ID</text>
+    </g>
+    <g id="p4-series-violent-crime-rate" class="series">
+      <rect id="p4-mark-violent-crime-rate-ak" class="bar" x="79.82" y="83.11" width="9.02" height="111.93" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-nm" class="bar" x="95.47" y="88.87" width="9.02" height="106.17" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-tn" class="bar" x="111.12" y="106.58" width="9.02" height="88.46" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-ar" class="bar" x="126.77" y="112.44" width="9.02" height="82.60" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-la" class="bar" x="142.42" y="115.31" width="9.02" height="79.73" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-nv" class="bar" x="158.07" y="121.35" width="9.02" height="73.69" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-mo" class="bar" x="173.72" y="124.46" width="9.02" height="70.58" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-sc" class="bar" x="189.37" y="126.19" width="9.02" height="68.85" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-ca" class="bar" x="205.02" y="130.75" width="9.02" height="64.29" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-az" class="bar" x="220.67" y="131.10" width="9.02" height="63.94" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-me" class="bar" x="236.32" y="179.27" width="9.02" height="15.77" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-nh" class="bar" x="251.97" y="172.79" width="9.02" height="22.25" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-vt" class="bar" x="267.62" y="169.37" width="9.02" height="25.67" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-ct" class="bar" x="283.27" y="168.66" width="9.02" height="26.38" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-ri" class="bar" x="298.92" y="165.90" width="9.02" height="29.14" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-va" class="bar" x="314.57" y="164.59" width="9.02" height="30.45" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-wy" class="bar" x="330.22" y="164.09" width="9.02" height="30.95" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-nj" class="bar" x="345.87" y="164.08" width="9.02" height="30.96" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-ky" class="bar" x="361.52" y="162.62" width="9.02" height="32.42" fill="#2563eb"/>
+      <rect id="p4-mark-violent-crime-rate-id" class="bar" x="377.17" y="161.78" width="9.02" height="33.26" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="487" fill="#6b7280">Left 10 = highest; right 10 = lowest. High-crime states are mostly</text>
+  <text class="caption" x="452" y="500" fill="#6b7280">South/Mountain West, low density; low-crime states include both rural…</text>
+  <rect class="panel-edge" x="20" y="522" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="522" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">State poverty rate vs. violent crime rate (2015-2024 avg)</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="67" y1="196" x2="386" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="59" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="178.50" x2="386" y2="178.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="59" y="182.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="161" x2="386" y2="161" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="59" y="165" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="67" y1="143.50" x2="386" y2="143.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="59" y="147.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="67" y1="126" x2="386" y2="126" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="59" y="130" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+      <line class="grid" x1="67" y1="108.50" x2="386" y2="108.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="59" y="112.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+      <line class="grid" x1="67" y1="91" x2="386" y2="91" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-6" class="tick" x="59" y="95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">700</text>
+      <line class="grid" x1="67" y1="73.50" x2="386" y2="73.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-7" class="tick" x="59" y="77.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
+      <line class="grid" x1="67" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-8" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">900</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="196" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="196" x2="386" y2="196" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Poverty rate (%)</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="126" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 126)">Crime rate /100k</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-0" class="tick" x="67" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">6</text>
+      <text id="p5-xtick-1" class="tick" x="106.88" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">8</text>
+      <text id="p5-xtick-2" class="tick" x="146.75" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <text id="p5-xtick-3" class="tick" x="186.63" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">12</text>
+      <text id="p5-xtick-4" class="tick" x="226.50" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">14</text>
+      <text id="p5-xtick-5" class="tick" x="266.38" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">16</text>
+      <text id="p5-xtick-6" class="tick" x="306.25" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">18</text>
+      <text id="p5-xtick-7" class="tick" x="346.13" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <text id="p5-xtick-8" class="tick" x="386" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">22</text>
+    </g>
+    <g id="p5-series-states" class="series">
+      <circle id="p5-mark-states-0" class="point" cx="154.33" cy="72.63" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-1" class="point" cx="285.32" cy="140.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-2" class="point" cx="291.30" cy="109.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-3" class="point" cx="252.22" cy="133.02" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-4" class="point" cx="221.52" cy="132.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-5" class="point" cx="159.71" cy="140.16" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-6" class="point" cx="148.74" cy="180.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-7" class="point" cx="179.05" cy="137.31" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-8" class="point" cx="232.88" cy="148.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-9" class="point" cx="256.21" cy="153.49" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-10" class="point" cx="146.95" cy="169.07" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-11" class="point" cx="178.05" cy="164.39" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-12" class="point" cx="206.76" cy="171.64" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-13" class="point" cx="201.38" cy="144.83" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-14" class="point" cx="218.53" cy="140.91" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-15" class="point" cx="191.01" cy="137.99" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-16" class="point" cx="293.89" cy="172.69" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-17" class="point" cx="329.78" cy="113.16" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-18" class="point" cx="157.32" cy="153.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-19" class="point" cx="135.58" cy="134.08" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-20" class="point" cx="187.42" cy="193.66" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-21" class="point" cx="237.67" cy="133.49" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-22" class="point" cx="145.35" cy="169.37" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-23" class="point" cx="223.51" cy="124.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-24" class="point" cx="356.29" cy="166.25" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-25" class="point" cx="215.33" cy="141.28" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-26" class="point" cx="245.64" cy="146.42" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-27" class="point" cx="164.10" cy="164.75" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-28" class="point" cx="171.47" cy="164.36" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-29" class="point" cx="102.89" cy="185.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-30" class="point" cx="150.34" cy="174.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-31" class="point" cx="334.76" cy="79.87" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-32" class="point" cx="218.33" cy="120.75" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-33" class="point" cx="233.88" cy="146.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-34" class="point" cx="231.29" cy="158.25" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-35" class="point" cx="262.19" cy="135.42" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-36" class="point" cx="218.92" cy="161.84" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-37" class="point" cx="196.39" cy="160.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-38" class="point" cx="195.20" cy="176.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-39" class="point" cx="259.00" cy="126.84" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-40" class="point" cx="209.35" cy="142.40" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-41" class="point" cx="256.41" cy="102.16" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-42" class="point" cx="249.03" cy="138.72" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-43" class="point" cx="146.95" cy="171.26" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-44" class="point" cx="158.91" cy="175.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-45" class="point" cx="165.69" cy="181.20" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-46" class="point" cx="169.88" cy="157.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-47" class="point" cx="178.05" cy="159.93" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-48" class="point" cx="293.49" cy="157.71" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-49" class="point" cx="167.09" cy="174.55" r="4" fill="#2563eb" fill-opacity="0.85"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="803" fill="#6b7280">r = 0.44, p = 0.001. Alaska and New Mexico are high-poverty AND</text>
+  <text class="caption" x="24" y="816" fill="#6b7280">high-crime outliers, but the relationship holds broadly.</text>
+  <text class="footnote" x="20" y="848" fill="#6b7280">n=50 states (DC excluded as an outlier city). 2021 dropped from the crime average for many states due to a severe FBI reporting-coverage gap</text>
+  <text class="footnote" x="20" y="862" fill="#6b7280">during the SRS-to-NIBRS transition. Small-n caveat applies throughout.</text>
+  <g id="brand">
+  <svg x="20" y="874" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="889" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:61936/a/165b7d7f229f49bbce2e699a18dd02f3.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Across the 50 states over 2015-2024, <strong>poorer states and, secondarily, Southern and Mountain-West states</strong> tend to have more violent crime per capita &mdash; not denser or more urbanized ones. In a multivariate regression controlling for a state's metro-population share and its overall population density, each additional percentage point of poverty is associated with about <strong>19 more violent crimes per 100,000 residents per year</strong> (p=0.009), a coefficient that survives a leave-one-state-out check (no sign flip, no group moves it past significance). Raw population density, by contrast, is <strong>negatively</strong> associated with violent crime once poverty and urbanization are held fixed (p=0.0002) &mdash; the opposite of the popular assumption that "dense = dangerous." Regionally, the population-weighted violent-crime rate is highest in the West (429.7/100k) and South (405.1/100k), lowest in the Northeast (303.8/100k), a roughly 30-40% gap. The single highest-crime states over the decade were Alaska, New Mexico, Tennessee, Arkansas and Louisiana; the lowest were Maine, New Hampshire, Vermont, Connecticut and Rhode Island &mdash; a mix that includes both low-density rural states and high-density Northeastern states at the SAFE end, underscoring that density itself is not the driver.</p>
+</section>
+<section>
+<h2>What the published research says first</h2>
+<p>Before building any state-level model, we reviewed existing literature on the correlates of violent crime. Three consistent findings emerged, all later confirmed in this data:</p><ul><li><strong>Poverty and income inequality are the most consistently cited economic predictors of violent crime</strong> in the criminology literature, though the two often trade off with each other in regressions &mdash; several studies find that once poverty is controlled for, income inequality's independent effect weakens or disappears (<a href="https://www.psypost.org/the-combination-of-poverty-and-inequality-predict-homicide-rates-in-the-united-states/">PsyPost summary of Rowlingson/related homicide research</a>; <a href="https://journals.sagepub.com/doi/abs/10.1177/073401689301800203">Hsieh & Pugh's 1993 meta-analysis</a> found both poverty and inequality positively associated with violent crime across dozens of aggregate studies).</li><li><strong>Population density is a weak and inconsistent predictor of violent crime</strong> specifically (as opposed to property crime, where the relationship is more consistently negative). A widely cited state-level analysis found that "population density is not significantly associated with violent crime in some cases," with the sign and significance varying by region (search synthesis, no single canonical URL retained verbatim; consistent with <a href="https://www.sciencedirect.com/science/article/pii/S2226585624000670">Wu et al.'s 1,486-county urban-form study</a> and the classic <a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/relationship-between-population-density-and-crime-rates-cy-1982">OJP 1982 density-crime review</a>).</li><li><strong>Urban areas have historically had meaningfully higher victimization rates than rural areas</strong> at the individual level, per BJS's National Crime Victimization Survey: urban rates ran 29-121% above rural in different recent years, though the gap has been volatile and rural/suburban violent crime has risen sharply in some recent years (<a href="https://usafacts.org/articles/where-are-crime-victimization-rates-higher-urban-rural-areas/">USAFacts on NCVS urban/rural victimization</a>; <a href="https://time.com/6904210/america-suburban-crime-problem-essay/">TIME on the suburban crime shift</a>). This is a SURVEY-based, sub-state (urban/suburban/rural place-of-residence) measure, not the state-level agency-reported FBI rate used below &mdash; the two are not the same population or method, which is one reason our state-grain result (state urbanization share barely correlated with crime) does not contradict it.</li></ul><p>These three threads set the expectation this analysis tested: poverty should matter, density/urbanization should NOT cleanly predict violent crime at state grain, and region (the South's historically elevated rates) is worth checking separately. All three held up.</p>
+</section>
+<section>
+<h2>Data and method</h2>
+<p><strong>Crime measure:</strong> FBI Crime Data Explorer (CDE) state-level violent-crime offense rates (crime.cde_offenses), summed across each year's 12 monthly per-100k rates to get an annual rate, then averaged across years 2015-2020 and 2022-2024 (9 years) per state. <strong>2021 was excluded</strong> after checking population_coverage_pct: the FBI's SRS-to-NIBRS reporting transition left several major states with severe agency non-reporting that year &mdash; California's covered population fell to just 26% in 2021, Pennsylvania to 42%, Florida to 47%, Illinois to 54% &mdash; which would otherwise silently understate crime in exactly the biggest states for that one year and distort any 10-year average. This check and exclusion followed this connector's own documented recipe for this table.</p><p><strong>Predictors:</strong> poverty rate (Census, census.poverty_rate, avg. 2015-2023, the latest published year), Gini income-inequality index (Census ACS, census.acs_income_distribution, state-level rows only, avg. 2015-2023), percent of state population living in a metro county (USDA Rural-Urban Continuum Codes, geo.rural_urban_continuum, 2022 vintage &mdash; RUCC is a decennial-ish product with no year series, so this is a single current snapshot of a fairly stable structural characteristic, not a 10-year average), and population density (avg. FBI-reported state population &divide; 2020 TIGER land area, log-transformed for the regression given its heavy right skew &mdash; Alaska at 1.3 people/sq mi vs. New Jersey at 1,233). DC was excluded from all cross-state comparisons per this connector's own diagnostics warning: it is a city, not a state, and an extreme outlier on density and metro share that would swamp any state-level pattern (DC's own violent crime rate, 1,058/100k, is roughly double the highest actual state).</p><p><strong>Region:</strong> standard US Census Bureau 4-region classification (Northeast/Midwest/South/West), applied as a fixed grouping for the whole window (region assignment does not change over time, unlike some political classifications).</p>
+</section>
+<section>
+<h2>Poverty is the most robust state-level predictor</h2>
+<p>Bivariate correlation: poverty rate vs. violent crime rate, r=0.44 (p=0.0015, n=50). A quintile dose-response test shows a broadly increasing (though not perfectly monotonic) relationship: the lowest-poverty quintile of states averages 314 violent crimes/100k; the highest-poverty quintile averages 475/100k (trend p=0.022).</p><p>In a multivariate OLS regression (violent_crime_rate ~ poverty_rate + pct_metro_pop + ln_density + South-region dummy, n=50, R&sup2;=0.43, adj. R&sup2;=0.37, F=8.33, p&lt;0.0001), poverty remains significant and roughly the same size as in the simpler 3-predictor model: <strong>+19.4 crimes/100k per +1 percentage point of poverty (p=0.009)</strong>. A leave-one-state-out sensitivity check refit the model 50 times, once per state removed: the coefficient ranged only from 20.0 to 27.0 across every possible single-state removal, never flipped sign, and never crossed the p=0.05 significance threshold &mdash; this is a genuinely robust finding, not one state's artifact. Gini income inequality, tested separately, was NOT significantly correlated with violent crime in this state-grain data (r=0.16, p=0.27) &mdash; consistent with the literature finding that once poverty is in the model, inequality's marginal contribution often washes out.</p>
+</section>
+<section>
+<h2>Density and urbanization do not behave the way intuition suggests</h2>
+<p>Raw population density alone has almost no clean relationship with violent crime: a quintile dose-response test on density is NOT monotonic and not significant (trend p=0.40) &mdash; the lowest-density quintile of states (avg 16.6 people/sq mi, e.g. Alaska, Montana, Wyoming) actually has the HIGHEST average crime rate of any quintile (437/100k), while the densest quintile (avg 643 people/sq mi, e.g. New Jersey, Rhode Island, Massachusetts) averages a middling 322/100k.</p><p>In the full multivariate model, log-density carries a <strong>large, statistically significant NEGATIVE</strong> coefficient (-69.7 per unit of ln-density, p=0.0002): holding poverty and metro-population-share fixed, a more densely packed state tends to have LESS violent crime, not more. Separately, the share of a state's population living in a metro county (a measure of how urbanized the state's population mix is, distinct from overall land-density) carries a smaller but significant POSITIVE coefficient (+5.1 per percentage point of metro share, p&lt;0.001) once density is controlled for. Read together: a state that is highly urbanized (most residents live in metro areas) but spread across a lot of open land between those metro pockets &mdash; Tennessee, Missouri, Georgia-type geography &mdash; tends toward higher violent crime; a state that is both urbanized AND physically compact &mdash; New Jersey, Rhode Island, Connecticut, Massachusetts &mdash; tends toward lower violent crime. Neither "urban" nor "rural" alone is the story; it is poverty first, with a secondary and more subtle interaction between how urbanized a population is and how physically compact the state is.</p>
+</section>
+<section>
+<h2>Region: South and West run higher, Northeast lowest</h2>
+<p>Population-weighted average annual violent-crime rate by US Census region, 2015-2024 (excluding 2021): West 429.7/100k, South 405.1/100k, Midwest 374.6/100k, Northeast 303.8/100k. The West-vs-Northeast gap is about 41%; South-vs-Northeast about 33%. In the multivariate model, a South-region dummy carried a positive but not-statistically-significant coefficient (+44.7, p=0.32) once poverty, metro share and density were already in the model &mdash; consistent with region acting largely AS A PROXY for the structural variables (poverty, land-use pattern) already captured, rather than an independent effect of its own, though the small sample (n=50, only 16 Southern states) limits how finely this can be separated.</p>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li><strong>2021 excluded</strong> from every state's 10-year average due to a documented FBI reporting-coverage collapse in several major states that year (see Data and method). "Last 10 years" here effectively means 2015-2024 with 2021 replaced by nothing rather than a bad number.</li><li><strong>DC excluded</strong> throughout as a city-outlier, not a state (its own rate, 1,058/100k, is roughly double the highest true state).</li><li><strong>n=50</strong> is a genuinely small sample for separating four correlated structural predictors (poverty, Gini, metro share, density all correlate with each other at r=0.44-0.66); VIFs were checked and stayed under 3.1 (no severe multicollinearity), but wide standard errors mean this is directional evidence, not a precise causal estimate.</li><li><strong>This is a cross-sectional, not causal, comparison.</strong> No instrument or panel design was used to rule out reverse causality (e.g., crime driving poverty via disinvestment) or omitted structural confounds (policing intensity, incarceration policy, drug-market geography, gun-law variation) that were not modeled here.</li><li><strong>RUCC metro-share is a single 2022 snapshot</strong>, not a 10-year average, though state urbanization mix changes very slowly and this is unlikely to materially bias the result.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://cde.ucr.cjis.gov/">FBI Crime Data Explorer, state violent-crime offense rates</a> <span class="note">— crime.cde_offenses, 2015-2024 (2021 excluded), summed monthly rates to annual</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_abbr, &quot;year&quot;, SUM(offense_rate) AS annual_violent_rate FROM crime.cde_offenses WHERE offense_code = 'violent-crime' AND state_abbr &lt;&gt; 'national' AND &quot;year&quot; IN ('2015','2016','2017','2018','2019','2020','2022','2023','2024') GROUP BY state_abbr, &quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.census.gov/topics/income-poverty/poverty.html">US Census Bureau poverty rate by state</a> <span class="note">— census.poverty_rate, avg 2015-2023</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT sr.state_abbr, AVG(pr.poverty_rate_pct) AS poverty_rate FROM census.poverty_rate pr JOIN geo.state_ref sr ON sr.state_fips = pr.state WHERE pr.&quot;year&quot; BETWEEN '2015' AND '2023' GROUP BY sr.state_abbr</code></pre></details></li>
+<li><a href="https://www.census.gov/topics/income-poverty/income-inequality.html">Census ACS 5-Year Gini income-inequality index by state</a> <span class="note">— census.acs_income_distribution, geography='state', avg 2015-2023</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT sr.state_abbr, AVG(g.gini_index) AS gini_index FROM census.acs_income_distribution g JOIN geo.state_ref sr ON sr.state_fips = g.state WHERE g.&quot;year&quot; BETWEEN '2015' AND '2023' AND g.geography = 'state' GROUP BY sr.state_abbr</code></pre></details></li>
+<li><a href="https://www.ers.usda.gov/data-products/rural-urban-continuum-codes">USDA ERS Rural-Urban Continuum Codes (RUCC), 2022 vintage</a> <span class="note">— geo.rural_urban_continuum, used to compute % of state population in a metro county</span></li>
+<li><a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">Census TIGER/Line state land area</a> <span class="note">— geo.states, 2020 vintage, used with FBI population for density</span></li>
+<li>OLS regression: violent crime rate on poverty, metro share, log-density, South dummy<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;violent_crime_rate&quot;, predictors=[&quot;poverty_rate&quot;,&quot;pct_metro_pop&quot;,&quot;ln_density&quot;,&quot;south&quot;])</code></pre></details></li>
+<li>Leave-one-state-out sensitivity check on the poverty coefficient<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(outcome=&quot;violent_crime_rate&quot;, predictors=[&quot;poverty_rate&quot;,&quot;pct_metro_pop&quot;,&quot;ln_density&quot;], group_col=&quot;state_abbr&quot;, term=&quot;poverty_rate&quot;)</code></pre></details></li>
+<li>Quantile dose-response test, poverty rate vs. violent crime<details class="sqltoggle"><summary>Show tool call</summary><pre><code>quantile_binning_test(outcome=&quot;violent_crime_rate&quot;, predictor=&quot;poverty_rate&quot;, bins=5)</code></pre></details></li>
+<li>Quantile dose-response test, population density vs. violent crime<details class="sqltoggle"><summary>Show tool call</summary><pre><code>quantile_binning_test(outcome=&quot;violent_crime_rate&quot;, predictor=&quot;density&quot;, bins=5)</code></pre></details></li>
+<li>Correlation matrix and VIF check across predictors<details class="sqltoggle"><summary>Show tool call</summary><pre><code>correlation_matrix(columns=[&quot;violent_crime_rate&quot;,&quot;poverty_rate&quot;,&quot;gini_index&quot;,&quot;pct_metro_pop&quot;,&quot;ln_density&quot;])</code></pre></details></li>
+<li><a href="https://usafacts.org/articles/where-are-crime-victimization-rates-higher-urban-rural-areas/">USAFacts: urban vs. rural crime victimization rates (BJS NCVS)</a></li>
+<li><a href="https://time.com/6904210/america-suburban-crime-problem-essay/">TIME: America's suburban crime problem</a></li>
+<li><a href="https://journals.sagepub.com/doi/abs/10.1177/073401689301800203">Hsieh &amp; Pugh (1993), Poverty, Income Inequality and Violent Crime: A Meta-Analysis</a></li>
+<li><a href="https://www.psypost.org/the-combination-of-poverty-and-inequality-predict-homicide-rates-in-the-united-states/">PsyPost: poverty and inequality combination predicts US homicide rates</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S2226585624000670">ScienceDirect: urban form and crime across 1,486 US counties</a></li>
+<li><a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/relationship-between-population-density-and-crime-rates-cy-1982">OJP: relationship between population density and crime rates (1982 review)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">FBI CDE data for 2021 excluded from all state averages due to a documented reporting-coverage collapse during the SRS-to-NIBRS transition. DC excluded as a city outlier. n=50 states; small-sample caveats apply to all regression results.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-02</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

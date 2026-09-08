@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interest-rate swap clearing is one of the most concentrated businesses in finance — one CCP, LCH SwapClear, clears roughly 90%+ of global volume</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s2-t1-s1:checked ~ table tbody.s0{display:none}
+#s2-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"]{color:var(--link)}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"] .srtcue{opacity:1}
+#s2-t1-s1:checked ~ .srtreset{display:inline-block}
+#s2-t1-s2:checked ~ table tbody.s0{display:none}
+#s2-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"]{color:var(--link)}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"] .srtcue{opacity:1}
+#s2-t1-s2:checked ~ .srtreset{display:inline-block}
+#s2-t1-s3:checked ~ table tbody.s0{display:none}
+#s2-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"]{color:var(--link)}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"] .srtcue{opacity:1}
+#s2-t1-s3:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Interest-rate swap clearing is one of the most concentrated businesses in finance — one CCP, LCH SwapClear, clears roughly 90%+ of global volume</h1>
+<p class="subtitle">CCP-level and clearing-member-level concentration in OTC interest-rate swap/OIS clearing, 2024-2025</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Interest-rate swap clearing is dominated by one CCP, LCH SwapClear</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">2024 volumes by currency, Clarus CCPView/DTCC; volume-weighted across USD/EUR/GBP/JPY/AUD/CAD/EMEA/APAC/LatAm segments</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Volume-weighted global HHI across CCPs</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">~8,400</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">DOJ &quot;highly concentrated&quot; threshold is 2,500</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:11px">Top-5 bank clearing members' share of client IRS margin</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">&gt;80%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">US, UK, Japan (FSB 2018)</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Global IRS/OIS clearing volume by CCP (2024, volume-weighted est.)</text>
+    <g id="p3-slices">
+      <path id="p3-mark-lch-swapclear" class="slice" d="M 206 152 L 206 76.48 L 212.04 76.72 L 218.04 77.45 L 223.96 78.65 L 229.76 80.32 L 235.42 82.44 L 240.88 85.02 L 246.13 88.02 L 251.11 91.43 L 255.81 95.23 L 260.19 99.40 L 264.22 103.90 L 267.88 108.71 L 271.14 113.79 L 273.99 119.12 L 276.40 124.66 L 278.36 130.37 L 279.85 136.23 L 280.88 142.18 L 281.42 148.20 L 281.49 154.24 L 281.07 160.27 L 280.16 166.24 L 278.79 172.12 L 276.95 177.88 L 274.65 183.47 L 271.92 188.85 L 268.76 194.01 L 265.20 198.89 L 261.26 203.47 L 256.97 207.72 L 252.35 211.62 L 247.44 215.13 L 242.26 218.25 L 236.85 220.93 L 231.24 223.18 L 225.47 224.97 L 219.57 226.29 L 213.59 227.14 L 207.56 227.50 L 201.52 227.39 L 195.51 226.79 L 189.56 225.71 L 183.72 224.16 L 178.03 222.15 L 172.51 219.69 L 167.21 216.79 L 162.15 213.49 L 157.38 209.78 L 152.91 205.71 L 148.79 201.30 L 145.03 196.57 L 141.66 191.55 L 138.71 186.28 L 136.18 180.79 L 134.11 175.12 L 132.49 169.30 L 131.34 163.36 L 130.67 157.36 L 130.48 151.32 L 130.78 145.29 L 131.56 139.30 L 132.81 133.38 L 134.53 127.59 L 136.71 121.96 L 139.34 116.52 L 142.39 111.30 L 145.84 106.35 L 149.68 101.68 L 153.89 97.34 L 158.42 93.35 L 163.26 89.74 L 168.38 86.52 Z" fill="#2563eb" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+      <path id="p3-mark-jscc" class="slice" d="M 206 152 L 168.38 86.52 L 175.79 82.79 L 183.57 79.89 Z" fill="#ea580c" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+      <path id="p3-mark-cme" class="slice" d="M 206 152 L 183.57 79.89 L 189.99 78.20 L 196.53 77.08 Z" fill="#059669" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+      <path id="p3-mark-eurex" class="slice" d="M 206 152 L 196.53 77.08 L 198.42 76.86 L 200.31 76.69 Z" fill="#7c3aed" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+      <path id="p3-mark-asx" class="slice" d="M 206 152 L 200.31 76.69 L 201.02 76.64 L 201.73 76.60 Z" fill="#dc2626" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+      <path id="p3-mark-asigna" class="slice" d="M 206 152 L 201.73 76.60 L 201.97 76.59 L 202.21 76.58 Z" fill="#0891b2" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+      <path id="p3-mark-other-shanghai-clearing-ccil-hkex-kdpw-etc" class="slice" d="M 206 152 L 202.21 76.58 L 204.10 76.50 L 206.00 76.48 Z" fill="#ca8a04" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+    <g id="p3-slice-labels">
+      <text id="p3-slice-label-lch-swapclear" class="value-label" x="229.08" y="242.49" fill="#1f2328" font-size="11" style="font-size:11px">LCH SwapClear 92%</text>
+      <text id="p3-slice-label-jscc" class="value-label" x="170.19" y="73.95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">JSCC 4%</text>
+      <text id="p3-slice-label-cme" class="value-label" x="187.02" y="68.51" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">CME 3%</text>
+      <text id="p3-slice-label-eurex" class="value-label" x="197.02" y="66.93" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Eurex 1%</text>
+      <text id="p3-slice-label-asx" class="value-label" x="200.10" y="66.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ASX 0%</text>
+      <text id="p3-slice-label-asigna" class="value-label" x="201.22" y="66.61" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Asigna 0%</text>
+      <text id="p3-slice-label-other-shanghai-clearing-ccil-hkex-kdpw-etc" class="value-label" x="203.75" y="66.51" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Other (Shanghai Clearing, CCIL, HKEX, KDPW, etc.) 1%</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="499" fill="#6b7280">Author estimate; see methodology in report</text>
+  <rect class="panel-edge" x="448" y="206" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">LCH SwapClear's share of cleared volume by currency, 2024</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="67" y1="160" x2="390" y2="160" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="59" y="164" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="139.20" x2="390" y2="139.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="59" y="143.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="59" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="97.60" x2="390" y2="97.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="59" y="101.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="76.80" x2="390" y2="76.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="59" y="80.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="160" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="160" x2="390" y2="160" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="108" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 108)">LCH share (%)</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-gbp-ois" class="tick" x="83.15" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 83.15 174)">GBP OIS</text>
+      <text id="p4-xtick-cad-ois" class="tick" x="115.45" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115.45 174)">CAD OIS</text>
+      <text id="p4-xtick-eur-ois" class="tick" x="147.75" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.75 174)">EUR OIS</text>
+      <text id="p4-xtick-usd-ois" class="tick" x="180.05" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 180.05 174)">USD OIS</text>
+      <text id="p4-xtick-eur-irs" class="tick" x="212.35" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 212.35 174)">EUR IRS</text>
+      <text id="p4-xtick-aud-swaps" class="tick" x="244.65" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 244.65 174)">AUD swaps</text>
+      <text id="p4-xtick-emea-other-ccy" class="tick" x="276.95" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 276.95 174)">EMEA (other ccy)</text>
+      <text id="p4-xtick-apac-ex-jpy-aud" class="tick" x="309.25" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.25 174)">APAC (ex JPY/AUD)</text>
+      <text id="p4-xtick-jpy-ois" class="tick" x="341.55" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 341.55 174)">JPY OIS</text>
+      <text id="p4-xtick-latam" class="tick" x="373.85" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.85 174)">LatAm</text>
+    </g>
+    <g id="p4-series-lch-share" class="series">
+      <rect id="p4-mark-lch-share-gbp-ois" class="bar" x="72.81" y="56.10" width="19.67" height="103.90" fill="#2563eb"/>
+      <rect id="p4-mark-lch-share-cad-ois" class="bar" x="105.11" y="56.10" width="19.67" height="103.90" fill="#2563eb"/>
+      <rect id="p4-mark-lch-share-eur-ois" class="bar" x="137.41" y="57.66" width="19.67" height="102.34" fill="#2563eb"/>
+      <rect id="p4-mark-lch-share-usd-ois" class="bar" x="169.71" y="58.18" width="19.67" height="101.82" fill="#2563eb"/>
+      <rect id="p4-mark-lch-share-eur-irs" class="bar" x="202.01" y="61.20" width="19.67" height="98.80" fill="#2563eb"/>
+      <rect id="p4-mark-lch-share-aud-swaps" class="bar" x="234.31" y="62.34" width="19.67" height="97.66" fill="#2563eb"/>
+      <rect id="p4-mark-lch-share-emea-other-ccy" class="bar" x="266.61" y="56.62" width="19.67" height="103.38" fill="#2563eb"/>
+      <rect id="p4-mark-lch-share-apac-ex-jpy-aud" class="bar" x="298.91" y="75.76" width="19.67" height="84.24" fill="#2563eb"/>
+      <rect id="p4-mark-lch-share-jpy-ois" class="bar" x="331.21" y="113.41" width="19.67" height="46.59" fill="#2563eb"/>
+      <rect id="p4-mark-lch-share-latam" class="bar" x="363.51" y="157.19" width="19.67" height="2.81" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="499" fill="#6b7280">JPY and LatAm are the exceptions — JSCC and CME lead there</text>
+  <text class="caption" x="452" y="512" fill="#6b7280">respectively</text>
+  <g id="brand">
+  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="544" fill="#6b7280" text-anchor="end">Prepared 2026-09-04</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:62241/a/0aaad245e9ec5afaf939b3602909e51a.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Yes — clearing of interest-rate swaps (IRS) and overnight-index swaps (OIS) is one of the most concentrated market-structure businesses in finance, at two distinct levels. <strong>At the central-counterparty (CCP) level</strong>, a single clearinghouse, LCH SwapClear (London), clears the overwhelming majority of global IRS/OIS volume — roughly 92-98% in USD, EUR, GBP and CAD, and 99%+ in GBP and CAD specifically. Our volume-weighted estimate across nine major currency segments puts LCH's global share at about 92% and the implied Herfindahl-Hirschman Index (HHI) across CCPs at roughly 8,400 — more than three times the U.S. Department of Justice's threshold (2,500) for "highly concentrated." CME Group is a distant second globally (~3%) but is the dominant CCP for Latin American currencies (91% share), and Japan's JSCC leads JPY OIS clearing (55% in 2024, though LCH is gaining). <strong>At the clearing-member level</strong> — the banks that stand between end clients and the CCPs — concentration is nearly as extreme: five bank-affiliated firms account for more than 80% of client initial margin posted for cleared IRS in the US, UK, and Japan, a level that has persisted essentially unchanged since mandatory clearing took effect around 2016 (FSB, 2018).</p>
+</section>
+<section>
+<h2>1. CCP-level concentration: LCH SwapClear dominates almost every major currency</h2>
+<p>Clarus Financial Technology's CCPView (which normalizes daily volume disclosures published directly by each CCP) shows, for 2024 single-sided gross notional cleared volume:</p><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th><label class="srth" for="s2-t1-s1">Segment<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">Leading CCP / share<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">Runner-up<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>USD OIS (SOFR/FF)</td><td>LCH SwapClear 97.85%</td><td>CME 2.14%</td></tr><tr><td>EUR IRS (Euribor)</td><td>LCH SwapClear 95.0%</td><td>Eurex 4.9%, CME 0.08%</td></tr><tr><td>EUR OIS (€STR/EONIA)</td><td>LCH SwapClear 98.41%</td><td>Eurex 1.59%</td></tr><tr><td>GBP OIS (SONIA)</td><td>LCH SwapClear 99.9%</td><td>&mdash;</td></tr><tr><td>CAD OIS (CORRA)</td><td>LCH SwapClear 99.9%</td><td>&mdash;</td></tr><tr><td>AUD swaps (BBSW/AONIA)</td><td>LCH 93.9%</td><td>ASX 6.1%</td></tr><tr><td>EMEA, other currencies (ZAR, CHF, SEK, CZK, PLN, NOK, ILS, HUF, DKK)</td><td>LCH 99.4% overall</td><td>CME/KDPW low single digits in HUF/PLN only</td></tr><tr><td>JPY OIS (TONA)</td><td>JSCC 55.2%</td><td>LCH SwapClear 44.8% (up from 29-32% in 2022-23)</td></tr><tr><td>APAC ex-JPY/AUD (CNY, NZD, KRW, INR, SGD, HKD, THB, TWD)</td><td>LCH ~81% overall</td><td>Shanghai Clearing (CNY, 60%), CCIL (INR, 28%), HKEX</td></tr><tr><td>Latin America (MXN, BRL, CLP, COP)</td><td>CME 91.1%</td><td>Asigna/Mexder 6.2%, LCH 2.7%</td></tr></tbody><tbody class="srt s1"><tr><td>APAC ex-JPY/AUD (CNY, NZD, KRW, INR, SGD, HKD, THB, TWD)</td><td>LCH ~81% overall</td><td>Shanghai Clearing (CNY, 60%), CCIL (INR, 28%), HKEX</td></tr><tr><td>AUD swaps (BBSW/AONIA)</td><td>LCH 93.9%</td><td>ASX 6.1%</td></tr><tr><td>CAD OIS (CORRA)</td><td>LCH SwapClear 99.9%</td><td>&mdash;</td></tr><tr><td>EMEA, other currencies (ZAR, CHF, SEK, CZK, PLN, NOK, ILS, HUF, DKK)</td><td>LCH 99.4% overall</td><td>CME/KDPW low single digits in HUF/PLN only</td></tr><tr><td>EUR IRS (Euribor)</td><td>LCH SwapClear 95.0%</td><td>Eurex 4.9%, CME 0.08%</td></tr><tr><td>EUR OIS (€STR/EONIA)</td><td>LCH SwapClear 98.41%</td><td>Eurex 1.59%</td></tr><tr><td>GBP OIS (SONIA)</td><td>LCH SwapClear 99.9%</td><td>&mdash;</td></tr><tr><td>JPY OIS (TONA)</td><td>JSCC 55.2%</td><td>LCH SwapClear 44.8% (up from 29-32% in 2022-23)</td></tr><tr><td>Latin America (MXN, BRL, CLP, COP)</td><td>CME 91.1%</td><td>Asigna/Mexder 6.2%, LCH 2.7%</td></tr><tr><td>USD OIS (SOFR/FF)</td><td>LCH SwapClear 97.85%</td><td>CME 2.14%</td></tr></tbody><tbody class="srt s2"><tr><td>GBP OIS (SONIA)</td><td>LCH SwapClear 99.9%</td><td>&mdash;</td></tr><tr><td>CAD OIS (CORRA)</td><td>LCH SwapClear 99.9%</td><td>&mdash;</td></tr><tr><td>EMEA, other currencies (ZAR, CHF, SEK, CZK, PLN, NOK, ILS, HUF, DKK)</td><td>LCH 99.4% overall</td><td>CME/KDPW low single digits in HUF/PLN only</td></tr><tr><td>EUR OIS (€STR/EONIA)</td><td>LCH SwapClear 98.41%</td><td>Eurex 1.59%</td></tr><tr><td>USD OIS (SOFR/FF)</td><td>LCH SwapClear 97.85%</td><td>CME 2.14%</td></tr><tr><td>EUR IRS (Euribor)</td><td>LCH SwapClear 95.0%</td><td>Eurex 4.9%, CME 0.08%</td></tr><tr><td>AUD swaps (BBSW/AONIA)</td><td>LCH 93.9%</td><td>ASX 6.1%</td></tr><tr><td>Latin America (MXN, BRL, CLP, COP)</td><td>CME 91.1%</td><td>Asigna/Mexder 6.2%, LCH 2.7%</td></tr><tr><td>APAC ex-JPY/AUD (CNY, NZD, KRW, INR, SGD, HKD, THB, TWD)</td><td>LCH ~81% overall</td><td>Shanghai Clearing (CNY, 60%), CCIL (INR, 28%), HKEX</td></tr><tr><td>JPY OIS (TONA)</td><td>JSCC 55.2%</td><td>LCH SwapClear 44.8% (up from 29-32% in 2022-23)</td></tr></tbody><tbody class="srt s3"><tr><td>GBP OIS (SONIA)</td><td>LCH SwapClear 99.9%</td><td>&mdash;</td></tr><tr><td>CAD OIS (CORRA)</td><td>LCH SwapClear 99.9%</td><td>&mdash;</td></tr><tr><td>Latin America (MXN, BRL, CLP, COP)</td><td>CME 91.1%</td><td>Asigna/Mexder 6.2%, LCH 2.7%</td></tr><tr><td>AUD swaps (BBSW/AONIA)</td><td>LCH 93.9%</td><td>ASX 6.1%</td></tr><tr><td>USD OIS (SOFR/FF)</td><td>LCH SwapClear 97.85%</td><td>CME 2.14%</td></tr><tr><td>EMEA, other currencies (ZAR, CHF, SEK, CZK, PLN, NOK, ILS, HUF, DKK)</td><td>LCH 99.4% overall</td><td>CME/KDPW low single digits in HUF/PLN only</td></tr><tr><td>EUR OIS (€STR/EONIA)</td><td>LCH SwapClear 98.41%</td><td>Eurex 1.59%</td></tr><tr><td>EUR IRS (Euribor)</td><td>LCH SwapClear 95.0%</td><td>Eurex 4.9%, CME 0.08%</td></tr><tr><td>JPY OIS (TONA)</td><td>JSCC 55.2%</td><td>LCH SwapClear 44.8% (up from 29-32% in 2022-23)</td></tr><tr><td>APAC ex-JPY/AUD (CNY, NZD, KRW, INR, SGD, HKD, THB, TWD)</td><td>LCH ~81% overall</td><td>Shanghai Clearing (CNY, 60%), CCIL (INR, 28%), HKEX</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>The only two segments where LCH is not the outright leader are JPY (JSCC leads, though LCH is closing the gap fast) and Latin American currencies (CME leads decisively). Everywhere else — which is most of global notional — LCH's share exceeds 90%, often 98-99.9%. This matches the BIS's own December 2025 assessment: “The London Clearing House (LCH) in the United Kingdom and the Chicago Mercantile Exchange (CME) in the United States are the two dominant CCPs for OTC interest rate derivatives... Only China, India and Mexico have local CCPs that attract meaningful OTC clearing activity.”</p>
+</section>
+<section>
+<h2>2. A volume-weighted global estimate: HHI near 8,400</h2>
+<p>To put a single number on “how concentrated,” we combined the currency-segment volumes and CCP shares above (converting non-USD notionals to USD at approximate 2024 average FX rates: EUR/USD 1.08, GBP/USD 1.27, USD/JPY 150, AUD/USD 0.65, USD/CAD 1.37) into one volume-weighted global distribution across CCPs (computed with Python/pandas-equivalent arithmetic, shown in the dashboard). Across roughly $776 trillion in USD-equivalent 2024 notional volume spanning nine currency segments:</p><ul><li>LCH SwapClear: ~91.7%</li><li>JSCC: ~3.5%</li><li>CME: ~2.8%</li><li>Eurex: ~0.8%</li><li>ASX, Asigna, Shanghai Clearing, CCIL, HKEX, KDPW (combined): ~1.2%</li></ul><p>The resulting Herfindahl-Hirschman Index is approximately <strong>8,400</strong> (on the standard 0-10,000 scale). For comparison, the DOJ/FTC Horizontal Merger Guidelines call a market with HHI above 2,500 “highly concentrated”; an HHI this high is closer to what a legal monopoly would produce than a competitive market. This is a back-of-envelope weighted estimate built from published per-currency shares, not a single official cross-currency HHI computed by a regulator — we are not aware of one being published — but it is directionally consistent with every qualitative description in the literature (BIS, FSB, Clarus) that the IRS/OIS clearing business is dominated by essentially one firm globally, with a second firm (CME) mattering mainly in USD and Latin American currencies and a third (JSCC) mattering in yen.</p>
+</section>
+<section>
+<h2>3. Clearing-member (bank) concentration is nearly as extreme</h2>
+<p>The CCP is only the plumbing; most end users don't clear directly — they access a CCP through a bank-affiliated clearing member. The FSB's 2018 post-implementation evaluation of G20 clearing reforms found: “five firms, all bank-affiliated, account for over 80% of total client margin for cleared interest rate swaps in the United States, United Kingdom and Japan,” and separately, “the amount of cleared client trading activity which passes through the top five clearing members exceeds 80% for IRS, as measured by notional value,” based on CPMI-IOSCO CCP quantitative disclosures. The FSB also noted this concentration “has existed since client clearing became commonplace for these instruments” and that “although the overall amount of client margin posted at CCPs has increased substantially since the implementation of reforms, the number of clearing service providers has stayed broadly flat over the same period” — i.e., clearing became mandatory and the client base grew, but the roster of firms willing to provide client clearing did not grow with it. FIA's ongoing “Clearing Members and Concentration” tracker (built from the same CPMI-IOSCO quarterly disclosures) continues to publish the number of general clearing members per CCP and the top-5 share of initial margin and default-fund contributions, confirming this is a structurally persistent feature of the market rather than a one-time post-crisis snapshot.</p>
+</section>
+<section>
+<h2>4. Why it's this concentrated, and the policy concern</h2>
+<p>Two forces explain the concentration. First, CCP clearing has strong scale and network economies — a bigger CCP offers better multilateral netting and margin offsets across a client's whole portfolio, which pulls volume toward whichever CCP already has the most open interest, a self-reinforcing dynamic (BIS, citing Ehlers and Hardy (2019)). Second, becoming a direct clearing member requires balance-sheet capacity, default-fund contributions, and regulatory capital that only large global banks can support, which caps the number of firms willing to offer client clearing regardless of how much client demand grows. Both BIS and FSB flag this as a genuine systemic-risk concern, not just an industry-structure curiosity: concentration in a small number of CCPs and clearing banks means the failure or withdrawal of any one of them — or the CCP itself — would be very hard to absorb, and for emerging-market currencies it also means clearing (and much of the associated trading) happens outside the jurisdiction whose currency is being hedged, creating cross-border legal and settlement-cost frictions (BIS, December 2025).</p>
+</section>
+<section>
+<h2>5. Data note: AskAmerica's own CFTC swap-data corpus could not answer this directly</h2>
+<p>We first attempted to compute CCP-level clearing shares directly from AskAmerica's cftc schema (cftc.cftc_trades / cftc.rate_swaps / cftc.clearing_activity), which is built from CFTC/DTCC Part 43/45 swap dissemination data and in principle carries a settlement_location field described as “Settlement location/CCP (e.g. CME, LCH, ICE)” and a cleared Y/N/I flag. In practice, for the RATES asset class this field is populated on roughly 0.4% of rows and, where populated, holds ISO country codes (US, HK, TH, KR, IN) rather than CCP identifiers — and the cleared flag shows almost no 'Y' rows in the weeks we sampled, which is inconsistent with published industry clearing rates (roughly 80%+ of IRS volume has been centrally cleared since 2017). This appears to be a data-quality gap in how the connector's RATES ingestion populates these two fields; we filed it via report_issue rather than presenting a number derived from unusable data. All figures in this report are therefore drawn from primary/secondary market-structure sources (Clarus CCPView, BIS, FSB) rather than computed from the AskAmerica warehouse.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.clarusft.com/2024-ccp-volumes-and-share-in-ird/">Clarus Financial Technology, &quot;2024 CCP Volumes and Share in IRD&quot; (CCPView data)</a></li>
+<li><a href="https://www.bis.org/publ/qtrpdf/r_qt2512z.htm">BIS Quarterly Review, Dec 2025 — &quot;The concentration of clearing as a challenge for emerging market economy OTC interest rate derivatives markets&quot;</a></li>
+<li><a href="https://www.fsb.org/uploads/R191118-1-1.pdf">FSB, &quot;Incentives to centrally clear over-the-counter (OTC) derivatives&quot; — final report, 19 Nov 2018</a></li>
+<li><a href="https://www.fsb.org/uploads/P191118-5.pdf">FSB, &quot;OTC Derivatives Market Reforms&quot; Thirteenth Progress Report</a></li>
+<li><a href="https://bis.org/publ/qtrpdf/r_qt1612r.htm">BIS, &quot;Central clearing predominates in OTC interest rate derivatives markets&quot; (2016)</a></li>
+<li><a href="https://www.bis.org/publ/qtrpdf/r_qt1812h.htm">BIS, &quot;Clearing risks in OTC derivatives markets: the CCP-bank nexus&quot; (2018)</a></li>
+<li><a href="https://www.fia.org/fia/clearing-members-and-concentration">FIA, &quot;Clearing Members and Concentration&quot; (CPMI-IOSCO quantitative disclosure tracker)</a></li>
+<li>AskAmerica cftc.cftc_trades — attempted CCP concentration query (returned unusable settlement_location/cleared population for RATES)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT settlement_location, cleared, COUNT(*) AS n FROM cftc.cftc_trades WHERE asset_class='RATES' AND action_type='NEWT' AND trade_date &gt;= DATE '2025-08-01' AND trade_date &lt; DATE '2025-08-08' GROUP BY settlement_location, cleared ORDER BY n DESC</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-04</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

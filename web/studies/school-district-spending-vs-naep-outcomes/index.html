@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>More per-pupil spending has not tracked with higher NAEP scores across states in the last decade — but this cross-state snapshot cannot answer the causal question the credible quasi-experimental literature does</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>More per-pupil spending has not tracked with higher NAEP scores across states in the last decade — but this cross-state snapshot cannot answer the causal question the credible quasi-experimental literature does</h1>
+<p class="subtitle">edu.f33_district_finance (Census F-33, FY2016 &amp; FY2024) vs. edu.naep_state_trends (grade-8 math+reading, 2017 &amp; 2024), 51 states/DC</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Per-pupil spending vs. NAEP grade-8 achievement, 2016-2024</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">State-level, real (2024) dollars; NAEP grade-8 math+reading composite, national average 2013-2024</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Corr(Δ real per-pupil spend, Δ NAEP score), state-level 2016→2024</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">r = -0.06</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">p = 0.66 (not significant)</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">51 states+DC; verified via askengine ols_regression and</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">sensitivity_analysis (leave-one-state-out: no sign flip, coefficient…</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Mean real per-pupil spending change, 2016→2024</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">+13.4%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">+$2,031 (2024$)</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Mean rose from ~$15,900 to ~$17,900 (2024 dollars); every state raised</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">nominal spending, most rose in real terms too</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">State-level: change in real per-pupil spending vs. change in NAEP score, 2016-2024</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="66" y1="228" x2="386" y2="228" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="58" y="232" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-20</text>
+      <line class="grid" x1="66" y1="193.60" x2="386" y2="193.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="58" y="197.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-15</text>
+      <line class="grid" x1="66" y1="159.20" x2="386" y2="159.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="58" y="163.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="124.80" x2="386" y2="124.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="58" y="128.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="66" y1="90.40" x2="386" y2="90.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="58" y="94.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="228" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="228" x2="386" y2="228" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="226" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Δ real per-pupil spending, $000s (2024$)</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="142" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 142)">Δ NAEP score</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-0" class="tick" x="66" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-10</text>
+      <text id="p3-xtick-1" class="tick" x="130" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-5</text>
+      <text id="p3-xtick-2" class="tick" x="194" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p3-xtick-3" class="tick" x="258" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5</text>
+      <text id="p3-xtick-4" class="tick" x="322" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <text id="p3-xtick-5" class="tick" x="386" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">15</text>
+    </g>
+    <g id="p3-series-states" class="series">
+      <circle id="p3-mark-states-0" class="point" cx="182.65" cy="191.19" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-1" class="point" cx="327.24" cy="193.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-2" class="point" cx="197.29" cy="181.15" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-3" class="point" cx="240.05" cy="136.84" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-4" class="point" cx="321.54" cy="200.55" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-5" class="point" cx="244.43" cy="186.31" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-6" class="point" cx="233.65" cy="206.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-7" class="point" cx="67.96" cy="188.10" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-8" class="point" cx="251.80" cy="58.00" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-9" class="point" cx="212.27" cy="174.27" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-10" class="point" cx="244.42" cy="153.63" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-11" class="point" cx="324.60" cy="131.61" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-12" class="point" cx="206.15" cy="190.92" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-13" class="point" cx="228.91" cy="151.01" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-14" class="point" cx="206.51" cy="199.59" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-15" class="point" cx="192.41" cy="153.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-16" class="point" cx="214.98" cy="180.94" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-17" class="point" cx="208.16" cy="181.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-18" class="point" cx="209.26" cy="93.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-19" class="point" cx="229.94" cy="180.94" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-20" class="point" cx="207.90" cy="168.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-21" class="point" cx="284.68" cy="156.10" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-22" class="point" cx="228.82" cy="185.76" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-23" class="point" cx="210.60" cy="132.02" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-24" class="point" cx="208.27" cy="153.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-25" class="point" cx="179.11" cy="136.36" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-26" class="point" cx="205.52" cy="180.94" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-27" class="point" cx="138.72" cy="145.78" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-28" class="point" cx="229.01" cy="163.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-29" class="point" cx="244.57" cy="171.86" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-30" class="point" cx="167.03" cy="166.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-31" class="point" cx="231.35" cy="173.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-32" class="point" cx="243.29" cy="153.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-33" class="point" cx="199.13" cy="124.39" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-34" class="point" cx="191.20" cy="166.49" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-35" class="point" cx="207.59" cy="187.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-36" class="point" cx="200.43" cy="180.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-37" class="point" cx="232.64" cy="145.85" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-38" class="point" cx="246.56" cy="145.78" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-39" class="point" cx="230.72" cy="157.48" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-40" class="point" cx="208.03" cy="171.93" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-41" class="point" cx="170.38" cy="136.63" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-42" class="point" cx="203.16" cy="178.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-43" class="point" cx="188.53" cy="158.51" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-44" class="point" cx="212.19" cy="196.63" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-45" class="point" cx="195.64" cy="187.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-46" class="point" cx="219.54" cy="158.79" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-47" class="point" cx="181.98" cy="145.78" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-48" class="point" cx="204.21" cy="156.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-49" class="point" cx="207.77" cy="145.78" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-50" class="point" cx="183.86" cy="157.48" r="4" fill="#2563eb" fill-opacity="0.85"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="448" y="238" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">National average NAEP grade-8 score (math+reading composite), 2013-2…</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="67" y1="232" x2="390" y2="232" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="59" y="236" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="202.67" x2="390" y2="202.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="59" y="206.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="67" y1="173.33" x2="390" y2="173.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="59" y="177.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="144" x2="390" y2="144" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="59" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150</text>
+      <line class="grid" x1="67" y1="114.67" x2="390" y2="114.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="59" y="118.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="85.33" x2="390" y2="85.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="59" y="89.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">250</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="232" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="232" x2="390" y2="232" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="228.50" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="144" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 144)">NAEP score</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-2013" class="tick" x="93.92" y="250" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2013</text>
+      <text id="p4-xtick-2015" class="tick" x="147.75" y="250" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2015</text>
+      <text id="p4-xtick-2017" class="tick" x="201.58" y="250" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+      <text id="p4-xtick-2019" class="tick" x="255.42" y="250" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
+      <text id="p4-xtick-2022" class="tick" x="309.25" y="250" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p4-xtick-2024" class="tick" x="363.08" y="250" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+    </g>
+    <g id="p4-series-composite-math-reading-grade-8" class="series">
+      <path id="p4-line-composite-math-reading-grade-8" class="line" d="M 93.92 70.39 L 147.75 71.45 L 201.58 71.26 L 255.42 72.50 L 309.25 75.92 L 363.08 76.62" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p4-mark-composite-math-reading-grade-8-2013" class="point" cx="93.92" cy="70.39" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-composite-math-reading-grade-8-2015" class="point" cx="147.75" cy="71.45" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-composite-math-reading-grade-8-2017" class="point" cx="201.58" cy="71.26" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-composite-math-reading-grade-8-2019" class="point" cx="255.42" cy="72.50" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-composite-math-reading-grade-8-2022" class="point" cx="309.25" cy="75.92" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-composite-math-reading-grade-8-2024" class="point" cx="363.08" cy="76.62" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <g id="brand">
+  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:57862/a/554a3880f90f7f82c0e7ac3931209c9c.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Over the last available decade of comparable state data (2016-2024), the states that raised per-pupil spending fastest were no more likely to see NAEP scores rise (or fall less) than states that raised spending the least — the state-level correlation is essentially zero (r = -0.06, p = 0.66, n = 51).</strong> National NAEP grade-8 scores fell almost everywhere over this window (composite math+reading average score down from 275.5 in 2013 to 264.9 in 2024), a decline dominated by the pandemic-era drop after 2019, and that decline swamps any state-level spending signal in this simple before/after comparison. This does NOT mean money doesn't matter: it means a raw cross-state snapshot is the wrong instrument to answer a causal question, because states that raise spending fastest are not a random sample — they differ in cost of living, student need, and other confounds, and every state was hit by the same pandemic shock regardless of its spending trajectory. The credible peer-reviewed literature, which uses court-ordered and legislated school-finance reforms as a source of spending variation unrelated to a state's own achievement trend, generally DOES find a positive, causal effect of increased spending on achievement — concentrated in low-income districts. Both things are true at once: our observational comparison finds no relationship, and the quasi-experimental literature finds a real positive effect that this kind of comparison is not designed to detect.</p>
+</section>
+<section>
+<h2>Step 1 — What the peer-reviewed literature already establishes</h2>
+<p>Three findings recur across independent lines of research:</p><ul><li><strong>Lafortune, Rothstein &amp; Schanzenbach (2018, <em>AEJ: Applied Economics</em>)</strong> use the staggered timing of post-1990 court-ordered and legislative school-finance reforms as an event-study design. Reform events caused sharp, sustained increases in spending, concentrated in low-income districts, and NAEP achievement in those districts rose over the following years — the effect phases in gradually and is described as large.</li><li><strong>C. Kirabo Jackson and coauthors</strong> (NBER w28517, and Jackson, Johnson &amp; Persico 2016) similarly find that school-finance-reform-driven spending increases raise test scores, educational attainment, and adult earnings, with larger effects for low-income students; conversely, recession-driven spending cuts lowered test scores and college attendance.</li><li><strong>Jackson &amp; Mackevicius (2024 meta-analysis, published in the <em>American Economic Journal: Applied Economics</em>)</strong> pool many well-identified (quasi-experimental) US spending studies and estimate that a policy sustaining a $1,000/pupil spending increase for four years raises test scores by about 0.03 standard deviations and college-going by roughly 2.8 percentage points — a real but modest effect, not detectable in a two-point cross-state snapshot.</li></ul><p>The common thread: these studies identify effects using spending changes plausibly UNRELATED to a state's pre-existing achievement trend (a court order, a funding-formula rewrite) — not a raw comparison of whichever states happened to spend more.</p>
+</section>
+<section>
+<h2>Step 2 — What we computed directly from the government data available here, and why it disagrees with the literature's framing rather than contradicting its finding</h2>
+<p><strong>Data used.</strong> Census Bureau F-33 Annual Survey of School System Finances (edu.f33_district_finance), aggregated from district to state level, weighted by enrollment, for the two finance years actually loaded in this warehouse: FY2016 and FY2024 (the table's declared window is FY2023-2024 only; FY2016 was recoverable via a workaround join through edu.ccd_districts because — a data-quality defect we logged via report_issue — every FY2016 row has a NULL state_fips column in the finance table itself). NAEP grade-8 math+reading composite scores (edu.naep_state_trends) for the two available years bracketing that window, 2017 and 2024. FY2016 dollars were converted to real 2024 dollars using the BLS CPI-U (deflator 1.307, verified via adjust_inflation).</p><p><strong>Result.</strong> Mean real per-pupil current spending rose from about $15,900 (2016, in 2024$) to about $17,900 (2024) — a 13.4% real increase, with every state raising nominal spending and most rising in real terms (range: -8.2% in Alaska to +39.5% in New Mexico). Over the same span, the average NAEP grade-8 composite score FELL by about 9.0 points nationally, and fell in nearly every state regardless of how much its spending grew. Regressing the state-level change in NAEP score on the state-level change in real per-pupil spending (verified with askengine's ols_regression tool) gives a coefficient of -0.12 NAEP points per $1,000 of real per-pupil spending increase, standard error 0.28, p = 0.66 — statistically indistinguishable from zero, and if anything the wrong sign. A leave-one-state-out check (askengine sensitivity_analysis) confirms this is not one outlier state driving a null: the coefficient stays negative and insignificant across every possible single-state exclusion (range -0.28 to 0.00, no sign flip, no p-value crossing 0.05).</p><p><strong>Why this doesn't refute the literature.</strong> Two confounds this simple design cannot separate: (1) a nationwide, pandemic-driven score decline hit essentially every state between 2019 and 2024 regardless of its spending trajectory, so the outcome variance in this window is dominated by a common shock, not by cross-state spending differences; and (2) spending increases here are NOT randomly assigned or reform-driven — states raise spending for many reasons (rising costs, enrollment shifts, political cycles) that are themselves correlated with a state's baseline trajectory, so this is an observational comparison, not a natural experiment. The quasi-experimental studies above are designed precisely to strip out both confounds; this state cross-section is not.</p>
+</section>
+<section>
+<h2>Step 3 — Data-quality note</h2>
+<p>edu.f33_district_finance's declared coverage window is FY2023-2024 only, and its FY2016 rows (the only pre-2023 year loaded, with FY2017-2022 an interior gap) all carry a NULL state_fips — a genuine defect, logged to the issue tracker in this session, that would silently prevent any state-level aggregation of that year without the ccd_districts workaround join used here. Given this, the two-finance-year window (2016, 2024) is the widest usable spending comparison this warehouse currently supports; a true year-by-year 10-year panel is not available from this table as loaded.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Cover roughly the last ten years</strong>: edu.f33_district_finance's only usable pre-2023 year is FY2016 (an interior gap covers FY2017-2022, and the table's declared window is FY2023-2024 only) — the widest true finance-to-NAEP comparison available in this warehouse is 2016-2024 (8 years), not a full 10-year year-by-year panel. Reported as a fiscal-year data-availability limit, and the literature review (Step 1) supplements this with findings from studies covering longer historical windows.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.aeaweb.org/articles?id=10.1257%2Fapp.20160567">Lafortune, Rothstein &amp; Schanzenbach (2018), School Finance Reform and the Distribution of Student Achievement, AEJ: Applied Economics</a></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w28517/w28517.pdf">Jackson, C.K. (NBER Working Paper w28517), The Distribution of School Spending Impacts</a></li>
+<li><a href="https://www.aeaweb.org/articles?id=10.1257%2Fapp.20220279">Jackson &amp; Mackevicius (2024), What Impacts Can We Expect from School Spending Policy? Evidence from Evaluations in the US, AEJ: Applied Economics</a></li>
+<li><a href="https://thecommonwealthinstitute.org/tci_blog/money-matters-school-funding-and-student-outcomes/">The Commonwealth Institute research summary, Money Matters for Student Outcomes</a></li>
+<li><a href="https://nces.ed.gov/fastfacts/display.asp?id=66">NCES Fast Facts: Expenditures</a></li>
+<li><a href="https://www.census.gov/newsroom/press-releases/2023/public-school-spending.html">Census Bureau, 2023 Public School Spending press release (F-33 survey)</a></li>
+<li>State-level per-pupil spending 2016 &amp; 2024 (workaround join through ccd_districts for FY2016 state_fips)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH spend16 AS (SELECT d.fips AS state_fips, SUM(f.current_expenditure_thousand)*1000.0/NULLIF(SUM(f.enrollment),0) AS spend16 FROM edu.f33_district_finance f JOIN edu.ccd_districts d ON f.leaid=d.leaid AND d.&quot;year&quot;=f.&quot;year&quot; WHERE f.&quot;year&quot;=2016 AND f.enrollment&gt;0 AND f.current_expenditure_thousand IS NOT NULL AND d.fips IS NOT NULL GROUP BY d.fips) SELECT * FROM spend16</code></pre></details></li>
+<li>NAEP grade-8 math+reading state trends, 2017 &amp; 2024<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT jurisdiction, jurisdiction_name, &quot;year&quot;, subject, grade, avg_score FROM edu.naep_state_trends WHERE &quot;year&quot; IN (2017,2024) AND grade=8 AND subject IN ('MAT','RED') AND jurisdiction&lt;&gt;0</code></pre></details></li>
+<li>OLS regression: Δ NAEP score ~ Δ real per-pupil spending ($000s), state-level 2016-2024<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;d_score&quot;, predictors=[&quot;d_spend_real_k&quot;])</code></pre></details></li>
+<li>Leave-one-state-out sensitivity check on the spending coefficient<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(outcome=&quot;d_score&quot;, predictors=[&quot;d_spend_real_k&quot;], group_col=&quot;state_fips&quot;)</code></pre></details></li>
+<li>CPI-U deflator, 2016→2024 (used to express FY2016 spending in 2024 dollars)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>adjust_inflation(from_year=2016, base_year=2024)</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Cross-state, two-point-in-time comparison; not a causal estimate. The peer-reviewed quasi-experimental literature (Lafortune/Rothstein/Schanzenbach; Jackson; Jackson &amp; Mackevicius) is the better-identified source for a causal answer and finds a positive, though modest, effect concentrated among low-income districts.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-03</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

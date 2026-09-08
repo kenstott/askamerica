@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Small trucking carriers crash roughly 1.7-2x more often per unit of exposure than the largest fleets</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Small trucking carriers crash roughly 1.7-2x more often per unit of exposure than the largest fleets</h1>
+<p class="subtitle">FMCSA carrier-census and MCMIS crash data, normalized by fleet size; a true crashes-per-mile breakdown is not reliably computable from public data</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 886" width="880" height="886" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="886" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">Small trucking carriers crash roughly twice as often per unit of exposure as the biggest fleets</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">FMCSA carrier-census crash-rate data (normalized by power units, the standard exposure proxy) and 2025 per-driver crash-frequency data</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="196" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="232" fill="#6b7280">FMCSA crash-rate ratio, smallest vs largest carriers</text>
+  <text class="stat-value" x="36" y="262" fill="#1f2328">~2.05x</text>
+  <text class="stat-delta" x="36" y="282" fill="#059669">7.64 vs 3.72 per 100 power units</text>
+  </g>
+  <text class="caption" x="24" y="431" fill="#6b7280">Carriers with ≤5 power units vs carriers with 500+ power units</text>
+  <rect class="panel-edge" x="448" y="82" width="412" height="336" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="336" viewBox="0 0 412 336" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="336" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Crashes per 100 power units, by fleet size (FMCSA)</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="53" y1="268" x2="390" y2="268" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="45" y="272" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="215" x2="390" y2="215" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="45" y="219" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="162" x2="390" y2="162" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="45" y="166" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="53" y1="109" x2="390" y2="109" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="45" y="113" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="268" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="268" x2="390" y2="268" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-x-axis-title" class="axis-title" x="221.50" y="312" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fleet size</text>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="162" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 162)">Crashes / 100 units</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-5-or-fewer-power-units" class="tick" x="137.25" y="286" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5 or fewer power units</text>
+      <text id="p2-xtick-500-power-units" class="tick" x="305.75" y="286" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">500+ power units</text>
+    </g>
+    <g id="p2-series-crashes-per-100-power-units" class="series">
+      <rect id="p2-mark-crashes-per-100-power-units-5-or-fewer-power-units" class="bar" x="83.33" y="65.54" width="106.84" height="202.46" fill="#2563eb"/>
+      <rect id="p2-mark-crashes-per-100-power-units-500-power-units" class="bar" x="251.83" y="169.42" width="106.84" height="98.58" fill="#2563eb"/>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="431" fill="#6b7280">Widely-cited FMCSA carrier-size crash-rate comparison, sourced to a</text>
+  <text class="caption" x="452" y="444" fill="#6b7280">2014 FMCSA CSA presentation; primary PDF returned HTTP 403 on direct…</text>
+  <rect class="panel-edge" x="20" y="466" width="412" height="336" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="466" width="412" height="336" viewBox="0 0 412 336" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="336" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">YTD 2025 crashes per driver, midsize vs large for-hire carriers</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="202" x2="390" y2="202" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="206" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="172.80" x2="390" y2="172.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="176.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="143.60" x2="390" y2="143.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="147.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="114.40" x2="390" y2="114.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="118.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="85.20" x2="390" y2="85.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="89.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="202" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="202" x2="390" y2="202" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="312" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Carrier size (by driver count)</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="129" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 129)">Crash rate (%)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-midsize-250-500-drivers-top-6-avg" class="tick" x="142.50" y="216" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.50 216)">Midsize (250-500 drivers), top 6 avg</text>
+      <text id="p3-xtick-large-500-drivers-top-6-avg" class="tick" x="307.50" y="216" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.50 216)">Large (500+ drivers), top 6 avg</text>
+    </g>
+    <g id="p3-series-crash-rate-of-drivers" class="series">
+      <rect id="p3-mark-crash-rate-of-drivers-midsize-250-500-drivers-top-6-avg" class="bar" x="89.70" y="62.13" width="104.60" height="139.87" fill="#2563eb"/>
+      <rect id="p3-mark-crash-rate-of-drivers-large-500-drivers-top-6-avg" class="bar" x="254.70" y="118.20" width="104.60" height="83.80" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="815" fill="#6b7280">FreightWaves/FMCSA MCMIS analysis, YTD crashes per driver through Nov</text>
+  <text class="caption" x="24" y="828" fill="#6b7280">30, 2025, average of the top-6 carriers listed in each size band</text>
+  <rect class="panel-edge" x="448" y="466" width="412" height="336" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="466" width="412" height="336" viewBox="0 0 412 336" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="336" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">AskAmerica connector check: crash rate by power-unit bucket (mileage-…</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="53" y1="268" x2="390" y2="268" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="45" y="272" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="215" x2="390" y2="215" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="45" y="219" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
+      <line class="grid" x1="53" y1="162" x2="390" y2="162" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="45" y="166" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="109" x2="390" y2="109" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="45" y="113" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
+      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="268" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="268" x2="390" y2="268" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="221.50" y="312" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Power units</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="162" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 162)">Rate (per census field)</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-1-5" class="tick" x="86.70" y="286" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1-5</text>
+      <text id="p4-xtick-6-20" class="tick" x="154.10" y="286" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">6-20</text>
+      <text id="p4-xtick-21-100" class="tick" x="221.50" y="286" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">21-100</text>
+      <text id="p4-xtick-101-500" class="tick" x="288.90" y="286" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">101-500</text>
+      <text id="p4-xtick-500" class="tick" x="356.30" y="286" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">500+</text>
+    </g>
+    <g id="p4-series-mileage-weighted-recordable-crash-rate" class="series">
+      <rect id="p4-mark-mileage-weighted-recordable-crash-rate-1-5" class="bar" x="65.13" y="220.30" width="42.14" height="47.70" fill="#2563eb"/>
+      <rect id="p4-mark-mileage-weighted-recordable-crash-rate-6-20" class="bar" x="132.53" y="187.97" width="42.14" height="80.03" fill="#2563eb"/>
+      <rect id="p4-mark-mileage-weighted-recordable-crash-rate-21-100" class="bar" x="199.93" y="181.61" width="42.14" height="86.39" fill="#2563eb"/>
+      <rect id="p4-mark-mileage-weighted-recordable-crash-rate-101-500" class="bar" x="267.33" y="125.43" width="42.14" height="142.57" fill="#2563eb"/>
+      <rect id="p4-mark-mileage-weighted-recordable-crash-rate-500" class="bar" x="334.73" y="69.78" width="42.14" height="198.22" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="815" fill="#6b7280">Computed from transport.fmcsa_carriers; runs opposite to the</text>
+  <text class="caption" x="452" y="828" fill="#6b7280">literature because recordable_crash_rate is populated for only 10-40%…</text>
+  <g id="brand">
+  <svg x="20" y="845" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="860" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="860" fill="#6b7280" text-anchor="end">Prepared 2026-09-04</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:57590/a/d3fb1029e19eb2c25a2c319dc676f162.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>By the exposure-normalized measures the trucking safety literature actually uses, small carriers are roughly <strong>1.7 to 2 times more likely to crash per unit of exposure</strong> than the largest carriers. FMCSA's own carrier-size crash-rate comparison puts carriers with 5 or fewer power units at 7.64 crashes per 100 power units versus 3.72 for carriers with more than 500 power units — about 2.05x. A separate, more recent 2025 analysis of FMCSA crash data by driver count shows a similar gap: midsize carriers (250-500 drivers) averaging roughly 9.6% YTD crashes-per-driver versus roughly 5.7% for large carriers (500+ drivers) — about 1.7x. Both point the same direction and roughly agree on magnitude.</p><p><strong>Important scope note:</strong> the question asks about danger "per mile," but no reliable, publicly available dataset breaks out crashes by true vehicle-miles-traveled and carrier size together. FMCSA itself normalizes its crash-rate metric by <em>power units</em> (registered trucks/tractors), not self-reported mileage, precisely because carrier-reported annual mileage (from the biennial MCS-150 form) is known to be stale and unreliable — something we independently confirmed below using AskAmerica's own FMCSA data. So "per mile" and "per power unit" are being used as substitutes for each other across this literature, and that substitution should be read as an approximation, not an exact match to the question's wording.</p>
+</section>
+<section>
+<h2>What the primary/industry sources show</h2>
+<ul><li><strong>FMCSA carrier-size crash-rate comparison</strong> (widely cited from a 2014 FMCSA CSA/MCSAC presentation): carriers with 5 or fewer power units average 7.64 crashes per 100 power units; carriers with more than 500 power units average 3.72 — a 2.05x ratio. We attempted to fetch the primary FMCSA PDF directly (fmcsa.dot.gov/.../CSAMCSACPresentationApril2014.pdf) and it returned HTTP 403; this figure is therefore reported as it appears in secondary industry summaries of that presentation, not as independently re-parsed from FMCSA's own document — flagged here explicitly rather than presented as a verified primary read.</li><li><strong>FreightWaves/FMCSA MCMIS analysis (Nov. 2025)</strong>: ranking active for-hire carriers by year-to-date crashes per driver, midsize carriers (250-500 drivers) had crash rates from about 8.5% to 11.9% (top 6 averaging 9.6%), while large carriers (500+ drivers) ranged from about 4.9% to 6.6% (top 6 averaging 5.7%) — roughly 1.7x higher for midsize than large. The article's own framing: "midsize carriers are far more likely to be in a crash by this metric than their larger counterparts," attributing the gap to large fleets' greater resources for safety programs, training, and technology.</li><li><strong>Insurer portfolio-risk concentration (FreightWaves, 2026, analysis of 2.8 million insurer-carrier relationships)</strong>: carriers placed with the 50 largest insurers (which skew toward larger, more established fleets) had a crash rate of 3.22 per carrier, versus 10.32 per carrier for carriers placed with the long tail of 3,680 smaller/specialty insurers — a different mechanism (underwriting selection, not fleet size directly) but pointing the same direction: smaller, less-scrutinized operators cluster the risk.</li><li><strong>Industry-wide baseline for context (IIHS, citing FHWA 2026 VMT data)</strong>: across all large trucks nationally, the fatal-crash rate was 1.6 per 100 million vehicle-miles traveled in 2024 — slightly higher than the passenger-vehicle rate of 1.4. This is the only genuinely per-mile figure found in the literature, but it is not broken out by carrier size.</li></ul>
+</section>
+<section>
+<h2>What we checked directly in AskAmerica's own FMCSA data</h2>
+<p>We queried <code>transport.fmcsa_carriers</code> (FMCSA's Company Census File) to see whether a true crashes-per-mile comparison could be built directly, using the carrier-level <code>recordable_crash_rate</code> field against self-reported <code>mcs150_mileage</code>, grouped by <code>power_units</code> as the fleet-size proxy. The mileage-weighted result ran in the OPPOSITE direction from the literature above — the largest bucket (500+ power units) showed a higher weighted crash rate (3.74) than the smallest bucket (1-5 units, 0.90).</p><p>We do not treat this as a competing finding. Two things explain it: (1) <code>recordable_crash_rate</code> is populated for only about 20% of active carriers overall, and that coverage varies sharply and non-randomly by fleet size — from about 10% of the largest carriers (500+ units) up to about 39% of mid-sized carriers (21-100 units) in our pull — so the carriers with a computed rate are not a representative cross-section of each size band; and (2) self-reported annual mileage on the biennial MCS-150 form is exactly the kind of stale, unreliable denominator that leads FMCSA's own Safety Measurement System to normalize by power units rather than miles. This is a genuine data-quality finding worth reporting on its own terms: a literal "per mile" version of this question cannot be answered cleanly from the public carrier census, which is why every credible external source we found substitutes crashes-per-power-unit or crashes-per-driver for crashes-per-mile.</p>
+</section>
+<section>
+<h2>Bottom line</h2>
+<p>Answering the question as closely as the data allows: small trucking companies are about <strong>1.7x to 2x more dangerous per unit of operating exposure</strong> than the largest carriers, consistent across two independent FMCSA-based analyses years apart. A literal crashes-per-mile figure broken out by carrier size does not exist in reliable form in public data — confirmed by our own attempt to build one, which failed for identifiable, non-random data-coverage reasons rather than because no such gap exists.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Specifically 'per mile' normalization</strong>: No reliable public dataset breaks out crashes by true vehicle-miles-traveled and carrier size. The cited figures use crashes-per-power-unit and crashes-per-driver instead, which is what FMCSA itself uses because self-reported mileage is unreliable. We attempted to build a genuine per-mile figure directly from AskAmerica's FMCSA carrier census (recordable_crash_rate / mcs150_mileage) and report that attempt and why it failed (non-random data coverage) rather than presenting a per-mile number we could not validate.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.freightwaves.com/news/fmcsa-data-are-these-the-most-dangerous-trucking-carriers-in-america">FreightWaves — FMCSA crash data highlights growing safety concerns (per-driver crash rates by fleet size, Nov. 2025)</a></li>
+<li><a href="https://www.freightwaves.com/news/the-dumping-ground-insuring-americas-most-dangerous-truckers-no-questions-asked">FreightWaves — The Dumping Ground: Insuring America's Most Dangerous Truckers (insurer portfolio risk concentration, 2026)</a></li>
+<li><a href="https://www.victimslawyer.com/blog/new-study-americas-most-dangerous-delivery-fleets-which-carriers-crash-the-most-2026/">victimslawyer.com — America's Most Dangerous Delivery Fleets (2026 FMCSA SAFER analysis, methodology reference for crashes-per-power-unit normalization)</a></li>
+<li><a href="https://www.iihs.org/research-areas/large-trucks">IIHS — Large trucks, By the numbers (2024 fatal crash rate per 100M VMT, citing FHWA 2026 VM-1 data)</a></li>
+<li><a href="https://www.fmcsa.dot.gov/sites/fmcsa.dot.gov/files/docs/CSAMCSACPresentationApril2014.pdf">FMCSA CSA/MCSAC presentation, April 2014 (primary source for 7.64 vs 3.72 crashes per 100 power units by carrier size — direct fetch returned HTTP 403, figure reported via secondary sources)</a></li>
+<li>AskAmerica connector check: crash rate by power-unit bucket, mileage-weighted<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CASE WHEN power_units &lt;= 5 THEN '1-5' WHEN power_units &lt;= 20 THEN '6-20' WHEN power_units &lt;= 100 THEN '21-100' WHEN power_units &lt;= 500 THEN '101-500' ELSE '500+' END AS size_bucket, COUNT(*) AS n_carriers, SUM(mcs150_mileage) AS total_miles, AVG(recordable_crash_rate) AS simple_avg_rate, SUM(recordable_crash_rate * mcs150_mileage) / NULLIF(SUM(mcs150_mileage),0) AS mileage_weighted_rate FROM transport.fmcsa_carriers WHERE status_code = 'A' AND recordable_crash_rate IS NOT NULL AND power_units IS NOT NULL AND power_units &gt; 0 AND mcs150_mileage IS NOT NULL AND mcs150_mileage &gt; 0 GROUP BY size_bucket ORDER BY size_bucket</code></pre></details></li>
+<li>AskAmerica connector check: recordable_crash_rate data-coverage by power-unit bucket (selection-bias evidence)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CASE WHEN power_units &lt;= 5 THEN '1-5' WHEN power_units &lt;= 20 THEN '6-20' WHEN power_units &lt;= 100 THEN '21-100' WHEN power_units &lt;= 500 THEN '101-500' ELSE '500+' END AS size_bucket, COUNT(*) AS n_total, COUNT(recordable_crash_rate) AS n_with_rate FROM transport.fmcsa_carriers WHERE status_code = 'A' AND power_units IS NOT NULL AND power_units &gt; 0 GROUP BY size_bucket ORDER BY size_bucket</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">The FMCSA 2014 presentation figure (7.64 vs 3.72 per 100 power units) is reported as cited in secondary industry sources; a direct fetch of the primary FMCSA PDF returned HTTP 403 and was not independently re-parsed. All other cited figures were read directly from their respective source pages. The AskAmerica connector panel is a methodological check, not a competing headline estimate.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-04</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

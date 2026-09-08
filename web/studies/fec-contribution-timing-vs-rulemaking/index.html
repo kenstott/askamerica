@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Campaign money clusters tightly around elections and FEC filing deadlines — not around when federal rules get finalized</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s4-t1-s1:checked ~ table tbody.s0{display:none}
+#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
+#s4-t1-s1:checked ~ .srtreset{display:inline-block}
+#s4-t1-s2:checked ~ table tbody.s0{display:none}
+#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
+#s4-t1-s2:checked ~ .srtreset{display:inline-block}
+#s4-t1-s3:checked ~ table tbody.s0{display:none}
+#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
+#s4-t1-s3:checked ~ .srtreset{display:inline-block}
+#s4-t1-s4:checked ~ table tbody.s0{display:none}
+#s4-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"]{color:var(--link)}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"] .srtcue{opacity:1}
+#s4-t1-s4:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Campaign money clusters tightly around elections and FEC filing deadlines — not around when federal rules get finalized</h1>
+<p class="subtitle">National weekly/monthly analysis, 2017-2025 (through mid-2026 where available). fedregister.fr_documents + fec.individual_contributions.</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 599" width="880" height="599" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="599" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:18px">Campaign money tracks the election calendar, not the pace of rule-finalization</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Weekly/monthly national data, 2017-2025. Sources: fedregister.fr_documents (RULE), fec.individual_contributions</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:8px">Effect of +1 rule/week on log weekly $ (controlling for election &amp; FEC-deadline weeks)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">+0.06%</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280" style="font-size:11px">not robust — sign flips leaving out 2018/2019/2020/2022</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:9px">Effect of being in a pre-election week (Oct-Nov, even years) on weekly $</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">≈+5x</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">p&lt;0.001, robust — the dominant driver of timing</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Monthly rule-finalization intensity vs. campaign $ (each series = index, 10…</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="149.44" x2="390" y2="149.44" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="153.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="130.75" x2="390" y2="130.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="134.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="112.06" x2="390" y2="112.06" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="116.06" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="93.38" x2="390" y2="93.38" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="97.38" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="67" y1="74.69" x2="390" y2="74.69" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="78.69" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="149.44" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="149.44" x2="390" y2="149.44" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Month</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="102.72" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 102.72)">Index (100=mean)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2017-01" class="tick" x="71.49" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 71.49 163.44)">2017-01</text>
+      <text id="p3-xtick-2017-04" class="tick" x="80.46" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 80.46 163.44)">2017-04</text>
+      <text id="p3-xtick-2017-07" class="tick" x="89.43" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 89.43 163.44)">2017-07</text>
+      <text id="p3-xtick-2017-10" class="tick" x="98.40" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 98.40 163.44)">2017-10</text>
+      <text id="p3-xtick-2018-01" class="tick" x="107.38" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 107.38 163.44)">2018-01</text>
+      <text id="p3-xtick-2018-04" class="tick" x="116.35" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 116.35 163.44)">2018-04</text>
+      <text id="p3-xtick-2018-07" class="tick" x="125.32" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 125.32 163.44)">2018-07</text>
+      <text id="p3-xtick-2018-10" class="tick" x="134.29" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 134.29 163.44)">2018-10</text>
+      <text id="p3-xtick-2019-01" class="tick" x="143.26" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 143.26 163.44)">2019-01</text>
+      <text id="p3-xtick-2019-04" class="tick" x="152.24" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 152.24 163.44)">2019-04</text>
+      <text id="p3-xtick-2019-07" class="tick" x="161.21" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 161.21 163.44)">2019-07</text>
+      <text id="p3-xtick-2019-10" class="tick" x="170.18" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 170.18 163.44)">2019-10</text>
+      <text id="p3-xtick-2020-01" class="tick" x="179.15" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 179.15 163.44)">2020-01</text>
+      <text id="p3-xtick-2020-04" class="tick" x="188.13" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 188.13 163.44)">2020-04</text>
+      <text id="p3-xtick-2020-07" class="tick" x="197.10" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 197.10 163.44)">2020-07</text>
+      <text id="p3-xtick-2020-10" class="tick" x="206.07" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 206.07 163.44)">2020-10</text>
+      <text id="p3-xtick-2021-01" class="tick" x="215.04" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 215.04 163.44)">2021-01</text>
+      <text id="p3-xtick-2021-04" class="tick" x="224.01" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 224.01 163.44)">2021-04</text>
+      <text id="p3-xtick-2021-07" class="tick" x="232.99" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 232.99 163.44)">2021-07</text>
+      <text id="p3-xtick-2021-10" class="tick" x="241.96" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 241.96 163.44)">2021-10</text>
+      <text id="p3-xtick-2022-01" class="tick" x="250.93" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 250.93 163.44)">2022-01</text>
+      <text id="p3-xtick-2022-04" class="tick" x="259.90" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 259.90 163.44)">2022-04</text>
+      <text id="p3-xtick-2022-07" class="tick" x="268.88" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 268.88 163.44)">2022-07</text>
+      <text id="p3-xtick-2022-10" class="tick" x="277.85" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 277.85 163.44)">2022-10</text>
+      <text id="p3-xtick-2023-01" class="tick" x="286.82" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 286.82 163.44)">2023-01</text>
+      <text id="p3-xtick-2023-04" class="tick" x="295.79" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 295.79 163.44)">2023-04</text>
+      <text id="p3-xtick-2023-07" class="tick" x="304.76" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 304.76 163.44)">2023-07</text>
+      <text id="p3-xtick-2023-10" class="tick" x="313.74" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 313.74 163.44)">2023-10</text>
+      <text id="p3-xtick-2024-01" class="tick" x="322.71" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 322.71 163.44)">2024-01</text>
+      <text id="p3-xtick-2024-04" class="tick" x="331.68" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 331.68 163.44)">2024-04</text>
+      <text id="p3-xtick-2024-07" class="tick" x="340.65" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 340.65 163.44)">2024-07</text>
+      <text id="p3-xtick-2024-10" class="tick" x="349.63" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 349.63 163.44)">2024-10</text>
+      <text id="p3-xtick-2025-01" class="tick" x="358.60" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 358.60 163.44)">2025-01</text>
+      <text id="p3-xtick-2025-04" class="tick" x="367.57" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 367.57 163.44)">2025-04</text>
+      <text id="p3-xtick-2025-07" class="tick" x="376.54" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 376.54 163.44)">2025-07</text>
+      <text id="p3-xtick-2025-10" class="tick" x="385.51" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 385.51 163.44)">2025-10</text>
+    </g>
+    <g id="p3-series-final-rules-published-index" class="series">
+      <path id="p3-line-final-rules-published-index" class="line" d="M 71.49 129.16 L 80.46 134.45 L 89.43 127.78 L 98.40 125.69 L 107.38 130.75 L 116.35 129.09 L 125.32 130.62 L 134.29 127.50 L 143.26 146.69 L 152.24 129.16 L 161.21 128.43 L 170.18 129.59 L 179.15 132.42 L 188.13 130.25 L 197.10 124.88 L 206.07 127.35 L 215.04 132.42 L 224.01 131.05 L 232.99 128.58 L 241.96 131.78 L 250.93 131.26 L 259.90 131.71 L 268.88 133.29 L 277.85 129.01 L 286.82 130.40 L 295.79 132.99 L 304.76 132.49 L 313.74 133.29 L 322.71 131.63 L 331.68 130.55 L 340.65 127.35 L 349.63 128.30 L 358.60 133.87 L 367.57 139.37 L 376.54 134.02 L 385.51 142.26" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-final-rules-published-index-2017-01" class="point" cx="71.49" cy="129.16" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2017-04" class="point" cx="80.46" cy="134.45" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2017-07" class="point" cx="89.43" cy="127.78" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2017-10" class="point" cx="98.40" cy="125.69" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2018-01" class="point" cx="107.38" cy="130.75" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2018-04" class="point" cx="116.35" cy="129.09" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2018-07" class="point" cx="125.32" cy="130.62" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2018-10" class="point" cx="134.29" cy="127.50" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2019-01" class="point" cx="143.26" cy="146.69" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2019-04" class="point" cx="152.24" cy="129.16" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2019-07" class="point" cx="161.21" cy="128.43" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2019-10" class="point" cx="170.18" cy="129.59" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2020-01" class="point" cx="179.15" cy="132.42" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2020-04" class="point" cx="188.13" cy="130.25" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2020-07" class="point" cx="197.10" cy="124.88" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2020-10" class="point" cx="206.07" cy="127.35" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2021-01" class="point" cx="215.04" cy="132.42" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2021-04" class="point" cx="224.01" cy="131.05" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2021-07" class="point" cx="232.99" cy="128.58" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2021-10" class="point" cx="241.96" cy="131.78" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2022-01" class="point" cx="250.93" cy="131.26" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2022-04" class="point" cx="259.90" cy="131.71" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2022-07" class="point" cx="268.88" cy="133.29" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2022-10" class="point" cx="277.85" cy="129.01" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2023-01" class="point" cx="286.82" cy="130.40" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2023-04" class="point" cx="295.79" cy="132.99" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2023-07" class="point" cx="304.76" cy="132.49" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2023-10" class="point" cx="313.74" cy="133.29" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2024-01" class="point" cx="322.71" cy="131.63" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2024-04" class="point" cx="331.68" cy="130.55" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2024-07" class="point" cx="340.65" cy="127.35" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2024-10" class="point" cx="349.63" cy="128.30" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2025-01" class="point" cx="358.60" cy="133.87" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2025-04" class="point" cx="367.57" cy="139.37" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2025-07" class="point" cx="376.54" cy="134.02" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-published-index-2025-10" class="point" cx="385.51" cy="142.26" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-campaign-index" class="series">
+      <path id="p3-line-campaign-index" class="line" d="M 71.49 145.01 L 80.46 141.48 L 89.43 143.12 L 98.40 138.88 L 107.38 140.26 L 116.35 133.87 L 125.32 130.75 L 134.29 83.99 L 143.26 146.82 L 152.24 143.29 L 161.21 142.71 L 170.18 138.66 L 179.15 129.22 L 188.13 120.96 L 197.10 60.34 L 206.07 125.78 L 215.04 139.09 L 224.01 141.95 L 232.99 141.25 L 241.96 138.84 L 250.93 140.02 L 259.90 135.61 L 268.88 133.80 L 277.85 106.18 L 286.82 145.52 L 295.79 141.78 L 304.76 134.99 L 313.74 139.42 L 322.71 137.80 L 331.68 134.71 L 340.65 117.73 L 349.63 100.98 L 358.60 134.92 L 367.57 139.95 L 376.54 141.22 L 385.51 136.06" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-campaign-index-2017-01" class="point" cx="71.49" cy="145.01" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2017-04" class="point" cx="80.46" cy="141.48" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2017-07" class="point" cx="89.43" cy="143.12" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2017-10" class="point" cx="98.40" cy="138.88" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2018-01" class="point" cx="107.38" cy="140.26" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2018-04" class="point" cx="116.35" cy="133.87" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2018-07" class="point" cx="125.32" cy="130.75" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2018-10" class="point" cx="134.29" cy="83.99" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2019-01" class="point" cx="143.26" cy="146.82" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2019-04" class="point" cx="152.24" cy="143.29" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2019-07" class="point" cx="161.21" cy="142.71" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2019-10" class="point" cx="170.18" cy="138.66" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2020-01" class="point" cx="179.15" cy="129.22" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2020-04" class="point" cx="188.13" cy="120.96" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2020-07" class="point" cx="197.10" cy="60.34" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2020-10" class="point" cx="206.07" cy="125.78" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2021-01" class="point" cx="215.04" cy="139.09" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2021-04" class="point" cx="224.01" cy="141.95" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2021-07" class="point" cx="232.99" cy="141.25" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2021-10" class="point" cx="241.96" cy="138.84" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2022-01" class="point" cx="250.93" cy="140.02" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2022-04" class="point" cx="259.90" cy="135.61" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2022-07" class="point" cx="268.88" cy="133.80" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2022-10" class="point" cx="277.85" cy="106.18" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2023-01" class="point" cx="286.82" cy="145.52" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2023-04" class="point" cx="295.79" cy="141.78" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2023-07" class="point" cx="304.76" cy="134.99" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2023-10" class="point" cx="313.74" cy="139.42" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2024-01" class="point" cx="322.71" cy="137.80" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2024-04" class="point" cx="331.68" cy="134.71" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2024-07" class="point" cx="340.65" cy="117.73" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2024-10" class="point" cx="349.63" cy="100.98" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2025-01" class="point" cx="358.60" cy="134.92" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2025-04" class="point" cx="367.57" cy="139.95" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2025-07" class="point" cx="376.54" cy="141.22" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-campaign-index-2025-10" class="point" cx="385.51" cy="136.06" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-final-rules-published-index" x="53.50" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-final-rules-published-index" class="legend-label" x="69.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Final rules published (index)</text>
+      <rect id="p3-legend-swatch-campaign-index" x="237.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-campaign-index" class="legend-label" x="253.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Campaign $ (index)</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="487" fill="#6b7280">Campaign-$ spikes cluster in Sept-Oct of even years (elections) and</text>
+  <text class="caption" x="24" y="500" fill="#6b7280">Dec/Jan (FEC year-end push); rule-output has no matching pattern.</text>
+  <text class="footnote" x="20" y="532" fill="#6b7280">fedregister.fr_documents.effective_on is populated for &lt;1% of RULE rows (reported as a data-quality gap); publication_date is used instead.</text>
+  <text class="footnote" x="20" y="546" fill="#6b7280">fec.individual_contributions covers only even-year-cycle bulk files, which do include odd-year dates within each cycle. n=491 weeks / 114 months.</text>
+  <g id="brand">
+  <svg x="20" y="558" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="573" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:60010/a/c2194bc5e0e0e98a8555cb273effda24.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>At the national, all-agency level, campaign money does not meaningfully cluster around when federal rules get finalized.</strong> Comparing the weekly count of final rules published in the Federal Register (2017-2026, n=491 weeks) against weekly itemized federal campaign contributions, the raw correlation is weak (r=0.14, r=0.03 in log terms) and it disappears entirely once the two real drivers of contribution timing are controlled for: proximity to a general election (contributions run roughly <strong>5x higher</strong> in Oct-Nov of even years, p&lt;0.001) and FEC quarterly-reporting deadlines (roughly +30% in the weeks around each filing deadline, p=0.03). With those two controls in the model, an extra rule published in a given week moves that week's log contribution total by essentially nothing (+0.0003, p=0.93), and a leave-one-year-out check shows this coefficient <strong>flips sign</strong> depending on which year is dropped &mdash; it is not a stable effect, just noise. A distributed-lag version (rules 2 weeks before through 2 weeks after the contribution week) finds no lead or lag structure either; the only marginally significant lag is the exact same week (p=0.033, effect size trivial: about 0.5% more money per additional rule that week).</p><p>In short: the timing of campaign money in the U.S. is overwhelmingly explained by the election calendar and FEC filing deadlines, not by the federal rulemaking calendar. This is a genuine, if modest, empirical finding &mdash; not a well-trodden one, since a literature search turned up no prior study that directly measures this relationship (see Research context below). This national aggregate test cannot rule out industry-specific clustering (e.g., a single sector's PAC money spiking around one sector-specific rule) that would wash out in an economy-wide total; that would require a narrower, agency-by-industry follow-up.</p>
+</section>
+<section>
+<h2>Research context: what the literature says (and doesn't)</h2>
+<p>Two rounds of search (the question directly, then the closest adjacent literature) turned up substantial work on the <em>political economy of rulemaking</em> but nothing that directly tests campaign-contribution timing against rule-finalization dates:</p><ul><li>Susan Webb Yackee's body of work (e.g. <a href="https://www.researchgate.net/publication/249234430_Sweet-Talking_the_Fourth_Branch_The_Influence_of_Interest_Group_Comments_on_Federal_Agency_Rulemaking">"Sweet-Talking the Fourth Branch"</a>, and her review in the <a href="https://www.annualreviews.org/content/journals/10.1146/annurev-polisci-050817-092302">Annual Review of Political Science, "The Politics of Rulemaking in the United States"</a>) and the related <a href="https://www.journals.uchicago.edu/doi/abs/10.1111/j.1468-2508.2006.00375.x">"A Bias Towards Business?"</a> establish that industry commenters are disproportionately influential during the notice-and-comment period and during OMB review, and that lobbying during OMB review is associated with rule change &mdash; but that literature is about <em>comment-letter and lobbying</em> timing, not campaign-contribution timing.</li><li><a href="https://www.cambridge.org/core/journals/american-political-science-review/article/abs/influence-and-the-administrative-process-lobbying-the-us-presidents-office-of-management-and-budget/638F34BC73235AB4833C852B24C431AF">"Influence and the Administrative Process: Lobbying the U.S. President's Office of Management and Budget"</a> (APSR) studies lobbying, again not campaign dollars, aimed at OMB review specifically.</li><li>On the lobbying-vs-PAC-money side, <a href="https://www.journals.uchicago.edu/doi/10.1086/734531">"Systemic and Sequential Links Between Campaign Donations and Lobbying"</a> (Journal of Politics) and <a href="https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/conflating-lobbying-and-pacs-the-surprisingly-low-overlap-in-organizational-lobbying-and-campaign-expenditures/3E7E590961426F45EABDF499EB35079A">"Conflating Lobbying and PACs"</a> both document that organizations that lobby and organizations that give via PAC overlap only partially (and that overlap has been declining, ~65% in 1998 to ~30% by 2018), which matters here: it means the entities lobbying hardest around a specific rule are frequently not the same entities whose PAC checks would show up in a campaign-finance timing test. A <a href="https://www.frontiersin.org/journals/political-science/articles/10.3389/fpos.2024.1288798/full">Frontiers piece on lobbying timing around budget cycles</a> shows lobbying itself does cluster around a known recurring calendar event (the budget), which is the closest documented analogue to what this question asks about rules.</li></ul><p>Net: this appears to be a genuinely open empirical question that this connector can partially answer with primary FEC/Federal Register data, rather than one where a published number could simply be looked up.</p>
+</section>
+<section>
+<h2>Method</h2>
+<p><strong>Finalization-date series:</strong> weekly and monthly count of <code>fedregister.fr_documents</code> rows with <code>doc_type='RULE'</code> (all federal agencies), 2017 through mid-2026. <strong>Data-quality finding, reported to the connector's issue log:</strong> the <code>effective_on</code> column &mdash; the rule's actual effective date &mdash; is populated for only 81 of 29,505 RULE rows in this window (0.3%), so it cannot be used; <code>publication_date</code> (100% populated) is used instead as the finalization-event date, which is the standard convention anyway (a final rule's effective date is normally publication date + 30-60 days, a fixed administrative lag, not a substantively different economic event).</p><p><strong>Money series:</strong> weekly/monthly sum of positive <code>amount</code> in <code>fec.individual_contributions</code> (itemized federal contributions &gt;$200, all transaction types, i.e. both capped 15/15E giving and uncapped code-10 Super PAC/Hybrid-PAC giving). <strong>Coverage check:</strong> this table's <code>year</code> column is a 2-year-cycle partition key, observed loaded only for the 2018/2020/2022/2024/2026 partitions &mdash; but each partition's <code>transaction_date</code> column does span both years of its cycle (e.g. the "2018" partition holds real 2017 and 2018 dates), so filtering on those five partition values and grouping by the actual <code>transaction_date</code> gives complete date coverage for 2017-2026 with no interior gap, which was verified before use.</p><p><strong>Model:</strong> <code>ols_regression</code> of weekly log(contribution $) on weekly rule count, controlling for (a) a pre-election indicator (weeks 40-45 of even years, i.e. the ~6 weeks before a November general election) and (b) an FEC-quarterly-filing-deadline indicator (weeks around the mid-April/mid-July/mid-October/year-end reporting deadlines). A second specification added rule-count at lags/leads of 1 and 2 weeks to check for anticipatory or delayed clustering. <code>sensitivity_analysis</code> (leave-one-year-out) was run on the rule-count coefficient to check whether it is a stable effect or an artifact of one year.</p>
+</section>
+<section>
+<h2>Results</h2>
+<input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s4"><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th><label class="srth" for="s4-t1-s1">Predictor<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">Coefficient (log $)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s3">p-value<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s4">Interpretation<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>Weekly rule count (contemporaneous)</td><td>+0.00062</td><td>0.83 (full sample); flips sign under leave-one-year-out</td><td>No robust effect</td></tr><tr><td>Weekly rule count, in distributed-lag model (same week)</td><td>+0.00526</td><td>0.033</td><td>Marginally significant but tiny: ~0.5% more $ per extra rule</td></tr><tr><td>Weekly rule count, &plusmn;1 and &plusmn;2 week lags/leads</td><td>all &lt;0.0013 in magnitude</td><td>0.58-0.86</td><td>No lead or lag structure</td></tr><tr><td>Pre-election week (Oct-Nov, even year)</td><td>+1.56 to +1.60</td><td>&lt;0.001</td><td>~4.8x-5x more weekly $ &mdash; the dominant driver</td></tr><tr><td>FEC quarterly-filing-deadline week</td><td>+0.26 to +0.30</td><td>0.003-0.033</td><td>~30-35% more weekly $ &mdash; a real but secondary driver</td></tr></tbody><tbody class="srt s1"><tr><td>FEC quarterly-filing-deadline week</td><td>+0.26 to +0.30</td><td>0.003-0.033</td><td>~30-35% more weekly $ &mdash; a real but secondary driver</td></tr><tr><td>Pre-election week (Oct-Nov, even year)</td><td>+1.56 to +1.60</td><td>&lt;0.001</td><td>~4.8x-5x more weekly $ &mdash; the dominant driver</td></tr><tr><td>Weekly rule count (contemporaneous)</td><td>+0.00062</td><td>0.83 (full sample); flips sign under leave-one-year-out</td><td>No robust effect</td></tr><tr><td>Weekly rule count, &plusmn;1 and &plusmn;2 week lags/leads</td><td>all &lt;0.0013 in magnitude</td><td>0.58-0.86</td><td>No lead or lag structure</td></tr><tr><td>Weekly rule count, in distributed-lag model (same week)</td><td>+0.00526</td><td>0.033</td><td>Marginally significant but tiny: ~0.5% more $ per extra rule</td></tr></tbody><tbody class="srt s2"><tr><td>Weekly rule count, in distributed-lag model (same week)</td><td>+0.00526</td><td>0.033</td><td>Marginally significant but tiny: ~0.5% more $ per extra rule</td></tr><tr><td>Weekly rule count, &plusmn;1 and &plusmn;2 week lags/leads</td><td>all &lt;0.0013 in magnitude</td><td>0.58-0.86</td><td>No lead or lag structure</td></tr><tr><td>Weekly rule count (contemporaneous)</td><td>+0.00062</td><td>0.83 (full sample); flips sign under leave-one-year-out</td><td>No robust effect</td></tr><tr><td>Pre-election week (Oct-Nov, even year)</td><td>+1.56 to +1.60</td><td>&lt;0.001</td><td>~4.8x-5x more weekly $ &mdash; the dominant driver</td></tr><tr><td>FEC quarterly-filing-deadline week</td><td>+0.26 to +0.30</td><td>0.003-0.033</td><td>~30-35% more weekly $ &mdash; a real but secondary driver</td></tr></tbody><tbody class="srt s3"><tr><td>Pre-election week (Oct-Nov, even year)</td><td>+1.56 to +1.60</td><td>&lt;0.001</td><td>~4.8x-5x more weekly $ &mdash; the dominant driver</td></tr><tr><td>FEC quarterly-filing-deadline week</td><td>+0.26 to +0.30</td><td>0.003-0.033</td><td>~30-35% more weekly $ &mdash; a real but secondary driver</td></tr><tr><td>Weekly rule count, in distributed-lag model (same week)</td><td>+0.00526</td><td>0.033</td><td>Marginally significant but tiny: ~0.5% more $ per extra rule</td></tr><tr><td>Weekly rule count, &plusmn;1 and &plusmn;2 week lags/leads</td><td>all &lt;0.0013 in magnitude</td><td>0.58-0.86</td><td>No lead or lag structure</td></tr><tr><td>Weekly rule count (contemporaneous)</td><td>+0.00062</td><td>0.83 (full sample); flips sign under leave-one-year-out</td><td>No robust effect</td></tr></tbody><tbody class="srt s4"><tr><td>Weekly rule count, in distributed-lag model (same week)</td><td>+0.00526</td><td>0.033</td><td>Marginally significant but tiny: ~0.5% more $ per extra rule</td></tr><tr><td>Weekly rule count, &plusmn;1 and &plusmn;2 week lags/leads</td><td>all &lt;0.0013 in magnitude</td><td>0.58-0.86</td><td>No lead or lag structure</td></tr><tr><td>Weekly rule count (contemporaneous)</td><td>+0.00062</td><td>0.83 (full sample); flips sign under leave-one-year-out</td><td>No robust effect</td></tr><tr><td>FEC quarterly-filing-deadline week</td><td>+0.26 to +0.30</td><td>0.003-0.033</td><td>~30-35% more weekly $ &mdash; a real but secondary driver</td></tr><tr><td>Pre-election week (Oct-Nov, even year)</td><td>+1.56 to +1.60</td><td>&lt;0.001</td><td>~4.8x-5x more weekly $ &mdash; the dominant driver</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>The leave-one-out check on the plain (no-lag) specification is decisive: the rule-count coefficient's sign and significance are not stable &mdash; omitting 2018, 2019, 2020, or 2022 flips its sign, and the coefficient's own range across the ten single-year exclusions (-0.0017 to +0.0052) straddles zero. That is the signature of noise, not a real relationship.</p>
+</section>
+<section>
+<h2>Caveats and what this does not show</h2>
+<ul><li>This is a <strong>national, all-agency aggregate</strong> test. It is well suited to answering "does the pace of rulemaking overall move the total flow of campaign money" (answer: no, once you control for the election calendar). It is not powered to detect a narrower claim like "does the finance industry's PAC money spike around SEC/CFPB rule finalizations" or "does the energy industry's PAC money spike around EPA rules" &mdash; those effects could exist and cancel out against other sectors in a whole-economy total. That would need a follow-up joining <code>fedregister.fr_documents.cfr_references</code> (CFR title → regulated industry) to committee industry classification, which was out of scope for this pass.</li><li><code>effective_on</code> in <code>fedregister.fr_documents</code> is a broken column for this purpose (0.3% populated) &mdash; logged to the connector's issue queue. <code>publication_date</code> was used as a substitute and is the more standard "finalization" marker in any case.</li><li><code>fec.committee_contributions</code> (direct PAC-to-candidate 24K checks, arguably the more "access-motivated" money channel) was checked and found to have an even worse gap for this purpose: it is loaded <em>only</em> for the even-year partitions with almost no odd-year transaction-date coverage inside them (unlike individual_contributions), so it could not support a continuous weekly time series and was not used.</li><li>The most recent two months in the raw monthly series (2026-05, 2026-06) show contribution totals near zero, consistent with reporting lag rather than a real collapse in giving; those months are shown in the underlying data but the analysis window and regressions were built on full weeks, and the near-zero tail months do not drive any reported coefficient.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Industry-specific / agency-specific clustering (e.g. does a specific sector's money cluster around that sector's own rules)</strong>: Explicitly named as out of scope for this pass and flagged as the natural follow-up; the national aggregate null result cannot rule out offsetting sector-level clustering.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.federalregister.gov/">Final-rule counts by week/month, 2017-2026</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CAST(EXTRACT(YEAR FROM CAST(publication_date AS DATE)) AS INTEGER) AS y, CAST(EXTRACT(WEEK FROM CAST(publication_date AS DATE)) AS INTEGER) AS w, COUNT(*) AS rule_count FROM fedregister.fr_documents WHERE doc_type = 'RULE' AND publication_date LIKE '____-__-__' AND publication_date &gt;= '2017-01-01' AND publication_date &lt;= '2026-06-30' GROUP BY 1,2</code></pre></details></li>
+<li><a href="https://www.fec.gov/data/browse-data/?tab=bulk-data">Weekly itemized federal campaign contributions, 2017-2026</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CAST(EXTRACT(YEAR FROM transaction_date) AS INTEGER) AS y, CAST(EXTRACT(WEEK FROM transaction_date) AS INTEGER) AS w, SUM(amount) AS contrib_total FROM fec.individual_contributions WHERE &quot;year&quot; IN ('2018','2020','2022','2024','2026') AND transaction_date BETWEEN DATE '2017-01-01' AND DATE '2026-06-30' AND amount &gt; 0 GROUP BY 1,2</code></pre></details></li>
+<li>Main regression: log weekly $ ~ rule count + pre-election + quarter-end<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;log_contrib&quot;, predictors=[&quot;rule_count&quot;,&quot;pre_election&quot;,&quot;quarter_end&quot;,&quot;yr&quot;])</code></pre></details></li>
+<li>Leave-one-year-out robustness check on the rule-count coefficient<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(predictors=[&quot;rule_count&quot;,&quot;pre_election&quot;,&quot;quarter_end&quot;], group_col=&quot;yr&quot;, term=&quot;rule_count&quot;)</code></pre></details></li>
+<li><a href="https://www.researchgate.net/publication/249234430_Sweet-Talking_the_Fourth_Branch_The_Influence_of_Interest_Group_Comments_on_Federal_Agency_Rulemaking">Yackee, &quot;Sweet-Talking the Fourth Branch&quot;</a></li>
+<li><a href="https://www.annualreviews.org/content/journals/10.1146/annurev-polisci-050817-092302">&quot;The Politics of Rulemaking in the United States&quot;, Annual Review of Political Science</a></li>
+<li><a href="https://www.journals.uchicago.edu/doi/abs/10.1111/j.1468-2508.2006.00375.x">&quot;A Bias Towards Business? Assessing Interest Group Influence on the U.S. Bureaucracy&quot;</a></li>
+<li><a href="https://www.cambridge.org/core/journals/american-political-science-review/article/abs/influence-and-the-administrative-process-lobbying-the-us-presidents-office-of-management-and-budget/638F34BC73235AB4833C852B24C431AF">&quot;Influence and the Administrative Process: Lobbying the U.S. President's OMB&quot;, APSR</a></li>
+<li><a href="https://www.journals.uchicago.edu/doi/10.1086/734531">&quot;Systemic and Sequential Links Between Campaign Donations and Lobbying&quot;, Journal of Politics</a></li>
+<li><a href="https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/conflating-lobbying-and-pacs-the-surprisingly-low-overlap-in-organizational-lobbying-and-campaign-expenditures/3E7E590961426F45EABDF499EB35079A">&quot;Conflating Lobbying and PACs&quot;, PS: Political Science &amp; Politics</a></li>
+<li><a href="https://www.frontiersin.org/journals/political-science/articles/10.3389/fpos.2024.1288798/full">Budgets and the timing/intensity of interest-group lobbying in the U.S. states, Frontiers in Political Science</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Analysis by AskAmerica connector tools (query, ols_regression, sensitivity_analysis) against fedregister.fr_documents and fec.individual_contributions; literature context via web search. A data-quality issue (fr_documents.effective_on near-empty) was filed to the connector's issue log.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

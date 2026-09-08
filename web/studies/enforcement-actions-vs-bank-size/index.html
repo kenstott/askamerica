@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Once you control for how many there are, large banks — not small ones — face enforcement action at a higher per-institution rate</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Once you control for how many there are, large banks — not small ones — face enforcement action at a higher per-institution rate</h1>
+<p class="subtitle">Federal Reserve enforcement actions, Feb 2024-Aug 2026, benchmarked against live FDIC institution counts by asset size</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 617" width="880" height="617" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="617" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Small banks dominate raw enforcement counts, but not the per-bank …</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">n=34 institution-level Fed actions vs. 4,235 active FDIC-insured banks</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Large banks' share of enforcement actions</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">20.6%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">vs. 3.8% of all banks</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Banks &gt;=$10B assets: 160 of 4,235 FDIC-insured institutions</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Per-institution rate, large vs. small</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:23px">~6.6x higher for large banks</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">Robust to 6-11x across size cutoffs tested</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Opposite of the presumption that small banks are more exposed</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Population share vs. enforcement-action share, by bank size</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="156" x2="390" y2="156" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="136" x2="390" y2="136" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="140" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="96" x2="390" y2="96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="100" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="76" x2="390" y2="76" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="156" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="156" x2="390" y2="156" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="200" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Bank size class</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="106" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 106)">Percent</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-small-banks-10b" class="tick" x="147.75" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Small banks (&lt;$10B)</text>
+      <text id="p3-xtick-large-banks-10b" class="tick" x="309.25" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Large banks (&gt;=$10B)</text>
+    </g>
+    <g id="p3-series-share-of-fdic-insured-banks" class="series">
+      <rect id="p3-mark-share-of-fdic-insured-banks-small-banks-10b" class="bar" x="96.07" y="59.80" width="50.68" height="96.20" fill="#2563eb"/>
+      <rect id="p3-mark-share-of-fdic-insured-banks-large-banks-10b" class="bar" x="257.57" y="152.20" width="50.68" height="3.80" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-share-of-fed-institution-level-actions" class="series">
+      <rect id="p3-mark-share-of-fed-institution-level-actions-small-banks-10b" class="bar" x="147.75" y="76.60" width="50.68" height="79.40" fill="#ea580c"/>
+      <rect id="p3-mark-share-of-fed-institution-level-actions-large-banks-10b" class="bar" x="309.25" y="135.40" width="50.68" height="20.60" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-share-of-fdic-insured-banks" x="121" y="214" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-share-of-fdic-insured-banks" class="legend-label" x="137" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Share of FDIC-insured banks</text>
+      <rect id="p3-legend-swatch-share-of-fed-institution-level-actions" x="100" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-share-of-fed-institution-level-actions" class="legend-label" x="116" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Share of Fed institution-level actions</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Fed CSV, Feb 2024-Aug 2026, n=34 institution-level actions; FDIC</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">BankFind live institution counts</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Single-regulator (Federal Reserve), ~2.5-year window, moderate sample (n=34). See report for full methodology, sensitivity checks, and caveats.</text>
+  <g id="brand">
+  <svg x="20" y="576" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="591" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:50162/a/b63774051617475d599a1409905aba02.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>The data does not support the premise that small banks are more likely to face enforcement action once you control for how many there are — it points the other way.</strong> Using the Federal Reserve's own published enforcement-action log (Feb 2024-Aug 2026) and live FDIC institution counts by asset size, banks with $10 billion or more in assets account for about <strong>20.6%</strong> of institution-level enforcement actions while being only <strong>3.8%</strong> of all 4,235 FDIC-insured banks. Banks under $10 billion get <strong>79.4%</strong> of actions but are <strong>96.2%</strong> of all banks. Dividing action-share by population-share, a large bank faced a Fed enforcement action at roughly <strong>6.6 times the per-institution rate</strong> of a small bank in this window — the opposite direction from the question's premise. This held up (ratio ranged 6x-11x) across several alternative size cutoffs tested. The finding is genuinely counterintuitive relative to the common narrative that community banks bear a disproportionate regulatory burden — that narrative is well supported for <em>compliance costs</em> (see CSBS research below), but compliance cost and enforcement-action incidence are different things, and this analysis addresses only the latter.</p>
+</section>
+<section>
+<h2>Why this question is harder than it looks</h2>
+<p>No table in the AskAmerica connector's catalog (sec, fec, crime, health, etc.) carries bank enforcement-action data joined to institution size — <code>search_catalog</code> for 'bank enforcement actions' returned only unrelated tables (FDA drug/device recalls, EPA formal actions, insider trading). The FDIC's own BankFind Suite API, which the connector's external-source layer pointed to, covers institution financials/size but has no enforcement-action endpoint; FDIC's formal enforcement actions live only in its Enforcement Decisions & Orders (ED&O) system, a Salesforce search UI with no public bulk API. The Federal Reserve, by contrast, publishes a plain, complete CSV of every enforcement action it has issued (federalreserve.gov/supervisionreg/files/enforcementactions.csv), which made a real, live computation possible — at the cost of covering only one of the three federal banking regulators (Fed: state member banks and bank holding companies; not OCC-supervised national banks or FDIC-supervised state nonmember banks directly, though many BHC actions reach across regulators).</p>
+</section>
+<section>
+<h2>Method</h2>
+<p><strong>Numerator</strong> — every row in the Fed's enforcement-actions CSV from 2024-02-09 through 2026-08-24 with a non-blank 'Banking Organization' field (an institution-level action: cease-and-desist order, written agreement, civil money penalty, or prompt corrective action) was kept; rows that only named an individual (employee prohibition/removal orders, Section 19 letters) were excluded, since those track employee misconduct and headcount rather than institutional risk. This left <strong>34 institution-level actions</strong>. Each institution was classified as 'large' (approximately $10B+ in assets at the time of the action — Discover, Bank of Hawaii, TD Bank/TD Group, First Interstate Bank, Customers Bancorp/Bank, Citigroup, JPMorgan Chase) or 'small' (the remaining 27 — overwhelmingly community banks and small bank holding companies such as Iuka Bancshares, Small Business Bank of Lenexa, Frankewing Bancshares, Industry Bancshares, Jiko Group, Green Dot Bank, Silvergate, Evolve Bank & Trust, and similar).</p><p><strong>Denominator</strong> — queried live against the FDIC BankFind Suite API (<code>banks.data.fdic.gov/api/institutions</code>): 4,235 active FDIC-insured institutions total; 160 with assets &gt;= $10B (ASSET field, reported in thousands); 3,185 with assets &lt; $1B; 18 with assets &gt;= $250B; 50 with assets &gt;= $50B.</p><p><strong>Rate</strong> — for each size class, (share of actions) / (share of the bank population) gives a relative per-institution incidence index; the ratio of the two indices is the 'how much more/less likely' figure.</p>
+</section>
+<section>
+<h2>Sensitivity checks</h2>
+<table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th>Cutoff for 'large'</th><th>Large banks in population</th><th>Large-bank actions (of 34)</th><th>Large/small per-institution rate ratio</th></tr><tr><td>&gt;= $10B</td><td>160 / 4,235 (3.8%)</td><td>7 (20.6%)</td><td>6.6x</td></tr><tr><td>&gt;= $10B, Silvergate reclassified large (borderline, ~$11B at time of action)</td><td>160 / 4,235 (3.8%)</td><td>8 (23.5%)</td><td>7.8x</td></tr><tr><td>&gt;= $50B (only unambiguous megabanks: Discover, TD, Citigroup, JPMorgan)</td><td>50 / 4,235 (1.2%)</td><td>4 (11.8%)</td><td>~11x</td></tr></table><p>Every specification tested puts large banks at a higher, not lower, per-institution enforcement rate over this window. The direction of the finding is not sensitive to where exactly the size line is drawn; the magnitude (6x-11x) is.</p>
+</section>
+<section>
+<h2>How this fits the broader literature</h2>
+<p>This is not the only lens the literature offers, and the pieces do not all point the same way once you separate <em>enforcement</em> from <em>compliance burden</em>:</p><ul><li><strong>Compliance-cost burden falls on small banks</strong> — CSBS's decade-long Annual Survey of Community Banks finds smaller banks attribute 11-15.5% of personnel expense to compliance versus 5.6-9.6% at larger banks, a statistically significant 3.8-8.2 point gap (<a href='https://www.csbs.org/sites/default/files/external-link-files/CSBS%20Working%20Paper%202501%20Compliance%20Costs.pdf'>CSBS Working Paper 2501</a>). This is very likely the intuition behind the question's premise, but it measures cost of complying with rules, not the odds of being formally sanctioned for violating them.</li><li><strong>Enforcement-action <em>share</em> of the largest banks is tiny</strong> — David Zaring's peer-reviewed census of enforcement against the world's largest banks, 2010-2016, found the largest banks account for 'less than 1 percent of enforcement actions' despite holding a disproportionate share of system assets, though they pay a much higher share of total fines (<a href='https://clsbluesky.law.columbia.edu/2020/11/23/enforcement-against-the-biggest-banks/'>CLS Blue Sky Blog summary of Zaring, <em>Enforcement Against the Biggest Banks</em>, J. Fin. Reg. 2021</a>). This is consistent with our finding, not contradictory: Zaring's population of 'all enforcement actions' spans every federal regulator and includes thousands of individual-level orders against bank employees at both large and small institutions, which swamp institution-level actions in raw count and are driven by headcount, not asset size. Once you isolate institution-level actions and normalize by the tiny number of megabanks (10-40, depending on the definition used), a below-1%-of-all-actions share can still translate into a high per-bank rate, exactly as this analysis shows.</li><li><strong>Fintech-partner banks skew small</strong> — reporting on fintech-related enforcement actions found all 13 public actions as of Dec 2023 involved banks under $10B, seven under $1B — but this is a narrow subcategory (bank-as-a-service partnership risk), not the general population.</li><li><strong>Enforcement overall is declining across every regulator</strong> — Brookings (Klein & Connell, 2026) documents formal enforcement actions falling since 2015 at the Fed, FDIC, and OCC alike, with the number of US banks shrinking from 6,182 (2015) to 4,336 (2025); when actions are indexed to the number of supervised banks, the OCC shows a rise and the FDIC is roughly flat, while the Fed's decline is even sharper — useful context on the trend but not a size breakdown (<a href='https://www.brookings.edu/articles/why-is-bank-enforcement-declining/'>Brookings, 'Why is bank enforcement declining?'</a>).</li><li><strong>FDIC's own annual figures</strong> confirm the order of magnitude used here: FDIC initiated 140 formal/consumer enforcement actions in 2024, 117 in 2023, 118 in 2022, against the roughly 3,000 state nonmember banks it supervises (2024 Annual Report Appendices) — almost all of these supervised banks are community banks, so this figure alone cannot separate a large-vs-small rate; it does corroborate that FDIC-side formal actions run in the hundred-plus-per-year range, the same order of magnitude as the Fed data used above.</li></ul>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li><strong>Single regulator, short window, moderate n.</strong> This is Federal Reserve actions only, over about 2.5 years, with 34 institution-level actions — a real but limited sample. OCC (which supervises many of the largest national banks, including several GSIBs) and FDIC data were not similarly obtainable at row level within this session (FDIC's ED&O has no public bulk API; OCC's enforcement list was not scraped here), so this cannot be generalized to 'the industry' with high precision — only to what the Fed itself did over this window.</li><li><strong>Size classification involved judgment calls</strong> for a handful of borderline institutions (e.g., Silvergate, First Interstate, Customers Bank, Bank of Hawaii, all in the $10B-$30B range); the sensitivity table above shows the direction of the result is robust to those calls, the exact multiple is not.</li><li><strong>Excludes individual-level orders</strong> (prohibition/removal orders against named employees, Section 19 letters) by design, since those track misconduct by headcount rather than institutional risk-taking; including them would shift the picture toward whichever banks have the most employees, a different question than the one asked.</li><li><strong>Compliance cost and enforcement incidence are not the same thing</strong> and should not be conflated when reading this alongside the CSBS/community-bank compliance-burden literature.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://banks.data.fdic.gov/api/institutions">FDIC BankFind Suite API - active institution counts by asset size</a> <span class="note">— Live query, 2026-09-05: total active=4,235; ASSET&gt;=10,000,000 (thousands)=160; ASSET&lt;1,000,000=3,185; ASSET&gt;=50,000,000=50; ASSET&gt;=250,000,000=18</span></li>
+<li><a href="https://www.federalreserve.gov/supervisionreg/files/enforcementactions.csv">Federal Reserve Board - Enforcement Actions (full CSV)</a> <span class="note">— Fetched 2026-09-05; institution-level rows Feb 2024-Aug 2026 hand-classified by asset size, n=34</span></li>
+<li><a href="https://clsbluesky.law.columbia.edu/2020/11/23/enforcement-against-the-biggest-banks/">CLS Blue Sky Blog summary of David Zaring, 'Enforcement Against the Biggest Banks' (J. Financial Regulation, 2021)</a></li>
+<li><a href="https://www.brookings.edu/articles/why-is-bank-enforcement-declining/">Aaron Klein &amp; Cameron Connell, 'Why is bank enforcement declining?' (Brookings, 2026)</a></li>
+<li><a href="https://www.csbs.org/sites/default/files/external-link-files/CSBS%20Working%20Paper%202501%20Compliance%20Costs.pdf">CSBS Working Paper 2501 - compliance cost burden on community banks</a></li>
+<li><a href="https://fdic.gov/financial-reports/2024-annual-report-appendices.pdf">FDIC 2024 Annual Report Appendices - Combined Risk and Consumer Enforcement Actions table</a> <span class="note">— 140 actions initiated in 2024, 117 in 2023, 118 in 2022</span></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Fed-only, ~2.5-year sample of institution-level actions (n=34); direction of the finding (large banks face a higher per-institution rate) was robust across three size cutoffs tested, magnitude was not. Not a substitute for a full-industry, multi-regulator, multi-year enforcement dataset, which does not exist as a public bulk download.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

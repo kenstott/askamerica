@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Damaging-weather frequency by county, 2010-2024: little net national change, but sharp local divergence</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s5-t1-s1:checked ~ table tbody.s0{display:none}
+#s5-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s5-t1-s1:checked ~ table label[for="s5-t1-s1"]{color:var(--link)}
+#s5-t1-s1:checked ~ table label[for="s5-t1-s1"] .srtcue{opacity:1}
+#s5-t1-s1:checked ~ .srtreset{display:inline-block}
+#s5-t1-s2:checked ~ table tbody.s0{display:none}
+#s5-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s5-t1-s2:checked ~ table label[for="s5-t1-s2"]{color:var(--link)}
+#s5-t1-s2:checked ~ table label[for="s5-t1-s2"] .srtcue{opacity:1}
+#s5-t1-s2:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Damaging-weather frequency by county, 2010-2024: little net national change, but sharp local divergence</h1>
+<p class="subtitle">NOAA Storm Events Database via AskAmerica connector; observed table coverage is 2010-2026, not the full 20 years the question names</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 961" width="880" height="961" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="961" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">County-Level Storm Event Frequency, 2010-2024</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">NOAA Storm Events Database via AskAmerica disasters.storm_events, connector coverage begins 2010 (not full 20 years)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">National recorded events, 2010 vs 2024</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">62,809 -&gt; 69,801</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">+11.1%</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">All storm events nationally, including those without a county-level</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">FIPS</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Counties where 2020-24 avg exceeds 2010-14 avg</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:29px">1,315 of 3,234 (40.6%)</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">vs 1,740 counties (53.8%) with a lower average</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Comparing each county's own 5-year event-count average, early vs late</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">window</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Total recorded storm events by year, all US counties</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="84" y1="187.84" x2="390" y2="187.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="76" y="191.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="154.88" x2="390" y2="154.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="76" y="158.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+      <line class="grid" x1="84" y1="121.92" x2="390" y2="121.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="76" y="125.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40,000</text>
+      <line class="grid" x1="84" y1="88.96" x2="390" y2="88.96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="76" y="92.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80,000</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="187.84" x2="390" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="237" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="121.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 121.92)">Event count</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2010" class="tick" x="94.20" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 94.20 201.84)">2010</text>
+      <text id="p3-xtick-2011" class="tick" x="114.60" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 114.60 201.84)">2011</text>
+      <text id="p3-xtick-2012" class="tick" x="135" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 135 201.84)">2012</text>
+      <text id="p3-xtick-2013" class="tick" x="155.40" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 155.40 201.84)">2013</text>
+      <text id="p3-xtick-2014" class="tick" x="175.80" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 175.80 201.84)">2014</text>
+      <text id="p3-xtick-2015" class="tick" x="196.20" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 196.20 201.84)">2015</text>
+      <text id="p3-xtick-2016" class="tick" x="216.60" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 216.60 201.84)">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="237" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 237 201.84)">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="257.40" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 257.40 201.84)">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="277.80" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 277.80 201.84)">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="298.20" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 298.20 201.84)">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="318.60" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 318.60 201.84)">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="339" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 339 201.84)">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="359.40" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 359.40 201.84)">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="379.80" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 379.80 201.84)">2024</text>
+    </g>
+    <g id="p3-series-storm-events-national" class="series">
+      <path id="p3-line-storm-events-national" class="line" d="M 94.20 84.33 L 114.60 57.50 L 135 81.54 L 155.40 88.98 L 175.80 89.83 L 196.20 92.41 L 216.60 95.54 L 237 93.84 L 257.40 84.51 L 277.80 76.00 L 298.20 86.85 L 318.60 86.67 L 339 72.67 L 359.40 63.26 L 379.80 72.81" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-storm-events-national-2010" class="point" cx="94.20" cy="84.33" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2011" class="point" cx="114.60" cy="57.50" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2012" class="point" cx="135" cy="81.54" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2013" class="point" cx="155.40" cy="88.98" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2014" class="point" cx="175.80" cy="89.83" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2015" class="point" cx="196.20" cy="92.41" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2016" class="point" cx="216.60" cy="95.54" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2017" class="point" cx="237" cy="93.84" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2018" class="point" cx="257.40" cy="84.51" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2019" class="point" cx="277.80" cy="76.00" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2020" class="point" cx="298.20" cy="86.85" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2021" class="point" cx="318.60" cy="86.67" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2022" class="point" cx="339" cy="72.67" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2023" class="point" cx="359.40" cy="63.26" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-storm-events-national-2024" class="point" cx="379.80" cy="72.81" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Year-to-year swings (2011 tornado outbreaks, 2023</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">hail/severe-thunderstorm surge) dwarf any smooth multi-year trend</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">10 counties with largest increase (avg events/yr, 2010-14 to 2020-24)</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="67" y1="125.68" x2="390" y2="125.68" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="59" y="129.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="116.97" x2="390" y2="116.97" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="59" y="120.97" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="108.26" x2="390" y2="108.26" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="59" y="112.26" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="99.55" x2="390" y2="99.55" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="59" y="103.55" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="90.84" x2="390" y2="90.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="59" y="94.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="82.13" x2="390" y2="82.13" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="59" y="86.13" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="73.42" x2="390" y2="73.42" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="59" y="77.42" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
+      <line class="grid" x1="67" y1="64.71" x2="390" y2="64.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="59" y="68.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">140</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-8" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">160</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="125.68" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="125.68" x2="390" y2="125.68" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="228.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="90.84" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 90.84)">Avg events/yr</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-maricopa-az" class="tick" x="83.15" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 83.15 139.68)">Maricopa AZ</text>
+      <text id="p4-xtick-chester-pa" class="tick" x="115.45" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115.45 139.68)">Chester PA</text>
+      <text id="p4-xtick-cook-il" class="tick" x="147.75" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.75 139.68)">Cook IL</text>
+      <text id="p4-xtick-el-paso-co" class="tick" x="180.05" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 180.05 139.68)">El Paso CO</text>
+      <text id="p4-xtick-tooele-ut" class="tick" x="212.35" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 212.35 139.68)">Tooele UT</text>
+      <text id="p4-xtick-berks-pa" class="tick" x="244.65" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 244.65 139.68)">Berks PA</text>
+      <text id="p4-xtick-colbert-al" class="tick" x="276.95" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 276.95 139.68)">Colbert AL</text>
+      <text id="p4-xtick-cleveland-ok" class="tick" x="309.25" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.25 139.68)">Cleveland OK</text>
+      <text id="p4-xtick-fresno-ca" class="tick" x="341.55" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 341.55 139.68)">Fresno CA</text>
+      <text id="p4-xtick-washington-ny" class="tick" x="373.85" y="139.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.85 139.68)">Washington NY</text>
+    </g>
+    <g id="p4-series-2010-14-avg" class="series">
+      <rect id="p4-mark-2010-14-avg-maricopa-az" class="bar" x="72.81" y="97.81" width="9.34" height="27.87" fill="#2563eb"/>
+      <rect id="p4-mark-2010-14-avg-chester-pa" class="bar" x="105.11" y="113.05" width="9.34" height="12.63" fill="#2563eb"/>
+      <rect id="p4-mark-2010-14-avg-cook-il" class="bar" x="137.41" y="85.18" width="9.34" height="40.50" fill="#2563eb"/>
+      <rect id="p4-mark-2010-14-avg-el-paso-co" class="bar" x="169.71" y="97.37" width="9.34" height="28.31" fill="#2563eb"/>
+      <rect id="p4-mark-2010-14-avg-tooele-ut" class="bar" x="202.01" y="116.97" width="9.34" height="8.71" fill="#2563eb"/>
+      <rect id="p4-mark-2010-14-avg-berks-pa" class="bar" x="234.31" y="114.36" width="9.34" height="11.32" fill="#2563eb"/>
+      <rect id="p4-mark-2010-14-avg-colbert-al" class="bar" x="266.61" y="109.13" width="9.34" height="16.55" fill="#2563eb"/>
+      <rect id="p4-mark-2010-14-avg-cleveland-ok" class="bar" x="298.91" y="111.74" width="9.34" height="13.94" fill="#2563eb"/>
+      <rect id="p4-mark-2010-14-avg-fresno-ca" class="bar" x="331.21" y="120.02" width="9.34" height="5.66" fill="#2563eb"/>
+      <rect id="p4-mark-2010-14-avg-washington-ny" class="bar" x="363.51" y="118.28" width="9.34" height="7.40" fill="#2563eb"/>
+    </g>
+    <g id="p4-series-2020-24-avg" class="series">
+      <rect id="p4-mark-2020-24-avg-maricopa-az" class="bar" x="83.15" y="64.27" width="9.34" height="61.41" fill="#ea580c"/>
+      <rect id="p4-mark-2020-24-avg-chester-pa" class="bar" x="115.45" y="88.23" width="9.34" height="37.45" fill="#ea580c"/>
+      <rect id="p4-mark-2020-24-avg-cook-il" class="bar" x="147.75" y="62.53" width="9.34" height="63.15" fill="#ea580c"/>
+      <rect id="p4-mark-2020-24-avg-el-paso-co" class="bar" x="180.05" y="75.60" width="9.34" height="50.08" fill="#ea580c"/>
+      <rect id="p4-mark-2020-24-avg-tooele-ut" class="bar" x="212.35" y="96.07" width="9.34" height="29.61" fill="#ea580c"/>
+      <rect id="p4-mark-2020-24-avg-berks-pa" class="bar" x="244.65" y="94.76" width="9.34" height="30.92" fill="#ea580c"/>
+      <rect id="p4-mark-2020-24-avg-colbert-al" class="bar" x="276.95" y="90.40" width="9.34" height="35.28" fill="#ea580c"/>
+      <rect id="p4-mark-2020-24-avg-cleveland-ok" class="bar" x="309.25" y="93.89" width="9.34" height="31.79" fill="#ea580c"/>
+      <rect id="p4-mark-2020-24-avg-fresno-ca" class="bar" x="341.55" y="103.91" width="9.34" height="21.78" fill="#ea580c"/>
+      <rect id="p4-mark-2020-24-avg-washington-ny" class="bar" x="373.85" y="102.16" width="9.34" height="23.52" fill="#ea580c"/>
+    </g>
+    <g id="p4-legend">
+      <rect id="p4-legend-swatch-2010-14-avg" x="112" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p4-legend-label-2010-14-avg" class="legend-label" x="128" y="243" fill="#1f2328" font-size="11" style="font-size:11px">2010-14 avg</text>
+      <rect id="p4-legend-swatch-2020-24-avg" x="214" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p4-legend-label-2020-24-avg" class="legend-label" x="230" y="243" fill="#1f2328" font-size="11" style="font-size:11px">2020-24 avg</text>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Largest absolute gains cluster in fast-growing/high-population metro</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">counties and severe-hail corridors</text>
+  <rect class="panel-edge" x="20" y="554" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">10 counties with largest decrease (avg events/yr, 2010-14 to 2020-24)</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="67" y1="130" x2="390" y2="130" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="59" y="134" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="115.20" x2="390" y2="115.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="59" y="119.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="100.40" x2="390" y2="100.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="59" y="104.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="85.60" x2="390" y2="85.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="59" y="89.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="70.80" x2="390" y2="70.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="59" y="74.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="130" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="130" x2="390" y2="130" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="228.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="93" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 93)">Avg events/yr</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-aroostook-me" class="tick" x="83.15" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 83.15 144)">Aroostook ME</text>
+      <text id="p5-xtick-polk-ia" class="tick" x="115.45" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115.45 144)">Polk IA</text>
+      <text id="p5-xtick-greenville-sc" class="tick" x="147.75" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.75 144)">Greenville SC</text>
+      <text id="p5-xtick-reno-ks" class="tick" x="180.05" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 180.05 144)">Reno KS</text>
+      <text id="p5-xtick-lincoln-nv" class="tick" x="212.35" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 212.35 144)">Lincoln NV</text>
+      <text id="p5-xtick-oakland-mi" class="tick" x="244.65" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 244.65 144)">Oakland MI</text>
+      <text id="p5-xtick-cherry-ne" class="tick" x="276.95" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 276.95 144)">Cherry NE</text>
+      <text id="p5-xtick-sedgwick-ks" class="tick" x="309.25" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.25 144)">Sedgwick KS</text>
+      <text id="p5-xtick-dallas-ia" class="tick" x="341.55" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 341.55 144)">Dallas IA</text>
+      <text id="p5-xtick-butler-ne" class="tick" x="373.85" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.85 144)">Butler NE</text>
+    </g>
+    <g id="p5-series-2010-14-avg" class="series">
+      <rect id="p5-mark-2010-14-avg-aroostook-me" class="bar" x="72.81" y="88.56" width="9.34" height="41.44" fill="#2563eb"/>
+      <rect id="p5-mark-2010-14-avg-polk-ia" class="bar" x="105.11" y="64.14" width="9.34" height="65.86" fill="#2563eb"/>
+      <rect id="p5-mark-2010-14-avg-greenville-sc" class="bar" x="137.41" y="92.26" width="9.34" height="37.74" fill="#2563eb"/>
+      <rect id="p5-mark-2010-14-avg-reno-ks" class="bar" x="169.71" y="98.92" width="9.34" height="31.08" fill="#2563eb"/>
+      <rect id="p5-mark-2010-14-avg-lincoln-nv" class="bar" x="202.01" y="79.68" width="9.34" height="50.32" fill="#2563eb"/>
+      <rect id="p5-mark-2010-14-avg-oakland-mi" class="bar" x="234.31" y="92.26" width="9.34" height="37.74" fill="#2563eb"/>
+      <rect id="p5-mark-2010-14-avg-cherry-ne" class="bar" x="266.61" y="84.86" width="9.34" height="45.14" fill="#2563eb"/>
+      <rect id="p5-mark-2010-14-avg-sedgwick-ks" class="bar" x="298.91" y="70.06" width="9.34" height="59.94" fill="#2563eb"/>
+      <rect id="p5-mark-2010-14-avg-dallas-ia" class="bar" x="331.21" y="101.14" width="9.34" height="28.86" fill="#2563eb"/>
+      <rect id="p5-mark-2010-14-avg-butler-ne" class="bar" x="363.51" y="87.08" width="9.34" height="42.92" fill="#2563eb"/>
+    </g>
+    <g id="p5-series-2020-24-avg" class="series">
+      <rect id="p5-mark-2020-24-avg-aroostook-me" class="bar" x="83.15" y="118.90" width="9.34" height="11.10" fill="#ea580c"/>
+      <rect id="p5-mark-2020-24-avg-polk-ia" class="bar" x="115.45" y="90.78" width="9.34" height="39.22" fill="#ea580c"/>
+      <rect id="p5-mark-2020-24-avg-greenville-sc" class="bar" x="147.75" y="113.72" width="9.34" height="16.28" fill="#ea580c"/>
+      <rect id="p5-mark-2020-24-avg-reno-ks" class="bar" x="180.05" y="119.64" width="9.34" height="10.36" fill="#ea580c"/>
+      <rect id="p5-mark-2020-24-avg-lincoln-nv" class="bar" x="212.35" y="100.40" width="9.34" height="29.60" fill="#ea580c"/>
+      <rect id="p5-mark-2020-24-avg-oakland-mi" class="bar" x="244.65" y="112.24" width="9.34" height="17.76" fill="#ea580c"/>
+      <rect id="p5-mark-2020-24-avg-cherry-ne" class="bar" x="276.95" y="104.10" width="9.34" height="25.90" fill="#ea580c"/>
+      <rect id="p5-mark-2020-24-avg-sedgwick-ks" class="bar" x="309.25" y="88.56" width="9.34" height="41.44" fill="#ea580c"/>
+      <rect id="p5-mark-2020-24-avg-dallas-ia" class="bar" x="341.55" y="118.16" width="9.34" height="11.84" fill="#ea580c"/>
+      <rect id="p5-mark-2020-24-avg-butler-ne" class="bar" x="373.85" y="104.10" width="9.34" height="25.90" fill="#ea580c"/>
+    </g>
+    <g id="p5-legend">
+      <rect id="p5-legend-swatch-2010-14-avg" x="112" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p5-legend-label-2010-14-avg" class="legend-label" x="128" y="243" fill="#1f2328" font-size="11" style="font-size:11px">2010-14 avg</text>
+      <rect id="p5-legend-swatch-2020-24-avg" x="214" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p5-legend-label-2020-24-avg" class="legend-label" x="230" y="243" fill="#1f2328" font-size="11" style="font-size:11px">2020-24 avg</text>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="835" fill="#6b7280">Largest declines cluster in Plains/Midwest counties with historically</text>
+  <text class="caption" x="24" y="848" fill="#6b7280">high severe-thunderstorm/hail counts in the early 2010s</text>
+  <text class="footnote" x="20" y="880" fill="#6b7280">disasters.storm_events / disasters_storm_impact_by_county (AskAmerica connector) declares and observes coverage of 2010-2026 only — NOT the full</text>
+  <text class="footnote" x="20" y="894" fill="#6b7280">20 years the question names (2005-2024). 43% of recorded events (412,236 of 965,331 in 2010-2024) carry no county-level FIPS code and are excluded</text>
+  <text class="footnote" x="20" y="908" fill="#6b7280">from the county-level comparison; they are included in the national year-line total shown here.</text>
+  <g id="brand">
+  <svg x="20" y="920" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="935" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:62378/a/28317922140e6147b610981b8f8ad187.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>The connector's own data only reaches back to 2010, not 2005</strong> — a genuine coverage gap disclosed below, so this answers the achievable 15-year version of the question (2010-2024) rather than the full 20 years asked. Within that window, damaging-weather-event frequency has <strong>not moved uniformly</strong>: nationally, total recorded storm events rose about 11% (62,809 in 2010 to 69,801 in 2024), but this trend is dominated by year-to-year volatility (a 79,091-event spike in 2011, a 75,593-event spike in 2023) rather than a steady climb, and independent NOAA/NCEI research attributes much of this apparent rise to improved reporting infrastructure rather than a real increase in storm activity for many event types. At the individual-county level the picture is genuinely mixed: comparing each county's own 2010-14 average to its 2020-24 average, <strong>1,315 of 3,234 counties (40.6%) saw an increase</strong> and <strong>1,740 (53.8%) saw a decrease</strong>, with the remainder flat — the average county's own event count actually declined slightly (11.7/yr to 11.3/yr, -3.6%). Large increases concentrate in fast-growing Sun Belt/Mountain West metro counties (Maricopa AZ, Cook IL, El Paso CO) and Eastern hail/severe-thunderstorm corridors (Chester and Berks County, PA); large decreases concentrate in Plains/Midwest counties that had unusually high severe-thunderstorm counts in the early 2010s (Aroostook ME, Polk IA, Sedgwick KS).</p>
+</section>
+<section>
+<h2>Step 1 — Literature: what is already known about this trend</h2>
+<p>NOAA/NCEI's Storm Events Database is the standard source for county-level severe-weather counts, and the published literature is explicit that raw event counts are not directly comparable across decades because <strong>reporting infrastructure, forecast-office emphasis, and spotter/insurance/public-reporting practices have changed substantially since 1950</strong> — a documented, non-uniform collection process that makes trend detection for tornadoes, hail, and severe thunderstorms 'extremely difficult' from raw counts alone (NCEI, and independent analyses, e.g. Kevin Trenberth-style critiques of Storm Data reliability, arxiv.org/abs/1606.06973). Separately, NOAA's Billion-Dollar Weather and Climate Disasters program — a CPI-adjusted, damage-threshold series distinct from the raw event counts used here — documents a clear rise in the frequency of catastrophic-cost events: from an average of about 31 deaths/yr and $4.0B/yr in damages (1980-2009) to about 82 deaths/yr and $21.3B/yr (2010-2022) for severe-storm events, and 27 billion-dollar disasters totaling $182.7B in 2024 alone. That is a different metric (damage-cost threshold, national aggregate) from the raw county-level event-count comparison in this report, and the two need not move together: costs can rise from exposure growth (more people and property in harm's way) even where the underlying meteorological frequency is flat.</p>
+</section>
+<section>
+<h2>Step 2 — Data source, window, and a disclosed coverage gap</h2>
+<p>Query: <code>disasters.storm_events</code> / <code>disasters.disasters_storm_impact_by_county</code> (NOAA Storm Events Database, ingested by the AskAmerica connector). <code>data_coverage</code> was called on both tables before use: the connector's <strong>declared and observed</strong> coverage window is 2010-2026, not the 2005-2024 (or similar) twenty-year span the question implies. A primary-source fetch was attempted to fill 2005-2009 directly from NOAA's own public FTP (ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/), but the per-year files are served as gzip-compressed CSV and this session's fetch tool cannot decompress or parse binary/gzip content (confirmed: a direct fetch of the 2005 file returned only 'unrecognized binary content type, Content-Type: application/gzip' with no extractable text). The analysis below therefore covers <strong>2010-2024 (15 years)</strong>, the full span the connector actually holds, rather than fabricating the missing five years.</p>
+</section>
+<section>
+<h2>Step 3 — Method</h2>
+<p>Built a full county x year panel (3,234 counties from geo.counties x years 2010-2024, zero-filled for county-years with no reported event) so that a county with no reported storms in a year counts as zero rather than being silently absent. For each county, computed the average annual event count in an early window (2010-2014) and a late window (2020-2024), and the difference. 43% of all recorded events nationally (412,236 of 965,331 total 2010-2024 events) carry a NULL county_fips — these are state-wide or otherwise unresolved reports (not, on inspection, marine-zone artifacts as initially suspected, but simply un-geocoded rows) and were necessarily excluded from the per-county comparison, while still counted in the national year-by-year total shown in the dashboard. This is a material exclusion and is why the national total (+11.1%) and the matched-county-only total (-3.6%) point in different directions — the growth is concentrated in the excluded, non-county-resolved share of records, not in the matched county panel.</p>
+</section>
+<section>
+<h2>Step 4 — Findings</h2>
+<input type="radio" name="s5-t1" class="srtbox" id="s5-t1-s0" checked><input type="radio" name="s5-t1" class="srtbox" id="s5-t1-s1"><input type="radio" name="s5-t1" class="srtbox" id="s5-t1-s2"><table border='1' cellpadding='4' style='border-collapse:collapse'><tr><th><label class="srth" for="s5-t1-s1">Metric<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s5-t1-s2">Value<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Counties analyzed</td><td>3,234</td></tr><tr><td>Mean county avg events/yr, 2010-14</td><td>11.69</td></tr><tr><td>Mean county avg events/yr, 2020-24</td><td>11.28 (-3.6%)</td></tr><tr><td>Counties with higher 2020-24 average</td><td>1,315 (40.6%)</td></tr><tr><td>Counties with lower 2020-24 average</td><td>1,740 (53.8%)</td></tr><tr><td>Counties essentially flat</td><td>179 (5.5%)</td></tr><tr><td>Std. deviation of per-county change</td><td>7.0 events/yr</td></tr><tr><td>National total events, 2010</td><td>62,809</td></tr><tr><td>National total events, 2024</td><td>69,801 (+11.1%)</td></tr></tbody><tbody class="srt s1"><tr><td>Counties analyzed</td><td>3,234</td></tr><tr><td>Counties essentially flat</td><td>179 (5.5%)</td></tr><tr><td>Counties with higher 2020-24 average</td><td>1,315 (40.6%)</td></tr><tr><td>Counties with lower 2020-24 average</td><td>1,740 (53.8%)</td></tr><tr><td>Mean county avg events/yr, 2010-14</td><td>11.69</td></tr><tr><td>Mean county avg events/yr, 2020-24</td><td>11.28 (-3.6%)</td></tr><tr><td>National total events, 2010</td><td>62,809</td></tr><tr><td>National total events, 2024</td><td>69,801 (+11.1%)</td></tr><tr><td>Std. deviation of per-county change</td><td>7.0 events/yr</td></tr></tbody><tbody class="srt s2"><tr><td>National total events, 2024</td><td>69,801 (+11.1%)</td></tr><tr><td>Counties with lower 2020-24 average</td><td>1,740 (53.8%)</td></tr><tr><td>Counties with higher 2020-24 average</td><td>1,315 (40.6%)</td></tr><tr><td>National total events, 2010</td><td>62,809</td></tr><tr><td>Counties analyzed</td><td>3,234</td></tr><tr><td>Counties essentially flat</td><td>179 (5.5%)</td></tr><tr><td>Mean county avg events/yr, 2010-14</td><td>11.69</td></tr><tr><td>Std. deviation of per-county change</td><td>7.0 events/yr</td></tr><tr><td>Mean county avg events/yr, 2020-24</td><td>11.28 (-3.6%)</td></tr></tbody></table><label class="srtreset" for="s5-t1-s0">reset order</label><p>The standard deviation of the per-county change (7.0) is larger than the mean change itself (-0.4), meaning the national/average figure conceals wide dispersion: individual counties moved by tens of events per year in either direction while the overall population-wide average barely moved.</p>
+</section>
+<section>
+<h2>Step 5 — Caveats</h2>
+<ul><li><strong>Window is 15 years, not 20</strong> — the connector's own data starts in 2010; this is disclosed rather than papered over.</li><li><strong>Raw event counts are not adjusted for reporting-practice changes.</strong> The literature (NCEI, and independent Storm-Data-reliability critiques) documents that spotter networks, forecast-office emphasis, and public/insurance reporting channels have expanded over time, which can inflate apparent event counts independent of true storm frequency — a bias this analysis cannot separate out from the connector's raw counts alone.</li><li><strong>43% of national events could not be matched to a county</strong> and are excluded from the by-county comparison, which is why the county-matched trend (-3.6%) and the national raw total (+11.1%) disagree in direction — a data-quality gap, not a modeling choice.</li><li><strong>Event counts are a frequency measure, not a severity/damage measure</strong> — a rising damage-cost trend (documented in NOAA's Billion-Dollar Disasters series) can coexist with flat or falling event counts if individual storms are becoming more damaging or striking more populated/valuable areas, which this report does not test.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Twenty-year window</strong>: The connector's storm-events data covers only 2010-2026 (observed and declared); a primary-source fetch to fill 2005-2009 was attempted and failed because NOAA's per-year files are gzip-compressed and this session's fetch tool cannot parse binary/gzip content. Answered using the full available 2010-2024 (15-year) window instead, disclosed explicitly.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>AskAmerica connector: county x year storm event panel, 2010-2024<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;WITH counties AS (SELECT DISTINCT county_fips FROM geo.counties WHERE year='2020' AND LENGTH(county_fips)=5), years AS (2010..2024), grid AS (cross join), events AS (SELECT county_fips, year, event_count FROM disasters.disasters_storm_impact_by_county WHERE year BETWEEN '2010' AND '2024'), panel AS (zero-filled left join) SELECT county_fips, AVG early/late, diff FROM panel GROUP BY county_fips&quot;)</code></pre></details></li>
+<li>AskAmerica connector: national storm events by year, 2010-2024<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, SUM(event_count) AS total_events FROM disasters.disasters_storm_impact_by_county WHERE &quot;year&quot; BETWEEN '2010' AND '2024' GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details></li>
+<li>Coverage check confirming connector window is 2010-2026, not 2005-2024<details class="sqltoggle"><summary>Show tool call</summary><pre><code>data_coverage(schema=&quot;disasters&quot;, table=&quot;storm_events&quot;)</code></pre></details></li>
+<li><a href="https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/">NOAA NCEI Storm Events Database</a> <span class="note">— Primary source; gzip per-year files could not be parsed by this session's fetch tool (confirmed by direct fetch attempt)</span></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Analysis restricted to 2010-2024 (connector's actual coverage window), not the full 20 years named in the question. County comparison excludes the 43% of national events with no county-level FIPS. Not a causal or climate-attribution claim.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

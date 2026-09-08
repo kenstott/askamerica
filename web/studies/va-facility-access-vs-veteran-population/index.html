@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Most veterans are close to some VA facility, but distance to comprehensive or specialty VA care varies enormously — from minutes in cities to 200+ miles in rural states</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Most veterans are close to some VA facility, but distance to comprehensive or specialty VA care varies enormously — from minutes in cities to 200+ miles in rural states</h1>
+<p class="subtitle">Sources: RAND (2015, VA-commissioned), VA Office of Rural Health, VA MISSION Act access standards, GAO. AskAmerica's own geocoded VA-facility table (lands.va_facilities) was unavailable this run — see note below.</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 787" width="880" height="787" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="787" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">Veteran distance to VA care: national picture and the standards used to manage it</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">RAND 2015 national assessment; VA MISSION Act access standards (2019, drive-time methodology updated 2020)</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Share of veterans within 40 driving miles of a VA facility, by facility type</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="67" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="59" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="59" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="102.80" x2="390" y2="102.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="59" y="106.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="59" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="71.60" x2="390" y2="71.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="59" y="75.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Facility type</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">% of veterans</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-any-vha-facility" class="tick" x="120.83" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 120.83 148)">Any VHA facility</text>
+      <text id="p1-xtick-vha-medical-center-comprehensive" class="tick" x="228.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 148)">VHA medical center (comprehensive)</text>
+      <text id="p1-xtick-vha-medical-center-w-full-specialty-care" class="tick" x="336.17" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 336.17 148)">VHA medical center w/ full specialty care</text>
+    </g>
+    <g id="p1-series-within-40-miles" class="series">
+      <rect id="p1-mark-within-40-miles-any-vha-facility" class="bar" x="86.38" y="61.46" width="67.91" height="72.54" fill="#2563eb"/>
+      <rect id="p1-mark-within-40-miles-vha-medical-center-comprehensive" class="bar" x="194.05" y="91.10" width="67.91" height="42.90" fill="#2563eb"/>
+      <rect id="p1-mark-within-40-miles-vha-medical-center-w-full-specialty-care" class="bar" x="301.71" y="113.72" width="67.91" height="20.28" fill="#2563eb"/>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="363" fill="#6b7280">RAND, Sept. 2015, commissioned under the Veterans Choice Act — the</text>
+  <text class="caption" x="24" y="376" fill="#6b7280">last national drive-distance assessment of its kind.</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="162" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="198" fill="#6b7280">VA primary/mental-health care drive-time standard</text>
+  <text class="stat-value" x="464" y="228" fill="#1f2328">30 minutes</text>
+  </g>
+  <text class="caption" x="452" y="363" fill="#6b7280">Average drive time; veterans beyond it can use VA-paid community care</text>
+  <text class="caption" x="452" y="376" fill="#6b7280">under the MISSION Act.</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="434" fill="#6b7280">VA specialty-care drive-time standard</text>
+  <text class="stat-value" x="36" y="464" fill="#1f2328">60 minutes</text>
+  </g>
+  <text class="caption" x="24" y="519" fill="#6b7280">Average drive time to a VA facility offering that specialty.</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="434" fill="#6b7280">Enrolled veterans who are rural/highly rural</text>
+  <text class="stat-value" x="464" y="464" fill="#1f2328">~3 of 9.1 million</text>
+  <text class="stat-delta" x="464" y="484" fill="#6b7280">~33%</text>
+  </g>
+  <text class="caption" x="452" y="519" fill="#6b7280">FY2025, VHA Support Service Center via VA Office of Rural Health.</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">Rural veterans enroll at a higher rate than urban veterans (66% vs.…</text>
+  <g id="p5-stat">
+  <rect class="panel-edge" x="20" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="590" fill="#6b7280">Historic Veterans Choice Act distance threshold</text>
+  <text class="stat-value" x="36" y="620" fill="#1f2328">40 miles</text>
+  </g>
+  <text class="caption" x="24" y="675" fill="#6b7280">2014 standard for private-care eligibility; superseded by drive-time</text>
+  <text class="caption" x="24" y="688" fill="#6b7280">standards but still grandfathered for some veterans enrolled before…</text>
+  <text class="footnote" x="20" y="720" fill="#6b7280">AskAmerica's lands.va_facilities table (geocoded VA facility roster) returned a data-store error (S3 404) on every query this run and could not be</text>
+  <text class="footnote" x="20" y="734" fill="#6b7280">used to compute distances directly from primary data; reported as a defect. Figures here are drawn from the cited primary literature instead.</text>
+  <g id="brand">
+  <svg x="20" y="746" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="761" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:56995/a/149e252eb8e9cfdf4b67d3f0be9b5f9c.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Most veterans live fairly close to <em>some</em> VA presence, but how far they are from care that can actually treat them varies hugely by geography. The last national assessment (RAND, 2015, done for the VA under the Veterans Choice Act) found <strong>93% of veterans lived within 40 driving miles of any VHA facility</strong> (including small outpatient clinics and Vet Centers), but only <strong>55% were within 40 miles of a full-service VA medical center</strong>, and just <strong>26% were within 40 miles of a VA medical center offering comprehensive specialty care</strong>. The VA now manages this gap with drive-time standards rather than a flat mileage rule: veterans facing more than a 30-minute average drive for primary/mental health care, or more than 60 minutes for specialty care, can get VA-paid care from a private provider under the MISSION Act. The variation is geographic and stark — veterans in large rural states (Montana, Wyoming, Alaska) routinely face 100-200+ mile trips to a full-service VAMC, sometimes 1,000+ miles in Alaska's most remote communities, while veterans in metro areas often have a facility within a short drive. About one-third of enrolled veterans (roughly 3 of 9.1 million) are classified rural or highly rural, and this population enrolls in VA care at a notably higher rate (66%) than urban veterans (47%), which raises the average access burden nationally even though it is concentrated in specific regions.</p>
+</section>
+<section>
+<h2>How the VA measures and manages distance today</h2>
+<p>The VA replaced its old distance-based eligibility rule with average-drive-time standards under the 2018 MISSION Act (methodology refined in a 2020 Federal Register update): <strong>30 minutes</strong> average drive time for primary care, mental health care, and non-institutional extended care, and <strong>60 minutes</strong> for specialty care. A veteran whose nearest appropriate VA facility exceeds that standard is generally eligible to receive VA-paid care from an in-network community (private) provider instead of traveling to a VA site. This replaced the blunter 2014 Veterans Choice Act rule, which set eligibility at a flat <strong>40 miles</strong> from the nearest VHA facility (a rule some veterans enrolled before June 2018 are still grandfathered under). Separately, for disability compensation and pension exam travel, the VA uses a coarser urban/rural/highly-rural drive-time schedule: roughly 45 minutes for urban veterans and up to 100 minutes for rural or highly rural veterans (reduced from a 180-minute highly-rural standard used before April 2022).</p>
+</section>
+<section>
+<h2>How much distance varies across the country</h2>
+<p>The RAND breakdown above is itself evidence of the variation: nearly all veterans are near <em>a</em> VA facility, but the share close to comprehensive or specialty care drops sharply, which is a proxy for how concentrated full-service VA medical centers are in and near metro areas. Qualitatively, the extremes are well documented: the VA's own rural-veteran materials and multiple GAO reviews (e.g. GAO-24-107559, GAO-23-105544 on rural mental health access) describe veterans in low-density states such as Montana traveling 200+ miles to reach a comprehensive VAMC (the Billings VAMC's service area is larger than several entire states), and the single most extreme documented case is Hollis, Alaska, where the nearest VA medical facility is reported at over 1,000 miles away. By contrast, veterans in dense metro areas (e.g. greater Atlanta, Phoenix, San Antonio, or the New York/New Jersey corridor) typically have a VA medical center or one of the VA's roughly 1,000+ outpatient clinics and Vet Centers within a short drive. This urban/rural split is why the VA's rural population — about 4.5 million of 17.5 million living veterans, and roughly a third of the 9.1 million currently enrolled for care — is the group these access standards and the community-care option are mainly built to serve.</p>
+</section>
+<section>
+<h2>What this connector could and could not verify directly</h2>
+<p>AskAmerica's catalog includes a table purpose-built to answer this question directly from primary data — <code>lands.va_facilities</code>, a geocoded roster of all ~1,046 VA medical centers, outpatient clinics, Vet Centers, nursing homes, and residential rehab facilities, which the catalog describes as answering "nearest VA facility to a given location" via latitude/longitude. Every attempt to query or describe it this run (including after a schema-catalog rebuild) failed with an S3 404 from the underlying data store, meaning its data file is currently missing or unpublished server-side. This was reported as a data-quality defect. Absent that table, this answer relies on the cited external literature (RAND's national drive-distance assessment, VA Office of Rural Health figures, and GAO reviews) rather than a first-party computed nearest-facility distance for every U.S. veteran or county — a materially weaker basis than the connector was built to provide, and the honest gap to disclose here.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Compute this directly from primary/first-party geocoded VA facility data for the current U.S. veteran population</strong>: AskAmerica's lands.va_facilities table, built for exactly this computation, returned an S3 404 on every query this run (confirmed after a schema rebuild) and could not be read. The answer instead relies on the most recent published national assessment (RAND 2015) and current VA/GAO policy documentation, which is qualitatively but not numerically identical to a live per-veteran distance computation.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.rand.org/pubs/research_reports/RR1165z2.html">RAND: Resources and Capabilities of the Department of Veterans Affairs to Provide Timely and Accessible Care to Veterans (2015)</a> <span class="note">— 93%/55%/26% within-40-miles figures; VA-commissioned under the Veterans Choice Act</span></li>
+<li><a href="https://www.ruralhealth.va.gov/aboutus/rural-veterans.asp">VHA Office of Rural Health — About Rural Veterans</a> <span class="note">— Fetched 2026-09-05; FY2025 enrollment and rural/urban enrollment-rate figures, RUCA rurality definitions</span></li>
+<li><a href="https://www.va.gov/files/2024-12/VA-FS_CC-Eligibility.pdf">VA MISSION Act Community Care Eligibility fact sheet</a> <span class="note">— 30-min primary care / 60-min specialty care drive-time standards; 40-mile Choice Act grandfathering</span></li>
+<li><a href="https://www.gao.gov/products/gao-24-107559">GAO-24-107559: VA Health Care — Opportunities to Improve Access for Veterans Living in Rural Areas</a> <span class="note">— Cited for rural access findings; full PDF blocked by GAO's site (HTTP 403) to automated fetch, so only the landing-page description was used</span></li>
+<li><a href="https://www.gao.gov/products/gao-23-105544">GAO-23-105544: VA Mental Health — Additional Action Needed to Assess Rural Veterans' Access to Intensive Care</a> <span class="note">— Rural mental-health drive-time access findings</span></li>
+<li><a href="https://www.usda.gov/media/blog/2011/08/03/rural-veterans-and-tyranny-distance">USDA: Rural Veterans and the Tyranny of Distance</a> <span class="note">— Origin of the Hollis, Alaska 1,000+ mile example</span></li>
+<li><a href="https://www.federalregister.gov/documents/2020/07/15/2020-14341/update-to-access-standards-drive-time-calculations">Federal Register: Update to Access Standards Drive Time Calculations (2020)</a> <span class="note">— Referenced for the 2020 drive-time methodology update; direct fetch blocked by an anti-scraping CAPTCHA, so cited via search-result summary, not a direct read of the rule text</span></li>
+<li>AskAmerica lands.va_facilities (queried, returned S3 404 error) <span class="note">— Table exists in the catalog but its backing data file was unreachable this run; reported via report_issue</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT * FROM lands.va_facilities LIMIT 5</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Distance/drive-time figures reflect the last published national assessment (2015) and current VA policy standards, not a live nearest-facility computation — the AskAmerica table built for that computation was unavailable this run (see final section).</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

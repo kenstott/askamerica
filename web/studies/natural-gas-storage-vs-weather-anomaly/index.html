@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weekly weather anomalies explain about 14% of the variance in withdrawal-season U.S. natural gas storage changes</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Weekly weather anomalies explain about 14% of the variance in withdrawal-season U.S. natural gas storage changes</h1>
+<p class="subtitle">EIA weekly Lower-48 working-gas storage vs. national temperature deviation from the 1981-2010 normal, Nov-Mar weeks, 2011-2025</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">How much of weekly storage change is weather?</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Nov-Mar weekly observations, Lower-48 working gas, n=175</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">R² (withdrawal season)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">14.1%</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">p &lt; 0.001</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Simple linear fit, temperature anomaly only</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Coefficient</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">+14.2 Bcf/°C</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">n=175, 2011-2025</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">1°C warmer than normal → ~14 Bcf less withdrawn that week</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Storage change vs. temperature anomaly (Nov-Mar)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="73" y1="228" x2="386" y2="228" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="65" y="232" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-400</text>
+      <line class="grid" x1="73" y1="193.60" x2="386" y2="193.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="65" y="197.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-300</text>
+      <line class="grid" x1="73" y1="159.20" x2="386" y2="159.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="65" y="163.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-200</text>
+      <line class="grid" x1="73" y1="124.80" x2="386" y2="124.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="65" y="128.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-100</text>
+      <line class="grid" x1="73" y1="90.40" x2="386" y2="90.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="65" y="94.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="73" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="65" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="73" y1="56" x2="73" y2="228" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="73" y1="228" x2="386" y2="228" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="229.50" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Temp anomaly vs normal (°C)</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="142" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 142)">Weekly storage chg (Bcf)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-0" class="tick" x="73" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-6</text>
+      <text id="p3-xtick-1" class="tick" x="125.17" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-4</text>
+      <text id="p3-xtick-2" class="tick" x="177.33" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-2</text>
+      <text id="p3-xtick-3" class="tick" x="229.50" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p3-xtick-4" class="tick" x="281.67" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2</text>
+      <text id="p3-xtick-5" class="tick" x="333.83" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">4</text>
+      <text id="p3-xtick-6" class="tick" x="386" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">6</text>
+    </g>
+    <g id="p3-series-weekly-obs" class="series">
+      <circle id="p3-mark-weekly-obs-0" class="point" cx="212.02" cy="137.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-1" class="point" cx="152.82" cy="174.34" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-2" class="point" cx="251.93" cy="149.91" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-3" class="point" cx="264.45" cy="155.07" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-4" class="point" cx="149.16" cy="162.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-5" class="point" cx="147.86" cy="170.90" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-6" class="point" cx="306.97" cy="117.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-7" class="point" cx="216.72" cy="119.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-8" class="point" cx="144.99" cy="115.51" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-9" class="point" cx="165.07" cy="109.66" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-10" class="point" cx="244.63" cy="92.12" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-11" class="point" cx="242.80" cy="86.62" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-12" class="point" cx="237.06" cy="77.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-13" class="point" cx="190.64" cy="85.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-14" class="point" cx="204.72" cy="87.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-15" class="point" cx="197.94" cy="91.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-16" class="point" cx="300.97" cy="97.28" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-17" class="point" cx="220.11" cy="125.14" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-18" class="point" cx="256.63" cy="125.14" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-19" class="point" cx="261.84" cy="117.92" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-20" class="point" cx="277.23" cy="116.89" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-21" class="point" cx="314.79" cy="122.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-22" class="point" cx="187.25" cy="159.54" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-23" class="point" cx="286.36" cy="141.66" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-24" class="point" cx="213.59" cy="149.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-25" class="point" cx="268.36" cy="157.14" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-26" class="point" cx="235.24" cy="130.99" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-27" class="point" cx="254.02" cy="144.75" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-28" class="point" cx="232.37" cy="133.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-29" class="point" cx="195.85" cy="149.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-30" class="point" cx="112.65" cy="140.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-31" class="point" cx="145.51" cy="139.94" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-32" class="point" cx="227.94" cy="111.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-33" class="point" cx="174.99" cy="123.08" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-34" class="point" cx="177.07" cy="122.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-35" class="point" cx="287.67" cy="77.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-36" class="point" cx="224.54" cy="84.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-37" class="point" cx="226.37" cy="105.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-38" class="point" cx="192.72" cy="95.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-39" class="point" cx="103.78" cy="146.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-40" class="point" cx="218.28" cy="117.92" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-41" class="point" cx="101.43" cy="188.44" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-42" class="point" cx="250.63" cy="151.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-43" class="point" cx="233.93" cy="123.42" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-44" class="point" cx="249.32" cy="144.75" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-45" class="point" cx="199.50" cy="135.46" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-46" class="point" cx="230.28" cy="171.24" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-47" class="point" cx="251.15" cy="165.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-48" class="point" cx="313.23" cy="122.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-49" class="point" cx="341.92" cy="129.96" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-50" class="point" cx="239.67" cy="145.44" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-51" class="point" cx="308.79" cy="128.24" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-52" class="point" cx="209.42" cy="166.08" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-53" class="point" cx="167.68" cy="169.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-54" class="point" cx="98.82" cy="158.51" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-55" class="point" cx="279.32" cy="105.19" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-56" class="point" cx="317.66" cy="86.62" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-57" class="point" cx="292.62" cy="96.59" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-58" class="point" cx="315.84" cy="71.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-59" class="point" cx="237.33" cy="85.24" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-60" class="point" cx="215.68" cy="87.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-61" class="point" cx="147.86" cy="108.63" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-62" class="point" cx="270.71" cy="116.54" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-63" class="point" cx="357.57" cy="102.10" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-64" class="point" cx="281.93" cy="101.41" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-65" class="point" cx="286.10" cy="110.35" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-66" class="point" cx="246.45" cy="129.27" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-67" class="point" cx="297.32" cy="135.12" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-68" class="point" cx="295.23" cy="136.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-69" class="point" cx="279.58" cy="154.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-70" class="point" cx="297.06" cy="134.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-71" class="point" cx="239.41" cy="156.45" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-72" class="point" cx="230.28" cy="149.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-73" class="point" cx="145.77" cy="171.93" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-74" class="point" cx="89.17" cy="206.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-75" class="point" cx="265.50" cy="124.11" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-76" class="point" cx="192.98" cy="108.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-77" class="point" cx="218.55" cy="94.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-78" class="point" cx="231.85" cy="101.41" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-79" class="point" cx="239.93" cy="85.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-80" class="point" cx="268.36" cy="87.99" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-81" class="point" cx="262.63" cy="81.46" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-82" class="point" cx="236.54" cy="97.62" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-83" class="point" cx="176.55" cy="110.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-84" class="point" cx="385.48" cy="110.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-85" class="point" cx="308.53" cy="120.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-86" class="point" cx="287.14" cy="109.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-87" class="point" cx="265.23" cy="137.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-88" class="point" cx="248.80" cy="101.06" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-89" class="point" cx="218.02" cy="151.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-90" class="point" cx="288.71" cy="161.26" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-91" class="point" cx="255.58" cy="165.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-92" class="point" cx="228.46" cy="182.59" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-93" class="point" cx="171.33" cy="166.77" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-94" class="point" cx="265.76" cy="155.76" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-95" class="point" cx="258.45" cy="134.78" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-96" class="point" cx="184.38" cy="138.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-97" class="point" cx="203.42" cy="133.06" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-98" class="point" cx="134.04" cy="117.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-99" class="point" cx="226.37" cy="107.94" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-100" class="point" cx="279.84" cy="81.46" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-101" class="point" cx="294.97" cy="63.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-102" class="point" cx="236.80" cy="68.38" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-103" class="point" cx="79.78" cy="117.92" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-104" class="point" cx="150.73" cy="118.26" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-105" class="point" cx="270.97" cy="97.62" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-106" class="point" cx="291.32" cy="107.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-107" class="point" cx="242.80" cy="120.33" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-108" class="point" cx="106.39" cy="163.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-109" class="point" cx="238.63" cy="166.42" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-110" class="point" cx="332.53" cy="86.62" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-111" class="point" cx="327.31" cy="118.61" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-112" class="point" cx="298.36" cy="119.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-113" class="point" cx="243.06" cy="142.34" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-114" class="point" cx="148.38" cy="165.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-115" class="point" cx="271.49" cy="124.80" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-116" class="point" cx="247.76" cy="114.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-117" class="point" cx="249.06" cy="118.26" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-118" class="point" cx="165.07" cy="119.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-119" class="point" cx="167.68" cy="110.35" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-120" class="point" cx="158.81" cy="115.17" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-121" class="point" cx="177.33" cy="106.57" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-122" class="point" cx="198.72" cy="98.31" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-123" class="point" cx="225.33" cy="92.46" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-124" class="point" cx="296.01" cy="69.76" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-125" class="point" cx="273.58" cy="92.81" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-126" class="point" cx="196.11" cy="86.96" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-127" class="point" cx="250.11" cy="130.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-128" class="point" cx="336.70" cy="109.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-129" class="point" cx="284.28" cy="120.33" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-130" class="point" cx="323.92" cy="120.33" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-131" class="point" cx="284.28" cy="95.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-132" class="point" cx="260.02" cy="138.56" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-133" class="point" cx="206.81" cy="143.38" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-134" class="point" cx="133.77" cy="202.54" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-135" class="point" cx="307.49" cy="158.17" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-136" class="point" cx="328.88" cy="116.20" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-137" class="point" cx="277.49" cy="108.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-138" class="point" cx="263.67" cy="111.04" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-139" class="point" cx="293.40" cy="123.42" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-140" class="point" cx="196.37" cy="104.16" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-141" class="point" cx="195.59" cy="93.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-142" class="point" cx="242.02" cy="87.99" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-143" class="point" cx="264.71" cy="102.78" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-144" class="point" cx="210.46" cy="103.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-145" class="point" cx="335.40" cy="67.35" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-146" class="point" cx="286.36" cy="76.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-147" class="point" cx="268.10" cy="91.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-148" class="point" cx="200.81" cy="91.09" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-149" class="point" cx="147.08" cy="100.72" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-150" class="point" cx="260.28" cy="155.76" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-151" class="point" cx="276.71" cy="133.40" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-152" class="point" cx="320.79" cy="122.39" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-153" class="point" cx="298.62" cy="130.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-154" class="point" cx="318.44" cy="104.16" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-155" class="point" cx="209.16" cy="179.15" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-156" class="point" cx="236.80" cy="167.11" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-157" class="point" cx="134.30" cy="200.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-158" class="point" cx="291.06" cy="150.26" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-159" class="point" cx="297.58" cy="124.80" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-160" class="point" cx="178.90" cy="157.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-161" class="point" cx="159.08" cy="180.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-162" class="point" cx="356.79" cy="117.92" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-163" class="point" cx="210.98" cy="111.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-164" class="point" cx="273.84" cy="87.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-165" class="point" cx="254.28" cy="77.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-166" class="point" cx="338.01" cy="80.42" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-167" class="point" cx="321.05" cy="74.92" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-168" class="point" cx="286.88" cy="95.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-169" class="point" cx="294.19" cy="94.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-170" class="point" cx="232.11" cy="94.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-171" class="point" cx="232.89" cy="151.63" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-172" class="point" cx="281.67" cy="147.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-173" class="point" cx="296.53" cy="148.19" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-weekly-obs-174" class="point" cx="364.35" cy="103.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <g id="brand">
+  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:58553/a/a50efbfb0931cca411f79c79d33f8a22.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Using EIA weekly Lower-48 working-gas storage figures and a national temperature-anomaly series built from NOAA daily station data compared against the 1981-2010 climate normal, a simple linear regression finds that the deviation of weekly temperature from normal explains about <strong>14% of the week-to-week variance (R² = 0.141)</strong> in U.S. natural gas storage changes during the withdrawal season (November-March, n=175 weeks, 2011-2025). Each 1°C of anomalous warmth is associated with roughly <strong>14 Bcf less gas withdrawn</strong> that week (coefficient +14.15 Bcf/°C, p&lt;0.001). The relationship is robust to leaving out any single winter (leave-one-out coefficient range 12.5-15.0, no sign flips) and survives controlling for calendar month (partial r=0.355 vs. zero-order r=0.376). Outside the withdrawal season (April-October, injection months), the same temperature-anomaly measure explains essentially none of the week-to-week variance (R² = 0.2%, not significant) — injection-season storage builds are driven far more by production, LNG exports and power-sector burn than by ambient temperature swings. Pooling all 52 weeks together, without separating season, produces a misleadingly small R² (1.2%) because the sign and strength of the weather effect flips between the heating season and the rest of the year.</p>
+</section>
+<section>
+<h2>Why 14%, and why that is a lower bound, not the full story</h2>
+<p>The literature (EIA's own Natural Gas Weekly analysis, the STEO Natural Gas Module, and academic work such as Chen (2023) in the <em>Journal of Futures Markets</em>) treats weather — specifically the deviation of population-weighted heating/cooling degree days from the 30-year normal — as the primary short-run driver of weekly storage withdrawals, but never the only one. This analysis' own weather measure is a simplification of EIA's official methodology in one important way: it averages NOAA daily station temperatures unweighted across all reporting U.S. counties, rather than population-weighting them the way EIA's own heating/cooling-degree-day series does. A population-weighted measure would likely raise the R² further, since it would better track where the heating/cooling demand actually sits (dense population centers in the East/Midwest) rather than treating a sparse rural county the same as a dense metro county. Two variants were tested for robustness: (1) a piecewise heating-degree-day (HDD) version built from daily-level rectified temperatures gave a lower R² (7.9%) than the simple linear anomaly, likely because daily HDD summation adds noise the weekly-average version smooths out; (2) an in-sample random-forest fit reached R²=0.45, but that number is inflated by overfitting on only 175 observations and is not a genuine out-of-sample estimate — it is reported only as a loose upper bound on how much of the variance is theoretically recoverable from temperature alone with a flexible nonlinear form.</p><p>The remaining ~86% of week-to-week variance in withdrawal-season storage changes is attributable to factors this analysis does not model: production levels, pipeline/LNG export volumes, power-sector gas burn for electricity generation (itself partly weather-driven but also driven by non-gas generation availability), storage-region-specific dynamics (this analysis uses the Lower-48 national aggregate only), and the specific severity/duration of individual cold snaps that a weekly-averaged anomaly measure smooths over.</p>
+</section>
+<section>
+<h2>Data and method</h2>
+<ul><li><strong>Storage:</strong> energy.eia_natural_gas_storage, region 'Lower 48 States' (R48), storage_type_code='SWO' (working gas), weekly report_date. Net weekly change = volume_bcf(t) − volume_bcf(t-1).</li><li><strong>Weather:</strong> weather.weather_daily_by_county (NOAA GHCN-Daily, aggregated to county-day, averaged nationally per day, then to the Sat-Fri week ending on each storage report_date) compared against weather.climate_normals_monthly (NOAA 1981-2010 monthly normals, averaged nationally by month). Anomaly = weekly average temperature − the calendar month's national normal average temperature.</li><li><strong>Regression:</strong> OLS, net_change_bcf ~ anomaly_c, run separately for withdrawal-season weeks (Nov-Mar) and injection-season weeks (Apr-Oct), plus a pooled full-year specification for comparison.</li><li><strong>Robustness checks:</strong> leave-one-winter-out sensitivity analysis (no sign flip, coefficient range 12.5-15.0 across the 11 non-trivial winters tested) and partial correlation controlling for calendar month.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.eia.gov/naturalgas/storage/dashboard/">EIA weekly natural gas storage (Lower-48, working gas)</a> <span class="note">— energy.eia_natural_gas_storage table in this connector</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CAST(report_date AS DATE) AS report_date, volume_bcf - LAG(volume_bcf) OVER (ORDER BY CAST(report_date AS DATE)) AS net_change_bcf FROM energy.eia_natural_gas_storage WHERE eia_region_code = 'R48' AND storage_type_code = 'SWO'</code></pre></details></li>
+<li><a href="https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily">NOAA GHCN-Daily county-aggregated weather</a> <span class="note">— weather.weather_daily_by_county table in this connector</span></li>
+<li><a href="https://www.ncei.noaa.gov/products/land-based-station/us-climate-normals">NOAA 1981-2010 climate normals (monthly)</a> <span class="note">— weather.climate_normals_monthly table in this connector</span></li>
+<li>OLS regression, withdrawal season (Nov-Mar), storage change on temperature anomaly<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;net_change_bcf&quot;, predictors=[&quot;anomaly_c&quot;])</code></pre></details></li>
+<li>OLS regression, injection season (Apr-Oct), storage change on temperature anomaly<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;net_change_bcf&quot;, predictors=[&quot;anomaly_c&quot;])</code></pre></details></li>
+<li>Leave-one-winter-out sensitivity analysis<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(outcome=&quot;net_change_bcf&quot;, predictors=[&quot;anomaly_c&quot;], group_col=&quot;winter_year&quot;)</code></pre></details></li>
+<li>Partial correlation controlling for calendar month<details class="sqltoggle"><summary>Show tool call</summary><pre><code>partial_correlation(x=&quot;anomaly_c&quot;, y=&quot;net_change_bcf&quot;, controls=[&quot;mon&quot;])</code></pre></details></li>
+<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=34412">EIA Today in Energy: Cold weather, higher exports result in record natural gas demand</a></li>
+<li><a href="https://www.eia.gov/analysis/handbook/pdf/STEO_natural_gas_module.pdf">EIA Short-Term Energy Outlook: Natural Gas Module (degree-day methodology)</a></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/fut.22402">Chen (2023), 'Temperature, storage, and natural gas futures prices', Journal of Futures Markets</a></li>
+<li><a href="https://rbnenergy.com/under-the-weather%E2%80%93cooling-degree-days-natural-gas-storage-and-price">RBN Energy: Under the Weather – Cooling Degree Days, Natural Gas Storage and Price</a></li>
+<li><a href="https://ionides.github.io/531w18/midterm_project/project24/531_midterm_project.html">A Study on US Natural Gas Storage and Weather (Ionides course project)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">National weather measure is an unweighted average across US counties reporting NOAA GHCN-Daily data, not EIA's official population-weighted heating/cooling degree-day series -- treat the 14% figure as a conservative, directionally-correct lower bound rather than EIA's own published attribution. Storage is the Lower-48 aggregate (not split by East/Midwest/Mountain/Pacific/South Central/Salt/Non-Salt storage regions).</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

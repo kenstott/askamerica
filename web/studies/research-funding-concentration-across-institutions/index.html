@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Federal research funding is extremely concentrated among a small set of universities, and that concentration has been remarkably stable for 15 years</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s3-t1-s4:checked ~ table tbody.s0{display:none}
+#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
+#s3-t1-s4:checked ~ .srtreset{display:inline-block}
+#s3-t1-s5:checked ~ table tbody.s0{display:none}
+#s3-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"]{color:var(--link)}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"] .srtcue{opacity:1}
+#s3-t1-s5:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Federal research funding is extremely concentrated among a small set of universities, and that concentration has been remarkably stable for 15 years</h1>
+<p class="subtitle">NSF NCSES Higher Education R&amp;D (HERD) Survey and Survey of Federal S&amp;E Support, FY2010-2024</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 886" width="880" height="886" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="886" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:19px">Federal Research Funding Is Extremely Concentrated—and Has Stayed Tha…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">NSF NCSES HERD Survey, university-performed federal R&amp;D expenditures, FY2010-2024 (USD)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Top 10 universities' share, FY2024</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">20.8%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">+1.1 pts vs FY2010</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Gini coefficient, FY2024</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">0.82</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">~flat vs FY2010 (0.83)</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="840" height="274" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="840" height="274" viewBox="0 0 840 274" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="274" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Share of federal university R&amp;D dollars, top 10 vs top 100 institutions</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="182" x2="818" y2="182" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="156.80" x2="818" y2="156.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="160.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="131.60" x2="818" y2="131.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="135.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="106.40" x2="818" y2="106.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="110.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="81.20" x2="818" y2="81.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="85.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="182" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="182" x2="818" y2="182" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="442.50" y="226" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fiscal year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="119" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 119)">% of total</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2010" class="tick" x="92.03" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2010</text>
+      <text id="p3-xtick-2011" class="tick" x="142.10" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2011</text>
+      <text id="p3-xtick-2012" class="tick" x="192.17" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2012</text>
+      <text id="p3-xtick-2013" class="tick" x="242.23" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2013</text>
+      <text id="p3-xtick-2014" class="tick" x="292.30" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2014</text>
+      <text id="p3-xtick-2015" class="tick" x="342.37" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2015</text>
+      <text id="p3-xtick-2016" class="tick" x="392.43" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="442.50" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="492.57" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="542.63" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="592.70" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="642.77" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="692.83" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="742.90" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="792.97" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+    </g>
+    <g id="p3-series-top-10-institutions" class="series">
+      <path id="p3-line-top-10-institutions" class="line" d="M 92.03 157.18 L 142.10 156.80 L 192.17 156.93 L 242.23 156.30 L 292.30 156.04 L 342.37 155.92 L 392.43 155.29 L 442.50 155.29 L 492.57 155.41 L 542.63 155.41 L 592.70 155.29 L 642.77 155.54 L 692.83 155.54 L 742.90 155.67 L 792.97 155.79" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-top-10-institutions-2010" class="point" cx="92.03" cy="157.18" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2011" class="point" cx="142.10" cy="156.80" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2012" class="point" cx="192.17" cy="156.93" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2013" class="point" cx="242.23" cy="156.30" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2014" class="point" cx="292.30" cy="156.04" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2015" class="point" cx="342.37" cy="155.92" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2016" class="point" cx="392.43" cy="155.29" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2017" class="point" cx="442.50" cy="155.29" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2018" class="point" cx="492.57" cy="155.41" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2019" class="point" cx="542.63" cy="155.41" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2020" class="point" cx="592.70" cy="155.29" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2021" class="point" cx="642.77" cy="155.54" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2022" class="point" cx="692.83" cy="155.54" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2023" class="point" cx="742.90" cy="155.67" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-top-10-institutions-2024" class="point" cx="792.97" cy="155.79" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-top-100-institutions" class="series">
+      <path id="p3-line-top-100-institutions" class="line" d="M 92.03 82.46 L 142.10 82.59 L 192.17 82.21 L 242.23 80.82 L 292.30 80.19 L 342.37 79.56 L 392.43 79.81 L 442.50 79.31 L 492.57 79.31 L 542.63 79.06 L 592.70 78.68 L 642.77 78.81 L 692.83 79.31 L 742.90 79.44 L 792.97 79.69" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-top-100-institutions-2010" class="point" cx="92.03" cy="82.46" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2011" class="point" cx="142.10" cy="82.59" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2012" class="point" cx="192.17" cy="82.21" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2013" class="point" cx="242.23" cy="80.82" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2014" class="point" cx="292.30" cy="80.19" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2015" class="point" cx="342.37" cy="79.56" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2016" class="point" cx="392.43" cy="79.81" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2017" class="point" cx="442.50" cy="79.31" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2018" class="point" cx="492.57" cy="79.31" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2019" class="point" cx="542.63" cy="79.06" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2020" class="point" cx="592.70" cy="78.68" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2021" class="point" cx="642.77" cy="78.81" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2022" class="point" cx="692.83" cy="79.31" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2023" class="point" cx="742.90" cy="79.44" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-top-100-institutions-2024" class="point" cx="792.97" cy="79.69" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-top-10-institutions" x="290.50" y="240" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-top-10-institutions" class="legend-label" x="306.50" y="249" fill="#1f2328" font-size="11" style="font-size:11px">Top 10 institutions</text>
+      <rect id="p3-legend-swatch-top-100-institutions" x="424.50" y="240" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-top-100-institutions" class="legend-label" x="440.50" y="249" fill="#1f2328" font-size="11" style="font-size:11px">Top 100 institutions</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="493" fill="#6b7280">Out of 629-737 reporting institutions per year. Top-10 share peaked ~21.2% during FY2016-2020, has since eased slightly.</text>
+  <rect class="panel-edge" x="20" y="528" width="840" height="274" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="528" width="840" height="274" viewBox="0 0 840 274" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="274" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Top 10 recipients of federal university R&amp;D funding, FY2024 ($ millions)</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="77" y1="158.56" x2="818" y2="158.56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="69" y="162.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="132.92" x2="818" y2="132.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="69" y="136.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="77" y1="107.28" x2="818" y2="107.28" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="69" y="111.28" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="77" y1="81.64" x2="818" y2="81.64" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="69" y="85.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,000</text>
+      <line class="grid" x1="77" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="158.56" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="158.56" x2="818" y2="158.56" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="447.50" y="250" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Institution</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="107.28" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 107.28)">$ millions</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-johns-hopkins" class="tick" x="114.05" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 114.05 172.56)">Johns Hopkins</text>
+      <text id="p4-xtick-georgia-tech" class="tick" x="188.15" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 188.15 172.56)">Georgia Tech</text>
+      <text id="p4-xtick-michigan" class="tick" x="262.25" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 262.25 172.56)">Michigan</text>
+      <text id="p4-xtick-uc-san-diego" class="tick" x="336.35" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 336.35 172.56)">UC San Diego</text>
+      <text id="p4-xtick-washington" class="tick" x="410.45" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 410.45 172.56)">Washington</text>
+      <text id="p4-xtick-columbia" class="tick" x="484.55" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 484.55 172.56)">Columbia</text>
+      <text id="p4-xtick-duke" class="tick" x="558.65" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 558.65 172.56)">Duke</text>
+      <text id="p4-xtick-ucsf" class="tick" x="632.75" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 632.75 172.56)">UCSF</text>
+      <text id="p4-xtick-penn" class="tick" x="706.85" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 706.85 172.56)">Penn</text>
+      <text id="p4-xtick-stanford" class="tick" x="780.95" y="172.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 780.95 172.56)">Stanford</text>
+    </g>
+    <g id="p4-series-federal-r-d-m" class="series">
+      <rect id="p4-mark-federal-r-d-m-johns-hopkins" class="bar" x="90.34" y="65.79" width="46.42" height="92.77" fill="#2563eb"/>
+      <rect id="p4-mark-federal-r-d-m-georgia-tech" class="bar" x="164.44" y="127.46" width="46.42" height="31.10" fill="#2563eb"/>
+      <rect id="p4-mark-federal-r-d-m-michigan" class="bar" x="238.54" y="128.69" width="46.42" height="29.87" fill="#2563eb"/>
+      <rect id="p4-mark-federal-r-d-m-uc-san-diego" class="bar" x="312.64" y="129.02" width="46.42" height="29.54" fill="#2563eb"/>
+      <rect id="p4-mark-federal-r-d-m-washington" class="bar" x="386.74" y="129.43" width="46.42" height="29.13" fill="#2563eb"/>
+      <rect id="p4-mark-federal-r-d-m-columbia" class="bar" x="460.84" y="130.95" width="46.42" height="27.61" fill="#2563eb"/>
+      <rect id="p4-mark-federal-r-d-m-duke" class="bar" x="534.94" y="131.89" width="46.42" height="26.67" fill="#2563eb"/>
+      <rect id="p4-mark-federal-r-d-m-ucsf" class="bar" x="609.04" y="131.97" width="46.42" height="26.59" fill="#2563eb"/>
+      <rect id="p4-mark-federal-r-d-m-penn" class="bar" x="683.14" y="132.43" width="46.42" height="26.13" fill="#2563eb"/>
+      <rect id="p4-mark-federal-r-d-m-stanford" class="bar" x="757.24" y="132.59" width="46.42" height="25.97" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="815" fill="#6b7280">Johns Hopkins receives roughly 3x the #2 institution, largely reflecting its Applied Physics Laboratory (a DOD-funded UARC).</text>
+  <g id="brand">
+  <svg x="20" y="845" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="860" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:64697/a/425a869a1169cbac3c930ade5a87dfa8.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Federal research funding at U.S. universities is highly concentrated, and that concentration has barely moved in 15 years. In FY2024, the top 10 recipient institutions took in <strong>20.8%</strong> of all federally funded university R&D expenditure (NSF NCSES HERD survey), and the top 100 institutions (out of 674 reporting) took in <strong>81.2%</strong>. A Gini coefficient computed over all reporting institutions is <strong>0.82</strong> in FY2024, essentially unchanged from <strong>0.83</strong> in FY2010 &mdash; an 'extreme' concentration level by conventional bands, and flat over the period. A companion NCSES obligations-based series (a related but distinct federal S&E-support measure) tells the same story with a slightly different number: the top-10 share fell modestly from 22.7% (FY2014) to 20.1% (FY2023). Johns Hopkins University has been the single largest recipient throughout the window, and by FY2024 received roughly 3x the next-largest institution (Georgia Tech), driven substantially by its Applied Physics Laboratory, a DOD-funded University Affiliated Research Center.</p>
+</section>
+<section>
+<h2>What 'concentration' means here, and the two measures used</h2>
+<p>Two federal sources measure a closely related but not identical quantity:</p><ul><li><strong>NSF NCSES Higher Education R&D (HERD) Survey</strong> &mdash; R&D <em>expenditures</em> at degree-granting institutions, broken out by funding source. This is the primary series used here (research.nsf_herd_by_institution in AskAmerica), because it is the only one loaded in the connector and it lets us compute the full distribution (Gini, top-N shares) across all ~630-740 reporting institutions per year, not just a top-10/top-25 published list.</li><li><strong>NCSES Survey of Federal S&E Support to Universities / Federal Funds for R&D</strong> &mdash; federal <em>obligations</em> for science &amp; engineering support (a superset of R&D, including some non-R&D S&E activity), the basis of NCSES's own December 2025/February 2026 'Trends in Rankings' InfoBytes report. This is a primary-source web fetch (pdf), not an AskAmerica table, and is reported for cross-validation.</li></ul><p>The two series disagree slightly on level (HERD's federal-R&D top-10 share of ~21% vs. the S&E-support series' ~20-23%) because they measure different money (R&D expenditure vs. broader S&E obligations) and different accounting bases (expenditure vs. obligation), but they agree on the qualitative finding: concentration in the low-20s percent for the top 10, and roughly stable to modestly declining over the past decade.</p>
+</section>
+<section>
+<h2>How concentrated, in detail</h2>
+<p>From HERD, computed directly over all federally-funded R&D expenditure rows (funding_source='Federal', rd_field='All', federal_agency='Total') for each fiscal year 2010-2024:</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s5"><table border='1' cellpadding='4' style='border-collapse:collapse'><tr><th><label class="srth" for="s3-t1-s1">FY<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s2">Reporting institutions<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">Total federal R&amp;D ($B)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">Top-10 share<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s5">Top-100 share<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>2010</td><td>737</td><td>37.5</td><td>19.7%</td><td>79.0%</td></tr><tr><td>2014</td><td>629</td><td>38.0</td><td>20.6%</td><td>80.8%</td></tr><tr><td>2017</td><td>637</td><td>40.2</td><td>21.2%</td><td>81.5%</td></tr><tr><td>2020</td><td>652</td><td>46.1</td><td>21.2%</td><td>82.0%</td></tr><tr><td>2024</td><td>674</td><td>64.6</td><td>20.8%</td><td>81.2%</td></tr></tbody><tbody class="srt s1"><tr><td>2024</td><td>674</td><td>64.6</td><td>20.8%</td><td>81.2%</td></tr><tr><td>2020</td><td>652</td><td>46.1</td><td>21.2%</td><td>82.0%</td></tr><tr><td>2017</td><td>637</td><td>40.2</td><td>21.2%</td><td>81.5%</td></tr><tr><td>2014</td><td>629</td><td>38.0</td><td>20.6%</td><td>80.8%</td></tr><tr><td>2010</td><td>737</td><td>37.5</td><td>19.7%</td><td>79.0%</td></tr></tbody><tbody class="srt s2"><tr><td>2010</td><td>737</td><td>37.5</td><td>19.7%</td><td>79.0%</td></tr><tr><td>2024</td><td>674</td><td>64.6</td><td>20.8%</td><td>81.2%</td></tr><tr><td>2020</td><td>652</td><td>46.1</td><td>21.2%</td><td>82.0%</td></tr><tr><td>2017</td><td>637</td><td>40.2</td><td>21.2%</td><td>81.5%</td></tr><tr><td>2014</td><td>629</td><td>38.0</td><td>20.6%</td><td>80.8%</td></tr></tbody><tbody class="srt s3"><tr><td>2024</td><td>674</td><td>64.6</td><td>20.8%</td><td>81.2%</td></tr><tr><td>2020</td><td>652</td><td>46.1</td><td>21.2%</td><td>82.0%</td></tr><tr><td>2017</td><td>637</td><td>40.2</td><td>21.2%</td><td>81.5%</td></tr><tr><td>2014</td><td>629</td><td>38.0</td><td>20.6%</td><td>80.8%</td></tr><tr><td>2010</td><td>737</td><td>37.5</td><td>19.7%</td><td>79.0%</td></tr></tbody><tbody class="srt s4"><tr><td>2017</td><td>637</td><td>40.2</td><td>21.2%</td><td>81.5%</td></tr><tr><td>2020</td><td>652</td><td>46.1</td><td>21.2%</td><td>82.0%</td></tr><tr><td>2024</td><td>674</td><td>64.6</td><td>20.8%</td><td>81.2%</td></tr><tr><td>2014</td><td>629</td><td>38.0</td><td>20.6%</td><td>80.8%</td></tr><tr><td>2010</td><td>737</td><td>37.5</td><td>19.7%</td><td>79.0%</td></tr></tbody><tbody class="srt s5"><tr><td>2020</td><td>652</td><td>46.1</td><td>21.2%</td><td>82.0%</td></tr><tr><td>2017</td><td>637</td><td>40.2</td><td>21.2%</td><td>81.5%</td></tr><tr><td>2024</td><td>674</td><td>64.6</td><td>20.8%</td><td>81.2%</td></tr><tr><td>2014</td><td>629</td><td>38.0</td><td>20.6%</td><td>80.8%</td></tr><tr><td>2010</td><td>737</td><td>37.5</td><td>19.7%</td><td>79.0%</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Gini coefficient (computed over every reporting institution's federal R&amp;D dollars) moved from 0.825 (2010) to 0.813 (2017) to 0.821 (2020) to 0.823 (2024) &mdash; essentially flat within a narrow 0.81-0.83 band across the whole window, all falling in the 'extreme concentration' range. The total federal R&amp;D pool nearly doubled over the period (from ~$37.5B to ~$64.6B, current dollars, not inflation-adjusted), and the number of reporting institutions was also roughly stable (629-737), so the flat concentration measures are not an artifact of a shrinking or expanding population &mdash; new dollars have been distributed across the existing hierarchy in roughly the same proportions as old dollars, not disproportionately captured by new entrants or by the very largest incumbents.</p>
+</section>
+<section>
+<h2>The externally-published corroborating series (NCSES, Feb 2026)</h2>
+<p>NCSES's own February 2026 InfoBytes report ('Federal Funding for Science and Engineering: Trends in Rankings Among Top Universities, FYs 2014-23', NSF 26-310), fetched directly from ncses.nsf.gov, reports federal S&amp;E-support <em>obligations</em> (a related but broader base than HERD's R&amp;D expenditure): in FY2023, the top 10 recipient institutions received $9.9B of $49.0B total obligated to 1,110 institutions &mdash; 20.1%. In FY2014 the top 10 received $7.2B of $31.2B &mdash; 22.7%. The top 100 institutions received 78.4% of the FY2023 total. This report also documents COVID-era volatility in the rankings (NYU jumped from 25th in FY2020 to 2nd in FY2021 on $877M of HHS/NIH pandemic-response obligations) that is smoothed out in HERD's fiscal-year expenditure accounting but shows up as the small mid-window bump in the HERD top-10 series above (peaking FY2016-2020 before easing).</p>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li>HERD figures are R&amp;D <em>expenditure</em>, not obligations, and cover roughly 925 degree-granting institutions expending at least $150,000 in R&amp;D &mdash; a narrower population than all federal S&amp;E recipients (colleges, non-degree-granting institutions, and non-university performers like FFRDCs and DOD's own labs are out of scope for both series used here).</li><li>Figures are current (nominal) dollars, not inflation-adjusted; the roughly 72% nominal growth in the federal R&amp;D pool from 2010 to 2024 includes real growth plus price inflation.</li><li>FY2020 obligations data is known by NCSES to understate DOD S&amp;E support to universities by an unknown amount; this affects the obligations-based series more than the HERD expenditure series but is worth noting for any year-over-year read around 2020-2021.</li><li>Johns Hopkins' outsized share is substantially attributable to its Applied Physics Laboratory, a University Affiliated Research Center that functions more like a DOD-funded lab housed at a university than typical campus research &mdash; a reader comparing 'universities' should be aware this single line item is doing a lot of the concentration at the very top.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>NSF NCSES Higher Education R&amp;D (HERD) Survey — institution × field × funding source × year <span class="note">— AskAmerica table research.nsf_herd_by_institution; used for all top-10/top-100 share and Gini computations, FY2010-2024</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, inst_id, institution, rd_expenditure_usd_thousand FROM research.nsf_herd_by_institution WHERE funding_source='Federal' AND rd_field='All' AND federal_agency='Total'</code></pre></details></li>
+<li>Gini coefficient, FY2010 vs FY2024, federal R&amp;D by institution<details class="sqltoggle"><summary>Show tool call</summary><pre><code>gini_coefficient(value_col=&quot;amt&quot;, sql=&quot;SELECT institution, rd_expenditure_usd_thousand AS amt FROM research.nsf_herd_by_institution WHERE funding_source='Federal' AND rd_field='All' AND federal_agency='Total' AND year IN (2010, 2024)&quot;)</code></pre></details></li>
+<li><a href="https://ncses.nsf.gov/pubs/nsf26310/assets/nsf26310.pdf">NCSES InfoBytes NSF 26-310: Federal Funding for Science and Engineering — Trends in Rankings Among Top Universities, FYs 2014-23 (Feb 2026)</a> <span class="note">— Primary source PDF fetched directly; top-10/top-100 obligations shares, FY2014 and FY2023</span></li>
+<li><a href="https://ncses.nsf.gov/pubs/nsf26305">NCSES: Universities Report 8.1% Growth in R&amp;D Expenditures in FY 2024, Reaching Over $117 Billion</a></li>
+<li><a href="https://www.forbes.com/sites/michaeltnietzel/2025/12/30/the-top-25-universities-for-rd-spending-johns-hopkins-is-again-1/">Forbes: The Top 25 Universities For R&amp;D Spending, Per HERD Survey — Johns Hopkins Is Again No. 1</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Figures in current (nominal) dollars unless noted. HERD computations are AskAmerica-connector queries against NCSES HERD survey data; NCSES obligations figures are read directly from the agency's own published PDF.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

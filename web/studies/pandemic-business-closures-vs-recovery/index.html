@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roughly 6 in 10 pandemic-era business closures never came back — but the damage was heavily concentrated in a handful of high-contact industries and coastal/urban places</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Roughly 6 in 10 pandemic-era business closures never came back — but the damage was heavily concentrated in a handful of high-contact industries and coastal/urban places</h1>
+<p class="subtitle">Synthesis of Yelp, NY Fed, NBER (California administrative tax-panel data), and Census County Business Patterns, 2020-2022</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 929" width="880" height="929" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="929" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">Most pandemic-era business closures were not permanent nationally — but the damage was sharply uneve…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">Sources: Yelp Economic Impact Reports 2020; NY Fed Liberty Street Economics 2021; NBER WP 30285 (Fairlie et al. 2022); Census County Business Patterns 2017 vs 2021</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:11px">Yelp-tracked closures that never reopened (by Aug 2020)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">60%</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">97,966 of 163,735 closed</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:8px">NY Fed: small leisure/hosp./retail firms still closed in May 2021 expected to reopen</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">~3%</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">35% of firms still shut</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Net US establishment change 2017-&gt;2021 by industry (Census CBP)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="66" y1="170.16" x2="390" y2="170.16" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="58" y="174.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-15</text>
+      <line class="grid" x1="66" y1="151.13" x2="390" y2="151.13" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="58" y="155.13" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="132.11" x2="390" y2="132.11" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="58" y="136.11" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="66" y1="113.08" x2="390" y2="113.08" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="58" y="117.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="94.05" x2="390" y2="94.05" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="58" y="98.05" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="66" y1="75.03" x2="390" y2="75.03" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="58" y="79.03" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="66" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="170.16" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="170.16" x2="390" y2="170.16" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Sector</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="113.08" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 113.08)">% change</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-mining" class="tick" x="76.13" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 76.13 184.16)">Mining</text>
+      <text id="p3-xtick-wholesale" class="tick" x="96.38" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 96.38 184.16)">Wholesale</text>
+      <text id="p3-xtick-mgmt-of-cos" class="tick" x="116.63" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 116.63 184.16)">Mgmt of Cos</text>
+      <text id="p3-xtick-retail-trade" class="tick" x="136.88" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 136.88 184.16)">Retail Trade</text>
+      <text id="p3-xtick-agriculture" class="tick" x="157.13" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 157.13 184.16)">Agriculture</text>
+      <text id="p3-xtick-finance-ins" class="tick" x="177.38" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 177.38 184.16)">Finance/Ins.</text>
+      <text id="p3-xtick-utilities" class="tick" x="197.63" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 197.63 184.16)">Utilities</text>
+      <text id="p3-xtick-info" class="tick" x="217.88" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 217.88 184.16)">Info</text>
+      <text id="p3-xtick-accom-food-svcs" class="tick" x="238.13" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 238.13 184.16)">Accom/Food Svcs</text>
+      <text id="p3-xtick-educ-svcs" class="tick" x="258.38" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 258.38 184.16)">Educ Svcs</text>
+      <text id="p3-xtick-health-care" class="tick" x="278.63" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 278.63 184.16)">Health Care</text>
+      <text id="p3-xtick-admin-support" class="tick" x="298.88" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 298.88 184.16)">Admin/Support</text>
+      <text id="p3-xtick-prof-sci-tech" class="tick" x="319.13" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 319.13 184.16)">Prof/Sci/Tech</text>
+      <text id="p3-xtick-arts-ent-rec" class="tick" x="339.38" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 339.38 184.16)">Arts/Ent/Rec</text>
+      <text id="p3-xtick-construction" class="tick" x="359.63" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 359.63 184.16)">Construction</text>
+      <text id="p3-xtick-real-estate" class="tick" x="379.88" y="184.16" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 379.88 184.16)">Real Estate</text>
+    </g>
+    <g id="p3-series-change-2017-2021" class="series">
+      <rect id="p3-mark-change-2017-2021-mining" class="bar" x="69.65" y="113.08" width="11.96" height="39.58" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-wholesale" class="bar" x="89.90" y="113.08" width="11.96" height="17.12" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-mgmt-of-cos" class="bar" x="110.15" y="113.08" width="11.96" height="28.92" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-retail-trade" class="bar" x="130.40" y="113.08" width="11.96" height="9.89" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-agriculture" class="bar" x="150.65" y="113.08" width="11.96" height="0.76" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-finance-ins" class="bar" x="170.90" y="112.70" width="11.96" height="0.38" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-utilities" class="bar" x="191.15" y="94.43" width="11.96" height="18.65" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-info" class="bar" x="211.40" y="93.29" width="11.96" height="19.79" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-accom-food-svcs" class="bar" x="231.65" y="102.43" width="11.96" height="10.65" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-educ-svcs" class="bar" x="251.90" y="90.25" width="11.96" height="22.83" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-health-care" class="bar" x="272.15" y="92.15" width="11.96" height="20.93" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-admin-support" class="bar" x="292.40" y="87.96" width="11.96" height="25.12" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-prof-sci-tech" class="bar" x="312.65" y="92.91" width="11.96" height="20.17" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-arts-ent-rec" class="bar" x="332.90" y="79.59" width="11.96" height="33.49" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-construction" class="bar" x="353.15" y="78.45" width="11.96" height="34.63" fill="#2563eb"/>
+      <rect id="p3-mark-change-2017-2021-real-estate" class="bar" x="373.40" y="67.04" width="11.96" height="46.04" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="448" y="206" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Accommodation &amp; food services: net establishment change 2017-2021 by…</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="183.12" x2="390" y2="183.12" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="187.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-6</text>
+      <line class="grid" x1="60" y1="167.23" x2="390" y2="167.23" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="171.23" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-4</text>
+      <line class="grid" x1="60" y1="151.34" x2="390" y2="151.34" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="155.34" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-2</text>
+      <line class="grid" x1="60" y1="135.45" x2="390" y2="135.45" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="139.45" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="119.56" x2="390" y2="119.56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="123.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="103.67" x2="390" y2="103.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="52" y="107.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="87.78" x2="390" y2="87.78" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="52" y="91.78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="71.89" x2="390" y2="71.89" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="52" y="75.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-8" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="183.12" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="183.12" x2="390" y2="183.12" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="225" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="119.56" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 119.56)">% change</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-vermont" class="tick" x="75" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 75 197.12)">Vermont</text>
+      <text id="p4-xtick-new-york" class="tick" x="105" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 105 197.12)">New York</text>
+      <text id="p4-xtick-alaska" class="tick" x="135" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 135 197.12)">Alaska</text>
+      <text id="p4-xtick-dc" class="tick" x="165" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 165 197.12)">DC</text>
+      <text id="p4-xtick-hawaii" class="tick" x="195" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 195 197.12)">Hawaii</text>
+      <text id="p4-xtick-massachusetts" class="tick" x="225" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 197.12)">Massachusetts</text>
+      <text id="p4-xtick-unnamed" class="tick" x="255" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 255 197.12)">...</text>
+      <text id="p4-xtick-idaho" class="tick" x="285" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 285 197.12)">Idaho</text>
+      <text id="p4-xtick-georgia" class="tick" x="315" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 315 197.12)">Georgia</text>
+      <text id="p4-xtick-florida" class="tick" x="345" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 345 197.12)">Florida</text>
+      <text id="p4-xtick-texas" class="tick" x="375" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 375 197.12)">Texas</text>
+    </g>
+    <g id="p4-series-change" class="series">
+      <rect id="p4-mark-change-vermont" class="bar" x="65.40" y="135.45" width="18.20" height="34.96" fill="#2563eb"/>
+      <rect id="p4-mark-change-new-york" class="bar" x="95.40" y="135.45" width="18.20" height="27.01" fill="#2563eb"/>
+      <rect id="p4-mark-change-alaska" class="bar" x="125.40" y="135.45" width="18.20" height="21.45" fill="#2563eb"/>
+      <rect id="p4-mark-change-dc" class="bar" x="155.40" y="135.45" width="18.20" height="15.89" fill="#2563eb"/>
+      <rect id="p4-mark-change-hawaii" class="bar" x="185.40" y="135.45" width="18.20" height="13.51" fill="#2563eb"/>
+      <rect id="p4-mark-change-massachusetts" class="bar" x="215.40" y="135.45" width="18.20" height="11.92" fill="#2563eb"/>
+      <rect id="p4-mark-change-unnamed" class="bar" x="245.40" y="135.45" width="18.20" height="0" fill="#2563eb"/>
+      <rect id="p4-mark-change-idaho" class="bar" x="275.40" y="64.74" width="18.20" height="70.71" fill="#2563eb"/>
+      <rect id="p4-mark-change-georgia" class="bar" x="305.40" y="63.94" width="18.20" height="71.51" fill="#2563eb"/>
+      <rect id="p4-mark-change-florida" class="bar" x="335.40" y="63.15" width="18.20" height="72.30" fill="#2563eb"/>
+      <rect id="p4-mark-change-texas" class="bar" x="365.40" y="61.56" width="18.20" height="73.89" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="20" y="522" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="522" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Retail trade: net establishment change 2017-2021, worst 10 states</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="69" y1="183.12" x2="390" y2="183.12" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="61" y="187.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-7.5</text>
+      <line class="grid" x1="69" y1="151.34" x2="390" y2="151.34" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="61" y="155.34" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-7.0</text>
+      <line class="grid" x1="69" y1="119.56" x2="390" y2="119.56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="61" y="123.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-6.5</text>
+      <line class="grid" x1="69" y1="87.78" x2="390" y2="87.78" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="61" y="91.78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-6.0</text>
+      <line class="grid" x1="69" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="61" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5.5</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="69" y1="56" x2="69" y2="183.12" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="69" y1="183.12" x2="390" y2="183.12" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="229.50" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="119.56" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 119.56)">% change</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-new-york" class="tick" x="85.05" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 85.05 197.12)">New York</text>
+      <text id="p5-xtick-massachusetts" class="tick" x="117.15" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 117.15 197.12)">Massachusetts</text>
+      <text id="p5-xtick-connecticut" class="tick" x="149.25" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 149.25 197.12)">Connecticut</text>
+      <text id="p5-xtick-vermont" class="tick" x="181.35" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 181.35 197.12)">Vermont</text>
+      <text id="p5-xtick-dc" class="tick" x="213.45" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 213.45 197.12)">DC</text>
+      <text id="p5-xtick-hawaii" class="tick" x="245.55" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 245.55 197.12)">Hawaii</text>
+      <text id="p5-xtick-rhode-island" class="tick" x="277.65" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 277.65 197.12)">Rhode Island</text>
+      <text id="p5-xtick-west-virginia" class="tick" x="309.75" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.75 197.12)">West Virginia</text>
+      <text id="p5-xtick-maryland" class="tick" x="341.85" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 341.85 197.12)">Maryland</text>
+      <text id="p5-xtick-minnesota" class="tick" x="373.95" y="197.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.95 197.12)">Minnesota</text>
+    </g>
+    <g id="p5-series-change" class="series">
+      <rect id="p5-mark-change-new-york" class="bar" x="74.78" y="-293.58" width="19.54" height="457.63" fill="#2563eb"/>
+      <rect id="p5-mark-change-massachusetts" class="bar" x="106.88" y="-293.58" width="19.54" height="438.56" fill="#2563eb"/>
+      <rect id="p5-mark-change-connecticut" class="bar" x="138.98" y="-293.58" width="19.54" height="432.21" fill="#2563eb"/>
+      <rect id="p5-mark-change-vermont" class="bar" x="171.08" y="-293.58" width="19.54" height="425.85" fill="#2563eb"/>
+      <rect id="p5-mark-change-dc" class="bar" x="203.18" y="-293.58" width="19.54" height="425.85" fill="#2563eb"/>
+      <rect id="p5-mark-change-hawaii" class="bar" x="235.28" y="-293.58" width="19.54" height="400.43" fill="#2563eb"/>
+      <rect id="p5-mark-change-rhode-island" class="bar" x="267.38" y="-293.58" width="19.54" height="387.72" fill="#2563eb"/>
+      <rect id="p5-mark-change-west-virginia" class="bar" x="299.48" y="-293.58" width="19.54" height="368.65" fill="#2563eb"/>
+      <rect id="p5-mark-change-maryland" class="bar" x="331.58" y="-293.58" width="19.54" height="368.65" fill="#2563eb"/>
+      <rect id="p5-mark-change-minnesota" class="bar" x="363.68" y="-293.58" width="19.54" height="355.94" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="footnote" x="20" y="848" fill="#6b7280">CBP counts NET establishments (closures minus new openings), not gross permanent-closure counts, and has a data gap for 2018-2020 in this</text>
+  <text class="footnote" x="20" y="862" fill="#6b7280">warehouse (only 2017 and 2021-2023 loaded) — so the CBP figures show where the pandemic left a lasting scar on the total business count, not the</text>
+  <text class="footnote" x="20" y="876" fill="#6b7280">gross closure rate itself. Gross/permanent-closure rates come from Yelp, the NY Fed, and NBER WP 30285.</text>
+  <g id="brand">
+  <svg x="20" y="888" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="903" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:64005/a/4ea2c0eb3672d27ddab000ccb913ff75.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>There is no single government count of "businesses that never came back" — no federal survey asks that question directly and gives a clean national number. The best evidence comes from three independent sources that agree on the shape of the answer: <strong>a majority of businesses that closed in 2020 never reopened</strong> (Yelp measured 60% of 163,735 tracked closures as permanent by August 2020; the New York Fed found that of small leisure/hospitality/retail firms still closed in May 2021, only about 3% would ever reopen), but the damage was <strong>extremely uneven</strong>: concentrated in a handful of face-to-face, high-contact industries (restaurants, bars, beauty/fitness, retail) and in coastal/urban places with longer or stricter shutdowns and weaker in-person foot traffic, while professional/remote-friendly services and Sun Belt states came through largely unscathed. Because national statistics count NET establishments (closures minus new openings), the overall business count actually recovered and then exceeded its pre-pandemic level by 2022 — that recovery is real, but it is driven by a historic surge in NEW business formation, not by the businesses that closed coming back. We computed the geographic and industry variation directly from Census County Business Patterns (2017 vs. 2021) to make that unevenness visible in the government data itself, alongside the permanent-closure literature.</p>
+</section>
+<section>
+<h2>How many closures were permanent — the direct evidence</h2>
+<p><strong>Yelp Economic Impact Report (Sept. 2020):</strong> of 163,735 U.S. businesses that closed on the Yelp platform between March 1 and August 31, 2020, 97,966 (60%) were marked permanently closed. By industry: restaurants 61% of closures permanent (19,590 of 32,109); bars/nightlife 54% (3,499 of 6,451); shopping/retail 58% (17,503 of 30,374); beauty 42% (7,002 of 16,585); fitness 43% (2,616 of 6,024). Professional services — lawyers, architects, accountants, physicians, real estate agents — saw only 2-3 closures per thousand businesses.</p><p><strong>Federal Reserve Bank of New York, Liberty Street Economics (May 2021),</strong> using Homebase scheduling-software data on ~100,000 small leisure/hospitality/retail businesses: 35% of pre-pandemic businesses were still closed in spring 2021, most inactive 20+ weeks; the weekly hazard rate of reopening declines the longer a business stays closed, and each additional week of closure cuts the reopening probability by about 2 percentage points. The Census Small Business Pulse Survey corroborated this: in Feb-March 2021 about 1.8% of small businesses were permanently closing each week versus 2.1% reopening — a near-standstill recovery.</p><p><strong>NBER Working Paper 30285 (Fairlie, Fossen, Johnsen & Droboniku, 2022),</strong> the only study to use full administrative tax-panel microdata (California Dept. of Tax and Fee Administration sales-tax records, the universe of businesses with taxable sales, 7M+ observations) rather than survey or app data: the year-over-year business closure rate jumped from 4.8% (2019Q1) to 6.5% (2020Q1) and from 3.7% (2019Q2) to 6.7% (2020Q2), then reversed sharply — 2020Q3's closure rate (2.9%) was actually LOWER than 2019Q3 (4.1%) as the economy rebounded. Small businesses (under $500K annualized taxable sales) were hit far harder: their closure rate rose from 4.6% to 8.5% between 2019Q2 and 2020Q2, versus 1.3% to 2.7% for large businesses — a COVID-attributable gap of about 2.0 percentage points after controlling for trend/seasonality. The resulting shift in market share toward survivors pushed California's (deseasonalized) retail Herfindahl-Hirschman Index from 21.4 in 2019Q3 to a peak of 38.0 in 2020Q2, still elevated at 26.0 by 2021Q3 — evidence that closures concentrated market share among larger, surviving firms rather than being fully offset by new entrants in the same space.</p>
+</section>
+<section>
+<h2>The industry pattern, cross-checked against Census establishment counts</h2>
+<p>The literature's industry ranking is unambiguous: contact-intensive, discretionary, in-person services (restaurants, bars, gyms, salons, general retail) suffered permanent-closure rates of 40-60%, while professional/remote-capable services (law, accounting, architecture, medicine, real estate) saw closures in the low single digits per thousand.</p><p>We cross-checked this against Census County Business Patterns, comparing establishment counts (this warehouse holds 2017 and then 2021-2023; 2018-2020 are not loaded, a gap disclosed rather than papered over) at the 2-digit NAICS level nationally:</p><ul><li><strong>Retail trade (NAICS 44-45): -2.6%</strong> net establishments, 2017 to 2021 (1,075,498 -> 1,047,947) — the only major consumer-facing sector with a net national decline, consistent with retail's high permanent-closure share in the Yelp data.</li><li><strong>Mining (-10.4%), Management of companies (-7.6%), Wholesale trade (-4.5%)</strong ​ also declined, but for reasons largely unrelated to consumer-facing pandemic closures (energy price cycles, corporate restructuring).</li><li><strong>Accommodation & food services (NAICS 72): +2.8%</strong> nationally — net establishments actually grew, because a wave of new restaurant/food openings (ghost kitchens, food trucks, outdoor-dining concepts) offset the well-documented permanent closures. This is the key reconciliation: the NET count recovering does not mean the SAME businesses came back — Yelp's own data shows roughly 6 in 10 of the closures in this sector were never going to reopen; new entrants replaced them.</li><li>Real estate (+12.1%), construction (+9.1%), arts/entertainment/recreation (+8.8%), professional/scientific/technical services (+5.3%), and health care (+5.5%) all grew comfortably, consistent with the professional-services closure data above.</li></ul>
+</section>
+<section>
+<h2>The geographic pattern</h2>
+<p>Using the same 2017-vs-2021 Census CBP comparison at the state level, the geographic pattern in the two hardest-hit consumer sectors is stark and consistent with independent reporting that California, New York, Texas, and Florida saw the largest RAW closure counts (simply because they are the largest states), but that the rate of net loss was concentrated in specific places, not spread evenly:</p><p><strong>Accommodation & food services</strong> — worst net declines: Vermont (-4.4%), New York (-3.4%), Alaska (-2.7%), DC (-2.0%), Hawaii (-1.7%), Massachusetts (-1.5%). Best net gains: Texas (+9.3%), Florida (+9.1%), Georgia (+9.0%), Idaho (+8.9%), Nevada (+8.1%), Tennessee (+7.6%).</p><p><strong>Retail trade</strong> — worst net declines: New York (-7.2%), Massachusetts (-6.9%), Connecticut (-6.8%), Vermont (-6.7%), DC (-6.7%), Hawaii (-6.3%). Best net gains/smallest losses: Georgia (+4.0%), Utah (+3.9%), Oklahoma (+2.2%), Texas (+1.8%), Nevada (+1.7%), Wyoming (+1.6%).</p><p>The pattern is the same in both sectors: dense, high cost-of-living, coastal/Northeastern states and DC — places with longer and stricter pandemic-era capacity restrictions, heavier reliance on commuter/office foot traffic that evaporated with remote work, and higher commercial rents — lost businesses on net, while Sun Belt states that combined shorter restrictions, lower costs, and strong in-migration gained businesses on net. This mirrors independent news reporting that identified California, Texas, Florida, and New York as having the largest closure COUNTS (a function of population size) while separately noting that California and New York's urban cores (San Francisco, downtown Manhattan) were disproportionately hollowed out — consistent with an academic finding (cited in search results, not independently verified here) that San Francisco saw roughly a 48% small-business closure rate, the highest of any major metro studied.</p>
+</section>
+<section>
+<h2>Why the numbers are usually reported as a recovery, and why that's a different question</h2>
+<p>Census Business Formation Statistics show business APPLICATIONS surged to a record 5.4 million in 2021 (versus roughly 3.5 million pre-pandemic), and the total number of business establishments nationally grew 10.7% from 2020Q2 to 2022Q2 — more than twice the 4.8% growth rate in the two years before the pandemic. Reported plainly, this looks like a full recovery. It is not the same claim as "the businesses that closed came back": it is new business formation outrunning the permanent closures, heavily concentrated in the same industries and consumer categories vacated by the businesses that failed (a 27.8% jump above the pre-pandemic baseline in "high-propensity" applications likely to become employers by 2022). The two claims — "total business count recovered" and "most closed businesses never reopened" — are both true simultaneously and describe different things: churn versus survival.</p>
+</section>
+<section>
+<h2>Caveats and what we could not verify directly</h2>
+<ul><li>No single AskAmerica table gives a national, gross, permanent-closure count by place and industry — that statistic exists only in the Yelp platform data, the NY Fed's proprietary Homebase panel, and California's confidential state tax-panel microdata (NBER WP 30285); none of it is loaded in this warehouse, so the headline permanent-closure percentages are cited from the literature, not recomputed here.</li><li>The Census County Business Patterns table used for the industry/geography cross-check has a data gap for 2018-2020 in this warehouse (confirmed via data_coverage: only 2017, 2021, 2022, 2023 are loaded), so our computed change is 2017-vs-2021, a 4-year span bracketing the pandemic rather than a clean pre/post comparison. It measures NET establishment change (openings minus closures), which is a different, and generally smaller-magnitude, quantity than the gross permanent-closure rate reported by Yelp/NY Fed/NBER — we did not conflate the two, and flagged the difference explicitly in every section that uses CBP.</li><li>The claim that San Francisco saw a ~48% small-business closure rate came back in a web search summary attributed to unspecified academic research; it was not independently traced to a primary source document and should be treated as a secondary citation, not a verified primary-source figure.</li><li>All figures above were read from the actual fetched text of the cited primary sources (Yelp/fee.org article reproducing Yelp's report, the NY Fed Liberty Street Economics post, and pages 1-15 of the NBER working paper PDF) except where noted otherwise.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://fee.org/articles/yelp-60-of-businesses-closed-during-pandemic-are-permanent/">Yelp Economic Impact Report (Sept 2020), reproduced by FEE</a> <span class="note">— 60% of 163,735 tracked closures permanent; industry breakdown</span></li>
+<li><a href="https://www.cnbc.com/2020/09/16/yelp-data-shows-60percent-of-business-closures-due-to-the-coronavirus-pandemic-are-now-permanent.html">CNBC: Yelp data shows 60% of pandemic business closures are now permanent</a></li>
+<li><a href="https://libertystreeteconomics.newyorkfed.org/2021/05/many-small-businesses-in-the-services-sector-are-unlikely-to-reopen/">Federal Reserve Bank of New York, Liberty Street Economics: Many Small Businesses in the Services Sector Are Unlikely to Reopen (May 2021)</a> <span class="note">— 35% still closed; ~3% of those expected to ever reopen; hazard-rate analysis</span></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w30285/w30285.pdf">NBER Working Paper 30285: Were Small Businesses More Likely to Permanently Close in the Pandemic? (Fairlie, Fossen, Johnsen, Droboniku, 2022)</a> <span class="note">— California CDTFA administrative sales-tax panel; closure rates by quarter and firm size; HHI concentration</span></li>
+<li><a href="https://www.census.gov/newsroom/press-releases/2022/business-formation-statistics.html">Census Bureau: Business Formation Statistics monthly release</a> <span class="note">— Record 5.4M business applications in 2021</span></li>
+<li><a href="https://eig.org/2022-business-formation/">Economic Innovation Group: Startup Surge Stood Firm Against Economic Headwinds in 2022</a> <span class="note">— High-propensity applications, establishment growth 2020Q2-2022Q2 vs pre-pandemic baseline</span></li>
+<li><a href="https://www.marketplace.org/story/2021/05/05/many-small-businesses-that-closed-at-start-of-pandemic-may-never-reopen/">Marketplace: Many small businesses that closed at start of pandemic may never reopen (May 2021)</a></li>
+<li>Census County Business Patterns 2017 vs 2021, national by 2-digit NAICS sector<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT naics_code, SUM(establishments) FILTER (WHERE &quot;year&quot;='2017') AS estab_2017, SUM(establishments) FILTER (WHERE &quot;year&quot;='2021') AS estab_2021 FROM census.cbp_establishments WHERE geography = 'state' AND LENGTH(naics_code) = 2 AND naics_code &lt;&gt; '00' GROUP BY naics_code ORDER BY naics_code</code></pre></details><details class="sqltoggle"><summary>Show tool call</summary><pre><code>query</code></pre></details></li>
+<li>Census County Business Patterns 2017 vs 2021, retail trade (NAICS 44-45), national<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, SUM(establishments) AS total_estab FROM census.cbp_establishments WHERE geography='state' AND naics_code IN ('441','442','443','444','445','446','447','448','451','452','453','454') GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details><details class="sqltoggle"><summary>Show tool call</summary><pre><code>query</code></pre></details></li>
+<li>Census County Business Patterns 2017 vs 2021, accommodation &amp; food services (NAICS 72), by state<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT geo_name, SUM(establishments) FILTER (WHERE &quot;year&quot;='2017') AS estab_2017, SUM(establishments) FILTER (WHERE &quot;year&quot;='2021') AS estab_2021 FROM census.cbp_establishments WHERE geography='state' AND naics_code='72' AND geo_name IS NOT NULL GROUP BY geo_name ORDER BY geo_name</code></pre></details><details class="sqltoggle"><summary>Show tool call</summary><pre><code>query</code></pre></details></li>
+<li>Census County Business Patterns 2017 vs 2021, retail trade (NAICS 44-45), by state<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT geo_name, SUM(establishments) FILTER (WHERE &quot;year&quot;='2017') AS estab_2017, SUM(establishments) FILTER (WHERE &quot;year&quot;='2021') AS estab_2021 FROM census.cbp_establishments WHERE geography='state' AND naics_code IN ('441','442','443','444','445','446','447','448','451','452','453','454') GROUP BY geo_name ORDER BY geo_name</code></pre></details><details class="sqltoggle"><summary>Show tool call</summary><pre><code>query</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">CBP establishment counts are NET (openings minus closures) and were compared 2017-to-2021 due to a 2018-2020 data gap in this warehouse; they are not a substitute for the gross permanent-closure rates reported by Yelp, the NY Fed, and NBER WP 30285, which is why both kinds of evidence are presented together rather than one standing in for the other.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

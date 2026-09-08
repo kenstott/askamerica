@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A tiny share of NFIP-insured properties (~1%) has historically accounted for 25-30% of all flood claims dollars</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>A tiny share of NFIP-insured properties (~1%) has historically accounted for 25-30% of all flood claims dollars</h1>
+<p class="subtitle">FEMA/GAO/Pew figures on repetitive-loss and severe-repetitive-loss properties, corroborated geographically against AskAmerica's NFIP claims data</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 645" width="880" height="645" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">A Small Share of Properties Drives Most NFIP Flood-Claim Dollars</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">FEMA/GAO/Pew figures (1978-2016 cumulative); AskAmerica corpus used only for a geographic corroboration check</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Share of NFIP properties that are repetitive-loss</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">~1%</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">GAO/FEMA, cumulative since 1978</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Share of NFIP claims $ from that same 1%</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">25-30%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">~$12.5B of $23B NFIP debt</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Pew Charitable Trusts, 2016, citing FEMA/CRS</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Policies vs. claims dollars: all NFIP vs. repetitive-loss properties</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="176" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Group</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 116)">Share of total (%)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-all-nfip-policies" class="tick" x="147.75" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">All NFIP policies</text>
+      <text id="p3-xtick-repetitive-loss-properties" class="tick" x="309.25" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Repetitive-loss properties</text>
+    </g>
+    <g id="p3-series-share-of-policies" class="series">
+      <rect id="p3-mark-share-of-policies-all-nfip-policies" class="bar" x="96.07" y="56" width="50.68" height="120" fill="#2563eb"/>
+      <rect id="p3-mark-share-of-policies-repetitive-loss-properties" class="bar" x="257.57" y="174.80" width="50.68" height="1.20" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-share-of-claims-paid" class="series">
+      <rect id="p3-mark-share-of-claims-paid-all-nfip-policies" class="bar" x="147.75" y="56" width="50.68" height="120" fill="#ea580c"/>
+      <rect id="p3-mark-share-of-claims-paid-repetitive-loss-properties" class="bar" x="309.25" y="143" width="50.68" height="33" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-share-of-policies" x="75.50" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-share-of-policies" class="legend-label" x="91.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Share of policies</text>
+      <rect id="p3-legend-swatch-share-of-claims-paid" x="195.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-share-of-claims-paid" class="legend-label" x="211.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Share of claims paid ($)</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Repetitive-loss = &gt;=2 paid claims of $1,000+ within any 10-yr window</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">since 1978 (FEMA definition)</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Geographic concentration of AskAmerica NFIP paid-claims data (2010-20…</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="67" y1="187.84" x2="390" y2="187.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="59" y="191.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="161.47" x2="390" y2="161.47" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="59" y="165.47" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="135.10" x2="390" y2="135.10" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="59" y="139.10" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="108.74" x2="390" y2="108.74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="59" y="112.74" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="82.37" x2="390" y2="82.37" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="59" y="86.37" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="187.84" x2="390" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Cumulative share of counties (lowest-paid first)</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="121.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 121.92)">Cum. $ share</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-0" class="tick" x="81.68" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 81.68 201.84)">0%</text>
+      <text id="p4-xtick-10" class="tick" x="111.05" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 111.05 201.84)">10%</text>
+      <text id="p4-xtick-20" class="tick" x="140.41" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 140.41 201.84)">20%</text>
+      <text id="p4-xtick-30" class="tick" x="169.77" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 169.77 201.84)">30%</text>
+      <text id="p4-xtick-40" class="tick" x="199.14" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 199.14 201.84)">40%</text>
+      <text id="p4-xtick-50" class="tick" x="228.50" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 201.84)">50%</text>
+      <text id="p4-xtick-60" class="tick" x="257.86" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 257.86 201.84)">60%</text>
+      <text id="p4-xtick-70" class="tick" x="287.23" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 287.23 201.84)">70%</text>
+      <text id="p4-xtick-80" class="tick" x="316.59" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 316.59 201.84)">80%</text>
+      <text id="p4-xtick-90" class="tick" x="345.95" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 345.95 201.84)">90%</text>
+      <text id="p4-xtick-100" class="tick" x="375.32" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 375.32 201.84)">100%</text>
+    </g>
+    <g id="p4-series-cumulative-share-of-paid" class="series">
+      <path id="p4-line-cumulative-share-of-paid" class="line" d="M 81.68 187.84 L 111.05 187.84 L 140.41 187.81 L 169.77 187.75 L 199.14 187.63 L 228.50 187.39 L 257.86 186.94 L 287.23 186.17 L 316.59 184.62 L 345.95 180.81 L 375.32 56" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p4-mark-cumulative-share-of-paid-0" class="point" cx="81.68" cy="187.84" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-10" class="point" cx="111.05" cy="187.84" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-20" class="point" cx="140.41" cy="187.81" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-30" class="point" cx="169.77" cy="187.75" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-40" class="point" cx="199.14" cy="187.63" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-50" class="point" cx="228.50" cy="187.39" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-60" class="point" cx="257.86" cy="186.94" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-70" class="point" cx="287.23" cy="186.17" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-80" class="point" cx="316.59" cy="184.62" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-90" class="point" cx="345.95" cy="180.81" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-cumulative-share-of-paid-100" class="point" cx="375.32" cy="56" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Corpus corroboration only, at COUNTY grain (Gini=0.96, n=2,656</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">counties) - not a property-level measure; public NFIP claims data has…</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Property-level repetitive-loss concentration is an established FEMA/GAO/Pew finding, not something computed here: FEMA's public per-claim dataset</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">(disasters.nfip_claims) strips any property identifier for privacy and truncates lat/lon to ~1 decimal (~11 km). The county-level Gini panel is a</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">coarser, corroborating check on the same phenomenon, not a re-derivation of the property-level figures.</text>
+  <g id="brand">
+  <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="619" fill="#6b7280" text-anchor="end">Prepared 2026-09-05</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:64896/a/ff52006bd4d2bb3392d9f36c17f45b53.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Federal flood claims are extremely concentrated in a small number of repeat-flooding properties.</strong> Historically, properties that have flooded and been paid at least twice under the National Flood Insurance Program (NFIP) - FEMA's official "repetitive loss" (RL) definition - make up only about <strong>1% of NFIP-insured properties but have accounted for roughly 25-30% of all NFIP flood-claim dollars</strong> paid since the program's 1978 inception. A narrower, more extreme subset - "severe repetitive loss" (SRL) properties, generally those with 4+ paid claims over $5,000, or 2+ building-only claims exceeding the property's value - is smaller still (roughly 1-2.5% of policies in various FEMA/OIG estimates) and by some FEMA figures accounts for close to half of total claims dollars. As of Pew's 2016 accounting, more than 150,000 U.S. properties had flooded repeatedly, costing the NFIP over $12.5 billion - equivalent to about half of the program's $23 billion debt at the time, and the number of such properties was growing by an estimated 5,000/year. FEMA's own public per-claim data (used in this corpus) confirms that flood losses are heavily geographically concentrated (county-level Gini = 0.96), consistent with - but not a re-derivation of - the property-level figures, because the public claims file has no property identifier.</p>
+</section>
+<section>
+<h2>The headline numbers, and where they come from</h2>
+<ul><li><strong>1% of properties, 25-30% of claims</strong> - The Pew Charitable Trusts (2016), drawing on FEMA and a 2012 Congressional Research Service report: "repeatedly flooded properties have accounted for just 1 percent of properties with National Flood Insurance Program policies but about 25-30 percent of flood claims." Pew put the cumulative cost at more than $12.5 billion, roughly half of the NFIP's $23 billion debt at the time, spread across more than 150,000 repeatedly-flooded properties nationwide, with the count growing by about 5,000/year.</li><li><strong>1% of policies, 38% of claims (1978-2004)</strong> - An earlier GAO accounting (cited widely, e.g. by NRDC and FEMA program guidance) found repetitive-loss properties made up 1% of policies but 38% of claims dollars over 1978-2004, an even sharper concentration than the later Pew figure, reflecting how the estimate moves somewhat by window and by whose claims file is being summarized.</li><li><strong>Severe repetitive loss (SRL): ~1-2.5% of policies, up to ~50% of claims by value</strong> - FEMA's SRL definition (4+ paid claims over $5,000, or 2+ building-only payments exceeding the property's value) targets the most extreme repeat-flooders. Estimates of the SRL share of total claims dollars vary by source and period (roughly 10% to nearly 50% depending on the study and window), but every source agrees SRL properties are a small fraction of policies carrying a share of claims many multiples larger than their share of the book of business.</li><li><strong>About 1 in 10</strong> repeatedly-flooded properties have received cumulative payments worth more than the property's own value (DHS Office of Inspector General, 2009), and 21 states have 1,000+ repeatedly-flooded properties.</li></ul>
+</section>
+<section>
+<h2>Why this can't be recomputed property-by-property from AskAmerica's own NFIP data</h2>
+<p>AskAmerica's <code>disasters.nfip_claims</code> table is FEMA's public per-claim extract (OpenFEMA FimaNfipClaims), and FEMA deliberately strips any property-level identifier from that public file for privacy - it truncates latitude/longitude to one decimal place (roughly 11 km resolution). We confirmed this directly: in 2022 alone, 60,209 individual paid claims resolve to only 2,756 distinct lat/lon pairs and 3,289 distinct ZIP codes - nowhere near enough resolution to link two claims to the same physical address. FEMA does track true repetitive-loss status internally and publishes an aggregated, privacy-preserving "NFIP Multiple Loss Properties" summary dataset for exactly this question, but that aggregate is a separate FEMA product outside this corpus, not a table we can query here. This is a genuine corpus coverage gap, not an oversight: the property-level figures above are the right way to answer this question, sourced directly from FEMA/GAO/Pew rather than recomputed.</p>
+</section>
+<section>
+<h2>What the corpus data can corroborate: extreme geographic concentration</h2>
+<p>What <code>disasters.nfip_claims</code> can support is a coarser, county-grain check on the same underlying phenomenon - that flood losses cluster heavily rather than spreading evenly. Across all loaded years (2010-2026, 966,722 paid claims totaling $55.76 billion; note 2018 is an interior data gap in this corpus), the distribution of total dollars paid across the 2,656 counties with paid claims has a Gini coefficient of 0.96 (0 = perfectly even, 1 = one unit holds everything) - the bottom 90% of counties by dollars paid account for only about 5.3% of total claims dollars, while the top decile of counties carries essentially all the rest. This is directionally consistent with a small number of places (and, per FEMA/GAO/Pew, a small number of properties within those places) carrying most of the claims burden, but it is a geography-level statistic, not a re-derivation of the 1%-of-properties / 25-30%-of-claims figure, and should not be quoted as if it were.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.pew.org/-/media/assets/2016/10/repeatedly_flooded_properties_cost_billions.pdf">Pew Charitable Trusts, &quot;Repeatedly Flooded Properties Cost Billions&quot; (Oct 2016)</a></li>
+<li><a href="https://www.pew.org/en/research-and-analysis/articles/2020/10/01/repeatedly-flooded-properties-will-continue-to-cost-taxpayers-billions-of-dollars">Pew Charitable Trusts, &quot;Repeatedly Flooded Properties Will Continue to Cost Taxpayers Billions of Dollars&quot; (2020)</a></li>
+<li><a href="https://www.fema.gov/pdf/nfip/manual201205/content/20_srl.pdf">FEMA, Guidance for Severe Repetitive Loss Properties</a></li>
+<li><a href="https://www.fema.gov/openfema-data-page/nfip-multiple-loss-properties-v1">FEMA, NFIP Multiple Loss Properties dataset (OpenFEMA)</a></li>
+<li><a href="https://www.oig.dhs.gov/assets/Mgmt/OIG_09-45_Mar09.pdf">DHS Office of Inspector General, FEMA's Implementation of the Flood Insurance Reform Act of 2004 (Mar 2009)</a></li>
+<li>AskAmerica: disasters.nfip_claims county-level Gini of total paid claims, 2010-2026<details class="sqltoggle"><summary>Show tool call</summary><pre><code>gini_coefficient(sql=&quot;SELECT county_fips, SUM(amount_paid_building+amount_paid_contents+amount_paid_icc) AS total_paid FROM disasters.nfip_claims WHERE county_fips IS NOT NULL GROUP BY county_fips&quot;, value_col=&quot;total_paid&quot;)</code></pre></details></li>
+<li>AskAmerica: disasters.nfip_claims total claims and dollars paid, 2010-2026 (with 2018 gap)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT COUNT(*) AS n_claims, SUM(amount_paid_building+amount_paid_contents+amount_paid_icc) AS total_paid FROM disasters.nfip_claims</code></pre></details></li>
+<li>AskAmerica: disasters.nfip_claims lat/lon granularity check, 2022<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT count(*) AS n, count(distinct latitude||'_'||longitude) AS distinct_latlon, count(distinct reported_zip_code) AS distinct_zip FROM disasters.nfip_claims WHERE &quot;year&quot;='2022'</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Property-level repetitive-loss/severe-repetitive-loss figures are FEMA/GAO/Pew statistics, not computed by AskAmerica; the corpus's own nfip_claims table lacks a property identifier by design (FEMA privacy redaction) and its county-level Gini is offered only as directional corroboration, at a much coarser grain.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

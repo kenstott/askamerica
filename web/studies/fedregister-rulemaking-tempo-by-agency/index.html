@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Federal rulemaking pace varies roughly 27-fold across agencies, and has declined modestly and unevenly since 2010</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s3-t1-s4:checked ~ table tbody.s0{display:none}
+#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
+#s3-t1-s4:checked ~ .srtreset{display:inline-block}
+#s4-t1-s1:checked ~ table tbody.s0{display:none}
+#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
+#s4-t1-s1:checked ~ .srtreset{display:inline-block}
+#s4-t1-s2:checked ~ table tbody.s0{display:none}
+#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
+#s4-t1-s2:checked ~ .srtreset{display:inline-block}
+#s4-t1-s3:checked ~ table tbody.s0{display:none}
+#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
+#s4-t1-s3:checked ~ .srtreset{display:inline-block}
+#s4-t1-s4:checked ~ table tbody.s0{display:none}
+#s4-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"]{color:var(--link)}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"] .srtcue{opacity:1}
+#s4-t1-s4:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Federal rulemaking pace varies roughly 27-fold across agencies, and has declined modestly and unevenly since 2010</h1>
+<p class="subtitle">Federal Register final rules (RULE documents), fedregister.fr_documents, 2010-2024, cross-checked against GW Regulatory Studies Center's longer-run RegStats series</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 961" width="880" height="961" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="961" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">Federal Rulemaking Pace: Wide Variation Across Agencies, Modest Overall Decline (2010-2024)</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">Federal Register final rules (doc_type=RULE), fedregister.fr_documents, 2010-2024 (2025 excluded: Oct 2025 has an ingest gap)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">National final-rule trend, 2010-2024</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">-49 rules/yr</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">r = -0.77, r2=0.59, n=15 yrs</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">OLS slope of annual final-rule count on year</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Cross-agency volume ratio (2024)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">~27x</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">DOT 678 vs DOJ 30 final rules</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Widest and narrowest of 14 tracked agencies</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Total federal final rules published per year</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="77" y1="219.84" x2="390" y2="219.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="69" y="223.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="178.88" x2="390" y2="178.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="69" y="182.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="77" y1="137.92" x2="390" y2="137.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="69" y="141.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="77" y1="96.96" x2="390" y2="96.96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="69" y="100.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,000</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="219.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="219.84" x2="390" y2="219.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="233.50" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="137.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 137.92)">Final rules</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2010" class="tick" x="87.43" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 87.43 233.84)">2010</text>
+      <text id="p3-xtick-2011" class="tick" x="108.30" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 108.30 233.84)">2011</text>
+      <text id="p3-xtick-2012" class="tick" x="129.17" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 129.17 233.84)">2012</text>
+      <text id="p3-xtick-2013" class="tick" x="150.03" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 150.03 233.84)">2013</text>
+      <text id="p3-xtick-2014" class="tick" x="170.90" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 170.90 233.84)">2014</text>
+      <text id="p3-xtick-2015" class="tick" x="191.77" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 191.77 233.84)">2015</text>
+      <text id="p3-xtick-2016" class="tick" x="212.63" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 212.63 233.84)">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="233.50" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 233.50 233.84)">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="254.37" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 254.37 233.84)">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="275.23" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 275.23 233.84)">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="296.10" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 296.10 233.84)">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="316.97" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 316.97 233.84)">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="337.83" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 337.83 233.84)">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="358.70" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 358.70 233.84)">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="379.57" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 379.57 233.84)">2024</text>
+    </g>
+    <g id="p3-series-final-rules-rule" class="series">
+      <path id="p3-line-final-rules-rule" class="line" d="M 87.43 76.36 L 108.30 63.95 L 129.17 67.96 L 150.03 69.97 L 170.90 74.68 L 191.77 80.25 L 212.63 61.90 L 233.50 85.41 L 254.37 81.80 L 275.23 98.43 L 296.10 82.50 L 316.97 95.85 L 337.83 90.08 L 358.70 96.22 L 379.57 86.80" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-final-rules-rule-2010" class="point" cx="87.43" cy="76.36" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2011" class="point" cx="108.30" cy="63.95" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2012" class="point" cx="129.17" cy="67.96" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2013" class="point" cx="150.03" cy="69.97" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2014" class="point" cx="170.90" cy="74.68" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2015" class="point" cx="191.77" cy="80.25" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2016" class="point" cx="212.63" cy="61.90" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2017" class="point" cx="233.50" cy="85.41" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2018" class="point" cx="254.37" cy="81.80" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2019" class="point" cx="275.23" cy="98.43" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2020" class="point" cx="296.10" cy="82.50" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2021" class="point" cx="316.97" cy="95.85" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2022" class="point" cx="337.83" cy="90.08" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2023" class="point" cx="358.70" cy="96.22" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-final-rules-rule-2024" class="point" cx="379.57" cy="86.80" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="448" y="238" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Mean annual final rules by agency, 2010-2024</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="67" y1="198.24" x2="390" y2="198.24" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="59" y="202.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="162.68" x2="390" y2="162.68" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="59" y="166.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="127.12" x2="390" y2="127.12" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="59" y="131.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="67" y1="91.56" x2="390" y2="91.56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="59" y="95.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="198.24" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="198.24" x2="390" y2="198.24" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="228.50" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Agency</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="127.12" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 127.12)">Mean rules/yr</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-dot" class="tick" x="78.54" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 78.54 212.24)">DOT</text>
+      <text id="p4-xtick-dhs" class="tick" x="101.61" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 101.61 212.24)">DHS</text>
+      <text id="p4-xtick-epa" class="tick" x="124.68" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 124.68 212.24)">EPA</text>
+      <text id="p4-xtick-commerce" class="tick" x="147.75" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.75 212.24)">Commerce</text>
+      <text id="p4-xtick-hhs" class="tick" x="170.82" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 170.82 212.24)">HHS</text>
+      <text id="p4-xtick-usda" class="tick" x="193.89" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 193.89 212.24)">USDA</text>
+      <text id="p4-xtick-dod" class="tick" x="216.96" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 216.96 212.24)">DOD</text>
+      <text id="p4-xtick-treasury" class="tick" x="240.04" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 240.04 212.24)">Treasury</text>
+      <text id="p4-xtick-fcc" class="tick" x="263.11" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 263.11 212.24)">FCC</text>
+      <text id="p4-xtick-interior" class="tick" x="286.18" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 286.18 212.24)">Interior</text>
+      <text id="p4-xtick-doe" class="tick" x="309.25" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.25 212.24)">DOE</text>
+      <text id="p4-xtick-dol" class="tick" x="332.32" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 332.32 212.24)">DOL</text>
+      <text id="p4-xtick-va" class="tick" x="355.39" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 355.39 212.24)">VA</text>
+      <text id="p4-xtick-doj" class="tick" x="378.46" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 378.46 212.24)">DOJ</text>
+    </g>
+    <g id="p4-series-mean-annual-final-rules" class="series">
+      <rect id="p4-mark-mean-annual-final-rules-dot" class="bar" x="71.15" y="64.71" width="13.77" height="133.53" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-dhs" class="bar" x="94.22" y="108.45" width="13.77" height="89.79" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-epa" class="bar" x="117.30" y="110.58" width="13.77" height="87.66" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-commerce" class="bar" x="140.37" y="137.43" width="13.77" height="60.81" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-hhs" class="bar" x="163.44" y="173.17" width="13.77" height="25.07" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-usda" class="bar" x="186.51" y="174.95" width="13.77" height="23.29" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-dod" class="bar" x="209.58" y="176.19" width="13.77" height="22.05" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-treasury" class="bar" x="232.65" y="177.26" width="13.77" height="20.98" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-fcc" class="bar" x="255.72" y="177.97" width="13.77" height="20.27" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-interior" class="bar" x="278.80" y="182.42" width="13.77" height="15.82" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-doe" class="bar" x="301.87" y="188.28" width="13.77" height="9.96" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-dol" class="bar" x="324.94" y="192.02" width="13.77" height="6.22" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-va" class="bar" x="348.01" y="192.73" width="13.77" height="5.51" fill="#2563eb"/>
+      <rect id="p4-mark-mean-annual-final-rules-doj" class="bar" x="371.08" y="192.73" width="13.77" height="5.51" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="20" y="554" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Change in pace: 2020-24 avg vs 2010-14 avg, by agency (%)</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="66" y1="198.24" x2="390" y2="198.24" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="58" y="202.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-60</text>
+      <line class="grid" x1="66" y1="174.53" x2="390" y2="174.53" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="58" y="178.53" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-40</text>
+      <line class="grid" x1="66" y1="150.83" x2="390" y2="150.83" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="58" y="154.83" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-20</text>
+      <line class="grid" x1="66" y1="127.12" x2="390" y2="127.12" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="58" y="131.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="103.41" x2="390" y2="103.41" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="58" y="107.41" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="66" y1="79.71" x2="390" y2="79.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="58" y="83.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="66" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-6" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="198.24" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="198.24" x2="390" y2="198.24" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="228" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Agency</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="127.12" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 127.12)">% change</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-usda" class="tick" x="77.57" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 77.57 212.24)">USDA</text>
+      <text id="p5-xtick-dod" class="tick" x="100.71" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 100.71 212.24)">DOD</text>
+      <text id="p5-xtick-dhs" class="tick" x="123.86" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 123.86 212.24)">DHS</text>
+      <text id="p5-xtick-epa" class="tick" x="147" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147 212.24)">EPA</text>
+      <text id="p5-xtick-hhs" class="tick" x="170.14" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 170.14 212.24)">HHS</text>
+      <text id="p5-xtick-interior" class="tick" x="193.29" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 193.29 212.24)">Interior</text>
+      <text id="p5-xtick-commerce" class="tick" x="216.43" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 216.43 212.24)">Commerce</text>
+      <text id="p5-xtick-dot" class="tick" x="239.57" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 239.57 212.24)">DOT</text>
+      <text id="p5-xtick-fcc" class="tick" x="262.71" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 262.71 212.24)">FCC</text>
+      <text id="p5-xtick-dol" class="tick" x="285.86" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 285.86 212.24)">DOL</text>
+      <text id="p5-xtick-va" class="tick" x="309" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309 212.24)">VA</text>
+      <text id="p5-xtick-treasury" class="tick" x="332.14" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 332.14 212.24)">Treasury</text>
+      <text id="p5-xtick-doe" class="tick" x="355.29" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 355.29 212.24)">DOE</text>
+      <text id="p5-xtick-doj" class="tick" x="378.43" y="212.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 378.43 212.24)">DOJ</text>
+    </g>
+    <g id="p5-series-change-in-annual-rule-count" class="series">
+      <rect id="p5-mark-change-in-annual-rule-count-usda" class="bar" x="70.17" y="127.12" width="13.81" height="47.65" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-dod" class="bar" x="93.31" y="127.12" width="13.81" height="47.53" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-dhs" class="bar" x="116.45" y="127.12" width="13.81" height="36.63" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-epa" class="bar" x="139.59" y="127.12" width="13.81" height="30.70" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-hhs" class="bar" x="162.74" y="127.12" width="13.81" height="11.73" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-interior" class="bar" x="185.88" y="127.12" width="13.81" height="7.47" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-commerce" class="bar" x="209.02" y="127.12" width="13.81" height="5.45" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-dot" class="bar" x="232.17" y="127.12" width="13.81" height="4.62" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-fcc" class="bar" x="255.31" y="127.12" width="13.81" height="3.91" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-dol" class="bar" x="278.45" y="127.12" width="13.81" height="0" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-va" class="bar" x="301.59" y="127.12" width="13.81" height="0" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-treasury" class="bar" x="324.74" y="117.40" width="13.81" height="9.72" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-doe" class="bar" x="347.88" y="111.71" width="13.81" height="15.41" fill="#2563eb"/>
+      <rect id="p5-mark-change-in-annual-rule-count-doj" class="bar" x="371.02" y="76.98" width="13.81" height="50.14" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="footnote" x="20" y="880" fill="#6b7280">Source: askamerica fedregister.fr_documents. Agency figures use ILIKE keyword matching on agency_names for single-agency documents only;</text>
+  <text class="footnote" x="20" y="894" fill="#6b7280">joint-agency rules and small/independent agencies outside the 14 tracked are excluded. 2025 excluded from trend figures because October 2025 shows</text>
+  <text class="footnote" x="20" y="908" fill="#6b7280">an anomalous drop (574 docs vs ~2,000+ typical).</text>
+  <g id="brand">
+  <svg x="20" y="920" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="935" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:58037/a/ef43d869ed383d8a21937e65c6f0bfe7.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Federal rulemaking pace differs enormously by agency and has drifted modestly downward overall, but the two questions have different answers. <strong>Cross-agency variation is large and persistent</strong>: over 2010-2024 the Department of Transportation (DOT) finalized about 751 rules/year on average, roughly 27 times the Department of Justice's (DOJ) 31/year — a gap driven mainly by DOT's huge volume of narrow, technical rules (individual airworthiness directives, port/waterway restrictions) versus DOJ's smaller number of broader policy rules. <strong>The national trend since 2010 is a real but modest decline</strong> — about -49 final rules per year on a base of roughly 3,500 (r=-0.77, r²=0.59 across 15 years) — much shallower than the well-documented 1995-2020 decline (from ~4,500/year in the late 1990s to ~2,300 by 2025, per the GW Regulatory Studies Center). <strong>The decline is not agency-wide</strong>: USDA (-40%) and DOD (-40%) roughly halved their pace from 2010-14 to 2020-24, DHS (-31%) and EPA (-26%) fell substantially, while Treasury (+8%), DOE (+13%), and DOJ (+42%) actually issued more rules per year in the later period. This confirms, at the agency level, the literature's broader finding that the aggregate decline masks divergent agency-specific trajectories, and adds evidence (via GW's page-length and economically-significant-rule data) that at least part of the aggregate decline reflects agencies consolidating into fewer, larger rules rather than regulating less.</p>
+</section>
+<section>
+<h2>1. What 'pace' means here, and the data used</h2>
+<p>Pace is measured as the count of Federal Register <strong>final rules</strong> (doc_type = RULE — binding actions that amend the Code of Federal Regulations) published per calendar year, from askamerica's <code>fedregister.fr_documents</code> table (all Federal Register documents, sourced from govinfo.gov bulk XML, 2010-2026 declared coverage). Proposed rules (PRORULE) follow a similar overall pattern (2,361 in 2010 falling to 1,497 in 2025) and are reported alongside but final rules are the primary metric since they represent completed rulemaking actions, matching the convention used by GW's Reg Stats.</p><p>Coverage check: a full year-by-year row scan (via <code>data_coverage</code>) confirms every year 2010-2025 is loaded with no missing interior years. However, a monthly breakdown of 2025 shows October 2025 has only 574 total Federal Register documents versus roughly 1,800-2,500 in every neighboring month — a clear ingest gap for that single month. Because this would understate any agency's 2025 count, <strong>2025 is excluded from all trend and ranking figures below</strong>; the clean, complete window used throughout is 2010-2024 (15 full years).</p><p>Agency attribution: <code>agency_names</code> is a denormalized, comma-separated field (a joint DOT/FDIC rule lists both names). To avoid double-counting or fragile joins, the 14 largest cabinet/independent agencies were matched by keyword (ILIKE) against agency_names restricted to non-joint documents, covering the large majority of rulemaking volume but excluding joint-agency rules and dozens of smaller independent agencies (SEC, NRC, FTC, CFTC, etc., each issuing well under 50 rules/year).</p>
+</section>
+<section>
+<h2>2. How much does pace vary across agencies?</h2>
+<p>Substantially, and consistently across the whole 2010-2024 window — this is a structural feature of the regulatory system, not a one-year fluke. Mean annual final-rule counts:</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><table border="1" cellpadding="4"><tr><th><label class="srth" for="s3-t1-s1">Agency<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Mean rules/yr<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">Min<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">Max<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>DOT</td><td>751</td><td>550</td><td>904</td></tr><tr><td>DHS</td><td>505</td><td>303</td><td>649</td></tr><tr><td>EPA</td><td>493</td><td>346</td><td>633</td></tr><tr><td>Commerce</td><td>342</td><td>302</td><td>380</td></tr><tr><td>HHS</td><td>141</td><td>101</td><td>225</td></tr><tr><td>USDA</td><td>131</td><td>83</td><td>191</td></tr><tr><td>DOD</td><td>124</td><td>36</td><td>173</td></tr><tr><td>Treasury</td><td>118</td><td>62</td><td>166</td></tr><tr><td>FCC</td><td>114</td><td>90</td><td>144</td></tr><tr><td>Interior</td><td>89</td><td>65</td><td>131</td></tr><tr><td>DOE</td><td>56</td><td>33</td><td>87</td></tr><tr><td>DOL</td><td>35</td><td>17</td><td>56</td></tr><tr><td>VA</td><td>31</td><td>24</td><td>38</td></tr><tr><td>DOJ</td><td>31</td><td>20</td><td>57</td></tr></tbody><tbody class="srt s1"><tr><td>Commerce</td><td>342</td><td>302</td><td>380</td></tr><tr><td>DHS</td><td>505</td><td>303</td><td>649</td></tr><tr><td>DOD</td><td>124</td><td>36</td><td>173</td></tr><tr><td>DOE</td><td>56</td><td>33</td><td>87</td></tr><tr><td>DOJ</td><td>31</td><td>20</td><td>57</td></tr><tr><td>DOL</td><td>35</td><td>17</td><td>56</td></tr><tr><td>DOT</td><td>751</td><td>550</td><td>904</td></tr><tr><td>EPA</td><td>493</td><td>346</td><td>633</td></tr><tr><td>FCC</td><td>114</td><td>90</td><td>144</td></tr><tr><td>HHS</td><td>141</td><td>101</td><td>225</td></tr><tr><td>Interior</td><td>89</td><td>65</td><td>131</td></tr><tr><td>Treasury</td><td>118</td><td>62</td><td>166</td></tr><tr><td>USDA</td><td>131</td><td>83</td><td>191</td></tr><tr><td>VA</td><td>31</td><td>24</td><td>38</td></tr></tbody><tbody class="srt s2"><tr><td>DOT</td><td>751</td><td>550</td><td>904</td></tr><tr><td>DHS</td><td>505</td><td>303</td><td>649</td></tr><tr><td>EPA</td><td>493</td><td>346</td><td>633</td></tr><tr><td>Commerce</td><td>342</td><td>302</td><td>380</td></tr><tr><td>HHS</td><td>141</td><td>101</td><td>225</td></tr><tr><td>USDA</td><td>131</td><td>83</td><td>191</td></tr><tr><td>DOD</td><td>124</td><td>36</td><td>173</td></tr><tr><td>Treasury</td><td>118</td><td>62</td><td>166</td></tr><tr><td>FCC</td><td>114</td><td>90</td><td>144</td></tr><tr><td>Interior</td><td>89</td><td>65</td><td>131</td></tr><tr><td>DOE</td><td>56</td><td>33</td><td>87</td></tr><tr><td>DOL</td><td>35</td><td>17</td><td>56</td></tr><tr><td>VA</td><td>31</td><td>24</td><td>38</td></tr><tr><td>DOJ</td><td>31</td><td>20</td><td>57</td></tr></tbody><tbody class="srt s3"><tr><td>DOT</td><td>751</td><td>550</td><td>904</td></tr><tr><td>EPA</td><td>493</td><td>346</td><td>633</td></tr><tr><td>DHS</td><td>505</td><td>303</td><td>649</td></tr><tr><td>Commerce</td><td>342</td><td>302</td><td>380</td></tr><tr><td>HHS</td><td>141</td><td>101</td><td>225</td></tr><tr><td>FCC</td><td>114</td><td>90</td><td>144</td></tr><tr><td>USDA</td><td>131</td><td>83</td><td>191</td></tr><tr><td>Interior</td><td>89</td><td>65</td><td>131</td></tr><tr><td>Treasury</td><td>118</td><td>62</td><td>166</td></tr><tr><td>DOD</td><td>124</td><td>36</td><td>173</td></tr><tr><td>DOE</td><td>56</td><td>33</td><td>87</td></tr><tr><td>VA</td><td>31</td><td>24</td><td>38</td></tr><tr><td>DOJ</td><td>31</td><td>20</td><td>57</td></tr><tr><td>DOL</td><td>35</td><td>17</td><td>56</td></tr></tbody><tbody class="srt s4"><tr><td>DOT</td><td>751</td><td>550</td><td>904</td></tr><tr><td>DHS</td><td>505</td><td>303</td><td>649</td></tr><tr><td>EPA</td><td>493</td><td>346</td><td>633</td></tr><tr><td>Commerce</td><td>342</td><td>302</td><td>380</td></tr><tr><td>HHS</td><td>141</td><td>101</td><td>225</td></tr><tr><td>USDA</td><td>131</td><td>83</td><td>191</td></tr><tr><td>DOD</td><td>124</td><td>36</td><td>173</td></tr><tr><td>Treasury</td><td>118</td><td>62</td><td>166</td></tr><tr><td>FCC</td><td>114</td><td>90</td><td>144</td></tr><tr><td>Interior</td><td>89</td><td>65</td><td>131</td></tr><tr><td>DOE</td><td>56</td><td>33</td><td>87</td></tr><tr><td>DOJ</td><td>31</td><td>20</td><td>57</td></tr><tr><td>DOL</td><td>35</td><td>17</td><td>56</td></tr><tr><td>VA</td><td>31</td><td>24</td><td>38</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>The ratio between the busiest agency (DOT) and the least busy (DOJ/VA) is roughly 24-27x on the mean, and volume rank is stable year to year — DOT, DHS, and EPA occupy the top three every single year in the window. Volatility (year-to-year variability relative to its own mean) also differs: DOD swings from 36 to 173 rules in a single window (a ~5x range, largely the 2017 rulemaking freeze at the start of the first Trump administration), while DOT's range (550-904) is proportionally much tighter. Raw volume differences mostly reflect each agency's statutory scope (DOT and DHS each regulate thousands of individually-adjudicated technical matters — airworthiness directives, port security zones — that other agencies do not generate at anywhere near the same rate) rather than differences in bureaucratic 'activity level' per se.</p>
+</section>
+<section>
+<h2>3. How has the pace changed over time?</h2>
+<p><strong>Nationally</strong>, total final rules fell from 3,503 in 2010 to 3,248 in 2024, a modest ~7% net decline, but the year-to-year path is noisy — a 2016 peak of 3,856 and a 2019 trough of 2,964 bracket a real but not dramatic linear downward trend (OLS slope -48.9 rules/year, r=-0.77, r²=0.59, n=15 years). This is consistent in direction, but much shallower in magnitude, than the George Washington University Regulatory Studies Center's finding that the U.S. issued roughly 4,500 final rules per year in the late 1990s versus about 2,300 in 2025 — the steep long-run decline happened mostly before 2010, and the 2010-2024 window captures a comparatively flat, noisy continuation of that trend rather than its steepest phase.</p><p><strong>Agency-level trends diverge sharply</strong> — comparing each agency's 2010-2014 average to its 2020-2024 average:</p><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s4"><table border="1" cellpadding="4"><tr><th><label class="srth" for="s4-t1-s1">Agency<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">2010-14 avg<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s3">2020-24 avg<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s4">% change<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>USDA</td><td>164</td><td>98</td><td>-40%</td></tr><tr><td>DOD</td><td>157</td><td>94</td><td>-40%</td></tr><tr><td>DHS</td><td>582</td><td>402</td><td>-31%</td></tr><tr><td>EPA</td><td>537</td><td>398</td><td>-26%</td></tr><tr><td>HHS</td><td>142</td><td>128</td><td>-10%</td></tr><tr><td>Interior</td><td>95</td><td>89</td><td>-6%</td></tr><tr><td>Commerce</td><td>349</td><td>333</td><td>-5%</td></tr><tr><td>DOT</td><td>789</td><td>758</td><td>-4%</td></tr><tr><td>FCC</td><td>123</td><td>119</td><td>-3%</td></tr><tr><td>DOL / VA</td><td>36 / 32</td><td>36 / 32</td><td>0%</td></tr><tr><td>Treasury</td><td>122</td><td>132</td><td>+8%</td></tr><tr><td>DOE</td><td>54</td><td>61</td><td>+13%</td></tr><tr><td>DOJ</td><td>26</td><td>37</td><td>+42%</td></tr></tbody><tbody class="srt s1"><tr><td>Commerce</td><td>349</td><td>333</td><td>-5%</td></tr><tr><td>DHS</td><td>582</td><td>402</td><td>-31%</td></tr><tr><td>DOD</td><td>157</td><td>94</td><td>-40%</td></tr><tr><td>DOE</td><td>54</td><td>61</td><td>+13%</td></tr><tr><td>DOJ</td><td>26</td><td>37</td><td>+42%</td></tr><tr><td>DOL / VA</td><td>36 / 32</td><td>36 / 32</td><td>0%</td></tr><tr><td>DOT</td><td>789</td><td>758</td><td>-4%</td></tr><tr><td>EPA</td><td>537</td><td>398</td><td>-26%</td></tr><tr><td>FCC</td><td>123</td><td>119</td><td>-3%</td></tr><tr><td>HHS</td><td>142</td><td>128</td><td>-10%</td></tr><tr><td>Interior</td><td>95</td><td>89</td><td>-6%</td></tr><tr><td>Treasury</td><td>122</td><td>132</td><td>+8%</td></tr><tr><td>USDA</td><td>164</td><td>98</td><td>-40%</td></tr></tbody><tbody class="srt s2"><tr><td>DOL / VA</td><td>36 / 32</td><td>36 / 32</td><td>0%</td></tr><tr><td>DOT</td><td>789</td><td>758</td><td>-4%</td></tr><tr><td>DHS</td><td>582</td><td>402</td><td>-31%</td></tr><tr><td>EPA</td><td>537</td><td>398</td><td>-26%</td></tr><tr><td>Commerce</td><td>349</td><td>333</td><td>-5%</td></tr><tr><td>USDA</td><td>164</td><td>98</td><td>-40%</td></tr><tr><td>DOD</td><td>157</td><td>94</td><td>-40%</td></tr><tr><td>HHS</td><td>142</td><td>128</td><td>-10%</td></tr><tr><td>FCC</td><td>123</td><td>119</td><td>-3%</td></tr><tr><td>Treasury</td><td>122</td><td>132</td><td>+8%</td></tr><tr><td>Interior</td><td>95</td><td>89</td><td>-6%</td></tr><tr><td>DOE</td><td>54</td><td>61</td><td>+13%</td></tr><tr><td>DOJ</td><td>26</td><td>37</td><td>+42%</td></tr></tbody><tbody class="srt s3"><tr><td>DOL / VA</td><td>36 / 32</td><td>36 / 32</td><td>0%</td></tr><tr><td>DOT</td><td>789</td><td>758</td><td>-4%</td></tr><tr><td>DHS</td><td>582</td><td>402</td><td>-31%</td></tr><tr><td>EPA</td><td>537</td><td>398</td><td>-26%</td></tr><tr><td>Commerce</td><td>349</td><td>333</td><td>-5%</td></tr><tr><td>Treasury</td><td>122</td><td>132</td><td>+8%</td></tr><tr><td>HHS</td><td>142</td><td>128</td><td>-10%</td></tr><tr><td>FCC</td><td>123</td><td>119</td><td>-3%</td></tr><tr><td>USDA</td><td>164</td><td>98</td><td>-40%</td></tr><tr><td>DOD</td><td>157</td><td>94</td><td>-40%</td></tr><tr><td>Interior</td><td>95</td><td>89</td><td>-6%</td></tr><tr><td>DOE</td><td>54</td><td>61</td><td>+13%</td></tr><tr><td>DOJ</td><td>26</td><td>37</td><td>+42%</td></tr></tbody><tbody class="srt s4"><tr><td>DOJ</td><td>26</td><td>37</td><td>+42%</td></tr><tr><td>DOE</td><td>54</td><td>61</td><td>+13%</td></tr><tr><td>Treasury</td><td>122</td><td>132</td><td>+8%</td></tr><tr><td>DOL / VA</td><td>36 / 32</td><td>36 / 32</td><td>0%</td></tr><tr><td>FCC</td><td>123</td><td>119</td><td>-3%</td></tr><tr><td>DOT</td><td>789</td><td>758</td><td>-4%</td></tr><tr><td>Commerce</td><td>349</td><td>333</td><td>-5%</td></tr><tr><td>Interior</td><td>95</td><td>89</td><td>-6%</td></tr><tr><td>HHS</td><td>142</td><td>128</td><td>-10%</td></tr><tr><td>EPA</td><td>537</td><td>398</td><td>-26%</td></tr><tr><td>DHS</td><td>582</td><td>402</td><td>-31%</td></tr><tr><td>USDA</td><td>164</td><td>98</td><td>-40%</td></tr><tr><td>DOD</td><td>157</td><td>94</td><td>-40%</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>DHS and EPA — the two largest 'active' regulators after DOT — both show a genuine, substantial decline (roughly a quarter to a third fewer rules per year), while DOT itself, the single largest issuer, has stayed nearly flat. USDA and DOD roughly halved their pace. Meanwhile Treasury, DOE, and especially DOJ (+42%) issued more rules per year in the most recent five years than in 2010-14 — the opposite of the aggregate trend. This divergence means an aggregate 'rulemaking is slowing down' headline, while directionally true, obscures agency-specific stories that go the other way, and any explanation of the aggregate decline (deregulatory posture, ossification, bigger/consolidated rules) has to account for why it applies unevenly.</p>
+</section>
+<section>
+<h2>4. What explains the decline — literature cross-check</h2>
+<p>The GW Regulatory Studies Center's December 2021 analysis (Mark Febrizio, 'Federal Agencies are Publishing Fewer but Larger Regulations') tested and favors a specific explanation for the multi-decade decline: agencies are issuing <strong>fewer but larger</strong> rules, not regulating less overall. Evidence cited: (1) the count of economically-significant final rules (annual impact ≥$100M) and 'major rules' under the Congressional Review Act has trended upward even as total rule counts fell; (2) mean page length of both proposed and final rules has grown steadily since 1995, and the growth holds across percentiles (50th/75th/90th/95th), not just in a handful of outlier mega-rules; (3) this is consistent with 'regulatory bundling' — combining what would once have been several separate rulemakings into one larger action. A competing explanation the same analysis discusses but does not resolve is procedural 'ossification' (accumulated analytical/procedural requirements making each rulemaking slower and more resource-intensive) — the two explanations are not mutually exclusive and the literature treats the size-growth evidence as the stronger, better-supported one.</p><p>This matters for interpreting the connector's own numbers: a raw decline in final-rule COUNT (what fedregister.fr_documents measures) is not by itself evidence that federal regulatory activity or burden is shrinking — it is one plausible reading among several, and the same source that documents the count decline also documents an increase in average rule size and economic significance over the identical period.</p>
+</section>
+<section>
+<h2>5. Caveats and scope</h2>
+<ul><li><strong>2025 excluded from trend figures</strong> due to an October 2025 ingest gap (574 docs vs. ~1,800-2,500 in surrounding months) discovered during this analysis — the year is present in the table but not reliably complete for a same-year comparison.</li><li><strong>Agency attribution is keyword-based</strong> (ILIKE matching against a denormalized agency_names string), restricted to single-agency documents; joint-agency rulemakings and roughly two dozen smaller independent agencies (SEC, FTC, CFTC, NRC, FDIC, etc., each well under 50 rules/year) are not separately broken out in this analysis, though they appear in the underlying total.</li><li><strong>Final-rule count is a flow measure of regulatory ACTIVITY, not regulatory STOCK or burden</strong> — it does not capture rule size, economic significance, or the cumulative body of regulation in effect, all of which the cited GW research shows moving in a different direction over the same period.</li><li>The 2010-2024 OLS trend (r²=0.59) is a real association but reflects national-level year fixed effects (recessions, transitions, COVID) that this simple two-variable regression does not separate out from a genuine secular slowdown.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.federalregister.gov/">fedregister.fr_documents — final rules by agency and year, 2010-2024</a> <span class="note">— askamerica connector table, sourced from govinfo.gov bulk XML</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CASE WHEN agency_names ILIKE '%Environmental Protection%' THEN 'EPA' ... END AS agency, &quot;year&quot;, COUNT(*) FROM fedregister.fr_documents WHERE doc_type='RULE' AND &quot;year&quot; BETWEEN '2010' AND '2024' GROUP BY agency, &quot;year&quot;</code></pre></details></li>
+<li>National final-rule trend regression, 2010-2024<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT regr_slope(total_rules, yr), regr_r2(total_rules, yr), corr(total_rules, yr) FROM (SELECT CAST(\&quot;year\&quot; AS INT) as yr, COUNT(*) as total_rules FROM fedregister.fr_documents WHERE doc_type='RULE' AND \&quot;year\&quot; BETWEEN '2010' AND '2024' GROUP BY \&quot;year\&quot;) t&quot;)</code></pre></details></li>
+<li><a href="https://regulatorystudies.columbian.gwu.edu/federal-agencies-are-publishing-fewer-larger-regulations">Federal Agencies are Publishing Fewer but Larger Regulations (Mark Febrizio, Dec 20 2021)</a> <span class="note">— GW Regulatory Studies Center — 1995-2020 rule count decline, page-length and economically-significant-rule growth</span></li>
+<li><a href="https://regulatorystudies.columbian.gwu.edu/regstats-rules-agency">RegStats: Rules by Agency</a> <span class="note">— GW Regulatory Studies Center — per-agency Federal Register rule charts by presidential year</span></li>
+<li><a href="https://regulatorystudies.columbian.gwu.edu/reviewing-second-trump-administrations-first-year-regstats">Reviewing the Second Trump Administration's First Year with RegStats</a> <span class="note">— Cited late-1990s (~4,500/yr) vs 2025 (~2,300/yr) final-rule figures</span></li>
+<li><a href="https://www.federalregister.gov/developers/documentation/api/v1">Federal Register API / RegInfo developer resources</a> <span class="note">— Primary data source underlying both askamerica's fedregister schema and GW's Reg Stats</span></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Final-rule counts from fedregister.fr_documents; 2025 excluded due to an October ingest gap. Agency-level attribution uses keyword matching on a denormalized field, not a normalized agency key.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-04</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ordinary workers' real pay rose only modestly after the 2017 corporate tax cut, and rigorous causal studies find the C-corp rate cut itself delivered essentially nothing to workers below the top 10% of earners</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Ordinary workers' real pay rose only modestly after the 2017 corporate tax cut, and rigorous causal studies find the C-corp rate cut itself delivered essentially nothing to workers below the top 10% of earners</h1>
+<p class="subtitle">BLS CES real hourly earnings (CPI-U deflated), 2013-2026, plus peer-reviewed/JCT-Fed causal studies of the Tax Cuts and Jobs Act of 2017 and the 2025 One Big Beautiful Bill Act</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 787" width="880" height="787" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="787" fill="#ffffff"></rect>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Did ordinary workers' pay go up after the corporate tax cuts?</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">Real (CPI-adjusted) hourly earnings, production/nonsupervisory workers, BLS CES series CES0500000008 deflated by CPI-U</text>
+  <rect class="panel-edge" x="20" y="82" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"></rect>
+  <svg x="20" y="82" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"></rect>
+    <text id="p1-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Real Hourly Earnings, Production/Nonsupervisory Workers</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="60" y1="154.72" x2="818" y2="154.72" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
+      <text id="p1-ytick-0" class="tick" x="52" y="158.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="134.98" x2="818" y2="134.98" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
+      <text id="p1-ytick-1" class="tick" x="52" y="138.98" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="115.23" x2="818" y2="115.23" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
+      <text id="p1-ytick-2" class="tick" x="52" y="119.23" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="95.49" x2="818" y2="95.49" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
+      <text id="p1-ytick-3" class="tick" x="52" y="99.49" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="75.74" x2="818" y2="75.74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
+      <text id="p1-ytick-4" class="tick" x="52" y="79.74" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
+      <text id="p1-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="154.72" stroke="#9ca3af" stroke-width="1"></line>
+      <line class="axis" x1="60" y1="154.72" x2="818" y2="154.72" stroke="#9ca3af" stroke-width="1"></line>
+    </g>
+    <text id="p1-x-axis-title" class="axis-title" x="439" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year (December)</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="105.36" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 105.36)">2018-24 CPI-adj $/hr</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-2013" class="tick" x="87.07" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 87.07 168.72)">2013</text>
+      <text id="p1-xtick-2014" class="tick" x="141.21" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 141.21 168.72)">2014</text>
+      <text id="p1-xtick-2015" class="tick" x="195.36" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 195.36 168.72)">2015</text>
+      <text id="p1-xtick-2016" class="tick" x="249.50" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 249.50 168.72)">2016</text>
+      <text id="p1-xtick-2017-tcja" class="tick" x="303.64" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 303.64 168.72)">2017 (TCJA)</text>
+      <text id="p1-xtick-2018" class="tick" x="357.79" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357.79 168.72)">2018</text>
+      <text id="p1-xtick-2019" class="tick" x="411.93" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 411.93 168.72)">2019</text>
+      <text id="p1-xtick-2020" class="tick" x="466.07" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 466.07 168.72)">2020</text>
+      <text id="p1-xtick-2021" class="tick" x="520.21" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 520.21 168.72)">2021</text>
+      <text id="p1-xtick-2022" class="tick" x="574.36" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 574.36 168.72)">2022</text>
+      <text id="p1-xtick-2023" class="tick" x="628.50" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 628.50 168.72)">2023</text>
+      <text id="p1-xtick-2024" class="tick" x="682.64" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 682.64 168.72)">2024</text>
+      <text id="p1-xtick-2025-obbba" class="tick" x="736.79" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 736.79 168.72)">2025 (OBBBA)</text>
+      <text id="p1-xtick-2026" class="tick" x="790.93" y="168.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 790.93 168.72)">2026*</text>
+    </g>
+    <g id="p1-series-real-hourly-earnings" class="series">
+      <path id="p1-line-real-hourly-earnings" class="line" d="M 87.07 68.54 L 141.21 67.65 L 195.36 66.07 L 249.50 65.77 L 303.64 65.48 L 357.79 63.90 L 411.93 63.11 L 466.07 59.36 L 520.21 59.95 L 574.36 60.84 L 628.50 59.85 L 682.64 58.86 L 736.79 58.76 L 790.93 58.96" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+      <circle id="p1-mark-real-hourly-earnings-2013" class="point" cx="87.07" cy="68.54" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2014" class="point" cx="141.21" cy="67.65" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2015" class="point" cx="195.36" cy="66.07" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2016" class="point" cx="249.50" cy="65.77" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2017-tcja" class="point" cx="303.64" cy="65.48" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2018" class="point" cx="357.79" cy="63.90" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2019" class="point" cx="411.93" cy="63.11" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2020" class="point" cx="466.07" cy="59.36" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2021" class="point" cx="520.21" cy="59.95" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2022" class="point" cx="574.36" cy="60.84" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2023" class="point" cx="628.50" cy="59.85" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2024" class="point" cx="682.64" cy="58.86" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2025-obbba" class="point" cx="736.79" cy="58.76" r="3" fill="#2563eb"></circle>
+      <circle id="p1-mark-real-hourly-earnings-2026" class="point" cx="790.93" cy="58.96" r="3" fill="#2563eb"></circle>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="363" fill="#6b7280">2020-21 spike is a COVID compositional artifact (low-wage job losses raised the average), not a real pay rise; 2021-22 dip reflects the inflation</text>
+  <text class="caption" x="24" y="376" fill="#6b7280">surge outrunning nominal wage gains.</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"></rect>
+  <text class="stat-label" x="36" y="434" fill="#6b7280">Real wage growth, 2yr before -&gt; 2yr after TCJA (Dec 2015-2019)</text>
+  <text class="stat-value" x="36" y="464" fill="#1f2328" style="font-size:29px">+0.37%/yr -&gt; +1.32%/yr</text>
+  <text class="stat-delta" x="36" y="484" fill="#059669">accelerated</text>
+  </g>
+  <text class="caption" x="24" y="519" fill="#6b7280">Symmetric 2-year windows around the Jan 2018 effective date,</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">production/nonsupervisory workers</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="448" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"></rect>
+  <text class="stat-label" x="464" y="434" fill="#6b7280">Share of TCJA C-corp tax-cut gains going to workers below the top 10% of their firm's pay scale</text>
+  <text class="stat-value" x="464" y="464" fill="#1f2328">0%</text>
+  <text class="stat-delta" x="464" y="484" fill="#6b7280" style="font-size:11px">Kennedy, Dobridge, Landefeld &amp; Mortenson (JCT/Fed, 2023-24)</text>
+  </g>
+  <text class="caption" x="452" y="519" fill="#6b7280">49% went to firm owners, 11% to the top-5 executives, 40% to other</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">top-10% earners; bottom 90% of workers: no measurable gain</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="20" y="570" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"></rect>
+  <text class="stat-label" x="36" y="606" fill="#6b7280">Share of TCJA C-corp cut captured by the top 1% of the income distribution</text>
+  <text class="stat-value" x="36" y="636" fill="#1f2328">24%</text>
+  <text class="stat-delta" x="36" y="656" fill="#6b7280">top 10% captured 81% of total gains</text>
+  </g>
+  <g id="p5-stat">
+  <rect class="panel-edge" x="448" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"></rect>
+  <text class="stat-label" x="464" y="590" fill="#6b7280">Real wage growth, 1yr before -&gt; 1yr after the 2025 OBBBA (Jul 2024-Jul 2026)</text>
+  <text class="stat-value" x="464" y="620" fill="#1f2328" style="font-size:29px">+1.34%/yr -&gt; -0.14%/yr</text>
+  <text class="stat-delta" x="464" y="640" fill="#dc2626" style="font-size:11px">decelerated (too soon, confounded by 2025-26 CPI surge)</text>
+  </g>
+  <text class="caption" x="452" y="675" fill="#6b7280">Only ~1 year of post-OBBBA data exists; a 2025-26 inflation jump</text>
+  <text class="caption" x="452" y="688" fill="#6b7280">(partly tariff-related) outpaced nominal wage gains — not yet enough…</text>
+  <text class="footnote" x="20" y="720" fill="#6b7280">Sources: BLS CES (econ.wage_growth) and BLS CPI-U (econ.inflation_metrics) via AskAmerica; Kennedy/Dobridge/Landefeld/Mortenson 2023-24 (JCT &amp;</text>
+  <text class="footnote" x="20" y="734" fill="#6b7280">Federal Reserve Board); Chodorow-Reich, Smith, Zidar &amp; Zwick 2024; Ohrn (Grinnell); Kumar, Dallas Fed 2023. See full source list below.</text>
+  <g id="brand">
+  <svg x="20" y="746" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"></rect></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"></polygon>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"></polygon>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"></path>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"></polygon>
+  </svg>
+    <text class="brand-mark" x="45" y="761" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:63526/a/0431d6b876c18da4c1b2442908961b8e.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Modestly, yes for the average across all workers — but the rigorous causal evidence says the corporate tax cut itself gave almost nothing to typical (non-executive, non-owner) workers.</strong> BLS data show real (inflation-adjusted) hourly earnings for production and nonsupervisory workers — the closest official proxy for 'ordinary workers' — grew about 0.37%/year in the two years before the Tax Cuts and Jobs Act (TCJA) took effect (Jan 2018) and about 1.32%/year in the two years after, a real acceleration through the tight labor market of 2018-2019. That acceleration is consistent with several studies but is NOT the same as proof the corporate tax cut caused it — the U.S. economy and labor market were already tightening independently. The most rigorous causal study designed specifically to isolate the corporate-tax-cut effect (comparing C-corporations, which got the big rate cut, against similarly-situated S-corporations, which did not) found that workers below the 90th percentile of their firm's pay scale saw essentially <strong>zero</strong> wage gain from the C-corp cut; the money went overwhelmingly to shareholders (49%) and executives/top earners (51%), with the top 1% of the income distribution alone capturing 24% of the benefit. For the 2025 One Big Beautiful Bill Act (OBBBA) corporate provisions, only about a year of post-enactment data exists, real wage growth has actually decelerated over that year, and a 2025-26 inflation surge (from tariffs and other factors) has been eating into nominal wage gains — too soon and too confounded to draw a causal conclusion either way.</p>
+</section>
+<section>
+<h2>Which 'tax cuts' — two events fit "recent"</h2>
+<p>Two federal corporate tax cuts plausibly fit "recent": the 2017 Tax Cuts and Jobs Act (TCJA), which cut the C-corporation statutory rate from 35% to 21% effective January 2018 and is now the subject of nearly a decade of empirical follow-up research; and the One Big Beautiful Bill Act (OBBBA), signed July 2025, which made TCJA's corporate provisions permanent and added new depreciation/investment incentives (corporate income tax collections fell an estimated ~30%, ~$88B, in FY2026). Because OBBBA has barely a year of post-enactment data, this report leans on TCJA for the causal evidence and reports OBBBA's very preliminary wage trend for completeness.</p>
+</section>
+<section>
+<h2>What the aggregate BLS data show (descriptive, not causal)</h2>
+<p>Using BLS Current Employment Statistics average hourly earnings for production/nonsupervisory employees (CES0500000008), deflated by CPI-U (econ.wage_growth and econ.inflation_metrics via AskAmerica), real hourly pay was essentially flat from 2013-2017 and then rose more steadily from 2018 through 2019:</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked=""><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><table><tbody><tr><th><label class="srth" for="s3-t1-s1">Window<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s2">Annualized real wage growth<span class="srtcue" aria-hidden="true">↓</span></label></th></tr></tbody><tbody class="srt s0"><tr><td>2yr before TCJA (Dec 2015 - Dec 2017)</td><td>+0.37%/yr</td></tr><tr><td>2yr after TCJA (Dec 2017 - Dec 2019, pre-COVID)</td><td>+1.32%/yr</td></tr><tr><td>1yr before</td><td>+0.32%/yr</td></tr><tr><td>1yr after</td><td>+1.74%/yr</td></tr><tr><td>All-employee series (CES0500000003), 2yr before / after</td><td>+0.59%/yr -&gt; +1.11%/yr</td></tr></tbody><tbody class="srt s1"><tr><td>1yr before</td><td>+0.32%/yr</td></tr><tr><td>1yr after</td><td>+1.74%/yr</td></tr><tr><td>All-employee series (CES0500000003), 2yr before / after</td><td>+0.59%/yr -&gt; +1.11%/yr</td></tr><tr><td>2yr before TCJA (Dec 2015 - Dec 2017)</td><td>+0.37%/yr</td></tr><tr><td>2yr after TCJA (Dec 2017 - Dec 2019, pre-COVID)</td><td>+1.32%/yr</td></tr></tbody><tbody class="srt s2"><tr><td>1yr after</td><td>+1.74%/yr</td></tr><tr><td>2yr after TCJA (Dec 2017 - Dec 2019, pre-COVID)</td><td>+1.32%/yr</td></tr><tr><td>2yr before TCJA (Dec 2015 - Dec 2017)</td><td>+0.37%/yr</td></tr><tr><td>1yr before</td><td>+0.32%/yr</td></tr><tr><td>All-employee series (CES0500000003), 2yr before / after</td><td>+0.59%/yr -&gt; +1.11%/yr</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Pre/post windows here are deliberately matched in length (both 1-year or both 2-year) to avoid the well-known distortion of comparing a longer 'before' period to a shorter 'after' period, which can manufacture or hide an apparent acceleration. Both matched-length comparisons point the same direction: modest real acceleration in the two years immediately following TCJA, consistent with the 2018-2019 economy being the tightest labor market in decades — but this descriptive before/after comparison cannot separate the tax law's effect from the ongoing economic expansion, a booming stock market, and a historically tight labor market, all moving simultaneously. The 2020-21 spike in the chart is a COVID compositional artifact (low-wage workers were disproportionately laid off, mechanically raising the reported average), not a real pay increase, and 2021-22 shows real wages falling as inflation outran nominal gains — a reminder that 'wages went up' in nominal terms is a different, much easier claim than 'real, inflation-adjusted pay went up.'</p>
+</section>
+<section>
+<h2>What the causal research says: workers below the top 10% got essentially nothing from the corporate cut itself</h2>
+<p>The strongest evidence on the TCJA corporate-tax-cut's wage effect specifically (as opposed to the whole law, which also cut individual taxes and changed other provisions) comes from Patrick Kennedy, Christine Dobridge, Paul Landefeld and Jacob Mortenson (Joint Committee on Taxation and Federal Reserve Board), 'The Efficiency-Equity Tradeoff of the Corporate Income Tax: Evidence from the Tax Cuts and Jobs Act' (2023, updated 2024). Using confidential tax records and a difference-in-differences design comparing C-corporations (which got the 35%-to-21% rate cut) against similarly-situated S-corporations (which did not), they find: workers below the 90th percentile of their own firm's pay distribution saw <strong>no statistically distinguishable wage increase</strong> from the C-corp cut. Of the gains that did occur, 49% went to firm owners (via the Federal Reserve's Distributional Financial Accounts, allocated by capital ownership), 11% went to each firm's five highest-paid executives (a roughly $50,000/year raise per executive, $13.2B annually in aggregate), and the remaining 40% went to other top-10%-within-firm earners. In total, the top 10% of the U.S. income distribution captured 81% of the benefit, and the top 1% alone captured 24%. This finding is corroborated by Eric Ohrn (Grinnell College), who separately finds executive pay rises 25 cents for every dollar of business tax cuts and that a 1-point cut in the effective tax rate raises top-5-executive compensation by 4.2% (~$611,000) versus a much smaller 1.3% for non-officer employees. The JCT/Fed authors estimate the C-corp cut generated $122B/year in additional private income against $86B/year in foregone federal revenue — a real but modest and highly regressive return.</p><p>Not every study agrees on magnitude. Chodorow-Reich, Smith, Zidar and Zwick (2024, NBER/AEA) find firms receiving the average tax reduction increased domestic investment by about 20% and did raise domestic labor compensation, and a separate 2023 estimate found TCJA overall (not isolating the corporate-rate channel) raised total wages paid by about 3.4% (via +1.7% employment and +1.3% average salaries, ~$520/worker/year) — still far below the $4,000-$9,000 per worker that TCJA's proponents publicly promised in 2017-2018, and an order of magnitude smaller than what the JCT/Fed within-firm study attributes to ordinary workers specifically. A Congressional Research Service review (2024) found corporate investment rose in 2018-2019 but not clearly above pre-existing trend, 'no indication of wage growth' beyond trend, with median wages declining slightly even as the average ticked up (consistent with gains concentrating at the top). Anil Kumar (Dallas Fed, 2023), using state-level tax variation, finds TCJA plausibly boosted GDP and job growth (a 1%-of-GDP tax cut -&gt; ~1.2 points faster job growth, ~1.5 points faster GDP growth over two years) at an implied cost of about $105,000 per job — a macro growth effect distinct from, and not proof of, a direct wage-share benefit to ordinary workers.</p>
+</section>
+<section>
+<h2>The 2025 One Big Beautiful Bill Act: too soon to say</h2>
+<p>OBBBA was signed in July 2025 and made TCJA's corporate provisions permanent, expanded depreciation/investment incentives, and separately created new individual deductions for tips and overtime pay (not a corporate-tax channel). Corporate income tax receipts fell an estimated 30% (~$88B) in FY2026 per early Treasury/CBO-adjacent tracking. Real hourly earnings for production/nonsupervisory workers grew at roughly +1.34%/year in the year before OBBBA (Jul 2024-Jul 2025) and about -0.14%/year in the year since (Jul 2025-Jul 2026) — a deceleration, not an acceleration. This is not strong evidence the law hurt wages: with barely a year of data, a 2025-26 CPI surge (partly tied to new tariffs) is eating into real pay across the economy independent of the corporate tax provisions, and no causal study isolating OBBBA's own wage effect (analogous to the JCT/Fed TCJA study) yet exists. The honest answer for OBBBA specifically is: not enough post-enactment data exists yet to say whether ordinary workers' pay rose because of it.</p>
+</section>
+<section>
+<h2>Methodology and caveats</h2>
+<ul><li>Real wages computed by AskAmerica by deflating BLS CES nominal average hourly earnings (econ.wage_growth, series CES0500000008 for production/nonsupervisory workers and CES0500000003 for all employees) by the BLS CPI-U index (econ.inflation_metrics, series CUUR0000SA0), both confirmed loaded 2009-2026 via data_coverage (declared window 2018-2024 undersells actual coverage).</li><li>Before/after growth-rate windows were deliberately matched in length (1yr vs 1yr, 2yr vs 2yr) around TCJA's January 2018 effective date to avoid the documented artifact where an asymmetric window (e.g., a 3-year 'before' against a 2-year 'after') can manufacture or hide an apparent acceleration.</li><li>A before/after comparison in aggregate BLS data is descriptive only and cannot separate the tax law's effect from the concurrent economic expansion, tight labor market, and other simultaneous policy changes (TCJA also changed individual taxes, the standard deduction, SALT caps, etc.) — this is why the causal literature (JCT/Fed's C-corp-vs-S-corp design) is weighted more heavily in this report's conclusion than the raw BLS trend.</li><li>Production/nonsupervisory workers (roughly 80% of private payroll employment, excluding managers/supervisors) is the standard BLS proxy for 'ordinary workers'; results for all employees (including managers) are similar in direction but smaller in the post-TCJA acceleration.</li><li>OBBBA's wage window is too short (about one year) for any causal design; the figures reported are purely descriptive and explicitly flagged as unable to support a causal claim.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>BLS CES average hourly earnings, production/nonsupervisory (CES0500000008) &amp; all employees (CES0500000003)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql="SELECT date, series, value FROM econ.wage_growth WHERE series IN ('CES0500000003','CES0500000008') ORDER BY date")</code></pre></details></li>
+<li>BLS CPI-U, U.S. city average, all items (CUUR0000SA0)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql="SELECT year, period, value FROM econ.inflation_metrics WHERE series='CUUR0000SA0'")</code></pre></details></li>
+<li><a href="https://equitablegrowth.org/six-years-later-more-evidence-shows-the-tax-cuts-and-jobs-act-benefits-u-s-business-owners-and-executives-not-average-workers/">Kennedy, Dobridge, Landefeld &amp; Mortenson, "The Efficiency-Equity Tradeoff of the Corporate Income Tax: Evidence from the TCJA" (JCT &amp; Federal Reserve Board, 2023-24), via Equitable Growth summary</a> <span class="note">— Fetched 2026-09-02</span></li>
+<li><a href="https://www.dallasfed.org/research/papers/2020/wp2001">Anil Kumar, "Did the Tax Cuts and Jobs Act Create Jobs and Stimulate Growth?", Dallas Fed Working Paper 2001 (rev. Aug 2023)</a> <span class="note">— Fetched 2026-09-02</span></li>
+<li><a href="https://www.aeaweb.org/articles?id=10.1257%2Fjep.38.3.3">Sweeping Changes and an Uncertain Legacy: The TCJA of 2017 — Journal of Economic Perspectives / AEA</a></li>
+<li><a href="https://www.heritage.org/taxes/report/economic-history-the-tax-cuts-and-jobs-act-higher-wages-more-jobs-new-investment">Heritage Foundation, "An Economic History of the Tax Cuts and Jobs Act: Higher Wages, More Jobs, New Investment"</a></li>
+<li><a href="https://taxpolicycenter.org/briefing-book/how-might-tax-cuts-and-jobs-act-affect-economic-output">Tax Policy Center, "What were the economic effects of the Tax Cuts and Jobs Act?"</a></li>
+<li><a href="https://www.congress.gov/crs-product/R48485">Congressional Research Service, "Economic Effects of the Tax Cuts and Jobs Act" (Congress.gov R48485)</a></li>
+<li><a href="https://www.americanprogress.org/article/the-tax-cuts-and-jobs-act-failed-to-deliver-promised-benefits/">Center for American Progress, "The Tax Cuts and Jobs Act Failed To Deliver Promised Benefits"</a></li>
+<li><a href="https://tax.unc.edu/what-do-we-know-about-the-effects-of-the-tax-cuts-and-jobs-act/">UNC Tax Center, TCJA Effects Tracker</a></li>
+<li><a href="https://www.rbc.com/en/economics/us-analysis/us-featured-analysis/one-big-beautiful-bill-act-whats-changing-and-why-it-matters-in-2026/">RBC Economics, "One Big Beautiful Bill Act: What's changing and why it matters in 2026"</a></li>
+<li><a href="https://www.marketplace.org/story/2026/07/02/the-tax-effects-of-trumps-one-big-beautiful-bill-1-year-on">Marketplace, "The tax effects of Trump's 'One Big Beautiful Bill' 1 year on"</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Real (CPI-adjusted) wage figures computed by AskAmerica from BLS CES and CPI-U data; growth-rate windows matched in length to avoid asymmetric-window bias. Descriptive BLS trends cannot be attributed causally to the tax law alone; the JCT/Fed causal study (C-corp vs. S-corp design) is the strongest available evidence isolating the corporate-rate-cut channel specifically. OBBBA figures are preliminary, ~1 year post-enactment, and not yet supported by any causal study.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"></rect></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"></polygon><polygon fill="#d5322f" points="100,0 100,100 0,100"></polygon></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"></path><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"></polygon></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-02</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+
+
+</body></html>

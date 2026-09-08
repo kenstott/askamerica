@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>agent</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
+:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
+h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
+h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
+h2{font-size:1.35em;margin-top:1.6em}
+h3{font-size:1.1em}
+p,li{color:var(--ink-2)}
+a{color:var(--accent)}
+code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
+code{background:var(--rule);padding:.1em .35em;border-radius:3px}
+pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
+th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
+blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
+hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
+.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
+</style></head><body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div><div class="page">
+<span class="eyebrow">q75 · askamerica</span>
+<h1>How much do disability rolls rise when the jobs in an area disappear?</h1>
+<p><strong>Note on delivery:</strong> The AskAmerica MCP connector became unresponsive partway through this run (query, render_chart, data_coverage, and deliver_report/publish_report all timed out after 30 minutes for the remainder of the session). No dashboard/chart could be produced and the standard <code>deliver_report</code> mechanism could not be used. This file was reconstructed from the agent's full final chat response by the judge, since that response was complete and the agent had already finished its analysis before the connector hung — no content has been added or altered.</p>
+<h2>Summary</h2>
+<p>The literature on this exact question is unusually well developed, and it converges on a consistent picture: local job loss raises disability-program participation, but the effect is a slow, cumulative response to <em>permanent</em> or <em>structural</em> decline, not a same-year reaction to a temporary shock — and it is large enough to matter for regional policy.</p>
+<ul>
+<li>A 1 percentage-point sustained decline in local earnings/employment raises <strong>Disability Insurance (DI) participation with an elasticity of about −0.3 to −0.4</strong>, and <strong>SSI participation with an elasticity of about −0.4 to −0.7</strong> (Black, Daniel &amp; Sanders, AER 2002, using the Appalachian coal boom/bust).</li>
+<li>The relationship is <strong>much stronger for permanent shocks than transitory ones</strong> — the same paper's central finding, and the reason a short/temporary shock (like a single bad recession year) shows up weakly or not at all in county-level regressions.</li>
+<li>Structural declines in demand for less-skilled labor were a <strong>major driver of the 1980s–1990s run-up in SSDI rolls nationally</strong> (Autor &amp; Duggan, QJE 2003).</li>
+<li>Workers in manufacturing industries exposed to Chinese import competition after 2000 had <strong>substantially elevated odds of ending up on SSDI as their sole recorded income source</strong>, tracked in individual SSA earnings records (Autor, Dorn &amp; Hanson, "China Shock" line of work).</li>
+<li>Running the mechanism in reverse gives a comparable magnitude: counties that gained an <strong>Amazon fulfillment center</strong> (a large, sudden local labor-demand <em>increase</em>) saw SSDI applications fall about <strong>1.4% over the following three years</strong> — roughly <strong>5,500 fewer applications per year</strong> in an average affected commuting zone (PLOS One, Amazon FC study).</li>
+<li>One channel is explicitly <em>not</em> the mechanism: Mueller, Rothstein &amp; von Wachter (Great Recession, 2013/2016) found <strong>no evidence</strong> that unemployment-insurance exhaustion pushes people onto DI — the countercyclicality runs through the job loss itself, not through UI benefit design.</li>
+</ul>
+<p>I tried to add a corpus-grounded test of my own — a two-way fixed-effects panel regression of county SSA disabled-worker beneficiary counts (<code>fiscal.ssa_benefits_by_geography</code>, 2017–2023) against county total employment (BLS QCEW via <code>econ.county_qcew</code>, 2019–2025) — and it returned a genuinely informative <strong>null</strong>: the <em>same-year</em> within-county elasticity of ln(disabled-worker beneficiaries) to ln(employment), 2019–2023, n=16,085 county-years, 3,223 counties, was <strong>+0.024 (cluster-robust SE 0.024, p=0.31)</strong> — not distinguishable from zero. That is consistent with, not contrary to, the literature above: SSDI applications typically take 2–3+ years to adjudicate (most are initially denied and go to appeal), and 2019–2023 is dominated by the sharp, V-shaped, largely temporary COVID employment shock — exactly the kind of transitory shock Black/Daniel/Sanders show produces a much weaker disability response than a permanent regional decline like a coal bust or a plant closure that never reopens. I had set up a second, more targeted test — regressing the 2019→2023 change in county disability rolls on the intensity of each county's 2019→2020 COVID employment shock, which is closer to the literature's actual designs — but the AskAmerica connector became unresponsive partway through that query and stayed down for the remainder of this session, so that test and any dashboard/chart could not be completed or delivered through the normal mechanism.</p>
+<h2>Bottom line</h2>
+<p>There isn't one universal "rise per job lost" number — it depends on whether the job loss is temporary or permanent — but the credible range from the identified literature is: a sustained, permanent local labor-demand decline raises DI participation with an elasticity around −0.3 to −0.4 and SSI participation around −0.4 to −0.7 (Black, Daniel &amp; Sanders 2002), the mechanism runs through reduced earnings/job availability rather than UI exhaustion (Mueller, Rothstein &amp; von Wachter), and it is symmetric — a comparably sized local job <em>gain</em> measurably lowers SSDI application rates (Amazon FC study, ~1.4%/3 years). A short-lived shock, by contrast, may show little to no measurable rise in the disability rolls within a few years, which is exactly what my own same-year 2019–2023 county panel (built from SSA administrative disabled-worker beneficiary counts and BLS QCEW employment) found.</p>
+<h2>Data and methodology notes</h2>
+<ul>
+<li>Corpus tables used: <code>fiscal.ssa_benefits_by_geography</code> (SSA administrative OASDI disabled-worker beneficiary counts by county, 2017–2023) joined to <code>econ.county_qcew</code> (BLS QCEW total county employment, industry_code='10', own_code='0', 2019–2025).</li>
+<li>Regression: two-way (county + year) fixed-effects panel, <code>ln(disabled_workers+1) ~ ln(employment+1)</code>, cluster-robust SEs by county. Result: coefficient 0.024 (SE 0.024, p=0.31), n=16,085, 3,223 counties, 5 years.</li>
+<li>This design nets out level differences across counties and nationwide year effects, but only tests a <em>contemporaneous, same-year</em> relationship over a window dominated by a sharp temporary shock (COVID) — it is not a test of the permanent-shock design the cited literature actually uses (coal bust, China trade shock, plant closures), and should not be read as contradicting those findings.</li>
+<li>The connector (AskAmerica MCP server) stopped responding to all further tool calls (query, render_chart, data_coverage, deliver_report) partway through this analysis; no chart or dashboard could be produced, and the <code>deliver_report</code>/<code>publish_report</code> mechanism specified in the task instructions could not be used. This answer is delivered as plain text as a result.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://www.aeaweb.org/articles?id=10.1257%2F000282802760015595">Black, Daniel &amp; Sanders (2002), "The Impact of Economic Conditions on Participation in Disability Programs: Evidence from the Coal Boom and Bust" — American Economic Review</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/29058388/">Black, Daniel &amp; Sanders — PubMed record</a></li>
+<li><a href="https://faculty.wcas.northwestern.edu/noto/research/Notowidigdo_labor_demand_20190305.pdf">Autor &amp; Duggan (2003), "The Rise in the Disability Rolls and the Decline in Unemployment" — NBER/QJE background via search</a></li>
+<li><a href="https://www.ddorn.net/papers/Autor-Dorn-Hanson-ChinaShock.pdf">Autor, Dorn &amp; Hanson, "The China Shock: Learning from Labor-Market Adjustment to Large Changes in Trade"</a></li>
+<li><a href="https://www.nber.org/papers/w19672">Mueller, Rothstein &amp; von Wachter, "Unemployment Insurance and Disability Insurance in the Great Recession" — NBER Working Paper 19672</a></li>
+<li><a href="http://www.econ.ucla.edu/tvwachter/papers/m-r-vw_oct2014.pdf">Mueller, Rothstein &amp; von Wachter — full paper PDF (UCLA)</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/28736482/">Mueller, Rothstein &amp; von Wachter — PubMed record</a></li>
+<li><a href="https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0294453">PLOS One, "Has the opening of Amazon fulfillment centers affected demand for disability insurance?"</a></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w17167/w17167.pdf">Notowidigdo, "The Incidence of Local Labor Demand Shocks" — NBER Working Paper 17167</a></li>
+</ul>
+<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
+</div></body></html>

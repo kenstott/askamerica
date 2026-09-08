@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The premise is backwards: nuclear power causes far fewer deaths per unit of energy than coal or gas, not more</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>The premise is backwards: nuclear power causes far fewer deaths per unit of energy than coal or gas, not more</h1>
+<p class="subtitle">Deaths per TWh: Markandya &amp; Wilkinson (Lancet, 2007) / Sovacool et al., as compiled by Our World in Data; US 2024 generation mix from EIA via AskAmerica energy.state_energy_mix</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 645" width="880" height="645" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Nuclear is the safer choice, not the deadlier one</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Deaths per TWh (accidents + air pollution), and the US 2024 counterfactual</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Deaths per Terawatt-hour of Electricity, by Source</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="52" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="52" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="52" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="52" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Source</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Deaths / TWh</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-nuclear" class="tick" x="101.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Nuclear</text>
+      <text id="p1-xtick-natural-gas" class="tick" x="183.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Natural Gas</text>
+      <text id="p1-xtick-oil" class="tick" x="266.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Oil</text>
+      <text id="p1-xtick-coal" class="tick" x="348.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Coal</text>
+    </g>
+    <g id="p1-series-deaths-per-twh-accidents-air-pollution" class="series">
+      <rect id="p1-mark-deaths-per-twh-accidents-air-pollution-nuclear" class="bar" x="74.85" y="199.83" width="51.80" height="0.17" fill="#2563eb"/>
+      <rect id="p1-mark-deaths-per-twh-accidents-air-pollution-natural-gas" class="bar" x="157.35" y="183.87" width="51.80" height="16.13" fill="#2563eb"/>
+      <rect id="p1-mark-deaths-per-twh-accidents-air-pollution-oil" class="bar" x="239.85" y="94.02" width="51.80" height="105.98" fill="#2563eb"/>
+      <rect id="p1-mark-deaths-per-twh-accidents-air-pollution-coal" class="bar" x="322.35" y="58.30" width="51.80" height="141.70" fill="#2563eb"/>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="363" fill="#6b7280">Markandya &amp; Wilkinson 2007 (Lancet) / Sovacool et al., via Our World</text>
+  <text class="caption" x="24" y="376" fill="#6b7280">in Data</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="162" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="198" fill="#6b7280">Extra annual US deaths nuclear causes vs. fossil fuels</text>
+  <text class="stat-value" x="464" y="228" fill="#1f2328" style="font-size:24px">none — nuclear causes fewer</text>
+  <text class="stat-delta" x="464" y="248" fill="#dc2626" style="font-size:10px">~2,500 fewer deaths/yr than if that generation were fossil-fueled</text>
+  </g>
+  <text class="caption" x="452" y="363" fill="#6b7280">US 2024: 73.6 TWh nuclear generation at nuclear's death rate ≈ 2</text>
+  <text class="caption" x="452" y="376" fill="#6b7280">deaths/yr; the same output at fossil rates would be ~200-1,800+…</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="434" fill="#6b7280">Estimated annual deaths, actual US 2024 generation</text>
+  <text class="stat-value" x="36" y="464" fill="#1f2328">Nuclear: ~2 deaths/yr</text>
+  <text class="stat-delta" x="36" y="484" fill="#059669">Fossil (coal+gas+oil): ~2,550 deaths/yr</text>
+  </g>
+  <text class="caption" x="24" y="519" fill="#6b7280">Same-year US generation volumes (EIA), applied to the per-TWh death</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">rates at left</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Nuclear's per-TWh rate already amortizes Chernobyl and Fukushima fatalities/estimated excess cancers over nuclear's full historical output. US</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">fossil split (coal/gas/oil shares within the fossil total) is an approximation from EIA's published 2024 generation mix, used only to allocate the</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">composite fossil-generation figure returned by askamerica's energy.state_energy_mix view.</text>
+  <g id="brand">
+  <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:55774/a/6fa43a348b712c718708b9bfe02f57a4.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>The premise in the question is false, and it is false in the well-established, heavily studied direction.</strong> Nuclear power's meltdown risk has indeed been extensively modeled (Chernobyl and Fukushima are the two major events in ~19,000 reactor-years of civilian operation), and the resulting per-unit-of-energy mortality has been compared against coal, oil, and gas in peer-reviewed epidemiology going back to the mid-2000s. Every such comparison finds the OPPOSITE of what the question assumes: nuclear is dramatically safer per unit of energy produced than coal, oil, or natural gas — not deadlier. So there is no positive number of 'extra deaths per year' nuclear causes relative to fossil fuels to report; the correct answer is roughly <strong>zero, and arguably strongly negative</strong> — nuclear power prevents on the order of tens of thousands of deaths per year globally (and roughly 2,500 per year in the US alone, illustrated below) that fossil generation would otherwise cause at the same output level.</p>
+</section>
+<section>
+<h2>What the research actually shows</h2>
+<p>The foundational comparative study is Markandya & Wilkinson, <em>'Electricity generation and health,'</em> The Lancet 370(9591), 2007 — a full fuel-cycle (mining through waste) life-cycle mortality comparison built on European ExternE data. It found health burdens greatest for lignite, coal, and oil; markedly lower for gas; and lowest of all for nuclear, a ranking that also held for greenhouse-gas emissions. Nuclear's own fatalities occur mostly at the mining/milling and accident stages, not from routine plant operation.</p><p>Subsequent syntheses (notably Sovacool et al.'s comparative risk assessments, compiled and updated by <a href="https://ourworldindata.org/safest-sources-of-energy">Our World in Data</a>) put this in per-terawatt-hour terms, which is the standard 'apples to apples' unit because it accounts for how much electricity was actually produced: coal ≈ 24.6 deaths/TWh, oil ≈ 18.4, natural gas ≈ 2.8, and nuclear ≈ 0.03 deaths/TWh — even after folding in Chernobyl and Fukushima's estimated fatalities and excess cancers, amortized across nuclear's entire historical output. That makes coal roughly 800 times deadlier than nuclear per unit of energy, and gas roughly 90 times deadlier. The bulk of the fossil-fuel toll is not accidents but chronic air pollution (particulates, SO2, NOx) driving cardiovascular and respiratory deaths — a large, continuous, low-visibility toll that dwarfs the rare, dramatic, high-visibility nuclear accident toll people tend to weight more heavily (a well-documented dread-risk perception bias in this literature).</p><p>Separately, Kharecha & Hansen (NASA GISS, <em>Environmental Science & Technology</em>, 2013) directly quantified the counterfactual: using historical global nuclear output from 1971-2009 in place of the fossil generation it actually displaced, they estimate nuclear power caused roughly 5,000 deaths (mining accidents, worker radiation exposure, and the two major accidents) against roughly 1.84 million air-pollution deaths it prevented by not being fossil generation — a net of about 1.84 million lives saved, or on the order of 50,000+ prevented deaths per year over that window. Their central estimate for continued/expanded nuclear use through mid-century is a further 420,000 to 7.04 million deaths prevented, depending on what it displaces.</p>
+</section>
+<section>
+<h2>A US-specific illustration, computed from AskAmerica/EIA data</h2>
+<p>To make this concrete rather than only citing the literature, I pulled actual 2024 US generation volumes from AskAmerica's <code>energy.state_energy_mix</code> view (sourced from EIA) and applied the OWID/Markandya-Wilkinson-Sovacool per-TWh death rates above:</p><ul><li>US nuclear generation, 2024: 73.6 TWh → at nuclear's own death rate, an estimated <strong>~2 deaths/year</strong>.</li><li>US fossil generation (coal+gas+oil combined), 2024: 288.9 TWh → at the blended fossil death rate (using EIA's published within-fossil split, roughly 27% coal / 72% gas / 1% oil of that total), an estimated <strong>~2,550 deaths/year</strong>.</li><li>If that same 73.6 TWh of nuclear output had instead been generated by coal, the modeled toll would be ~1,800 deaths/year instead of ~2; by gas, ~200 deaths/year instead of ~2.</li><li>Conversely, if the 288.9 TWh currently generated by fossil fuels were instead generated by nuclear, modeled deaths would fall from ~2,550/year to ~9/year — roughly <strong>2,500 fewer deaths per year</strong>, in the US alone, at this one year's generation mix.</li></ul><p>This is an illustrative back-of-envelope application of published per-TWh rates to a real generation mix, not a new epidemiological study — the fossil coal/gas/oil split within the composite 'fossil' total from <code>energy.state_energy_mix</code> is approximated from EIA's separately published 2024 mix shares (fossil generation is not broken out by fuel in that view) because that view returns a single combined fossil_gen figure. It also does not restate whatever residual uncertainty exists in the underlying per-TWh estimates themselves (real ranges differ by study and are debated, particularly for Chernobyl's long-tail cancer estimate, which spans roughly 4,000 to 60,000 depending on methodology and geographic scope assumed).</p>
+</section>
+<section>
+<h2>Bottom line</h2>
+<p>There is no positive annual death toll to attribute to nuclear power in excess of coal or gas, because the empirical relationship runs the other way and has run the other way in every major comparative study since at least 2007. If anything, the honest framing of the question is: coal causes on the order of 800 times more deaths per unit of energy than nuclear, and gas roughly 90 times more — so replacing nuclear generation with either would cost lives, and replacing fossil generation with nuclear saves them, on the order of a couple thousand lives per year in the US alone at current generation volumes, and well over a million lives saved cumulatively worldwide to date per the NASA GISS estimate.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Premise: settled to be far deadlier per unit of energy than coal or gas</strong>: This premise is factually backwards per the cited literature; the report corrects it explicitly rather than accepting it, and explains why (chronic air-pollution deaths from fossil combustion vastly exceed nuclear's accident/radiation toll per TWh).</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://ourworldindata.org/grapher/death-rates-from-energy-production-per-twh">Our World in Data — Death rates per unit of electricity production</a> <span class="note">— Compiles Markandya &amp; Wilkinson (2007) and Sovacool et al. per-TWh mortality estimates by source</span></li>
+<li><a href="https://ourworldindata.org/safest-sources-of-energy">Our World in Data — What are the safest and cleanest sources of energy?</a></li>
+<li><a href="https://www.thelancet.com/article/S0140-6736(07)61253-7/abstract">Markandya &amp; Wilkinson, 'Electricity generation and health,' The Lancet 370(9591):979-990, 2007</a></li>
+<li><a href="https://pubs.acs.org/doi/10.1021/es3051197">Kharecha &amp; Hansen (NASA GISS), 'Prevented Mortality and Greenhouse Gas Emissions from Historical and Projected Nuclear Power,' Environ. Sci. Technol. 2013</a></li>
+<li><a href="https://www.giss.nasa.gov/pubs/abs/kh05000e.html">NASA GISS abstract page for Kharecha &amp; Hansen 2013</a></li>
+<li><a href="https://phys.org/news/2013-04-climate-nuclear-power-approximately-million.html">Phys.org coverage of Kharecha &amp; Hansen 2013 (1.84 million prevented deaths)</a></li>
+<li><a href="https://www.visualcapitalist.com/cp/charted-safest-and-deadliest-energy-sources/">Visual Capitalist — Charted: The Safest and Deadliest Energy Sources</a></li>
+<li><a href="https://www.canarymedia.com/articles/fossil-fuels/which-power-sources-are-most-deadly-hint-not-solar-and-wind">Canary Media — Which power sources are most deadly? Hint — not solar and wind</a></li>
+<li>AskAmerica energy.state_energy_mix (EIA-sourced US generation by fuel category, 2024)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT generation_year, SUM(nuclear_gen_thousand_mwh) AS nuclear_k_mwh, SUM(fossil_gen_thousand_mwh) AS fossil_k_mwh, SUM(total_gen_thousand_mwh) AS total_k_mwh FROM energy.state_energy_mix WHERE generation_year IN (2023,2024) GROUP BY generation_year ORDER BY generation_year</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Per-TWh death-rate figures are literature estimates (Markandya &amp; Wilkinson 2007; Sovacool et al., as compiled by Our World in Data) and carry their own methodological uncertainty, particularly Chernobyl's long-tail cancer toll. The US 2024 fossil coal/gas/oil split is an approximation applied to a combined EIA fossil-generation figure, not a fuel-specific query result.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

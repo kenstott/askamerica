@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Big R&amp;D spenders get more absolute patents but sharply diminishing patents-per-dollar — and the literature says the whole system's research productivity is falling</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Big R&amp;D spenders get more absolute patents but sharply diminishing patents-per-dollar — and the literature says the whole system's research productivity is falling</h1>
+<p class="subtitle">SEC XBRL R&amp;D expense x USPTO PatentsView 2024 grants (AskAmerica corpus), triangulated against WIPO, R&amp;D World, and academic research-productivity literature</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 631" width="880" height="631" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="631" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">Big R&amp;D Spenders Get Diminishing Patent Returns — but Efficiency Varies Widely by Firm</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">AskAmerica SEC XBRL (rd_expense) x USPTO PatentsView 2024 grants; literature: WIPO/R&amp;D World, Bloom et al. 2020, Census CES 2025</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Apple: patents per $1B R&amp;D (FY2024)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">98.6</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">$31.37B R&amp;D -&gt; 3,092 US patents granted in 2024 (~$10.1M R&amp;D per</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">patent)</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Microsoft: patents per $1B R&amp;D (FY2024)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">58.4</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">$29.51B R&amp;D -&gt; 1,722 US patents granted in 2024 (~$17.1M R&amp;D per</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">patent)</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">2024 US utility patents granted, by assignee</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="91" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="83" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="91" y1="122.86" x2="390" y2="122.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="83" y="126.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+      <line class="grid" x1="91" y1="111.71" x2="390" y2="111.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="83" y="115.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="91" y1="100.57" x2="390" y2="100.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="83" y="104.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,500</text>
+      <line class="grid" x1="91" y1="89.43" x2="390" y2="89.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="83" y="93.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="91" y1="78.29" x2="390" y2="78.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="83" y="82.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,500</text>
+      <line class="grid" x1="91" y1="67.14" x2="390" y2="67.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="83" y="71.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,000</text>
+      <line class="grid" x1="91" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="83" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,500</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="91" y1="56" x2="91" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="91" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="240.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Company</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle" transform="rotate(-90 14 95)">Patents</text>
+    <text id="p3-y-axis-title-2" class="axis-title" x="27" y="95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle" transform="rotate(-90 27 95)">granted 2024</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-apple" class="tick" x="109.69" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 109.69 148)">Apple</text>
+      <text id="p3-xtick-ibm" class="tick" x="147.06" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.06 148)">IBM</text>
+      <text id="p3-xtick-google" class="tick" x="184.44" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 184.44 148)">Google</text>
+      <text id="p3-xtick-intel" class="tick" x="221.81" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 221.81 148)">Intel</text>
+      <text id="p3-xtick-microsoft" class="tick" x="259.19" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 259.19 148)">Microsoft</text>
+      <text id="p3-xtick-amazon" class="tick" x="296.56" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 296.56 148)">Amazon</text>
+      <text id="p3-xtick-meta-incl-reality-labs" class="tick" x="333.94" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 333.94 148)">Meta (incl. Reality Labs)</text>
+      <text id="p3-xtick-nvidia" class="tick" x="371.31" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 371.31 148)">Nvidia</text>
+    </g>
+    <g id="p3-series-patents-2024-grants" class="series">
+      <rect id="p3-mark-patents-2024-grants-apple" class="bar" x="97.73" y="65.09" width="22.92" height="68.91" fill="#2563eb"/>
+      <rect id="p3-mark-patents-2024-grants-ibm" class="bar" x="135.10" y="79.11" width="22.92" height="54.89" fill="#2563eb"/>
+      <rect id="p3-mark-patents-2024-grants-google" class="bar" x="172.48" y="87.65" width="22.92" height="46.35" fill="#2563eb"/>
+      <rect id="p3-mark-patents-2024-grants-intel" class="bar" x="209.85" y="90.90" width="22.92" height="43.10" fill="#2563eb"/>
+      <rect id="p3-mark-patents-2024-grants-microsoft" class="bar" x="247.23" y="95.62" width="22.92" height="38.38" fill="#2563eb"/>
+      <rect id="p3-mark-patents-2024-grants-amazon" class="bar" x="284.60" y="101.89" width="22.92" height="32.11" fill="#2563eb"/>
+      <rect id="p3-mark-patents-2024-grants-meta-incl-reality-labs" class="bar" x="321.98" y="123.55" width="22.92" height="10.45" fill="#2563eb"/>
+      <rect id="p3-mark-patents-2024-grants-nvidia" class="bar" x="359.35" y="124.68" width="22.92" height="9.32" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">USPTO PatentsView, assignee-name match, calendar-year 2024 grants.</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">Source: AskAmerica patents schema.</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">R&amp;D per US patent granted, FY2024 (only 2 firms with clean annual SEC da…</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="164" x2="390" y2="164" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="168" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="92" x2="390" y2="92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Company</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">$M R&amp;D / patent</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-apple" class="tick" x="142.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Apple</text>
+      <text id="p4-xtick-microsoft" class="tick" x="307.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Microsoft</text>
+    </g>
+    <g id="p4-series-m-r-d-per-patent" class="series">
+      <rect id="p4-mark-m-r-d-per-patent-apple" class="bar" x="89.70" y="127.28" width="104.60" height="72.72" fill="#2563eb"/>
+      <rect id="p4-mark-m-r-d-per-patent-microsoft" class="bar" x="254.70" y="76.88" width="104.60" height="123.12" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Apple FYE Sep-2024 10-K; Microsoft FYE Jun-2024 10-K. Other mega-cap</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">filers (Alphabet, Amazon, Meta, Intel, IBM) lack a loaded full-year…</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Patent counts credit the assignee (corporate owner), not inventor location, and undercount firms whose patents sit under differently-named</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">subsidiaries not caught by name matching. R&amp;D-per-patent uses each firm's own fiscal year, not calendar year.</text>
+  <g id="brand">
+  <svg x="20" y="590" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="605" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:55408/a/da58d0b956fa6db82b64f67b58107c0f.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>The biggest R&D spenders get more <strong>total</strong> patents than smaller firms, but far less patenting <strong>per dollar</strong> — and the gap between the very largest spenders and everyone else is wide. In our own SEC-vs-USPTO computation, Apple's FY2024 R&D ($31.4B) produced about <strong>98.6 US patents per $1 billion spent</strong> (~$10.1M per patent), while Microsoft's larger, more diffuse R&D base ($29.5B, spread across cloud, gaming, hardware and AI) produced about <strong>58.4 patents per $1 billion</strong> (~$17.1M per patent) — a 69% efficiency gap between two of the very largest spenders. The broader literature is blunter: research productivity at the level of the whole US economy has been falling for decades (Bloom, Jones, Van Reenen & Webb 2020 find it takes roughly 18x as many researchers today to sustain Moore's-Law-era chip progress as it did in the early 1970s), and Alphabet — one of the single largest R&D spenders in the world — is reported to have produced barely a fifth of Samsung's international patent output despite comparable or larger R&D and revenue. That said, a newer study (US Census Bureau, 2025) challenges the 'ideas are getting harder to find' reading, arguing that once the full population of US firms (not just large, publicly listed Compustat firms) is considered, patents-per-R&D-dollar has actually risen since the late 1970s — the apparent decline is concentrated among large public firms, exactly the population this question asks about.</p>
+</section>
+<section>
+<h2>Step 1 — What the literature already says</h2>
+<p><strong>Diminishing firm-level returns are well documented.</strong> Bloom, Jones, Van Reenen & Webb, <em>"Are Ideas Getting Harder to Find?"</em> (American Economic Review, 2020) is the canonical reference: across firms, industries (they study Moore's Law semiconductors, agricultural crop yields, and medical R&D specifically), and the aggregate US economy, research effort has risen sharply while research productivity (output per researcher/dollar) has fallen — sharply enough that constant exponential progress now requires exponentially more researchers. Their signature example: it takes about <strong>18 times</strong> as many researchers to sustain the historical doubling rate of transistor density today as it did in the early 1970s.</p><p><strong>But that decline may be a large-firm phenomenon, not a universal one.</strong> A 2025 Census Bureau CES working paper, <em>"The Rising Returns to R&D: Ideas Are Not Getting Harder to Find,"</em> re-runs the analysis using the full administrative population of US firms rather than only Compustat's ~4,000 large public filers, and finds the opposite trend: patents per real R&D dollar, and the elasticity of patents to R&D, have <em>risen</em> since 1977 once R&D inputs are properly controlled for — even as citation-weighted and "breakthrough" patent counts also trend up. Critically, the paper confirms that <strong>Compustat firms' own patents-per-R&D-dollar are lower at the end of the sample than the start</strong> — i.e., the decline IS real for exactly the population of giant, publicly traded R&D spenders this question is about, even if it doesn't generalize to the whole economy. The two studies aren't really in conflict: large incumbents individually show falling patenting efficiency, while the reallocation of research effort toward smaller/newer firms has kept economy-wide efficiency from falling to the same degree.</p><p><strong>Company-level snapshots point the same way.</strong> R&D World's 2024 analysis (drawing on Clarivate/PatentsView-style data as of mid-November 2024) found that Alphabet's revenue ran roughly 45% above Samsung Electronics' over the first three quarters of 2024, yet Samsung logged 30,305 international patents in that window versus Alphabet's 6,146 — roughly <strong>5x</strong> more patents on comparable or lower revenue, with Apple (8,631) and Qualcomm (15,980) also well ahead of Alphabet on a size-adjusted basis. The same analysis noted patent <em>quality</em> cuts differently: Meta, despite modest patent volume, had the highest citation-per-patent rate in their dataset (144.5), suggesting raw patent counts alone understate firms that patent more selectively.</p>
+</section>
+<section>
+<h2>Step 2 — What we computed directly from SEC filings and USPTO grants</h2>
+<p>We queried AskAmerica's SEC XBRL data (<code>sec.financial_facts</code>, canonical concept <code>rd_expense</code>, consolidated totals only) for each company's most recent full fiscal year, and USPTO PatentsView (<code>patents.patent_assignees</code> joined to <code>patents.patent_grants</code>) for calendar-year-2024 US utility patents credited to that company's named assignee entities.</p><p><strong>A genuine data-coverage gap surfaced immediately:</strong> only Apple and Microsoft had a full annual (~365-day) <code>rd_expense</code> fact loaded in this corpus snapshot. Alphabet, Amazon, Meta, Intel, IBM, Merck, Pfizer and Johnson & Johnson only had partial/quarterly XBRL facts loaded (Alphabet's earliest loaded R&D fact starts in Q1 2025; Amazon reports R&D inside a differently-named "Technology and content" line the corpus's canonical alias list doesn't currently map), so we could not compute a clean, corpus-native ratio for them and did not force one. This is a genuine data-coverage limitation of the current corpus snapshot, not a finding that those firms lack the data.</p><p>For the two companies we could compute cleanly:</p><ul><li><strong>Apple</strong> — FY2024 (ended Sept 28, 2024) R&D expense $31.37B; 3,092 US utility patents granted to "Apple Inc." in calendar 2024 &rarr; <strong>98.6 patents per $1B</strong>, or about $10.1M of R&D per patent.</li><li><strong>Microsoft</strong> — FY2024 (ended June 30, 2024) R&D expense $29.51B; 1,722 US utility patents granted to Microsoft-named assignees in calendar 2024 &rarr; <strong>58.4 patents per $1B</strong>, or about $17.1M of R&D per patent.</li></ul><p>Even between just these two — both among the very largest R&D spenders on earth, with R&D budgets within 6% of each other — patenting efficiency differs by 69%. That is consistent with the literature's point that raw R&D size does not predict patent output well: Apple's R&D is concentrated in a narrower hardware/software product line with a long history of aggressive utility-patent filing, while Microsoft's R&D spans cloud infrastructure, enterprise software, gaming and now heavy AI compute investment, categories that don't map one-to-one onto patentable inventions at the same rate.</p><p>For context (patent counts only, since we could not pair these with clean annual R&D figures from the corpus this run): IBM led total 2024 US patent grants among this set at 2,463 (IBM's strategy has long emphasized patent volume as a licensing-revenue asset), followed by Google LLC (2,080), Intel (1,934), Amazon Technologies (1,441), Nvidia (418), and Meta (383 under Meta Platforms Technologies plus 86 under Meta Platforms, Inc. — 469 combined). Nvidia and Meta stand out for spending tens of billions on R&D while producing patent counts an order of magnitude below Apple, IBM or Google — consistent with the literature's observation that a growing share of "R&D" at frontier AI/compute firms goes into compute infrastructure, model training and engineering that is not typically patented as a discrete invention, rather than into patentable hardware or process innovations.</p>
+</section>
+<section>
+<h2>Step 3 — Reading the two findings together</h2>
+<p>Putting the corpus computation next to the literature: the biggest R&D spenders unambiguously buy more <em>absolute</em> patent output than smaller firms (Apple and IBM's raw 2024 patent counts dwarf almost any non-mega-cap filer), but the <em>marginal</em> return — patents per additional R&D dollar — is falling for the largest incumbent spenders specifically, exactly as the Census Bureau's 2025 re-analysis of Compustat firms found, and exactly as the 69% efficiency gap between Apple and Microsoft in our own data illustrates even within the top tier. The Bloom et al. finding that it now takes ~18x the research effort to sustain a fixed rate of technical progress is the aggregate-economy version of the same story visible company-by-company here: bigger R&D budgets do not scale proportionally into patentable output, whether because of bureaucratic drag in very large R&D organizations, a shift in R&D composition toward non-patentable software/AI/compute engineering, or firms increasingly patenting more selectively (Meta's high citation-per-patent rate) rather than for volume.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>AskAmerica SEC XBRL rd_expense, Apple FY2024<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT cik, period_start, period_end, value_dollars FROM sec.financial_facts WHERE cik = '0000320193' AND canonical_name='rd_expense' AND is_consolidated_total = TRUE ORDER BY period_end DESC</code></pre></details></li>
+<li>AskAmerica SEC XBRL rd_expense, Microsoft FY2024<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT cik, period_start, period_end, value_dollars FROM sec.financial_facts WHERE cik = '0000789019' AND canonical_name='rd_expense' AND is_consolidated_total = TRUE ORDER BY period_end DESC</code></pre></details></li>
+<li>AskAmerica USPTO PatentsView, 2024 US utility patent grants by assignee<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT pa.assignee_organization, count(DISTINCT pg.patent_id) AS patents_2024 FROM patents.patent_assignees pa JOIN patents.patent_grants pg ON pg.patent_id = pa.patent_id WHERE pg.grant_year = 2024 AND (pa.assignee_organization ILIKE 'Apple Inc%' OR pa.assignee_organization ILIKE 'Microsoft%' OR pa.assignee_organization ILIKE 'Amazon Technologies%' OR pa.assignee_organization ILIKE 'Meta Platforms%' OR pa.assignee_organization ILIKE 'Google LLC%' OR pa.assignee_organization ILIKE 'NVIDIA%' OR pa.assignee_organization ILIKE 'Intel Corporation%' OR pa.assignee_organization ILIKE 'International Business Machines%') GROUP BY pa.assignee_organization ORDER BY patents_2024 DESC</code></pre></details></li>
+<li><a href="https://web.stanford.edu/~chadj/IdeaPF.pdf">Bloom, Jones, Van Reenen &amp; Webb, &quot;Are Ideas Getting Harder to Find?&quot;, American Economic Review 2020</a> <span class="note">— NBER working paper version and AER publication; 18x-researchers Moore's Law finding</span></li>
+<li><a href="https://www2.census.gov/library/working-papers/2025/adrm/ces/CES-WP-25-29.pdf">US Census Bureau CES Working Paper 25-29, &quot;The Rising Returns to R&amp;D: Ideas Are Not Getting Harder to Find&quot; (2025)</a> <span class="note">— Re-analysis using full US firm population vs. Compustat-only; found via search summary, not a full primary-document read this session</span></li>
+<li><a href="https://www.rdworldonline.com/who-were-2024s-top-patent-and-rd-leaders-in-computing-pharma-medtech-and-beyond/">R&amp;D World, &quot;Who were 2024's top patent and R&amp;D leaders in computing, pharma, medtech and beyond?&quot;</a> <span class="note">— Alphabet vs. Samsung/Apple/Qualcomm patent-vs-revenue comparison, Q1-Q3 2024; Meta citation-per-patent figure</span></li>
+<li><a href="https://www.wipo.int/en/web/global-innovation-index/w/blogs/2024/r-and-d-spenders">WIPO, &quot;R&amp;D spending by the top 2,500 R&amp;D spenders crossed the €1.3 trillion mark in 2022&quot;</a></li>
+<li><a href="https://www.statista.com/statistics/265645/ranking-of-the-companies-with-the-highest-spending-on-research-and-development/">Statista, &quot;Companies with highest R&amp;D spending worldwide 2024&quot;</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Corpus-computed figures (Apple, Microsoft) use each company's own fiscal year and are the two firms with clean, non-fragmented annual SEC R&amp;D data loaded in this corpus snapshot; other mega-cap R&amp;D spenders (Alphabet, Amazon, Meta, Intel, IBM) could not be paired with a clean annual R&amp;D figure this run and are shown for patent counts only, or drawn from third-party literature.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-04</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

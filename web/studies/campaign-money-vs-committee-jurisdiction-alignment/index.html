@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Industries give roughly twice as much, per legislator, to the committee members who regulate them — with the size of the premium varying sharply by industry</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Industries give roughly twice as much, per legislator, to the committee members who regulate them — with the size of the premium varying sharply by industry</h1>
+<p class="subtitle">FEC direct PAC contributions, 2023-2024 cycle, House committees vs. rest of chamber; literature context from Fouirnaies &amp;amp; Hall (2018)</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 805" width="880" height="805" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="805" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">Industries give roughly 2x more, per legislator, to committee members who regulate them</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">FEC direct PAC contributions (24K), 2023-2024 cycle, House candidates, connected_org_name industry match</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="162" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="198" fill="#6b7280" style="font-size:11px">Finance-industry PAC $ per member, Financial Services Cmte</text>
+  <text class="stat-value" x="36" y="228" fill="#1f2328">$106,832</text>
+  <text class="stat-delta" x="36" y="248" fill="#059669">+105% vs. other House members</text>
+  </g>
+  <text class="caption" x="24" y="363" fill="#6b7280">53 committee seats vs. 382 other House seats</text>
+  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Finance-industry PAC $ per House member</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="91" y1="148" x2="390" y2="148" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="83" y="152" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="91" y1="132.67" x2="390" y2="132.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="83" y="136.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+      <line class="grid" x1="91" y1="117.33" x2="390" y2="117.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="83" y="121.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40,000</text>
+      <line class="grid" x1="91" y1="102" x2="390" y2="102" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="83" y="106" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60,000</text>
+      <line class="grid" x1="91" y1="86.67" x2="390" y2="86.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="83" y="90.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80,000</text>
+      <line class="grid" x1="91" y1="71.33" x2="390" y2="71.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="83" y="75.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100,000</text>
+      <line class="grid" x1="91" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-6" class="tick" x="83" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120,000</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="91" y1="56" x2="91" y2="148" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="91" y1="148" x2="390" y2="148" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="102" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 102)">$ per member</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-financial-services-cmte-members" class="tick" x="165.75" y="162" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 165.75 162)">Financial Services Cmte members</text>
+      <text id="p2-xtick-all-other-house-members" class="tick" x="315.25" y="162" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 315.25 162)">All other House members</text>
+    </g>
+    <g id="p2-series-avg-per-member-2024-cycle" class="series">
+      <rect id="p2-mark-avg-per-member-2024-cycle-financial-services-cmte-members" class="bar" x="117.91" y="66.10" width="94.68" height="81.90" fill="#2563eb"/>
+      <rect id="p2-mark-avg-per-member-2024-cycle-all-other-house-members" class="bar" x="267.41" y="108.08" width="94.68" height="39.92" fill="#2563eb"/>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="363" fill="#6b7280">$5.66M to 53 Financial Services members vs $19.89M to 382 others</text>
+  <rect class="panel-edge" x="20" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Energy-industry PAC $ per House member</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="84" y1="148" x2="390" y2="148" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="76" y="152" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="134.86" x2="390" y2="134.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="76" y="138.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5,000</text>
+      <line class="grid" x1="84" y1="121.71" x2="390" y2="121.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="76" y="125.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+      <line class="grid" x1="84" y1="108.57" x2="390" y2="108.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="76" y="112.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15,000</text>
+      <line class="grid" x1="84" y1="95.43" x2="390" y2="95.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="76" y="99.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+      <line class="grid" x1="84" y1="82.29" x2="390" y2="82.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="76" y="86.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25,000</text>
+      <line class="grid" x1="84" y1="69.14" x2="390" y2="69.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="76" y="73.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">35,000</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="148" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="148" x2="390" y2="148" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="102" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 102)">$ per member</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-energy-commerce-cmte-members" class="tick" x="160.50" y="162" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 160.50 162)">Energy &amp; Commerce Cmte members</text>
+      <text id="p3-xtick-all-other-house-members" class="tick" x="313.50" y="162" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 313.50 162)">All other House members</text>
+    </g>
+    <g id="p3-series-avg-per-member-2024-cycle" class="series">
+      <rect id="p3-mark-avg-per-member-2024-cycle-energy-commerce-cmte-members" class="bar" x="111.54" y="65.22" width="96.92" height="82.78" fill="#2563eb"/>
+      <rect id="p3-mark-avg-per-member-2024-cycle-all-other-house-members" class="bar" x="264.54" y="75.88" width="96.92" height="72.12" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="679" fill="#6b7280">$1.70M to 54 Energy &amp; Commerce members vs $10.45M to 381 others</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="478" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="514" fill="#6b7280">Energy-industry premium (E&amp;C Cmte)</text>
+  <text class="stat-value" x="464" y="544" fill="#1f2328">$31,494</text>
+  <text class="stat-delta" x="464" y="564" fill="#059669">+15% vs. other House members</text>
+  </g>
+  <text class="caption" x="452" y="679" fill="#6b7280">Narrower jurisdiction, smaller but still positive premium</text>
+  <text class="footnote" x="20" y="724" fill="#6b7280">Industry defined by ILIKE match on fec.committees.connected_org_name — a name-matching heuristic, not a validated industry code. Direct</text>
+  <text class="footnote" x="20" y="738" fill="#6b7280">PAC-to-candidate contributions (transaction_type=24K) only; excludes independent expenditures, individual donor giving, and</text>
+  <text class="footnote" x="20" y="752" fill="#6b7280">non-connected/leadership PACs. Cross-sectional correlation, not a causal committee-assignment effect.</text>
+  <g id="brand">
+  <svg x="20" y="764" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="779" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:58993/a/320ff8bdc1d793312835833ea7b35fe8.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Yes — on average, industries direct noticeably more PAC money per legislator to members of the congressional committee that regulates them than to everyone else in the chamber. In the 2023-2024 election cycle, finance-industry PACs (banks, insurers, credit unions, securities firms) gave the average member of the House Financial Services Committee about <strong>$106,800</strong> in direct contributions, versus about <strong>$52,100</strong> for the average non-member House candidate — roughly <strong>2.05x more, a 105% premium</strong>. The same design applied to energy-industry PACs and the House Energy &amp; Commerce Committee shows a real but much smaller premium: about <strong>$31,500</strong> per Energy &amp; Commerce member versus <strong>$27,400</strong> for everyone else, a <strong>15% premium</strong>. This spread across industries — large for finance, small for energy — matches the pattern reported in the academic literature on this question, where insurance, banking, health and agriculture are consistently found to be the industries that value committee access the most. This analysis is a cross-sectional correlation for one recent cycle, not a causal estimate of what happens when a specific legislator gains a committee seat; the peer-reviewed literature that does run that causal design (below) finds a real, if smaller, jurisdiction-specific effect and rules out the money simply being a generic reward for influence.</p>
+</section>
+<section>
+<h2>What the published research already establishes</h2>
+<p>This is not a novel question — it has a real literature, and it answers the causal version of the question more rigorously than any cross-sectional connector query can. The core paper is <a href='https://onlinelibrary.wiley.com/doi/abs/10.1111/ajps.12323'>Fouirnaies &amp; Hall, "How Do Interest Groups Seek Access to Committees?" (American Journal of Political Science, 2018)</a>. Using a new dataset on U.S. state legislative committee assignments from 1988-2014 (440,000+ candidate-committee observations), the authors show that <strong>when a legislator joins a committee that oversees an interest group's business, that group responds by donating more to the legislator, on average</strong> — and that insurance, banking, health, and agriculture are the industries that value committee membership the most (see the <a href='https://ajps.org/2017/07/31/ajps-author-summary-how-do-interest-groups-seek-access-to-committees/'>AJPS author summary</a>). Because this design tracks the SAME legislator before and after a committee change, it separates "money follows jurisdiction" from the more mundane possibility that powerful, already-favored legislators just get more money for unrelated reasons — the paper also runs a placebo test on industries with no jurisdictional relationship to the committee and finds no comparable jump for them, which is what makes the jurisdiction-specific interpretation credible rather than just correlational.</p><p>Real-time federal reporting corroborates the same pattern at the individual-legislator level. <a href='https://www.opensecrets.org/cong-cmtes/profiles?cmte=hfin&cmtename=Financial+Services&cong=117&cycle=2022&indus=F03'>OpenSecrets</a> and reporting on new committee assignments found that when Rep. Sam Liccardo (D-CA) was appointed to Financial Services in early 2025, 57% of his PAC money in the following quarter came from industries under that panel's jurisdiction, and Rep. Janelle Bynum (D-OR) went from $1,000 in career finance-PAC money as a candidate to $20,000 in a single quarter after her Financial Services assignment. OpenSecrets separately documents Financial Services as historically one of the highest-PAC-money committees in Congress, given its jurisdiction over banking, securities, and insurance.</p>
+</section>
+<section>
+<h2>What this analysis adds: a direct federal-data comparison for two committees, 2023-2024 cycle</h2>
+<p>To give the question a concrete, checkable federal number rather than relying only on the state-legislature estimate and press anecdotes, this analysis built the comparison directly from FEC bulk data for the current Congress and cycle.</p><p><strong>Method.</strong> Committee rosters came from officials.committee_membership (House Financial Services = committee_id HSBA, 53 seats; House Energy &amp; Commerce = HSIF, 54 seats), joined to FEC candidate IDs via ref.canonical_person_entity. "Finance industry PACs" and "energy industry PACs" were defined by an ILIKE match on fec.committees.connected_org_name (bank/financial/insurance/credit union/securities/mortgage/investment for finance — 179 matched committees; oil/gas/energy/electric/petroleum/utility/pipeline for energy), restricted to committee_type Q/N/V/W (qualified and non-qualified PACs, not candidate or party committees) for the 2024 cycle. Direct contributions only (fec.committee_contributions, transaction_type = '24K') to House candidates were summed, split by committee membership, and divided by the actual number of seats on each side (committee roster size vs. 435 minus that roster size) to get a genuine per-legislator average rather than an average over only the recipients who happened to get money.</p><p><strong>Result 1 — finance industry, Financial Services Committee.</strong> $5.66M in direct finance-PAC contributions went to the 53 Financial Services members ($106,832/member); $19.89M went to the other 382 House members ($52,068/member). That is a 2.05x, 105% premium for sitting on the committee that writes banking, securities, and insurance policy.</p><p><strong>Result 2 — energy industry, Energy &amp; Commerce Committee.</strong> $1.70M went to the 54 Energy &amp; Commerce members ($31,494/member); $10.45M went to the other 381 members ($27,437/member) — a much smaller 15% premium. Energy &amp; Commerce has a broad jurisdiction (energy, but also health, telecom, and consumer protection), so energy-industry money is diluted across the committee's full membership relative to a committee whose jurisdiction maps more tightly onto one industry — consistent with Fouirnaies &amp; Hall's finding that the size of this effect varies a great deal by industry and by how cleanly the committee's jurisdiction lines up with the donor's business.</p><p>A restricted-to-incumbents version of the finance-industry calculation (limiting the comparison group to sitting incumbents rather than all candidates, since almost no PAC money in this table goes to non-incumbents) produced nearly identical totals ($5.63M vs. $18.92M), confirming the premium is not an artifact of comparing well-funded incumbents to underfunded challengers.</p>
+</section>
+<section>
+<h2>Caveats — read before treating the multiplier as precise</h2>
+<ul><li><strong>Correlational, not causal, for the federal figures.</strong> This is a cross-sectional snapshot of one cycle. It cannot rule out that legislators who already have finance ties seek out Financial Services assignments (reverse causation) rather than the committee seat itself attracting the money. The peer-reviewed literature above addresses this with a within-legislator before/after design across committee-assignment changes and still finds a real, jurisdiction-specific premium — smaller than a naive cross-section would suggest, but not zero and not explained away by a placebo test on unrelated industries.</li><li><strong>Industry defined by name-matching, not an official industry code.</strong> connected_org_name ILIKE matching is a coarse heuristic: it can miss subsidiaries whose PAC name doesn't share a substring with the parent (e.g., a bank PAC named after a legacy brand), and it does not correspond to a CRP/OpenSecrets-style curated industry classification. The 179-PAC finance set and the energy set were built this way and are reasonably representative of the named organizations but not a certified population.</li><li><strong>One channel only.</strong> This measures direct PAC-to-candidate contributions (24K) only. It excludes independent expenditures, electioneering communications, and individual donor giving (which is far larger in dollar terms across all industries) — all channels through which industries with a stake in a committee's work could also direct money to its members.</li><li><strong>Small-committee sample sizes.</strong> With ~53-54 seats compared against ~380 other seats, a handful of unusually large individual PACs-to-legislator contributions could move the per-member average meaningfully; this was not stress-tested with a leave-one-out analysis in this pass.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/ajps.12323">Fouirnaies &amp; Hall, &quot;How Do Interest Groups Seek Access to Committees?&quot;, American Journal of Political Science 62(1), 2018</a></li>
+<li><a href="https://ajps.org/2017/07/31/ajps-author-summary-how-do-interest-groups-seek-access-to-committees/">AJPS Author Summary of Fouirnaies &amp; Hall (2018)</a></li>
+<li><a href="https://www.followthemoney.org/assets/Uploads/Fouirnaies-Hall-2018-American-Journal-of-Political-Science.pdf">Full PDF, Fouirnaies &amp; Hall (2018), via FollowTheMoney.org</a></li>
+<li><a href="https://www.opensecrets.org/cong-cmtes/profiles?cmte=hfin&amp;cmtename=Financial+Services&amp;cong=117&amp;cycle=2022&amp;indus=F03">OpenSecrets, House Financial Services Committee Profile</a></li>
+<li><a href="https://coloradonewsline.com/2025/07/13/house-members-pac-donations-jump/">Colorado Newsline, &quot;New House members saw PAC donations jump after getting committee assignments&quot; (2025)</a></li>
+<li><a href="https://www.opensecrets.org/elections-overview/industries">OpenSecrets, Which Industries Are Giving the Most Money to PACs, Parties and Candidates?</a></li>
+<li>House Financial Services Committee roster (HSBA) joined to FEC candidate IDs<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT cpe.canonical_name, cpe.fec_candidate_id FROM officials.committee_membership cm JOIN ref.canonical_person_entity cpe ON cpe.officials_member_bioguide_id = cm.bioguide_id WHERE cm.committee_id = 'HSBA' AND cpe.fec_candidate_id IS NOT NULL&quot;)</code></pre></details></li>
+<li>Finance-industry PAC direct contributions (24K) to House candidates, 2024 cycle, split by Financial Services Committee membership<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH fsc_ids AS (SELECT DISTINCT cpe.fec_candidate_id FROM officials.committee_membership cm JOIN ref.canonical_person_entity cpe ON cpe.officials_member_bioguide_id = cm.bioguide_id WHERE cm.committee_id = 'HSBA' AND cpe.fec_candidate_id IS NOT NULL), fin_pacs AS (SELECT DISTINCT committee_id FROM fec.committees WHERE &quot;year&quot; = '2024' AND (connected_org_name ILIKE '%bank%' OR connected_org_name ILIKE '%financial%' OR connected_org_name ILIKE '%insurance%' OR connected_org_name ILIKE '%credit union%' OR connected_org_name ILIKE '%securities%' OR connected_org_name ILIKE '%mortgage%' OR connected_org_name ILIKE '%investment%') AND committee_type IN ('Q','N','V','W')) SELECT CASE WHEN cand.candidate_id IN (SELECT fec_candidate_id FROM fsc_ids) THEN 'FSC_member' ELSE 'other_house' END AS grp, SUM(cc.amount) AS total_amt, COUNT(DISTINCT cand.candidate_id) AS n_recipients FROM fec.committee_contributions cc JOIN fec.candidates cand ON cc.candidate_id = cand.candidate_id AND cand.&quot;year&quot; = '2024' WHERE cc.&quot;year&quot; = '2024' AND cc.transaction_type = '24K' AND cand.office = 'H' AND cc.committee_id IN (SELECT committee_id FROM fin_pacs) GROUP BY CASE WHEN cand.candidate_id IN (SELECT fec_candidate_id FROM fsc_ids) THEN 'FSC_member' ELSE 'other_house' END</code></pre></details></li>
+<li>Energy-industry PAC direct contributions (24K) to House candidates, 2024 cycle, split by Energy &amp; Commerce Committee membership<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH ec_ids AS (SELECT DISTINCT cpe.fec_candidate_id FROM officials.committee_membership cm JOIN ref.canonical_person_entity cpe ON cpe.officials_member_bioguide_id = cm.bioguide_id WHERE cm.committee_id = 'HSIF' AND cpe.fec_candidate_id IS NOT NULL), energy_pacs AS (SELECT DISTINCT committee_id FROM fec.committees WHERE &quot;year&quot; = '2024' AND (connected_org_name ILIKE '%oil%' OR connected_org_name ILIKE '%gas%' OR connected_org_name ILIKE '%energy%' OR connected_org_name ILIKE '%electric%' OR connected_org_name ILIKE '%petroleum%' OR connected_org_name ILIKE '%utilit%' OR connected_org_name ILIKE '%pipeline%') AND committee_type IN ('Q','N','V','W')) SELECT CASE WHEN cand.candidate_id IN (SELECT fec_candidate_id FROM ec_ids) THEN 'EC_member' ELSE 'other_house' END AS grp, SUM(cc.amount) AS total_amt, COUNT(DISTINCT cand.candidate_id) AS n_recipients FROM fec.committee_contributions cc JOIN fec.candidates cand ON cc.candidate_id = cand.candidate_id AND cand.&quot;year&quot; = '2024' WHERE cc.&quot;year&quot; = '2024' AND cc.transaction_type = '24K' AND cand.office = 'H' AND cc.committee_id IN (SELECT committee_id FROM energy_pacs) GROUP BY CASE WHEN cand.candidate_id IN (SELECT fec_candidate_id FROM ec_ids) THEN 'EC_member' ELSE 'other_house' END</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Federal figures are direct PAC-to-candidate contributions (FEC transaction_type 24K) for the 2023-2024 cycle only; they exclude independent expenditures and individual donor giving. Industry classification is a name-matching heuristic on connected_org_name, not a certified industry code. Cross-sectional, not causal — see caveats section.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-04</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

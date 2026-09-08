@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Only about half of registered clinical trials post results on time — and industry sponsors report 1.5-3x more often than academic/non-industry sponsors</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Only about half of registered clinical trials post results on time — and industry sponsors report 1.5-3x more often than academic/non-industry sponsors</h1>
+<p class="subtitle">Synthesis of peer-reviewed FDAAA-compliance studies (NEJM, Lancet, BMJ EBM) and the FDAAA TrialsTracker, 2015-2025</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 645" width="880" height="645" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Clinical Trial Results Reporting: How Much Gets Reported, and by Wh…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">ClinicalTrials.gov / FDAAA compliance studies, 2015-2025 — reporting rates vary 2-3x by sponsor type</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:9px">Overall trial disclosure rate (2006-2015 cohort, TrialsTracker/BMJ EBM)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">55%</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">29,377 eligible trials, 323 sponsors</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:8px">On-time (12-month) reporting, post-2017 Final Rule (2018-2019 cohort, Lancet)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">~41%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">+28 pts vs pre-rule</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">1 in 3 trials in this cohort never reported at all</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Reporting rate by sponsor type (2006-2015 cohort, Baronikova et al. 2019…</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="114.50" x2="390" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="75.50" x2="390" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Sponsor category</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 95)">Disclosure rate (%)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-non-industry-avg" class="tick" x="93" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 93 148)">Non-industry (avg)</text>
+      <text id="p3-xtick-all-industry-avg" class="tick" x="159" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 159 148)">All industry (avg)</text>
+      <text id="p3-xtick-top-50-pharma" class="tick" x="225" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 148)">Top-50 pharma</text>
+      <text id="p3-xtick-efpia-phrma-members" class="tick" x="291" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 291 148)">EFPIA/PhRMA members</text>
+      <text id="p3-xtick-non-members-top-50" class="tick" x="357" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357 148)">Non-members (top 50)</text>
+    </g>
+    <g id="p3-series-disclosure-rate" class="series">
+      <rect id="p3-mark-disclosure-rate-non-industry-avg" class="bar" x="71.88" y="89.15" width="41.24" height="44.85" fill="#2563eb"/>
+      <rect id="p3-mark-disclosure-rate-all-industry-avg" class="bar" x="137.88" y="61.85" width="41.24" height="72.15" fill="#2563eb"/>
+      <rect id="p3-mark-disclosure-rate-top-50-pharma" class="bar" x="203.88" y="59.90" width="41.24" height="74.10" fill="#2563eb"/>
+      <rect id="p3-mark-disclosure-rate-efpia-phrma-members" class="bar" x="269.88" y="58.93" width="41.24" height="75.08" fill="#2563eb"/>
+      <rect id="p3-mark-disclosure-rate-non-members-top-50" class="bar" x="335.88" y="68.68" width="41.24" height="65.33" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">n=19,866 non-industry trials (254 institutions) vs 9,511 industry</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">trials (69 companies)</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">On-time (12-month) reporting, pre- vs post-2017 FDAAA Final Rule</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="74" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="66" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="74" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="66" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="74" y1="102.80" x2="390" y2="102.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="66" y="106.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="74" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="66" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="74" y1="71.60" x2="390" y2="71.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="66" y="75.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="74" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="66" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="74" y1="56" x2="74" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="74" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="232" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Cohort</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="9" style="font-size:9px" text-anchor="middle" transform="rotate(-90 14 95)">12-month</text>
+    <text id="p4-y-axis-title-2" class="axis-title" x="25" y="95" fill="#1f2328" font-size="9" style="font-size:9px" text-anchor="middle" transform="rotate(-90 25 95)">reporting rate (%)</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-2008-2013-anderson-2015-nejm" class="tick" x="153" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 153 148)">2008-2013 (Anderson 2015, NEJM)</text>
+      <text id="p4-xtick-2018-2019-devito-2020-lancet" class="tick" x="311" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 311 148)">2018-2019 (DeVito 2020, Lancet)</text>
+    </g>
+    <g id="p4-series-reported-within-12-months" class="series">
+      <rect id="p4-mark-reported-within-12-months-2008-2013-anderson-2015-nejm" class="bar" x="102.44" y="113.10" width="100.12" height="20.90" fill="#2563eb"/>
+      <rect id="p4-mark-reported-within-12-months-2018-2019-devito-2020-lancet" class="bar" x="260.44" y="70.04" width="100.12" height="63.96" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Same legal deadline (12 months post-completion); improvement follows</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">2017 enforcement rule, not a sponsor-mix change</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Figures come from independent academic studies of different trial cohorts and time windows, not one continuously-updated series - rates are not</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">perfectly comparable across panels. A widely-circulated 2025 figure of 73.7%/71.0%/25.5% industry/NIH/academic compliance could not be verified</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">(source site returned HTTP 403, is not an established outlet, and reads as possibly AI-generated) and is excluded.</text>
+  <g id="brand">
+  <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="619" fill="#6b7280" text-anchor="end">Prepared 2026-09-05</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:61851/a/347c6b46124835de62b4a6dd1150e7c7.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Somewhere between one-third and a bit over half of trials that are legally required to report results to ClinicalTrials.gov actually do so on time, and the gap is enormous by sponsor type. In the largest cross-sponsor study (TrialsTracker data, 2006-2015 completions), the overall disclosure rate was <strong>55%</strong>, but that blends <strong>74% for industry sponsors</strong> against only <strong>46% for non-industry sponsors</strong> (universities, government agencies, individual PIs) — industry reports roughly 1.6x as often. The gap is even starker for the legal 12-month deadline specifically: in a 2008-2013 cohort, only <strong>13.4%</strong> of trials met the 12-month deadline, rising to about <strong>41%</strong> in a 2018-2019 cohort studied after the 2017 FDAAA Final Rule added real enforcement teeth (fines, public tracking). Even after that improvement, <strong>1 in 3 trials in the 2018-2019 study still had not reported results at all</strong> by the time the study closed. Top pharmaceutical companies with public transparency commitments do best (top-50 companies: 76%; industry-association members: 77%), while academic/government sponsors lag well behind and, in some sub-analyses, worse than NIH itself.</p>
+</section>
+<section>
+<h2>What 'finishing and reporting' means, and why the numbers move around</h2>
+<p>Under Section 801 of the FDA Amendments Act (FDAAA, 2007) and its 2017 Final Rule, a defined subset of trials — mainly phase 2-4 interventional drug/device/biologic trials with FDA oversight — must post summary results to ClinicalTrials.gov within 12 months of their primary completion date, unless a certification or extension delays that deadline. 'Reporting' in the studies below means at least one primary outcome was actually posted to the registry, not merely that the trial is marked complete and not a journal publication (publication rates are a separate, generally even lower, statistic). Because different studies define the eligible population (all trials vs. only FDAAA-"applicable" trials), the completion window, and the reporting window (12 months vs. 5 years vs. "ever, as of the analysis date") differently, the headline percentage moves a lot depending on which of those three choices a given study makes — this is why the figures below range from 13% to 78% rather than converging on one number.</p>
+</section>
+<section>
+<h2>The core numbers</h2>
+<ul><li><strong>Anderson et al. 2015, NEJM (PMC4508873)</strong> — 13,327 "highly likely applicable" trials completed/terminated 2008-2013: only <strong>13.4%</strong> reported within the legal 12-month window; <strong>38.3%</strong> reported at any point within 5 years. A parallel check of trials NOT flagged as legally applicable found even lower rates (5.0% / 9.6%), confirming the legal requirement itself is doing real work, just not enough.</li><li><strong>DeVito, Bacon & Goldacre 2020, The Lancet</strong> — 4,209 trials required to report between March 2018 and September 2019, i.e. after the tougher 2017 Final Rule took effect: about <strong>41%</strong> reported within the 12-month deadline ("fewer than half"), and roughly <strong>one in three trials in the cohort had reported no results at all</strong> by the time the study closed. This is a large, real improvement over the 13.4% pre-rule figure — evidence that enforcement mechanics (public tracking, threat of fines) move sponsor behavior — but compliance is still a minority outcome even post-reform.</li><li><strong>Baronikova, Purvis, Southam et al. 2019, BMJ Evidence-Based Medicine (PMC6837245)</strong> — the most detailed sponsor breakdown found: using FDAAA TrialsTracker data on 29,377 eligible trials completed 2006-2015 (69 industry sponsors, 254 non-industry institutions), the mean disclosure rate was <strong>55% overall</strong>, split <strong>74% for industry</strong> vs. <strong>46% for non-industry</strong> sponsors. Restricting to the world's top-50 biopharmaceutical companies by sales, the average rose to <strong>76%</strong> (77% among companies that are EFPIA/PhRMA members with public transparency pledges, vs. 67% among non-members). Of all undisclosed trials in this dataset, 81% belonged to non-industry sponsors even though non-industry sponsors ran a larger share of trials overall — the non-reporting problem is disproportionately an academic/institutional one, not a Big Pharma one.</li><li><strong>FDAAA TrialsTracker (live tool, Bennett Institute, Oxford)</strong> — the tool that produces the above sponsor-level figures went offline for over a year (Feb 2024-March 2025) due to a ClinicalTrials.gov platform migration, and resumed regular updates in March 2025. A search-engine summary of the tracker (not independently verified by direct fetch, since the live page is JavaScript-rendered and did not return tabular data to a static fetch) cited roughly <strong>78%</strong> (20,039 of 25,691 trials) reporting within one year of primary completion as of April 2025 — notably higher than the 2018-2019 Lancet figure, consistent with continued improvement, but this specific number should be treated as provisional pending direct verification.</li></ul>
+</section>
+<section>
+<h2>Why sponsor type drives so much of the variation</h2>
+<p>The literature converges on a consistent explanation, not just a consistent number: large, EFPIA/PhRMA-member pharmaceutical companies face concentrated legal exposure (FDA can levy fines up to $12,000/day per overdue trial, though in practice it almost never has), reputational risk from public leaderboards like TrialsTracker, and since 2014 an industry-wide public pledge (the EFPIA/PhRMA joint principles) that 26 of the top 50 companies had adopted as of 2018. Non-industry sponsors — individual academic PIs, universities, and some government programs — are far more numerous (254 distinct sponsors vs. 69 industry sponsors in the Baronikova sample), each running fewer trials, with weaker institutional compliance infrastructure and no equivalent public pledge or brand-reputation incentive. Anderson et al. found NIH-funded and other-government/academic trials had far lower rates of certified reporting delay eligibility (i.e., aren't even exempted) yet still reported at much lower rates than industry. The FDA itself has been reported (Science/STAT, Jan 2020, not independently re-fetched here) as inconsistently enforcing the law even against its own NIH-funded trials.</p>
+</section>
+<section>
+<h2>What this connector could and could not verify directly</h2>
+<p>AskAmerica's own <code>health.clinical_trials</code> table (ClinicalTrials.gov studies, restricted to a last-update-post-date on/after 2020-01-01) carries <code>overall_status</code>, <code>funder_type</code>, and completion dates, but <strong>no results-reported / has-results field</strong> — confirmed by describing the table and by inspecting its columns directly. That means this specific question (reporting compliance) cannot be computed live from this connector's data; the volumes below are for context on how large each sponsor population is today, not a reporting rate: as of the current snapshot, industry sponsors have 33,958 completed interventional trials on file, non-industry/'OTHER' sponsors have 91,588, NIH has 1,580, and federal agencies have 1,200. This gap is disclosed here rather than papered over with a computed-looking number; the FDAAA-compliance percentages above all come from the peer-reviewed literature and the TrialsTracker project, not from an AskAmerica query.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4508873/">Anderson ML et al., &quot;Compliance with Results Reporting at ClinicalTrials.gov,&quot; N Engl J Med 2015;372:1031-1039</a> <span class="note">— 2008-2013 cohort, 13,327 trials; 13.4% reported within 12 months, 38.3% within 5 years</span></li>
+<li><a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(19)33220-9/abstract">DeVito NJ, Bacon S, Goldacre B, &quot;Compliance with legal requirement to report clinical trial results on ClinicalTrials.gov: a cohort study,&quot; The Lancet 2020;395:361-369</a> <span class="note">— 2018-2019 cohort, 4,209 trials post-2017 Final Rule; ~41% on-time, 1 in 3 unreported</span></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6837245/">Baronikova S, Purvis J, Southam E et al., &quot;Commitments by the biopharmaceutical industry to clinical trial transparency,&quot; BMJ Evidence-Based Medicine 2019;24(5):177-184</a> <span class="note">— TrialsTracker data 2006-2015, 29,377 trials, sponsor-level breakdown: industry 74%, non-industry 46%, top-50 pharma 76%</span></li>
+<li><a href="https://fdaaa.trialstracker.net">FDAAA TrialsTracker (Bennett Institute, University of Oxford)</a> <span class="note">— Live compliance tool; page is JavaScript-rendered, current league-table figures not independently verified by direct fetch</span></li>
+<li><a href="https://www.bennett.ox.ac.uk/blog/2025/04/the-fdaaa-trialstracker-is-back-online/">&quot;The FDAAA TrialsTracker is Back Online!&quot; — Bennett Institute blog, 7 Apr 2025</a> <span class="note">— Confirms tracker was offline Feb 2024-Mar 2025 due to ClinicalTrials.gov platform migration</span></li>
+<li>AskAmerica health.clinical_trials table <span class="note">— Confirmed via describe_table: no results-reported field exists in this table; used only for current sponsor-population context, not a reporting rate</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT funder_type, overall_status, COUNT(*) AS n FROM health.clinical_trials WHERE study_type='INTERVENTIONAL' GROUP BY funder_type, overall_status ORDER BY funder_type, n DESC</code></pre></details></li>
+<li><a href="https://publichealth.realclearjournals.org/research-articles/2025/09/sponsor-level-compliance-with-clinicaltrials-gov-reporting-requirements-a-comprehensive-analysis/">Excluded as unverifiable: &quot;Sponsor-Level Compliance with ClinicalTrials.gov Reporting Requirements&quot; (2025)</a> <span class="note">— Returned HTTP 403 on direct fetch; unfamiliar domain, not independently corroborated — its cited 73.7%/71.0%/25.5% industry/NIH/academic figures were excluded from this report per standard practice for unfetchable, non-peer-reviewed sources</span></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Reporting-rate figures are drawn from independent peer-reviewed studies covering different trial cohorts, years, and reporting windows (12-month legal deadline vs. 5-year vs. current snapshot) — they are directionally consistent but not a single continuous time series. AskAmerica's own clinical trials table lacks a results-reporting field, so this question was answered from the published compliance literature rather than computed from connector data.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
