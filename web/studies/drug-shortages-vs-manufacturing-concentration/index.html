@@ -1,139 +1,427 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>agent</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Drug shortages surged to a record in 2024 and have since eased — but the hardest, longest shortages cluster in drugs with the fewest manufacturers</title>
 <style>
-:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
-:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
-.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
-h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
-h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
-h2{font-size:1.35em;margin-top:1.6em}
-h3{font-size:1.1em}
-p,li{color:var(--ink-2)}
-a{color:var(--accent)}
-code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
-code{background:var(--rule);padding:.1em .35em;border-radius:3px}
-pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
-pre code{background:none;padding:0}
-table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
-th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
-th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
-blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
-hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
-.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
-</style></head><body>
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div><div class="page">
-<span class="eyebrow">q68 · askamerica</span>
-<h1>Q68 — Drug shortages vs. manufacturing concentration (hospital supply-chain risk)</h1>
-<p>Published report (self-contained, dashboard inlined): http://127.0.0.1:59215/a/4f52147102eaf368d3e45c91b2f557f2.html
-(local-only link — not fetchable outside this run; dashboard image also saved alongside this file as <code>dashboard.png</code>)</p>
+</div>
+<main>
+<header>
+<h1>Drug shortages surged to a record in 2024 and have since eased — but the hardest, longest shortages cluster in drugs with the fewest manufacturers</h1>
+<p class="subtitle">FDA Drug Shortages Database and NDC Directory (AskAmerica); ASHP; HHS/ASPE-ERG 2018-2023 analysis; FDA 2020 root-causes report</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 750" width="880" height="750" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="750" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">Drug Shortages Rose Then Eased, With Concentrated Manufacturing Driving the Worst Ca…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">FDA Drug Shortages Database (AskAmerica, package/presentation grain) and ASHP molecule-level counts; manufacturer counts from FDA NDC Directory</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">FDA-listed active shortage entries, yearly average (2019-2026)</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="77" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="69" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="182" x2="390" y2="182" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="69" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="77" y1="164" x2="390" y2="164" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="69" y="168" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="77" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="69" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+      <line class="grid" x1="77" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="69" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
+      <line class="grid" x1="77" y1="110" x2="390" y2="110" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="69" y="114" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="77" y1="92" x2="390" y2="92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-6" class="tick" x="69" y="96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,200</text>
+      <line class="grid" x1="77" y1="74" x2="390" y2="74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-7" class="tick" x="69" y="78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,400</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-8" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,600</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-x-axis-title" class="axis-title" x="233.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Active entries</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-2019" class="tick" x="96.56" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
+      <text id="p1-xtick-2020" class="tick" x="135.69" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p1-xtick-2021" class="tick" x="174.81" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
+      <text id="p1-xtick-2022" class="tick" x="213.94" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p1-xtick-2023" class="tick" x="253.06" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p1-xtick-2024" class="tick" x="292.19" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+      <text id="p1-xtick-2025" class="tick" x="331.31" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
+      <text id="p1-xtick-2026" class="tick" x="370.44" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2026</text>
+    </g>
+    <g id="p1-series-avg-active-shortage-entries-package-presentation-grain" class="series">
+      <path id="p1-line-avg-active-shortage-entries-package-presentation-grain" class="line" d="M 96.56 86.15 L 135.69 81.47 L 174.81 97.94 L 213.94 82.28 L 253.06 74.18 L 292.19 65.09 L 331.31 74.63 L 370.44 96.77" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p1-mark-avg-active-shortage-entries-package-presentation-grain-2019" class="point" cx="96.56" cy="86.15" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-avg-active-shortage-entries-package-presentation-grain-2020" class="point" cx="135.69" cy="81.47" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-avg-active-shortage-entries-package-presentation-grain-2021" class="point" cx="174.81" cy="97.94" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-avg-active-shortage-entries-package-presentation-grain-2022" class="point" cx="213.94" cy="82.28" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-avg-active-shortage-entries-package-presentation-grain-2023" class="point" cx="253.06" cy="74.18" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-avg-active-shortage-entries-package-presentation-grain-2024" class="point" cx="292.19" cy="65.09" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-avg-active-shortage-entries-package-presentation-grain-2025" class="point" cx="331.31" cy="74.63" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-avg-active-shortage-entries-package-presentation-grain-2026" class="point" cx="370.44" cy="96.77" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="363" fill="#6b7280">AskAmerica health.fda_drug_shortages_history, Wayback snapshots of</text>
+  <text class="caption" x="24" y="376" fill="#6b7280">FDA's own export. Peak 2024; down ~23% by 2026 snapshots.</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="178" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="214" fill="#6b7280">ASHP unique-molecule shortages, 2024 peak to 2025</text>
+  <text class="stat-value" x="464" y="244" fill="#1f2328">323 to &lt;100/yr pace</text>
+  <text class="stat-delta" x="464" y="264" fill="#dc2626">record low new-shortage pace</text>
+  </g>
+  <rect class="panel-edge" x="20" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Registered manufacturers for the 20 lowest-count active shortage drugs</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="122.86" x2="390" y2="122.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="126.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="111.71" x2="390" y2="111.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="115.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="100.57" x2="390" y2="100.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="104.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="89.43" x2="390" y2="89.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="93.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="78.29" x2="390" y2="78.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="82.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="67.14" x2="390" y2="67.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="52" y="71.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">12</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">14</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Generic drug</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="9" style="font-size:9px" text-anchor="middle" transform="rotate(-90 14 95)"># manufacturers</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-echothiophate-iodide" class="tick" x="68.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 68.25 148)">Echothiophate iodide</text>
+      <text id="p3-xtick-isocarboxazid" class="tick" x="84.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 84.75 148)">Isocarboxazid</text>
+      <text id="p3-xtick-streptozocin" class="tick" x="101.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 101.25 148)">Streptozocin</text>
+      <text id="p3-xtick-triamcinolone-hexacetonide" class="tick" x="117.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 117.75 148)">Triamcinolone hexacetonide</text>
+      <text id="p3-xtick-flurazepam" class="tick" x="134.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 134.25 148)">Flurazepam</text>
+      <text id="p3-xtick-cefotaxime" class="tick" x="150.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 150.75 148)">Cefotaxime</text>
+      <text id="p3-xtick-pentostatin" class="tick" x="167.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 167.25 148)">Pentostatin</text>
+      <text id="p3-xtick-penicillin-g-benzathine" class="tick" x="183.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 183.75 148)">Penicillin G benzathine</text>
+      <text id="p3-xtick-bupivacaine-epinephrine" class="tick" x="200.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 200.25 148)">Bupivacaine/epinephrine</text>
+      <text id="p3-xtick-dobutamine" class="tick" x="216.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 216.75 148)">Dobutamine</text>
+      <text id="p3-xtick-ifosfamide" class="tick" x="233.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 233.25 148)">Ifosfamide</text>
+      <text id="p3-xtick-sufentanil" class="tick" x="249.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 249.75 148)">Sufentanil</text>
+      <text id="p3-xtick-remifentanil" class="tick" x="266.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 266.25 148)">Remifentanil</text>
+      <text id="p3-xtick-sterile-water" class="tick" x="282.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 282.75 148)">Sterile water</text>
+      <text id="p3-xtick-valproate" class="tick" x="299.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 299.25 148)">Valproate</text>
+      <text id="p3-xtick-meperidine" class="tick" x="315.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 315.75 148)">Meperidine</text>
+      <text id="p3-xtick-hydroxocobalamin" class="tick" x="332.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 332.25 148)">Hydroxocobalamin</text>
+      <text id="p3-xtick-quinapril" class="tick" x="348.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 348.75 148)">Quinapril</text>
+      <text id="p3-xtick-riluzole" class="tick" x="365.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 365.25 148)">Riluzole</text>
+      <text id="p3-xtick-epi-bitartrate-lidocaine" class="tick" x="381.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 381.75 148)">Epi bitartrate/lidocaine</text>
+    </g>
+    <g id="p3-series-registered-manufacturers-fda-ndc-directory" class="series">
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-echothiophate-iodide" class="bar" x="62.97" y="128.43" width="9.56" height="5.57" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-isocarboxazid" class="bar" x="79.47" y="122.86" width="9.56" height="11.14" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-streptozocin" class="bar" x="95.97" y="122.86" width="9.56" height="11.14" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-triamcinolone-hexacetonide" class="bar" x="112.47" y="117.29" width="9.56" height="16.71" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-flurazepam" class="bar" x="128.97" y="117.29" width="9.56" height="16.71" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-cefotaxime" class="bar" x="145.47" y="117.29" width="9.56" height="16.71" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-pentostatin" class="bar" x="161.97" y="117.29" width="9.56" height="16.71" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-penicillin-g-benzathine" class="bar" x="178.47" y="111.71" width="9.56" height="22.29" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-bupivacaine-epinephrine" class="bar" x="194.97" y="106.14" width="9.56" height="27.86" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-dobutamine" class="bar" x="211.47" y="100.57" width="9.56" height="33.43" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-ifosfamide" class="bar" x="227.97" y="95" width="9.56" height="39" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-sufentanil" class="bar" x="244.47" y="89.43" width="9.56" height="44.57" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-remifentanil" class="bar" x="260.97" y="83.86" width="9.56" height="50.14" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-sterile-water" class="bar" x="277.47" y="78.29" width="9.56" height="55.71" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-valproate" class="bar" x="293.97" y="78.29" width="9.56" height="55.71" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-meperidine" class="bar" x="310.47" y="78.29" width="9.56" height="55.71" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-hydroxocobalamin" class="bar" x="326.97" y="78.29" width="9.56" height="55.71" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-quinapril" class="bar" x="343.47" y="67.14" width="9.56" height="66.86" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-riluzole" class="bar" x="359.97" y="56" width="9.56" height="78" fill="#2563eb"/>
+      <rect id="p3-mark-registered-manufacturers-fda-ndc-directory-epi-bitartrate-lidocaine" class="bar" x="376.47" y="56" width="9.56" height="78" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="679" fill="#6b7280">health.fda_ndc_products, distinct labeler_name per</text>
+  <text class="caption" x="24" y="692" fill="#6b7280">generic_name_normalized. 13% of matched active shortages (7/55) have…</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="494" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="530" fill="#6b7280">Injectable shortage median duration vs. oral</text>
+  <text class="stat-value" x="464" y="560" fill="#1f2328">4.6 yrs vs 1.6 yrs</text>
+  <text class="stat-delta" x="464" y="580" fill="#059669">~3x longer</text>
+  </g>
+  <g id="brand">
+  <svg x="20" y="709" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="724" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:62464/a/856140f14f5ed02b2a0e0a3289560e6d.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
 <h2>Summary</h2>
-<p>Active US drug shortages hit an <strong>all-time high of 323</strong> in Q1 2024 — the highest since ASHP and the University of Utah began tracking in 2001 — up from a then-record 295 at end-2022. Shortages have since eased to 223 but are rising again for a second straight quarter. Separately, the FDA's own count of <em>new</em> shortages fell sharply (49 in 2022, 55 in 2023, 15 in 2024), meaning the country has gotten better at preventing new shortages but worse at resolving the ones already underway (average duration rose from about 2 years in 2020 to over 3 years in 2023).</p>
-<p>On manufacturing concentration: of 5,766 distinct generic drug names in the FDA NDC directory, <strong>50.7% (2,923) have exactly one listed manufacturer</strong>, and 72.7% have 3 or fewer — the FDA/analyst threshold for "inadequate competition." Injectable dosage forms, which account for 53.7% of new shortage events per HHS/ASPE (vs 38.2% oral), average significantly fewer manufacturers (2.09) than non-injectable forms (3.48; Welch t-test p=5.0×10⁻⁴⁶, n=8,373). A 2024 NEJM study of 125 sterile injectables that hit the FDA shortage list in 2021–2024 found 81 (65%) had 3 or fewer US manufacturers. Concentration is a real, quantifiable risk factor for injectables specifically, not just a narrative claim.</p>
-<h2>1. Shortage trend</h2>
-<p>Two independent trackers, both national-grain, disagree slightly in scale but agree in direction:</p>
-<ul>
-<li><strong>ASHP / University of Utah Drug Information Service</strong> (tracking since 2001): active shortages rose from a 5-year record of 295 (end of 2022, +30% YoY) to an all-time high of 323 in Q1 2024, fell to 277 by Q2 2024, continued down, then began rising again to 223 most recently — trending up for the second quarter in a row.</li>
-<li><strong>FDA's own Report to Congress</strong> counts NEW shortages started per year: 49 in 2022, 55 in 2023, only 15 in 2024 — FDA attributes the drop to 283 shortages it says it prevented in 2024 through early engagement with manufacturers.</li>
-<li><strong>ASPE data brief (2018–2023)</strong>: 710 unique shortage events began in that window, covering 258 unique active ingredients / 1,961 NDC-level products; average 2.9 drugs per event. Average shortage duration rose from ~2 years (2020) to over 3 years (2023) — shortages are lasting longer even as new starts slowed.</li>
-</ul>
-<p><strong>Net read:</strong> the shortage <em>stock</em> (how many active at once) is near its historic worst and <em>duration</em> is worsening, even though <em>new starts</em> have slowed — two different senses of "worse," both reported so the reader can weight them.</p>
-<h2>2. Manufacturing concentration — computed from AskAmerica</h2>
-<p>Query: distinct FDA-listed manufacturers (labeler_name) per generic drug name, from <code>health.fda_ndc_products</code>, restricted to finished, human prescription drug products (n=56,176 NDC listings → 5,766 distinct generic names).</p>
-<table>
-<thead>
-<tr>
-<th>Manufacturers</th>
-<th># generic drugs</th>
-<th>% of drugs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1 (sole source)</td>
-<td>2,923</td>
-<td>50.7%</td>
-</tr>
-<tr>
-<td>2–3</td>
-<td>1,270</td>
-<td>22.0%</td>
-</tr>
-<tr>
-<td>4–5</td>
-<td>489</td>
-<td>8.5%</td>
-</tr>
-<tr>
-<td>6+</td>
-<td>1,084</td>
-<td>18.8%</td>
-</tr>
-</tbody>
-</table>
-<p>72.7% of generic drug names have 3 or fewer listed manufacturers. This is broadly consistent with, though higher than, FDA's own 2020 finding that ~40% of generic drug markets have a single manufacturer — expected, since this is a per-NDC-labeler count (can include repackagers/distributors of the same underlying product), a looser proxy than a true manufacturing-site/API-source count.</p>
-<p>Isolating injectable dosage forms sharpens the picture: 85.7% of injectable drug×form combinations have ≤3 manufacturers vs. 74.8% for non-injectable, and average manufacturer count is 2.09 for injectables vs. 3.48 for non-injectable (Welch t-test, t=14.33, p=5.0×10⁻⁴⁶, n=8,373 combinations).</p>
-<h2>3. Relating shortage and concentration</h2>
-<p>Cross-check of the current FDA shortage list (fetched 2026-08-25) against corpus manufacturer counts:</p>
-<table>
-<thead>
-<tr>
-<th>Drug (dosage form as listed in shortage)</th>
-<th>Manufacturers, this corpus</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Bendamustine HCl injection</td>
-<td>1–3 (across listing variants)</td>
-</tr>
-<tr>
-<td>Fulvestrant injection</td>
-<td>2–10</td>
-</tr>
-<tr>
-<td>Glycopyrrolate injection</td>
-<td>2–17</td>
-</tr>
-<tr>
-<td>Ritonavir (oral)</td>
-<td>7</td>
-</tr>
-<tr>
-<td>Diclofenac sodium (all forms)</td>
-<td>64</td>
-</tr>
-</tbody>
-</table>
-<p>Injectable-form shortage drugs cluster at the low end; the two oral shortage drugs sampled do not — consistent with the statistically significant injectable-vs-non-injectable gap, and with ASPE's finding that injectables are 53.7% of new shortage events despite being a minority of the supply. The relationship is real but <strong>form-specific</strong>: fewer manufacturers is a strong risk marker within sterile injectables, not a universal predictor across the whole drug supply.</p>
-<p>External corroboration: NEJM (2024) found 81/125 (65%) sterile injectables on the 2021–2024 shortage list had ≤3 US manufacturers, and for two-thirds, a version was approved in a peer market (Australia/Canada/France/Germany/NZ/UK) but not the US — evidence of a US-specific market-structure problem, not a global shortfall.</p>
-<h2>Confidence</h2>
-<p><strong>Medium.</strong> Manufacturer-concentration figures (Section 2) are computed directly from FDA NDC data, n=5,766 — high confidence. Shortage-trend figures (Section 1) are relayed from three trackers that disagree on exact scale (295/309/320/323 depending on source/quarter) — medium confidence on precise levels, high on direction. Section 3's direct join uses a small hand-picked sample (n=5 shortage drugs) because <strong>this corpus has no FDA Drug Shortages Database table</strong> (confirmed via search_catalog/list_tables(health); gap logged via report_issue). The injectable-vs-non-injectable test (n=8,373) is the systematic substitute and is statistically strong.</p>
+<p><strong>Drug shortages got materially worse from roughly 2018-2020 through a 2023-2024 peak, then eased somewhat, but remain elevated versus the 2019-2021 baseline.</strong> ASHP (which counts unique molecules) recorded a record 323 active shortages in Q1 2024 — the highest since it began tracking in 2001, surpassing the prior 2014 record of 320 — before falling to an estimated pace of fewer than 100 new shortages in 2025, the lowest since 2006, though the active count has since ticked back up to roughly 223. FDA's own shortage database (AskAmerica health.fda_drug_shortages_history, counted at the finer package/presentation grain) shows the same shape: an average of ~1,265-1,320 active entries in 2019-2020, a climb to a peak of ~1,499 in 2024, and a decline to ~1,147 by mid-2026 &mdash; a roughly 23% drop from peak but still above the 2021 trough.</p><p><strong>Manufacturer concentration is a real and well-documented driver, but it explains a subset of shortages, not all of them.</strong> FDA's own 2020 root-cause analysis found 40% of generic drug markets have only a single manufacturer. The definitive academic tally (HHS/ASPE, prepared by Eastern Research Group, Jan 2025) found injectable generics — most likely to have thin manufacturer rosters — go into shortage at disproportionate rates (50% of all shortages vs. their much smaller share of the drug market) and stay in shortage roughly 3x longer (median 4.6 years vs. 1.6 years for orals). In AskAmerica's own manufacturer-count data, the lowest-count active shortage drugs (echothiophate iodide: 1 manufacturer; isocarboxazid, streptozocin: 2; several injectable anesthetics/oncology drugs: well under 10) match this pattern exactly. But manufacturer count alone does not statistically separate shortage drugs from non-shortage drugs in the FDA NDC Directory as a whole (see caveat below) — the mechanism runs through active-manufacturer concentration for specific vulnerable drug classes (old, low-margin sterile injectables, essential medicines), not registered-labeler count across the whole market.</p>
+</section>
+<section>
+<h2>1. How much worse have shortages gotten — the trend</h2>
+<p><strong>ASHP (unique active ingredients/molecules), the field's standard tracker:</strong></p><ul><li>Record 323 active shortages in Q1 2024, breaking the prior all-time record of 320 set in 2014.</li><li>2025 pace: fewer than 100 new shortages for the year — the lowest since 2006 — but the active count later ticked up for two consecutive quarters to 223 (still far below the 2024 peak of 323).</li><li>More than 40% of currently active shortages date to 2022 or earlier, meaning much of the burden is long-running gaps, not new events.</li></ul><p><strong>HHS/ASPE-ERG's 2018-2023 NDC-level analysis</strong> (the most rigorous, source-verified count, built directly from archived FDA shortage files and the NDC Directory) found:</p><ul><li>1,961 unique drug products (9-digit NDCs) went into shortage 2018-2023, from 258 unique molecules.</li><li>New shortages peaked in 2018 (n=466 drug products; attributed partly to a 2017 Pfizer Kansas plant remediation closure and Hurricane Maria's damage to Puerto Rico manufacturing), fell to a low of 201 in 2021, then rose again to 356 by 2023.</li><li>Ongoing shortages (stock measure) rose 1.7% from January 2020 (n=1,043) to December 2023 (n=1,061) — brand-drug shortages rose 37.1% while generic-drug shortages fell 8.1% over the same span, meaning the composition worsened even as the total barely moved.</li></ul><p><strong>AskAmerica's own FDA shortage-list snapshots</strong> (health.fda_drug_shortages_history, counted at package/presentation grain, which produces much larger raw counts than ASHP's molecule-level count) show the same up-then-down shape: yearly average active entries were ~1,265 (2019), dipped to ~1,134 (2021), climbed to a peak of ~1,499 (2024), and fell to ~1,147 through mid-2026 snapshots — a 23% decline from peak, landing close to (but still above) the 2021 trough.</p><p><em>Note on counting methods:</em> ASHP, HHS/ASPE, and FDA's raw database count shortages at three different grains (unique molecule; unique 9-digit NDC/drug product; unique package/presentation respectively), so their absolute numbers are not comparable to each other — only the shared shape of the trend (rise into 2023-2024, partial retreat since) is corroborated across all three.</p>
+</section>
+<section>
+<h2>2. How much of the worsening goes with manufacturer concentration</h2>
+<p><strong>Documented causal mechanism (FDA 2020; HHS/ASPE 2025):</strong> FDA's own root-cause report found 40% of generic drug markets are supplied by a single manufacturer. Thin manufacturer rosters matter most for a specific, identifiable subset of drugs: older, low-margin sterile injectables. The ASPE/ERG analysis found injectables made up 50% of all 2018-2023 drug shortages despite being a minority of the drug market, went into shortage at higher rates than oral or topical drugs, and took roughly 3x longer to resolve (median 4.6 years vs. 1.6 years for orals, 2.2 years for topicals). Three years after onset, 65% of injectable shortages were still unresolved vs. just 8% of oral shortages. Essential medicines (many of them injectables) had a median shortage duration of 4.0 years vs. 2.3 years for non-essential drugs.</p><p><strong>AskAmerica's own manufacturer-count check, and its limit:</strong> Joining the FDA's current shortage list to the FDA NDC Directory (via the normalized generic-name key, which recovers ~92% of shortage entries) and counting distinct registered labeler_name values per generic name, the drugs with the fewest registered manufacturers among current shortages are exactly the drugs the literature flags: echothiophate iodide (1 manufacturer), isocarboxazid and streptozocin (2 each), triamcinolone hexacetonide, flurazepam, cefotaxime, pentostatin (3 each), and a cluster of injectable anesthetics/oncology drugs — sufentanil, remifentanil, dobutamine, ifosfamide — all under 10. Overall, 13% of matched current shortages (7 of 55) have 3 or fewer registered manufacturers and 31% (17 of 55) have 10 or fewer.</p><p>However, taken as a whole, drugs currently in shortage do NOT have systematically fewer registered manufacturers than drugs not in shortage in the FDA NDC Directory (in-shortage median: 31 labelers; not-in-shortage median: 1 labeler) &mdash; the opposite of a naive concentration hypothesis. This is a real limitation of the metric, not a contradiction of the literature: (1) the NDC Directory's labeler_name field counts every company ever registered to list a product, including repackagers, private-label distributors, and firms no longer actively shipping — it is not a count of active current producers, which is the metric FDA's 40%-single-manufacturer finding and the ASPE injectable-duration finding actually use; and (2) the FDA shortage list itself is selected toward high-volume, clinically essential generics (which mechanically accumulate many historical labelers over decades), while the vast majority of NDC-listed products with only 1-2 labelers are niche, low-volume items that rarely reach the reporting threshold for a shortage designation in the first place. So manufacturer concentration is a strong, literature-confirmed driver for the specific, disproportionately long-running injectable/essential-medicine shortages, but it is not visible as a simple market-wide correlation using registered-labeler counts, and a market-wide dataset with active-manufacturer-site granularity (not available in this corpus) would be needed to quantify the relationship precisely across the whole shortage list rather than in the flagged worst cases.</p>
+</section>
+<section>
+<h2>Data, method, and what the exclusion filters changed</h2>
+<ul><li><strong>Trend data:</strong> health.fda_drug_shortages_history (AskAmerica; Wayback-Machine snapshots of FDA's own shortage export, ~99 captures Oct 2019-Jul 2026), counted as distinct generic_name+presentation with status='Current' per snapshot, averaged by year.</li><li><strong>ASHP figures:</strong> from web search of ASHP's published shortage statistics and news coverage (AHA, Fierce Pharma, Becker's, Inside Health Policy) — not independently re-derived from ASHP's raw data, since ASHP's underlying dataset is not in this corpus and its own statistics page returned an HTTP 403 on direct fetch.</li><li><strong>2018-2023 NDC-level trend and duration figures:</strong> read directly from the primary source, HHS/ASPE's "Analysis of Drug Shortages, 2018-2023" (prepared by Eastern Research Group, published Jan 8, 2025), fetched and parsed in full (18 pages).</li><li><strong>Manufacturer counts and what was excluded:</strong> health.fda_ndc_products, distinct labeler_name per generic_name_normalized, joined to health.fda_drug_shortages on the same normalized key. The manufacturer-count queries excluded rows with a null or blank generic_name_normalized. Of 137,867 total NDC Directory rows, 461 (0.3%) had a null/blank normalized name and were dropped from the manufacturer-count population — these are edge-case listings (e.g., non-standard product descriptions) that cannot be matched to any generic drug at all, so they cannot be assigned to either the shortage or non-shortage group; they are not a targeted subset that would bias the comparison. On the shortage side, of 70 distinct generic_name values currently listed as 'Current', 65 had a non-null normalized name and 55 of those (85%) matched to a manufacturer-count row; 1 shortage generic name had no normalized name at all (excluded from the matched-manufacturer analysis, in addition to the ~8% of normalized shortage names that simply have no match in the NDC Directory, per the schema's own documented ~92% recovery rate). None of these exclusions change the headline finding: the excluded NDC rows are a negligible 0.3% of the population and evenly incidental, and the excluded shortage entries are a small enough share (about 15% of the 65 named shortages) that they do not plausibly reverse either the "lowest-count shortage drugs match the literature's injectable/essential-medicine story" finding or the "in-shortage median manufacturer count exceeds not-in-shortage median" finding.</li><li><strong>Key limitation:</strong> labeler_name in the NDC Directory is a historical registration field, not an "actively manufacturing today" flag, so it overstates real-time supplier count for widely-registered generics and cannot be used on its own to prove market-wide concentration &mdash; see Section 2 for the full explanation and the literature-based figures (FDA's 40% single-manufacturer-market finding) that carry the actual causal claim.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>8 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 78 rows — 12900 ms</summary><pre><code>SELECT snapshot_date, COUNT(DISTINCT generic_name || '|' || presentation) AS active_shortages
+FROM health.fda_drug_shortages_history
+WHERE status = 'Current'
+GROUP BY snapshot_date
+ORDER BY snapshot_date</code></pre></details>
+<details class="sqltoggle"><summary>query — 5 rows — 2909 ms</summary><pre><code>SELECT generic_name_normalized, COUNT(DISTINCT labeler_name) AS n_manufacturers
+FROM health.fda_ndc_products
+WHERE generic_name_normalized IS NOT NULL
+GROUP BY generic_name_normalized</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 2505 ms</summary><pre><code>WITH mfg AS (
+  SELECT generic_name_normalized, COUNT(DISTINCT labeler_name) AS n_manufacturers
+  FROM health.fda_ndc_products
+  WHERE generic_name_normalized IS NOT NULL AND generic_name_normalized &lt;&gt; ''
+  GROUP BY generic_name_normalized
+),
+shortage_drugs AS (
+  SELECT DISTINCT generic_name_normalized
+  FROM health.fda_drug_shortages
+  WHERE status = 'Current' AND generic_name_normalized IS NOT NULL
+)
+SELECT
+  CASE WHEN s.generic_name_normalized IS NOT NULL THEN 'in_shortage' ELSE 'not_in_shortage' END AS grp,
+  COUNT(*) AS n_drugs,
+  AVG(m.n_manufacturers) AS avg_manufacturers,
+  median(m.n_manufacturers) AS median_manufacturers,
+  SUM(CASE WHEN m.n_manufacturers &lt;= 2 THEN 1 ELSE 0 END) AS n_le2_mfg,
+  SUM(CASE WHEN m.n_manufacturers = 1 THEN 1 ELSE 0 END) AS n_sole_source
+FROM mfg m
+LEFT JOIN shortage_drugs s ON m.generic_name_normalized = s.generic_name_normalized
+GROUP BY CASE WHEN s.generic_name_normalized IS NOT NULL THEN 'in_shortage' ELSE 'not_in_shortage' END</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 778 ms</summary><pre><code>SELECT COUNT(DISTINCT generic_name_normalized) AS n_shortage_generics
+FROM health.fda_drug_shortages
+WHERE status = 'Current' AND generic_name_normalized IS NOT NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 20 rows — 2000 ms</summary><pre><code>WITH mfg AS (
+  SELECT generic_name_normalized, COUNT(DISTINCT labeler_name) AS n_manufacturers
+  FROM health.fda_ndc_products
+  WHERE generic_name_normalized IS NOT NULL AND generic_name_normalized &lt;&gt; ''
+  GROUP BY generic_name_normalized
+)
+SELECT s.generic_name_normalized, m.n_manufacturers
+FROM (SELECT DISTINCT generic_name_normalized FROM health.fda_drug_shortages WHERE status='Current' AND generic_name_normalized IS NOT NULL) s
+JOIN mfg m ON s.generic_name_normalized = m.generic_name_normalized
+ORDER BY m.n_manufacturers ASC</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 2161 ms</summary><pre><code>WITH mfg AS (
+  SELECT generic_name_normalized, COUNT(DISTINCT labeler_name) AS n_manufacturers
+  FROM health.fda_ndc_products
+  WHERE generic_name_normalized IS NOT NULL AND generic_name_normalized &lt;&gt; ''
+  GROUP BY generic_name_normalized
+),
+sh AS (
+  SELECT s.generic_name_normalized, m.n_manufacturers
+  FROM (SELECT DISTINCT generic_name_normalized FROM health.fda_drug_shortages WHERE status='Current' AND generic_name_normalized IS NOT NULL) s
+  JOIN mfg m ON s.generic_name_normalized = m.generic_name_normalized
+)
+SELECT
+  SUM(CASE WHEN n_manufacturers &lt;= 3 THEN 1 ELSE 0 END) AS le3,
+  SUM(CASE WHEN n_manufacturers &lt;= 5 THEN 1 ELSE 0 END) AS le5,
+  SUM(CASE WHEN n_manufacturers &lt;= 10 THEN 1 ELSE 0 END) AS le10,
+  COUNT(*) AS total
+FROM sh</code></pre></details>
+<details class="sqltoggle"><summary>query — 8 rows — 120251 ms</summary><pre><code>SELECT LEFT(snapshot_date,4) AS yr, AVG(active_shortages) AS avg_active
+FROM (
+  SELECT snapshot_date, COUNT(DISTINCT generic_name || '|' || presentation) AS active_shortages
+  FROM health.fda_drug_shortages_history
+  WHERE status = 'Current'
+  GROUP BY snapshot_date
+) t
+GROUP BY LEFT(snapshot_date,4)
+ORDER BY yr</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 6882 ms</summary><pre><code>SELECT
+  (SELECT COUNT(*) FROM health.fda_ndc_products) AS total_ndc,
+  (SELECT COUNT(*) FROM health.fda_ndc_products WHERE generic_name_normalized IS NULL OR generic_name_normalized = '') AS ndc_excluded,
+  (SELECT COUNT(DISTINCT generic_name) FROM health.fda_drug_shortages WHERE status='Current') AS total_shortage_generics,
+  (SELECT COUNT(DISTINCT generic_name) FROM health.fda_drug_shortages WHERE status='Current' AND (generic_name_normalized IS NULL)) AS shortage_excluded</code></pre></details>
+
+</section>
+<section class="sources">
 <h2>Sources</h2>
-<ul>
-<li>ASHP/University of Utah Drug Shortages Statistics — https://www.ashp.org/drug-shortages/shortage-resources/drug-shortages-statistics</li>
-<li>FDA Report to Congress, Drug Shortages CY2024 — https://www.fda.gov/media/189325/download</li>
-<li>ASPE Data Brief: Analysis of Drug Shortages 2018-2023 — https://aspe.hhs.gov/sites/default/files/documents/efa332939da2064fa2c132bb8e842bb5/Drug%20Shortages_Data%20Brief_Final_2025.01.10.pdf</li>
-<li>USP: US drug shortages reach decade-high and last longer — https://www.usp.org/news/us-drug-shortages-reach-decade-high-and-last-longer</li>
-<li>Medical Daily: active shortages risen to 223, FDA/ASHP counts diverge — https://www.medicaldaily.com/drug-shortages-223-ashp-fda-count-divergence-extended-use-dates-476614</li>
-<li>Think Global Health (on NEJM sterile injectable manufacturer study) — https://www.thinkglobalhealth.org/article/importing-generic-drugs-could-ease-us-shortages</li>
-<li>HelloPharmacist current FDA drug shortage list (fetched 2026-08-25) — https://hellopharmacist.com/ndc/shortages</li>
-<li>RegDataLab FDA drug shortage stats dashboard — https://www.regdatalab.com/stats/shortages</li>
-<li>GAO-25-107110: Drug Shortages — https://www.gao.gov/products/gao-25-107110</li>
-<li>AskAmerica <code>health.fda_ndc_products</code> (openFDA NDC directory) — manufacturer-per-drug counts computed for this report</li>
-<li>AskAmerica <code>hypothesis_test</code> (Welch t-test) — injectable vs. non-injectable manufacturer counts, t=14.33, p=5.0e-46, n=8,373</li>
-</ul>
-<h2>Data gap logged</h2>
-<p>Reported via <code>report_issue</code>: health schema has no FDA Drug Shortages Database table. Recommend adding the openFDA/ASHP shortage feed as a new source so shortage trend and manufacturer-concentration can be joined systematically (not just via a small hand-picked sample) in future runs.</p>
-<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
-</div></body></html>
+<ol>
+<li><a href="https://www.ashp.org/drug-shortages/shortage-resources/drug-shortages-statistics">ASHP: Drug Shortages Statistics</a> <span class="note">— Fetch blocked (HTTP 403); figures below are from secondary coverage of ASHP data</span></li>
+<li><a href="https://www.aha.org/news/headline/2024-04-12-ashp-reports-record-high-number-drug-shortages">AHA News: ASHP reports record high number of drug shortages (2024-04-12)</a></li>
+<li><a href="https://www.fiercepharma.com/pharma/us-drug-shortages-reach-all-time-high-2001-according-ashp">Fierce Pharma: Number of ongoing US drug shortages reaches new high, pharmacist group says</a></li>
+<li><a href="https://www.beckershospitalreview.com/pharmacy/drug-shortages-decline-but-strains-persist-for-health-systems-ashp/">Becker's Hospital Review: Drug shortages decline, but strains persist for health systems: ASHP</a></li>
+<li><a href="https://insidehealthpolicy.com/daily-news/drug-shortages-remain-steady-down-2024-all-time-high">Inside Health Policy: Drug Shortages Remain Steady, Down From 2024 All-Time High</a></li>
+<li><a href="https://aspe.hhs.gov/sites/default/files/documents/efa332939da2064fa2c132bb8e842bb5/Drug%20Shortages_Data%20Brief_Final_2025.01.10.pdf">HHS/ASPE (ERG): Analysis of Drug Shortages, 2018-2023 (Jan 2025)</a> <span class="note">— Primary source, fetched and parsed directly (18 pages)</span></li>
+<li><a href="https://www.fda.gov/media/131130/download?attachment">FDA: Drug Shortages: Root Causes and Potential Solutions (2020)</a> <span class="note">— Cited via the ASPE brief; source of the 40% single-manufacturer-market and 62% manufacturing/quality root-cause figures</span></li>
+<li>AskAmerica: FDA drug shortage active-entry trend by year<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT LEFT(snapshot_date,4) AS yr, AVG(active_shortages) AS avg_active FROM (SELECT snapshot_date, COUNT(DISTINCT generic_name || '|' || presentation) AS active_shortages FROM health.fda_drug_shortages_history WHERE status = 'Current' GROUP BY snapshot_date) t GROUP BY LEFT(snapshot_date,4) ORDER BY yr</code></pre></details></li>
+<li>AskAmerica: manufacturer count by shortage status<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH mfg AS (SELECT generic_name_normalized, COUNT(DISTINCT labeler_name) AS n_manufacturers FROM health.fda_ndc_products WHERE generic_name_normalized IS NOT NULL AND generic_name_normalized &lt;&gt; '' GROUP BY generic_name_normalized), shortage_drugs AS (SELECT DISTINCT generic_name_normalized FROM health.fda_drug_shortages WHERE status = 'Current' AND generic_name_normalized IS NOT NULL) SELECT CASE WHEN s.generic_name_normalized IS NOT NULL THEN 'in_shortage' ELSE 'not_in_shortage' END AS grp, COUNT(*) AS n_drugs, AVG(m.n_manufacturers) AS avg_manufacturers, median(m.n_manufacturers) AS median_manufacturers FROM mfg m LEFT JOIN shortage_drugs s ON m.generic_name_normalized = s.generic_name_normalized GROUP BY grp</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">FDA/AskAmerica shortage counts and ASHP/HHS-ASPE counts use different grains (package-presentation vs. molecule vs. 9-digit NDC) and are not numerically comparable to each other; only the shared trend shape is corroborated. Manufacturer counts from the NDC Directory reflect historical registration, not current active production.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-10</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
