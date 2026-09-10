@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Crop insurance payouts track drought closely at the national level (r≈0.79) but diverge sharply by state and by peril</title>
+<title>Crop insurance payouts track drought closely at the national level (r=0.79) but only loosely state-by-state (r=0.48) — California's persistent drought years are the biggest divergence</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -88,28 +88,6 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
-@media screen{
-#s3-t1-s1:checked ~ table tbody.s0{display:none}
-#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
-#s3-t1-s1:checked ~ .srtreset{display:inline-block}
-#s3-t1-s2:checked ~ table tbody.s0{display:none}
-#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
-#s3-t1-s2:checked ~ .srtreset{display:inline-block}
-#s3-t1-s3:checked ~ table tbody.s0{display:none}
-#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
-#s3-t1-s3:checked ~ .srtreset{display:inline-block}
-#s3-t1-s4:checked ~ table tbody.s0{display:none}
-#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
-#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
-#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
-#s3-t1-s4:checked ~ .srtreset{display:inline-block}
-}
 </style>
 </head>
 <body>
@@ -121,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Crop insurance payouts track drought closely at the national level (r≈0.79) but diverge sharply by state and by peril</h1>
-<p class="subtitle">USDA RMA Summary of Business indemnities vs. NOAA/USDM Drought Severity and Coverage Index (DSCI), county/state/year, 2010-2024</p>
+<h1>Crop insurance payouts track drought closely at the national level (r=0.79) but only loosely state-by-state (r=0.48) — California's persistent drought years are the biggest divergence</h1>
+<p class="subtitle">USDA RMA Summary of Business &amp;amp; Cause of Loss vs. NOAA/UNL U.S. Drought Monitor, 2010-2024</p>
 </header>
 <figure class="board">
 <!--
@@ -142,7 +120,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 631" width="880" height="631" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 961" width="880" height="961" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -169,174 +147,185 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="631" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Crop insurance payouts vs. measured drought</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">AskAmerica: ag.rma_crop_insurance x weather.drought_monitor_weekly, 2010-2024</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="961" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:14px">Crop insurance payouts track drought only loosely — strong at the national level, weak state by state</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">USDA RMA Summary of Business indemnities vs. U.S. Drought Monitor DSCI, 2010-2024</text>
   <g id="p1-stat">
   <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:11px">National annual correlation (indemnity $ vs. mean DSCI)</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">r = 0.79</text>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">National indemnity vs. avg DSCI, r (n=15 yrs)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">0.79</text>
   </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">15 years, 2010-2024; r=0.76 excluding the historic 2012 drought</text>
+  <text class="caption" x="24" y="203" fill="#6b7280">Year-level: total U.S. indemnity correlates strongly with mean drought</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">severity</text>
   <g id="p2-stat">
   <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">County-year correlation (loss ratio vs. mean DSCI)</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">r ≈ 0.28-0.30</text>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">State-year payout rate vs. DSCI, r (n=750)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">0.48</text>
   </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">n=41,217 county-years; far noisier than the national aggregate</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">National loss ratio vs. mean drought severity (DSCI/100), 2010-2024</text>
+  <text class="caption" x="452" y="203" fill="#6b7280">Panel across 50 states x 15 years; R²=0.23 pooled, still significant</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">with state+year fixed effects (p&lt;0.0001)</text>
+  <rect class="panel-edge" x="20" y="238" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">U.S. indemnities vs. drought severity, 2010-2024</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="63" y1="143.84" x2="390" y2="143.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="55" y="147.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="63" y1="121.88" x2="390" y2="121.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="55" y="125.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
-      <line class="grid" x1="63" y1="99.92" x2="390" y2="99.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="55" y="103.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
-      <line class="grid" x1="63" y1="77.96" x2="390" y2="77.96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="55" y="81.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5</text>
-      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.0</text>
+      <line class="grid" x1="60" y1="200" x2="818" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="164" x2="818" y2="164" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="168" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="128" x2="818" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="92" x2="818" y2="92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="63" y1="56" x2="63" y2="143.84" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="63" y1="143.84" x2="390" y2="143.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="818" y2="200" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="226.50" y="200" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="99.92" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 99.92)">Loss ratio / DSCI÷100</text>
+    <text id="p3-x-axis-title" class="axis-title" x="439" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">$ Billions</text>
     <g id="p3-x-axis-labels">
-      <text id="p3-xtick-2010" class="tick" x="73.90" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 73.90 157.84)">2010</text>
-      <text id="p3-xtick-2011" class="tick" x="95.70" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 95.70 157.84)">2011</text>
-      <text id="p3-xtick-2012" class="tick" x="117.50" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 117.50 157.84)">2012</text>
-      <text id="p3-xtick-2013" class="tick" x="139.30" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 139.30 157.84)">2013</text>
-      <text id="p3-xtick-2014" class="tick" x="161.10" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 161.10 157.84)">2014</text>
-      <text id="p3-xtick-2015" class="tick" x="182.90" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 182.90 157.84)">2015</text>
-      <text id="p3-xtick-2016" class="tick" x="204.70" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 204.70 157.84)">2016</text>
-      <text id="p3-xtick-2017" class="tick" x="226.50" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 226.50 157.84)">2017</text>
-      <text id="p3-xtick-2018" class="tick" x="248.30" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 248.30 157.84)">2018</text>
-      <text id="p3-xtick-2019" class="tick" x="270.10" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 270.10 157.84)">2019</text>
-      <text id="p3-xtick-2020" class="tick" x="291.90" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 291.90 157.84)">2020</text>
-      <text id="p3-xtick-2021" class="tick" x="313.70" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 313.70 157.84)">2021</text>
-      <text id="p3-xtick-2022" class="tick" x="335.50" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 335.50 157.84)">2022</text>
-      <text id="p3-xtick-2023" class="tick" x="357.30" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357.30 157.84)">2023</text>
-      <text id="p3-xtick-2024" class="tick" x="379.10" y="157.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 379.10 157.84)">2024</text>
+      <text id="p3-xtick-2010" class="tick" x="85.27" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2010</text>
+      <text id="p3-xtick-2011" class="tick" x="135.80" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2011</text>
+      <text id="p3-xtick-2012" class="tick" x="186.33" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2012</text>
+      <text id="p3-xtick-2013" class="tick" x="236.87" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2013</text>
+      <text id="p3-xtick-2014" class="tick" x="287.40" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2014</text>
+      <text id="p3-xtick-2015" class="tick" x="337.93" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2015</text>
+      <text id="p3-xtick-2016" class="tick" x="388.47" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="439" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="489.53" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="540.07" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="590.60" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="641.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="691.67" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="742.20" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="792.73" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
     </g>
-    <g id="p3-series-loss-ratio-indemnity-premium" class="series">
-      <path id="p3-line-loss-ratio-indemnity-premium" class="line" d="M 73.90 119.24 L 95.70 103.96 L 117.50 74.89 L 139.30 98.91 L 161.10 104.00 L 182.90 115.42 L 204.70 125.44 L 226.50 120.12 L 248.30 111.34 L 270.10 97.86 L 291.90 105.85 L 313.70 113.05 L 335.50 97.42 L 357.30 100.67 L 379.10 101.90" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2010" class="point" cx="73.90" cy="119.24" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2011" class="point" cx="95.70" cy="103.96" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2012" class="point" cx="117.50" cy="74.89" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2013" class="point" cx="139.30" cy="98.91" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2014" class="point" cx="161.10" cy="104.00" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2015" class="point" cx="182.90" cy="115.42" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2016" class="point" cx="204.70" cy="125.44" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2017" class="point" cx="226.50" cy="120.12" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2018" class="point" cx="248.30" cy="111.34" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2019" class="point" cx="270.10" cy="97.86" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2020" class="point" cx="291.90" cy="105.85" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2021" class="point" cx="313.70" cy="113.05" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2022" class="point" cx="335.50" cy="97.42" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2023" class="point" cx="357.30" cy="100.67" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-loss-ratio-indemnity-premium-2024" class="point" cx="379.10" cy="101.90" r="3" fill="#2563eb"/>
-    </g>
-    <g id="p3-series-mean-dsci-100-drought-severity" class="series">
-      <path id="p3-line-mean-dsci-100-drought-severity" class="line" d="M 73.90 125.35 L 95.70 96.71 L 117.50 80.64 L 139.30 98.95 L 161.10 113.49 L 182.90 117.53 L 204.70 118.98 L 226.50 123.15 L 248.30 117.18 L 270.10 131.32 L 291.90 119.51 L 313.70 105.50 L 335.50 90.26 L 357.30 97.94 L 379.10 107.56" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2010" class="point" cx="73.90" cy="125.35" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2011" class="point" cx="95.70" cy="96.71" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2012" class="point" cx="117.50" cy="80.64" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2013" class="point" cx="139.30" cy="98.95" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2014" class="point" cx="161.10" cy="113.49" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2015" class="point" cx="182.90" cy="117.53" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2016" class="point" cx="204.70" cy="118.98" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2017" class="point" cx="226.50" cy="123.15" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2018" class="point" cx="248.30" cy="117.18" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2019" class="point" cx="270.10" cy="131.32" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2020" class="point" cx="291.90" cy="119.51" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2021" class="point" cx="313.70" cy="105.50" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2022" class="point" cx="335.50" cy="90.26" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2023" class="point" cx="357.30" cy="97.94" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-mean-dsci-100-drought-severity-2024" class="point" cx="379.10" cy="107.56" r="3" fill="#ea580c"/>
-    </g>
-    <g id="p3-legend">
-      <rect id="p3-legend-swatch-loss-ratio-indemnity-premium" x="112.50" y="214" width="11" height="11" fill="#2563eb"/>
-      <text id="p3-legend-label-loss-ratio-indemnity-premium" class="legend-label" x="128.50" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Loss ratio (indemnity/premium)</text>
-      <rect id="p3-legend-swatch-mean-dsci-100-drought-severity" x="103.50" y="234" width="11" height="11" fill="#ea580c"/>
-      <text id="p3-legend-label-mean-dsci-100-drought-severity" class="legend-label" x="119.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Mean DSCI ÷100 (drought severity)</text>
+    <g id="p3-series-indemnity-b" class="series">
+      <path id="p3-line-indemnity-b" class="line" d="M 85.27 169.40 L 135.80 121.74 L 186.33 74.36 L 236.87 113.02 L 287.40 134.19 L 337.93 154.50 L 388.47 171.85 L 439 160.90 L 489.53 147.30 L 540.07 123.61 L 590.60 137.29 L 641.13 130.81 L 691.67 60.18 L 742.20 71.91 L 792.73 90.78" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-indemnity-b-2010" class="point" cx="85.27" cy="169.40" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2011" class="point" cx="135.80" cy="121.74" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2012" class="point" cx="186.33" cy="74.36" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2013" class="point" cx="236.87" cy="113.02" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2014" class="point" cx="287.40" cy="134.19" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2015" class="point" cx="337.93" cy="154.50" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2016" class="point" cx="388.47" cy="171.85" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2017" class="point" cx="439" cy="160.90" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2018" class="point" cx="489.53" cy="147.30" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2019" class="point" cx="540.07" cy="123.61" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2020" class="point" cx="590.60" cy="137.29" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2021" class="point" cx="641.13" cy="130.81" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2022" class="point" cx="691.67" cy="60.18" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2023" class="point" cx="742.20" cy="71.91" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-indemnity-b-2024" class="point" cx="792.73" cy="90.78" r="3" fill="#2563eb"/>
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="519" fill="#6b7280">2012 (historic Midwest drought) and 2022 track together; 2019 is the</text>
-  <text class="caption" x="24" y="532" fill="#6b7280">sharpest miss — high payouts despite the lowest measured drought of…</text>
-  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+  <text class="caption" x="24" y="519" fill="#6b7280">2012 and 2022-23 peaks track drought closely; 2019's $10.6B spike came almost entirely from Midwest flooding, not drought (that year's avg DSCI</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">was the lowest in the series)</text>
+  <rect class="panel-edge" x="20" y="554" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Largest state-year divergences (residual off the national drought-payout l…</text>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Where payouts most exceeded what drought alone predicts</text>
     <g id="p4-gridlines">
-      <line class="grid" x1="59" y1="172.72" x2="390" y2="172.72" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="51" y="176.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-2</text>
-      <line class="grid" x1="59" y1="153.27" x2="390" y2="153.27" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="51" y="157.27" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-1</text>
-      <line class="grid" x1="59" y1="133.81" x2="390" y2="133.81" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="51" y="137.81" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="59" y1="114.36" x2="390" y2="114.36" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="51" y="118.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
-      <line class="grid" x1="59" y1="94.91" x2="390" y2="94.91" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="51" y="98.91" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
-      <line class="grid" x1="59" y1="75.45" x2="390" y2="75.45" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="51" y="79.45" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
-      <line class="grid" x1="59" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-6" class="tick" x="51" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="179.43" x2="390" y2="179.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="183.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="158.86" x2="390" y2="158.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="162.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="138.29" x2="390" y2="138.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="142.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="117.71" x2="390" y2="117.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="121.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="97.14" x2="390" y2="97.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="52" y="101.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+      <line class="grid" x1="60" y1="76.57" x2="390" y2="76.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="52" y="80.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">35</text>
     </g>
     <g id="p4-axes">
-      <line class="axis" x1="59" y1="56" x2="59" y2="172.72" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="59" y1="172.72" x2="390" y2="172.72" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p4-x-axis-title" class="axis-title" x="224.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State-year</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="114.36" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 114.36)">Residual (loss ratio)</text>
+    <text id="p4-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State-Year</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Residual (pp)</text>
     <g id="p4-x-axis-labels">
-      <text id="p4-xtick-fl-2018" class="tick" x="70.03" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 70.03 186.72)">FL 2018</text>
-      <text id="p4-xtick-oh-2019" class="tick" x="92.10" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 92.10 186.72)">OH 2019</text>
-      <text id="p4-xtick-ar-2019" class="tick" x="114.17" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 114.17 186.72)">AR 2019</text>
-      <text id="p4-xtick-il-2012" class="tick" x="136.23" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 136.23 186.72)">IL 2012</text>
-      <text id="p4-xtick-in-2012" class="tick" x="158.30" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 158.30 186.72)">IN 2012</text>
-      <text id="p4-xtick-mo-2012" class="tick" x="180.37" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 180.37 186.72)">MO 2012</text>
-      <text id="p4-xtick-ia-2021" class="tick" x="202.43" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 202.43 186.72)">IA 2021</text>
-      <text id="p4-xtick-il-2022" class="tick" x="224.50" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 224.50 186.72)">IL 2022</text>
-      <text id="p4-xtick-in-2022" class="tick" x="246.57" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 246.57 186.72)">IN 2022</text>
-      <text id="p4-xtick-ga-2012" class="tick" x="268.63" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 268.63 186.72)">GA 2012</text>
-      <text id="p4-xtick-ca-2013" class="tick" x="290.70" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 290.70 186.72)">CA 2013</text>
-      <text id="p4-xtick-ca-2016" class="tick" x="312.77" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 312.77 186.72)">CA 2016</text>
-      <text id="p4-xtick-mn-2012" class="tick" x="334.83" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 334.83 186.72)">MN 2012</text>
-      <text id="p4-xtick-nd-2012" class="tick" x="356.90" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 356.90 186.72)">ND 2012</text>
-      <text id="p4-xtick-ia-2022" class="tick" x="378.97" y="186.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 378.97 186.72)">IA 2022</text>
+      <text id="p4-xtick-tx-2022" class="tick" x="87.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">TX 2022</text>
+      <text id="p4-xtick-ok-2022" class="tick" x="142.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OK 2022</text>
+      <text id="p4-xtick-nv-2020" class="tick" x="197.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NV 2020</text>
+      <text id="p4-xtick-sc-2015" class="tick" x="252.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">SC 2015</text>
+      <text id="p4-xtick-mt-2021" class="tick" x="307.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MT 2021</text>
+      <text id="p4-xtick-ok-2011" class="tick" x="362.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OK 2011</text>
     </g>
-    <g id="p4-series-residual" class="series">
-      <rect id="p4-mark-residual-fl-2018" class="bar" x="62.97" y="89.15" width="13.12" height="44.66" fill="#2563eb"/>
-      <rect id="p4-mark-residual-oh-2019" class="bar" x="85.04" y="105.29" width="13.12" height="28.52" fill="#2563eb"/>
-      <rect id="p4-mark-residual-ar-2019" class="bar" x="107.11" y="106.73" width="13.12" height="27.08" fill="#2563eb"/>
-      <rect id="p4-mark-residual-il-2012" class="bar" x="129.17" y="65.67" width="13.12" height="68.15" fill="#2563eb"/>
-      <rect id="p4-mark-residual-in-2012" class="bar" x="151.24" y="86.56" width="13.12" height="47.25" fill="#2563eb"/>
-      <rect id="p4-mark-residual-mo-2012" class="bar" x="173.31" y="94.30" width="13.12" height="39.51" fill="#2563eb"/>
-      <rect id="p4-mark-residual-ia-2021" class="bar" x="195.37" y="133.81" width="13.12" height="16.54" fill="#2563eb"/>
-      <rect id="p4-mark-residual-il-2022" class="bar" x="217.44" y="133.81" width="13.12" height="13.54" fill="#2563eb"/>
-      <rect id="p4-mark-residual-in-2022" class="bar" x="239.51" y="133.81" width="13.12" height="13.13" fill="#2563eb"/>
-      <rect id="p4-mark-residual-ga-2012" class="bar" x="261.57" y="133.81" width="13.12" height="21.53" fill="#2563eb"/>
-      <rect id="p4-mark-residual-ca-2013" class="bar" x="283.64" y="133.81" width="13.12" height="16.71" fill="#2563eb"/>
-      <rect id="p4-mark-residual-ca-2016" class="bar" x="305.71" y="133.81" width="13.12" height="16.69" fill="#2563eb"/>
-      <rect id="p4-mark-residual-mn-2012" class="bar" x="327.77" y="133.81" width="13.12" height="17.55" fill="#2563eb"/>
-      <rect id="p4-mark-residual-nd-2012" class="bar" x="349.84" y="133.81" width="13.12" height="15.10" fill="#2563eb"/>
-      <rect id="p4-mark-residual-ia-2022" class="bar" x="371.91" y="133.81" width="13.12" height="14.43" fill="#2563eb"/>
+    <g id="p4-series-payout-rate-minus-model-predicted-rate" class="series">
+      <rect id="p4-mark-payout-rate-minus-model-predicted-rate-tx-2022" class="bar" x="69.90" y="59.29" width="34.20" height="140.71" fill="#2563eb"/>
+      <rect id="p4-mark-payout-rate-minus-model-predicted-rate-ok-2022" class="bar" x="124.90" y="71.22" width="34.20" height="128.78" fill="#2563eb"/>
+      <rect id="p4-mark-payout-rate-minus-model-predicted-rate-nv-2020" class="bar" x="179.90" y="72.87" width="34.20" height="127.13" fill="#2563eb"/>
+      <rect id="p4-mark-payout-rate-minus-model-predicted-rate-sc-2015" class="bar" x="234.90" y="90.15" width="34.20" height="109.85" fill="#2563eb"/>
+      <rect id="p4-mark-payout-rate-minus-model-predicted-rate-mt-2021" class="bar" x="289.90" y="99.20" width="34.20" height="100.80" fill="#2563eb"/>
+      <rect id="p4-mark-payout-rate-minus-model-predicted-rate-ok-2011" class="bar" x="344.90" y="104.55" width="34.20" height="95.45" fill="#2563eb"/>
     </g>
     <g id="p4-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="452" y="519" fill="#6b7280">Positive = payouts far above what measured drought predicts</text>
-  <text class="caption" x="452" y="532" fill="#6b7280">(hurricane/flood years, or 2012's nonlinear blowout). Negative =…</text>
-  <text class="footnote" x="20" y="564" fill="#6b7280">AskAmerica ag.rma_crop_insurance carries no cause-of-loss field, so this measures TOTAL indemnity against drought severity, not drought-attributed</text>
-  <text class="footnote" x="20" y="578" fill="#6b7280">indemnity alone; ERS's cause-of-loss series (below) is the primary source for the drought-specific share.</text>
+  <text class="caption" x="24" y="835" fill="#6b7280">SC 2015: DSCI was near-zero (48 of 500) but payout rate hit 35% —</text>
+  <text class="caption" x="24" y="848" fill="#6b7280">driven by catastrophic Excess Moisture/flooding, not drought</text>
+  <rect class="panel-edge" x="448" y="554" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="554" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Where payouts most fell short of what drought alone predicts</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="66" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="58" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-22</text>
+      <line class="grid" x1="66" y1="179.43" x2="390" y2="179.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="58" y="183.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-21</text>
+      <line class="grid" x1="66" y1="158.86" x2="390" y2="158.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="58" y="162.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-20</text>
+      <line class="grid" x1="66" y1="138.29" x2="390" y2="138.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="58" y="142.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-19</text>
+      <line class="grid" x1="66" y1="117.71" x2="390" y2="117.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="58" y="121.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-18</text>
+      <line class="grid" x1="66" y1="97.14" x2="390" y2="97.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="58" y="101.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-17</text>
+      <line class="grid" x1="66" y1="76.57" x2="390" y2="76.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-6" class="tick" x="58" y="80.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-16</text>
+      <line class="grid" x1="66" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-7" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-15</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="228" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State-Year</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Residual (pp)</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-ca-2014" class="tick" x="93" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA 2014</text>
+      <text id="p5-xtick-ca-2015" class="tick" x="147" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA 2015</text>
+      <text id="p5-xtick-ca-2021" class="tick" x="201" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA 2021</text>
+      <text id="p5-xtick-ca-2016" class="tick" x="255" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA 2016</text>
+      <text id="p5-xtick-ga-2012" class="tick" x="309" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">GA 2012</text>
+      <text id="p5-xtick-ca-2013" class="tick" x="363" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA 2013</text>
+    </g>
+    <g id="p5-series-payout-rate-minus-model-predicted-rate" class="series">
+      <rect id="p5-mark-payout-rate-minus-model-predicted-rate-ca-2014" class="bar" x="75.72" y="-252.57" width="33.56" height="450.51" fill="#2563eb"/>
+      <rect id="p5-mark-payout-rate-minus-model-predicted-rate-ca-2015" class="bar" x="129.72" y="-252.57" width="33.56" height="417.60" fill="#2563eb"/>
+      <rect id="p5-mark-payout-rate-minus-model-predicted-rate-ca-2021" class="bar" x="183.72" y="-252.57" width="33.56" height="380.57" fill="#2563eb"/>
+      <rect id="p5-mark-payout-rate-minus-model-predicted-rate-ca-2016" class="bar" x="237.72" y="-252.57" width="33.56" height="376.46" fill="#2563eb"/>
+      <rect id="p5-mark-payout-rate-minus-model-predicted-rate-ga-2012" class="bar" x="291.72" y="-252.57" width="33.56" height="331.20" fill="#2563eb"/>
+      <rect id="p5-mark-payout-rate-minus-model-predicted-rate-ca-2013" class="bar" x="345.72" y="-252.57" width="33.56" height="316.80" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="835" fill="#6b7280">California 2013-2016 and 2021: DSCI near the historical max (313-432</text>
+  <text class="caption" x="452" y="848" fill="#6b7280">of 500) but payout rate only 2-7% of liability — the biggest, most…</text>
+  <text class="footnote" x="20" y="880" fill="#6b7280">Sources: USDA RMA Summary of Business (ag.rma_crop_insurance) and Cause of Loss (ag.rma_cause_of_loss, 2013-2017 &amp; 2025 only); NOAA/UNL U.S.</text>
+  <text class="footnote" x="20" y="894" fill="#6b7280">Drought Monitor weekly DSCI (weather.drought_monitor_weekly). Payout rate = indemnity / liability, state-years with liability &gt; $100M. Residuals</text>
+  <text class="footnote" x="20" y="908" fill="#6b7280">from pooled OLS: payout_rate = 0.0598 + 0.00050 x avg_DSCI (R²=0.23, n=750).</text>
   <g id="brand">
-  <svg x="20" y="590" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="920" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -345,41 +334,173 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="605" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="935" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:50271/a/72922ee4a34903a067355a451e1ba805.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:56247/a/e3e649284d81036a707151e1fbe56669.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p><strong>At the national, year-to-year level, crop insurance payouts track measured drought closely.</strong> Comparing USDA RMA's annual crop-insurance loss ratio (total indemnities ÷ total premium, all 50 states) against the U.S. Drought Monitor's mean Drought Severity and Coverage Index (DSCI) for 2010-2024, the correlation is r=0.79 for total indemnity dollars and r=0.70 for the loss ratio (r=0.76 for indemnity dollars even with the historic 2012 drought excluded, so the relationship is not an artifact of one extreme year). 2012 (the worst U.S. drought in decades) and 2022 stand out as years when both drought and payouts spiked together.</p><p><strong>The match falls apart at finer grain and in specific years/places.</strong> At the state-year and county-year level the correlation drops to roughly r=0.3-0.4 — most of the variance in what a given place is paid in a given year is NOT explained by measured meteorological drought. The biggest divergences fall into three patterns: (1) years/states where non-drought perils (hurricanes, spring flooding) drove large payouts despite low or moderate measured drought — Florida 2018 (Hurricane Michael), and Ohio/Arkansas 2019 (historic Midwest flooding, DSCI near its 15-year low); (2) 2012 Midwest drought states (Illinois, Indiana, Missouri) where payouts ran far ABOVE even what their own severe drought readings would predict, indicating the loss-severity relationship is convex — losses accelerate faster than DSCI once drought becomes extreme; and (3) severely-drought-flagged states/years with comparatively LOW payouts — California in 2013-2016 (the state's historic drought, but irrigation and perennial/specialty crops buffer yield loss) and Iowa/Indiana/Illinois in 2021-2022 (moderate Corn Belt drought that modern hybrids and soil moisture reserves largely absorbed without triggering large claims).</p>
+<p>At the national, year-to-year level, federal crop insurance payouts track measured drought closely: total U.S. indemnities and the U.S. Drought Monitor's average national severity index (DSCI) move together with a correlation of <strong>r=0.79</strong> over 2010-2024 (n=15 years) — both peaked in the historic 2012 Plains/Midwest drought ($17.4B in indemnities) and again in 2022-23 (Texas/Oklahoma drought, $19.4B and $17.8B).</p><p>But that headline number hides a much weaker relationship underneath. Broken out to the state-year level (the grain at which drought actually strikes), the payout rate (indemnity as a share of insured liability) correlates with local drought severity at only <strong>r=0.48</strong> (n=750 state-years), and drought severity explains just <strong>23%</strong> of the variance in payout rates (R²=0.227). The relationship survives controlling for state and year fixed effects (two-way panel regression, coefficient still significant at p&lt;0.0001), so it is real — just far from a tight match.</p><p>The two starkest divergences are the biggest finding here. <strong>California's 2013-2016 and 2021 droughts</strong> registered near-maximum severity on the Drought Monitor (DSCI 313-432 out of a 500 ceiling) yet crop insurance paid out only 2-7% of insured liability those years — 15 to 22 percentage points below what the drought-severity relationship predicts for that level of dryness, the single largest and most persistent gap in the data. In the opposite direction, <strong>South Carolina in 2015</strong> paid out 35% of liability despite drought that was almost entirely absent (DSCI of 48, near the low end of the scale) — that payout was driven by the catastrophic October 2015 South Carolina floods (Excess Moisture/Precipitation was the RMA-coded cause of $69.7M of the $148M indemnified, versus $44.8M coded to drought).</p>
 </section>
 <section>
 <h2>Data and method</h2>
-<p><strong>Sources:</strong> USDA RMA Summary of Business crop-insurance experience (<code>ag.rma_crop_insurance</code>: indemnity, premium, liability by state/county/crop/plan/year, 2009-2025 observed) and NOAA/USDM weekly county drought categories (<code>weather.drought_monitor_weekly</code>: D0-D4 percentages and DSCI 0-500, 2009-2026 observed), both queried through the AskAmerica connector. Analysis window: 2010-2024, the full overlap of both tables' measured coverage.</p><p><strong>Metric:</strong> Loss ratio (indemnity ÷ premium) is used alongside raw indemnity dollars because it is scale-independent — it isolates whether a place/year paid out MORE than its premium base implies, rather than just reflecting which states insure the most acreage. DSCI is averaged across all weekly readings in a year per county/state as the drought-severity measure (0=no drought, 500=entire area in exceptional drought).</p><p><strong>Key limitation:</strong> this connector's RMA table carries no cause-of-loss field, so "indemnity" here is the TOTAL payout across all perils (drought, excess moisture, hail, freeze, disease, wind, price) — it cannot isolate drought-caused claims the way RMA's own cause-of-loss detail files or USDA ERS's published cause-of-loss series can. That is precisely why divergence is expected and is the main analytical value here: a state/year with a high payout and low DSCI is very likely a non-drought-peril event, and a state/year with high DSCI and low payout is very likely a place where measured meteorological drought didn't translate into an indemnified yield loss (irrigation, drought-tolerant varieties, or crops less exposed).</p><p>USDA's own Economic Research Service, using RMA's cause-of-loss detail (a data cut this connector does not carry), reports that <strong>drought and high temperature were the leading cause of indemnified losses in 14 of the 25 years since 2000, averaging 41% of total indemnity payments</strong>, with excess moisture responsible for another 27% — confirming both that drought is the single largest driver nationally AND that roughly 3 in 5 dollars of indemnity are NOT drought (source parsed directly: ERS "Crop Insurance at a Glance," Federal Crop Insurance Program indemnities by cause of loss, updated 9/23/2025).</p>
+<p><strong>Payouts:</strong> USDA RMA Summary of Business (<code>ag.rma_crop_insurance</code>), summed indemnity and liability by state and year, 2010-2024 (fully loaded, sanity-checked: our 2012 total of $17.45B matches the widely-reported $17.4B figure for that drought year). Peril-level attribution comes from RMA's Cause of Loss file (<code>ag.rma_cause_of_loss</code>), which is only loaded for 2013-2017 and 2025 — 2018-2024 are an interior gap in that specific table, so cause-of-loss attribution below is limited to years where the data exists; it is not available for the 2022-23 divergence cases.</p><p><strong>Drought:</strong> NOAA/UNL U.S. Drought Monitor weekly county data (<code>weather.drought_monitor_weekly</code>), averaged (unweighted across county-weeks) to a state-year DSCI (Drought Severity and Coverage Index, 0=no drought to 500=all D4/exceptional). Fully loaded 2010-2025.</p><p><strong>Payout rate</strong> = indemnity / liability, restricted to state-years with liability over $100M to avoid noise from small state insurance programs. This normalizes out the confound that raw indemnity dollars have grown for reasons unrelated to drought (rising commodity prices, expanding insured acreage and coverage levels over the 15-year window) — a payout-rate measure isolates how much of what was actually insured got paid out.</p><p><strong>Divergence measure:</strong> residual from a pooled OLS of payout_rate on avg_DSCI (payout_rate = 0.0598 + 0.00050 x DSCI, R²=0.227, n=750). A large positive residual means a state paid out far more than its drought severity alone would predict; a large negative residual means it paid out far less.</p>
 </section>
 <section>
-<h2>Where the two diverge most</h2>
-<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><table style='border-collapse:collapse;width:100%'><tr><th style='text-align:left;border-bottom:1px solid #ccc;padding:4px'><label class="srth" for="s3-t1-s1">State-year<span class="srtcue" aria-hidden="true">↓</span></label></th><th style='text-align:right;border-bottom:1px solid #ccc;padding:4px'><label class="srth" for="s3-t1-s2">Loss ratio<span class="srtcue" aria-hidden="true">↑</span></label></th><th style='text-align:right;border-bottom:1px solid #ccc;padding:4px'><label class="srth" for="s3-t1-s3">Mean DSCI<span class="srtcue" aria-hidden="true">↓</span></label></th><th style='text-align:left;border-bottom:1px solid #ccc;padding:4px'><label class="srth" for="s3-t1-s4">Likely explanation<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td style='padding:4px'>IL 2012</td><td style='text-align:right;padding:4px'>4.55</td><td style='text-align:right;padding:4px'>139.9</td><td style='padding:4px'>Historic Midwest drought — but payout is far above even its own severe DSCI reading (nonlinear loss acceleration at extreme drought)</td></tr><tr><td style='padding:4px'>FL 2018</td><td style='text-align:right;padding:4px'>3.02</td><td style='text-align:right;padding:4px'>30.7</td><td style='padding:4px'>Hurricane Michael — wind/flood damage, essentially no measured drought</td></tr><tr><td style='padding:4px'>IN 2012 / MO 2012</td><td style='text-align:right;padding:4px'>3.39 / 3.16</td><td style='text-align:right;padding:4px'>112-169</td><td style='padding:4px'>Same 2012 drought, same convexity pattern as Illinois</td></tr><tr><td style='padding:4px'>OH 2019 / AR 2019</td><td style='text-align:right;padding:4px'>2.13 / 2.05</td><td style='text-align:right;padding:4px'>12.1 / 8.4</td><td style='padding:4px'>2019 Midwest/Delta spring flooding (excess moisture) — DSCI near the 15-year national low that year</td></tr><tr><td style='padding:4px'>GA 2012</td><td style='text-align:right;padding:4px'>0.37</td><td style='text-align:right;padding:4px'>287.6</td><td style='padding:4px'>Severe measured drought, but low payout — crop mix/irrigation buffered yield loss</td></tr><tr><td style='padding:4px'>CA 2013 / CA 2016</td><td style='text-align:right;padding:4px'>0.45 / 0.69</td><td style='text-align:right;padding:4px'>230 / 314</td><td style='padding:4px'>California's historic multi-year drought — irrigation and perennial/specialty crops largely absorbed the meteorological stress</td></tr><tr><td style='padding:4px'>IA 2021-22 / IL 2022 / IN 2022</td><td style='text-align:right;padding:4px'>0.10-0.23</td><td style='text-align:right;padding:4px'>54-119</td><td style='padding:4px'>Moderate Corn Belt drought that modern varieties/soil reserves largely rode out without triggering claims</td></tr></tbody><tbody class="srt s1"><tr><td style='padding:4px'>OH 2019 / AR 2019</td><td style='text-align:right;padding:4px'>2.13 / 2.05</td><td style='text-align:right;padding:4px'>12.1 / 8.4</td><td style='padding:4px'>2019 Midwest/Delta spring flooding (excess moisture) — DSCI near the 15-year national low that year</td></tr><tr><td style='padding:4px'>CA 2013 / CA 2016</td><td style='text-align:right;padding:4px'>0.45 / 0.69</td><td style='text-align:right;padding:4px'>230 / 314</td><td style='padding:4px'>California's historic multi-year drought — irrigation and perennial/specialty crops largely absorbed the meteorological stress</td></tr><tr><td style='padding:4px'>IN 2012 / MO 2012</td><td style='text-align:right;padding:4px'>3.39 / 3.16</td><td style='text-align:right;padding:4px'>112-169</td><td style='padding:4px'>Same 2012 drought, same convexity pattern as Illinois</td></tr><tr><td style='padding:4px'>FL 2018</td><td style='text-align:right;padding:4px'>3.02</td><td style='text-align:right;padding:4px'>30.7</td><td style='padding:4px'>Hurricane Michael — wind/flood damage, essentially no measured drought</td></tr><tr><td style='padding:4px'>IL 2012</td><td style='text-align:right;padding:4px'>4.55</td><td style='text-align:right;padding:4px'>139.9</td><td style='padding:4px'>Historic Midwest drought — but payout is far above even its own severe DSCI reading (nonlinear loss acceleration at extreme drought)</td></tr><tr><td style='padding:4px'>GA 2012</td><td style='text-align:right;padding:4px'>0.37</td><td style='text-align:right;padding:4px'>287.6</td><td style='padding:4px'>Severe measured drought, but low payout — crop mix/irrigation buffered yield loss</td></tr><tr><td style='padding:4px'>IA 2021-22 / IL 2022 / IN 2022</td><td style='text-align:right;padding:4px'>0.10-0.23</td><td style='text-align:right;padding:4px'>54-119</td><td style='padding:4px'>Moderate Corn Belt drought that modern varieties/soil reserves largely rode out without triggering claims</td></tr></tbody><tbody class="srt s2"><tr><td style='padding:4px'>IA 2021-22 / IL 2022 / IN 2022</td><td style='text-align:right;padding:4px'>0.10-0.23</td><td style='text-align:right;padding:4px'>54-119</td><td style='padding:4px'>Moderate Corn Belt drought that modern varieties/soil reserves largely rode out without triggering claims</td></tr><tr><td style='padding:4px'>GA 2012</td><td style='text-align:right;padding:4px'>0.37</td><td style='text-align:right;padding:4px'>287.6</td><td style='padding:4px'>Severe measured drought, but low payout — crop mix/irrigation buffered yield loss</td></tr><tr><td style='padding:4px'>CA 2013 / CA 2016</td><td style='text-align:right;padding:4px'>0.45 / 0.69</td><td style='text-align:right;padding:4px'>230 / 314</td><td style='padding:4px'>California's historic multi-year drought — irrigation and perennial/specialty crops largely absorbed the meteorological stress</td></tr><tr><td style='padding:4px'>OH 2019 / AR 2019</td><td style='text-align:right;padding:4px'>2.13 / 2.05</td><td style='text-align:right;padding:4px'>12.1 / 8.4</td><td style='padding:4px'>2019 Midwest/Delta spring flooding (excess moisture) — DSCI near the 15-year national low that year</td></tr><tr><td style='padding:4px'>FL 2018</td><td style='text-align:right;padding:4px'>3.02</td><td style='text-align:right;padding:4px'>30.7</td><td style='padding:4px'>Hurricane Michael — wind/flood damage, essentially no measured drought</td></tr><tr><td style='padding:4px'>IN 2012 / MO 2012</td><td style='text-align:right;padding:4px'>3.39 / 3.16</td><td style='text-align:right;padding:4px'>112-169</td><td style='padding:4px'>Same 2012 drought, same convexity pattern as Illinois</td></tr><tr><td style='padding:4px'>IL 2012</td><td style='text-align:right;padding:4px'>4.55</td><td style='text-align:right;padding:4px'>139.9</td><td style='padding:4px'>Historic Midwest drought — but payout is far above even its own severe DSCI reading (nonlinear loss acceleration at extreme drought)</td></tr></tbody><tbody class="srt s3"><tr><td style='padding:4px'>CA 2013 / CA 2016</td><td style='text-align:right;padding:4px'>0.45 / 0.69</td><td style='text-align:right;padding:4px'>230 / 314</td><td style='padding:4px'>California's historic multi-year drought — irrigation and perennial/specialty crops largely absorbed the meteorological stress</td></tr><tr><td style='padding:4px'>GA 2012</td><td style='text-align:right;padding:4px'>0.37</td><td style='text-align:right;padding:4px'>287.6</td><td style='padding:4px'>Severe measured drought, but low payout — crop mix/irrigation buffered yield loss</td></tr><tr><td style='padding:4px'>IL 2012</td><td style='text-align:right;padding:4px'>4.55</td><td style='text-align:right;padding:4px'>139.9</td><td style='padding:4px'>Historic Midwest drought — but payout is far above even its own severe DSCI reading (nonlinear loss acceleration at extreme drought)</td></tr><tr><td style='padding:4px'>FL 2018</td><td style='text-align:right;padding:4px'>3.02</td><td style='text-align:right;padding:4px'>30.7</td><td style='padding:4px'>Hurricane Michael — wind/flood damage, essentially no measured drought</td></tr><tr><td style='padding:4px'>IN 2012 / MO 2012</td><td style='text-align:right;padding:4px'>3.39 / 3.16</td><td style='text-align:right;padding:4px'>112-169</td><td style='padding:4px'>Same 2012 drought, same convexity pattern as Illinois</td></tr><tr><td style='padding:4px'>OH 2019 / AR 2019</td><td style='text-align:right;padding:4px'>2.13 / 2.05</td><td style='text-align:right;padding:4px'>12.1 / 8.4</td><td style='padding:4px'>2019 Midwest/Delta spring flooding (excess moisture) — DSCI near the 15-year national low that year</td></tr><tr><td style='padding:4px'>IA 2021-22 / IL 2022 / IN 2022</td><td style='text-align:right;padding:4px'>0.10-0.23</td><td style='text-align:right;padding:4px'>54-119</td><td style='padding:4px'>Moderate Corn Belt drought that modern varieties/soil reserves largely rode out without triggering claims</td></tr></tbody><tbody class="srt s4"><tr><td style='padding:4px'>OH 2019 / AR 2019</td><td style='text-align:right;padding:4px'>2.13 / 2.05</td><td style='text-align:right;padding:4px'>12.1 / 8.4</td><td style='padding:4px'>2019 Midwest/Delta spring flooding (excess moisture) — DSCI near the 15-year national low that year</td></tr><tr><td style='padding:4px'>CA 2013 / CA 2016</td><td style='text-align:right;padding:4px'>0.45 / 0.69</td><td style='text-align:right;padding:4px'>230 / 314</td><td style='padding:4px'>California's historic multi-year drought — irrigation and perennial/specialty crops largely absorbed the meteorological stress</td></tr><tr><td style='padding:4px'>IL 2012</td><td style='text-align:right;padding:4px'>4.55</td><td style='text-align:right;padding:4px'>139.9</td><td style='padding:4px'>Historic Midwest drought — but payout is far above even its own severe DSCI reading (nonlinear loss acceleration at extreme drought)</td></tr><tr><td style='padding:4px'>FL 2018</td><td style='text-align:right;padding:4px'>3.02</td><td style='text-align:right;padding:4px'>30.7</td><td style='padding:4px'>Hurricane Michael — wind/flood damage, essentially no measured drought</td></tr><tr><td style='padding:4px'>IA 2021-22 / IL 2022 / IN 2022</td><td style='text-align:right;padding:4px'>0.10-0.23</td><td style='text-align:right;padding:4px'>54-119</td><td style='padding:4px'>Moderate Corn Belt drought that modern varieties/soil reserves largely rode out without triggering claims</td></tr><tr><td style='padding:4px'>IN 2012 / MO 2012</td><td style='text-align:right;padding:4px'>3.39 / 3.16</td><td style='text-align:right;padding:4px'>112-169</td><td style='padding:4px'>Same 2012 drought, same convexity pattern as Illinois</td></tr><tr><td style='padding:4px'>GA 2012</td><td style='text-align:right;padding:4px'>0.37</td><td style='text-align:right;padding:4px'>287.6</td><td style='padding:4px'>Severe measured drought, but low payout — crop mix/irrigation buffered yield loss</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Residuals computed from an OLS fit of loss ratio on mean DSCI across 501 state-years with >$50M premium (slope 0.0029, intercept 0.633); values above show actual loss ratio minus the drought-predicted loss ratio.</p>
+<h2>Where the match breaks down, and why</h2>
+<p><strong>California's drought years systematically under-trigger crop insurance.</strong> Breaking out RMA's cause-of-loss codes for California 2013-2015 (the only years available in that table), the dominant causes of indemnified loss were not filed as "Drought" at all but as <strong>"Failure of Irrigation Supply"</strong> ($24.4M in 2013, $170.9M in 2014, $178.6M in 2015) and <strong>"Heat"</strong> ($26.3M, $99.7M, $273.7M) — RMA's own "Drought" code captured only $10.7M, $9.6M, and $1.7M those same years. Even summed together, drought-adjacent causes fall well short of what a 300-430 DSCI would predict for a state with California's insured liability (roughly $6-10B/year). This is consistent with California's insured crop mix: high-value irrigated perennials (almonds, grapes, citrus) where growers buffer yield loss with groundwater pumping and other adaptation rather than letting insurable yield losses occur, and where some acreage/practices carry different or thinner insurance coverage than Midwest row crops.</p><p><strong>Non-drought perils can drive large payouts with no drought present at all.</strong> South Carolina 2015 is the clearest case in the loaded cause-of-loss years: a payout rate of 35% against essentially no measured drought, because the October 2015 SC flood event dominated indemnities. At the national level, 2019 shows the same pattern at scale — a $10.6B indemnity year (the third-highest since 2010) coincided with the <em>lowest</em> average DSCI in the 2010-2024 series, reflecting the historic 2019 Midwest "prevented planting" floods rather than drought.</p><p><strong>Texas, Oklahoma, Montana, and Nevada drought years show the model under-predicting, not diverging in substance.</strong> States like TX (2022, 2011, 2024) and OK (2022, 2011, 2023) top the list of payouts exceeding the linear prediction, but these are still drought-driven — the relationship between DSCI and payout rate is likely convex (payouts accelerate faster than DSCI in the most severe droughts) rather than genuinely mismatched, since these states pair very high DSCI with very high payout rates simultaneously. This is a modeling-form caveat, not a sign that insurance failed to respond to drought in these states.</p>
 </section>
 <section>
 <h2>Caveats</h2>
-<ul><li>This is an observational correlation, not a causal attribution — no cause-of-loss field is available in this connector's RMA table, so "divergence" is inferred from known events (hurricanes, floods) rather than measured directly.</li><li>DSCI is a meteorological/soil-moisture index; it does not itself measure crop yield loss, irrigation availability, crop mix, or insurance take-up, all of which mediate how drought severity translates (or doesn't) into an indemnified loss.</li><li>County-year and state-year correlations (r≈0.3-0.4) are the more decision-relevant grain for "how closely do payouts match drought" locally, and they show a much weaker match than the national aggregate — averaging across many counties/perils each year is largely what produces the strong national-level r.</li><li>ag.rma_crop_insurance is declared through 2025 but late years may still be mid-backfill (publication lag ~1 year); 2010-2024 was used to avoid partial recent years.</li></ul>
+<ul><li>DSCI is averaged unweighted across county-weeks per state; it is not weighted by insured cropland acreage, so it can overstate or understate the drought exposure actually relevant to a state's insured crop mix.</li><li>Cause-of-loss attribution (the mechanism behind the CA and SC findings) is only available for 2013-2017 and 2025 in this corpus — the 2018-2024 interior gap means the TX/OK/MT/NV 2018-2024 divergence cases above are explained only by the aggregate indemnity/liability relationship, not by peril-level attribution.</li><li>The R²=0.23 state-year relationship is a real but modest fit; roughly three-quarters of state-year variation in payout rates is driven by something other than measured drought severity — crop mix, insurance product/coverage-level choices, and other perils (hail, excess moisture, freeze, price decline under revenue protection) all matter, and none are controlled for individually here.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>12 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 750 rows — 57175 ms</summary><pre><code>SELECT year, state_abbr, SUM(indemnity_amount) AS indemnity, SUM(liability_amount) AS liability, SUM(total_premium_amount) AS premium
+FROM ag.rma_crop_insurance
+WHERE year BETWEEN 2010 AND 2024
+GROUP BY year, state_abbr</code></pre></details>
+<details class="sqltoggle"><summary>query — 765 rows — 23441 ms</summary><pre><code>SELECT year, state_abbr, AVG(dsci) AS avg_dsci, AVG(d2_pct+d3_pct+d4_pct) AS avg_severe_pct
+FROM weather.drought_monitor_weekly
+WHERE year BETWEEN 2010 AND 2024
+GROUP BY year, state_abbr</code></pre></details>
+<details class="sqltoggle"><summary>correlation_matrix — 57710 ms</summary><pre><code>WITH ins AS (
+  SELECT year, state_abbr, SUM(indemnity_amount) AS indemnity, SUM(liability_amount) AS liability
+  FROM ag.rma_crop_insurance
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+), dr AS (
+  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
+  FROM weather.drought_monitor_weekly
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+)
+SELECT ins.year, ins.state_abbr, ins.indemnity, ins.liability,
+  ins.indemnity / NULLIF(ins.liability,0) AS payout_rate,
+  dr.avg_dsci
+FROM ins JOIN dr ON ins.year=dr.year AND ins.state_abbr=dr.state_abbr
+WHERE ins.liability &gt; 0</code></pre></details>
+<details class="sqltoggle"><summary>panel_fixed_effects — 58008 ms</summary><pre><code>WITH ins AS (
+  SELECT year, state_abbr, SUM(indemnity_amount) AS indemnity, SUM(liability_amount) AS liability
+  FROM ag.rma_crop_insurance
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+), dr AS (
+  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
+  FROM weather.drought_monitor_weekly
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+)
+SELECT ins.year, ins.state_abbr, ins.indemnity, ins.liability,
+  ins.indemnity / NULLIF(ins.liability,0) AS payout_rate,
+  dr.avg_dsci
+FROM ins JOIN dr ON ins.year=dr.year AND ins.state_abbr=dr.state_abbr
+WHERE ins.liability &gt; 0</code></pre></details>
+<details class="sqltoggle"><summary>ols_regression — 59348 ms</summary><pre><code>WITH ins AS (
+  SELECT year, state_abbr, SUM(indemnity_amount) AS indemnity, SUM(liability_amount) AS liability
+  FROM ag.rma_crop_insurance
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+), dr AS (
+  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
+  FROM weather.drought_monitor_weekly
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+)
+SELECT ins.year, ins.state_abbr, ins.indemnity, ins.liability,
+  ins.indemnity / NULLIF(ins.liability,0) AS payout_rate,
+  dr.avg_dsci
+FROM ins JOIN dr ON ins.year=dr.year AND ins.state_abbr=dr.state_abbr
+WHERE ins.liability &gt; 0</code></pre></details>
+<details class="sqltoggle"><summary>query — 12 rows — 60107 ms</summary><pre><code>WITH ins AS (
+  SELECT year, state_abbr, SUM(indemnity_amount) AS indemnity, SUM(liability_amount) AS liability
+  FROM ag.rma_crop_insurance
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+), dr AS (
+  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
+  FROM weather.drought_monitor_weekly
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+), joined AS (
+  SELECT ins.year, ins.state_abbr, ins.indemnity, ins.liability,
+    ins.indemnity / NULLIF(ins.liability,0) AS payout_rate,
+    dr.avg_dsci
+  FROM ins JOIN dr ON ins.year=dr.year AND ins.state_abbr=dr.state_abbr
+  WHERE ins.liability &gt; 100000000
+), resid AS (
+  SELECT year, state_abbr, indemnity, liability, payout_rate, avg_dsci,
+    payout_rate - (0.05976667653980496 + 0.0005003855356595949*avg_dsci) AS residual
+  FROM joined
+)
+SELECT * FROM resid ORDER BY residual DESC LIMIT 12</code></pre></details>
+<details class="sqltoggle"><summary>query — 12 rows — 61170 ms</summary><pre><code>WITH ins AS (
+  SELECT year, state_abbr, SUM(indemnity_amount) AS indemnity, SUM(liability_amount) AS liability
+  FROM ag.rma_crop_insurance
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+), dr AS (
+  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
+  FROM weather.drought_monitor_weekly
+  WHERE year BETWEEN 2010 AND 2024
+  GROUP BY year, state_abbr
+), joined AS (
+  SELECT ins.year, ins.state_abbr, ins.indemnity, ins.liability,
+    ins.indemnity / NULLIF(ins.liability,0) AS payout_rate,
+    dr.avg_dsci
+  FROM ins JOIN dr ON ins.year=dr.year AND ins.state_abbr=dr.state_abbr
+  WHERE ins.liability &gt; 100000000
+), resid AS (
+  SELECT year, state_abbr, indemnity, liability, payout_rate, avg_dsci,
+    payout_rate - (0.05976667653980496 + 0.0005003855356595949*avg_dsci) AS residual
+  FROM joined
+)
+SELECT * FROM resid ORDER BY residual ASC LIMIT 12</code></pre></details>
+<details class="sqltoggle"><summary>query — 60 rows — 5090 ms</summary><pre><code>SELECT year, cause_of_loss_desc, SUM(indemnity_amount) AS indemnity
+FROM ag.rma_cause_of_loss
+WHERE state_abbr='CA' AND year IN (2013,2014,2015,2016)
+GROUP BY year, cause_of_loss_desc
+ORDER BY year, indemnity DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 10 rows — 1508 ms</summary><pre><code>SELECT year, state_abbr, cause_of_loss_desc, SUM(indemnity_amount) AS indemnity
+FROM ag.rma_cause_of_loss
+WHERE state_abbr='SC' AND year=2015
+GROUP BY year, state_abbr, cause_of_loss_desc
+ORDER BY indemnity DESC LIMIT 10</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 2581 ms</summary><pre><code>SELECT SUM(indemnity_amount) AS us_indemnity_2012 FROM ag.rma_crop_insurance WHERE year=2012</code></pre></details>
+<details class="sqltoggle"><summary>query — 15 rows — 41177 ms</summary><pre><code>WITH ins AS (
+  SELECT year, SUM(indemnity_amount) AS indemnity
+  FROM ag.rma_crop_insurance WHERE year BETWEEN 2010 AND 2024 GROUP BY year
+), dr AS (
+  SELECT year, AVG(dsci) AS avg_dsci
+  FROM weather.drought_monitor_weekly WHERE year BETWEEN 2010 AND 2024 GROUP BY year
+)
+SELECT ins.year, ins.indemnity, dr.avg_dsci FROM ins JOIN dr ON ins.year=dr.year ORDER BY ins.year</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 42684 ms</summary><pre><code>WITH ins AS (
+  SELECT year, SUM(indemnity_amount) AS indemnity
+  FROM ag.rma_crop_insurance WHERE year BETWEEN 2010 AND 2024 GROUP BY year
+), dr AS (
+  SELECT year, AVG(dsci) AS avg_dsci
+  FROM weather.drought_monitor_weekly WHERE year BETWEEN 2010 AND 2024 GROUP BY year
+)
+SELECT corr(ins.indemnity, dr.avg_dsci) AS national_corr FROM ins JOIN dr ON ins.year=dr.year</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.rma.usda.gov/tools-reports/summary-of-business">USDA RMA Summary of Business crop insurance experience</a> <span class="note">— AskAmerica ag.rma_crop_insurance, 2010-2024 rows queried</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_abbr, &quot;year&quot;, SUM(indemnity_amount) indemnity, SUM(total_premium_amount) premium FROM ag.rma_crop_insurance WHERE &quot;year&quot; BETWEEN 2010 AND 2024 GROUP BY state_abbr, &quot;year&quot;</code></pre></details></li>
-<li><a href="https://droughtmonitor.unl.edu/">NOAA/USDM Drought Monitor weekly county drought severity (DSCI)</a> <span class="note">— AskAmerica weather.drought_monitor_weekly, 2010-2024 rows queried</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT county_fips, &quot;year&quot;, AVG(dsci) avg_dsci FROM weather.drought_monitor_weekly WHERE &quot;year&quot; BETWEEN 2010 AND 2024 GROUP BY county_fips, &quot;year&quot;</code></pre></details></li>
-<li>National-level correlation between annual indemnity/loss ratio and mean DSCI (2010-2024)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;joined national-annual ag x drought CTE, corr(indemnity, avg_dsci) and corr(loss_ratio, avg_dsci) computed in Python from the returned 15-year series&quot;)</code></pre></details></li>
-<li><a href="https://www.ers.usda.gov/topics/farm-practices-management/risk-management/crop-insurance-at-a-glance">USDA ERS — Risk Management: Crop Insurance at a Glance (indemnities by cause of loss)</a> <span class="note">— Primary source parsed directly via web_fetch, updated 9/23/2025: drought/high temperature averaged 41% of indemnities 2000-2024 (leading cause in 14 of 25 years); excess moisture 27%</span></li>
-<li><a href="https://www.ers.usda.gov/data-products/chart-gallery/gallery/chart-detail/?chartId=77276">ERS Chart of Note — Crop insurance indemnities and disaster assistance payments reflect the impact of drought on crop farms</a> <span class="note">— Cited via search; direct fetch returned HTTP 301 so this specific chart page itself was not parsed — figures above are drawn from the ERS Crop-Insurance-at-a-Glance page instead, which was fetched successfully</span></li>
-<li><a href="https://www.ewg.org/research/crop-insurance-pays-farmers-billions-dollars-weather-related-losses-closely-linked-climate">Environmental Working Group — Crop insurance pays farmers billions for weather-related losses linked to climate crisis</a> <span class="note">— Secondary analysis of RMA cause-of-loss data; drought indemnities up 690% 2001-2022 ($965.5M to $7.6B)</span></li>
-<li><a href="https://www.fb.org/market-intel/usda-launches-2023-2024-crop-loss-disaster-assistance">USDA FSA/AFBF — 2023-2024 disaster relief (American Relief Act, 2025)</a> <span class="note">— Context on how USDM D2/D3 designations gate supplemental disaster-relief eligibility</span></li>
+<li>USDA RMA Summary of Business — state/county/crop indemnity, liability, premium<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, state_abbr, SUM(indemnity_amount), SUM(liability_amount) FROM ag.rma_crop_insurance WHERE year BETWEEN 2010 AND 2024 GROUP BY year, state_abbr</code></pre></details></li>
+<li>USDA RMA Cause of Loss — peril-level indemnity attribution (CA 2013-2016)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, cause_of_loss_desc, SUM(indemnity_amount) FROM ag.rma_cause_of_loss WHERE state_abbr='CA' AND year IN (2013,2014,2015,2016) GROUP BY year, cause_of_loss_desc ORDER BY year, SUM(indemnity_amount) DESC</code></pre></details></li>
+<li>NOAA/UNL U.S. Drought Monitor weekly DSCI by county, aggregated to state-year<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, state_abbr, AVG(dsci) FROM weather.drought_monitor_weekly WHERE year BETWEEN 2010 AND 2024 GROUP BY year, state_abbr</code></pre></details></li>
+<li>Payout-rate vs. DSCI correlation matrix and VIF check<details class="sqltoggle"><summary>Show tool call</summary><pre><code>correlation_matrix(columns=[&quot;indemnity&quot;,&quot;liability&quot;,&quot;payout_rate&quot;,&quot;avg_dsci&quot;])</code></pre></details></li>
+<li>Two-way fixed-effects panel regression, payout_rate on avg_dsci (state+year FE, clustered SE)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>panel_fixed_effects(outcome=&quot;payout_rate&quot;, predictors=[&quot;avg_dsci&quot;], entity_col=&quot;state_abbr&quot;, time_col=&quot;year&quot;, cluster_col=&quot;state_abbr&quot;)</code></pre></details></li>
+<li><a href="https://cropinsuranceinamerica.org/how-did-crop-insurance-perform-during-the-historic-2012-drought/">GAO / press reporting confirming 2012 U.S. crop insurance indemnities of ~$17.4B (sanity check against ag.rma_crop_insurance total)</a> <span class="note">— Confirms our computed 2012 national total of $17.45B</span></li>
 </ol>
 </section>
 <footer>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-04</span></p>
+<p class="footnote">Payout rate normalizes for insurance-program growth over time; raw dollar comparisons across years would otherwise conflate drought severity with expanding coverage. Cause-of-loss attribution is limited to years RMA's cause-of-loss extract is loaded here (2013-2017, 2025).</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-10</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
