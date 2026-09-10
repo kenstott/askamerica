@@ -1,92 +1,445 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>agent</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Bigger trucking fleets show higher crash rates per mile in FMCSA's own data — the opposite of what per-driver metrics suggest</title>
 <style>
-:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
-:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
-.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
-h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
-h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
-h2{font-size:1.35em;margin-top:1.6em}
-h3{font-size:1.1em}
-p,li{color:var(--ink-2)}
-a{color:var(--accent)}
-code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
-code{background:var(--rule);padding:.1em .35em;border-radius:3px}
-pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
-pre code{background:none;padding:0}
-table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
-th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
-th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
-blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
-hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
-.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
-</style></head><body>
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div><div class="page">
-<span class="eyebrow">q69 · askamerica</span>
-<h1>How much more dangerous per mile are small trucking companies than the big carriers?</h1>
-<h2>Answer</h2>
-<p>Small trucking companies are measurably more dangerous per mile than large carriers, but the size
-of the gap depends heavily on which figure is used.</p>
-<ul>
-<li><strong>Published FMCSA research (most representative)</strong>: carriers with fewer than 5 power units
-  average <strong>3.84 crashes per 100 power units</strong>, versus <strong>2.98</strong> for carriers with more than 500
-  power units — a gap of about <strong>25–30%</strong>, not an order of magnitude. Industry-wide average crash
-  rate runs about 0.74–0.96 crashes per million miles; FMCSA's own audit-failure threshold is
-  1.5–1.7 crashes per million miles.</li>
-<li><strong>askamerica's own data (transport.fmcsa_carriers, recordable_crash_rate field)</strong>: restricted to
-  the ~43,700 carriers (of 4.47M) that have undergone an FMCSA compliance review and so carry a
-  nonzero computed rate, small carriers (1–5 power units) show a <strong>median 13.33</strong> vs <strong>1.19</strong> for
-  large carriers (&gt;100 power units) — an <strong>~11x gap</strong> — and a <strong>mean 42.06 vs 19.61</strong> — a
-  statistically significant <strong>~2.1x gap</strong> (Welch's t-test, t=-5.71, p=1.5e-8).</li>
-</ul>
-<p><strong>Caveat driving the discrepancy</strong>: FMCSA only computes <code>recordable_crash_rate</code> for reviewed
-carriers. Large carriers get reviewed as routine oversight; small carriers are reviewed almost
-exclusively because something (a crash, a violation) already flagged them. That makes the
-small-carrier nonzero subsample a self-selected, risk-skewed group, not a random cross-section —
-which is why the raw-field ratio (11x median, 2.1x mean) runs so far above the ~29% gap the full
-FMCSA fleet-size study reports. Treat the census-field ratios as an <strong>upper bound</strong>, and the
-published 25–30% figure as the best population-level estimate.</p>
-<p>A mileage-normalized reweighting attempt (crash_rate × mcs150_mileage) was tried and discarded —
-it produced a non-monotonic result across fleet-size buckets, almost certainly because
-<code>mcs150_mileage</code> (self-reported annual VMT on the census form) is not the same VMT base FMCSA used
-to originally compute <code>recordable_crash_rate</code>; mixing the two denominators doesn't measure
-anything cleanly.</p>
-<h2>Full report</h2>
-<p>Published via askamerica <code>publish_report</code>: "Small trucking carriers post roughly 2-11x the crash
-rate of large carriers, depending how the comparison is measured" (dashboard + narrative +
-5 citations). Local artifacts (loopback link only resolves on the run machine):</p>
-<ul>
-<li><code>dashboard.png</code> — the published report's inlined dashboard (median-by-bucket bar chart + mean
-  small-vs-large bar chart)</li>
-<li><code>median-crash-rate-by-fleet-size.png</code> — standalone median crash rate by fleet-size bucket chart</li>
-</ul>
-<h2>Method</h2>
+</div>
+<main>
+<header>
+<h1>Bigger trucking fleets show higher crash rates per mile in FMCSA's own data — the opposite of what per-driver metrics suggest</h1>
+<p class="subtitle">FMCSA Company Census File (transport.fmcsa_carriers), active carriers with a computed recordable_crash_rate and self-reported MCS-150 mileage</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 750" width="880" height="750" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="750" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">FMCSA Data Shows Bigger Trucking Fleets Report Higher Crash Rates Per Mile, No…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Mileage-weighted recordable crash rate (per million self-reported MCS-150 miles) by carrier fleet size</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="178" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="214" fill="#6b7280">Rate ratio: 1000+ truck fleets vs 1-3 truck fleets</text>
+  <text class="stat-value" x="36" y="244" fill="#1f2328">~3.4x higher</text>
+  <text class="stat-delta" x="36" y="264" fill="#059669">2.68 vs 0.79 crashes/million mi</text>
+  </g>
+  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Mileage-weighted crash rate by fleet size (power units)</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="63" y1="168.40" x2="390" y2="168.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="55" y="172.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="149.67" x2="390" y2="149.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="55" y="153.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+      <line class="grid" x1="63" y1="130.93" x2="390" y2="130.93" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="55" y="134.93" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
+      <line class="grid" x1="63" y1="112.20" x2="390" y2="112.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="55" y="116.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5</text>
+      <line class="grid" x1="63" y1="93.47" x2="390" y2="93.47" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="55" y="97.47" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.0</text>
+      <line class="grid" x1="63" y1="74.73" x2="390" y2="74.73" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="55" y="78.73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.5</text>
+      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-6" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3.0</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="168.40" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="168.40" x2="390" y2="168.40" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fleet size (power units)</text>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="112.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle" transform="rotate(-90 14 112.20)">Crashes / million mi</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-1-3" class="tick" x="90.25" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 90.25 182.40)">1-3</text>
+      <text id="p2-xtick-4-10" class="tick" x="144.75" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 144.75 182.40)">4-10</text>
+      <text id="p2-xtick-11-50" class="tick" x="199.25" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 199.25 182.40)">11-50</text>
+      <text id="p2-xtick-51-200" class="tick" x="253.75" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 253.75 182.40)">51-200</text>
+      <text id="p2-xtick-201-1000" class="tick" x="308.25" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 308.25 182.40)">201-1000</text>
+      <text id="p2-xtick-1000" class="tick" x="362.75" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 362.75 182.40)">1000+</text>
+    </g>
+    <g id="p2-series-crashes-per-million-miles" class="series">
+      <rect id="p2-mark-crashes-per-million-miles-1-3" class="bar" x="72.81" y="138.80" width="33.88" height="29.60" fill="#2563eb"/>
+      <rect id="p2-mark-crashes-per-million-miles-4-10" class="bar" x="127.31" y="142.17" width="33.88" height="26.23" fill="#2563eb"/>
+      <rect id="p2-mark-crashes-per-million-miles-11-50" class="bar" x="181.81" y="132.43" width="33.88" height="35.97" fill="#2563eb"/>
+      <rect id="p2-mark-crashes-per-million-miles-51-200" class="bar" x="236.31" y="125.69" width="33.88" height="42.71" fill="#2563eb"/>
+      <rect id="p2-mark-crashes-per-million-miles-201-1000" class="bar" x="290.81" y="73.98" width="33.88" height="94.42" fill="#2563eb"/>
+      <rect id="p2-mark-crashes-per-million-miles-1000" class="bar" x="345.31" y="67.99" width="33.88" height="100.41" fill="#2563eb"/>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="363" fill="#6b7280">Excludes sentinel/placeholder values (rate &gt;= 900); weighted by each</text>
+  <text class="caption" x="452" y="376" fill="#6b7280">carrier's reported annual mileage.</text>
+  <rect class="panel-edge" x="20" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Same pattern using driver-count buckets (robustness check)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="63" y1="168.40" x2="390" y2="168.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="55" y="172.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="149.67" x2="390" y2="149.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="55" y="153.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+      <line class="grid" x1="63" y1="130.93" x2="390" y2="130.93" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="55" y="134.93" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
+      <line class="grid" x1="63" y1="112.20" x2="390" y2="112.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="55" y="116.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5</text>
+      <line class="grid" x1="63" y1="93.47" x2="390" y2="93.47" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="55" y="97.47" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.0</text>
+      <line class="grid" x1="63" y1="74.73" x2="390" y2="74.73" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="55" y="78.73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.5</text>
+      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3.0</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="168.40" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="168.40" x2="390" y2="168.40" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fleet size (total drivers)</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="112.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle" transform="rotate(-90 14 112.20)">Crashes / million mi</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-1-3" class="tick" x="90.25" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 90.25 182.40)">1-3</text>
+      <text id="p3-xtick-4-10" class="tick" x="144.75" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 144.75 182.40)">4-10</text>
+      <text id="p3-xtick-11-50" class="tick" x="199.25" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 199.25 182.40)">11-50</text>
+      <text id="p3-xtick-51-200" class="tick" x="253.75" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 253.75 182.40)">51-200</text>
+      <text id="p3-xtick-201-1000" class="tick" x="308.25" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 308.25 182.40)">201-1000</text>
+      <text id="p3-xtick-1000" class="tick" x="362.75" y="182.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 362.75 182.40)">1000+</text>
+    </g>
+    <g id="p3-series-crashes-per-million-miles" class="series">
+      <rect id="p3-mark-crashes-per-million-miles-1-3" class="bar" x="72.81" y="142.92" width="33.88" height="25.48" fill="#2563eb"/>
+      <rect id="p3-mark-crashes-per-million-miles-4-10" class="bar" x="127.31" y="129.43" width="33.88" height="38.97" fill="#2563eb"/>
+      <rect id="p3-mark-crashes-per-million-miles-11-50" class="bar" x="181.81" y="129.81" width="33.88" height="38.59" fill="#2563eb"/>
+      <rect id="p3-mark-crashes-per-million-miles-51-200" class="bar" x="236.31" y="136.18" width="33.88" height="32.22" fill="#2563eb"/>
+      <rect id="p3-mark-crashes-per-million-miles-201-1000" class="bar" x="290.81" y="68.74" width="33.88" height="99.66" fill="#2563eb"/>
+      <rect id="p3-mark-crashes-per-million-miles-1000" class="bar" x="345.31" y="61.99" width="33.88" height="106.41" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="679" fill="#6b7280">Same computation bucketed by driver count instead of power units.</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="494" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="530" fill="#6b7280">Carriers with a usable crash-rate + mileage figure</text>
+  <text class="stat-value" x="464" y="560" fill="#1f2328" style="font-size:19px">~460,000 of 2.24M active carriers</text>
+  <text class="stat-delta" x="464" y="580" fill="#6b7280">~20% coverage</text>
+  </g>
+  <g id="brand">
+  <svg x="20" y="709" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="724" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:52965/a/5ed2e77082f1888235618f61c8378f0e.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>The honest answer is: it depends entirely on the denominator, and the two standard ways of measuring 'danger' disagree on direction.</strong> Using FMCSA's own Company Census File, where each active carrier's recordable_crash_rate is (per FMCSA's Crash Indicator methodology) built against self-reported MCS-150 annual mileage, the largest fleets (1,000+ power units) show a mileage-weighted crash rate of about <strong>2.7 crashes per million miles</strong>, roughly <strong>3-4x higher</strong> than the smallest fleets (1-3 power units, about 0.8 per million miles). That is the opposite of the common claim. Separately, trade-press analysis of FMCSA's SMS data using a <em>per-driver</em> denominator finds the opposite pattern: midsize carriers (250-500 drivers) running crash rates above 7%, some over 11%, versus 4.9-6.6% for large carriers (500+ drivers) &mdash; i.e., midsize riskier than large, by that metric. Neither of these is a clean 'small vs. big' verdict per truck-mile that survives its own data-quality problems, discussed below. If forced to answer only the per-mile question the title asks, the FMCSA census-file evidence points to <strong>large carriers being measurably more crash-prone per mile than the very smallest carriers, not less</strong> &mdash; but this rests on self-reported mileage that FMCSA itself flags as a weak point, so it should be read as suggestive, not definitive.</p>
+</section>
+<section>
+<h2>What the FMCSA data actually shows</h2>
+<p>transport.fmcsa_carriers is FMCSA's Company Census File (~4.47M rows total; ~2.24M carriers currently active). It carries fleet size (power_units, total_drivers), a per-carrier recordable_crash_rate, and self-reported annual mileage (mcs150_mileage) from the biennial MCS-150 filing. FMCSA's own Crash Indicator BASIC factsheet confirms mileage from the MCS-150 is the denominator used in this crash-rate calculation.</p><p>Only about 447,000 of 2.24M active carriers (~20%) carry a non-null recordable_crash_rate, and of those, the large majority show exactly 0 (no DOT-recordable crash in the trailing 24-month window) &mdash; unsurprising for single-truck operators with low absolute exposure. A small number of records carry an obvious sentinel/placeholder value of 999.99x, which is not a real rate and was excluded.</p><p>Bucketing active carriers by power units and weighting each carrier's rate by its own reported mileage (so the outcome isn't dominated by noise from thousands of tiny, near-zero-mileage operators) produces a rate that rises with fleet size: roughly 0.7-0.8 crashes per million miles for 1-10 truck fleets, climbing to about 2.5-2.7 per million miles for 200+ and 1,000+ truck fleets. Re-running the identical calculation bucketed by driver count instead of power units reproduces the same direction and similar magnitudes (0.68 to 2.84 per million miles), so the pattern is not an artifact of which fleet-size variable was chosen.</p>
+</section>
+<section>
+<h2>Why this conflicts with the common claim, and why neither number should be taken as final</h2>
+<p>Trade-press reporting (FreightWaves, drawing on FMCSA crash counts normalized by driver count rather than mileage) finds midsize carriers (250-500 drivers) posting per-driver crash rates above 7%, some over 11%, against 4.9-6.6% for large carriers (500+ drivers) over the same year-to-date window &mdash; i.e., a <em>different</em> ranking (midsize worse than large) on a <em>different</em> denominator (per driver, not per mile).</p><p>Both metrics have real weaknesses that could plausibly move the small-vs-large comparison: (1) <strong>Self-reported mileage</strong> is filed only every two years on the MCS-150 and FMCSA explicitly urges carriers to keep it current &mdash; a single-truck operator who has not updated a boilerplate mileage estimate in years introduces noise or bias in either direction into a per-mile rate; a large carrier's mileage, sourced from ELD/IFTA-grade fleet records, is more likely accurate but not necessarily lower. (2) <strong>Crash under-reporting</strong> to FMCSA runs an estimated 30-40% nationally per industry commentary, and reporting completeness itself may vary by carrier size and by which crashes get logged as DOT-recordable. (3) <strong>Small-denominator noise</strong>: among carriers that do log at least one recordable crash, the smallest fleets show far higher (and far noisier) per-carrier rates than large fleets &mdash; one crash against a tiny reported-mileage base swings the rate enormously &mdash; which is exactly why the mileage-weighted aggregate (rather than a simple average of each carrier's own rate) is the more defensible number, but it still inherits the same underlying self-report accuracy problem.</p><p>Given these confounds, the safest, narrowest claim the data supports is: <strong>in FMCSA's own census-file crash-rate field, using its own self-reported-mileage denominator, large fleets (1,000+ trucks) show roughly 3-4x the crash rate per mile of the very smallest fleets (1-3 trucks), and this holds up whether fleets are grouped by trucks or by drivers.</strong> This does not resolve to a single 'X times more dangerous' figure for 'small trucking companies' as a whole versus 'big carriers' as a whole, because the per-driver metric used elsewhere in the industry literature reverses the finding for the specific midsize-vs-large comparison, and both metrics carry real, FMCSA-acknowledged data-quality caveats that a defensible answer cannot paper over.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>7 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 1 rows — 4046 ms</summary><pre><code>SELECT COUNT(*) AS total, COUNT(recordable_crash_rate) AS with_rate, COUNT(power_units) AS with_units FROM transport.fmcsa_carriers WHERE status_code = 'A'</code></pre></details>
+<details class="sqltoggle"><summary>query — 6 rows — 1261 ms</summary><pre><code>SELECT
+  CASE
+    WHEN power_units &lt;= 3 THEN '1-3 (micro)'
+    WHEN power_units &lt;= 10 THEN '4-10 (small)'
+    WHEN power_units &lt;= 50 THEN '11-50 (mid)'
+    WHEN power_units &lt;= 200 THEN '51-200 (large-ish)'
+    WHEN power_units &lt;= 1000 THEN '201-1000 (large)'
+    ELSE '1000+ (mega)'
+  END AS fleet_bucket,
+  MIN(power_units) AS min_units,
+  COUNT(*) AS n_carriers,
+  AVG(recordable_crash_rate) AS avg_crash_rate,
+  median(recordable_crash_rate) AS median_crash_rate,
+  SUM(power_units) AS total_power_units
+FROM transport.fmcsa_carriers
+WHERE status_code = 'A' AND recordable_crash_rate IS NOT NULL AND power_units &gt; 0 AND recordable_crash_rate &gt;= 0
+GROUP BY
+  CASE
+    WHEN power_units &lt;= 3 THEN '1-3 (micro)'
+    WHEN power_units &lt;= 10 THEN '4-10 (small)'
+    WHEN power_units &lt;= 50 THEN '11-50 (mid)'
+    WHEN power_units &lt;= 200 THEN '51-200 (large-ish)'
+    WHEN power_units &lt;= 1000 THEN '201-1000 (large)'
+    ELSE '1000+ (mega)'
+  END
+ORDER BY min_units</code></pre></details>
+<details class="sqltoggle"><summary>query — 6 rows — 1569 ms</summary><pre><code>SELECT
+  CASE
+    WHEN power_units &lt;= 3 THEN '1-3 (micro)'
+    WHEN power_units &lt;= 10 THEN '4-10 (small)'
+    WHEN power_units &lt;= 50 THEN '11-50 (mid)'
+    WHEN power_units &lt;= 200 THEN '51-200 (large-ish)'
+    WHEN power_units &lt;= 1000 THEN '201-1000 (large)'
+    ELSE '1000+ (mega)'
+  END AS fleet_bucket,
+  COUNT(*) AS n_with_rate,
+  SUM(CASE WHEN recordable_crash_rate = 0 THEN 1 ELSE 0 END) AS n_zero,
+  SUM(CASE WHEN recordable_crash_rate &gt; 0 THEN 1 ELSE 0 END) AS n_positive,
+  quantile_cont(recordable_crash_rate, 0.9) AS p90,
+  quantile_cont(recordable_crash_rate, 0.99) AS p99,
+  MAX(recordable_crash_rate) AS max_rate
+FROM transport.fmcsa_carriers
+WHERE status_code = 'A' AND recordable_crash_rate IS NOT NULL AND power_units &gt; 0
+GROUP BY
+  CASE
+    WHEN power_units &lt;= 3 THEN '1-3 (micro)'
+    WHEN power_units &lt;= 10 THEN '4-10 (small)'
+    WHEN power_units &lt;= 50 THEN '11-50 (mid)'
+    WHEN power_units &lt;= 200 THEN '51-200 (large-ish)'
+    WHEN power_units &lt;= 1000 THEN '201-1000 (large)'
+    ELSE '1000+ (mega)'
+  END
+ORDER BY MIN(power_units)</code></pre></details>
+<details class="sqltoggle"><summary>query — 6 rows — 1047 ms</summary><pre><code>SELECT
+  CASE
+    WHEN power_units &lt;= 3 THEN '1-3 (micro)'
+    WHEN power_units &lt;= 10 THEN '4-10 (small)'
+    WHEN power_units &lt;= 50 THEN '11-50 (mid)'
+    WHEN power_units &lt;= 200 THEN '51-200 (large-ish)'
+    WHEN power_units &lt;= 1000 THEN '201-1000 (large)'
+    ELSE '1000+ (mega)'
+  END AS fleet_bucket,
+  COUNT(*) AS n_total,
+  SUM(CASE WHEN recordable_crash_rate &gt;= 900 THEN 1 ELSE 0 END) AS n_sentinel_900plus,
+  AVG(CASE WHEN recordable_crash_rate &lt; 900 THEN recordable_crash_rate END) AS avg_excl_sentinel,
+  median(CASE WHEN recordable_crash_rate &lt; 900 THEN recordable_crash_rate END) AS median_excl_sentinel,
+  quantile_cont(CASE WHEN recordable_crash_rate &lt; 900 THEN recordable_crash_rate END, 0.9) AS p90_excl,
+  AVG(CASE WHEN recordable_crash_rate &lt; 900 AND recordable_crash_rate &gt; 0 THEN recordable_crash_rate END) AS avg_positive_excl_sentinel,
+  COUNT(CASE WHEN recordable_crash_rate &lt; 900 AND recordable_crash_rate &gt; 0 THEN 1 END) AS n_positive_excl
+FROM transport.fmcsa_carriers
+WHERE status_code = 'A' AND recordable_crash_rate IS NOT NULL AND power_units &gt; 0
+GROUP BY
+  CASE
+    WHEN power_units &lt;= 3 THEN '1-3 (micro)'
+    WHEN power_units &lt;= 10 THEN '4-10 (small)'
+    WHEN power_units &lt;= 50 THEN '11-50 (mid)'
+    WHEN power_units &lt;= 200 THEN '51-200 (large-ish)'
+    WHEN power_units &lt;= 1000 THEN '201-1000 (large)'
+    ELSE '1000+ (mega)'
+  END
+ORDER BY MIN(power_units)</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 26864 ms</summary><pre><code>SELECT
+  CASE WHEN review_date IS NOT NULL THEN 'has_review' ELSE 'no_review' END AS reviewed,
+  COUNT(*) AS n,
+  SUM(CASE WHEN recordable_crash_rate IS NOT NULL THEN 1 ELSE 0 END) AS n_with_rate,
+  AVG(power_units) AS avg_power_units
+FROM transport.fmcsa_carriers
+WHERE status_code = 'A'
+GROUP BY CASE WHEN review_date IS NOT NULL THEN 'has_review' ELSE 'no_review' END</code></pre></details>
+<details class="sqltoggle"><summary>query — 6 rows — 2202 ms</summary><pre><code>SELECT
+  CASE
+    WHEN power_units &lt;= 3 THEN '1-3 (micro)'
+    WHEN power_units &lt;= 10 THEN '4-10 (small)'
+    WHEN power_units &lt;= 50 THEN '11-50 (mid)'
+    WHEN power_units &lt;= 200 THEN '51-200 (large-ish)'
+    WHEN power_units &lt;= 1000 THEN '201-1000 (large)'
+    ELSE '1000+ (mega)'
+  END AS fleet_bucket,
+  COUNT(*) AS n,
+  SUM(mcs150_mileage) AS total_miles,
+  SUM(recordable_crash_rate * mcs150_mileage) / NULLIF(SUM(mcs150_mileage),0) AS mileage_weighted_avg_rate,
+  AVG(recordable_crash_rate) AS simple_avg_rate
+FROM transport.fmcsa_carriers
+WHERE status_code = 'A' AND recordable_crash_rate IS NOT NULL AND recordable_crash_rate &lt; 900
+  AND power_units &gt; 0 AND mcs150_mileage IS NOT NULL AND mcs150_mileage &gt; 0
+GROUP BY
+  CASE
+    WHEN power_units &lt;= 3 THEN '1-3 (micro)'
+    WHEN power_units &lt;= 10 THEN '4-10 (small)'
+    WHEN power_units &lt;= 50 THEN '11-50 (mid)'
+    WHEN power_units &lt;= 200 THEN '51-200 (large-ish)'
+    WHEN power_units &lt;= 1000 THEN '201-1000 (large)'
+    ELSE '1000+ (mega)'
+  END
+ORDER BY MIN(power_units)</code></pre></details>
+<details class="sqltoggle"><summary>query — 6 rows — 1169 ms</summary><pre><code>SELECT
+  CASE
+    WHEN total_drivers &lt;= 3 THEN '1-3 drivers'
+    WHEN total_drivers &lt;= 10 THEN '4-10'
+    WHEN total_drivers &lt;= 50 THEN '11-50'
+    WHEN total_drivers &lt;= 200 THEN '51-200'
+    WHEN total_drivers &lt;= 1000 THEN '201-1000'
+    ELSE '1000+'
+  END AS bucket,
+  COUNT(*) AS n,
+  SUM(mcs150_mileage) AS total_miles,
+  SUM(recordable_crash_rate * mcs150_mileage) / NULLIF(SUM(mcs150_mileage),0) AS mileage_weighted_rate
+FROM transport.fmcsa_carriers
+WHERE status_code = 'A' AND recordable_crash_rate IS NOT NULL AND recordable_crash_rate &lt; 900
+  AND total_drivers &gt; 0 AND mcs150_mileage IS NOT NULL AND mcs150_mileage &gt; 0
+GROUP BY
+  CASE
+    WHEN total_drivers &lt;= 3 THEN '1-3 drivers'
+    WHEN total_drivers &lt;= 10 THEN '4-10'
+    WHEN total_drivers &lt;= 50 THEN '11-50'
+    WHEN total_drivers &lt;= 200 THEN '51-200'
+    WHEN total_drivers &lt;= 1000 THEN '201-1000'
+    ELSE '1000+'
+  END
+ORDER BY MIN(total_drivers)</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
 <ol>
-<li>Read the literature first (FMCSA CSA-effectiveness reporting, FreightWaves, FleetOwner, HDT
-   Fact Book) to establish the accepted per-unit and per-mile crash-rate figures and the audit
-   failure threshold, before touching the warehouse.</li>
-<li><code>search_catalog</code> → <code>describe_table</code> on <code>transport.fmcsa_carriers</code> (FMCSA Company Census File,
-   ~4.47M carrier rows, DOT Socrata az4n-8mr2).</li>
-<li>Bucketed carriers by power_units (1–5, 6–20, 21–100, &gt;100), computed mean/median
-   <code>recordable_crash_rate</code> restricted to nonzero (reviewed) carriers.</li>
-<li>Ran <code>hypothesis_test</code> (Welch's t-test) on the 1–5 PU vs &gt;100 PU groups to confirm significance.</li>
-<li>Attempted a mileage-weighted aggregate rate using <code>mcs150_mileage</code>; result was non-monotonic
-   across buckets, flagged as a denominator mismatch, and excluded from the headline numbers.</li>
-<li>Verified the computed magnitude against the published FMCSA fleet-size study and reported both,
-   explaining the gap via the compliance-review selection effect.</li>
-<li>Rendered charts (<code>render_chart</code>) and published the full narrative via <code>publish_report</code> with
-   <code>compose_dashboard</code> inlined.</li>
+<li>FMCSA Company Census File (transport.fmcsa_carriers)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CASE WHEN power_units&lt;=3 THEN '1-3' WHEN power_units&lt;=10 THEN '4-10' WHEN power_units&lt;=50 THEN '11-50' WHEN power_units&lt;=200 THEN '51-200' WHEN power_units&lt;=1000 THEN '201-1000' ELSE '1000+' END AS bucket, SUM(recordable_crash_rate*mcs150_mileage)/NULLIF(SUM(mcs150_mileage),0) AS mileage_weighted_rate FROM transport.fmcsa_carriers WHERE status_code='A' AND recordable_crash_rate IS NOT NULL AND recordable_crash_rate&lt;900 AND power_units&gt;0 AND mcs150_mileage&gt;0 GROUP BY bucket</code></pre></details></li>
+<li><a href="https://csa.fmcsa.dot.gov/Documents/FMC_CSA_12_005_BASICs_Crash_Indicator.pdf">FMCSA Crash Indicator BASIC Factsheet (methodology: MCS-150 mileage used in crash-rate calculation)</a></li>
+<li><a href="https://www.freightwaves.com/news/fmcsa-data-are-these-the-most-dangerous-trucking-carriers-in-america">FreightWaves: FMCSA crash data — most dangerous trucking carriers (per-driver crash rates by fleet size)</a></li>
+<li><a href="https://www.fmcsa.dot.gov/safety/data-and-statistics/2024-pocket-guide-large-truck-and-bus-statistics">FMCSA 2024 Pocket Guide to Large Truck and Bus Statistics</a></li>
 </ol>
-<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
-</div></body></html>
+</section>
+<footer>
+<p class="footnote">recordable_crash_rate reflects DOT-recordable crashes only (fatality, injury requiring transport away from scene, or a towed vehicle) over a trailing ~24-month window, normalized against carrier-reported MCS-150 mileage; sentinel values (&gt;=900) were excluded. Only ~20% of active carriers carry a usable rate + mileage pair; the remainder report zero or have no mileage on file. FreightWaves' per-driver figures use a different denominator (drivers, not miles) and a different time window, and are not directly comparable to the FMCSA census-file figures above.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-10</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
