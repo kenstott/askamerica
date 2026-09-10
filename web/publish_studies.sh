@@ -13,5 +13,5 @@ git commit -q -m "chore(studies): publish ${changed} updated askamerica stud$([ 
 
 Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01GDnaeYypxZeQfrWWHd1DaC"
-git pull -q --rebase origin main && git push -q origin main
+git pull -q --rebase --autostash origin main && git push -q origin main
 echo "studies: published ${changed} page(s) — $(git log --oneline -1)"
