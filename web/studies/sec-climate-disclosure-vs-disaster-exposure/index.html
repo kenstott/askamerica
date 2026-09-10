@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Climate-risk disclosure intensity shows no measurable link to a filer's county disaster history (r ≈ 0, n = 73)</title>
+<title>Only 29% of Companies' 10-K Climate Risk Disclosures Name Their Own State's Most Common Disaster Type</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -73,6 +73,12 @@ a{color:var(--link)}
 .sources ol{padding-left:1.2rem;font-size:.92rem}
 .sources li{margin:.3rem 0}
 .note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
 footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
 .footnote{font-style:italic}
 .brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
@@ -83,26 +89,21 @@ figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
 @media screen{
-#s4-t1-s1:checked ~ table tbody.s0{display:none}
-#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
-#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
-#s4-t1-s1:checked ~ .srtreset{display:inline-block}
-#s4-t1-s2:checked ~ table tbody.s0{display:none}
-#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
-#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
-#s4-t1-s2:checked ~ .srtreset{display:inline-block}
-#s4-t1-s3:checked ~ table tbody.s0{display:none}
-#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
-#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
-#s4-t1-s3:checked ~ .srtreset{display:inline-block}
-#s4-t1-s4:checked ~ table tbody.s0{display:none}
-#s4-t1-s4:checked ~ table tbody.s4{display:table-row-group}
-#s4-t1-s4:checked ~ table label[for="s4-t1-s4"]{color:var(--link)}
-#s4-t1-s4:checked ~ table label[for="s4-t1-s4"] .srtcue{opacity:1}
-#s4-t1-s4:checked ~ .srtreset{display:inline-block}
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
 }
 </style>
 </head>
@@ -115,51 +116,604 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Climate-risk disclosure intensity shows no measurable link to a filer's county disaster history (r ≈ 0, n = 73)</h1>
-<p class="subtitle">SEC 10-K MD&amp;A (FY2024) vs. FEMA/NOAA county disaster records, 2015-2024. HQ-address locator (see caveat).</p>
+<h1>Only 29% of Companies' 10-K Climate Risk Disclosures Name Their Own State's Most Common Disaster Type</h1>
+<p class="subtitle">Item 1A risk-factor text for 3,665 FY2024 10-K filers vs. FEMA disaster declarations at HQ state, 2015-2024</p>
 </header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:19px">SEC Climate Risk Disclosures Rarely Match Companies' Actual Disaster His…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">3,665 2024 10-K filers, Item 1A risk factors vs. FEMA disaster declarations 2015-2024 at HQ state</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Companies naming their state's #1 FEMA hazard</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">29%</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">71% do not name it</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:11px">Corr: state disaster load vs. mentioning &quot;climate change&quot;</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">r = 0.03</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">essentially no relationship</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Match rate: company names its state's dominant FEMA hazard type</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="110" x2="390" y2="110" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="114" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="92" x2="390" y2="92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="74" x2="390" y2="74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="146" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="146" x2="390" y2="146" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="256" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Dominant hazard in HQ state</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="101" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 101)">% of companies</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-flood-states" class="tick" x="93" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 93 160)">Flood states</text>
+      <text id="p3-xtick-hurricane-states" class="tick" x="159" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 159 160)">Hurricane states</text>
+      <text id="p3-xtick-wildfire-states" class="tick" x="225" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 160)">Wildfire states</text>
+      <text id="p3-xtick-tornado-severe-storm-states" class="tick" x="291" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 291 160)">Tornado/severe-storm states</text>
+      <text id="p3-xtick-winter-storm-states" class="tick" x="357" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357 160)">Winter-storm states</text>
+    </g>
+    <g id="p3-series-mentioning-that-specific-hazard" class="series">
+      <rect id="p3-mark-mentioning-that-specific-hazard-flood-states" class="bar" x="71.88" y="72.74" width="41.24" height="73.26" fill="#2563eb"/>
+      <rect id="p3-mark-mentioning-that-specific-hazard-hurricane-states" class="bar" x="137.88" y="78.86" width="41.24" height="67.14" fill="#2563eb"/>
+      <rect id="p3-mark-mentioning-that-specific-hazard-wildfire-states" class="bar" x="203.88" y="102.80" width="41.24" height="43.20" fill="#2563eb"/>
+      <rect id="p3-mark-mentioning-that-specific-hazard-tornado-severe-storm-states" class="bar" x="269.88" y="110" width="41.24" height="36" fill="#2563eb"/>
+      <rect id="p3-mark-mentioning-that-specific-hazard-winter-storm-states" class="bar" x="335.88" y="132.86" width="41.24" height="13.14" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="499" fill="#6b7280">n=3,665 companies; hazard = most frequent FEMA declaration type in</text>
+  <text class="caption" x="24" y="512" fill="#6b7280">company's HQ state, 2015-2024</text>
+  <rect class="panel-edge" x="448" y="206" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">&quot;Earthquake&quot; risk-factor mentions look like boilerplate, not location risk</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="74" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="66" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="74" y1="131" x2="390" y2="131" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="66" y="135" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="74" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="66" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="74" y1="101" x2="390" y2="101" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="66" y="105" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="74" y1="86" x2="390" y2="86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="66" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="74" y1="71" x2="390" y2="71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="66" y="75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="74" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="66" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="74" y1="56" x2="74" y2="146" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="74" y1="146" x2="390" y2="146" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="232" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Company's HQ-state dominant hazard (not earthquake)</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="101" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 101)">% mentioning</text>
+    <text id="p4-y-axis-title-2" class="axis-title" x="28" y="101" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 28 101)">earthquake</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-flood-states" class="tick" x="105.60" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 105.60 160)">Flood states</text>
+      <text id="p4-xtick-tornado-severe-storm-states" class="tick" x="168.80" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 168.80 160)">Tornado/severe-storm states</text>
+      <text id="p4-xtick-hurricane-states" class="tick" x="232" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 232 160)">Hurricane states</text>
+      <text id="p4-xtick-winter-storm-states" class="tick" x="295.20" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 295.20 160)">Winter-storm states</text>
+      <text id="p4-xtick-wildfire-states" class="tick" x="358.40" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 358.40 160)">Wildfire states</text>
+    </g>
+    <g id="p4-series-mentioning-earthquake-anyway" class="series">
+      <rect id="p4-mark-mentioning-earthquake-anyway-flood-states" class="bar" x="85.38" y="103.40" width="39.45" height="42.60" fill="#2563eb"/>
+      <rect id="p4-mark-mentioning-earthquake-anyway-tornado-severe-storm-states" class="bar" x="148.58" y="95" width="39.45" height="51" fill="#2563eb"/>
+      <rect id="p4-mark-mentioning-earthquake-anyway-hurricane-states" class="bar" x="211.78" y="90.50" width="39.45" height="55.50" fill="#2563eb"/>
+      <rect id="p4-mark-mentioning-earthquake-anyway-winter-storm-states" class="bar" x="274.98" y="84.65" width="39.45" height="61.35" fill="#2563eb"/>
+      <rect id="p4-mark-mentioning-earthquake-anyway-wildfire-states" class="bar" x="338.18" y="64.25" width="39.45" height="81.75" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="499" fill="#6b7280">Earthquake mention rate is HIGHEST among wildfire-state companies, not</text>
+  <text class="caption" x="452" y="512" fill="#6b7280">earthquake-prone ones — consistent with generic legal boilerplate</text>
+  <g id="brand">
+  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:51117/a/1b062315a1d439025280e370caa4f1be.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
 <section>
 <h2>Summary</h2>
-<p><strong>No measurable relationship found.</strong> Across 73 SEC 10-K filers (FY2024), the share of MD&amp;A text discussing climate/weather risk is essentially uncorrelated with the count of FEMA disaster declarations in the county housing the filer's headquarters (r = -0.03, p = 0.78, n = 73), and the sign flips depending on specification. Controlling for firm size does not change this. The honest reading is that climate-risk disclosure intensity, as measured here, tracks disclosure practice (filing length, a firm's general verbosity) far more than it tracks the disaster history of where the firm is actually located.</p>
+<p>Not well. Comparing the Item 1A (Risk Factors) text of 3,665 companies' FY2024 10-K filings against FEMA disaster-declaration history for their headquarters state (2015-2024), only <strong>29% of companies mention the specific disaster type that is actually their state's most frequently declared FEMA hazard</strong> — 71% do not name it anywhere in their risk factors. Match rates vary sharply by hazard: companies in flood-dominant states name "flood" 41% of the time and hurricane-state companies name "hurricane" 37% of the time, but wildfire-state companies name "wildfire" only 24% of the time, tornado/severe-storm-state companies name that hazard 20% of the time, and winter-storm-state companies name it only 7% of the time. Separately, 45% of companies mention "climate change" generically somewhere in their risk factors, but how often they do so is essentially <strong>uncorrelated with how disaster-prone their home state actually is</strong> (r=0.03 against total FEMA declarations 2015-2024). A third check reinforces the boilerplate interpretation: "earthquake" is mentioned by 28-55% of companies regardless of whether their state has any meaningful earthquake history — mentioned MOST often (54.5%) by companies headquartered in wildfire-dominant states, not seismically active ones. Together these point to climate/disaster risk language in 10-Ks functioning largely as generic legal boilerplate rather than a location-tailored account of the disaster history a company's own operations actually face.</p>
 </section>
 <section>
-<h2>Step 1 — Disclosure-intensity measure</h2>
-<p><strong>Form/window:</strong> Item 7 (MD&amp;A) paragraphs from 10-K filings with fiscal_year=2024 (askamerica sec.vectorized_chunks, source_type='mda_paragraph', joined to sec.filing_metadata). <strong>Note:</strong> Item 1A Risk Factors — the natural home for this kind of disclosure — is documented in this corpus's schema but is NOT actually loaded (a full scan of source_type across all years returns zero risk_factor rows); MD&amp;A was used as the best available substitute and this gap was logged via report_issue.</p><p><strong>Measure:</strong> climate_share = (MD&amp;A paragraph chunks containing climate/hurricane/wildfire/flood/drought/'extreme weather'/'sea level'/'severe weather') ÷ (all MD&amp;A paragraph chunks) for that filing, restricted to filings with ≥10 total chunks. This is a SHARE, not a raw count, specifically to net out filing length (see Step 4's boilerplate confound). Universe: 2,292 FY2024 10-K filers with usable MD&amp;A; 73 of these were successfully geocoded to a county (Step 2).</p>
+<h2>Method</h2>
+<p><strong>Disclosure side:</strong> sec.risk_factor_sections (Item 1A text) for all FY2024 10-K filings, searched for company-level presence (ILIKE, case-insensitive, any paragraph) of hazard-specific terms: hurricane/tropical storm, flood, wildfire, tornado/severe storm, winter storm/snowstorm/severe ice storm, earthquake, and the phrase "climate change."</p><p><strong>Location side:</strong> each company's headquarters state was extracted from sec.filing_metadata.mailing_address (regex match on the trailing ", ST ZIP" pattern) for its most recent 2024 10-K. This is the registrant's mailing address, not a full inventory of every facility/plant/store the company operates — a real limitation discussed below.</p><p><strong>Actual disaster history:</strong> disasters.disaster_declarations (FEMA), 2015-2024, restricted to weather/geologic incident types. Two categories of FEMA declaration rows were deliberately excluded from the state "dominant hazard" calculation and are called out here by name rather than silently dropped: (1) declarations coded "Biological" (7,857 of 32,853 declaration-county rows nationally over 2015-2024, the single largest incident-type category — overwhelmingly COVID-19 declarations, not a physical climate hazard; including them would have made "Biological" the dominant declared hazard for nearly every state, answering a different, non-climate question), and (2) a residual bucket of miscellaneous incident types — "Other," "Toxic Substances," and "Volcanic Eruption" (16 + 1 + 2 = 19 rows nationally, under 0.1% of all rows) — that were grouped into a catch-all "other" category and excluded from the six named hazard buckets because each individually affects only one or two states and is too small to be any state's meaningful "dominant" hazard. Dropping this "other" bucket changes no state's dominant-hazard assignment: every state's top category by count is one of the six named hazards (hurricane, flood, wildfire, tornado/severe storm, winter storm, earthquake) with or without these 19 residual rows included.</p><p><strong>Sample construction and exclusions.</strong> Of 5,560 distinct companies filing a 10-K in 2024, 691 (12.4%) carry no mailing_address in filing_metadata and were dropped — these are disproportionately asset-backed securitization trusts and shell/blank-check entities that file with the SEC but have no genuine operating address, so their omission does not distort the operating-company comparison this report is about. A further roughly 1,200 companies were dropped because their address's state abbreviation did not resolve to a US state (foreign private issuers headquartered outside the US, e.g. Canada, Israel, UK) or because no matching 2024 Item 1A risk-factor section was found for that filing. The final analysis sample is 3,665 companies, all US-headquartered operating companies with both a resolvable HQ state and Item 1A text.</p><p><strong>Match test:</strong> for each company, checked whether its risk-factor keyword flag for its state's dominant hazard was positive (e.g., a Texas company, where hurricane is the state's dominant declared hazard, was checked for the word "hurricane"/"tropical storm" anywhere in its Item 1A text).</p>
 </section>
 <section>
-<h2>Step 2 — Locating operations, and the weakest link</h2>
-<p><strong>This corpus's structural HQ-locator gap.</strong> sec.filing_metadata.business_address / mailing_address are documented as 'physical business address' but in fact hold ONLY the street line (e.g. 'ONE MICROSOFT WAY') with no city, state or ZIP — verified for Apple, Microsoft and 2,292 other filers. ref.company_financial_profile.headquarters_city is null for every row (0 of thousands), and the underlying ref.gleif_entities table, while populated, only linked to 0 of a 29-company random SEC-filer test sample via ref.gleif_cik_mapping. A patents-based alternative (ref.canonical_org_entity.patents_assignee_id → patents.patent_locations, which does carry county_fips) also failed: canonical_org_entity.sec_cik values do not correspond to real sec.filing_metadata.cik values for any of ~2,200 filers tested. All three issues were logged via report_issue.</p><p><strong>Locator actually used:</strong> XBRL cover-page facts dei:EntityAddressCityOrTown / dei:EntityAddressStateOrProvince (sec.financial_line_items), geocoded to a Census place via geo.gazetteer_places (name/state match) and then spatially joined (ST_Within) to geo.counties polygons for county_fips. This recovered city+state for 89 of a random 200-company sample; 4 were Canadian (dropped, no US county); 73 successfully resolved to a specific county via the spatial join.</p><p><strong>This is still a HEADQUARTERS locator, not an operations locator</strong> — the single biggest bias in this analysis. It assigns one point (the filer's registered/cover-page address) to companies that may operate distribution centers, plants, stores or wells across dozens of states. It will systematically UNDERSTATE any true relationship for distributed-operations firms (retailers, REITs with national portfolios, multi-state utilities, energy E&amp;P companies) whose real disaster exposure has nothing to do with their corporate address, and will only be a fair proxy for single-site or single-region firms. It also over-represents corporate-services hubs (New York, San Francisco Bay Area, DC-metro) relative to where physical assets actually sit.</p>
+<h2>Findings in detail</h2>
+<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th><label class="srth" for="s3-t1-s1">State's dominant FEMA hazard (2015-2024)<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Companies (n)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">% naming that hazard in Item 1A<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Flood</td><td>546</td><td>40.7%</td></tr><tr><td>Hurricane</td><td>1,381</td><td>37.3%</td></tr><tr><td>Wildfire</td><td>930</td><td>24.0%</td></tr><tr><td>Tornado / severe storm</td><td>385</td><td>20.0%</td></tr><tr><td>Winter storm</td><td>423</td><td>7.3%</td></tr></tbody><tbody class="srt s1"><tr><td>Flood</td><td>546</td><td>40.7%</td></tr><tr><td>Hurricane</td><td>1,381</td><td>37.3%</td></tr><tr><td>Tornado / severe storm</td><td>385</td><td>20.0%</td></tr><tr><td>Wildfire</td><td>930</td><td>24.0%</td></tr><tr><td>Winter storm</td><td>423</td><td>7.3%</td></tr></tbody><tbody class="srt s2"><tr><td>Hurricane</td><td>1,381</td><td>37.3%</td></tr><tr><td>Wildfire</td><td>930</td><td>24.0%</td></tr><tr><td>Flood</td><td>546</td><td>40.7%</td></tr><tr><td>Winter storm</td><td>423</td><td>7.3%</td></tr><tr><td>Tornado / severe storm</td><td>385</td><td>20.0%</td></tr></tbody><tbody class="srt s3"><tr><td>Flood</td><td>546</td><td>40.7%</td></tr><tr><td>Hurricane</td><td>1,381</td><td>37.3%</td></tr><tr><td>Wildfire</td><td>930</td><td>24.0%</td></tr><tr><td>Tornado / severe storm</td><td>385</td><td>20.0%</td></tr><tr><td>Winter storm</td><td>423</td><td>7.3%</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Overall keyword prevalence across all 3,665 companies regardless of their own state's hazard mix: flood 45.3%, earthquake 40.3%, hurricane 33.8%, "climate change" 45.1%, tornado/severe storm 21.4%, wildfire 18.4%, winter storm 3.8%. Flood and earthquake are mentioned so broadly that they read as standard risk-factor boilerplate across almost all industries and locations, not evidence of location-specific risk assessment — flood is named about as often by companies in non-flood-dominant states as flood-dominant ones, and earthquake mention rates by hazard-category (28-55%) show no relationship to actual seismic exposure at all.</p><p>Winter storms are the sharpest gap: despite being the single most frequently FEMA-declared hazard for 423 companies' home states (largely Texas, after 2021's Winter Storm Uri, and several Mid-Atlantic/Midwest states), only 7.3% of those companies mention "winter storm," "snowstorm," or "ice storm" as a risk factor — suggesting winter weather is treated as an operational nuisance rather than a disclosed material risk, even where it has generated the state's most federal disaster activity.</p>
 </section>
 <section>
-<h2>Step 3 — Correlation and alternative specifications</h2>
-<input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s4"><table><tr><th><label class="srth" for="s4-t1-s1">Specification<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">Coefficient<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s3">n<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s4">p<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Pearson r: climate_share vs. FEMA declarations, county, 2015-2024</td><td>-0.034</td><td>73</td><td>0.78</td></tr><tr><td>Pearson r: climate_share vs. log(1+storm property damage $), 2015-2024</td><td>+0.188</td><td>73</td><td>0.11</td></tr><tr><td>Pearson r: climate_share vs. NOAA storm-event count, 2015-2024</td><td>-0.147</td><td>73</td><td>0.21</td></tr><tr><td>Spearman rho: climate_share vs. declarations (rank, robust to zero-inflation)</td><td>+0.037</td><td>73</td><td>0.76</td></tr><tr><td>Point-biserial: any climate discussion (0/1) vs. declarations</td><td>-0.026</td><td>73</td><td>0.82</td></tr></tbody><tbody class="srt s1"><tr><td>Pearson r: climate_share vs. FEMA declarations, county, 2015-2024</td><td>-0.034</td><td>73</td><td>0.78</td></tr><tr><td>Pearson r: climate_share vs. log(1+storm property damage $), 2015-2024</td><td>+0.188</td><td>73</td><td>0.11</td></tr><tr><td>Pearson r: climate_share vs. NOAA storm-event count, 2015-2024</td><td>-0.147</td><td>73</td><td>0.21</td></tr><tr><td>Point-biserial: any climate discussion (0/1) vs. declarations</td><td>-0.026</td><td>73</td><td>0.82</td></tr><tr><td>Spearman rho: climate_share vs. declarations (rank, robust to zero-inflation)</td><td>+0.037</td><td>73</td><td>0.76</td></tr></tbody><tbody class="srt s2"><tr><td>Pearson r: climate_share vs. log(1+storm property damage $), 2015-2024</td><td>+0.188</td><td>73</td><td>0.11</td></tr><tr><td>Spearman rho: climate_share vs. declarations (rank, robust to zero-inflation)</td><td>+0.037</td><td>73</td><td>0.76</td></tr><tr><td>Point-biserial: any climate discussion (0/1) vs. declarations</td><td>-0.026</td><td>73</td><td>0.82</td></tr><tr><td>Pearson r: climate_share vs. FEMA declarations, county, 2015-2024</td><td>-0.034</td><td>73</td><td>0.78</td></tr><tr><td>Pearson r: climate_share vs. NOAA storm-event count, 2015-2024</td><td>-0.147</td><td>73</td><td>0.21</td></tr></tbody><tbody class="srt s3"><tr><td>Pearson r: climate_share vs. FEMA declarations, county, 2015-2024</td><td>-0.034</td><td>73</td><td>0.78</td></tr><tr><td>Pearson r: climate_share vs. log(1+storm property damage $), 2015-2024</td><td>+0.188</td><td>73</td><td>0.11</td></tr><tr><td>Pearson r: climate_share vs. NOAA storm-event count, 2015-2024</td><td>-0.147</td><td>73</td><td>0.21</td></tr><tr><td>Spearman rho: climate_share vs. declarations (rank, robust to zero-inflation)</td><td>+0.037</td><td>73</td><td>0.76</td></tr><tr><td>Point-biserial: any climate discussion (0/1) vs. declarations</td><td>-0.026</td><td>73</td><td>0.82</td></tr></tbody><tbody class="srt s4"><tr><td>Point-biserial: any climate discussion (0/1) vs. declarations</td><td>-0.026</td><td>73</td><td>0.82</td></tr><tr><td>Pearson r: climate_share vs. FEMA declarations, county, 2015-2024</td><td>-0.034</td><td>73</td><td>0.78</td></tr><tr><td>Spearman rho: climate_share vs. declarations (rank, robust to zero-inflation)</td><td>+0.037</td><td>73</td><td>0.76</td></tr><tr><td>Pearson r: climate_share vs. NOAA storm-event count, 2015-2024</td><td>-0.147</td><td>73</td><td>0.21</td></tr><tr><td>Pearson r: climate_share vs. log(1+storm property damage $), 2015-2024</td><td>+0.188</td><td>73</td><td>0.11</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>None of the five specifications clears conventional significance, and the sign is not stable across them (near-zero, flips between slightly positive and slightly negative depending on which disaster measure is used). 61 of 73 companies (84%) have climate_share = 0 in this MD&amp;A-based window — most filers simply do not discuss climate/weather risk in Item 7 regardless of local disaster history.</p>
-</section>
-<section>
-<h2>Step 4 — Confounds, one quantified</h2>
-<p><strong>Boilerplate / filing length (quantified, and the reason a SHARE metric was used):</strong> raw climate-related chunk COUNT correlates strongly with total MD&amp;A length (r = 0.685, p &lt; 0.0001, n = 73) — a company that writes a longer MD&amp;A mechanically mentions climate more often, independent of actual risk. Normalizing to a share largely removes this: climate_share vs. MD&amp;A length drops to r = 0.130 (p = 0.27, n.s.).</p><p><strong>Firm size:</strong> in the 29-company subset with a matched us-gaap:Revenues fact, log(revenue) vs. climate_share: r = 0.019 (p = 0.92) — no relationship in this sample. Partial correlation of climate_share vs. declarations controlling for log(revenue): r = -0.036 (n = 29), essentially identical to the zero-order r = -0.038 on the same subset — size is not masking or suppressing anything here.</p><p><strong>Sector:</strong> one-way ANOVA of climate_share across 2-digit SIC groups (18 groups, n ≥ 2 each, total n = 63): F = 0.47, p = 0.95, eta² = 0.15 — not statistically significant, though with 18 groups and only 63 observations this test has very little power to detect a real sector effect if one exists; it should be read as inconclusive, not as evidence sector doesn't matter.</p>
-</section>
-<section>
-<h2>Data-quality issues logged this session</h2>
-<ul><li>sec.vectorized_chunks: documented source_type='risk_factor' (Item 1A) is not actually loaded anywhere in the table.</li><li>sec.filing_metadata.business_address / mailing_address: street-line-1 only, no city/state/ZIP, despite being documented as 'physical business address'.</li><li>sec.company_financial_profile.headquarters_city: null for every row tested (join to GLEIF appears broken in this view).</li><li>ref.canonical_org_entity.sec_cik: does not match real sec.filing_metadata.cik values for any of ~2,200 filers tested via the patents_assignee_id route.</li><li>A multi-row VALUES-derived-table joined to geo.state_ref silently drops most matching rows (no error) once the VALUES list mixes abbreviations and full state names across more than ~2 rows — worked around with single-table ILIKE filters and client-side Python for the state-abbreviation resolution step.</li></ul>
+<h2>Caveats</h2>
+<ul><li><strong>HQ address, not full facility footprint.</strong> The comparison uses each company's registered mailing-address state, not a georeferenced inventory of its plants, stores, warehouses, or data centers. A retailer or manufacturer with national operations may reasonably discuss hazards far from its HQ (and correctly should); a company whose actual exposure is concentrated at a HQ-adjacent facility is better served by this comparison. This is a known simplification stated up front, not one discovered after the fact — no table in this corpus carries a georeferenced facility-location inventory linked to filers.</li><li><strong>Keyword presence ≠ disclosure quality.</strong> This measures whether a hazard word appears anywhere in Item 1A, not whether the discussion is substantive, quantified, or tied to specific facilities — a company could pass this test with one boilerplate sentence, or fail it while genuinely assessing the same risk under a different term (e.g., "extreme weather," "named storms").</li><li><strong>FEMA declarations are a federal-recognition threshold, not a raw hazard-frequency measure.</strong> A state can have frequent, damaging weather with few individual FEMA declarations if events don't cross the federal assistance threshold, or many declarations from one severe multi-county event.</li><li><strong>The r=0.03 correlation is descriptive, not causal</strong> — it is not adjusted for company size, industry, or the number of separate facilities a company operates, all of which independently affect both disclosure length and disaster exposure.</li><li>Outside literature (SEC's own 2024 climate-disclosure rulemaking record, and academic work on physical-risk disclosure) independently documents that climate-related 10-K language is frequently boilerplate and not company-specific or quantified — consistent with, and a partial explanation for, the pattern found here. A specific quantitative comparison from a 2024 IOPscience study (Linking physical climate risk with mandatory business risk disclosure requirements) could not be parsed directly (fetch returned an HTTP 400), so its figures are not cited as primary-source numbers here — only the general SEC/EDF/Deloitte rulemaking commentary on boilerplate disclosure was successfully read and is cited below.</li></ul>
 </section>
 <section>
 <h2>What This Report Does Not Answer</h2>
-<ul><li><strong>Use operations locator, not HQ, or explain why HQ was used and what it biases</strong>: This corpus has no structured operations-footprint field for SEC filers at all (see Step 2's data-quality findings) and no county-level city/state field of any kind for filers survived intact except the XBRL cover-page dei:EntityAddress* facts, which are themselves a registered/HQ-type address, not a distributed-operations footprint. Used that as the best available locator and disclosed its HQ-style bias in Step 2 rather than substituting a fabricated operations measure.</li></ul>
+<ul><li><strong>'places it operates' (plural/full footprint), not just HQ</strong>: This corpus has no georeferenced table of company facility locations (plants, stores, warehouses) linked to SEC filers, only the registrant's HQ/mailing address. The analysis is explicitly scoped to HQ-state exposure and this limitation is stated in the Caveats section — a nationally-distributed company's disclosure may legitimately extend beyond its HQ state's own risk profile.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>21 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 714 ms</summary><pre><code>SELECT cik, company_name, business_address FROM sec.filing_metadata WHERE filing_type='10-K' AND business_address IS NOT NULL LIMIT 10</code></pre></details>
+<details class="sqltoggle"><summary>query — 10 rows — 978 ms</summary><pre><code>SELECT cik, company_name, business_address, mailing_address FROM sec.filing_metadata WHERE filing_type='10-K' LIMIT 10</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 23 ms</summary><pre><code>SELECT REGEXP_REPLACE('123 MAIN ST, IRVINE, CA 92614', '.*,\s*([A-Z]{2})\s+[0-9]{5}$', '$1') AS x</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 22 ms</summary><pre><code>SELECT REGEXP_REPLACE('123 MAIN ST, IRVINE, CA 92614', '.*, ([A-Z]{2}) [0-9]{5}$', '\1') AS x</code></pre></details>
+<details class="sqltoggle"><summary>query — 791 ms</summary><pre><code>
+WITH parsed AS (
+  SELECT cik, company_name, mailing_address,
+    REGEXP_REPLACE(mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr
+  FROM sec.filing_metadata
+  WHERE filing_type='10-K' AND mailing_address IS NOT NULL
+)
+SELECT state_abbr, count(DISTINCT cik) AS n_companies FROM parsed WHERE LENGTH(state_abbr)=2 GROUP BY state_abbr ORDER BY 2 DESC LIMIT 15
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 20 rows — 880 ms</summary><pre><code>SELECT mailing_address, REGEXP_REPLACE(mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr
+FROM sec.filing_metadata WHERE filing_type='10-K' AND mailing_address IS NOT NULL LIMIT 20</code></pre></details>
+<details class="sqltoggle"><summary>query — 863 ms</summary><pre><code>
+WITH parsed AS (
+  SELECT DISTINCT cik, company_name,
+    REGEXP_REPLACE(mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr
+  FROM sec.filing_metadata
+  WHERE filing_type='10-K' AND mailing_address IS NOT NULL
+)
+SELECT state_abbr, count(*) AS n_companies FROM parsed WHERE LENGTH(state_abbr)=2 GROUP BY state_abbr ORDER BY 2 DESC LIMIT 15
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 822 ms</summary><pre><code>
+WITH parsed AS (
+  SELECT cik,
+    REGEXP_REPLACE(mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr
+  FROM sec.filing_metadata
+  WHERE filing_type='10-K' AND mailing_address IS NOT NULL
+)
+SELECT state_abbr, count(*) AS n FROM parsed WHERE LENGTH(state_abbr)=2 GROUP BY state_abbr ORDER BY n DESC LIMIT 15
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 20 rows — 1416 ms</summary><pre><code>
+SELECT REGEXP_REPLACE(mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr, count(*) AS n
+FROM sec.filing_metadata
+WHERE filing_type='10-K' AND mailing_address IS NOT NULL
+GROUP BY REGEXP_REPLACE(mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1')
+ORDER BY n DESC LIMIT 20
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 5 rows — 2852 ms</summary><pre><code>SELECT state_abbr, state_fips, state_name FROM geo.state_ref LIMIT 5</code></pre></details>
+<details class="sqltoggle"><summary>query — 8 rows — 11660 ms</summary><pre><code>
+SELECT year, count(DISTINCT cik) AS n_ciks, count(*) AS n_filings
+FROM sec.filing_metadata WHERE filing_type='10-K'
+GROUP BY year ORDER BY year
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 19 rows — 12606 ms</summary><pre><code>
+SELECT incident_type, count(*) AS n
+FROM disasters.disaster_declarations
+WHERE &quot;year&quot; BETWEEN 2015 AND 2024
+GROUP BY incident_type ORDER BY n DESC
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 51 rows — 2751 ms</summary><pre><code>
+WITH company_state AS (
+  SELECT fm.cik, fm.accession_number, fm.company_name,
+    REGEXP_REPLACE(fm.mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr,
+    ROW_NUMBER() OVER (PARTITION BY fm.cik ORDER BY fm.filing_date DESC) AS rn
+  FROM sec.filing_metadata fm
+  WHERE fm.filing_type='10-K' AND fm.&quot;year&quot;=2024 AND fm.mailing_address IS NOT NULL
+)
+SELECT cs.state_abbr, sr.state_fips, count(DISTINCT cs.cik) AS n_companies
+FROM company_state cs
+JOIN geo.state_ref sr ON sr.state_abbr = cs.state_abbr
+WHERE cs.rn = 1
+GROUP BY cs.state_abbr, sr.state_fips
+ORDER BY n_companies DESC
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1798 ms</summary><pre><code>
+SELECT count(*) FROM sec.risk_factor_sections WHERE &quot;year&quot;=2024
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 224 rows — 18638 ms</summary><pre><code>
+SELECT state_fips, incident_type, count(*) AS n
+FROM disasters.disaster_declarations
+WHERE CAST(&quot;year&quot; AS INTEGER) BETWEEN 2015 AND 2024
+  AND incident_type IN ('Hurricane','Severe Storm','Flood','Severe Ice Storm','Tropical Storm','Fire','Snowstorm','Tornado','Coastal Storm','Earthquake','Winter Storm','Mud/Landslide','Typhoon','Dam/Levee Break','Straight-Line Winds')
+GROUP BY state_fips, incident_type
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 30448 ms</summary><pre><code>
+WITH flags AS (
+  SELECT cik, accession_number,
+    MAX(CASE WHEN paragraph_text ILIKE '%hurricane%' OR paragraph_text ILIKE '%tropical storm%' THEN 1 ELSE 0 END) AS m_hurricane,
+    MAX(CASE WHEN paragraph_text ILIKE '%flood%' THEN 1 ELSE 0 END) AS m_flood,
+    MAX(CASE WHEN paragraph_text ILIKE '%wildfire%' THEN 1 ELSE 0 END) AS m_wildfire,
+    MAX(CASE WHEN paragraph_text ILIKE '%tornado%' THEN 1 ELSE 0 END) AS m_tornado,
+    MAX(CASE WHEN paragraph_text ILIKE '%winter storm%' OR paragraph_text ILIKE '%severe ice storm%' OR paragraph_text ILIKE '%snowstorm%' THEN 1 ELSE 0 END) AS m_winter,
+    MAX(CASE WHEN paragraph_text ILIKE '%earthquake%' THEN 1 ELSE 0 END) AS m_earthquake,
+    MAX(CASE WHEN paragraph_text ILIKE '%drought%' THEN 1 ELSE 0 END) AS m_drought,
+    MAX(CASE WHEN paragraph_text ILIKE '%climate change%' THEN 1 ELSE 0 END) AS m_climate,
+    MAX(CASE WHEN paragraph_text ILIKE '%severe weather%' OR paragraph_text ILIKE '%extreme weather%' THEN 1 ELSE 0 END) AS m_severe_weather
+  FROM sec.risk_factor_sections
+  WHERE &quot;year&quot;=2024
+  GROUP BY cik, accession_number
+)
+SELECT count(*) AS n_filings,
+  SUM(m_hurricane) AS n_hurricane, SUM(m_flood) AS n_flood, SUM(m_wildfire) AS n_wildfire,
+  SUM(m_tornado) AS n_tornado, SUM(m_winter) AS n_winter, SUM(m_earthquake) AS n_earthquake,
+  SUM(m_drought) AS n_drought, SUM(m_climate) AS n_climate, SUM(m_severe_weather) AS n_severe_weather
+FROM flags
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 56 rows — 18927 ms</summary><pre><code>
+WITH state_hazard AS (
+  SELECT state_fips,
+    CASE
+      WHEN incident_type IN ('Hurricane','Tropical Storm','Coastal Storm','Typhoon') THEN 'hurricane'
+      WHEN incident_type IN ('Flood','Dam/Levee Break') THEN 'flood'
+      WHEN incident_type = 'Fire' THEN 'wildfire'
+      WHEN incident_type IN ('Tornado','Severe Storm','Straight-Line Winds') THEN 'tornado_severe'
+      WHEN incident_type IN ('Winter Storm','Snowstorm','Severe Ice Storm') THEN 'winter'
+      WHEN incident_type = 'Earthquake' THEN 'earthquake'
+      WHEN incident_type = 'Mud/Landslide' THEN 'mudslide'
+      ELSE 'other'
+    END AS hazard_cat,
+    count(*) AS n
+  FROM disasters.disaster_declarations
+  WHERE CAST(&quot;year&quot; AS INTEGER) BETWEEN 2015 AND 2024
+  GROUP BY state_fips,
+    CASE
+      WHEN incident_type IN ('Hurricane','Tropical Storm','Coastal Storm','Typhoon') THEN 'hurricane'
+      WHEN incident_type IN ('Flood','Dam/Levee Break') THEN 'flood'
+      WHEN incident_type = 'Fire' THEN 'wildfire'
+      WHEN incident_type IN ('Tornado','Severe Storm','Straight-Line Winds') THEN 'tornado_severe'
+      WHEN incident_type IN ('Winter Storm','Snowstorm','Severe Ice Storm') THEN 'winter'
+      WHEN incident_type = 'Earthquake' THEN 'earthquake'
+      WHEN incident_type = 'Mud/Landslide' THEN 'mudslide'
+      ELSE 'other'
+    END
+),
+dominant AS (
+  SELECT state_fips, hazard_cat, n,
+    ROW_NUMBER() OVER (PARTITION BY state_fips ORDER BY n DESC) AS rk
+  FROM state_hazard
+  WHERE hazard_cat &lt;&gt; 'other'
+)
+SELECT state_fips, hazard_cat AS dominant_hazard, n AS declaration_count
+FROM dominant WHERE rk=1
+ORDER BY state_fips
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 52156 ms</summary><pre><code>
+WITH company_state AS (
+  SELECT fm.cik, fm.accession_number,
+    REGEXP_REPLACE(fm.mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr,
+    ROW_NUMBER() OVER (PARTITION BY fm.cik ORDER BY fm.filing_date DESC) AS rn
+  FROM sec.filing_metadata fm
+  WHERE fm.filing_type='10-K' AND fm.&quot;year&quot;=2024 AND fm.mailing_address IS NOT NULL
+),
+cs1 AS (SELECT cik, accession_number, state_abbr FROM company_state WHERE rn=1),
+flags AS (
+  SELECT cik, accession_number,
+    MAX(CASE WHEN paragraph_text ILIKE '%hurricane%' OR paragraph_text ILIKE '%tropical storm%' THEN 1 ELSE 0 END) AS m_hurricane,
+    MAX(CASE WHEN paragraph_text ILIKE '%flood%' THEN 1 ELSE 0 END) AS m_flood,
+    MAX(CASE WHEN paragraph_text ILIKE '%wildfire%' THEN 1 ELSE 0 END) AS m_wildfire,
+    MAX(CASE WHEN paragraph_text ILIKE '%tornado%' OR paragraph_text ILIKE '%severe storm%' THEN 1 ELSE 0 END) AS m_tornado,
+    MAX(CASE WHEN paragraph_text ILIKE '%winter storm%' OR paragraph_text ILIKE '%severe ice storm%' OR paragraph_text ILIKE '%snowstorm%' THEN 1 ELSE 0 END) AS m_winter,
+    MAX(CASE WHEN paragraph_text ILIKE '%earthquake%' THEN 1 ELSE 0 END) AS m_earthquake,
+    MAX(CASE WHEN paragraph_text ILIKE '%climate change%' THEN 1 ELSE 0 END) AS m_climate
+  FROM sec.risk_factor_sections
+  WHERE &quot;year&quot;=2024
+  GROUP BY cik, accession_number
+),
+state_hazard AS (
+  SELECT state_fips,
+    CASE
+      WHEN incident_type IN ('Hurricane','Tropical Storm','Coastal Storm','Typhoon') THEN 'hurricane'
+      WHEN incident_type IN ('Flood','Dam/Levee Break') THEN 'flood'
+      WHEN incident_type = 'Fire' THEN 'wildfire'
+      WHEN incident_type IN ('Tornado','Severe Storm','Straight-Line Winds') THEN 'tornado_severe'
+      WHEN incident_type IN ('Winter Storm','Snowstorm','Severe Ice Storm') THEN 'winter'
+      WHEN incident_type = 'Earthquake' THEN 'earthquake'
+      WHEN incident_type = 'Mud/Landslide' THEN 'mudslide'
+      ELSE 'other'
+    END AS hazard_cat,
+    count(*) AS n
+  FROM disasters.disaster_declarations
+  WHERE CAST(&quot;year&quot; AS INTEGER) BETWEEN 2015 AND 2024
+  GROUP BY state_fips,
+    CASE
+      WHEN incident_type IN ('Hurricane','Tropical Storm','Coastal Storm','Typhoon') THEN 'hurricane'
+      WHEN incident_type IN ('Flood','Dam/Levee Break') THEN 'flood'
+      WHEN incident_type = 'Fire' THEN 'wildfire'
+      WHEN incident_type IN ('Tornado','Severe Storm','Straight-Line Winds') THEN 'tornado_severe'
+      WHEN incident_type IN ('Winter Storm','Snowstorm','Severe Ice Storm') THEN 'winter'
+      WHEN incident_type = 'Earthquake' THEN 'earthquake'
+      WHEN incident_type = 'Mud/Landslide' THEN 'mudslide'
+      ELSE 'other'
+    END
+),
+dominant AS (
+  SELECT state_fips, hazard_cat, n,
+    ROW_NUMBER() OVER (PARTITION BY state_fips ORDER BY n DESC) AS rk
+  FROM state_hazard WHERE hazard_cat &lt;&gt; 'other'
+),
+dom1 AS (SELECT state_fips, hazard_cat AS dominant_hazard, n AS dom_count FROM dominant WHERE rk=1),
+state_totals AS (
+  SELECT state_fips, SUM(n) AS total_declarations FROM state_hazard WHERE hazard_cat &lt;&gt; 'other' GROUP BY state_fips
+),
+joined AS (
+  SELECT cs.cik, cs.state_abbr, sr.state_fips, dm.dominant_hazard, dm.dom_count, st.total_declarations,
+    f.m_hurricane, f.m_flood, f.m_wildfire, f.m_tornado, f.m_winter, f.m_earthquake, f.m_climate,
+    CASE dm.dominant_hazard
+      WHEN 'hurricane' THEN f.m_hurricane
+      WHEN 'flood' THEN f.m_flood
+      WHEN 'wildfire' THEN f.m_wildfire
+      WHEN 'tornado_severe' THEN f.m_tornado
+      WHEN 'winter' THEN f.m_winter
+      WHEN 'earthquake' THEN f.m_earthquake
+      ELSE NULL
+    END AS matched_dominant
+  FROM cs1 cs
+  JOIN geo.state_ref sr ON sr.state_abbr = cs.state_abbr
+  JOIN flags f ON f.cik = cs.cik AND f.accession_number = cs.accession_number
+  LEFT JOIN dom1 dm ON dm.state_fips = sr.state_fips
+  LEFT JOIN state_totals st ON st.state_fips = sr.state_fips
+)
+SELECT count(*) AS n_companies,
+  AVG(matched_dominant) AS match_rate_dominant_hazard,
+  AVG(m_climate) AS pct_mention_climate_change,
+  AVG(m_hurricane) AS pct_hurricane, AVG(m_flood) AS pct_flood, AVG(m_wildfire) AS pct_wildfire,
+  AVG(m_tornado) AS pct_tornado_severe, AVG(m_winter) AS pct_winter, AVG(m_earthquake) AS pct_earthquake,
+  corr(total_declarations, m_climate) AS corr_disasters_vs_climate_mention
+FROM joined
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 52583 ms</summary><pre><code>
+WITH company_state AS (
+  SELECT fm.cik, fm.accession_number,
+    REGEXP_REPLACE(fm.mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr,
+    ROW_NUMBER() OVER (PARTITION BY fm.cik ORDER BY fm.filing_date DESC) AS rn
+  FROM sec.filing_metadata fm
+  WHERE fm.filing_type='10-K' AND fm.&quot;year&quot;=2024 AND fm.mailing_address IS NOT NULL
+),
+cs1 AS (SELECT cik, accession_number, state_abbr FROM company_state WHERE rn=1),
+flags AS (
+  SELECT cik, accession_number,
+    MAX(CASE WHEN paragraph_text ILIKE '%hurricane%' OR paragraph_text ILIKE '%tropical storm%' THEN 1 ELSE 0 END) AS m_hurricane,
+    MAX(CASE WHEN paragraph_text ILIKE '%flood%' THEN 1 ELSE 0 END) AS m_flood,
+    MAX(CASE WHEN paragraph_text ILIKE '%wildfire%' THEN 1 ELSE 0 END) AS m_wildfire,
+    MAX(CASE WHEN paragraph_text ILIKE '%tornado%' OR paragraph_text ILIKE '%severe storm%' THEN 1 ELSE 0 END) AS m_tornado,
+    MAX(CASE WHEN paragraph_text ILIKE '%winter storm%' OR paragraph_text ILIKE '%severe ice storm%' OR paragraph_text ILIKE '%snowstorm%' THEN 1 ELSE 0 END) AS m_winter,
+    MAX(CASE WHEN paragraph_text ILIKE '%earthquake%' THEN 1 ELSE 0 END) AS m_earthquake,
+    MAX(CASE WHEN paragraph_text ILIKE '%climate change%' THEN 1 ELSE 0 END) AS m_climate
+  FROM sec.risk_factor_sections
+  WHERE &quot;year&quot;=2024
+  GROUP BY cik, accession_number
+),
+state_hazard AS (
+  SELECT state_fips,
+    CASE
+      WHEN incident_type IN ('Hurricane','Tropical Storm','Coastal Storm','Typhoon') THEN 'hurricane'
+      WHEN incident_type IN ('Flood','Dam/Levee Break') THEN 'flood'
+      WHEN incident_type = 'Fire' THEN 'wildfire'
+      WHEN incident_type IN ('Tornado','Severe Storm','Straight-Line Winds') THEN 'tornado_severe'
+      WHEN incident_type IN ('Winter Storm','Snowstorm','Severe Ice Storm') THEN 'winter'
+      WHEN incident_type = 'Earthquake' THEN 'earthquake'
+      WHEN incident_type = 'Mud/Landslide' THEN 'mudslide'
+      ELSE 'other'
+    END AS hazard_cat,
+    count(*) AS n
+  FROM disasters.disaster_declarations
+  WHERE CAST(&quot;year&quot; AS INTEGER) BETWEEN 2015 AND 2024
+  GROUP BY state_fips,
+    CASE
+      WHEN incident_type IN ('Hurricane','Tropical Storm','Coastal Storm','Typhoon') THEN 'hurricane'
+      WHEN incident_type IN ('Flood','Dam/Levee Break') THEN 'flood'
+      WHEN incident_type = 'Fire' THEN 'wildfire'
+      WHEN incident_type IN ('Tornado','Severe Storm','Straight-Line Winds') THEN 'tornado_severe'
+      WHEN incident_type IN ('Winter Storm','Snowstorm','Severe Ice Storm') THEN 'winter'
+      WHEN incident_type = 'Earthquake' THEN 'earthquake'
+      WHEN incident_type = 'Mud/Landslide' THEN 'mudslide'
+      ELSE 'other'
+    END
+),
+dominant AS (
+  SELECT state_fips, hazard_cat, n,
+    ROW_NUMBER() OVER (PARTITION BY state_fips ORDER BY n DESC) AS rk
+  FROM state_hazard WHERE hazard_cat &lt;&gt; 'other'
+),
+dom1 AS (SELECT state_fips, hazard_cat AS dominant_hazard, n AS dom_count FROM dominant WHERE rk=1),
+state_totals AS (
+  SELECT state_fips, SUM(n) AS total_declarations FROM state_hazard WHERE hazard_cat &lt;&gt; 'other' GROUP BY state_fips
+),
+joined AS (
+  SELECT cs.cik, cs.state_abbr, sr.state_fips, dm.dominant_hazard, dm.dom_count, st.total_declarations,
+    CAST(f.m_hurricane AS DOUBLE) AS m_hurricane, CAST(f.m_flood AS DOUBLE) AS m_flood,
+    CAST(f.m_wildfire AS DOUBLE) AS m_wildfire, CAST(f.m_tornado AS DOUBLE) AS m_tornado,
+    CAST(f.m_winter AS DOUBLE) AS m_winter, CAST(f.m_earthquake AS DOUBLE) AS m_earthquake,
+    CAST(f.m_climate AS DOUBLE) AS m_climate,
+    CAST(CASE dm.dominant_hazard
+      WHEN 'hurricane' THEN f.m_hurricane
+      WHEN 'flood' THEN f.m_flood
+      WHEN 'wildfire' THEN f.m_wildfire
+      WHEN 'tornado_severe' THEN f.m_tornado
+      WHEN 'winter' THEN f.m_winter
+      WHEN 'earthquake' THEN f.m_earthquake
+      ELSE NULL
+    END AS DOUBLE) AS matched_dominant
+  FROM cs1 cs
+  JOIN geo.state_ref sr ON sr.state_abbr = cs.state_abbr
+  JOIN flags f ON f.cik = cs.cik AND f.accession_number = cs.accession_number
+  LEFT JOIN dom1 dm ON dm.state_fips = sr.state_fips
+  LEFT JOIN state_totals st ON st.state_fips = sr.state_fips
+)
+SELECT count(*) AS n_companies,
+  AVG(matched_dominant) AS match_rate_dominant_hazard,
+  AVG(m_climate) AS pct_mention_climate_change,
+  AVG(m_hurricane) AS pct_hurricane, AVG(m_flood) AS pct_flood, AVG(m_wildfire) AS pct_wildfire,
+  AVG(m_tornado) AS pct_tornado_severe, AVG(m_winter) AS pct_winter, AVG(m_earthquake) AS pct_earthquake,
+  corr(total_declarations, m_climate) AS corr_disasters_vs_climate_mention
+FROM joined
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 5 rows — 34342 ms</summary><pre><code>
+WITH company_state AS (
+  SELECT fm.cik, fm.accession_number,
+    REGEXP_REPLACE(fm.mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr,
+    ROW_NUMBER() OVER (PARTITION BY fm.cik ORDER BY fm.filing_date DESC) AS rn
+  FROM sec.filing_metadata fm
+  WHERE fm.filing_type='10-K' AND fm.&quot;year&quot;=2024 AND fm.mailing_address IS NOT NULL
+),
+cs1 AS (SELECT cik, accession_number, state_abbr FROM company_state WHERE rn=1),
+flags AS (
+  SELECT cik, accession_number,
+    MAX(CASE WHEN paragraph_text ILIKE '%hurricane%' OR paragraph_text ILIKE '%tropical storm%' THEN 1 ELSE 0 END) AS m_hurricane,
+    MAX(CASE WHEN paragraph_text ILIKE '%flood%' THEN 1 ELSE 0 END) AS m_flood,
+    MAX(CASE WHEN paragraph_text ILIKE '%wildfire%' THEN 1 ELSE 0 END) AS m_wildfire,
+    MAX(CASE WHEN paragraph_text ILIKE '%tornado%' OR paragraph_text ILIKE '%severe storm%' THEN 1 ELSE 0 END) AS m_tornado,
+    MAX(CASE WHEN paragraph_text ILIKE '%winter storm%' OR paragraph_text ILIKE '%severe ice storm%' OR paragraph_text ILIKE '%snowstorm%' THEN 1 ELSE 0 END) AS m_winter,
+    MAX(CASE WHEN paragraph_text ILIKE '%earthquake%' THEN 1 ELSE 0 END) AS m_earthquake,
+    MAX(CASE WHEN paragraph_text ILIKE '%climate change%' THEN 1 ELSE 0 END) AS m_climate
+  FROM sec.risk_factor_sections
+  WHERE &quot;year&quot;=2024
+  GROUP BY cik, accession_number
+),
+state_hazard AS (
+  SELECT state_fips,
+    CASE
+      WHEN incident_type IN ('Hurricane','Tropical Storm','Coastal Storm','Typhoon') THEN 'hurricane'
+      WHEN incident_type IN ('Flood','Dam/Levee Break') THEN 'flood'
+      WHEN incident_type = 'Fire' THEN 'wildfire'
+      WHEN incident_type IN ('Tornado','Severe Storm','Straight-Line Winds') THEN 'tornado_severe'
+      WHEN incident_type IN ('Winter Storm','Snowstorm','Severe Ice Storm') THEN 'winter'
+      WHEN incident_type = 'Earthquake' THEN 'earthquake'
+      WHEN incident_type = 'Mud/Landslide' THEN 'mudslide'
+      ELSE 'other'
+    END AS hazard_cat,
+    count(*) AS n
+  FROM disasters.disaster_declarations
+  WHERE CAST(&quot;year&quot; AS INTEGER) BETWEEN 2015 AND 2024
+  GROUP BY state_fips,
+    CASE
+      WHEN incident_type IN ('Hurricane','Tropical Storm','Coastal Storm','Typhoon') THEN 'hurricane'
+      WHEN incident_type IN ('Flood','Dam/Levee Break') THEN 'flood'
+      WHEN incident_type = 'Fire' THEN 'wildfire'
+      WHEN incident_type IN ('Tornado','Severe Storm','Straight-Line Winds') THEN 'tornado_severe'
+      WHEN incident_type IN ('Winter Storm','Snowstorm','Severe Ice Storm') THEN 'winter'
+      WHEN incident_type = 'Earthquake' THEN 'earthquake'
+      WHEN incident_type = 'Mud/Landslide' THEN 'mudslide'
+      ELSE 'other'
+    END
+),
+dominant AS (
+  SELECT state_fips, hazard_cat, n,
+    ROW_NUMBER() OVER (PARTITION BY state_fips ORDER BY n DESC) AS rk
+  FROM state_hazard WHERE hazard_cat &lt;&gt; 'other'
+),
+dom1 AS (SELECT state_fips, hazard_cat AS dominant_hazard, n AS dom_count FROM dominant WHERE rk=1),
+joined AS (
+  SELECT cs.cik, cs.state_abbr, sr.state_fips, dm.dominant_hazard,
+    CAST(f.m_hurricane AS DOUBLE) AS m_hurricane, CAST(f.m_flood AS DOUBLE) AS m_flood,
+    CAST(f.m_wildfire AS DOUBLE) AS m_wildfire, CAST(f.m_tornado AS DOUBLE) AS m_tornado,
+    CAST(f.m_winter AS DOUBLE) AS m_winter, CAST(f.m_earthquake AS DOUBLE) AS m_earthquake,
+    CAST(f.m_climate AS DOUBLE) AS m_climate,
+    CAST(CASE dm.dominant_hazard
+      WHEN 'hurricane' THEN f.m_hurricane
+      WHEN 'flood' THEN f.m_flood
+      WHEN 'wildfire' THEN f.m_wildfire
+      WHEN 'tornado_severe' THEN f.m_tornado
+      WHEN 'winter' THEN f.m_winter
+      WHEN 'earthquake' THEN f.m_earthquake
+      ELSE NULL
+    END AS DOUBLE) AS matched_dominant
+  FROM cs1 cs
+  JOIN geo.state_ref sr ON sr.state_abbr = cs.state_abbr
+  JOIN flags f ON f.cik = cs.cik AND f.accession_number = cs.accession_number
+  LEFT JOIN dom1 dm ON dm.state_fips = sr.state_fips
+)
+SELECT dominant_hazard, count(*) AS n_companies, AVG(matched_dominant) AS match_rate,
+  AVG(m_earthquake) AS pct_mention_earthquake_regardless
+FROM joined
+GROUP BY dominant_hazard
+ORDER BY n_companies DESC
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 3113 ms</summary><pre><code>
+SELECT
+  (SELECT count(DISTINCT cik) FROM sec.filing_metadata WHERE filing_type='10-K' AND &quot;year&quot;=2024) AS total_2024_10k_ciks,
+  (SELECT count(DISTINCT cik) FROM sec.filing_metadata WHERE filing_type='10-K' AND &quot;year&quot;=2024 AND mailing_address IS NULL) AS null_address_ciks
+</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li>askamerica sec.vectorized_chunks / filing_metadata / financial_line_items <span class="note">— FY2024 10-K MD&amp;A text, XBRL cover-page address facts</span></li>
-<li>askamerica disasters.disaster_declarations, disasters_storm_impact_by_county <span class="note">— FEMA declarations and NOAA storm-event impact, county grain, 2015-2024</span></li>
-<li>askamerica geo.gazetteer_places, geo.counties <span class="note">— Place-to-county geocoding via spatial join</span></li>
-<li><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/jofi.13219">Sautner, Van Lent, Vilkov &amp; Zhang (2023), 'Firm-Level Climate Change Exposure', Journal of Finance</a> <span class="note">— Earnings-call-based climate exposure measure; motivates share/attention-based metrics over raw counts</span></li>
-<li><a href="https://sec.gov/news/speech/gensler-pri-2021-07-28">SEC 2010 Interpretive Guidance / Gensler PRI remarks on climate disclosure boilerplate</a> <span class="note">— SEC's own finding that climate risk-factor language is often boilerplate</span></li>
-<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S1044028322001077">ScienceDirect: firm-level climate risk measures noting the HQ-only-proxy limitation</a> <span class="note">— Prior literature explicitly flags HQ-only geographic proxies as biased for multi-site firms</span></li>
+<li>AskAmerica: sec.risk_factor_sections keyword flags by company (2024 10-Ks)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH flags AS (SELECT cik, accession_number, MAX(CASE WHEN paragraph_text ILIKE '%hurricane%' OR paragraph_text ILIKE '%tropical storm%' THEN 1 ELSE 0 END) AS m_hurricane, MAX(CASE WHEN paragraph_text ILIKE '%flood%' THEN 1 ELSE 0 END) AS m_flood, MAX(CASE WHEN paragraph_text ILIKE '%wildfire%' THEN 1 ELSE 0 END) AS m_wildfire, MAX(CASE WHEN paragraph_text ILIKE '%tornado%' OR paragraph_text ILIKE '%severe storm%' THEN 1 ELSE 0 END) AS m_tornado, MAX(CASE WHEN paragraph_text ILIKE '%winter storm%' OR paragraph_text ILIKE '%severe ice storm%' OR paragraph_text ILIKE '%snowstorm%' THEN 1 ELSE 0 END) AS m_winter, MAX(CASE WHEN paragraph_text ILIKE '%earthquake%' THEN 1 ELSE 0 END) AS m_earthquake, MAX(CASE WHEN paragraph_text ILIKE '%climate change%' THEN 1 ELSE 0 END) AS m_climate FROM sec.risk_factor_sections WHERE &quot;year&quot;=2024 GROUP BY cik, accession_number) SELECT * FROM flags</code></pre></details></li>
+<li>AskAmerica: FEMA dominant hazard type per state, 2015-2024<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, incident_type, count(*) FROM disasters.disaster_declarations WHERE CAST(&quot;year&quot; AS INTEGER) BETWEEN 2015 AND 2024 GROUP BY state_fips, incident_type</code></pre></details></li>
+<li>AskAmerica: company HQ state from SEC filing mailing address<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT cik, accession_number, REGEXP_REPLACE(mailing_address, '.*, ([A-Z]{2}) [0-9]{5}(-[0-9]{4})?$', '\1') AS state_abbr FROM sec.filing_metadata WHERE filing_type='10-K' AND &quot;year&quot;=2024 AND mailing_address IS NOT NULL</code></pre></details></li>
+<li><a href="https://dart.deloitte.com/USDART/home/publications/deloitte/heads-up/2024/sec-climate-disclosure-rule-ghg-emissions-esg-financial-reporting">SEC rulemaking record: climate disclosures called boilerplate, not company-specific (Deloitte/Berkeley Law summaries of SEC 2024 climate rule)</a> <span class="note">— Secondary summary of SEC rulemaking commentary, fetched 2026-09-10</span></li>
+<li><a href="https://www.law.berkeley.edu/wp-content/uploads/2024/09/LL-Climate-Risk-Disclosure-Slides.pdf">97% of Fortune 500 mention climate change but mostly in general terms (search-summarized secondary source)</a> <span class="note">— Found via WebSearch summary; not independently re-parsed as a primary document in this session</span></li>
+<li><a href="https://iopscience.iop.org/article/10.1088/1748-9326/ad4377">Linking physical climate risk with mandatory business risk disclosure requirements (IOPscience, 2024)</a> <span class="note">— Direct fetch failed (HTTP 400) — cited as a relevant published study by title only, its figures are NOT used in this report</span></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">n=73 is a geocoding-limited sample (of 2,292 FY2024 10-K filers with usable MD&amp;A, only 73 could be resolved to a county given this corpus's missing structured address fields — see Step 2). Locator is company HQ/registered address, not an operations footprint. Treat all coefficients as descriptive given the small, geocoding-selected n.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-08-25</span></p>
+<p class="footnote">Disclosure text: sec.risk_factor_sections (FY2024 10-Ks). Disaster history: disasters.disaster_declarations (FEMA, 2015-2024). HQ state parsed from sec.filing_metadata.mailing_address. n=3,665 companies with a resolvable US HQ state and a matched 2024 10-K risk-factor section.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-10</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
