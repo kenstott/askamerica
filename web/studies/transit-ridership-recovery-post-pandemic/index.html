@@ -1,359 +1,163 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>US transit ridership has recovered to about 81% of pre-pandemic levels nationally — but that masks a roughly 60-point spread between individual cities' agencies</title>
+<title>agent</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
-@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
+:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
-main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
-h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
-h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
-h3{font-size:1rem;margin:1.4rem 0 .4rem}
-.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
-.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
-.board svg{display:block;width:100%;height:auto}
-p{margin:0 0 .9rem}
-table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
-th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
-th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
-@media screen{
-th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
-tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
-pre{overflow-x:auto}
-}
-details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
-summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-summary:hover{color:var(--link)}
-summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
-details[open] summary{border-bottom:1px solid var(--rule)}
-details > *:not(summary){margin:.7rem}
-pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
-pre code{background:none;padding:0;font-size:inherit}
-tbody.srt:not(.s0){display:none}
-.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
-th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
-th .srth:hover{color:var(--link)}
-th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
-.srtcue{font-size:.85em;opacity:.28;line-height:1}
-.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
-.srtreset:hover{color:var(--link)}
-.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
-.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
-.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
-.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
-.fltlabel:hover{color:var(--link)}
-.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
-.fltnote{font-size:.68rem;color:var(--muted)}
-abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
-.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
-.printhint:hover{opacity:1}
-.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
-@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
-@media print{
-details{border:0;margin:.6rem 0}
-details > *:not(summary){display:block;margin:.4rem 0}
-details[open] summary{border-bottom:0}
-summary{padding:0;list-style:none}
-summary::-webkit-details-marker{display:none}
-pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
-thead{display:table-header-group}
-tr{break-inside:avoid}
-.printhint{display:none}
-.filterbar{display:none}
-.srtcue{display:none}
-.srtreset{display:none}
-}
-code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
-blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
-a{color:var(--link)}
-.sources ol{padding-left:1.2rem;font-size:.92rem}
-.sources li{margin:.3rem 0}
-.note{color:var(--muted)}
-.sqltoggle{display:inline-block;margin-left:.4rem}
-.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
-.sqltoggle summary:hover{text-decoration:underline}
-.sqltoggle[open] summary{margin-bottom:.4rem}
-.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
-.sqltoggle pre code{background:none;padding:0}
-footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
-.footnote{font-style:italic}
-.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
-.brand strong{color:var(--ink)}
-.byline{margin-left:auto}
-.mark{flex:none;display:block}
-figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
-.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
-.dl:hover{color:var(--link)}
-@media screen{
-#s3-t1-s1:checked ~ table tbody.s0{display:none}
-#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
-#s3-t1-s1:checked ~ .srtreset{display:inline-block}
-#s3-t1-s2:checked ~ table tbody.s0{display:none}
-#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
-#s3-t1-s2:checked ~ .srtreset{display:inline-block}
-#s4-t1-s1:checked ~ table tbody.s0{display:none}
-#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
-#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
-#s4-t1-s1:checked ~ .srtreset{display:inline-block}
-#s4-t1-s2:checked ~ table tbody.s0{display:none}
-#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
-#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
-#s4-t1-s2:checked ~ .srtreset{display:inline-block}
-#s4-t1-s3:checked ~ table tbody.s0{display:none}
-#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
-#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
-#s4-t1-s3:checked ~ .srtreset{display:inline-block}
-#s4-t1-s4:checked ~ table tbody.s0{display:none}
-#s4-t1-s4:checked ~ table tbody.s4{display:table-row-group}
-#s4-t1-s4:checked ~ table label[for="s4-t1-s4"]{color:var(--link)}
-#s4-t1-s4:checked ~ table label[for="s4-t1-s4"] .srtcue{opacity:1}
-#s4-t1-s4:checked ~ .srtreset{display:inline-block}
-}
-</style>
-</head>
-<body>
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
+h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
+h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
+h2{font-size:1.35em;margin-top:1.6em}
+h3{font-size:1.1em}
+p,li{color:var(--ink-2)}
+a{color:var(--accent)}
+code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
+code{background:var(--rule);padding:.1em .35em;border-radius:3px}
+pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
+th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
+blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
+hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
+.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
+</style></head><body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div>
-<main>
-<header>
-<h1>US transit ridership has recovered to about 81% of pre-pandemic levels nationally — but that masks a roughly 60-point spread between individual cities' agencies</h1>
-<p class="subtitle">FTA National Transit Database (unlinked passenger trips), full calendar years 2019 vs. 2025</p>
-</header>
-<figure class="board">
-<!--
-  Dashboard from AskAmerica compose_dashboard. Self-contained: no
-  external assets, no scripts. Drop it into an artifact or an HTML
-  page as-is.
-
-  Each panel is a nested <svg> with its own viewBox, so a panel's
-  internal coordinates are exactly what its own data produced. Panel
-  ids are namespaced p1-, p2-, ... so the per-chart editing contract
-  still works: p2-mark-california, p3-series-nominal, and so on.
-
-  Safe to edit: panel captions (<text class="caption">), the
-  dashboard title/subtitle/footnote, any panel's fills, and the
-  per-panel <g id="pN-annotations"> groups, which paint last.
-  Do NOT move a panel's internal geometry, and do NOT change one
-  panel's axis domain: panels sharing a scale_group were given one
-  domain deliberately so they can be compared.
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
-  <style>
-    .dash-title { font-size: 20px; font-weight: 650 }
-    .dash-subtitle { font-size: 13px }
-    .caption { font-size: 11px }
-    .footnote { font-size: 11px; font-style: italic }
-    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
-    .byline { font-size: 11px }
-    .stat-label { font-size: 12px }
-    .stat-value { font-size: 30px; font-weight: 650 }
-    .stat-delta { font-size: 13px; font-weight: 600 }
-    .title { font-size: 15px; font-weight: 600 }
-    .axis-title { font-size: 12px }
-    .tick { font-size: 11px }
-    .value-label { font-size: 11px; font-weight: 600 }
-    .callout { font-size: 11px; font-style: italic }
-    @media (prefers-color-scheme: dark) {
-      .dash-bg, .chart-bg { fill: #16181d }
-      .panel-edge { stroke: #2c3038 }
-      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
-      .stat-value, .title, .axis-title, .tick, .value-label,
-      .callout, .legend-label, .byline { fill: #e6e8eb }
-      .brand-mark { fill: #9aa4b2 }
-      .axis { stroke: #6b7280 }
-      .grid { stroke: #2c3038 }
-    }
-  </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Transit Ridership Recovery: 2025 vs. Pre-Pandemic 2019</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">FTA National Transit Database, unlinked passenger trips, agencies with 2019 UPT &gt; 20M</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">National recovery (all US transit)</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">81.3%</text>
-  <text class="stat-delta" x="36" y="168" fill="#dc2626">-18.7 pts vs 2019</text>
-  </g>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Spread across major agencies</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">48% to 107%</text>
-  <text class="stat-delta" x="464" y="168" fill="#6b7280">~59-point gap</text>
-  </g>
-  <rect class="panel-edge" x="20" y="206" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="206" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">2025 ridership as % of 2019 (selected large agencies)</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="67" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="59" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="131" x2="390" y2="131" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="59" y="135" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="67" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="59" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="67" y1="101" x2="390" y2="101" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="59" y="105" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-      <line class="grid" x1="67" y1="86" x2="390" y2="86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="59" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
-      <line class="grid" x1="67" y1="71" x2="390" y2="71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="59" y="75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
-    </g>
-    <g id="p3-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="146" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="146" x2="390" y2="146" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="256" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Agency</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="101" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 101)">% of 2019 UPT</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-bart-sf-bay" class="tick" x="78.54" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 78.54 160)">BART (SF Bay)</text>
-      <text id="p3-xtick-marta-atlanta" class="tick" x="101.61" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 101.61 160)">MARTA (Atlanta)</text>
-      <text id="p3-xtick-rtd-denver" class="tick" x="124.68" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 124.68 160)">RTD Denver</text>
-      <text id="p3-xtick-septa-philly" class="tick" x="147.75" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.75 160)">SEPTA (Philly)</text>
-      <text id="p3-xtick-chicago-cta" class="tick" x="170.82" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 170.82 160)">Chicago CTA</text>
-      <text id="p3-xtick-mbta-boston" class="tick" x="193.89" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 193.89 160)">MBTA (Boston)</text>
-      <text id="p3-xtick-sf-muni" class="tick" x="216.96" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 216.96 160)">SF Muni</text>
-      <text id="p3-xtick-la-metro" class="tick" x="240.04" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 240.04 160)">LA Metro</text>
-      <text id="p3-xtick-wmata-dc" class="tick" x="263.11" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 263.11 160)">WMATA (DC)</text>
-      <text id="p3-xtick-nyc-transit" class="tick" x="286.18" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 286.18 160)">NYC Transit</text>
-      <text id="p3-xtick-houston-metro" class="tick" x="309.25" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.25 160)">Houston Metro</text>
-      <text id="p3-xtick-san-diego-mts" class="tick" x="332.32" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 332.32 160)">San Diego MTS</text>
-      <text id="p3-xtick-mta-bus-nyc" class="tick" x="355.39" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 355.39 160)">MTA Bus (NYC)</text>
-      <text id="p3-xtick-sound-transit-seattle" class="tick" x="378.46" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 378.46 160)">Sound Transit (Seattle)</text>
-    </g>
-    <g id="p3-series-of-2019-ridership" class="series">
-      <rect id="p3-mark-of-2019-ridership-bart-sf-bay" class="bar" x="71.15" y="109.78" width="13.77" height="36.22" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-marta-atlanta" class="bar" x="94.22" y="102.80" width="13.77" height="43.20" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-rtd-denver" class="bar" x="117.30" y="100.40" width="13.77" height="45.60" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-septa-philly" class="bar" x="140.37" y="91.93" width="13.77" height="54.08" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-chicago-cta" class="bar" x="163.44" y="90.35" width="13.77" height="55.65" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-mbta-boston" class="bar" x="186.51" y="90.35" width="13.77" height="55.65" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-sf-muni" class="bar" x="209.58" y="87.50" width="13.77" height="58.50" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-la-metro" class="bar" x="232.65" y="84.13" width="13.77" height="61.88" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-wmata-dc" class="bar" x="255.72" y="82.40" width="13.77" height="63.60" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-nyc-transit" class="bar" x="278.80" y="80.68" width="13.77" height="65.33" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-houston-metro" class="bar" x="301.87" y="80.98" width="13.77" height="65.03" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-san-diego-mts" class="bar" x="324.94" y="76.18" width="13.77" height="69.82" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-mta-bus-nyc" class="bar" x="348.01" y="71.45" width="13.77" height="74.55" fill="#2563eb"/>
-      <rect id="p3-mark-of-2019-ridership-sound-transit-seattle" class="bar" x="371.08" y="66.13" width="13.77" height="79.88" fill="#2563eb"/>
-    </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="499" fill="#6b7280">Sound Transit's &gt;100% reflects light-rail expansion (new stations</text>
-  <text class="caption" x="24" y="512" fill="#6b7280">opened since 2019), not pure demand recovery.</text>
-  <rect class="panel-edge" x="448" y="206" width="412" height="312" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="206" width="412" height="312" viewBox="0 0 412 312" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="312" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">National unlinked passenger trips, 2019-2025</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="60" y1="244" x2="390" y2="244" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="52" y="248" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="206.40" x2="390" y2="206.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="52" y="210.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
-      <line class="grid" x1="60" y1="168.80" x2="390" y2="168.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="52" y="172.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
-      <line class="grid" x1="60" y1="131.20" x2="390" y2="131.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="52" y="135.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
-      <line class="grid" x1="60" y1="93.60" x2="390" y2="93.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="52" y="97.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-    </g>
-    <g id="p4-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="244" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="244" x2="390" y2="244" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p4-x-axis-title" class="axis-title" x="225" y="288" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="150" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 150)">Billions of trips</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-2019" class="tick" x="83.57" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
-      <text id="p4-xtick-2020" class="tick" x="130.71" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
-      <text id="p4-xtick-2021" class="tick" x="177.86" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
-      <text id="p4-xtick-2022" class="tick" x="225" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
-      <text id="p4-xtick-2023" class="tick" x="272.14" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
-      <text id="p4-xtick-2024" class="tick" x="319.29" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
-      <text id="p4-xtick-2025" class="tick" x="366.43" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
-    </g>
-    <g id="p4-series-us-total-upt-billions" class="series">
-      <path id="p4-line-us-total-upt-billions" class="line" d="M 83.57 61.64 L 130.71 159.21 L 177.86 156.02 L 225 130.07 L 272.14 112.78 L 319.29 100.74 L 366.43 95.86" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p4-mark-us-total-upt-billions-2019" class="point" cx="83.57" cy="61.64" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-us-total-upt-billions-2020" class="point" cx="130.71" cy="159.21" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-us-total-upt-billions-2021" class="point" cx="177.86" cy="156.02" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-us-total-upt-billions-2022" class="point" cx="225" cy="130.07" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-us-total-upt-billions-2023" class="point" cx="272.14" cy="112.78" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-us-total-upt-billions-2024" class="point" cx="319.29" cy="100.74" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-us-total-upt-billions-2025" class="point" cx="366.43" cy="95.86" r="3" fill="#2563eb"/>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
-  </svg>
-  <g id="brand">
-  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
-    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
-    <g clip-path="url(#brand-tile)">
-      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
-      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
-    </g>
-    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
-    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
-  </svg>
-    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
-  </g>
-  <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:62838/a/011b25f6f54d37e537bb6ee7e8bd7676.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
-</figure>
-<section>
-<h2>Summary</h2>
-<p>Nationally, US public transit ridership in 2025 stood at about <strong>81%</strong> of its 2019 (pre-pandemic) level — 7.88 billion unlinked passenger trips versus 9.70 billion in 2019, per the Federal Transit Administration's National Transit Database (NTD). Independent APTA reporting from early-to-mid 2026 puts the figure similarly, around 85%, with bus modes closer to full recovery than rail. But the national number obscures enormous city-to-city variation: among the ~40 largest transit agencies, 2025 ridership ranged from <strong>48% of 2019 levels (BART, San Francisco Bay Area)</strong> to <strong>over 100% (Sound Transit, Seattle, driven by new light-rail lines)</strong>, a roughly 60-percentage-point spread. Large legacy heavy-rail/commuter systems oriented around downtown office commuting (BART, MARTA, Denver RTD, Chicago's Metra) have recovered the least; systems with a higher share of bus ridership, non-commute trips, or that have physically expanded service (Sound Transit, San Diego MTS, MTA Bus) have recovered the most, some exceeding 2019.</p>
-</section>
-<section>
-<h2>Step 1 — What the literature says</h2>
-<p>APTA's ridership tracking (its most recent policy briefs, released in 2026 covering data through late 2025/early 2026) reports national ridership at roughly 85% of 2019 levels, with bus at about 86%, heavy rail at about 71%, and commuter rail at about 70% — meaning rail modes, which are disproportionately used for downtown office commuting, lag the recovery, while bus and demand-response/paratransit service (reported near 93%) have recovered furthest. APTA and outlets covering its research (Mass Transit, Smart Cities Dive) attribute the mode gap to the persistence of hybrid/remote work suppressing peak commuter volumes, even as off-peak, weekend, and non-commute ridership has substantially recovered or grown. Eno Center for Transportation's analysis of agency-level recovery similarly finds wide dispersion by metro area, tied to each region's commuting patterns, downtown employment recovery, and (in cases like San Francisco/BART) office-vacancy rates and central-city population loss. News coverage of individual agencies in 2025-2026 (NYC's MTA reporting record 2025 ridership; press on BART's persistently weak recovery and later-stage service cuts; Chicago's CTA citing 2025 fare increases and route cuts tied to the expiration of federal COVID relief funds) is consistent with the FTA data below: New York recovered far more of its ridership than San Francisco or Atlanta.</p><p>The small gap between APTA's ~85% figure and the ~81% computed here from raw NTD data is expected — APTA's briefs sometimes use different agency subsets, seasonally-adjusted or partial-year figures, or slightly different vintage cuts of the same underlying NTD data; both point to the same qualitative conclusion (ridership plateaued in the low-to-mid 80s percent of 2019 by 2025).</p>
-</section>
-<section>
-<h2>Step 2 — Computing recovery directly from FTA National Transit Database data</h2>
-<p>Recovery was computed as each agency's full-calendar-year 2025 unlinked passenger trips (UPT) divided by its full-calendar-year 2019 UPT, using <code>transport.transit_ridership_by_agency_year</code>, an AskAmerica view built from the FTA's NTD monthly ridership series (source: data.transportation.gov/resource/8bui-9xvu.json). Both 2019 and 2025 were confirmed to be complete 12-month years in the underlying monthly table before comparing them, so the ratio is not distorted by a partial year. National totals across all reporting agencies:</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><table border="1" cellpadding="4"><tr><th><label class="srth" for="s3-t1-s1">Year<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s2">US total UPT (billions)<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>2019</td><td>9.70</td></tr><tr><td>2020</td><td>4.51</td></tr><tr><td>2021</td><td>4.68</td></tr><tr><td>2022</td><td>6.06</td></tr><tr><td>2023</td><td>6.98</td></tr><tr><td>2024</td><td>7.62</td></tr><tr><td>2025</td><td>7.88</td></tr></tbody><tbody class="srt s1"><tr><td>2025</td><td>7.88</td></tr><tr><td>2024</td><td>7.62</td></tr><tr><td>2023</td><td>6.98</td></tr><tr><td>2022</td><td>6.06</td></tr><tr><td>2021</td><td>4.68</td></tr><tr><td>2020</td><td>4.51</td></tr><tr><td>2019</td><td>9.70</td></tr></tbody><tbody class="srt s2"><tr><td>2019</td><td>9.70</td></tr><tr><td>2025</td><td>7.88</td></tr><tr><td>2024</td><td>7.62</td></tr><tr><td>2023</td><td>6.98</td></tr><tr><td>2022</td><td>6.06</td></tr><tr><td>2021</td><td>4.68</td></tr><tr><td>2020</td><td>4.51</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p><strong>National 2025 recovery: 7.88 / 9.70 = 81.3% of 2019.</strong> Growth has clearly decelerated — the year-over-year gain from 2024 to 2025 (+3.4%) is much smaller than 2022-2023 or 2023-2024, consistent with APTA's own framing that a return to 100% is unlikely in the near term for most markets.</p>
-</section>
-<section>
-<h2>Step 3 — How much it varies by city/agency</h2>
-<p>Recovery ratios for large agencies (2019 UPT above 20 million trips), sorted from least to most recovered:</p><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s4"><table border="1" cellpadding="4"><tr><th><label class="srth" for="s4-t1-s1">Agency (city)<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">2019 UPT (M)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s3">2025 UPT (M)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s4">2025 as % of 2019<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>BART (San Francisco Bay Area)</td><td>127.6</td><td>61.6</td><td>48.3%</td></tr><tr><td>MARTA (Atlanta)</td><td>114.8</td><td>66.1</td><td>57.6%</td></tr><tr><td>Pittsburgh Regional Transit</td><td>64.1</td><td>37.8</td><td>59.0%</td></tr><tr><td>RTD Denver</td><td>105.2</td><td>63.9</td><td>60.8%</td></tr><tr><td>Metra (Chicago commuter rail)</td><td>61.5</td><td>38.0</td><td>61.9%</td></tr><tr><td>SEPTA (Philadelphia)</td><td>310.3</td><td>223.7</td><td>72.1%</td></tr><tr><td>King County Metro (Seattle bus)</td><td>128.7</td><td>94.4</td><td>73.4%</td></tr><tr><td>Chicago Transit Authority</td><td>455.7</td><td>338.0</td><td>74.2%</td></tr><tr><td>MBTA (Boston)</td><td>366.3</td><td>271.8</td><td>74.2%</td></tr><tr><td>SF Muni</td><td>219.3</td><td>170.9</td><td>78.0%</td></tr><tr><td>Miami-Dade Transit</td><td>102.1</td><td>81.5</td><td>79.7%</td></tr><tr><td>LA Metro</td><td>373.7</td><td>308.2</td><td>82.5%</td></tr><tr><td>NJ Transit</td><td>267.5</td><td>224.1</td><td>83.8%</td></tr><tr><td>WMATA (Washington DC)</td><td>364.8</td><td>309.2</td><td>84.8%</td></tr><tr><td>Houston Metro</td><td>90.2</td><td>78.2</td><td>86.7%</td></tr><tr><td>MTA New York City Transit</td><td>3,462.6</td><td>3,014.8</td><td>87.1%</td></tr><tr><td>LIRR (NY commuter rail)</td><td>114.2</td><td>102.2</td><td>89.5%</td></tr><tr><td>San Diego MTS</td><td>86.6</td><td>80.6</td><td>93.1%</td></tr><tr><td>MTA Bus (NYC)</td><td>135.1</td><td>134.3</td><td>99.4%</td></tr><tr><td>Sound Transit (Seattle light rail)</td><td>47.8</td><td>50.9</td><td>106.5%</td></tr></tbody><tbody class="srt s1"><tr><td>BART (San Francisco Bay Area)</td><td>127.6</td><td>61.6</td><td>48.3%</td></tr><tr><td>Chicago Transit Authority</td><td>455.7</td><td>338.0</td><td>74.2%</td></tr><tr><td>Houston Metro</td><td>90.2</td><td>78.2</td><td>86.7%</td></tr><tr><td>King County Metro (Seattle bus)</td><td>128.7</td><td>94.4</td><td>73.4%</td></tr><tr><td>LA Metro</td><td>373.7</td><td>308.2</td><td>82.5%</td></tr><tr><td>LIRR (NY commuter rail)</td><td>114.2</td><td>102.2</td><td>89.5%</td></tr><tr><td>MARTA (Atlanta)</td><td>114.8</td><td>66.1</td><td>57.6%</td></tr><tr><td>MBTA (Boston)</td><td>366.3</td><td>271.8</td><td>74.2%</td></tr><tr><td>Metra (Chicago commuter rail)</td><td>61.5</td><td>38.0</td><td>61.9%</td></tr><tr><td>Miami-Dade Transit</td><td>102.1</td><td>81.5</td><td>79.7%</td></tr><tr><td>MTA Bus (NYC)</td><td>135.1</td><td>134.3</td><td>99.4%</td></tr><tr><td>MTA New York City Transit</td><td>3,462.6</td><td>3,014.8</td><td>87.1%</td></tr><tr><td>NJ Transit</td><td>267.5</td><td>224.1</td><td>83.8%</td></tr><tr><td>Pittsburgh Regional Transit</td><td>64.1</td><td>37.8</td><td>59.0%</td></tr><tr><td>RTD Denver</td><td>105.2</td><td>63.9</td><td>60.8%</td></tr><tr><td>San Diego MTS</td><td>86.6</td><td>80.6</td><td>93.1%</td></tr><tr><td>SEPTA (Philadelphia)</td><td>310.3</td><td>223.7</td><td>72.1%</td></tr><tr><td>SF Muni</td><td>219.3</td><td>170.9</td><td>78.0%</td></tr><tr><td>Sound Transit (Seattle light rail)</td><td>47.8</td><td>50.9</td><td>106.5%</td></tr><tr><td>WMATA (Washington DC)</td><td>364.8</td><td>309.2</td><td>84.8%</td></tr></tbody><tbody class="srt s2"><tr><td>MTA New York City Transit</td><td>3,462.6</td><td>3,014.8</td><td>87.1%</td></tr><tr><td>Chicago Transit Authority</td><td>455.7</td><td>338.0</td><td>74.2%</td></tr><tr><td>LA Metro</td><td>373.7</td><td>308.2</td><td>82.5%</td></tr><tr><td>MBTA (Boston)</td><td>366.3</td><td>271.8</td><td>74.2%</td></tr><tr><td>WMATA (Washington DC)</td><td>364.8</td><td>309.2</td><td>84.8%</td></tr><tr><td>SEPTA (Philadelphia)</td><td>310.3</td><td>223.7</td><td>72.1%</td></tr><tr><td>NJ Transit</td><td>267.5</td><td>224.1</td><td>83.8%</td></tr><tr><td>SF Muni</td><td>219.3</td><td>170.9</td><td>78.0%</td></tr><tr><td>MTA Bus (NYC)</td><td>135.1</td><td>134.3</td><td>99.4%</td></tr><tr><td>King County Metro (Seattle bus)</td><td>128.7</td><td>94.4</td><td>73.4%</td></tr><tr><td>BART (San Francisco Bay Area)</td><td>127.6</td><td>61.6</td><td>48.3%</td></tr><tr><td>MARTA (Atlanta)</td><td>114.8</td><td>66.1</td><td>57.6%</td></tr><tr><td>LIRR (NY commuter rail)</td><td>114.2</td><td>102.2</td><td>89.5%</td></tr><tr><td>RTD Denver</td><td>105.2</td><td>63.9</td><td>60.8%</td></tr><tr><td>Miami-Dade Transit</td><td>102.1</td><td>81.5</td><td>79.7%</td></tr><tr><td>Houston Metro</td><td>90.2</td><td>78.2</td><td>86.7%</td></tr><tr><td>San Diego MTS</td><td>86.6</td><td>80.6</td><td>93.1%</td></tr><tr><td>Pittsburgh Regional Transit</td><td>64.1</td><td>37.8</td><td>59.0%</td></tr><tr><td>Metra (Chicago commuter rail)</td><td>61.5</td><td>38.0</td><td>61.9%</td></tr><tr><td>Sound Transit (Seattle light rail)</td><td>47.8</td><td>50.9</td><td>106.5%</td></tr></tbody><tbody class="srt s3"><tr><td>MTA New York City Transit</td><td>3,462.6</td><td>3,014.8</td><td>87.1%</td></tr><tr><td>Chicago Transit Authority</td><td>455.7</td><td>338.0</td><td>74.2%</td></tr><tr><td>WMATA (Washington DC)</td><td>364.8</td><td>309.2</td><td>84.8%</td></tr><tr><td>LA Metro</td><td>373.7</td><td>308.2</td><td>82.5%</td></tr><tr><td>MBTA (Boston)</td><td>366.3</td><td>271.8</td><td>74.2%</td></tr><tr><td>NJ Transit</td><td>267.5</td><td>224.1</td><td>83.8%</td></tr><tr><td>SEPTA (Philadelphia)</td><td>310.3</td><td>223.7</td><td>72.1%</td></tr><tr><td>SF Muni</td><td>219.3</td><td>170.9</td><td>78.0%</td></tr><tr><td>MTA Bus (NYC)</td><td>135.1</td><td>134.3</td><td>99.4%</td></tr><tr><td>LIRR (NY commuter rail)</td><td>114.2</td><td>102.2</td><td>89.5%</td></tr><tr><td>King County Metro (Seattle bus)</td><td>128.7</td><td>94.4</td><td>73.4%</td></tr><tr><td>Miami-Dade Transit</td><td>102.1</td><td>81.5</td><td>79.7%</td></tr><tr><td>San Diego MTS</td><td>86.6</td><td>80.6</td><td>93.1%</td></tr><tr><td>Houston Metro</td><td>90.2</td><td>78.2</td><td>86.7%</td></tr><tr><td>MARTA (Atlanta)</td><td>114.8</td><td>66.1</td><td>57.6%</td></tr><tr><td>RTD Denver</td><td>105.2</td><td>63.9</td><td>60.8%</td></tr><tr><td>BART (San Francisco Bay Area)</td><td>127.6</td><td>61.6</td><td>48.3%</td></tr><tr><td>Sound Transit (Seattle light rail)</td><td>47.8</td><td>50.9</td><td>106.5%</td></tr><tr><td>Metra (Chicago commuter rail)</td><td>61.5</td><td>38.0</td><td>61.9%</td></tr><tr><td>Pittsburgh Regional Transit</td><td>64.1</td><td>37.8</td><td>59.0%</td></tr></tbody><tbody class="srt s4"><tr><td>Sound Transit (Seattle light rail)</td><td>47.8</td><td>50.9</td><td>106.5%</td></tr><tr><td>MTA Bus (NYC)</td><td>135.1</td><td>134.3</td><td>99.4%</td></tr><tr><td>San Diego MTS</td><td>86.6</td><td>80.6</td><td>93.1%</td></tr><tr><td>LIRR (NY commuter rail)</td><td>114.2</td><td>102.2</td><td>89.5%</td></tr><tr><td>MTA New York City Transit</td><td>3,462.6</td><td>3,014.8</td><td>87.1%</td></tr><tr><td>Houston Metro</td><td>90.2</td><td>78.2</td><td>86.7%</td></tr><tr><td>WMATA (Washington DC)</td><td>364.8</td><td>309.2</td><td>84.8%</td></tr><tr><td>NJ Transit</td><td>267.5</td><td>224.1</td><td>83.8%</td></tr><tr><td>LA Metro</td><td>373.7</td><td>308.2</td><td>82.5%</td></tr><tr><td>Miami-Dade Transit</td><td>102.1</td><td>81.5</td><td>79.7%</td></tr><tr><td>SF Muni</td><td>219.3</td><td>170.9</td><td>78.0%</td></tr><tr><td>Chicago Transit Authority</td><td>455.7</td><td>338.0</td><td>74.2%</td></tr><tr><td>MBTA (Boston)</td><td>366.3</td><td>271.8</td><td>74.2%</td></tr><tr><td>King County Metro (Seattle bus)</td><td>128.7</td><td>94.4</td><td>73.4%</td></tr><tr><td>SEPTA (Philadelphia)</td><td>310.3</td><td>223.7</td><td>72.1%</td></tr><tr><td>Metra (Chicago commuter rail)</td><td>61.5</td><td>38.0</td><td>61.9%</td></tr><tr><td>RTD Denver</td><td>105.2</td><td>63.9</td><td>60.8%</td></tr><tr><td>Pittsburgh Regional Transit</td><td>64.1</td><td>37.8</td><td>59.0%</td></tr><tr><td>MARTA (Atlanta)</td><td>114.8</td><td>66.1</td><td>57.6%</td></tr><tr><td>BART (San Francisco Bay Area)</td><td>127.6</td><td>61.6</td><td>48.3%</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>The pattern: the lowest-recovering systems (BART, MARTA, Denver RTD, Metra, Pittsburgh) are heavy-rail or commuter-rail systems built primarily around downtown office commuting in metro areas that have seen persistently weak downtown-office return-to-work and, in San Francisco's and Atlanta's cases, notable downtown vacancy and disinvestment. The highest-recovering or growing systems fall into two categories: (1) bus-heavy systems with more diversified, non-commute trip purposes (San Diego MTS, MTA Bus, King County Metro), and (2) systems undergoing physical service expansion — Sound Transit opened new light-rail extensions (Northgate Link, East Link segments) after 2019, so its >100% figure reflects new capacity and coverage as much as demand recovery, not a like-for-like comparison. New York City Transit, despite being far larger than any other system, sits close to the median recovery rate (87%) — it is not an outlier driving the national average up on ratio terms, though its sheer size (3.46B of the nation's 9.70B 2019 trips, or 36%) does pull the national aggregate recovery rate closer to its own than to the median agency's, since the national figure is a trip-weighted average, not a simple average across agencies.</p><p>The unweighted median recovery ratio across these ~39 large agencies is about 76%, five points below the national trip-weighted figure of 81% — confirming that the national number is somewhat more optimistic than the typical major city's experience, because it is dominated by New York's large base and above-median recovery.</p>
-</section>
-<section>
-<h2>Caveats</h2>
-<ul><li>Figures are unlinked passenger trips (boardings), the FTA's standard ridership metric; they do not adjust for service levels (an agency running less service could show lower ridership partly because it is offering fewer trips, not purely from weaker demand).</li><li>Sound Transit's recovery figure is inflated by genuine light-rail network expansion since 2019 and is not a clean recovery comparison; it is flagged rather than excluded, since the question asks about variation across cities as reported.</li><li>APTA's own 85% national figure differs modestly from the 81.3% computed here from raw NTD annual sums; both come from the same underlying FTA source but likely differ in agency inclusion/vintage, and both support the same conclusion.</li><li>This analysis is descriptive (differences in recovery across cities), not causal; it does not isolate the effect of any single policy or driver (e.g., remote work share, fare changes, service cuts) on recovery.</li></ul>
-</section>
-<section class="sources">
+</div><div class="page">
+<span class="eyebrow">q71 · askamerica</span>
+<h1>How much of pre-pandemic transit ridership has come back, and how much does it vary between cities?</h1>
+<p><strong>Bottom line:</strong> As of full-year 2024, US public transit ridership had recovered to about <strong>78.6%</strong> of its 2019 (pre-pandemic) level, computed directly from FTA National Transit Database (NTD) monthly ridership data: 7.62 billion unlinked passenger trips (UPT) in 2024 vs. 9.70 billion in 2019. APTA's own headline figure, which extrapolates for late/non-reporting agencies, runs a few points higher — roughly 81% for calendar 2024 and about 85% by late 2025.</p>
+<p>Recovery varies enormously by city and system. Among the 88 major agencies with more than 10 million 2019 trips, recovery ranges from under 45% up to over 90%, with a standard deviation of about <strong>16.5 percentage points</strong> around a mean of 76.6%.</p>
+<h2>Recovery by major metro agency (2019 → 2024 unlinked passenger trips)</h2>
+<table>
+<thead>
+<tr>
+<th>Agency (metro)</th>
+<th style="text-align: right;">2019 trips</th>
+<th style="text-align: right;">2024 trips</th>
+<th style="text-align: right;">% of 2019</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NJ Transit</td>
+<td style="text-align: right;">267.5M</td>
+<td style="text-align: right;">228.5M</td>
+<td style="text-align: right;">85.4%</td>
+</tr>
+<tr>
+<td>MTA Long Island Rail Road</td>
+<td style="text-align: right;">114.2M</td>
+<td style="text-align: right;">97.2M</td>
+<td style="text-align: right;">85.1%</td>
+</tr>
+<tr>
+<td>LA Metro</td>
+<td style="text-align: right;">373.7M</td>
+<td style="text-align: right;">313.9M</td>
+<td style="text-align: right;">84.0%</td>
+</tr>
+<tr>
+<td>MTA New York City Transit</td>
+<td style="text-align: right;">3,462.6M</td>
+<td style="text-align: right;">2,902.0M</td>
+<td style="text-align: right;">83.8%</td>
+</tr>
+<tr>
+<td>Miami-Dade Transit</td>
+<td style="text-align: right;">102.1M</td>
+<td style="text-align: right;">85.2M</td>
+<td style="text-align: right;">83.4%</td>
+</tr>
+<tr>
+<td>WMATA (Washington DC)</td>
+<td style="text-align: right;">364.8M</td>
+<td style="text-align: right;">284.5M</td>
+<td style="text-align: right;">78.0%</td>
+</tr>
+<tr>
+<td>SF Muni</td>
+<td style="text-align: right;">219.3M</td>
+<td style="text-align: right;">165.8M</td>
+<td style="text-align: right;">75.6%</td>
+</tr>
+<tr>
+<td>MBTA (Boston)</td>
+<td style="text-align: right;">366.3M</td>
+<td style="text-align: right;">262.2M</td>
+<td style="text-align: right;">71.6%</td>
+</tr>
+<tr>
+<td>SEPTA (Philadelphia)</td>
+<td style="text-align: right;">310.3M</td>
+<td style="text-align: right;">213.7M</td>
+<td style="text-align: right;">68.9%</td>
+</tr>
+<tr>
+<td>King County Metro (Seattle)</td>
+<td style="text-align: right;">128.7M</td>
+<td style="text-align: right;">88.6M</td>
+<td style="text-align: right;">68.9%</td>
+</tr>
+<tr>
+<td>CTA (Chicago)</td>
+<td style="text-align: right;">455.7M</td>
+<td style="text-align: right;">309.2M</td>
+<td style="text-align: right;">67.8%</td>
+</tr>
+<tr>
+<td>RTD (Denver)</td>
+<td style="text-align: right;">105.2M</td>
+<td style="text-align: right;">64.3M</td>
+<td style="text-align: right;">61.1%</td>
+</tr>
+<tr>
+<td>MARTA (Atlanta)</td>
+<td style="text-align: right;">114.8M</td>
+<td style="text-align: right;">66.4M</td>
+<td style="text-align: right;">57.8%</td>
+</tr>
+<tr>
+<td>BART (SF Bay Area)</td>
+<td style="text-align: right;">127.6M</td>
+<td style="text-align: right;">56.1M</td>
+<td style="text-align: right;">44.0%</td>
+</tr>
+</tbody>
+</table>
+<p>At the extremes: Puerto Rico's transit authority (San Juan) is at just 7% of 2019 ridership (service cuts/infrastructure disruption, not just demand); several smaller/mid-sized systems (Tucson, Albany's CDTA, Kansas City, Spokane) have fully recovered or exceeded 2019 ridership. This matches APTA's finding that cities under 100,000 population had recovered to about 88% of 2019 levels by 2024/25, well ahead of the largest metros (78% for cities over 500,000, 81% for cities over 2 million).</p>
+<h2>Why the variation is systematic, not random</h2>
+<ul>
+<li><strong>Mode mix drives most of the gap.</strong> Nationally, bus UPT is at 82.6% of 2019 and rail UPT is at 74.8% (ferry 82.1%). Rail- and commuter-rail-heavy agencies (BART, MARTA, Chicago's Northeast Illinois Regional Commuter Railroad at 57.0%, SoCal's Metrolink at 40.0%) lag; bus-dominant systems recover faster because bus ridership skews toward essential workers, students, and non-commute trips that were never as disrupted.</li>
+<li><strong>Downtown office commuting hasn't fully returned, but that's no longer the whole story.</strong> Office occupancy has been roughly flat through 2025 even as national ridership climbed toward 81–85% — growth increasingly comes from non-commute trips (errands, leisure, off-peak travel), not the 9-to-5 commute these systems were built around.</li>
+<li><strong>City-specific catalysts matter.</strong> NYC subway ridership got an extra boost in 2025 from congestion pricing (an estimated 90M+ additional subway rides in its first year), pushing NYCT toward ~85% by late 2025; DC's WMATA has been helped by federal return-to-office mandates.</li>
+</ul>
+<h2>Methodology notes</h2>
+<ul>
+<li>Computed from <code>transport.transit_ridership</code> (FTA NTD Complete Monthly Ridership, with FTA's own adjustments/estimates for late reporters), aggregated to full-year unlinked passenger trips per agency and by mode, 2019 vs. 2024 (the most recent full year with finalized annual totals across nearly all major agencies; 2025 is complete in this table but treated as still-maturing).</li>
+<li>Cross-checked against APTA's published national and city-size-tier recovery figures and against independent reporting on NYC, BART/Bay Area, Chicago, Boston, LA, Seattle, and Atlanta — all consistent within a few points, validating the NTD-derived numbers.</li>
+<li>Standard deviation (16.5 pts) and mean/median (76.6% / 77.5%) computed across the 88 agencies with &gt;10M 2019 trips; smaller agencies show even wider variation (7%–120%+).</li>
+</ul>
+<h2>Full report and dashboard</h2>
+<p>Published via the connector: <a href="http://127.0.0.1:59968/a/4f94972a2a1b7792ff65d312c3801327.html">US transit ridership has recovered to about 78.6% of 2019 levels nationally, but ranges from 44% (BART) to over 90% depending on the city and system</a> <em>(local report link, not reachable outside this machine — dashboard image saved alongside this file as <code>dashboard.png</code>)</em></p>
+<p><img alt="Dashboard" src="dashboard.png" /></p>
 <h2>Sources</h2>
-<ol>
-<li>FTA National Transit Database — Monthly Ridership (transport.transit_ridership_by_agency_year)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT agency, SUM(CASE WHEN &quot;year&quot;=2019 THEN unlinked_passenger_trips ELSE 0 END) AS upt_2019, SUM(CASE WHEN &quot;year&quot;=2025 THEN unlinked_passenger_trips ELSE 0 END) AS upt_2025 FROM transport.transit_ridership_by_agency_year WHERE &quot;year&quot; IN (2019,2025) GROUP BY agency HAVING SUM(CASE WHEN &quot;year&quot;=2019 THEN unlinked_passenger_trips ELSE 0 END) &gt; 20000000 ORDER BY upt_2019 DESC</code></pre></details></li>
-<li>FTA NTD national annual totals 2019-2025<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, SUM(unlinked_passenger_trips) AS total_upt FROM transport.transit_ridership_by_agency_year WHERE &quot;year&quot; BETWEEN 2019 AND 2025 GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details></li>
+<ul>
+<li>askamerica connector: <code>transport.transit_ridership</code> (FTA National Transit Database, Complete Monthly Ridership)</li>
 <li><a href="https://www.apta.com/wp-content/uploads/2026/04/APTA-POLICY-BRIEF-Transit-Ridership-04-08-2026.pdf">APTA Public Transportation Ridership Update, April 2026</a></li>
-<li><a href="https://www.masstransitmag.com/management/press-release/55290558/american-public-transportation-association-aptas-new-report-reveals-us-transit-ridership-increasing-to-85-percent-of-pre-pandemic-levels">APTA's new report reveals US transit ridership increasing to 85 percent of pre-pandemic levels — Mass Transit</a></li>
-<li><a href="https://www.smartcitiesdive.com/news/public-transit-ridership-post-pandemic-high-apta/748486/">Public transit ridership hits post-pandemic high: APTA report — Smart Cities Dive</a></li>
-<li><a href="https://enotrans.org/article/pandemic-ridership-recovery-and-agency-adaptions/">Mass Transit: Pandemic Ridership Recovery and Agency Adaptions — Eno Center for Transportation</a></li>
-<li><a href="https://www.apta.com/wp-content/uploads/2026/02/APTA-Policy-Brief-Transit-Ridership-May-2025.pdf">APTA National Ridership Picture, May 2025</a></li>
-<li><a href="https://www.thecityreporter.nyc/2025/12/12/mta-service-subway-transit-budget-funding/">As U.S. Transit Takes a Dive, MTA Enjoys a Rarity — The City Reporter NYC</a></li>
-</ol>
-</section>
-<footer>
-<p class="footnote">Ridership = unlinked passenger trips (boardings), not adjusted for changes in service levels. National figures are trip-weighted; the unweighted median across large agencies (~76%) is lower than the national trip-weighted figure (81.3%) because New York, the largest system, sits slightly above the median.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
-</footer>
-</main>
-<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
-</body>
-</html>
+<li><a href="https://www.masstransitmag.com/management/press-release/55290558/american-public-transportation-association-aptas-new-report-reveals-us-transit-ridership-increasing-to-85-percent-of-pre-pandemic-levels">APTA: US transit ridership up to 85% of pre-pandemic levels — Mass Transit</a></li>
+<li><a href="https://www.mta.info/agency/new-york-city-transit/subway-bus-ridership-2024">MTA subway/bus ridership 2024</a></li>
+<li><a href="https://localnewsmatters.org/2026/04/04/a-bumpy-ride-data-reveal-leaders-laggards-in-bay-area-post-pandemic-transit-recovery/">A bumpy ride: Bay Area post-pandemic transit recovery — Local News Matters</a></li>
+<li><a href="https://www.amny.com/nyc-transit/congestion-pricing-nyc-subways-ridership-report-2025/">Congestion pricing and NYC subway ridership — amNY</a></li>
+</ul>
+<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
+</div></body></html>

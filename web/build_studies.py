@@ -89,6 +89,9 @@ def latest_askamerica_run(n):
     dates = sorted(
         d for d in os.listdir(persona_dir)
         if os.path.isdir(os.path.join(persona_dir, d)) and re.match(r"\d{4}-\d{2}-\d{2}", d)
+        # Runs the eval set aside (a wrong-server run, an out-of-scope rerun, a pre-fix
+        # copy) carry a suffix naming why; they are not the run to publish.
+        and not re.search(r"WRONG|invalid|pre-mandate|not-surfaced|out-of-scope|before-fix|after-fix", d, re.I)
     )
     for d in reversed(dates):
         run_dir = os.path.join(persona_dir, d)

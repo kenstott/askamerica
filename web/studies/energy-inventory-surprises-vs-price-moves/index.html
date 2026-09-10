@@ -1,322 +1,77 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EIA weekly inventory reports move crude oil prices sharply for about 20-30 minutes, then the impact mostly holds rather than reversing</title>
+<title>agent</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
-@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
+:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
-main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
-h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
-h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
-h3{font-size:1rem;margin:1.4rem 0 .4rem}
-.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
-.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
-.board svg{display:block;width:100%;height:auto}
-p{margin:0 0 .9rem}
-table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
-th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
-th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
-@media screen{
-th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
-tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
-pre{overflow-x:auto}
-}
-details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
-summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-summary:hover{color:var(--link)}
-summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
-details[open] summary{border-bottom:1px solid var(--rule)}
-details > *:not(summary){margin:.7rem}
-pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
-pre code{background:none;padding:0;font-size:inherit}
-tbody.srt:not(.s0){display:none}
-.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
-th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
-th .srth:hover{color:var(--link)}
-th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
-.srtcue{font-size:.85em;opacity:.28;line-height:1}
-.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
-.srtreset:hover{color:var(--link)}
-.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
-.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
-.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
-.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
-.fltlabel:hover{color:var(--link)}
-.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
-.fltnote{font-size:.68rem;color:var(--muted)}
-abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
-.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
-.printhint:hover{opacity:1}
-.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
-@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
-@media print{
-details{border:0;margin:.6rem 0}
-details > *:not(summary){display:block;margin:.4rem 0}
-details[open] summary{border-bottom:0}
-summary{padding:0;list-style:none}
-summary::-webkit-details-marker{display:none}
-pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
-thead{display:table-header-group}
-tr{break-inside:avoid}
-.printhint{display:none}
-.filterbar{display:none}
-.srtcue{display:none}
-.srtreset{display:none}
-}
-code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
-blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
-a{color:var(--link)}
-.sources ol{padding-left:1.2rem;font-size:.92rem}
-.sources li{margin:.3rem 0}
-.note{color:var(--muted)}
-.sqltoggle{display:inline-block;margin-left:.4rem}
-.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
-.sqltoggle summary:hover{text-decoration:underline}
-.sqltoggle[open] summary{margin-bottom:.4rem}
-.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
-.sqltoggle pre code{background:none;padding:0}
-footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
-.footnote{font-style:italic}
-.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
-.brand strong{color:var(--ink)}
-.byline{margin-left:auto}
-.mark{flex:none;display:block}
-figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
-.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
-.dl:hover{color:var(--link)}
-</style>
-</head>
-<body>
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
+h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
+h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
+h2{font-size:1.35em;margin-top:1.6em}
+h3{font-size:1.1em}
+p,li{color:var(--ink-2)}
+a{color:var(--accent)}
+code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
+code{background:var(--rule);padding:.1em .35em;border-radius:3px}
+pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
+th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
+blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
+hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
+.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
+</style></head><body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div>
-<main>
-<header>
-<h1>EIA weekly inventory reports move crude oil prices sharply for about 20-30 minutes, then the impact mostly holds rather than reversing</h1>
-<p class="subtitle">Literature review of intraday event studies plus an AskAmerica daily-close check, WTI crude, 2023-2025</p>
-</header>
-<figure class="board">
-<!--
-  Dashboard from AskAmerica compose_dashboard. Self-contained: no
-  external assets, no scripts. Drop it into an artifact or an HTML
-  page as-is.
-
-  Each panel is a nested <svg> with its own viewBox, so a panel's
-  internal coordinates are exactly what its own data produced. Panel
-  ids are namespaced p1-, p2-, ... so the per-chart editing contract
-  still works: p2-mark-california, p3-series-nominal, and so on.
-
-  Safe to edit: panel captions (<text class="caption">), the
-  dashboard title/subtitle/footnote, any panel's fills, and the
-  per-panel <g id="pN-annotations"> groups, which paint last.
-  Do NOT move a panel's internal geometry, and do NOT change one
-  panel's axis domain: panels sharing a scale_group were given one
-  domain deliberately so they can be compared.
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 631" width="880" height="631" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
-  <style>
-    .dash-title { font-size: 20px; font-weight: 650 }
-    .dash-subtitle { font-size: 13px }
-    .caption { font-size: 11px }
-    .footnote { font-size: 11px; font-style: italic }
-    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
-    .byline { font-size: 11px }
-    .stat-label { font-size: 12px }
-    .stat-value { font-size: 30px; font-weight: 650 }
-    .stat-delta { font-size: 13px; font-weight: 600 }
-    .title { font-size: 15px; font-weight: 600 }
-    .axis-title { font-size: 12px }
-    .tick { font-size: 11px }
-    .value-label { font-size: 11px; font-weight: 600 }
-    .callout { font-size: 11px; font-style: italic }
-    @media (prefers-color-scheme: dark) {
-      .dash-bg, .chart-bg { fill: #16181d }
-      .panel-edge { stroke: #2c3038 }
-      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
-      .stat-value, .title, .axis-title, .tick, .value-label,
-      .callout, .legend-label, .byline { fill: #e6e8eb }
-      .brand-mark { fill: #9aa4b2 }
-      .axis { stroke: #6b7280 }
-      .grid { stroke: #2c3038 }
-    }
-  </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="631" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">How much do energy prices move on the weekly EIA inventory report, and how long does it l…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">WTI crude, weekly EIA petroleum stocks (WCESTUS1), 2023-2025 daily closes, n=155 report weeks</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Avg |price move| on release day</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">1.60%</text>
-  <text class="stat-delta" x="36" y="168" fill="#6b7280">vs 1.53% on an average trading day</text>
-  </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">Close-to-close, all EIA Wednesdays 2023-2025</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Sign concordance</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">53%</text>
-  <text class="stat-delta" x="464" y="168" fill="#6b7280">build-&gt;down or draw-&gt;up</text>
-  </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">Weak: realized change != the surprise vs. analyst consensus that</text>
-  <text class="caption" x="452" y="216" fill="#6b7280">actually moves price</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Average price move, builds vs draws (close-to-close, $/bbl)</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="69" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="61" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.7</text>
-      <line class="grid" x1="69" y1="161" x2="390" y2="161" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="61" y="165" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.6</text>
-      <line class="grid" x1="69" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="61" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.5</text>
-      <line class="grid" x1="69" y1="131" x2="390" y2="131" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="61" y="135" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.4</text>
-      <line class="grid" x1="69" y1="116.00" x2="390" y2="116.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="61" y="120.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.3</text>
-      <line class="grid" x1="69" y1="101.00" x2="390" y2="101.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="61" y="105.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.2</text>
-      <line class="grid" x1="69" y1="86.00" x2="390" y2="86.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-6" class="tick" x="61" y="90.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.1</text>
-      <line class="grid" x1="69" y1="71" x2="390" y2="71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-7" class="tick" x="61" y="75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="69" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-8" class="tick" x="61" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.1</text>
-    </g>
-    <g id="p3-axes">
-      <line class="axis" x1="69" y1="56" x2="69" y2="176" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="69" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p3-x-axis-title" class="axis-title" x="229.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Weeks since inventory report</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="9" style="font-size:9px" text-anchor="middle" transform="rotate(-90 14 116)">$/bbl vs pre-report close</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-release-day" class="tick" x="149.25" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Release day</text>
-      <text id="p3-xtick-5-trading-days" class="tick" x="309.75" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+5 trading days</text>
-    </g>
-    <g id="p3-series-build-weeks-n-76" class="series">
-      <rect id="p3-mark-build-weeks-n-76-release-day" class="bar" x="97.89" y="71" width="50.36" height="45.00" fill="#2563eb"/>
-      <rect id="p3-mark-build-weeks-n-76-5-trading-days" class="bar" x="258.39" y="71" width="50.36" height="103.50" fill="#2563eb"/>
-    </g>
-    <g id="p3-series-draw-weeks-n-79" class="series">
-      <rect id="p3-mark-draw-weeks-n-79-release-day" class="bar" x="149.25" y="69.50" width="50.36" height="1.50" fill="#ea580c"/>
-      <rect id="p3-mark-draw-weeks-n-79-5-trading-days" class="bar" x="309.75" y="65" width="50.36" height="6" fill="#ea580c"/>
-    </g>
-    <g id="p3-legend">
-      <rect id="p3-legend-swatch-build-weeks-n-76" x="79.50" y="234" width="11" height="11" fill="#2563eb"/>
-      <text id="p3-legend-label-build-weeks-n-76" class="legend-label" x="95.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Build weeks (n=76)</text>
-      <rect id="p3-legend-swatch-draw-weeks-n-79" x="213.50" y="234" width="11" height="11" fill="#ea580c"/>
-      <text id="p3-legend-label-draw-weeks-n-79" class="legend-label" x="229.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Draw weeks (n=79)</text>
-    </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="519" fill="#6b7280">Builds move price down and the move extends over the week; draws show</text>
-  <text class="caption" x="24" y="532" fill="#6b7280">almost no average effect at the close</text>
-  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Correlation of release-day move with later moves</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="76" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="68" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.20</text>
-      <line class="grid" x1="76" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="68" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.18</text>
-      <line class="grid" x1="76" y1="152.00" x2="390" y2="152.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="68" y="156.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.16</text>
-      <line class="grid" x1="76" y1="128.00" x2="390" y2="128.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="68" y="132.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.14</text>
-      <line class="grid" x1="76" y1="104.00" x2="390" y2="104.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="68" y="108.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.12</text>
-      <line class="grid" x1="76" y1="80.00" x2="390" y2="80.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="68" y="84.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.10</text>
-      <line class="grid" x1="76" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-6" class="tick" x="68" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.08</text>
-    </g>
-    <g id="p4-axes">
-      <line class="axis" x1="76" y1="56" x2="76" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="76" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p4-x-axis-title" class="axis-title" x="233" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Trading days after release</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Correlation</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-1" class="tick" x="115.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+1</text>
-      <text id="p4-xtick-3" class="tick" x="193.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+3</text>
-      <text id="p4-xtick-5" class="tick" x="272.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+5</text>
-      <text id="p4-xtick-10" class="tick" x="350.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+10</text>
-    </g>
-    <g id="p4-series-corr-day-0-move-move-from-day-0-to-day-n" class="series">
-      <path id="p4-line-corr-day-0-move-move-from-day-0-to-day-n" class="line" d="M 115.25 56 L 193.75 152 L 272.25 92 L 350.75 188" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p4-mark-corr-day-0-move-move-from-day-0-to-day-n-1" class="point" cx="115.25" cy="56" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-corr-day-0-move-move-from-day-0-to-day-n-3" class="point" cx="193.75" cy="152" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-corr-day-0-move-move-from-day-0-to-day-n-5" class="point" cx="272.25" cy="92" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-corr-day-0-move-move-from-day-0-to-day-n-10" class="point" cx="350.75" cy="188" r="3" fill="#2563eb"/>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="519" fill="#6b7280">Mildly negative but small -- no sharp reversal; the daily-close move</text>
-  <text class="caption" x="452" y="532" fill="#6b7280">is not fully reabsorbed within two weeks</text>
-  <text class="footnote" x="20" y="564" fill="#6b7280">AskAmerica energy.eia_petroleum_stocks (series WCESTUS1) and econ.global_conditions (WTI daily close), 2023-01 through 2025-12. report_date+5</text>
-  <text class="footnote" x="20" y="578" fill="#6b7280">calendar days used as the Wednesday release date.</text>
-  <g id="brand">
-  <svg x="20" y="590" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
-    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
-    <g clip-path="url(#brand-tile)">
-      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
-      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
-    </g>
-    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
-    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
-  </svg>
-    <text class="brand-mark" x="45" y="605" fill="#374151">AskAmerica · askamerica.ai</text>
-  </g>
-  <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:59914/a/6832c123a260d2f0be715fb2e94de3ba.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
-</figure>
-<section>
-<h2>Summary</h2>
-<p>The EIA's Weekly Petroleum Status Report, released every Wednesday at 10:30am ET, is the single most-watched scheduled event in the oil market. Peer-reviewed intraday event studies find a genuine but short and asymmetric price reaction: the immediate spike from a meaningful surprise runs roughly 30 cents to $1/bbl on WTI (a bit under 1% at recent prices), with volume and volatility burning out within about 20-30 minutes of the release. Prices react to the <strong>surprise</strong> relative to the analyst consensus, not the raw build/draw number -- a print that matches consensus moves almost nothing. Once that intraday window closes, the move is largely permanent rather than reversing: academic work (Ye &amp; Karali 2016, Energy Economics) finds the EIA effect is both larger and longer-lived than the private API report's effect the night before, and Bu (2014) finds the inventory-surprise effect on daily returns is a same-day phenomenon that doesn't show up as extra daily variance going forward. A same-day check against AskAmerica's own EIA stocks and WTI price data (2023-2025, n=155 report weeks) is consistent with this: release-day volatility is barely above an ordinary day's (1.60% vs. 1.53% average absolute daily move), the reaction is asymmetric (builds push price down noticeably more than draws push it up), and there is no meaningful reversal over the following two weeks -- if anything the move very mildly extends. Retail gasoline prices, by contrast, respond with a lag of weeks, not minutes, since they track wholesale/crude costs with a documented pass-through delay.</p>
-</section>
-<section>
-<h2>What moves, and by how much</h2>
-<p><strong>Futures (WTI/Brent), intraday:</strong> The market trades the surprise vs. consensus, not the level. A bigger-than-expected build is bearish, a bigger-than-expected draw is bullish, and an in-line print often moves little. Reported magnitudes for a meaningful surprise run about 30 cents to $1 per barrel in the opening minutes, with trading volume spiking 300-500% in that window (OilDon; Damn Prop Firms trading-desk accounts corroborate the academic timing). Ederington, Fernando, Lin, Linn and colleagues, in a series of papers on EIA/API storage announcements, find the market pre-positions ahead of the Wednesday release using analyst forecasts and API's Tuesday-evening number, so much of the expected content is already in the price by 10:30am -- only the residual surprise moves it further.</p><p><strong>EIA vs. API:</strong> Ye &amp; Karali (2016, Energy Economics 59) directly compare the two weekly reports intraday and find unexpected inventory changes in both move returns inversely and volatility positively on impact, but "the duration and magnitude of EIA inventory shocks are longer and larger" than the API pre-report, with the biggest moves when API and the Reuters consensus both erred the same direction (i.e., the EIA number surprises everyone at once).</p><p><strong>Asymmetry and regime dependence:</strong> Bu (2014, Energy Economics 46) finds the inventory-information-shock effect on returns is a next-to-immediate, same-day phenomenon, is stronger for negative shocks (builds), and "is weakened in rapid growth periods and disappears in steep fall markets" -- i.e. the effect is not a stable constant, it depends on the prevailing price regime.</p>
-</section>
-<section>
-<h2>How long the move lasts</h2>
-<p>Distinguish three windows the trading and academic literature both point to:</p><ul><li><strong>0-60 seconds:</strong> algorithmic/headline-driven initial spike.</li><li><strong>5-30 minutes:</strong> "smart money" repricing completes; this is where the academic literature places essentially all of the measurable volatility and volume response.</li><li><strong>Rest of the day and beyond:</strong> the size of the move that survives to the close is set mostly by whether the surprise was genuinely informative (a real change in the supply/demand balance) versus noise, and by what else happens that day -- OPEC headlines, macro data, geopolitical news routinely swamp a single Wednesday print.</li></ul><p>None of the papers surveyed here find a systematic multi-day fade back to the pre-report price -- the report either reflects new information that sticks, or it didn't move much to begin with. That is exactly what the AskAmerica check below finds: a slightly negative but small correlation between the release-day move and the move over the following 1 to 10 trading days (-0.08 to -0.19), i.e. no strong reversal, and if anything on build weeks the price kept drifting in the same direction over the following week.</p>
-</section>
-<section>
-<h2>AskAmerica daily-close check (2023-2025, n=155 report weeks)</h2>
-<p>Using energy.eia_petroleum_stocks (series WCESTUS1, U.S. commercial crude stocks ex-SPR) and econ.global_conditions (WTI daily close), matched to each Wednesday release date (report_date + 5 calendar days):</p><ul><li>Average absolute close-to-close price move on a release Wednesday: <strong>1.60%</strong>, barely above the average absolute move on any trading day in the sample (<strong>1.53%</strong>, n=745 days). This is expected -- daily closes wash out an intraday burst that the literature places in the first 20-30 minutes, so a same-day close-to-close comparison understates the true event effect.</li><li>Sign concordance (build coinciding with a price decline, or draw with a price rise) was only <strong>53%</strong> of weeks -- close to a coin flip. This is consistent with, not contrary to, the literature: it is the surprise vs. analyst consensus that moves price, not the realized change itself, and this connector has no analyst-consensus series to net that out against.</li><li>The relationship is asymmetric: build weeks (n=76) averaged a <strong>-$0.30/bbl</strong> move on the release day, widening to <strong>-$0.69/bbl</strong> relative to the pre-report price five trading days later. Draw weeks (n=79) averaged essentially zero effect (+$0.01, then +$0.04) at the close. This lines up with Bu (2014)'s finding that the effect is stronger for negative (build) shocks.</li><li>No mean-reversion: correlating the release-day move against the subsequent move (day+1 through day+10) gives small negative correlations (-0.08 to -0.19) -- a mild continuation/no-reversal pattern, not the sharp round-trip a pure noise-trading spike would produce.</li></ul><p>Caveat: this is a realized-change proxy computed from close-to-close daily prices, not the intraday, consensus-surprise event study the cited papers run. It is offered as a same-day sanity check on direction and persistence, not as a replacement for the higher-frequency academic estimates of the 30 cent-to-$1 opening-minutes move.</p>
-</section>
-<section>
-<h2>Retail gasoline: a much slower, separate channel</h2>
-<p>The weekly WPSR also carries retail gasoline and diesel prices (surveyed Mondays, published with the report), but retail pump prices do not react to the Wednesday inventory print the way futures do. Pump prices track crude with a lag of roughly two to three weeks plus a seasonal refining-margin adjustment, reflecting the time it takes wholesale/rack price changes to work through distribution and station-level repricing. A single week's inventory surprise is a minor input to that slower-moving series, not a Wednesday-morning event for consumers.</p>
-</section>
-<section class="sources">
+</div><div class="page">
+<span class="eyebrow">q87 · askamerica</span>
+<h1>How much do energy prices move on the weekly EIA inventory report, and how long does the move last?</h1>
+<p>Published report: http://127.0.0.1:51725/a/b3e0212c9a985122b38f91fe56f17ccb.html (local to the host machine; images copied alongside this file)</p>
+<p>Dashboard: <code>dashboard.png</code> · Charts: <code>chart_report_vs_other_day.png</code>, <code>chart_inventory_vs_price_scatter.png</code> · Report card: <code>report_card.png</code></p>
+<h2>The report and the trade</h2>
+<p>EIA's Weekly Petroleum Status Report releases every Wednesday at 10:30am ET (Thursday after a Monday holiday), and its headline crude number — U.S. commercial crude stocks ex-SPR (EIA series <strong>WCESTUS1</strong>) — is the number the market watches. Over the 26 report weeks from 2025-08-08 through 2026-02-20, the weekly change ranged from a 9.3M-barrel draw to a 16.0M-barrel build, averaging roughly a 0.5M-barrel build with a standard deviation around 5.9M barrels — a genuinely volatile weekly series.</p>
+<h2>Report-day move vs. a normal day (real numbers)</h2>
+<p>Using WTI daily close-to-close price data (<code>econ.global_conditions</code>), the mean absolute daily percent move on the 26 EIA report days in this calm window was <strong>1.11%</strong>, versus <strong>1.38%</strong> on the 108 other trading days in the same window. A Welch's t-test found this difference is <strong>NOT statistically significant</strong> (t=-1.22, p=0.23) — and directionally the report-day average was actually <em>smaller</em>, not larger, than an ordinary day's close-to-close move.</p>
+<p>An OLS regression of the same-day price change ($/bbl) on the raw weekly inventory change (MMbbl) found essentially no linear relationship: coefficient 0.0008 $/bbl per MMbbl, R²=0.00002, p=0.98 (n=26).</p>
+<p><strong>Important caveat:</strong> this null result is about the full day's close-to-close return net of everything else that happened that day, using the <em>raw</em> weekly change — not the consensus-vs-actual "surprise" the literature says actually moves prices; a genuine analyst-consensus series (e.g. Bloomberg/Reuters survey expectations) is not present in this corpus. Published intraday event-study literature (Ederington et al., ScienceDirect 2016; Karali 2019 AJAE "Mixed Event Response Model") finds WTI/Brent do move within seconds of the release on a surprise vs. consensus, sometimes $1-3/bbl on a big miss, with the volatility/volume response burning out in roughly 20-30 minutes — a real signal, but on a timescale and against a benchmark (consensus surprise) this corpus's daily/raw-change data cannot resolve or reproduce.</p>
+<h2>Does the move persist, or reverse?</h2>
+<p>Correlation between the report-day price change and the subsequent 4-trading-day continuation (day+5 close minus report-day close) was <strong>0.058</strong> (n=27) — statistically indistinguishable from zero, meaning this data shows neither meaningful momentum (the move extending) nor meaningful reversion (the move unwinding) over the following week. Combined with the literature's finding that the volatility/volume response is concentrated in the first 20-30 minutes post-release, the practical read for a trader is: whatever edge exists is almost entirely in the immediate intraday reaction, not in a multi-day drift that shows up in daily closes.</p>
+<h2>A major confound: the 2026 Iran-war price shock</h2>
+<p><code>energy.eia_petroleum_stocks</code> stops at report_date=2026-06-05 — about 12 weeks stale versus the WTI price series, which runs to 2026-08-21 (both askamerica facts; logged as a data-quality issue via <code>report_issue</code>). More importantly, WTI itself is not well-behaved across the full window: it traded ~$57-66/bbl from Aug 2025 through Feb 2026, then surged to an intraday high near $119/bbl by March 9, 2026 and stayed elevated (~$85-113/bbl) through May, driven by the US-Israel-Iran conflict and Strait of Hormuz shipping risk (EIA's own "Crude oil and petroleum product prices increased sharply in the first quarter of 2026" Today in Energy note; Forbes Advisor/Polymarket coverage). That regime shift dwarfs any inventory-report signal, so the significance test and regression above deliberately use only the calm Aug-2025-to-Feb-2026 window; a report-day move measured inside the war period would really be measuring the war, not the inventory print.</p>
+<h2>Natural gas / Henry Hub</h2>
+<p>The question also allows Henry Hub natural gas. This corpus's <code>energy</code> schema has EIA weekly underground gas storage volumes (<code>eia_natural_gas_storage</code>, <code>weekly_gas_storage_signal</code>) but <strong>no daily/weekly Henry Hub spot PRICE series</strong> — logged as a second data-quality gap via <code>report_issue</code> — so a quantitative price-reaction regression parallel to the crude analysis above could not be computed from this corpus. From EIA's own published commentary: natural gas price reaction to the storage report follows the same surprise-vs-expectation logic as crude (bigger-than-expected build = bearish, bigger-than-expected draw = bullish), and Henry Hub daily volatility itself trended down over H1 2025 (quarterly realized vol fell from ~81% in Q4 2024 to ~69% by mid-2025) — narrative citation, not a number computed here.</p>
+<h2>Bottom line for the trade</h2>
+<p>In this recent, non-war window, the EIA report-day WTI move is not distinguishable from an ordinary day's volatility on a daily-close basis, and the raw weekly inventory change alone explains none of the day's price move (R²≈0.00002) — the real driver, per the literature, is the surprise relative to consensus, which resolves in the first 20-30 minutes and does not show a detectable multi-day continuation or reversal in this data. A trader positioning purely on the headline print without an independent read on consensus expectations, and expecting the edge to persist past the release window, is not supported by either this corpus's numbers or the cited event-study literature.</p>
+<h2>Confidence</h2>
+<p><strong>MEDIUM.</strong> The crude-oil report-day/persistence statistics are computed directly from askamerica (EIA + WTI price series) with formal significance tests, but the sample is modest (n=26-27 report weeks) and uses raw inventory change rather than a true consensus-surprise measure (unavailable in this corpus), and uses daily closes rather than intraday ticks (the literature's real edge is intraday). Natural gas coverage is narrative-only (no Henry Hub price series in corpus) and should be treated as lower confidence.</p>
 <h2>Sources</h2>
+<ul>
+<li>EIA Weekly Petroleum Status Report — https://www.eia.gov/petroleum/supply/weekly/</li>
+<li>askamerica <code>energy.eia_petroleum_stocks</code> (WCESTUS1, computed here) — https://www.eia.gov/opendata/</li>
+<li>askamerica <code>econ.global_conditions</code> (WTI daily spot price, computed here) — https://www.eia.gov/opendata/</li>
+<li>How EIA Reports Move Oil Prices (OilDon) — https://www.oildon.com/eia-oil-inventory-report-trading/</li>
+<li>The EIA Weekly Petroleum Status Report Explained (BrentChart) — https://brentchart.com/eia-petroleum-status-report</li>
+<li>The informational content of inventory announcements: intraday evidence (ScienceDirect 2016) — https://www.sciencedirect.com/science/article/abs/pii/S0140988316302110</li>
+<li>Effect of inventory announcements on crude oil price volatility (ScienceDirect 2014) — https://www.sciencedirect.com/science/article/abs/pii/S0140988314001236</li>
+<li>Event Study of the Crude Oil Futures Market: A Mixed Event Response Model (Karali, AJAE 2019) — https://onlinelibrary.wiley.com/doi/10.1093/ajae/aay089</li>
+<li>Crude oil and petroleum product prices increased sharply in Q1 2026 (EIA Today in Energy) — https://www.eia.gov/todayinenergy/detail.php?id=67424</li>
+<li>Crude Oil Price Today: August 24, 2026 (Forbes Advisor) — https://www.forbes.com/advisor/investing/oil-prices-today/</li>
+<li>Natural gas price volatility fell over H1 2025 (EIA Today in Energy) — https://www.eia.gov/todayinenergy/detail.php?id=65784</li>
+<li>Natural Gas Weekly Update (EIA) — https://www.eia.gov/naturalgas/weekly/</li>
+</ul>
+<h2>Data-quality issues logged this run</h2>
 <ol>
-<li><a href="https://www.eia.gov/petroleum/supply/weekly/">EIA Weekly Petroleum Status Report -- schedule and content</a></li>
-<li><a href="https://www.oildon.com/eia-oil-inventory-report-trading/">How EIA Reports Move Oil Prices (trading-desk account of magnitude and 20-30 min timing)</a></li>
-<li><a href="https://damnpropfirms.com/trading-guides/eia-inventory-report-trading-crude-wednesday-10-30/">EIA Inventory Report: Trading Crude Around Wednesday 10:30 (volume spike, timing phases)</a></li>
-<li><a href="https://ideas.repec.org/a/eee/eneeco/v46y2014icp485-494.html">Bu, Hui (2014), 'Effect of inventory announcements on crude oil price volatility', Energy Economics 46:485-494</a></li>
-<li><a href="https://ideas.repec.org/p/ags/aaea15/205595.html">Ye, Shiyu &amp; Karali, Berna (2016), 'The informational content of inventory announcements: Intraday evidence from crude oil futures market', Energy Economics 59:349-364</a></li>
-<li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/fut.21850">Miao, H. et al (2018), 'The impact of crude oil inventory announcements on prices: Evidence from derivatives markets', Journal of Futures Markets</a></li>
-<li><a href="https://www.montana.edu/regecon/publications/energyinformationannouncement/index.html">Ederington, Lin, Linn, Yang (2019), 'EIA Storage Announcements, Analyst Storage Forecasts, and Energy Prices', The Energy Journal 40(5):121-142</a></li>
-<li><a href="https://www.eia.gov/petroleum/gasdiesel/">EIA gasoline/diesel pass-through lag discussion</a></li>
-<li>AskAmerica energy.eia_petroleum_stocks -- weekly WCESTUS1 series used for the daily-close check<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CAST(report_date AS DATE) AS report_date, stocks_kbbl FROM energy.eia_petroleum_stocks WHERE series_id='WCESTUS1' AND report_date &gt;= '2023-01-01' ORDER BY report_date</code></pre></details></li>
-<li>AskAmerica econ.global_conditions -- WTI daily close used for the daily-close check<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;date&quot;, wti_crude_price FROM econ.global_conditions WHERE &quot;date&quot; &gt;= DATE '2023-01-01' AND wti_crude_price IS NOT NULL ORDER BY &quot;date&quot;</code></pre></details></li>
+<li><code>energy.eia_petroleum_stocks</code> (WCESTUS1) has no rows after 2026-06-05 while <code>econ.global_conditions</code> WTI price runs through 2026-08-21 — ~12 weeks stale.</li>
+<li>No Henry Hub natural gas spot price series exists anywhere in the <code>energy</code> schema (only storage volumes) — blocks a quantitative gas price-reaction analysis.</li>
 </ol>
-</section>
-<footer>
-<p class="footnote">Literature figures (30 cent-$1 opening move, 20-30 min burn-out) are from published event studies and trading-desk descriptions, not independently re-derived here since this connector's price data is daily, not intraday/tick-level. The AskAmerica check uses realized inventory change as a rough proxy for the analyst-consensus surprise the literature actually measures -- it is a same-day sanity check, not a replacement for the intraday estimate.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
-</footer>
-</main>
-<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
-</body>
-</html>
+<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
+</div></body></html>
