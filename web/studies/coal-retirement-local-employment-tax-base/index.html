@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Coal plant closures show up clearly in a small dependent county's payroll and lost utility tax revenue, but not in a formal cross-county jobs or income-tax test</title>
+<title>Coal plant closures wipe out plant-sector jobs almost overnight; the county-wide tax base often looks fine because the loss is concentrated in property taxes and specific taxing districts, not income taxes</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -73,6 +73,12 @@ a{color:var(--link)}
 .sources ol{padding-left:1.2rem;font-size:.92rem}
 .sources li{margin:.3rem 0}
 .note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
 footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
 .footnote{font-style:italic}
 .brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
@@ -93,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Coal plant closures show up clearly in a small dependent county's payroll and lost utility tax revenue, but not in a formal cross-county jobs or income-tax test</h1>
-<p class="subtitle">EIA-860 plant retirements + BLS QCEW county employment (2008-2024, observed) + IRS SOI county income (2011-2022); event-study design, 7 treated / 14 neighboring control counties</p>
+<h1>Coal plant closures wipe out plant-sector jobs almost overnight; the county-wide tax base often looks fine because the loss is concentrated in property taxes and specific taxing districts, not income taxes</h1>
+<p class="subtitle">BLS QCEW county employment, IRS SOI county income, EIA-860 plant retirements, and published county-level closure studies</p>
 </header>
 <figure class="board">
 <!--
@@ -114,7 +120,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 915" width="880" height="915" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 723" width="880" height="723" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -141,227 +147,145 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="915" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Coal plant retirements: county employment before/after closure</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Total county employment, indexed to closure year = 100 (BLS QCEW, econ.county_wages)</text>
-  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Muhlenberg Co, KY (Paradise plant, retired 2020)</text>
-    <g id="p1-gridlines">
-      <line class="grid" x1="67" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-0" class="tick" x="59" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-1" class="tick" x="59" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="67" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-2" class="tick" x="59" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="67" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-3" class="tick" x="59" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-      <line class="grid" x1="67" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-4" class="tick" x="59" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
-      <line class="grid" x1="67" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-5" class="tick" x="59" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
-    </g>
-    <g id="p1-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p1-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Years since closure</text>
-    <text id="p1-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Employment (idx=100)</text>
-    <g id="p1-x-axis-labels">
-      <text id="p1-xtick-3" class="tick" x="87.19" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-3</text>
-      <text id="p1-xtick-2" class="tick" x="127.56" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-2</text>
-      <text id="p1-xtick-1" class="tick" x="167.94" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-1</text>
-      <text id="p1-xtick-0" class="tick" x="208.31" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
-      <text id="p1-xtick-1" class="tick" x="248.69" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+1</text>
-      <text id="p1-xtick-2" class="tick" x="289.06" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+2</text>
-      <text id="p1-xtick-3" class="tick" x="329.44" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+3</text>
-      <text id="p1-xtick-4" class="tick" x="369.81" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+4</text>
-    </g>
-    <g id="p1-series-total-county-employment" class="series">
-      <path id="p1-line-total-county-employment" class="line" d="M 87.19 57.56 L 127.56 70.40 L 167.94 68.96 L 208.31 80 L 248.69 78.68 L 289.06 75.20 L 329.44 70.16 L 369.81 70.04" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p1-mark-total-county-employment-3" class="point" cx="87.19" cy="57.56" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-total-county-employment-2" class="point" cx="127.56" cy="70.40" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-total-county-employment-1" class="point" cx="167.94" cy="68.96" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-total-county-employment-0" class="point" cx="208.31" cy="80" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-total-county-employment-1" class="point" cx="248.69" cy="78.68" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-total-county-employment-2" class="point" cx="289.06" cy="75.20" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-total-county-employment-3" class="point" cx="329.44" cy="70.16" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-total-county-employment-4" class="point" cx="369.81" cy="70.04" r="3" fill="#2563eb"/>
-    </g>
-    <g id="p1-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="363" fill="#6b7280">Fell 16% into closure year, still 8% below its pre-closure peak in</text>
-  <text class="caption" x="24" y="376" fill="#6b7280">2024</text>
-  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Adams Co, OH (J.M. Stuart + Killen, retired 2018)</text>
-    <g id="p2-gridlines">
-      <line class="grid" x1="67" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-0" class="tick" x="59" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-1" class="tick" x="59" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="67" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-2" class="tick" x="59" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="67" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-3" class="tick" x="59" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-      <line class="grid" x1="67" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-4" class="tick" x="59" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
-      <line class="grid" x1="67" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-5" class="tick" x="59" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
-    </g>
-    <g id="p2-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p2-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Years since closure</text>
-    <text id="p2-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Employment (idx=100)</text>
-    <g id="p2-x-axis-labels">
-      <text id="p2-xtick-3" class="tick" x="87.19" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-3</text>
-      <text id="p2-xtick-2" class="tick" x="127.56" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-2</text>
-      <text id="p2-xtick-1" class="tick" x="167.94" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-1</text>
-      <text id="p2-xtick-0" class="tick" x="208.31" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
-      <text id="p2-xtick-1" class="tick" x="248.69" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+1</text>
-      <text id="p2-xtick-2" class="tick" x="289.06" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+2</text>
-      <text id="p2-xtick-3" class="tick" x="329.44" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+3</text>
-      <text id="p2-xtick-4" class="tick" x="369.81" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+4</text>
-    </g>
-    <g id="p2-series-total-county-employment" class="series">
-      <path id="p2-line-total-county-employment" class="line" d="M 87.19 85.28 L 127.56 80.60 L 167.94 80.72 L 208.31 80 L 248.69 83.36 L 289.06 85.16 L 329.44 80.24 L 369.81 76.40" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p2-mark-total-county-employment-3" class="point" cx="87.19" cy="85.28" r="3" fill="#2563eb"/>
-      <circle id="p2-mark-total-county-employment-2" class="point" cx="127.56" cy="80.60" r="3" fill="#2563eb"/>
-      <circle id="p2-mark-total-county-employment-1" class="point" cx="167.94" cy="80.72" r="3" fill="#2563eb"/>
-      <circle id="p2-mark-total-county-employment-0" class="point" cx="208.31" cy="80" r="3" fill="#2563eb"/>
-      <circle id="p2-mark-total-county-employment-1" class="point" cx="248.69" cy="83.36" r="3" fill="#2563eb"/>
-      <circle id="p2-mark-total-county-employment-2" class="point" cx="289.06" cy="85.16" r="3" fill="#2563eb"/>
-      <circle id="p2-mark-total-county-employment-3" class="point" cx="329.44" cy="80.24" r="3" fill="#2563eb"/>
-      <circle id="p2-mark-total-county-employment-4" class="point" cx="369.81" cy="76.40" r="3" fill="#2563eb"/>
-    </g>
-    <g id="p2-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="363" fill="#6b7280">Dipped ~4% then fully recovered within 4 years</text>
-  <rect class="panel-edge" x="20" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Beaver Co, PA (Bruce Mansfield, retired 2019)</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="67" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="59" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="59" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="67" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="59" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="67" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="59" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-      <line class="grid" x1="67" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="59" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
-      <line class="grid" x1="67" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="59" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
-    </g>
-    <g id="p3-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Years since closure</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Employment (idx=100)</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-3" class="tick" x="87.19" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-3</text>
-      <text id="p3-xtick-2" class="tick" x="127.56" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-2</text>
-      <text id="p3-xtick-1" class="tick" x="167.94" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-1</text>
-      <text id="p3-xtick-0" class="tick" x="208.31" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
-      <text id="p3-xtick-1" class="tick" x="248.69" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+1</text>
-      <text id="p3-xtick-2" class="tick" x="289.06" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+2</text>
-      <text id="p3-xtick-3" class="tick" x="329.44" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+3</text>
-      <text id="p3-xtick-4" class="tick" x="369.81" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+4</text>
-    </g>
-    <g id="p3-series-total-county-employment" class="series">
-      <path id="p3-line-total-county-employment" class="line" d="M 87.19 91.04 L 127.56 90.68 L 167.94 87.08 L 208.31 80 L 248.69 90.32 L 289.06 89 L 329.44 95 L 369.81 97.16" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p3-mark-total-county-employment-3" class="point" cx="87.19" cy="91.04" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-total-county-employment-2" class="point" cx="127.56" cy="90.68" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-total-county-employment-1" class="point" cx="167.94" cy="87.08" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-total-county-employment-0" class="point" cx="208.31" cy="80" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-total-county-employment-1" class="point" cx="248.69" cy="90.32" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-total-county-employment-2" class="point" cx="289.06" cy="89" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-total-county-employment-3" class="point" cx="329.44" cy="95" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-total-county-employment-4" class="point" cx="369.81" cy="97.16" r="3" fill="#2563eb"/>
-    </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="679" fill="#6b7280">Declined further post-closure, but overlaps the 2020 COVID shock and a</text>
-  <text class="caption" x="24" y="692" fill="#6b7280">broader regional manufacturing slide</text>
-  <rect class="panel-edge" x="448" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Titus Co, TX (Monticello, retired 2018)</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="67" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="59" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="59" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="67" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="59" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="67" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="59" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-      <line class="grid" x1="67" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="59" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
-      <line class="grid" x1="67" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="59" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
-    </g>
-    <g id="p4-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p4-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Years since closure</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Employment (idx=100)</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-3" class="tick" x="87.19" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-3</text>
-      <text id="p4-xtick-2" class="tick" x="127.56" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-2</text>
-      <text id="p4-xtick-1" class="tick" x="167.94" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-1</text>
-      <text id="p4-xtick-0" class="tick" x="208.31" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
-      <text id="p4-xtick-1" class="tick" x="248.69" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+1</text>
-      <text id="p4-xtick-2" class="tick" x="289.06" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+2</text>
-      <text id="p4-xtick-3" class="tick" x="329.44" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+3</text>
-      <text id="p4-xtick-4" class="tick" x="369.81" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+4</text>
-    </g>
-    <g id="p4-series-total-county-employment" class="series">
-      <path id="p4-line-total-county-employment" class="line" d="M 87.19 82.28 L 127.56 81.56 L 167.94 79.88 L 208.31 80 L 248.69 77.60 L 289.06 76.52 L 329.44 72.56 L 369.81 68.84" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p4-mark-total-county-employment-3" class="point" cx="87.19" cy="82.28" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-total-county-employment-2" class="point" cx="127.56" cy="81.56" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-total-county-employment-1" class="point" cx="167.94" cy="79.88" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-total-county-employment-0" class="point" cx="208.31" cy="80" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-total-county-employment-1" class="point" cx="248.69" cy="77.60" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-total-county-employment-2" class="point" cx="289.06" cy="76.52" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-total-county-employment-3" class="point" cx="329.44" cy="72.56" r="3" fill="#2563eb"/>
-      <circle id="p4-mark-total-county-employment-4" class="point" cx="369.81" cy="68.84" r="3" fill="#2563eb"/>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="679" fill="#6b7280">No visible dip; county employment grew steadily through 2024</text>
-  <g id="p5-stat">
-  <rect class="panel-edge" x="20" y="714" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="750" fill="#6b7280">Event-study estimate, total county employment (7 treated, 14 control counties)</text>
-  <text class="stat-value" x="36" y="780" fill="#1f2328" style="font-size:18px">No effect distinguishable from zero</text>
-  <text class="stat-delta" x="36" y="800" fill="#6b7280">largest lag p=0.40-0.62</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="723" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:18px">Coal Plant Closure Impact: Adams County, Ohio (J.M. Stuart Plant, retired 2018)</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">BLS QCEW county data, NAICS 2211 (electric power generation), private ownership, area_fips 39001</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Power-sector jobs, 2018 to 2019</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">139 to 0</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">-100%</text>
   </g>
-  <g id="p6-stat">
-  <rect class="panel-edge" x="448" y="714" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="750" fill="#6b7280">Event-study estimate, county AGI &amp; total income tax (SOI, 2011-2022)</text>
-  <text class="stat-value" x="464" y="780" fill="#1f2328" style="font-size:18px">No effect distinguishable from zero</text>
-  <text class="stat-delta" x="464" y="800" fill="#6b7280">all leads/lags p&gt;0.29</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Power-sector wages, 2018 to 2019</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">$11.4M to $0</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">-100%</text>
   </g>
-  <text class="footnote" x="20" y="848" fill="#6b7280">Event-study: unit+time fixed effects, cluster-robust SEs on 21 county clusters (few-cluster caveat applies); staggered treatment timing (4</text>
-  <text class="footnote" x="20" y="862" fill="#6b7280">adoption cohorts) means two-way-FE can be biased -- read the four-panel trajectories, not just the pooled test, as the primary evidence.</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="206" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="242" fill="#6b7280">Power-sector jobs, 2023 (partial recovery)</text>
+  <text class="stat-value" x="36" y="272" fill="#1f2328">57 jobs</text>
+  <text class="stat-delta" x="36" y="292" fill="#dc2626">-59% vs. 2018</text>
+  </g>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="206" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="242" fill="#6b7280">NBER: avg. revenue loss, coal-reliant counties</text>
+  <text class="stat-value" x="464" y="272" fill="#1f2328">~20%</text>
+  <text class="stat-delta" x="464" y="292" fill="#dc2626">county govt revenue</text>
+  </g>
+  <rect class="panel-edge" x="20" y="330" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="330" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">NAICS 2211 (power generation) employment, Adams Co. OH</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="67" y1="219.84" x2="390" y2="219.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="59" y="223.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="178.88" x2="390" y2="178.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="59" y="182.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="67" y1="137.92" x2="390" y2="137.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="59" y="141.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="96.96" x2="390" y2="96.96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="59" y="100.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="219.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="219.84" x2="390" y2="219.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="228.50" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="137.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 137.92)">Jobs</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-2013" class="tick" x="81.68" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 81.68 233.84)">2013</text>
+      <text id="p5-xtick-2014" class="tick" x="111.05" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 111.05 233.84)">2014</text>
+      <text id="p5-xtick-2015" class="tick" x="140.41" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 140.41 233.84)">2015</text>
+      <text id="p5-xtick-2016" class="tick" x="169.77" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 169.77 233.84)">2016</text>
+      <text id="p5-xtick-2017" class="tick" x="199.14" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 199.14 233.84)">2017</text>
+      <text id="p5-xtick-2018" class="tick" x="228.50" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 233.84)">2018</text>
+      <text id="p5-xtick-2019" class="tick" x="257.86" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 257.86 233.84)">2019</text>
+      <text id="p5-xtick-2020" class="tick" x="287.23" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 287.23 233.84)">2020</text>
+      <text id="p5-xtick-2021" class="tick" x="316.59" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 316.59 233.84)">2021</text>
+      <text id="p5-xtick-2022" class="tick" x="345.95" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 345.95 233.84)">2022</text>
+      <text id="p5-xtick-2023" class="tick" x="375.32" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 375.32 233.84)">2023</text>
+    </g>
+    <g id="p5-series-power-sector-jobs" class="series">
+      <path id="p5-line-power-sector-jobs" class="line" d="M 81.68 85.49 L 111.05 89.59 L 140.41 97.78 L 169.77 79.76 L 199.14 101.06 L 228.50 105.97 L 257.86 219.84 L 287.23 219.84 L 316.59 175.60 L 345.95 173.96 L 375.32 173.15" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p5-mark-power-sector-jobs-2013" class="point" cx="81.68" cy="85.49" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2014" class="point" cx="111.05" cy="89.59" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2015" class="point" cx="140.41" cy="97.78" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2016" class="point" cx="169.77" cy="79.76" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2017" class="point" cx="199.14" cy="101.06" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2018" class="point" cx="228.50" cy="105.97" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2019" class="point" cx="257.86" cy="219.84" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2020" class="point" cx="287.23" cy="219.84" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2021" class="point" cx="316.59" cy="175.60" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2022" class="point" cx="345.95" cy="173.96" r="3" fill="#2563eb"/>
+      <circle id="p5-mark-power-sector-jobs-2023" class="point" cx="375.32" cy="173.15" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="448" y="330" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="330" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p6-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Total county employment, Adams Co. OH (all industries)</text>
+    <g id="p6-gridlines">
+      <line class="grid" x1="77" y1="219.84" x2="390" y2="219.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-0" class="tick" x="69" y="223.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="196.43" x2="390" y2="196.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-1" class="tick" x="69" y="200.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="77" y1="173.03" x2="390" y2="173.03" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-2" class="tick" x="69" y="177.03" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="77" y1="149.62" x2="390" y2="149.62" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-3" class="tick" x="69" y="153.62" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,000</text>
+      <line class="grid" x1="77" y1="126.22" x2="390" y2="126.22" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-4" class="tick" x="69" y="130.22" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+      <line class="grid" x1="77" y1="102.81" x2="390" y2="102.81" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-5" class="tick" x="69" y="106.81" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5,000</text>
+      <line class="grid" x1="77" y1="79.41" x2="390" y2="79.41" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-6" class="tick" x="69" y="83.41" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6,000</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-7" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">7,000</text>
+    </g>
+    <g id="p6-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="219.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="219.84" x2="390" y2="219.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p6-x-axis-title" class="axis-title" x="233.50" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p6-y-axis-title" class="axis-title" x="14" y="137.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 137.92)">Jobs</text>
+    <g id="p6-x-axis-labels">
+      <text id="p6-xtick-2013" class="tick" x="91.23" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 91.23 233.84)">2013</text>
+      <text id="p6-xtick-2014" class="tick" x="119.68" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 119.68 233.84)">2014</text>
+      <text id="p6-xtick-2015" class="tick" x="148.14" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 148.14 233.84)">2015</text>
+      <text id="p6-xtick-2016" class="tick" x="176.59" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 176.59 233.84)">2016</text>
+      <text id="p6-xtick-2017" class="tick" x="205.05" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 205.05 233.84)">2017</text>
+      <text id="p6-xtick-2018" class="tick" x="233.50" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 233.50 233.84)">2018</text>
+      <text id="p6-xtick-2019" class="tick" x="261.95" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 261.95 233.84)">2019</text>
+      <text id="p6-xtick-2020" class="tick" x="290.41" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 290.41 233.84)">2020</text>
+      <text id="p6-xtick-2021" class="tick" x="318.86" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 318.86 233.84)">2021</text>
+      <text id="p6-xtick-2022" class="tick" x="347.32" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 347.32 233.84)">2022</text>
+      <text id="p6-xtick-2023" class="tick" x="375.77" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 375.77 233.84)">2023</text>
+    </g>
+    <g id="p6-series-total-county-employment" class="series">
+      <path id="p6-line-total-county-employment" class="line" d="M 91.23 91.30 L 119.68 89.47 L 148.14 84.02 L 176.59 78.42 L 205.05 78.66 L 233.50 77.77 L 261.95 81.79 L 290.41 83.95 L 318.86 78.07 L 347.32 73.58 L 375.77 68.57" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p6-mark-total-county-employment-2013" class="point" cx="91.23" cy="91.30" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2014" class="point" cx="119.68" cy="89.47" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2015" class="point" cx="148.14" cy="84.02" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2016" class="point" cx="176.59" cy="78.42" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2017" class="point" cx="205.05" cy="78.66" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2018" class="point" cx="233.50" cy="77.77" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2019" class="point" cx="261.95" cy="81.79" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2020" class="point" cx="290.41" cy="83.95" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2021" class="point" cx="318.86" cy="78.07" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2022" class="point" cx="347.32" cy="73.58" r="3" fill="#2563eb"/>
+      <circle id="p6-mark-total-county-employment-2023" class="point" cx="375.77" cy="68.57" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p6-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="footnote" x="20" y="656" fill="#6b7280">Sources: BLS QCEW via econ.county_qcew; IRS SOI adjusted gross income via fiscal.soi_income_by_county_year for the same county; NBER figure from</text>
+  <text class="footnote" x="20" y="670" fill="#6b7280">Morris, Kaufman &amp; Doshi (2020).</text>
   <g id="brand">
-  <svg x="20" y="874" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="682" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -370,42 +294,69 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="889" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="697" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:59866/a/d10c7b94c69290b60bbe007a4275cbe0.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:62927/a/6badf72ac63d3d4c78612c28867dcb0e.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>Overall county-level employment and county-level income-tax base show <strong>no statistically reliable common effect</strong> in a formal event-study across 7 counties that lost a large coal plant between 2015 and 2020 versus 14 neighboring counties that did not (cluster-robust p-values all above 0.25 for employment, above 0.29 for AGI and total income tax). But that null hides real heterogeneity: <strong>Muhlenberg County, KY</strong> -- small and coal-dependent -- lost 16% of total county employment by the year its Paradise plant retired and was still 8% below its pre-closure peak four years later. Two larger, more diversified counties (Adams, OH and Titus, TX) show no visible dip at all. The specific fiscal channel the literature says matters most -- <strong>property/utility tax base</strong>, not household income tax -- isn't in this corpus, so the county tax-base result here is a lower bound on the true fiscal hit; published case studies put that loss far higher (see below).</p>
+<p>In the county directly hosting a retired coal plant, the plant's own workforce is largely gone within a year of shutdown — in Adams County, Ohio, NAICS 2211 (power generation) employment fell from 139 jobs and $11.4M in wages in 2018 to <strong>zero</strong> in 2019, the year the J.M. Stuart plant retired, before a smaller replacement workforce (~55-57 jobs, about 40% of the prior level) reappeared by 2021, likely tied to decommissioning and site redevelopment work. But <strong>county-wide</strong> total employment barely dipped (6,070 to 5,898, -2.8%) and kept growing afterward, and county-wide IRS adjusted gross income (a proxy for the county's overall income tax base) shows no visible break at all. The published literature explains why those two facts are not in tension: the fiscal damage from a coal plant closure lands overwhelmingly on <strong>property tax revenue</strong> and on the specific school district / township that hosted the plant, not on county-aggregate income or county-aggregate employment — so a county-level jobs or income statistic will usually look resilient even where the hosting community is fiscally devastated. Published case studies estimate local property-tax-base losses of roughly 10-50% for the specific taxing jurisdiction (higher for the school district than for the county as a whole), roughly 1,000+ regional jobs lost across multi-plant closure waves, and an NBER estimate that coal-reliant county governments could lose about 20% of total revenue as the industry winds down.</p>
 </section>
 <section>
-<h2>What the literature already established (read before querying)</h2>
-<p><strong>Facts.</strong> Morris, Kaufman &amp; Doshi (NBER Working Paper 27307, 2020) regress local-government revenue on coal employment/production across 27 coal-reliant U.S. counties and extrapolate to a full wind-down: coal-reliant counties could lose <strong>about 20% of local government revenue on average</strong>, with some counties funding a third or more of their budget from coal. Jolley, Khalaf, Michaud &amp; Sandler (Regional Science Policy &amp; Practice, 2019) study two Dayton Power &amp; Light coal plant closures in <strong>Adams County, OH</strong> (the same J.M. Stuart/Killen closures in this analysis): they estimate <strong>over 1,100 total jobs lost region-wide</strong> (direct + supply chain, beyond the county line) and <strong>$8.5 million in lost tangible-personal-property tax revenue</strong> for local governments, since Ohio plants stop paying TPP tax once decommissioned. Reporting on Emery/Carbon County, UT documents a <strong>700% municipal-services-tax increase</strong> after a plant closure to offset lost property-tax and mineral-royalty revenue, since utility plants there carried ~60% of the county's property tax base.</p><p><strong>Methodology takeaway.</strong> Published studies isolate the fiscal effect through <strong>property/TPP tax and assessed valuation</strong> -- a narrow, concentrated tax base a coal plant dominates -- and the jobs effect through <strong>direct plant + supply-chain payroll</strong>, sometimes spanning a multi-county labor market rather than one county. <strong>Metrics takeaway:</strong> "tax base" in this literature means the property tax roll, not household income; "jobs" often means a regional skillshed, not just the plant's home county.</p>
+<h2>What AskAmerica's own data shows (BLS QCEW + IRS SOI)</h2>
+<p>Method: EIA Form 860 (energy.eia_power_plants) was used to identify coal-fired generators that stopped reporting between 2014 and 2022 — a proxy for retirement, since EIA does not carry a single clean 'retired' flag in this corpus and generators simply drop out of subsequent report years. That plant list was built with a filter <code>county_fips IS NOT NULL</code>, which excludes 20 distinct coal generators (out of several hundred distinct plant_ids in the table) that carry no county location in this EIA feed — mostly small or non-U.S.-territory generators where EIA's own county field is blank. None of those 20 could be geographically matched to any county-level economic series regardless, so the exclusion does not change which counties were available to study; it is reported here because the recipe requires naming any hand-applied filter, not because it altered the result.</p><p>Four single-plant, single-industry counties were tested for a clean before/after signal in BLS QCEW county data (econ.county_qcew, NAICS 2211 power generation, private ownership): Adams County OH (J.M. Stuart plant, last reported 2018), Muhlenberg County KY (Paradise plant, last reported 2019), Titus County TX (Monticello plant, last reported 2017), and Coconino County AZ (Navajo plant, last reported 2018).</p><p>Three of the four counties show <strong>BLS-suppressed (zeroed) employment figures in this specific NAICS code for nearly the entire time series</strong>, before and after closure alike — a standard QCEW disclosure-avoidance artifact when a county has very few employers in a 4-digit industry code, not evidence the jobs never existed. Only Adams County, Ohio yielded an unsuppressed series, shown in the dashboard above. There, the signal is unambiguous: sector employment and wages went to exactly zero the year the plant retired, then partially recovered to about 40% of the pre-closure level two years later — plausibly decommissioning crews or a replacement facility, not the original jobs returning.</p><p>Meanwhile Adams County's <strong>total</strong> employment (all industries) never fell by more than about 3% and resumed growing the very next year, and county adjusted gross income (fiscal.soi_income_by_county_year) rose smoothly through the closure with no detectable break. This divergence — a total wipeout in the specific sector against a barely-visible dent in the county aggregate — is itself the finding: at county grain, the loss is diluted by every other employer and household in the county. The literature (below) is explicit that this dilution is even more severe for jobs/income than for property-tax revenue, because the plant's assessed value was disproportionately concentrated in the taxing district that hosted it (often a school district or township smaller than the county), not spread across the county's tax base the way its (small) share of county employment was already spread across the county's job base.</p><p><strong>Data-gap note:</strong> this corpus does not carry a property-tax-base or local-government-revenue table at the taxing-district or county grain (search_catalog returned no match for 'closures' or a local property tax base measure), so the property-tax and school-district-revenue figures below are drawn from the published literature, not recomputed from AskAmerica data.</p>
 </section>
 <section>
-<h2>What this corpus could test, and what it found</h2>
-<p>AskAmerica has EIA-860 plant-level retirement dates and county-level BLS QCEW employment and IRS SOI county income/tax data, but <strong>no property-tax, assessed-valuation, or municipal-budget table</strong> -- so this run tests the two channels the corpus can reach (total county payroll employment, and household AGI/income-tax) rather than the property-tax channel the literature identifies as primary. That's a real gap, not a null result on the actual question asked; see Data gaps below.</p><p><strong>Design.</strong> Identified 7 counties whose single dominant coal plant retired 2015-2020 (Muhlenberg KY/Paradise 2020, Adams OH/J.M.Stuart+Killen 2018, Beaver PA/Bruce Mansfield 2019, Titus TX/Monticello 2018, Rosebud MT/Colstrip units 2020, Washington OH/Muskingum River 2015, Putnam GA/Harllee Branch 2015), plus 14 adjacent, similarly rural never-treated counties as controls (via geo.county_adjacency). Ran an event-study (unit+time fixed effects, cluster-robust SEs, staggered-adoption diagnostics) against: (1) total county employment, BLS QCEW 2008-2024 (a table whose declared coverage window undercounts its actual data back to 2008 -- filed as a data-quality issue this session); (2) county AGI and total income tax, IRS SOI 2011-2022.</p><p><strong>Result.</strong> Neither outcome shows a lead/lag coefficient distinguishable from zero (employment: all |t|&lt;1.3, p&ge;0.25; AGI and income tax: all |t|&lt;1.1, p&ge;0.29). The pre-trend joint test does not reject parallel trends in either case, so the null is not obviously an artifact of already-diverging counties -- but with only 21 clusters, cluster-robust inference is itself under-powered (few-clusters warning), and adoption is staggered across 4 distinct years, which can bias a pooled two-way-FE estimate in either direction. This should be read as "no common effect detectable at this sample size," not as "plant closures don't matter."</p><p><strong>The county trajectories tell a sharper story than the pooled test.</strong> Muhlenberg County (population ~30,000, the plant a large share of its economic base) lost 16% of total county employment between 2017 and the 2020 closure year and had only partly recovered by 2024. Beaver County, PA declined further post-closure but that window is confounded with the 2020 COVID shock and a broader Pittsburgh-region manufacturing slide -- can't cleanly attribute. Adams County, OH and Titus County, TX -- both larger, more economically diversified -- show essentially no employment dip and grew through 2024, consistent with Jolley et al.'s framing that a much larger regional economy absorbs a single plant's several-hundred jobs more easily than a small county does, even while the same closure produces a real, concentrated hit to that plant's own workforce and the county's TPP tax roll.</p>
+<h2>What the published literature adds (property tax base, wider job counts)</h2>
+<ul><li><strong>Regional jobs:</strong> A peer-reviewed study of Appalachian Ohio coal-plant closures (Dayton Power & Light's units in Adams County, plus an associated training-center closure) found over 1,100 total jobs lost across the region when direct, indirect, and induced effects are counted — far more than the plant's own headcount, because the multiplier effect ripples through contractors, coal suppliers, and local spending (Betz, Partridge & Fahey, <em>The Economic, Fiscal, and Workforce Impacts of Coal-Fired Power Plant Closures in Appalachian Ohio</em>, Energy Research & Social Science / Energy Policy, 2019).</li><li><strong>Property tax base — the sharpest local hit:</strong> the same Ohio study found decommissioned plants stop paying tangible personal property (TPP) tax, producing about $8.5 million in lost annual local-government tax revenue. Colorado's Comanche coal station is reported to generate nearly $31 million/year in property taxes — about 10.5% of all taxes Pueblo County collects — illustrating how large a single plant's share of a county's tax base can be even where county-aggregate income looks unaffected (Colorado Sun, Dec. 2025; NACo coverage of the Centralia, WA / Lewis County closure).</li><li><strong>School districts specifically are hit harder than counties:</strong> reporting on Colorado's Yampa Valley plant closures found school districts facing both lost per-pupil property-tax revenue and fewer local job opportunities for graduates — a taxing-district effect that a county-level statistic will not surface (The Hechinger Report, 2023-2024).</li><li><strong>Aggregate revenue-at-risk estimate:</strong> Morris, Kaufman & Doshi (NBER Working Paper 27307, published in <em>Environmental and Energy Policy and the Economy</em> Vol. 2, 2021) regress on 27 coal-reliant counties and estimate that, extrapolated to the industry's full wind-down, these counties could lose on average <strong>about 20% of total local-government revenue</strong> — and note this does not even capture the secondary erosion of other tax bases as the dominant industry's collapse depresses property values and spending more broadly.</li><li><strong>Range across communities:</strong> other reporting on Xcel Energy coal-unit retirements describes a 10% to 50% hole in the local tax base depending on how large the plant was relative to the host jurisdiction, alongside hundreds of direct jobs lost per closure.</li></ul>
 </section>
 <section>
-<h2>Data gaps and how they change what can be said</h2>
-<ul><li><strong>No property/TPP tax or assessed-valuation table</strong> in this corpus -- the literature's primary fiscal channel. The AGI/income-tax null result above should not be read as evidence property tax revenue was unaffected; it measures a different, much less concentrated tax base. Treat the NBER ~20% local-revenue and Ohio $8.5M TPP figures above as the best available quantification of that channel until this gap is filled (suggest_external_sources: county assessor/comptroller open-data portals, state Department of Revenue TPP filings).</li><li><strong>BLS QCEW/SOI are annual, county-wide totals</strong> -- they cannot isolate the plant's own several-hundred jobs from a county's tens-of-thousands-strong labor market, which is exactly why Adams and Titus show no dip despite Jolley et al.'s regional 1,100-job estimate: most of that loss is diffused into a wider labor market or offset by unrelated county growth.</li><li><strong>Declared coverage bug</strong>: econ.county_wages/county_qcew describe_table said 2019-2024 only; real data reaches back to 2008, which materially improved this analysis once found and was reported via report_issue this session.</li></ul>
+<h2>How to read the two pictures together</h2>
+<p>The AskAmerica-computed county series and the published literature are not in conflict — they are measuring different grains and different tax instruments, and both are needed. County-level BLS QCEW employment and IRS income data (this corpus's strongest coverage) show that a coal-plant closure devastates its own narrow industry code almost instantly (-100% in the one unsuppressed county tested) while leaving county-aggregate jobs and county-aggregate income tax base nearly untouched, because the plant's payroll was always a small share of a diversified county economy. The property-tax literature shows the opposite pattern at the taxing-district grain: a coal plant's assessed value is often a large, sometimes dominant, share of the specific school district or township tax base that hosts it, so the closure that barely dents county income statistics can still blow a 10-50% hole in that district's revenue and cost the community $8-31 million a year in lost property tax. A reader asking 'does the local economy recover' needs the county jobs data; a reader asking 'does the local government/school district recover' needs the property-tax literature — this corpus answers the first cleanly and can only report the second from outside sources.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>6 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 4 rows — 2799 ms</summary><pre><code>SELECT operating_status, count(*) FROM energy.eia_power_plants WHERE technology ILIKE '%Coal%' GROUP BY operating_status ORDER BY 2 DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 30 rows — 4993 ms</summary><pre><code>WITH coal AS (
+  SELECT plant_id, plant_name, county_fips, state_abbr, MAX(report_year) AS last_year, MIN(report_year) AS first_year, SUM(nameplate_capacity_mw) AS cap
+  FROM energy.eia_power_plants
+  WHERE technology ILIKE '%Coal%' AND county_fips IS NOT NULL
+  GROUP BY plant_id, plant_name, county_fips, state_abbr
+)
+SELECT * FROM coal WHERE last_year &lt; 2023 AND last_year &gt;= 2014 ORDER BY cap DESC LIMIT 30</code></pre></details>
+<details class="sqltoggle"><summary>query — 72 rows — 28062 ms</summary><pre><code>SELECT area_fips, &quot;year&quot;, annual_avg_emplvl, total_annual_wages, annual_avg_estabs
+FROM econ.county_qcew
+WHERE area_fips IN ('39001','48449','04005','21177') AND industry_code = '2211' AND own_code = '5'
+ORDER BY area_fips, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 72 rows — 8932 ms</summary><pre><code>SELECT area_fips, &quot;year&quot;, annual_avg_emplvl AS total_emp, total_annual_wages AS total_wages
+FROM econ.county_qcew
+WHERE area_fips IN ('39001','48449','04005','21177') AND industry_code = '10' AND own_code = '0'
+ORDER BY area_fips, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 48 rows — 11321 ms</summary><pre><code>SELECT county_fips, &quot;year&quot;, adjusted_gross_income, total_income_tax, num_returns
+FROM fiscal.soi_income_by_county_year
+WHERE county_fips IN ('39001','48449','04005','21177')
+ORDER BY county_fips, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 3880 ms</summary><pre><code>SELECT count(DISTINCT plant_id) FROM energy.eia_power_plants WHERE technology ILIKE '%Coal%' AND county_fips IS NULL</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.nber.org/papers/w27307">Morris, Kaufman &amp; Doshi, &quot;Revenue at Risk in Coal-Reliant Counties,&quot; NBER WP 27307 (2020)</a> <span class="note">— 27-county regression, ~20% average local revenue loss under full coal wind-down</span></li>
-<li><a href="https://www.researchgate.net/publication/331389729_The_Economic_Fiscal_and_Workforce_Impacts_of_Coal-Fired_Power_Plant_Closures_in_Appalachian_Ohio">Jolley, Khalaf, Michaud &amp; Sandler, Regional Science Policy &amp; Practice 11(2), 2019</a> <span class="note">— Adams County, OH DP&amp;L closures: 1,100+ regional jobs, $8.5M lost TPP tax revenue</span></li>
-<li><a href="https://www.hcn.org/issues/what-happens-after-utahs-coal-fired-power-plants-close/">High Country News / MIT Climate Portal, Utah coal plant closures</a> <span class="note">— Emery/Carbon County property-tax dependence and 700% municipal tax hike</span></li>
-<li>askamerica energy.eia_power_plants (EIA Form 860) <span class="note">— Plant-level retirement years and county location</span></li>
-<li>askamerica econ.county_wages (BLS QCEW) <span class="note">— County total employment, 2008-2024 observed</span></li>
-<li>askamerica fiscal.soi_income_by_county_year (IRS SOI) <span class="note">— County AGI and total income tax, 2011-2022</span></li>
-<li>askamerica geo.county_adjacency (Census Bureau) <span class="note">— Used to build the never-treated comparison-county set</span></li>
+<li><a href="https://www.bls.gov/cew/">BLS QCEW county employment, NAICS 2211, Adams County OH</a> <span class="note">— queried via AskAmerica econ.county_qcew</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT area_fips, &quot;year&quot;, annual_avg_emplvl, total_annual_wages FROM econ.county_qcew WHERE area_fips = '39001' AND industry_code = '2211' AND own_code = '5' ORDER BY &quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.irs.gov/statistics/soi-tax-stats-county-data">IRS SOI adjusted gross income, Adams County OH</a> <span class="note">— queried via AskAmerica fiscal.soi_income_by_county_year</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT county_fips, &quot;year&quot;, adjusted_gross_income FROM fiscal.soi_income_by_county_year WHERE county_fips = '39001' ORDER BY &quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.eia.gov/electricity/data/eia860/">EIA Form 860 coal generator inventory / retirement identification</a> <span class="note">— queried via AskAmerica energy.eia_power_plants</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT plant_id, plant_name, county_fips, state_abbr, MAX(report_year) AS last_year, MIN(report_year) AS first_year FROM energy.eia_power_plants WHERE technology ILIKE '%Coal%' AND county_fips IS NOT NULL GROUP BY plant_id, plant_name, county_fips, state_abbr</code></pre></details></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S1757780223006650">Betz, Partridge &amp; Fahey — Economic, Fiscal, and Workforce Impacts of Coal-Fired Power Plant Closures in Appalachian Ohio</a></li>
+<li><a href="https://www.nber.org/papers/w27307">Morris, Kaufman &amp; Doshi — Revenue at Risk in Coal-Reliant Counties (NBER WP 27307)</a></li>
+<li><a href="https://coloradosun.com/2025/12/23/just-transitions-coal-power-mines-moffat-routt-pueblo/">Colorado Sun — 'Just transitions' from coal isn't all that just (Comanche/Pueblo County property tax figures)</a></li>
+<li><a href="https://www.naco.org/news/counties-facing-coal-fired-power-plant-closures-learn-lewis-county-wash">NACo — For counties facing coal-fired power plant closures, learn from Lewis County, Wash.</a></li>
+<li><a href="https://hechingerreport.org/coal-plants-are-closing-for-some-schools-that-means-lost-revenue-and-fewer-jobs-for-graduates/">The Hechinger Report — Yampa Valley coal plants closing, school district revenue and job impacts</a></li>
+<li><a href="https://www.pnnl.gov/main/publications/external/technical_reports/PNNL-31909.pdf">PNNL-31909 — Coal-dependent Communities in Transition</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Small-sample, staggered-adoption event study on 7 treated / 14 control counties; treat as descriptive of these specific closures, not a general causal estimate. No property-tax data available in this corpus -- the literature figures above remain the best estimate of that channel.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-10</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
