@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Yes, but narrowly: only a handful of America's most import-dependent minerals see real federal-land mining, and the ones that do are recent, embattled, or byproduct-scale</title>
+<title>Yes — but only for a second tier of import-dependent minerals; the top tier (graphite, gallium, manganese, niobium, tantalum) has essentially no active US mine, federal or private</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -73,6 +73,12 @@ a{color:var(--link)}
 .sources ol{padding-left:1.2rem;font-size:.92rem}
 .sources li{margin:.3rem 0}
 .note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
 footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
 .footnote{font-style:italic}
 .brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
@@ -82,23 +88,6 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
-@media screen{
-#s2-t1-s1:checked ~ table tbody.s0{display:none}
-#s2-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s2-t1-s1:checked ~ table label[for="s2-t1-s1"]{color:var(--link)}
-#s2-t1-s1:checked ~ table label[for="s2-t1-s1"] .srtcue{opacity:1}
-#s2-t1-s1:checked ~ .srtreset{display:inline-block}
-#s2-t1-s2:checked ~ table tbody.s0{display:none}
-#s2-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s2-t1-s2:checked ~ table label[for="s2-t1-s2"]{color:var(--link)}
-#s2-t1-s2:checked ~ table label[for="s2-t1-s2"] .srtcue{opacity:1}
-#s2-t1-s2:checked ~ .srtreset{display:inline-block}
-#s2-t1-s3:checked ~ table tbody.s0{display:none}
-#s2-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s2-t1-s3:checked ~ table label[for="s2-t1-s3"]{color:var(--link)}
-#s2-t1-s3:checked ~ table label[for="s2-t1-s3"] .srtcue{opacity:1}
-#s2-t1-s3:checked ~ .srtreset{display:inline-block}
-}
 </style>
 </head>
 <body>
@@ -110,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Yes, but narrowly: only a handful of America's most import-dependent minerals see real federal-land mining, and the ones that do are recent, embattled, or byproduct-scale</h1>
-<p class="subtitle">ONRR federal mineral royalty data (FY2004-2025) cross-checked against USGS Mineral Commodity Summaries 2026 import-reliance rankings and current mine-status reporting</p>
+<h1>Yes — but only for a second tier of import-dependent minerals; the top tier (graphite, gallium, manganese, niobium, tantalum) has essentially no active US mine, federal or private</h1>
+<p class="subtitle">USGS Mineral Commodity Summaries 2026 import reliance vs. DOI/ONRR federal mineral royalty data and current mine-permitting status</p>
 </header>
 <figure class="board">
 <!--
@@ -131,7 +120,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 475" width="460" height="475" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 475" width="880" height="475" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -158,97 +147,133 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="460" height="475" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:14px">Federal-land mineral royalty revenue, FY2020-2025</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">ONRR federal (non-tribal) royalty by commodity</text>
-  <rect class="panel-edge" x="20" y="82" width="420" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="82" width="420" height="300" viewBox="0 0 420 300" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="420" height="300" class="chart-bg" fill="#ffffff"/>
-    <text id="p1-chart-title" class="title" x="210" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Federal-land royalty revenue by mineral, FY2020-2025</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="475" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">US import-dependent minerals: real federal-land mining is uneven</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">USGS MCS 2026 import reliance vs. ONRR federal mineral royalty revenue, FY2020-2025</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Federal mineral royalties actually collected (ONRR)</text>
     <g id="p1-gridlines">
-      <line class="grid" x1="69" y1="208" x2="398" y2="208" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-0" class="tick" x="61" y="212" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="69" y1="189" x2="398" y2="189" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-1" class="tick" x="61" y="193" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10M</text>
-      <line class="grid" x1="69" y1="170" x2="398" y2="170" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-2" class="tick" x="61" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20M</text>
-      <line class="grid" x1="69" y1="151" x2="398" y2="151" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-3" class="tick" x="61" y="155" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30M</text>
-      <line class="grid" x1="69" y1="132" x2="398" y2="132" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-4" class="tick" x="61" y="136" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40M</text>
-      <line class="grid" x1="69" y1="113" x2="398" y2="113" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-5" class="tick" x="61" y="117" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50M</text>
-      <line class="grid" x1="69" y1="94" x2="398" y2="94" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-6" class="tick" x="61" y="98" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60M</text>
-      <line class="grid" x1="69" y1="75" x2="398" y2="75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-7" class="tick" x="61" y="79" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">70M</text>
-      <line class="grid" x1="69" y1="56" x2="398" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-8" class="tick" x="61" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80M</text>
+      <line class="grid" x1="69" y1="156" x2="390" y2="156" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="61" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="69" y1="131" x2="390" y2="131" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="61" y="135" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5M</text>
+      <line class="grid" x1="69" y1="106" x2="390" y2="106" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="61" y="110" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10M</text>
+      <line class="grid" x1="69" y1="81" x2="390" y2="81" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="61" y="85" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15M</text>
+      <line class="grid" x1="69" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="61" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20M</text>
     </g>
     <g id="p1-axes">
-      <line class="axis" x1="69" y1="56" x2="69" y2="208" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="69" y1="208" x2="398" y2="208" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="69" y1="56" x2="69" y2="156" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="69" y1="156" x2="390" y2="156" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p1-x-axis-title" class="axis-title" x="233.50" y="252" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fiscal year</text>
-    <text id="p1-y-axis-title" class="axis-title" x="14" y="132" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 132)">Royalty revenue ($)</text>
+    <text id="p1-x-axis-title" class="axis-title" x="229.50" y="200" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fiscal year</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="106" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 106)">Royalty revenue ($)</text>
     <g id="p1-x-axis-labels">
-      <text id="p1-xtick-2020" class="tick" x="96.42" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
-      <text id="p1-xtick-2021" class="tick" x="151.25" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
-      <text id="p1-xtick-2022" class="tick" x="206.08" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
-      <text id="p1-xtick-2023" class="tick" x="260.92" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
-      <text id="p1-xtick-2024" class="tick" x="315.75" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
-      <text id="p1-xtick-2025" class="tick" x="370.58" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
+      <text id="p1-xtick-2020" class="tick" x="95.75" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p1-xtick-2021" class="tick" x="149.25" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
+      <text id="p1-xtick-2022" class="tick" x="202.75" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p1-xtick-2023" class="tick" x="256.25" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p1-xtick-2024" class="tick" x="309.75" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+      <text id="p1-xtick-2025" class="tick" x="363.25" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
     </g>
-    <g id="p1-series-potash-potassium" class="series">
-      <path id="p1-line-potash-potassium" class="line" d="M 96.42 147.58 L 151.25 127.30 L 206.08 71.20 L 260.92 92.80 L 315.75 125.14 L 370.58 77.20" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p1-mark-potash-potassium-2020" class="point" cx="96.42" cy="147.58" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-potash-potassium-2021" class="point" cx="151.25" cy="127.30" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-potash-potassium-2022" class="point" cx="206.08" cy="71.20" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-potash-potassium-2023" class="point" cx="260.92" cy="92.80" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-potash-potassium-2024" class="point" cx="315.75" cy="125.14" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-potash-potassium-2025" class="point" cx="370.58" cy="77.20" r="3" fill="#2563eb"/>
+    <g id="p1-series-hardrock-lead-concentrate" class="series">
+      <path id="p1-line-hardrock-lead-concentrate" class="line" d="M 95.75 131.06 L 149.25 126.72 L 202.75 120.71 L 256.25 127.80 L 309.75 131.25 L 363.25 134.18" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p1-mark-hardrock-lead-concentrate-2020" class="point" cx="95.75" cy="131.06" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-hardrock-lead-concentrate-2021" class="point" cx="149.25" cy="126.72" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-hardrock-lead-concentrate-2022" class="point" cx="202.75" cy="120.71" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-hardrock-lead-concentrate-2023" class="point" cx="256.25" cy="127.80" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-hardrock-lead-concentrate-2024" class="point" cx="309.75" cy="131.25" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-hardrock-lead-concentrate-2025" class="point" cx="363.25" cy="134.18" r="3" fill="#2563eb"/>
     </g>
-    <g id="p1-series-copper" class="series">
-      <path id="p1-line-copper" class="line" d="M 96.42 201.08 L 151.25 192.95 L 206.08 196.70 L 260.92 196.42 L 315.75 198.78 L 370.58 197.13" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p1-mark-copper-2020" class="point" cx="96.42" cy="201.08" r="3" fill="#ea580c"/>
-      <circle id="p1-mark-copper-2021" class="point" cx="151.25" cy="192.95" r="3" fill="#ea580c"/>
-      <circle id="p1-mark-copper-2022" class="point" cx="206.08" cy="196.70" r="3" fill="#ea580c"/>
-      <circle id="p1-mark-copper-2023" class="point" cx="260.92" cy="196.42" r="3" fill="#ea580c"/>
-      <circle id="p1-mark-copper-2024" class="point" cx="315.75" cy="198.78" r="3" fill="#ea580c"/>
-      <circle id="p1-mark-copper-2025" class="point" cx="370.58" cy="197.13" r="3" fill="#ea580c"/>
+    <g id="p1-series-hardrock-copper-concentrate" class="series">
+      <path id="p1-line-hardrock-copper-concentrate" class="line" d="M 95.75 151.45 L 149.25 146.10 L 202.75 148.57 L 256.25 148.38 L 309.75 149.93 L 363.25 148.85" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p1-mark-hardrock-copper-concentrate-2020" class="point" cx="95.75" cy="151.45" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-hardrock-copper-concentrate-2021" class="point" cx="149.25" cy="146.10" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-hardrock-copper-concentrate-2022" class="point" cx="202.75" cy="148.57" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-hardrock-copper-concentrate-2023" class="point" cx="256.25" cy="148.38" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-hardrock-copper-concentrate-2024" class="point" cx="309.75" cy="149.93" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-hardrock-copper-concentrate-2025" class="point" cx="363.25" cy="148.85" r="3" fill="#ea580c"/>
     </g>
-    <g id="p1-series-lead" class="series">
-      <path id="p1-line-lead" class="line" d="M 96.42 170.09 L 151.25 163.50 L 206.08 154.35 L 260.92 165.13 L 315.75 170.37 L 370.58 174.83" fill="none" stroke="#059669" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p1-mark-lead-2020" class="point" cx="96.42" cy="170.09" r="3" fill="#059669"/>
-      <circle id="p1-mark-lead-2021" class="point" cx="151.25" cy="163.50" r="3" fill="#059669"/>
-      <circle id="p1-mark-lead-2022" class="point" cx="206.08" cy="154.35" r="3" fill="#059669"/>
-      <circle id="p1-mark-lead-2023" class="point" cx="260.92" cy="165.13" r="3" fill="#059669"/>
-      <circle id="p1-mark-lead-2024" class="point" cx="315.75" cy="170.37" r="3" fill="#059669"/>
-      <circle id="p1-mark-lead-2025" class="point" cx="370.58" cy="174.83" r="3" fill="#059669"/>
-    </g>
-    <g id="p1-series-zinc" class="series">
-      <path id="p1-line-zinc" class="line" d="M 96.42 202.31 L 151.25 199.37 L 206.08 195.04 L 260.92 201.14 L 315.75 200.42 L 370.58 200.61" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p1-mark-zinc-2020" class="point" cx="96.42" cy="202.31" r="3" fill="#7c3aed"/>
-      <circle id="p1-mark-zinc-2021" class="point" cx="151.25" cy="199.37" r="3" fill="#7c3aed"/>
-      <circle id="p1-mark-zinc-2022" class="point" cx="206.08" cy="195.04" r="3" fill="#7c3aed"/>
-      <circle id="p1-mark-zinc-2023" class="point" cx="260.92" cy="201.14" r="3" fill="#7c3aed"/>
-      <circle id="p1-mark-zinc-2024" class="point" cx="315.75" cy="200.42" r="3" fill="#7c3aed"/>
-      <circle id="p1-mark-zinc-2025" class="point" cx="370.58" cy="200.61" r="3" fill="#7c3aed"/>
+    <g id="p1-series-potash-new-mexico" class="series">
+      <path id="p1-line-potash-new-mexico" class="line" d="M 95.75 99.55 L 149.25 99.55 L 202.75 63.47 L 256.25 77.06 L 309.75 96.87 L 363.25 65.04" fill="none" stroke="#059669" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p1-mark-potash-new-mexico-2020" class="point" cx="95.75" cy="99.55" r="3" fill="#059669"/>
+      <circle id="p1-mark-potash-new-mexico-2021" class="point" cx="149.25" cy="99.55" r="3" fill="#059669"/>
+      <circle id="p1-mark-potash-new-mexico-2022" class="point" cx="202.75" cy="63.47" r="3" fill="#059669"/>
+      <circle id="p1-mark-potash-new-mexico-2023" class="point" cx="256.25" cy="77.06" r="3" fill="#059669"/>
+      <circle id="p1-mark-potash-new-mexico-2024" class="point" cx="309.75" cy="96.87" r="3" fill="#059669"/>
+      <circle id="p1-mark-potash-new-mexico-2025" class="point" cx="363.25" cy="65.04" r="3" fill="#059669"/>
     </g>
     <g id="p1-legend">
-      <rect id="p1-legend-swatch-potash-potassium" x="59" y="266" width="11" height="11" fill="#2563eb"/>
-      <text id="p1-legend-label-potash-potassium" class="legend-label" x="75" y="275" fill="#1f2328" font-size="11" style="font-size:11px">Potash (Potassium)</text>
-      <rect id="p1-legend-swatch-copper" x="193" y="266" width="11" height="11" fill="#ea580c"/>
-      <text id="p1-legend-label-copper" class="legend-label" x="209" y="275" fill="#1f2328" font-size="11" style="font-size:11px">Copper</text>
-      <rect id="p1-legend-swatch-lead" x="265" y="266" width="11" height="11" fill="#059669"/>
-      <text id="p1-legend-label-lead" class="legend-label" x="281" y="275" fill="#1f2328" font-size="11" style="font-size:11px">Lead</text>
-      <rect id="p1-legend-swatch-zinc" x="322" y="266" width="11" height="11" fill="#7c3aed"/>
-      <text id="p1-legend-label-zinc" class="legend-label" x="338" y="275" fill="#1f2328" font-size="11" style="font-size:11px">Zinc</text>
+      <rect id="p1-legend-swatch-hardrock-lead-concentrate" x="32" y="214" width="11" height="11" fill="#2563eb"/>
+      <text id="p1-legend-label-hardrock-lead-concentrate" class="legend-label" x="48" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Hardrock lead concentrate</text>
+      <rect id="p1-legend-swatch-hardrock-copper-concentrate" x="206" y="214" width="11" height="11" fill="#ea580c"/>
+      <text id="p1-legend-label-hardrock-copper-concentrate" class="legend-label" x="222" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Hardrock copper concentrate</text>
+      <rect id="p1-legend-swatch-potash-new-mexico" x="143" y="234" width="11" height="11" fill="#059669"/>
+      <text id="p1-legend-label-potash-new-mexico" class="legend-label" x="159" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Potash (New Mexico)</text>
     </g>
     <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="footnote" x="20" y="408" fill="#6b7280">Gold and 'Hardrock' catch-all omitted from chart (near-zero/negative,</text>
-  <text class="footnote" x="20" y="422" fill="#6b7280">distorts scale) — see table in report body.</text>
+  <text class="caption" x="24" y="363" fill="#6b7280">Federal hardrock (1872 Mining Law) claims pay NO royalty, so</text>
+  <text class="caption" x="24" y="376" fill="#6b7280">lead/zinc/copper concentrate rows here are a small non-representative…</text>
+  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">US net import reliance, select minerals (2025)</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="67" y1="178.80" x2="390" y2="178.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="59" y="182.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="154.24" x2="390" y2="154.24" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="59" y="158.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="129.68" x2="390" y2="129.68" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="59" y="133.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="105.12" x2="390" y2="105.12" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="59" y="109.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="80.56" x2="390" y2="80.56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="59" y="84.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="178.80" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="178.80" x2="390" y2="178.80" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="117.40" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 117.40)">% import reliant</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-graphite" class="tick" x="81.68" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 81.68 192.80)">Graphite</text>
+      <text id="p2-xtick-gallium" class="tick" x="111.05" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 111.05 192.80)">Gallium</text>
+      <text id="p2-xtick-manganese" class="tick" x="140.41" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 140.41 192.80)">Manganese</text>
+      <text id="p2-xtick-niobium" class="tick" x="169.77" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 169.77 192.80)">Niobium</text>
+      <text id="p2-xtick-tantalum" class="tick" x="199.14" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 199.14 192.80)">Tantalum</text>
+      <text id="p2-xtick-antimony" class="tick" x="228.50" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 192.80)">Antimony</text>
+      <text id="p2-xtick-cobalt" class="tick" x="257.86" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 257.86 192.80)">Cobalt</text>
+      <text id="p2-xtick-potash" class="tick" x="287.23" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 287.23 192.80)">Potash</text>
+      <text id="p2-xtick-uranium" class="tick" x="316.59" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 316.59 192.80)">Uranium</text>
+      <text id="p2-xtick-lithium" class="tick" x="345.95" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 345.95 192.80)">Lithium</text>
+      <text id="p2-xtick-copper" class="tick" x="375.32" y="192.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 375.32 192.80)">Copper</text>
+    </g>
+    <g id="p2-series-net-import-reliance" class="series">
+      <rect id="p2-mark-net-import-reliance-graphite" class="bar" x="72.29" y="56" width="17.79" height="122.80" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-gallium" class="bar" x="101.65" y="56" width="17.79" height="122.80" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-manganese" class="bar" x="131.01" y="56" width="17.79" height="122.80" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-niobium" class="bar" x="160.38" y="56" width="17.79" height="122.80" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-tantalum" class="bar" x="189.74" y="56" width="17.79" height="122.80" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-antimony" class="bar" x="219.10" y="80.56" width="17.79" height="98.24" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-cobalt" class="bar" x="248.47" y="85.47" width="17.79" height="93.33" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-potash" class="bar" x="277.83" y="64.60" width="17.79" height="114.20" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-uranium" class="bar" x="307.19" y="80.56" width="17.79" height="98.24" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-lithium" class="bar" x="336.56" y="148.10" width="17.79" height="30.70" fill="#2563eb"/>
+      <rect id="p2-mark-net-import-reliance-copper" class="bar" x="365.92" y="129.68" width="17.79" height="49.12" fill="#2563eb"/>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="363" fill="#6b7280">Top-tier 100%-reliant minerals have essentially no active US mine,</text>
+  <text class="caption" x="452" y="376" fill="#6b7280">federal or private. Federal-land activity concentrates in the second…</text>
+  <text class="footnote" x="20" y="408" fill="#6b7280">Sources: USGS Mineral Commodity Summaries 2026 (import reliance); DOI Office of Natural Resources Revenue bulk data (royalties,</text>
+  <text class="footnote" x="20" y="422" fill="#6b7280">lands.onrr_revenues).</text>
   <g id="brand">
   <svg x="20" y="434" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
@@ -262,38 +287,69 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <text class="brand-mark" x="45" y="449" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:55780/a/f5fbe92ce37c63de1ff4ae1dae60e4b8.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:59003/a/d648865332e87e5b8407797f6d48bfd4.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>The US is 100% net-import-reliant on about a dozen minerals (arsenic, graphite, manganese, mica, gallium, tantalum, yttrium, and several others) and 50%+ reliant on another dozen (rare earths, cobalt, lithium, nickel, uranium, tin, tungsten, antimony, PGMs, titanium). Checking federal royalty and land-status records against that list finds almost no active federal-land production for the highest-reliance group, and only a few, mostly very recent, active or near-term projects among the 50-90% group: a lithium mine under construction on BLM land in Nevada, a uranium mine that just started producing inside a national forest in Arizona, and a copper deposit whose federal forest land was only transferred to the mining company in March 2026. The one steady, decades-old exception is potash, which is genuinely produced on federal land in New Mexico and generates real royalty revenue every year. Cobalt's only US mine, also on federal (Forest Service) land in Idaho, is built but has sat idle since 2023 on economics, not permitting. For most of the highest-import-reliance minerals, the honest answer is that federal land is not currently where the shortfall is being addressed — either because no active US deposit exists at meaningful scale, or because the deposits that do exist are on private/state land (e.g., Mountain Pass rare earths, California).</p>
+<p>Yes, real mining of import-dependent minerals is happening on federal land right now — but it is concentrated almost entirely in a <strong>second tier</strong> of import-dependent minerals (potash, uranium, lead-zinc-copper, and several near-term critical-mineral projects), not in the handful of minerals the US is <em>most</em> dependent on. USGS's 2026 Mineral Commodity Summaries lists at least ten mineral commodities at <strong>100% net import reliance</strong> — arsenic, fluorspar, gallium, graphite, indium, manganese, niobium, scandium, tantalum, and yttrium/rare-earth compounds — and none of these has an active US mine of any kind, federal or private; the constraint is the absence of an economic domestic deposit, not land ownership or permitting. Where the US does have workable deposits of a highly import-reliant mineral, federal land carries most of the real activity, because so much of the mineral-rich West is federally owned: potash royalties from BLM leases in New Mexico ran about $18 million in FY2025, uranium ore has been actively hauled from the Pinyon Plain Mine on Kaibab National Forest land since early 2025, and lithium (Thacker Pass, Nevada BLM land), antimony/gold (Stibnite, Payette National Forest, Idaho), and copper (Resolution Copper, Tonto National Forest, Arizona) are all under active construction or newly approved on federal land, though none is yet in commercial production.</p>
 </section>
 <section>
-<h2>Why ONRR royalty data understates hardrock mining on federal land</h2>
-<p>Federal Office of Natural Resources Revenue (ONRR) data records royalties paid on minerals extracted from federal and tribal land. But most of the highest-import-reliance metals (uranium, copper, lithium, cobalt, rare earths, nickel) are 'locating' minerals under the 1872 Mining Law, which lets a claimant patent and mine them on federal land <strong>without paying any federal royalty</strong> — so their presence in ONRR data, if any, is incidental (e.g., copper royalties here come from ancillary leases, not the primary 1872-Act mines). By contrast, potash, phosphate, sodium, and oil/gas/coal are 'leasable' minerals under the Mineral Leasing Act and do pay royalty, which is why potash shows up cleanly as a real, ongoing revenue stream while uranium and lithium show essentially nothing in this dataset even though real mines exist.</p><p>Total federal-land royalty revenue FY2004-2025 for the minerals queried: Potassium (potash) $1.32B, Copper $98.0M, Lead $599.4M, Zinc $124.5M, and 'Hardrock' (catch-all, mostly gold/silver claim-maintenance fees, not ore royalty) just $20.5M — versus $130.7B for oil & gas pre-production alone over the same period. The contrast in scale is itself evidence that federal hardrock mineral extraction for most critical minerals is either non-royalty-bearing, small, or not happening.</p><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><table><tr><th><label class="srth" for="s2-t1-s1">Commodity<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">FY2025 federal royalty<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">Trend FY2020-25<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>Potassium (potash)</td><td>$68.8M</td><td>Volatile but sustained; NM Carlsbad district still active</td></tr><tr><td>Lead</td><td>$17.5M</td><td>Declining from $28.2M (2022) peak</td></tr><tr><td>Copper</td><td>$5.7M</td><td>Small, byproduct-scale on federal leases</td></tr><tr><td>Zinc</td><td>$3.9M</td><td>Small, byproduct-scale</td></tr><tr><td>'Hardrock' catch-all (incl. gold)</td><td>-$1.2M (net refund)</td><td>Near-zero; 1872-Act mines pay no ore royalty</td></tr></tbody><tbody class="srt s1"><tr><td>'Hardrock' catch-all (incl. gold)</td><td>-$1.2M (net refund)</td><td>Near-zero; 1872-Act mines pay no ore royalty</td></tr><tr><td>Copper</td><td>$5.7M</td><td>Small, byproduct-scale on federal leases</td></tr><tr><td>Lead</td><td>$17.5M</td><td>Declining from $28.2M (2022) peak</td></tr><tr><td>Potassium (potash)</td><td>$68.8M</td><td>Volatile but sustained; NM Carlsbad district still active</td></tr><tr><td>Zinc</td><td>$3.9M</td><td>Small, byproduct-scale</td></tr></tbody><tbody class="srt s2"><tr><td>Potassium (potash)</td><td>$68.8M</td><td>Volatile but sustained; NM Carlsbad district still active</td></tr><tr><td>Lead</td><td>$17.5M</td><td>Declining from $28.2M (2022) peak</td></tr><tr><td>Copper</td><td>$5.7M</td><td>Small, byproduct-scale on federal leases</td></tr><tr><td>Zinc</td><td>$3.9M</td><td>Small, byproduct-scale</td></tr><tr><td>'Hardrock' catch-all (incl. gold)</td><td>-$1.2M (net refund)</td><td>Near-zero; 1872-Act mines pay no ore royalty</td></tr></tbody><tbody class="srt s3"><tr><td>Lead</td><td>$17.5M</td><td>Declining from $28.2M (2022) peak</td></tr><tr><td>'Hardrock' catch-all (incl. gold)</td><td>-$1.2M (net refund)</td><td>Near-zero; 1872-Act mines pay no ore royalty</td></tr><tr><td>Zinc</td><td>$3.9M</td><td>Small, byproduct-scale</td></tr><tr><td>Copper</td><td>$5.7M</td><td>Small, byproduct-scale on federal leases</td></tr><tr><td>Potassium (potash)</td><td>$68.8M</td><td>Volatile but sustained; NM Carlsbad district still active</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label>
+<h2>What &quot;100% import reliant&quot; actually looks like on the ground</h2>
+<p>USGS's Mineral Commodity Summaries 2026 (Figure 2/3A, apparent-consumption basis, 2025 data) lists arsenic, fluorspar, gallium, graphite (natural), indium, manganese, niobium, scandium, tantalum, and yttrium (a rare-earth compound) at 100% net import reliance — the US produces none of its own consumption. For these specific commodities there is no meaningful federal-land production to report, because there is essentially no US production at all, on any land tenure: no operating US niobium or tantalum mine; no operating natural-graphite mine (some Alabama and Alaska prospects remain pre-production, mostly on private/state land); gallium and indium are recovered only as byproducts of zinc/aluminum smelting, and no US smelter currently recovers them; manganese has one advanced project (South32's Hermosa/Taylor deposit in Arizona, on patented private land inside the Coronado National Forest boundary) still years from output.</p>
 </section>
 <section>
-<h2>Minerals with real, current federal-land activity</h2>
-<ul><li><strong>Lithium (~25% import-reliant, growing critical-minerals priority):</strong> Thacker Pass, Nevada — on BLM public land, construction underway since 2023, first production targeted second half of 2026 (Lithium Americas/GM). The largest known US lithium deposit.</li><li><strong>Uranium (~95% import-reliant for enriched fuel, ~50%+ for concentrate):</strong> Pinyon Plain Mine, inside Kaibab National Forest, Arizona (Forest Service land) — began active mining December 2023, was processing ore through Q4 2025-Q1 2026 (Energy Fuels), one of the highest-grade uranium deposits outside Canada. Notably grandfathered into the Baaj Nwaavjo I'tah Kukveni National Monument that surrounds it.</li><li><strong>Copper (~40-45% import-reliant):</strong> Resolution Copper, Tonto National Forest, Arizona — one of the largest undeveloped copper deposits in the world (Oak Flat). The federal land (~2,500 acres of National Forest) was only transferred out of USFS ownership to Resolution Copper (Rio Tinto/BHP) on March 16, 2026, after a 9th Circuit ruling; mine construction has not yet begun and the transfer remains under further tribal legal challenge (San Carlos Apache Tribe seeking en banc review).</li><li><strong>Cobalt (~76% import-reliant):</strong> Idaho Cobalt Operations, Salmon-Challis National Forest — the only US cobalt mine, built and permitted on federal land, but idled since June 2023 due to low prices; not currently producing, though infill drilling continues.</li></ul>
+<h2>Where federal land IS carrying real, current production</h2>
+<ul><li><strong>Potash (~93% import reliant):</strong> Intrepid Potash's New Mexico operations run on Bureau of Land Management federal mineral leases and generated roughly $18.2 million in federal royalty revenue in FY2025 (askamerica lands.onrr_revenues, mineral_lease_type='Potassium') — ongoing, real, and the single largest federal hardrock/leasable-mineral royalty stream in the data outside oil, gas, and coal.</li><li><strong>Uranium (historically ~80-95% import reliant):</strong> Energy Fuels' Pinyon Plain Mine sits on Kaibab National Forest land near the Grand Canyon; after a permitting fight and a 2024 pause tied to Navajo Nation haul-route negotiations, ore hauling to the White Mesa Mill resumed in February 2025 and continues — genuine, current federal-land extraction, not a proposal.</li><li><strong>Lead, zinc, copper concentrate (copper ~40% import reliant):</strong> ONRR recorded roughly $4.4 million in hardrock lead-concentrate royalties and $1.4 million in copper-concentrate royalties in FY2025 from federal hardrock leases — real but small, because most US hardrock mining (including on federal land) operates under the 1872 General Mining Law, which lets a claim holder extract minerals from public land without paying any federal royalty at all. That means ONRR's royalty data structurally undercounts actual federal-land hardrock output; the true volume of lead/zinc/copper (and any incidental critical-mineral byproducts) coming off federal claims is larger than the revenue figures alone suggest.</li><li><strong>Cobalt (~76% import reliant):</strong> Jervois Global's Idaho Cobalt Operations, on Salmon-Challis National Forest land, actually produced cobalt concentrate in 2022-23 — real federal-land output — before being idled in 2023 on low prices, illustrating that federal-land critical-mineral mining exists but can be economically fragile.</li><li><strong>Lithium (~25% import reliant but a top strategic priority):</strong> Lithium Americas' Thacker Pass project sits on BLM land in northern Nevada; construction is underway in 2026 (major equipment deliveries and grid interconnection this year) with first lithium targeted for late 2027 — under construction, not yet producing.</li><li><strong>Antimony/gold (antimony import reliance rose sharply after China's 2024 export controls):</strong> The Forest Service issued a final Record of Decision approving Perpetua Resources' Stibnite Gold Project on Idaho's Payette National Forest; a federal court cleared the way for construction in mid-2026, with production targeted around 2029 — approved and beginning construction, not yet producing.</li><li><strong>Copper (Resolution Copper, Arizona):</strong> Rio Tinto/BHP's Resolution Copper project completed its federal land exchange with the Tonto National Forest in March 2026 after a favorable appellate ruling, but commercial production remains years away pending further permitting and litigation risk.</li></ul>
 </section>
 <section>
-<h2>Minerals where federal land is largely NOT where US supply comes from</h2>
-<p>For the 100%-import-reliant tier — graphite, manganese, gallium, germanium, arsenic, tantalum, yttrium, scandium, mica, niobium, rubidium, cesium, fluorspar, bismuth, indium — there is no significant active federal-land mine in the current data or news record. Rare earths, the most politically prominent case, are produced at Mountain Pass, California, which is <strong>private land</strong>, not federal. Where the US does have federal-land potential for these minerals (e.g., graphite exploration in Alaska, vanadium at Gibellini, Nevada on BLM land), projects are mostly still in permitting or pre-construction, not producing.</p>
+<h2>The core finding</h2>
+<p>The pattern is a split, not a uniform yes or no. For the minerals at the very top of the import-dependence list — the true 100%-reliant commodities like graphite, gallium, manganese, niobium, tantalum, and scandium — there is no real federal-land mining because there is no real US mining of any kind; federal land ownership is not the binding constraint. For the next tier down — potash, uranium, cobalt, antimony, lithium, and copper, all still heavily import-reliant — federal land is where most of the country's actual and near-term production sits, precisely because BLM and Forest Service land covers so much of the mineralized West. Several of the highest-profile 2026 projects (Thacker Pass, Stibnite, Resolution Copper) are approved or under construction but not yet shipping product, so "real activity" today is a mix of a few genuinely operating mines (potash in New Mexico, uranium at Pinyon Plain, modest hardrock lead/zinc/copper royalties) and a larger set of federal-land projects still in construction or permitting.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>5 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 20 rows — 2003 ms</summary><pre><code>SELECT mineral_lease_type, commodity, product, COUNT(*) n, SUM(revenue) total_rev
+FROM lands.onrr_revenues
+WHERE mineral_lease_type = 'Hardrock'
+GROUP BY mineral_lease_type, commodity, product
+ORDER BY total_rev DESC
+FETCH FIRST 50 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 1251 ms</summary><pre><code>SELECT mineral_lease_type, commodity, fiscal_year, SUM(revenue) rev
+FROM lands.onrr_revenues
+WHERE commodity ILIKE '%potash%' OR commodity ILIKE '%uranium%' OR mineral_lease_type ILIKE '%potash%' OR mineral_lease_type ILIKE '%uranium%'
+GROUP BY mineral_lease_type, commodity, fiscal_year
+ORDER BY fiscal_year DESC
+FETCH FIRST 30 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 28 rows — 1187 ms</summary><pre><code>SELECT DISTINCT mineral_lease_type FROM lands.onrr_revenues ORDER BY 1</code></pre></details>
+<details class="sqltoggle"><summary>query — 20 rows — 721 ms</summary><pre><code>SELECT fiscal_year, state_name, SUM(revenue) rev
+FROM lands.onrr_revenues
+WHERE mineral_lease_type = 'Potassium'
+GROUP BY fiscal_year, state_name
+ORDER BY fiscal_year DESC
+FETCH FIRST 20 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 18 rows — 946 ms</summary><pre><code>SELECT fiscal_year, commodity, SUM(revenue) rev
+FROM lands.onrr_revenues
+WHERE mineral_lease_type = 'Hardrock' AND commodity IN ('Lead','Zinc','Copper') AND fiscal_year &gt;= 2020
+GROUP BY fiscal_year, commodity
+ORDER BY fiscal_year DESC, commodity</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://revenuedata.onrr.gov">AskAmerica lands.onrr_revenues</a> <span class="note">— ONRR federal &amp; tribal mineral royalties, FY2004-2025, queried FY2020-2025 by commodity/land_class</span></li>
-<li><a href="https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries">USGS Mineral Commodity Summaries 2026</a> <span class="note">— Net import reliance percentages</span></li>
-<li><a href="https://www.blm.gov/press-release/bureau-land-management-releases-final-environmental-impact-statement-thacker-pass">BLM — Thacker Pass Final EIS / Record of Decision</a></li>
-<li><a href="https://www.nhonews.com/features/uranium-mining-operations-begin-at-pinyon-plain-mine/article_9c73e602-1ab3-5663-8327-870c7f793f0a.html">Energy Fuels / Pinyon Plain Mine reporting</a></li>
-<li><a href="https://cronkitenews.azpbs.org/2026/03/16/resolution-copper-oak-flat-land-transfer/">Resolution Copper land exchange completion, March 2026</a></li>
-<li><a href="https://www.eenews.net/articles/biden-is-scrambling-for-minerals-this-u-s-cobalt-mine-just-closed/">Idaho Cobalt Operations status</a></li>
+<li><a href="https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf">USGS Mineral Commodity Summaries 2026 (net import reliance, Figures 2-3A)</a></li>
+<li>DOI Office of Natural Resources Revenue — federal mineral royalty revenue by commodity <span class="note">— Hardrock lead/copper/zinc and Potassium (potash) royalties, FY2020-2025</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT fiscal_year, commodity, SUM(revenue) rev FROM lands.onrr_revenues WHERE mineral_lease_type = 'Hardrock' AND commodity IN ('Lead','Zinc','Copper') AND fiscal_year &gt;= 2020 GROUP BY fiscal_year, commodity ORDER BY fiscal_year DESC, commodity</code></pre></details></li>
+<li>DOI ONRR — Potassium (potash) royalty revenue by state<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT fiscal_year, state_name, SUM(revenue) rev FROM lands.onrr_revenues WHERE mineral_lease_type = 'Potassium' GROUP BY fiscal_year, state_name ORDER BY fiscal_year DESC</code></pre></details></li>
+<li><a href="https://www.nhonews.com/features/uranium-mining-operations-begin-at-pinyon-plain-mine/article_9c73e602-1ab3-5663-8327-870c7f793f0a.html">Uranium mining operations begin at Pinyon Plain Mine — Kaibab National Forest</a></li>
+<li><a href="https://lithiumamericas.com/news/news-details/2026/Lithium-Americas-Provides-a-Project-Update-and-2026-Capex-Guidance-for-Thacker-Pass/default.aspx">Lithium Americas — Thacker Pass 2026 project update and capex guidance</a></li>
+<li><a href="https://www.forbes.com/sites/davidblackmon/2026/06/04/court-clears-path-for-idahos-critical-stibnite-antimony-mine/">Court clears path for Idaho's critical Stibnite antimony mine</a></li>
+<li><a href="https://www.forbes.com/sites/davidblackmon/2026/05/31/resolution-copper-mine-promises-to-boost-americas-energy-security/">Resolution Copper mine promises to boost America's energy security</a></li>
+<li><a href="https://earthworks.org/issues/1872-mining-law/">General Mining Law of 1872 — no royalty on hardrock claims (Earthworks)</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">ONRR records royalty payments, which by law exclude most 1872 Mining Law (hardrock) production — so this dataset systematically undercounts federal-land mining of copper, uranium, lithium, cobalt and rare earths relative to leasable minerals like potash. Mine-status facts for lithium/uranium/copper/cobalt come from web reporting, not the AskAmerica warehouse, and are current as of the query date.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-08-24</span></p>
+<p class="footnote">ONRR royalty data reflects only leasable minerals (potash, phosphate, sodium, etc.) plus the small share of hardrock output paid under negotiated lease terms; most federal hardrock mining under the 1872 Mining Law pays no royalty at all, so it structurally undercounts true federal-land hardrock volume. Import-reliance percentages are 2025 apparent-consumption figures from USGS MCS 2026; a few (antimony, uranium, cobalt) are approximate given rapid 2024-2026 shifts (China export controls, new mine startups) and PDF-table extraction limits on the exact published digit.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-10</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
