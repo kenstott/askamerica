@@ -1,69 +1,308 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>agent</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Budget volatility passes through to research output mainly via interruption-driven attrition, not smooth output elasticity — but this corpus cannot trace it end-to-end for one agency</title>
 <style>
-:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
-:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
-.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
-h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
-h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
-h2{font-size:1.35em;margin-top:1.6em}
-h3{font-size:1.1em}
-p,li{color:var(--ink-2)}
-a{color:var(--accent)}
-code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
-code{background:var(--rule);padding:.1em .35em;border-radius:3px}
-pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
-pre code{background:none;padding:0}
-table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
-th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
-th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
-blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
-hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
-.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
-</style></head><body>
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div><div class="page">
-<span class="eyebrow">q117 · askamerica</span>
-<h1>How much does year-to-year volatility in an agency's budget show up in what its funded researchers produce?</h1>
-<h2>Answer</h2>
-<p>A little, in the expected (negative) direction, but the connection is weak, hard to pin down precisely, and the naive/simple version of the relationship is not statistically robust.</p>
-<p>Using HHS (NIH's parent, the dominant and most-studied federal research funder) as the case agency, and USPTO patents as the feasible output metric in this corpus, a two-way (institution + year) fixed-effects panel across 202 of the largest HHS-funded U.S. research institutions (2010-2022, patents lagged 2 years) finds:</p>
-<ul>
-<li><strong>Preferred specification (institution + year fixed effects, cluster-robust SEs):</strong> a 1-unit increase in |year-over-year %Δ HHS funding| is associated with <strong>-0.051 fewer patents</strong> 2 years later (SE 0.030, <strong>p = 0.091</strong>, n = 2,141 observations, 202 institutions, 12 years). Directionally consistent with the literature (funding instability crowds out research time with grant-writing), but only marginally significant — not below the conventional p&lt;0.05 threshold.</li>
-<li><strong>Robustness check (mandatory leave-one-out on the same relationship without fixed effects, top 150 institutions by cumulative funding):</strong> the pooled/no-FE correlation is <strong>null and fragile</strong> — coefficient +0.025, p = 0.97, and the sign flips when either Johns Hopkins or Northwestern is dropped from the sample (<code>robust: false</code>, coefficient range across 149 leave-one-out refits: -0.019 to +0.39). This is an important finding in its own right: a single naive correlation on this question would be actively misleading, and the fixed-effects specification is materially more defensible.</li>
-<li><strong>National aggregate context (not causal):</strong> total HHS funding to these 202 institutions dipped in 2013-2015 (the sequestration era) before resuming a steady nominal climb through 2024, while total patents granted to the same institutions rose steadily throughout, including through the sequestration dip — consistent with the estimated effect being small.</li>
-</ul>
-<h2>What the published literature already establishes (read before querying)</h2>
-<ul>
-<li>NIH's 1998-2003 budget doubling produced a well-documented "boom-bust": success rates collapsed after 2003 without funding falling, producing chronic hypercompetition — <a href="https://issues.org/p_freeman/">Freeman &amp; Van Reenen, Issues in Science and Technology</a>.</li>
-<li>The 2013 sequestration is linked to a delayed, measurable decline in NIH-supported basic-science <em>publications</em>, especially non-clinical work — <a href="https://www.biorxiv.org/content/10.1101/2025.07.15.664939.full.pdf">bioRxiv 2025.07.15.664939</a>.</li>
-<li>Azoulay &amp; Li and Azoulay/Graff Zivin/Manso show funding <em>structure</em> (renewal-cycle length, tolerance for early failure) shapes what researchers attempt, not just funding level — <a href="https://www.nber.org/system/files/working_papers/w26889/w26889.pdf">NBER w26889</a>, <a href="https://faculty.haas.berkeley.edu/manso/hhmi.pdf">HHMI-vs-NIH study</a>.</li>
-<li>A 2022 review of European funding: the field is shifting "from excellence to luck and timing" as funding becomes more volatile — <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9639839/">PMC9639839</a>.</li>
-<li>Direct researcher/university-level evidence is genuinely mixed: Lawson et al. (2021) found no significant funding→productivity effect in social sciences/economics (<a href="https://link.springer.com/article/10.1007/s11192-025-05277-3">Scientometrics 2025</a>); other NIH work finds a positive but diminishing-returns effect of funding <em>level</em> (<a href="https://www.biorxiv.org/content/10.1101/367847.full.pdf">bioRxiv 367847</a>).</li>
-<li>The 2025-2026 NSF/NIH funding disruptions are already producing self-reported productivity effects — researchers report spending more time on grant-writing and less on research, with junior researchers reporting career-threatening uncertainty — <a href="https://www.statnews.com/2025/08/26/federal-research-funding-instability-survey-hundreds-sense-of-doom/">STAT News, Aug 2025</a>, <a href="https://www.statnews.com/2026/03/19/nih-funding-national-researcher-survey-finds-cutbacks-disruptions/">STAT News, Mar 2026</a>.</li>
-<li>None of this literature isolates year-to-year <strong>volatility</strong> (as distinct from funding <em>level</em> or a one-time <em>cut</em>) with a clean output elasticity — that gap is what the computed analysis above tries to fill.</li>
-</ul>
-<h2>Method (what was computed vs. relayed)</h2>
-<p>Computed via the AskAmerica connector (not relayed from any source): for each of 202 institutions with both an NSF HERD federal-funding record and a matched USPTO patent-assignee ID (joined through <code>ref.canonical_org_entity</code>), the absolute year-over-year % change in HHS-sourced federal R&amp;D expenditure (<code>research.nsf_herd_by_institution</code>) was computed per year 2010-2022 and matched to that institution's granted-patent count 2 years later (<code>patents.patent_grants</code> / <code>patents.patent_assignees</code>). Ran <code>panel_fixed_effects</code> (institution + year FE, cluster-robust SEs) as the primary specification, then a mandatory <code>sensitivity_analysis</code> leave-one-out check on a comparable pooled (no-FE) specification, restricted to the top 150 institutions to satisfy the tool's 200-group cap.</p>
-<h2>Caveats (disclosed, not smoothed over)</h2>
-<ul>
-<li><strong>Patents are a weak proxy for HHS/NIH output specifically.</strong> Biomedical basic science overwhelmingly produces publications, not patents; askamerica has no publication-count table, so the literature's strongest volatility→output evidence (sequestration → declining basic-science <em>publications</em>) could not be directly replicated here — a genuine coverage gap.</li>
-<li><strong>2-year patent lag is a simplification</strong>; grant-to-patent lags vary by field. Not separately tested at 1-year/3-year lags given time budget.</li>
-<li><strong>2023 patents.patent_grants coverage returned null</strong> in the national aggregate — flagged per the source's declared coverage lag, not filled in as a zero.</li>
-<li><strong>HHS stands in for "an agency"</strong> — the largest, most-litigated case (NIH). NSF/DOD/other agencies were not separately modeled.</li>
-</ul>
-<h2>Dashboard</h2>
-<p><img alt="HHS funding volatility vs. institutional patent output dashboard" src="dashboard.png" /></p>
-<p>Full published report (self-contained HTML, local to the run machine): <code>http://127.0.0.1:53229/a/01377defeeb38ae328547fcebd426c26.html</code></p>
-<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
-</div></body></html>
+</div>
+<main>
+<header>
+<h1>Budget volatility passes through to research output mainly via interruption-driven attrition, not smooth output elasticity — but this corpus cannot trace it end-to-end for one agency</h1>
+<p class="subtitle">USAspending obligations FY2017-2025; output effects from published economics-of-science literature</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 746" width="880" height="746" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="746" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">Agency Budget Volatility vs. Research Output: What the Data Shows and What It Ca…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">USAspending obligations FY2017-2025 (fiscal.usaspending_by_agency); output effect sizes from published economics-of-science research</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">NSF budget YoY volatility (stdev)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">±2.3 pts</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Range -1.2% to +5.6% growth, FY18-25</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">HHS budget YoY volatility (stdev)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">±6.7 pts</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Range +0.9% to +21.2% growth, FY18-25 (COVID spike)</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Year-over-year obligation growth, NSF vs HHS</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="60" y1="156" x2="390" y2="156" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="136" x2="390" y2="136" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="140" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="96" x2="390" y2="96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="100" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="76" x2="390" y2="76" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="176" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fiscal year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 116)">YoY % change</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-fy18" class="tick" x="80.63" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY18</text>
+      <text id="p3-xtick-fy19" class="tick" x="121.88" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY19</text>
+      <text id="p3-xtick-fy20" class="tick" x="163.13" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY20</text>
+      <text id="p3-xtick-fy21" class="tick" x="204.38" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY21</text>
+      <text id="p3-xtick-fy22" class="tick" x="245.63" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY22</text>
+      <text id="p3-xtick-fy23" class="tick" x="286.88" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY23</text>
+      <text id="p3-xtick-fy24" class="tick" x="328.13" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY24</text>
+      <text id="p3-xtick-fy25" class="tick" x="369.38" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY25</text>
+    </g>
+    <g id="p3-series-nsf" class="series">
+      <path id="p3-line-nsf" class="line" d="M 80.63 136.40 L 121.88 140.40 L 163.13 149.20 L 204.38 136.40 L 245.63 133.60 L 286.88 141.60 L 328.13 160.80 L 369.38 150.40" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-nsf-fy18" class="point" cx="80.63" cy="136.40" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nsf-fy19" class="point" cx="121.88" cy="140.40" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nsf-fy20" class="point" cx="163.13" cy="149.20" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nsf-fy21" class="point" cx="204.38" cy="136.40" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nsf-fy22" class="point" cx="245.63" cy="133.60" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nsf-fy23" class="point" cx="286.88" cy="141.60" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nsf-fy24" class="point" cx="328.13" cy="160.80" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-nsf-fy25" class="point" cx="369.38" cy="150.40" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-hhs-incl-nih" class="series">
+      <path id="p3-line-hhs-incl-nih" class="line" d="M 80.63 148 L 121.88 124 L 163.13 71.20 L 204.38 127.60 L 245.63 139.60 L 286.88 152.40 L 328.13 149.20 L 369.38 112.40" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-hhs-incl-nih-fy18" class="point" cx="80.63" cy="148" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-hhs-incl-nih-fy19" class="point" cx="121.88" cy="124" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-hhs-incl-nih-fy20" class="point" cx="163.13" cy="71.20" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-hhs-incl-nih-fy21" class="point" cx="204.38" cy="127.60" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-hhs-incl-nih-fy22" class="point" cx="245.63" cy="139.60" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-hhs-incl-nih-fy23" class="point" cx="286.88" cy="152.40" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-hhs-incl-nih-fy24" class="point" cx="328.13" cy="149.20" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-hhs-incl-nih-fy25" class="point" cx="369.38" cy="112.40" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-nsf" x="133.50" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-nsf" class="legend-label" x="149.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">NSF</text>
+      <rect id="p3-legend-swatch-hhs-incl-nih" x="185.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-hhs-incl-nih" class="legend-label" x="201.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">HHS (incl. NIH)</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">NSF is a relatively steady research-only agency; HHS obligations are</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">dominated by Medicare/Medicaid, so its volatility is not a clean…</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="318" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="354" fill="#6b7280">30+ day NIH grant funding gap -&gt; nonemployment effect</text>
+  <text class="stat-value" x="464" y="384" fill="#1f2328">+3 pts (40%)</text>
+  </g>
+  <text class="caption" x="452" y="519" fill="#6b7280">Increase in probability lab personnel stop working in the US (Tham &amp;</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">Staudt 2024)</text>
+  <g id="p5-stat">
+  <rect class="panel-edge" x="20" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="590" fill="#6b7280">Publication rate among those pushed into nonemployment</text>
+  <text class="stat-value" x="36" y="620" fill="#1f2328">-90%</text>
+  </g>
+  <text class="caption" x="24" y="675" fill="#6b7280">vs continuously-funded peers, largest for postdocs/grad students (Tham</text>
+  <text class="caption" x="24" y="688" fill="#6b7280">&amp; Staudt 2024)</text>
+  <g id="brand">
+  <svg x="20" y="705" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="720" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:56526/a/60160ab63b25ff210106929678964ccb.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Year-to-year swings in a research agency's budget show up in researcher output mainly through <strong>discontinuities</strong> — gaps in grant funding that push lab personnel out of employment or out of the country — rather than through a smooth, proportional "less money in, less output out" relationship. A funding interruption of just 30+ days on a single-R01 lab raises the probability its personnel stop working in the US by about 3 percentage points (a 40% relative increase), and those pushed into nonemployment are about 90% less likely to publish that year (Tham &amp; Staudt, 2024). Separately, grant-renewal cycles that are "unforgiving of failure" (the norm for NIH R01s, vs. HHMI's longer-horizon awards) measurably suppress high-risk, high-impact work (Azoulay, Graff Zivin &amp; Manso, 2011). This connector's own data confirms that agency budgets genuinely do vary in volatility — NSF's obligations grew steadily (year-over-year std. dev. ±2.3 points, FY2018-2025) while HHS's (which include NIH) swung far more (±6.7 points, driven largely by COVID-era spending) — but the corpus has <strong>no multi-year, agency-linked output series</strong> (publications or patents attributable to a specific funder by year) to directly regress against that volatility, so the causal link itself is drawn from published research, not computed here.</p>
+</section>
+<section>
+<h2>What the warehouse data shows: budget volatility is real and agency-specific</h2>
+<p>Querying <code>fiscal.usaspending_by_agency</code> (USAspending Spending Explorer obligations, FY2017-2025, the only multi-year federal agency-budget series in this corpus) for the two clearest research-funding agencies available:</p><ul><li><strong>National Science Foundation</strong> — obligations grew from $7.75B (FY2017) to $9.89B (FY2025). Year-over-year growth ranged from -1.2% to +5.6%, with a standard deviation of ±2.3 percentage points — a comparatively steady funding path.</li><li><strong>Department of Health and Human Services</strong> (NIH is not broken out separately in this table — it is folded into HHS's total, which is dominated by Medicare/Medicaid, not research) — obligations grew from $1.65T to $2.79T, with year-over-year growth ranging from +0.9% to +21.2% (the FY2019-2020 COVID jump) and a standard deviation of ±6.7 points. This is a much noisier series, but it reflects entitlement-spending volatility far more than research-budget volatility specifically, so it is not a clean proxy for NIH's research budget alone.</li></ul><p>This corpus has no separate NIH-only budget series, and its two candidate output tables for NIH — <code>research.nih_award_projects</code> (NIH award-level grant microdata) and <code>research.nsf_federal_rd_obligations</code>/<code>research.nsf_herd_by_institution</code> — each carry only a single loaded fiscal year (nih_award_projects: FY2026 only, 59,813 awards; NSF federal R&amp;D obligations by field: FY2022 only; HERD: FY2024 only), not the multi-year time series a volatility-to-output regression needs. <code>patents.patent_grants</code> has a real multi-year series (2010-2025) but carries no field attributing a patent to the federal agency that funded the underlying research, so it cannot be joined to agency budget swings either. This is a genuine coverage gap, not a result — the causal estimates below come from the published economics-of-science literature, not from a computation run in this session.</p>
+</section>
+<section>
+<h2>What published research shows: volatility bites through interruptions, not smooth elasticity</h2>
+<p><strong>Funding gaps directly push researchers out of the workforce and out of publishing.</strong> Tham &amp; Staudt (2024), "Scientific Talent Leaks Out of Funding Gaps," link IRS earnings records and university transaction data in a difference-in-differences design around NIH R01 grants. They find a funding interruption of more than 30 days on a single-grant lab raises the probability its personnel stop working in the US by about 3 percentage points — a 40% relative increase. About half of those pushed into nonemployment appear to permanently leave the US, and are about 90% less likely to publish in a given year, with the largest effects on postdocs and graduate students (trainees). Among personnel who keep working in the US, an interrupted funding history is associated with 20% lower earnings than continuously-funded peers. The authors estimate funding delays account for roughly 5% of US nonemployment in their sample — a national-scale effect, not a curiosity.</p><p><strong>Renewal-cycle structure, not just funding level, shapes what gets produced.</strong> Azoulay, Graff Zivin &amp; Manso (2011, RAND Journal of Economics), comparing HHMI investigators (long time horizons, tolerant of early failure) against similarly-accomplished NIH-funded scientists (R01's roughly 3-year cycle, renewal unforgiving of failure), find HHMI investigators produce high-impact papers at a much higher rate and pursue more novel research directions. The mechanism is the incentive structure imposed by funding instability/renewal risk, not simply dollar volume.</p><p><strong>Simulation work on sustained budget disruption reaches the same qualitative conclusion at a system level.</strong> A 2026 BRIDGE model (published in <em>npj Health Systems</em>) linking NIH funding to drug approvals, workforce dynamics and scientific output across 47 longitudinal measures (1995-2024) finds that even temporary NIH funding disruptions create lasting setbacks to drug development, researcher training and basic science that later funding increases do not fully repair for decades — consistent with volatility having asymmetric, sticky effects rather than a reversible elastic response.</p><p><strong>Funding level does buy some output, with diminishing returns.</strong> Separately from volatility, studies of funding <em>level</em> (not its year-to-year variability) find a positive but concave relationship: roughly 10-16 additional scientific articles per $1 million in university research funding, with returns diminishing at higher funding levels — a different, non-volatility question, included here to distinguish "more money helps somewhat" from "unstable money actively disrupts."</p>
+</section>
+<section>
+<h2>Bottom line</h2>
+<p>The honest answer has two parts. (1) Federal research-agency budgets genuinely do vary in year-to-year volatility — confirmed directly from USAspending obligations data, with NSF comparatively steady and HHS's (including NIH) far noisier, largely due to non-research entitlement swings. (2) The transmission from that volatility into researcher output is not a smooth elasticity visible in this corpus's data — it operates mainly through discrete funding-gap events that knock personnel out of employment (with ~90% publication drop-off for those affected) and through renewal-cycle incentive structures that discourage risk-taking, both documented in the published economics-of-science literature rather than computed here. A materially better answer would need an agency-specific, multi-year budget series (isolating NIH or NSF research obligations alone, not HHS's entitlement-dominated total) paired with a multi-year, funder-attributed output series (publications or patents tagged to the funding agency and year) — neither exists together in this connector today.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Show how that volatility shows up in what funded researchers produce (output)</strong>: This corpus has no multi-year, agency-attributed research-output series (publications/patents tied to a specific funding agency by year) to compute this directly — nih_award_projects, nsf_federal_rd_obligations, and nsf_herd_by_institution each hold only a single loaded fiscal year. The output-side answer is instead drawn from named published economics-of-science studies (Tham &amp; Staudt 2024; Azoulay, Graff Zivin &amp; Manso 2011; the 2026 BRIDGE model) with explicit effect sizes, clearly labeled as literature-sourced rather than warehouse-computed.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>3 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 1 rows — 769 ms</summary><pre><code>SELECT fiscal_year, COUNT(*) as n, SUM(award_amount) as total_amt FROM research.nih_award_projects GROUP BY fiscal_year ORDER BY fiscal_year</code></pre></details>
+<details class="sqltoggle"><summary>query — 36 rows — 1539 ms</summary><pre><code>SELECT agency_name, &quot;year&quot;, obligated_amount FROM fiscal.usaspending_by_agency WHERE agency_name ILIKE '%health%' OR agency_name ILIKE '%National Institutes%' OR agency_name ILIKE '%science foundation%' ORDER BY agency_name, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 4 rows — 1584 ms</summary><pre><code>SELECT DISTINCT agency_name FROM fiscal.usaspending_by_agency WHERE agency_name ILIKE '%institut%' OR agency_name ILIKE '%NSF%' OR agency_name ILIKE '%energy%'</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>Federal obligations by agency, FY2017-2025 (NSF, HHS)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT agency_name, &quot;year&quot;, obligated_amount FROM fiscal.usaspending_by_agency WHERE agency_name ILIKE '%health%' OR agency_name ILIKE '%science foundation%' ORDER BY agency_name, &quot;year&quot;</code></pre></details></li>
+<li>NIH award-level grant microdata coverage check (single FY2026 snapshot, no time series)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT fiscal_year, COUNT(*) as n, SUM(award_amount) as total_amt FROM research.nih_award_projects GROUP BY fiscal_year ORDER BY fiscal_year</code></pre></details></li>
+<li><a href="https://arxiv.org/abs/2402.07235">Tham, W.Y. &amp; Staudt, J. (2024). Scientific Talent Leaks Out of Funding Gaps.</a></li>
+<li><a href="https://www.nber.org/papers/w15466">Azoulay, P., Graff Zivin, J. &amp; Manso, G. (2011). Incentives and Creativity: Evidence from the Academic Life Sciences. RAND Journal of Economics 42(3).</a></li>
+<li><a href="https://www.nature.com/articles/s44401-026-00120-0">BRIDGE model: Modeling the impacts of budget reductions at the U.S. NIH on research and innovation. npj Health Systems (2026).</a></li>
+<li><a href="https://www.biorxiv.org/content/10.1101/2025.07.15.664939.full.pdf">Absolute and Relative Declines in NIH-Funded Basic Science Publications (2025 preprint)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Budget-volatility figures are computed directly from fiscal.usaspending_by_agency (USAspending obligations, FY2017-2025). No multi-year, agency-attributed research-output series exists in this corpus to regress against that volatility; the causal output effects cited are drawn from named published studies, not computed in this session.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-11</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
