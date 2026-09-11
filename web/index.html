@@ -1666,7 +1666,7 @@
       <button class="dist-tab-btn active" onclick="switchDist('mcp')">MCP / Claude Desktop</button>
       <button class="dist-tab-btn" onclick="switchDist('python')">Python</button>
       <button class="dist-tab-btn" onclick="switchDist('jdbc')">JDBC / DBeaver</button>
-      <button class="dist-tab-btn" onclick="switchDist('browser')">Browser extension</button>
+      <button class="dist-tab-btn" onclick="switchDist('browser')">Fact-check any page</button>
     </div>
 
     <!-- Claude Desktop panel -->
@@ -1808,9 +1808,9 @@ ResultSet rs = conn.createStatement().executeQuery(
     <!-- Browser extension panel -->
     <div class="dist-panel" id="dist-browser">
       <div>
-        <div class="path-badge path-badge-dim">Read published claims</div>
-        <h3 class="path-title">Chrome extension</h3>
-        <p class="path-desc">Highlights claims AskAmerica has already validated on the page you're reading, color-coded true/false/partially true, with the full report one click away. It never calls a model API itself — "Validate with AskAmerica" hands the page off to your own Claude Desktop or claude.ai session, so it runs on your existing plan, not a separate key.</p>
+        <div class="path-badge">Catch it before you share it</div>
+        <h3 class="path-title">Fact-check any page, in one click.</h3>
+        <p class="path-desc">A politician says renewable energy is driving up your utility bill. A headline says a new policy caused a crime wave. Instead of taking it on faith, click the AskAmerica icon in your toolbar. It pulls apart every checkable claim on the page and tests each one against government data — census, energy, crime, health, hundreds more datasets — then hands back a verdict: true, false, partially true, or not checkable, with the actual numbers and sources behind each call. No more "sounds right" — an actual answer, in about the time it takes to read the headline.</p>
         <a class="dl-card" href="/dl/browserext" style="max-width:220px">
           <div class="dl-icon">🧩</div>
           <div class="dl-label">Download extension</div>
@@ -1821,13 +1821,17 @@ ResultSet rs = conn.createStatement().executeQuery(
       <div>
         <div class="code-block">
           <div class="code-header">how it works</div>
-          <pre><span class="c">1. You open a page with claims AskAmerica has checked</span>
-<span class="c">2. The extension reads them from your local engine</span>
-<span class="c">3. Matching text is highlighted by verdict</span>
-<span class="c">4. New claim? Click "Validate with AskAmerica" —</span>
-<span class="c">   opens your own Claude session, no API call here</span></pre>
+          <pre><span class="c">1. You're on a page with a claim worth checking</span>
+<span class="c">2. Click the AskAmerica toolbar icon</span>
+<span class="c">3. "Validate with AskAmerica" opens your own Claude</span>
+<span class="c">   session — no API call from the extension itself</span>
+<span class="c">4. It tests every claim against real government data</span>
+<span class="c">   and publishes a report: verdict, evidence, sources</span>
+<span class="c">5. Back on the page, each claim is highlighted by</span>
+<span class="c">   verdict — green true, red false, amber partial —</span>
+<span class="c">   with the full breakdown one click away</span></pre>
         </div>
-        <p class="path-note" style="margin-top:16px">Requires the AskAmerica MCP engine running locally (see the MCP tab) to see live claims and launch new validations.</p>
+        <p class="path-note" style="margin-top:16px">Runs on your existing Claude Desktop or claude.ai plan — not a separate API key, and the extension itself never talks to a model. Requires the AskAmerica MCP engine running locally (see the MCP tab) to read and publish reports.</p>
       </div>
     </div>
   </div>
