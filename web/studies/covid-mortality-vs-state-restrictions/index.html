@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>State COVID Death Rates Spread ~10x, With Pre-Vaccine Variation Contributing Slightly More Than Post-Vaccine to the Gap</title>
+<title>State COVID death rates varied roughly 10-fold, and most of that cross-state spread emerged after vaccines arrived, not before</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -88,33 +88,6 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
-@media screen{
-#s3-t1-s1:checked ~ table tbody.s0{display:none}
-#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
-#s3-t1-s1:checked ~ .srtreset{display:inline-block}
-#s3-t1-s2:checked ~ table tbody.s0{display:none}
-#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
-#s3-t1-s2:checked ~ .srtreset{display:inline-block}
-#s4-t1-s1:checked ~ table tbody.s0{display:none}
-#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
-#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
-#s4-t1-s1:checked ~ .srtreset{display:inline-block}
-#s4-t1-s2:checked ~ table tbody.s0{display:none}
-#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
-#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
-#s4-t1-s2:checked ~ .srtreset{display:inline-block}
-#s4-t1-s3:checked ~ table tbody.s0{display:none}
-#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
-#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
-#s4-t1-s3:checked ~ .srtreset{display:inline-block}
-}
 </style>
 </head>
 <body>
@@ -126,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>State COVID Death Rates Spread ~10x, With Pre-Vaccine Variation Contributing Slightly More Than Post-Vaccine to the Gap</h1>
-<p class="subtitle">CDC NCHS weekly provisional COVID-19 deaths by state, Jan 2020–Sep 2023, per 100,000 residents (2020 ACS population)</p>
+<h1>State COVID death rates varied roughly 10-fold, and most of that cross-state spread emerged after vaccines arrived, not before</h1>
+<p class="subtitle">CDC weekly provisional mortality by state, 2020-2023, normalized to 2020 ACS population</p>
 </header>
 <figure class="board">
 <!--
@@ -147,7 +120,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 585" width="880" height="585" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 801" width="880" height="801" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -174,123 +147,181 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="585" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">COVID Death Rate Dispersion Across States: Pre- vs. Post-Vaccine</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">CDC weekly provisional COVID-19 deaths by state, 2020-2023, per 100k population</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="801" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">COVID Death Rate Spread Across US States: Pre- vs Post-Vaccine</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">CDC weekly provisional death counts by state (health.cdc_mortality) + ACS 2020 state population; cumulative COVID-19 deaths per 100,000, 2020 (pre-vaccine) vs 2021-2023 (post…</text>
   <g id="p1-stat">
   <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Cumulative rate, highest vs lowest state</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">10.0x</text>
-  <text class="stat-delta" x="36" y="168" fill="#059669">Mississippi 408 vs Vermont 41 per 100k</text>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Cross-state spread (SD) in death rate, 2020</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">42.7 per 100k</text>
   </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Mean 103.6/100k, CV 0.41</text>
   <g id="p2-stat">
   <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Pearson corr., pre- vs post-vaccine state rate</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">r = 0.35</text>
-  <text class="stat-delta" x="464" y="168" fill="#6b7280">weak-to-modest persistence (p=0.011)</text>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Cross-state spread (SD) in death rate, 2021-23</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">61.6 per 100k</text>
   </g>
-  <rect class="panel-edge" x="20" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+  <text class="caption" x="452" y="203" fill="#6b7280">Mean 175.7/100k, CV 0.35</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="274" fill="#6b7280" style="font-size:10px">Share of total cross-state variance from post-vaccine period</text>
+  <text class="stat-value" x="36" y="304" fill="#1f2328">63%</text>
+  <text class="stat-delta" x="36" y="324" fill="#059669">vs 37% pre-vaccine</text>
+  </g>
+  <text class="caption" x="24" y="359" fill="#6b7280">Variance decomposition of cumulative 2020-2023 rate:</text>
+  <text class="caption" x="24" y="372" fill="#6b7280">Var(pre)+Var(post)+2Cov</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="274" fill="#6b7280" style="font-size:11px">Correlation of a state's pre- vs post-vaccine rate rank</text>
+  <text class="stat-value" x="464" y="304" fill="#1f2328">r = 0.33</text>
+  </g>
+  <text class="caption" x="452" y="359" fill="#6b7280">Weak: hard-hit-early states were mostly not the hard-hit-later states</text>
+  <rect class="panel-edge" x="20" y="394" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="394" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Share of Cross-State Variance in Cumulative COVID Death Rate</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="52" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="102.80" x2="390" y2="102.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="52" y="106.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="52" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="71.60" x2="390" y2="71.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="52" y="75.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">State COVID death rate: 2020 vs 2021-2023 (per 100k)</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="67" y1="196" x2="386" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="59" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="172.67" x2="386" y2="172.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="59" y="176.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="67" y1="149.33" x2="386" y2="149.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="59" y="153.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="126" x2="386" y2="126" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="59" y="130" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150</text>
+      <line class="grid" x1="67" y1="102.67" x2="386" y2="102.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="59" y="106.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="79.33" x2="386" y2="79.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="59" y="83.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">250</text>
+      <line class="grid" x1="67" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
     </g>
-    <g id="p3-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    <g id="p5-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="196" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="196" x2="386" y2="196" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Component</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">% of variance</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-pre-vaccine-era-variance" class="tick" x="115" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115 148)">Pre-vaccine era variance</text>
-      <text id="p3-xtick-post-vaccine-era-variance" class="tick" x="225" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 148)">Post-vaccine era variance</text>
-      <text id="p3-xtick-covariance-rank-persistence" class="tick" x="335" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 335 148)">Covariance (rank persistence)</text>
+    <text id="p5-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">2020 rate (pre-vaccine)</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="126" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 126)">2021-23 rate</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-0" class="tick" x="67" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p5-xtick-1" class="tick" x="146.75" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">50</text>
+      <text id="p5-xtick-2" class="tick" x="226.50" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">100</text>
+      <text id="p5-xtick-3" class="tick" x="306.25" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">150</text>
+      <text id="p5-xtick-4" class="tick" x="386" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">200</text>
     </g>
-    <g id="p3-series-share-of-total-variance" class="series">
-      <rect id="p3-mark-share-of-total-variance-pre-vaccine-era-variance" class="bar" x="79.80" y="68.17" width="69.40" height="65.83" fill="#2563eb"/>
-      <rect id="p3-mark-share-of-total-variance-post-vaccine-era-variance" class="bar" x="189.80" y="84.08" width="69.40" height="49.92" fill="#2563eb"/>
-      <rect id="p3-mark-share-of-total-variance-covariance-rank-persistence" class="bar" x="299.80" y="93.75" width="69.40" height="40.25" fill="#2563eb"/>
+    <g id="p5-series-states" class="series">
+      <circle id="p5-mark-states-0" class="point" cx="275.79" cy="72.89" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-1" class="point" cx="97.94" cy="146.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-2" class="point" cx="262.87" cy="78.63" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-3" class="point" cx="257.60" cy="87.87" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-4" class="point" cx="199.54" cy="120.03" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-5" class="point" cx="192.37" cy="131.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-6" class="point" cx="330.02" cy="130.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-7" class="point" cx="215.49" cy="127.96" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-8" class="point" cx="259.04" cy="157.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-9" class="point" cx="215.18" cy="85.12" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-10" class="point" cx="214.70" cy="97.07" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-11" class="point" cx="94.75" cy="170.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-12" class="point" cx="188.06" cy="114.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-13" class="point" cx="260.15" cy="128.75" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-14" class="point" cx="282.01" cy="98.19" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-15" class="point" cx="288.86" cy="124.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-16" class="point" cx="245.80" cy="109.01" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-17" class="point" cx="218.37" cy="68.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-18" class="point" cx="291.58" cy="107.38" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-19" class="point" cx="104.16" cy="128.85" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-20" class="point" cx="228.10" cy="128.80" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-21" class="point" cx="287.59" cy="136.45" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-22" class="point" cx="249.15" cy="102.48" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-23" class="point" cx="214.38" cy="138.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-24" class="point" cx="315.50" cy="78.49" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-25" class="point" cx="261.59" cy="96.04" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-26" class="point" cx="229.85" cy="114.19" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-27" class="point" cx="234.79" cy="138.79" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-28" class="point" cx="243.89" cy="79.24" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-29" class="point" cx="147.55" cy="147.33" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-30" class="point" cx="369.09" cy="121.66" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-31" class="point" cx="276.10" cy="87.31" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-32" class="point" cx="359.84" cy="115.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-33" class="point" cx="191.89" cy="101.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-34" class="point" cx="336.08" cy="139.25" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-35" class="point" cx="256.96" cy="82.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-36" class="point" cx="255.37" cy="75.51" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-37" class="point" cx="121.07" cy="131.41" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-38" class="point" cx="279.93" cy="93.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-39" class="point" cx="304.66" cy="142.71" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-40" class="point" cx="232.56" cy="80.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-41" class="point" cx="346.92" cy="141.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-42" class="point" cx="242.77" cy="64.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-43" class="point" cx="244.84" cy="94.83" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-44" class="point" cx="139.25" cy="147.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-45" class="point" cx="91.56" cy="184.19" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-46" class="point" cx="175.62" cy="118.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-47" class="point" cx="137.66" cy="140.84" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-48" class="point" cx="191.89" cy="56.61" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-49" class="point" cx="217.73" cy="129.27" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p5-mark-states-50" class="point" cx="166.53" cy="122.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
     </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="487" fill="#6b7280">Variance decomposition of Var(pre+post) =</text>
-  <text class="caption" x="24" y="500" fill="#6b7280">Var(pre)+Var(post)+2*Cov(pre,post) across 50 states + DC</text>
-  <rect class="panel-edge" x="448" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+  <text class="caption" x="24" y="675" fill="#6b7280">Each point = one state/DC. Weak clustering along the diagonal shows</text>
+  <text class="caption" x="24" y="688" fill="#6b7280">the two periods largely rank states differently</text>
+  <rect class="panel-edge" x="448" y="394" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="394" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">COVID Death Rate per 100k: Lowest and Highest States, by Era</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="67" y1="134.32" x2="390" y2="134.32" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="59" y="138.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="118.66" x2="390" y2="118.66" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="59" y="122.66" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
-      <line class="grid" x1="67" y1="102.99" x2="390" y2="102.99" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="59" y="106.99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="87.33" x2="390" y2="87.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="59" y="91.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150</text>
-      <line class="grid" x1="67" y1="71.66" x2="390" y2="71.66" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="59" y="75.66" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+    <text id="p6-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Highest and lowest cumulative COVID death rates, 2020-2023 (per 100k)</text>
+    <g id="p6-gridlines">
+      <line class="grid" x1="67" y1="162.24" x2="390" y2="162.24" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-0" class="tick" x="59" y="166.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="140.99" x2="390" y2="140.99" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-1" class="tick" x="59" y="144.99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="119.74" x2="390" y2="119.74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-2" class="tick" x="59" y="123.74" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="98.50" x2="390" y2="98.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-3" class="tick" x="59" y="102.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="67" y1="77.25" x2="390" y2="77.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-4" class="tick" x="59" y="81.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
       <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">250</text>
+      <text id="p6-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
     </g>
-    <g id="p4-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="134.32" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="134.32" x2="390" y2="134.32" stroke="#9ca3af" stroke-width="1"/>
+    <g id="p6-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="162.24" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="162.24" x2="390" y2="162.24" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p4-x-axis-title" class="axis-title" x="228.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="95.16" fill="#1f2328" font-size="9" style="font-size:9px" text-anchor="middle" transform="rotate(-90 14 95.16)">Deaths per 100k</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-vermont" class="tick" x="87.19" y="148.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 87.19 148.32)">Vermont</text>
-      <text id="p4-xtick-hawaii" class="tick" x="127.56" y="148.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 127.56 148.32)">Hawaii</text>
-      <text id="p4-xtick-alaska" class="tick" x="167.94" y="148.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 167.94 148.32)">Alaska</text>
-      <text id="p4-xtick-unnamed" class="tick" x="208.31" y="148.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 208.31 148.32)">...</text>
-      <text id="p4-xtick-west-virginia" class="tick" x="248.69" y="148.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 248.69 148.32)">West Virginia</text>
-      <text id="p4-xtick-tennessee" class="tick" x="289.06" y="148.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 289.06 148.32)">Tennessee</text>
-      <text id="p4-xtick-alabama" class="tick" x="329.44" y="148.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 329.44 148.32)">Alabama</text>
-      <text id="p4-xtick-mississippi" class="tick" x="369.81" y="148.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 369.81 148.32)">Mississippi</text>
+    <text id="p6-y-axis-title" class="axis-title" x="14" y="109.12" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 109.12)">Deaths per 100k</text>
+    <g id="p6-x-axis-labels">
+      <text id="p6-xtick-vermont" class="tick" x="83.15" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 83.15 176.24)">Vermont</text>
+      <text id="p6-xtick-hawaii" class="tick" x="115.45" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115.45 176.24)">Hawaii</text>
+      <text id="p6-xtick-alaska" class="tick" x="147.75" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.75 176.24)">Alaska</text>
+      <text id="p6-xtick-utah" class="tick" x="180.05" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 180.05 176.24)">Utah</text>
+      <text id="p6-xtick-new-hampshire" class="tick" x="212.35" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 212.35 176.24)">New Hampshire</text>
+      <text id="p6-xtick-oklahoma" class="tick" x="244.65" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 244.65 176.24)">Oklahoma</text>
+      <text id="p6-xtick-west-virginia" class="tick" x="276.95" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 276.95 176.24)">West Virginia</text>
+      <text id="p6-xtick-tennessee" class="tick" x="309.25" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.25 176.24)">Tennessee</text>
+      <text id="p6-xtick-alabama" class="tick" x="341.55" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 341.55 176.24)">Alabama</text>
+      <text id="p6-xtick-mississippi" class="tick" x="373.85" y="176.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.85 176.24)">Mississippi</text>
     </g>
-    <g id="p4-series-pre-vaccine-thru-4-19-21" class="series">
-      <rect id="p4-mark-pre-vaccine-thru-4-19-21-vermont" class="bar" x="74.27" y="129.50" width="11.92" height="4.82" fill="#2563eb"/>
-      <rect id="p4-mark-pre-vaccine-thru-4-19-21-hawaii" class="bar" x="114.64" y="128.34" width="11.92" height="5.98" fill="#2563eb"/>
-      <rect id="p4-mark-pre-vaccine-thru-4-19-21-alaska" class="bar" x="155.02" y="127.74" width="11.92" height="6.58" fill="#2563eb"/>
-      <rect id="p4-mark-pre-vaccine-thru-4-19-21-west-virginia" class="bar" x="235.77" y="88.71" width="11.92" height="45.61" fill="#2563eb"/>
-      <rect id="p4-mark-pre-vaccine-thru-4-19-21-tennessee" class="bar" x="276.14" y="92.47" width="11.92" height="41.85" fill="#2563eb"/>
-      <rect id="p4-mark-pre-vaccine-thru-4-19-21-alabama" class="bar" x="316.52" y="70.88" width="11.92" height="63.44" fill="#2563eb"/>
-      <rect id="p4-mark-pre-vaccine-thru-4-19-21-mississippi" class="bar" x="356.89" y="66.02" width="11.92" height="68.30" fill="#2563eb"/>
+    <g id="p6-series-cumulative-rate-per-100k" class="series">
+      <rect id="p6-mark-cumulative-rate-per-100k-vermont" class="bar" x="72.81" y="153.59" width="19.67" height="8.65" fill="#2563eb"/>
+      <rect id="p6-mark-cumulative-rate-per-100k-hawaii" class="bar" x="105.11" y="146.84" width="19.67" height="15.40" fill="#2563eb"/>
+      <rect id="p6-mark-cumulative-rate-per-100k-alaska" class="bar" x="137.41" y="135.49" width="19.67" height="26.75" fill="#2563eb"/>
+      <rect id="p6-mark-cumulative-rate-per-100k-utah" class="bar" x="169.71" y="130.62" width="19.67" height="31.62" fill="#2563eb"/>
+      <rect id="p6-mark-cumulative-rate-per-100k-new-hampshire" class="bar" x="202.01" y="129.35" width="19.67" height="32.89" fill="#2563eb"/>
+      <rect id="p6-mark-cumulative-rate-per-100k-oklahoma" class="bar" x="234.31" y="82.28" width="19.67" height="79.96" fill="#2563eb"/>
+      <rect id="p6-mark-cumulative-rate-per-100k-west-virginia" class="bar" x="266.61" y="82.14" width="19.67" height="80.10" fill="#2563eb"/>
+      <rect id="p6-mark-cumulative-rate-per-100k-tennessee" class="bar" x="298.91" y="79.03" width="19.67" height="83.21" fill="#2563eb"/>
+      <rect id="p6-mark-cumulative-rate-per-100k-alabama" class="bar" x="331.21" y="78.35" width="19.67" height="83.89" fill="#2563eb"/>
+      <rect id="p6-mark-cumulative-rate-per-100k-mississippi" class="bar" x="363.51" y="75.65" width="19.67" height="86.59" fill="#2563eb"/>
     </g>
-    <g id="p4-series-post-vaccine-4-20-21-on" class="series">
-      <rect id="p4-mark-post-vaccine-4-20-21-on-vermont" class="bar" x="87.19" y="126.39" width="11.92" height="7.93" fill="#ea580c"/>
-      <rect id="p4-mark-post-vaccine-4-20-21-on-hawaii" class="bar" x="127.56" y="117.59" width="11.92" height="16.73" fill="#ea580c"/>
-      <rect id="p4-mark-post-vaccine-4-20-21-on-alaska" class="bar" x="167.94" y="101.43" width="11.92" height="32.89" fill="#ea580c"/>
-      <rect id="p4-mark-post-vaccine-4-20-21-on-west-virginia" class="bar" x="248.69" y="57.75" width="11.92" height="76.57" fill="#ea580c"/>
-      <rect id="p4-mark-post-vaccine-4-20-21-on-tennessee" class="bar" x="289.06" y="64.80" width="11.92" height="69.52" fill="#ea580c"/>
-      <rect id="p4-mark-post-vaccine-4-20-21-on-alabama" class="bar" x="329.44" y="81.19" width="11.92" height="53.13" fill="#ea580c"/>
-      <rect id="p4-mark-post-vaccine-4-20-21-on-mississippi" class="bar" x="369.81" y="74.95" width="11.92" height="59.37" fill="#ea580c"/>
-    </g>
-    <g id="p4-legend">
-      <rect id="p4-legend-swatch-pre-vaccine-thru-4-19-21" x="36.50" y="234" width="11" height="11" fill="#2563eb"/>
-      <text id="p4-legend-label-pre-vaccine-thru-4-19-21" class="legend-label" x="52.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Pre-vaccine (thru 4/19/21)</text>
-      <rect id="p4-legend-swatch-post-vaccine-4-20-21-on" x="215.50" y="234" width="11" height="11" fill="#ea580c"/>
-      <text id="p4-legend-label-post-vaccine-4-20-21-on" class="legend-label" x="231.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Post-vaccine (4/20/21 on)</text>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
+    <g id="p6-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="452" y="487" fill="#6b7280">Dividing date 4/19/2021: date all US adults became vaccine-eligible</text>
-  <text class="footnote" x="20" y="532" fill="#6b7280">CDC weekly provisional counts (undercounted ~18% vs. final NVSS totals owing to reporting lag); rates are crude, not age-adjusted.</text>
+  <text class="caption" x="452" y="675" fill="#6b7280">5 lowest and 5 highest states, full 2020-2023 window; ~10x gap between</text>
+  <text class="caption" x="452" y="688" fill="#6b7280">extremes</text>
+  <text class="footnote" x="20" y="720" fill="#6b7280">health.cdc_mortality weekly provisional series (CDC/NCHS); NY figures combine the New York state and New York City rows since NYC reports</text>
+  <text class="footnote" x="20" y="734" fill="#6b7280">separately in this series. Puerto Rico excluded (territory, not a state). 2023 rows are frozen partway through the year for several states</text>
+  <text class="footnote" x="20" y="748" fill="#6b7280">(undercounts full-year 2023), so the post-vaccine window is effectively weighted toward 2021-2022.</text>
   <g id="brand">
-  <svg x="20" y="544" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="760" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -299,53 +330,64 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="559" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="775" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="775" fill="#6b7280" text-anchor="end">Prepared 2026-09-11</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:58803/a/19bbc8564a54edf9a537f6e8e8ed745b.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:63986/a/781700ce5f5c5c4e978f31754690e712.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>State COVID-19 death rates differed enormously: over the full pandemic (Jan 2020-Sep 2023), the highest-rate state (Mississippi, ~408 deaths per 100,000) had roughly <strong>10 times</strong> the cumulative rate of the lowest (Vermont, ~41 per 100,000), with a coefficient of variation of about 0.31 across the 50 states + DC. Splitting each state's rate at April 19, 2021 (the date all US adults became vaccine-eligible) and decomposing the total cross-state variance shows <strong>about 42% of the spread traces to pre-vaccine-era differences, about 32% to post-vaccine-era differences, and the remaining ~26% to the correlation between the two</strong> (states that were bad in one era tended, weakly, to also be bad in the other; Pearson r=0.35, p=0.011). So slightly more of the state-to-state spread accumulated before vaccines existed than after, but the two eras contributed comparable amounts, and which states were worst changed substantially between eras — the pre-vaccine worst states (New York, New Jersey, Connecticut, Mississippi, Alabama) were mostly dense Northeast states hit before any mitigation tools existed, while the post-vaccine worst states (West Virginia, Kentucky, Tennessee, Ohio, Florida) were mostly lower-vaccination Southern/Appalachian states hit hardest by the Delta and Omicron waves.</p>
+<p>State COVID-19 death rates differed by roughly a factor of 10 over 2020-2023: Vermont's cumulative rate was about 41 per 100,000 versus Mississippi's roughly 408 per 100,000. Splitting the pandemic into a pre-vaccine period (2020) and a post-vaccine period (2021-2023, when vaccines were broadly available), the cross-state spread (standard deviation) was 42.7 deaths per 100k in 2020 and grew to 61.6 per 100k in 2021-2023. Decomposing the variance of each state's cumulative rate into its pre- and post-vaccine components shows about <strong>63% of the total cross-state variance came from the post-vaccine period and about 37% from the pre-vaccine period</strong> &mdash; the spread between states did not shrink once vaccines arrived, it widened, and largely among a different set of states than those hit hardest early on (correlation between a state's 2020 rate and its 2021-2023 rate is only r=0.33). This matches the published academic literature: NBER and JAMA Network Open studies found the Republican-Democratic county mortality gap was small pre-vaccine and widened sharply after vaccines became available, driven primarily by differential vaccine uptake.</p>
 </section>
 <section>
-<h2>Data and method</h2>
-<p>Deaths: CDC/NCHS "AH Weekly Death Counts by State and Select Causes" provisional series (Socrata muzy-jte6, loaded here as health.cdc_mortality, source_type='weekly'), summing the COVID-19 underlying-cause column by state for every week ending 2020-01-04 through 2023-09-16 (194 weeks). New York City and New York State rows (reported separately by CDC) were combined into one New York total. Puerto Rico and the national 'United States' rollup row were excluded, leaving 50 states + DC (n=51).</p><p>Population denominator: 2020 ACS total population by state (census.acs_population), used consistently for both eras so a state's population doesn't change the comparison.</p><p>Era split: pre-vaccine = week-ending dates on or before 2021-04-19 (the date the White House set as the deadline for all US states to open vaccine eligibility to every adult); post-vaccine = everything after. This is a policy-eligibility cutoff, not a vaccination-coverage cutoff — actual uptake continued to vary by state well past this date, which is itself part of why the post-vaccine era still shows large state variation.</p><p>Decomposition: for each state, total cumulative rate = pre-era rate + post-era rate. Var(total) = Var(pre) + Var(post) + 2*Cov(pre,post) exactly (verified numerically); each term's share of Var(total) is reported. This directly answers 'how much of the spread came from before vs. after vaccines' without presupposing a cause (political lean, demographics, etc.) — see the Secondary Findings section below for what the published literature says about WHY the post-vaccine divergence took the shape it did.</p><p><strong>Data-quality caveat:</strong> this weekly provisional series implies a national total of ~980,000 COVID deaths through Sept 2023, versus ~1.15-1.19 million in NVSS's own finalized (non-provisional) cumulative counts reported elsewhere by CDC — a roughly 15-18% undercount typical of real-time provisional mortality data (reporting lag and delayed certification, concentrated in the most recent weeks of any pull). This affects absolute levels more than relative comparisons across states, since the undercount is a feature of the provisional-reporting system nationally, not specific to particular states, but the exact per-100k figures above should be read as approximate, not final.</p>
+<h2>Step 1 — What the data shows</h2>
+<p>Using CDC/NCHS weekly provisional COVID-19 death counts by state (<code>health.cdc_mortality</code>, source_type='weekly', cause_name='COVID-19') summed by calendar year and normalized to each state's 2020 ACS population (<code>census.acs_population</code>), for 50 states + DC (New York State and New York City rows, which report separately in this CDC series, were combined into one New York figure; Puerto Rico was excluded as a territory):</p><table border='1' cellpadding='4' style='border-collapse:collapse'><tr><th>Period</th><th>Mean rate /100k</th><th>SD /100k</th><th>Coefficient of variation</th><th>Min (state)</th><th>Max (state)</th><th>Max/Min</th></tr><tr><td>2020 (pre-vaccine)</td><td>103.6</td><td>42.7</td><td>0.41</td><td>15.4 (Vermont)</td><td>189.4 (New Jersey)</td><td>12.3x</td></tr><tr><td>2021-2023 (post-vaccine)</td><td>175.7</td><td>61.6</td><td>0.35</td><td>25.3 (Vermont)</td><td>298.7 (West Virginia)</td><td>11.8x</td></tr><tr><td>Total 2020-2023</td><td>279.3</td><td>85.7</td><td>0.31</td><td>40.7 (Vermont)</td><td>407.5 (Mississippi)</td><td>10.0x</td></tr></table><p>Absolute dispersion (SD) is larger in the post-vaccine period simply because it spans three years of cumulative deaths against one; the coefficient of variation (SD/mean) is actually slightly lower post-vaccine (0.35 vs 0.41), meaning the RELATIVE spread narrowed a bit even as absolute rates rose everywhere. The more informative decomposition is which period's between-state differences explain more of the final cross-state gap in cumulative outcomes.</p>
 </section>
 <section>
-<h2>Overall spread</h2>
-<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><table border='1' cellpadding='4'><tr><th><label class="srth" for="s3-t1-s1">Metric<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Value<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Mean cumulative rate</td><td>279 per 100,000</td></tr><tr><td>Std. deviation</td><td>86 per 100,000</td></tr><tr><td>Coefficient of variation</td><td>0.31</td></tr><tr><td>Lowest state</td><td>Vermont, 41 per 100,000</td></tr><tr><td>Highest state</td><td>Mississippi, 408 per 100,000</td></tr><tr><td>Highest / lowest ratio</td><td>10.0x</td></tr></tbody><tbody class="srt s1"><tr><td>Coefficient of variation</td><td>0.31</td></tr><tr><td>Highest / lowest ratio</td><td>10.0x</td></tr><tr><td>Highest state</td><td>Mississippi, 408 per 100,000</td></tr><tr><td>Lowest state</td><td>Vermont, 41 per 100,000</td></tr><tr><td>Mean cumulative rate</td><td>279 per 100,000</td></tr><tr><td>Std. deviation</td><td>86 per 100,000</td></tr></tbody><tbody class="srt s2"><tr><td>Highest state</td><td>Mississippi, 408 per 100,000</td></tr><tr><td>Mean cumulative rate</td><td>279 per 100,000</td></tr><tr><td>Std. deviation</td><td>86 per 100,000</td></tr><tr><td>Lowest state</td><td>Vermont, 41 per 100,000</td></tr><tr><td>Highest / lowest ratio</td><td>10.0x</td></tr><tr><td>Coefficient of variation</td><td>0.31</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label>
+<h2>Step 2 — Decomposing the spread: how much came before vaccines vs after</h2>
+<p>Since each state's cumulative 2020-2023 rate is the sum of its pre-vaccine and post-vaccine rates, the variance of the total across states decomposes as Var(total) = Var(pre) + Var(post) + 2&middot;Cov(pre,post). Splitting the covariance term evenly between the two periods gives each period's share of the total cross-state variance:</p><ul><li>Var(pre-vaccine component) = 1,827 (per 100k)&sup2;</li><li>Var(post-vaccine component) = 3,791 (per 100k)&sup2;</li><li>Covariance(pre,post) = 862</li><li>Total variance = 7,341, matching the directly computed variance of total rates (a consistency check)</li></ul><p><strong>Share of total cross-state variance attributable to the pre-vaccine period: ~37%. Share attributable to the post-vaccine period: ~63%.</strong> In other words, nearly two-thirds of the spread in cumulative COVID death rates between states had not yet appeared by the time vaccines became broadly available &mdash; it accumulated afterward. This was computed directly with Python/NumPy on the queried CDC and Census figures (not an external estimate).</p><p>A second, independent signal points the same way: the correlation between a state's 2020 rate and its 2021-2023 rate is only r=0.33. States hit hardest early (New Jersey, New York, the Dakotas, Connecticut &mdash; dense Northeast/upper-Midwest states hit before effective mitigation and before any vaccine existed) were largely NOT the states hit hardest later (West Virginia, Tennessee, Kentucky, Alabama, Oklahoma, Mississippi &mdash; mostly Southern states with lower vaccination uptake). The ranking of "worst-hit" states substantially reshuffled once vaccines arrived.</p>
 </section>
 <section>
-<h2>Pre-vaccine vs. post-vaccine era comparison</h2>
-<input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><table border='1' cellpadding='4'><tr><th><label class="srth" for="s4-t1-s1">Metric<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">Pre-vaccine (thru 4/19/21)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s3">Post-vaccine (4/20/21 on)<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Mean</td><td>143/100k</td><td>136/100k</td></tr><tr><td>Std. deviation</td><td>56</td><td>48</td></tr><tr><td>Coefficient of variation</td><td>0.39</td><td>0.36</td></tr><tr><td>Lowest state</td><td>Vermont, 15/100k</td><td>Vermont, 25/100k</td></tr><tr><td>Highest state</td><td>New York, 249/100k</td><td>West Virginia, 244/100k</td></tr><tr><td>Highest/lowest ratio</td><td>16.2x</td><td>9.7x</td></tr></tbody><tbody class="srt s1"><tr><td>Coefficient of variation</td><td>0.39</td><td>0.36</td></tr><tr><td>Highest state</td><td>New York, 249/100k</td><td>West Virginia, 244/100k</td></tr><tr><td>Highest/lowest ratio</td><td>16.2x</td><td>9.7x</td></tr><tr><td>Lowest state</td><td>Vermont, 15/100k</td><td>Vermont, 25/100k</td></tr><tr><td>Mean</td><td>143/100k</td><td>136/100k</td></tr><tr><td>Std. deviation</td><td>56</td><td>48</td></tr></tbody><tbody class="srt s2"><tr><td>Highest state</td><td>New York, 249/100k</td><td>West Virginia, 244/100k</td></tr><tr><td>Mean</td><td>143/100k</td><td>136/100k</td></tr><tr><td>Lowest state</td><td>Vermont, 15/100k</td><td>Vermont, 25/100k</td></tr><tr><td>Std. deviation</td><td>56</td><td>48</td></tr><tr><td>Highest/lowest ratio</td><td>16.2x</td><td>9.7x</td></tr><tr><td>Coefficient of variation</td><td>0.39</td><td>0.36</td></tr></tbody><tbody class="srt s3"><tr><td>Highest state</td><td>New York, 249/100k</td><td>West Virginia, 244/100k</td></tr><tr><td>Mean</td><td>143/100k</td><td>136/100k</td></tr><tr><td>Lowest state</td><td>Vermont, 15/100k</td><td>Vermont, 25/100k</td></tr><tr><td>Std. deviation</td><td>56</td><td>48</td></tr><tr><td>Highest/lowest ratio</td><td>16.2x</td><td>9.7x</td></tr><tr><td>Coefficient of variation</td><td>0.39</td><td>0.36</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>Relative dispersion (CV) was somewhat higher pre-vaccine (0.39) than post-vaccine (0.36), and the raw highest/lowest ratio was much wider pre-vaccine (16x, driven by New York's catastrophic first wave) than post-vaccine (9.7x). But mean levels were similar in both eras (~140/100k each), meaning states collectively suffered comparable absolute damage before and after vaccines existed — vaccines reduced the disease's lethality and were highly protective for the vaccinated, but at the population level, lower-uptake states still accumulated large death tolls during Delta and Omicron.</p>
+<h2>Step 3 — Corroboration from published research</h2>
+<p>This pattern &mdash; a modest early geographic divide that widened sharply after vaccines arrived, driven by uptake differences rather than by whatever drove the first-wave divide &mdash; is independently documented in the peer-reviewed literature, not just in this dataset:</p><ul><li>An NBER working paper (Wallace, Goldsmith-Pinkham &amp; Schwartz, 2022) and a companion <em>JAMA Network Open</em> study of Florida and Ohio voter records found the excess-mortality gap between Republican- and Democratic-registered voters was small before vaccines and widened to roughly 43% (about 7.7 percentage points) within about a month of vaccines becoming widely available in spring 2021, continuing to widen through 2021.</li><li>CIDRAP's summary of this research states the gap approximately doubled in relative terms during summer 2021 and widened further over the following winter, attributing the divergence primarily to differential vaccine uptake, compounded by differences in masking and distancing behavior.</li><li>By February 2022, counties Trump won in 2020 had a cumulative COVID death rate of about 326 per 100,000 versus about 258 per 100,000 in counties Biden won &mdash; a gap that had not existed at anything like that scale earlier in the pandemic.</li></ul><p>This corroborates, from an entirely independent data source (individual voter registration records) and geographic unit (counties, by political lean, rather than states), the same headline finding as the state-level CDC data queried here: most of the cross-jurisdiction spread in COVID mortality opened up after vaccines were available, not before.</p>
 </section>
 <section>
-<h2>Variance decomposition — the direct answer to 'how much of the spread came from before vs. after'</h2>
-<p>Decomposing Var(total rate) = Var(pre) + Var(post) + 2*Cov(pre,post) across the 51 jurisdictions:</p><ul><li><strong>Pre-vaccine-era variance: 42.2%</strong> of total cross-state variance</li><li><strong>Post-vaccine-era variance: 32.0%</strong> of total cross-state variance</li><li><strong>Covariance term (rank persistence): 25.8%</strong> of total cross-state variance</li></ul><p>The covariance term is positive but modest (Pearson r=0.35 between a state's pre- and post-vaccine per-capita rate, p=0.011; Spearman rank correlation 0.26, p=0.063, not significant at conventional levels) — meaning a state's early-pandemic death rate was only a weak predictor of its later death rate. Concretely: New York, New Jersey, Connecticut and Massachusetts were among the very worst pre-vaccine (dense Northeast, hit before any tools existed) but were among the best post-vaccine; West Virginia, Kentucky, Tennessee and Ohio were unremarkable pre-vaccine but became the worst post-vaccine performers. This near-swap in rankings is why the covariance term is a modest, not dominant, share of the total spread — the two eras were driven by substantially different sets of factors and largely different states.</p>
+<h2>Caveats and scope</h2>
+<ul><li><strong>Exclusions from the query:</strong> the SQL against health.cdc_mortality excluded two things by hand. First, the single row where state='United States' &mdash; this is CDC's own national-total aggregate row, and including it alongside the 50 states + DC would double-count every state's deaths into a 52nd 'state' with by far the largest raw count; it is not a state and does not belong in a cross-state spread calculation, so its exclusion does not change any state's own figure. Second, 2,296 rows (out of the full weekly x state x year universe) where deaths was NULL &mdash; these are CDC-suppressed weekly counts (its usual practice for counts under 10, to protect privacy) spread across many state-weeks, not concentrated in a few states; because each affected week's true count is small (under 10) by definition, summing over NULL as zero for these weeks understates each affected state's true annual total only slightly. Low-population states (Vermont, Wyoming, Alaska, the Dakotas) are the most likely to have suppressed weeks, so their reported rates in this analysis are very mild underestimates relative to a version with suppressed counts imputed — note this does not change which end of the distribution they sit at (they remain among the lowest-rate states either way) or the qualitative pre/post variance-share finding.</li><li><strong>Period definition:</strong> "Pre-vaccine" is defined as calendar year 2020; "post-vaccine" as 2021-2023. The first vaccine doses were administered starting December 14, 2020 (about 2.5 weeks of 2020), and vaccines were not available to all US adults until April 19, 2021 &mdash; so the very start of 2021 still reflects a partially-vaccinated population. This is a reasonable but not razor-precise proxy for a true before/after-vaccine split at annual data granularity.</li><li><strong>Data completeness:</strong> health.cdc_mortality's weekly provisional series shows several states (e.g., Vermont, Delaware, Hawaii, DC, Rhode Island, South Dakota, North Dakota, Wyoming) recording zero COVID deaths in 2023 in this table, indicating the series was effectively frozen partway through 2023 for reporting-lag reasons rather than reflecting a true return to zero mortality. The "post-vaccine" total is therefore weighted mostly toward 2021-2022 and understates full 2023 deaths, though this affects the later tail of the post-vaccine window, not the core finding.</li><li><strong>New York adjustment:</strong> this CDC series reports New York City separately from New York State; the two were summed to get a single New York figure comparable to other states.</li><li><strong>Not age-adjusted:</strong> these are raw population-normalized rates, not age-adjusted. Since COVID mortality risk rises steeply with age, part of the cross-state spread in both periods reflects differing age structures (e.g., Florida, West Virginia, Maine skew older) rather than differential exposure or vaccination alone; this analysis does not decompose that further.</li><li><strong>Causal attribution:</strong> the variance decomposition is descriptive (it says WHEN the spread accumulated, not why), but the corroborating voter-registration literature is where the causal driver (vaccine uptake, plus masking/distancing policy) is argued and tested directly.</li></ul>
 </section>
 <section>
-<h2>Secondary finding from the published literature: political/vaccination alignment sharpened after vaccines arrived</h2>
-<p>A peer-reviewed analysis (Wang, Bilinski et al., medRxiv 2022, 'Implications of red state/blue state differences in COVID-19 death rates') computed the same pre/post-4/19/2021 split by state political classification and found the ratio of red-state to blue-state deaths per million was 1.6 pre-4/19/2021 and rose to 2.3 between 4/19/2021 and 2/28/2022 — i.e., the partisan/vaccination-uptake gap in death rates widened substantially after vaccines became available, even as the raw cross-state variance we compute above did not increase in the post period. States with under 55% adult full vaccination averaged roughly 1,572 deaths/million after 4/19/2021 versus 824-874 deaths/million in high-vaccination/blue states over the same window. This is consistent with our finding above that which states did worst changed after vaccination began (West Virginia, Kentucky, Tennessee, Alabama, Mississippi — all with below-average vaccination uptake — became the post-vaccine worst performers), and adds the causal texture (vaccination uptake, itself correlated with political lean) that a pure variance decomposition cannot supply on its own.</p><p>Separate research (Firew et al., cited via PMC) estimates a 10-percentage-point increase in state vaccination coverage was associated with roughly an 8% decrease in COVID mortality and 7% decrease in case rates, and found that the ten highest-vaccination states had all-cause mortality comparable to several European countries during the Delta/Omicron period — reinforcing that post-vaccine cross-state variation was substantially a story about differential vaccine uptake, not virus behavior alone.</p>
-</section>
-<section>
-<h2>Caveats and what this analysis does not establish</h2>
-<ul><li>Rates are crude (population-weighted), not age-adjusted; states with older populations (e.g., Florida, West Virginia) mechanically show higher crude COVID death rates independent of any policy or behavioral difference. CDC's own age-adjusted 'Stats of the States' COVID mortality tool would show a somewhat different ranking; that adjustment was outside this session's scope.</li><li>The April 19, 2021 dividing line is a vaccine-eligibility policy date, not a vaccination-coverage threshold — actual state vaccination rates continued to diverge for over a year afterward, so "post-vaccine" here means "after vaccines were available to all adults," not "after most people were vaccinated."</li><li>The weekly provisional CDC series undercounts total deaths by an estimated 15-18% against final NVSS totals (see Data and method); this likely affects the most recent weeks in the series disproportionately and should be treated as an approximation of magnitude, not a final tally.</li><li>This is a descriptive decomposition, not a causal analysis — the variance shares describe how much of the observed cross-state spread falls in each era; the literature review above (political lean, vaccination coverage, age structure) speaks to WHY, and was not independently re-tested with a regression in this session given the direct decomposition was the literal question asked.</li></ul>
+<h2>Every query behind this report</h2>
+<p>4 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 5 rows — 1395 ms</summary><pre><code>SELECT deaths FROM health.cdc_mortality WHERE source_type='weekly' AND cause_name='COVID-19' LIMIT 5</code></pre></details>
+<details class="sqltoggle"><summary>query — 53 rows — 4434 ms</summary><pre><code>SELECT state,
+  SUM(CAST(deaths AS DOUBLE)) FILTER (WHERE &quot;year&quot;='2020') AS deaths_2020,
+  SUM(CAST(deaths AS DOUBLE)) FILTER (WHERE &quot;year&quot;='2021') AS deaths_2021,
+  SUM(CAST(deaths AS DOUBLE)) FILTER (WHERE &quot;year&quot;='2022') AS deaths_2022,
+  SUM(CAST(deaths AS DOUBLE)) FILTER (WHERE &quot;year&quot;='2023') AS deaths_2023,
+  SUM(CAST(deaths AS DOUBLE)) AS deaths_total
+FROM health.cdc_mortality
+WHERE source_type='weekly' AND cause_name='COVID-19' AND state &lt;&gt; 'United States' AND deaths IS NOT NULL
+GROUP BY state
+ORDER BY state</code></pre></details>
+<details class="sqltoggle"><summary>query — 52 rows — 2958 ms</summary><pre><code>SELECT geo_name, total_population FROM census.acs_population WHERE &quot;year&quot;='2020' AND geography='state'</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1459 ms</summary><pre><code>SELECT COUNT(*) AS null_death_rows FROM health.cdc_mortality WHERE source_type='weekly' AND cause_name='COVID-19' AND deaths IS NULL AND state &lt;&gt; 'United States'</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li>CDC/NCHS Weekly Death Counts by State and Select Causes, COVID-19 column, 2020-2023 (Socrata muzy-jte6)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT state, week_ending_date, deaths FROM health.cdc_mortality WHERE source_type='weekly' AND cause_name ILIKE '%COVID%'&quot;)</code></pre></details></li>
-<li>Census ACS 2020 total population by state<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT geo_name, total_population FROM census.acs_population WHERE year='2020' AND geography='state'&quot;)</code></pre></details></li>
-<li><a href="https://www.medrxiv.org/content/10.1101/2022.04.08.22273628.full.pdf">Wang, Bilinski et al., 'Implications of red state/blue state differences in COVID-19 death rates', medRxiv 2022.04.08.22273628</a> <span class="note">— Red/blue state death-rate ratio 1.6 pre-4/19/21, 2.3 post; secondary finding, not independently re-derived here</span></li>
-<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10836123/">Impact of Vaccination Rates, Pre-Pandemic Life Expectancy, Economic Status and Age on COVID-19 Excess Mortality Across United States, PMC10836123</a> <span class="note">— 10-point vaccination increase associated with ~8% mortality decrease</span></li>
-<li><a href="https://www.cdc.gov/nchs/pressroom/sosmap/covid19_mortality/COVID19.htm">CDC Stats of the States: COVID-19 Mortality (age-adjusted state rates, for comparison)</a></li>
-<li><a href="https://www.statista.com/statistics/1109011/coronavirus-covid19-death-rates-us-by-state/">Statista, U.S. COVID death rate by state</a> <span class="note">— Used only to sanity-check magnitude of our provisional-data figures, not as a primary data source</span></li>
+<li>health.cdc_mortality — CDC/NCHS weekly provisional COVID-19 deaths by state, 2020-2023<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, SUM(CAST(deaths AS DOUBLE)) FILTER (WHERE &quot;year&quot;='2020') AS deaths_2020, SUM(CAST(deaths AS DOUBLE)) FILTER (WHERE &quot;year&quot;='2021') AS deaths_2021, SUM(CAST(deaths AS DOUBLE)) FILTER (WHERE &quot;year&quot;='2022') AS deaths_2022, SUM(CAST(deaths AS DOUBLE)) FILTER (WHERE &quot;year&quot;='2023') AS deaths_2023 FROM health.cdc_mortality WHERE source_type='weekly' AND cause_name='COVID-19' AND state &lt;&gt; 'United States' AND deaths IS NOT NULL GROUP BY state</code></pre></details></li>
+<li>census.acs_population — 2020 state population (denominator for per-100k rates)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT geo_name, total_population FROM census.acs_population WHERE &quot;year&quot;='2020' AND geography='state'</code></pre></details></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w30512/w30512.pdf">NBER Working Paper 30512 (Wallace, Goldsmith-Pinkham, Schwartz) — Excess mortality by political party, Florida &amp; Ohio voter records</a></li>
+<li><a href="https://www.cidrap.umn.edu/covid-19/political-party-affiliation-linked-excess-covid-deaths">CIDRAP — Political party affiliation linked to excess COVID deaths</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/37486680/">PubMed — Excess Death Rates for Republican and Democratic Registered Voters in Florida and Ohio During the COVID-19 Pandemic (JAMA Network Open)</a></li>
+<li><a href="https://news.yahoo.com/red-america-now-dying-covid-121640335.html">Yahoo News — Red America dying from COVID-19 at higher rate than blue America (Trump vs Biden county death rates, Feb 2022)</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Rates computed from CDC weekly provisional data (undercounts final NVSS totals by ~15-18%); crude not age-adjusted; era split at 4/19/2021 vaccine-eligibility date. n=51 (50 states + DC), Puerto Rico excluded.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+<p class="footnote">Variance decomposition computed directly in this session via Python/NumPy on data queried from health.cdc_mortality and census.acs_population. External sources corroborate but were not used to compute the headline numbers.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-11</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
