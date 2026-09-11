@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The core reporting checks out; two of Patrick's own rhetorical claims are exaggerated</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>The core reporting checks out; two of Patrick's own rhetorical claims are exaggerated</h1>
+<p class="subtitle">GOP midterm convention, Dallas, Sept 8-10 2026 — cross-checked against Texas Tribune, Fox, Washington Times, and Census/GDP data</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 631" width="880" height="631" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="631" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Fact-checking the Dan Patrick convention speech article</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Census ACS in-migration to Texas vs. Patrick's '12 million fleeing blue states' claim</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Event &amp; quotes corroborated</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">Confirmed</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Texas Tribune live coverage, Sept 10 2026</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Texas global GDP rank (2025)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">~8th-9th</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">not 'strongest on the planet'</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">$2.9T vs. California's $4.3T (4th globally)</text>
+  <rect class="panel-edge" x="20" y="238" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Gross Annual In-Migration to Texas From Other States</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="91" y1="200" x2="818" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="83" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="91" y1="176" x2="818" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="83" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100,000</text>
+      <line class="grid" x1="91" y1="152" x2="818" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="83" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200,000</text>
+      <line class="grid" x1="91" y1="128" x2="818" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="83" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300,000</text>
+      <line class="grid" x1="91" y1="104" x2="818" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="83" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400,000</text>
+      <line class="grid" x1="91" y1="80" x2="818" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="83" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500,000</text>
+      <line class="grid" x1="91" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="83" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600,000</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="91" y1="56" x2="91" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="91" y1="200" x2="818" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="454.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">People/year</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2010" class="tick" x="136.44" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2010</text>
+      <text id="p3-xtick-2012" class="tick" x="227.31" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2012</text>
+      <text id="p3-xtick-2014" class="tick" x="318.19" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2014</text>
+      <text id="p3-xtick-2016" class="tick" x="409.06" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2016</text>
+      <text id="p3-xtick-2018" class="tick" x="499.94" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2018</text>
+      <text id="p3-xtick-2020" class="tick" x="590.81" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p3-xtick-2022" class="tick" x="681.69" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="772.56" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+    </g>
+    <g id="p3-series-moved-from-a-different-state-past-yr" class="series">
+      <rect id="p3-mark-moved-from-a-different-state-past-yr-2010" class="bar" x="107.36" y="69.52" width="57.16" height="130.48" fill="#2563eb"/>
+      <rect id="p3-mark-moved-from-a-different-state-past-yr-2012" class="bar" x="198.23" y="78.07" width="57.16" height="121.93" fill="#2563eb"/>
+      <rect id="p3-mark-moved-from-a-different-state-past-yr-2014" class="bar" x="289.11" y="75.53" width="57.16" height="124.47" fill="#2563eb"/>
+      <rect id="p3-mark-moved-from-a-different-state-past-yr-2016" class="bar" x="379.98" y="71.84" width="57.16" height="128.16" fill="#2563eb"/>
+      <rect id="p3-mark-moved-from-a-different-state-past-yr-2018" class="bar" x="470.86" y="68.83" width="57.16" height="131.17" fill="#2563eb"/>
+      <rect id="p3-mark-moved-from-a-different-state-past-yr-2020" class="bar" x="561.73" y="69.85" width="57.16" height="130.15" fill="#2563eb"/>
+      <rect id="p3-mark-moved-from-a-different-state-past-yr-2022" class="bar" x="652.61" y="61.21" width="57.16" height="138.79" fill="#2563eb"/>
+      <rect id="p3-mark-moved-from-a-different-state-past-yr-2023" class="bar" x="743.48" y="58.89" width="57.16" height="141.11" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Census ACS acs_migration, state=TX. Gross inflow, not net, and not broken out by origin state's politics.</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Sources: Texas Tribune (primary, live), Fox26/Fox7/Fox4, Washington Times, Census ACS acs_migration (queried), Visual Capitalist / Austin</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">American-Statesman GDP rankings.</text>
+  <g id="brand">
+  <svg x="20" y="590" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="605" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:60150/a/dace238aa00f6911f1ec36cc3e5ba96a.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>The MSN article's reporting of the <strong>event itself</strong> is accurate: Lt. Gov. Dan Patrick did speak on Day Two (Thursday, Sept. 10, 2026) of the Texas GOP's midterm convention in Dallas, and he did frame the November election in explicitly religious 'light vs. darkness' terms, as independently confirmed by the Texas Tribune's live, on-the-ground coverage and corroborated by Fox affiliates and the Washington Times. The article is best read as an accurate account of a speech, not as a neutral statement of fact about the speech's own content &mdash; two of the specific claims Patrick made and the article passes along uncritically do not hold up as literal facts: the framing of Texas migration as driven by people 'fleeing' Democratic states, and the claim that Texas has 'the strongest economy on the planet.'</p>
+</section>
+<section>
+<h2>Claim-by-claim verdicts</h2>
+<div class="pinocchio-rating"><p><strong>🤥○○○ 1 of 4 Pinocchios</strong></p><p>The article accurately reports a real speech at a real, verifiable event, sourced consistently with independent contemporaneous coverage from the Texas Tribune and others. The one Pinocchio reflects that it passes along, without any fact-check framing, two pieces of political hyperbole from the speaker himself -- a real migration number stretched into a 'fleeing blue states' narrative, and a 'strongest economy on the planet' claim that doesn't survive comparison to actual GDP rankings. That is standard, defensible convention-speech reporting, not fabrication or invention -- hence a low rating.</p></div>
+<p><strong>1</strong> true &middot; <strong>1</strong> partially true &middot; <strong>1</strong> false &middot; <strong>3</strong> assertions checked</p>
+<table><thead><tr><th>#</th><th>Assertion (verbatim)</th><th>Verdict</th></tr></thead><tbody>
+<tr class="verdict-true"><td>1</td><td>Dan Patrick framed the November 2026 midterm election as a choice between 'darkness' and 'light,' and said the flag stands for God, country, and family rather than communism or socialism.</td><td><strong>true</strong></td></tr>
+<tr class="verdict-partially-true"><td>2</td><td>12 million people have moved to Texas over the past two decades, mostly fleeing 'blue' Democratic-led states.</td><td><strong>partially true</strong></td></tr>
+<tr class="verdict-false"><td>3</td><td>Texas has 'the strongest economy on the planet.'</td><td><strong>false</strong></td></tr>
+</tbody></table>
+<p class="note">Verdicts: true, mostly true, partially true, mostly false, false, not checkable here (no table carries the measure), stale vintage (the article cites a release this corpus has not loaded — a freshness gap, not a falsehood).</p>
+<h3>Claim detail</h3>
+<details class="claim-detail verdict-true"><summary>#1 &middot; <strong>true</strong> &mdash; Dan Patrick framed the November 2026 midterm election as a choice between 'darkness' and 'light,' and said the flag stands for God, country, and family rather than communism or socialism.</summary>
+<dl>
+<dt>Independent evidence</dt><dd>Texas Tribune's live, on-scene coverage directly quotes Patrick: 'This election coming up is not about politics. It's about darkness, and it's about light... it's the very definition of communism, because it's a godless government.'<ul class="claim-sources"><li><a href="https://www.texastribune.org/2026/09/08/republican-midterm-convention-dallas-texas-trump-paxton-2026/">Texas Tribune live convention coverage</a></li><li><a href="https://www.fox26houston.com/election/dan-patrick-republican-midterm-convention-dallas-texas">Fox 26 Houston</a></li></ul></dd>
+<dt>Why</dt><dd>Independently confirmed with a direct quote from Texas Tribune's on-the-ground reporting of the same Sept 10 2026 speech.</dd>
+</dl>
+</details>
+<details class="claim-detail verdict-partially-true"><summary>#2 &middot; <strong>partially true</strong> &mdash; 12 million people have moved to Texas over the past two decades, mostly fleeing 'blue' Democratic-led states.</summary>
+<dl>
+<dt>Warehouse says</dt><dd>~500,000-590,000 people/year moved to Texas from another U.S. state in each of 2010-2023 (gross in-migration, all origin states combined) <code>census.acs_migration</code></dd>
+<dt>Independent evidence</dt><dd><ul class="claim-sources"><li><a href="https://www.census.gov/programs-surveys/acs">U.S. Census Bureau, ACS 5-Year migration estimates</a></li></ul></dd>
+<dt>Why</dt><dd>The rough order of magnitude (millions over two decades) is directionally plausible from Census in-migration flows, but this is gross inbound migration from ALL states, not a net figure and not broken out by the origin state's political lean; the 'mostly fleeing blue states...failed and deadly policies' characterization is rhetorical framing, not itself measured by any cited statistic.</dd>
+</dl>
+<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, moved_from_different_state, population_1_year_plus FROM census.acs_migration WHERE state = '48' AND county IS NULL AND geography = 'state' ORDER BY &quot;year&quot;</code></pre></details>
+</details>
+<details class="claim-detail verdict-false"><summary>#3 &middot; <strong>false</strong> &mdash; Texas has 'the strongest economy on the planet.'</summary>
+<dl>
+<dt>Independent evidence</dt><dd>Texas's ~$2.9 trillion (2025) economy would rank about 8th-9th in the world if it were a standalone country, and 2nd among U.S. states behind California ($4.3T, 4th globally)<ul class="claim-sources"><li><a href="https://www.visualcapitalist.com/ranked-the-worlds-top-economies-including-u-s-states-1980-2025/">Visual Capitalist, World's Top Economies Including U.S. States</a></li><li><a href="https://www.statesman.com/story/news/state/2025/04/29/united-states-largest-economies-texas-gdp-rank-california-2025/83274380007/">Austin American-Statesman, US states largest economies 2025</a></li></ul></dd>
+<dt>Why</dt><dd>It is large and growing, but not literally the 'strongest on the planet' by GDP ranking.</dd>
+</dl>
+</details>
+
+</section>
+<section>
+<h2>What was independently confirmed</h2>
+<ul><li>The convention: Republicans held a two-day 'midterm convention' in Dallas, Sept. 8-10, 2026, headlined by Trump, Vance, Abbott, Cruz, and Paxton &mdash; confirmed directly from Texas Tribune's live-updates coverage.</li><li>Patrick's appearance: he was the first elected Texas Republican to speak on Day Two (Thursday), per Texas Tribune.</li><li>His central framing: Texas Tribune quotes him directly casting the election as 'not about politics... about darkness, and... about light,' calling Democrats 'communists and socialists' practicing a 'godless government' &mdash; consistent with the MSN article's 'faith-first,' God-and-country framing and its Alamo/flag imagery.</li><li>Trump praise: Tribune confirms Patrick called Trump the 'greatest president in the history of this nation,' consistent with the MSN piece's tone.</li></ul>
+</section>
+<section>
+<h2>Where Patrick's own claims (repeated by the article) don't hold up</h2>
+<p><strong>Migration claim:</strong> Patrick said '12 million people have moved to Texas... mostly fleeing blue states.' Census ACS data (queried directly from census.acs_migration) shows roughly 500,000-590,000 people per year moved to Texas from another state in each of the last several years (2010-2023) &mdash; a plausible order of magnitude for a cumulative multi-decade figure near 12 million. But this ACS figure is <strong>gross in-migration from all states combined</strong>, not net migration and not broken out by the origin state's political lean. The 'mostly fleeing blue states... failed and deadly policies' framing is political rhetoric layered on top of a real number, not itself a verified statistic.</p><p><strong>'Strongest economy on the planet':</strong> Texas's economy (about $2.9 trillion in 2025) would rank roughly 8th-9th in the world if it were a standalone country &mdash; behind the U.S. as a whole, and even behind California's own $4.3 trillion state economy, which ranks 4th globally. It is a large and fast-growing economy, but 'strongest economy on the planet' is hyperbole, not a factual claim that survives comparison to GDP rankings.</p>
+</section>
+<section>
+<h2>Bottom line</h2>
+<p>Is the article 'true'? As a report of what happened and what Patrick said, yes &mdash; it is well corroborated by independent, contemporaneous coverage. But the article (like most convention-speech writeups) reports the speech's content without fact-checking the speaker's own assertions. Two of those assertions &mdash; the 'fleeing blue states' framing of a real migration number, and the 'strongest economy on the planet' line &mdash; are rhetorical exaggerations that a literal reading would find false or unsupported.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 14 rows — 1480 ms</summary><pre><code>SELECT &quot;year&quot;, moved_from_different_state, population_1_year_plus FROM census.acs_migration WHERE state = '48' AND county IS NULL AND geography = 'state' ORDER BY &quot;year&quot;</code></pre></details>
+
+</section>
+<footer>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-11</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
