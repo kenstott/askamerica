@@ -177,6 +177,10 @@
     if (msg && msg.type === "aa:page-state") {
       reply({ url: location.href, drawn, found: document.querySelectorAll("mark.aa-claim").length });
     }
+    if (msg && msg.type === "aa:get-selection") {
+      const sel = String(window.getSelection ? window.getSelection() : "").trim();
+      reply({ selection: sel.length > 0 && sel.length <= 4000 ? sel : "" });
+    }
     return true;
   });
 

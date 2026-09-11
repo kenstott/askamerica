@@ -2,6 +2,21 @@
   const tab = (await chrome.tabs.query({ active: true, currentWindow: true }))[0];
   const url = tab && tab.url || "";
   document.getElementById("url").textContent = url;
+  // A highlighted passage is a specific claim to check, not the whole page — when present,
+  // the validate buttons send it instead of the bare URL. No `content_scripts` match on this
+  // tab (e.g. a chrome:// page) leaves selection "" and falls back to page-level validation.
+  let selection = "";
+  if (tab && tab.id != null) {
+    const selRes = await chrome.tabs.sendMessage(tab.id, { type: "aa:get-selection" }).catch(() => null);
+    selection = (selRes && selRes.selection) || "";
+  }
+  const urlEl = document.getElementById("url");
+  if (selection) {
+    urlEl.textContent = "“" + (selection.length > 140 ? selection.slice(0, 140) + "…" : selection) + "”";
+    urlEl.title = "Selected text — this is what gets validated, not the whole page";
+    document.getElementById("validateDesktop").textContent = "Validate this selection with AskAmerica";
+    document.getElementById("validateWeb").textContent = "Validate this selection with AskAmerica (claude.ai)";
+  }
   document.getElementById("version").textContent = "v" + chrome.runtime.getManifest().version;
   const statusEl = document.getElementById("status");
   const statusText = document.getElementById("statusText");
@@ -40,11 +55,11 @@
   }
 
   document.getElementById("validateDesktop").addEventListener("click", async () => {
-    await chrome.runtime.sendMessage({ type: "aa:validate", url, tabId: tab.id, target: "desktop" });
+    await chrome.runtime.sendMessage({ type: "aa:validate", url, selection, tabId: tab.id, target: "desktop" });
     window.close();
   });
   document.getElementById("validateWeb").addEventListener("click", async () => {
-    await chrome.runtime.sendMessage({ type: "aa:validate", url, tabId: tab.id, target: "web" });
+    await chrome.runtime.sendMessage({ type: "aa:validate", url, selection, tabId: tab.id, target: "web" });
     window.close();
   });
   toggle.addEventListener("click", async () => {

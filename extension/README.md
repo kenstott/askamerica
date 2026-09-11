@@ -10,7 +10,10 @@ running on your machine and highlights each checked claim on the page.
 1. **Launch.** The toolbar icon or the right-click entry "Validate this page with AskAmerica"
    opens `claude://claude.ai/new?q=Validate this article: <url>` — Claude Desktop's own
    new-chat deep link — with the prompt staged in the composer. Press Enter. (The popup also
-   offers the same on claude.ai for browsers without the Desktop app.)
+   offers the same on claude.ai for browsers without the Desktop app.) If text is highlighted
+   on the page, both the toolbar popup and a separate right-click entry, "Validate this
+   selection with AskAmerica," validate just that passage instead of the whole page — the
+   prompt becomes `Validate this claim: "<selected text>" (from <url>)`.
 2. **Validate.** The engine's validation instructions take over inside that chat: every
    assertion is extracted verbatim, tested against the warehouse, graded, and published with a
    claim-by-claim table.

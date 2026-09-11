@@ -38,21 +38,26 @@ async function claimsFor(url) {
   return engineFetch("/claims?url=" + encodeURIComponent(url));
 }
 
-function validatePrompt(url) {
+// A highlighted passage is a specific claim to check, not a request to validate the whole
+// page it happens to sit on — the two prompts are deliberately different shapes.
+function validatePrompt(url, selection) {
+  if (selection && selection.trim()) {
+    return "Validate this claim: \"" + selection.trim() + "\" (from " + url + ")";
+  }
   return "Validate this article: " + url;
 }
 
-function desktopLink(url) {
-  return "claude://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url))
+function desktopLink(url, selection) {
+  return "claude://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url, selection))
     + "&surface=chat&source=askamerica-extension";
 }
 
-function webLink(url) {
-  return "https://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url));
+function webLink(url, selection) {
+  return "https://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url, selection));
 }
 
-async function launchValidate(url, tabId, target) {
-  const link = target === "web" ? webLink(url) : desktopLink(url);
+async function launchValidate(url, tabId, target, selection) {
+  const link = target === "web" ? webLink(url, selection) : desktopLink(url, selection);
   if (target === "web") {
     await chrome.tabs.create({ url: link });
     return;
@@ -63,7 +68,7 @@ async function launchValidate(url, tabId, target) {
   try {
     await chrome.tabs.update(tabId, { url: link });
   } catch (e) {
-    await chrome.tabs.create({ url: webLink(url) });
+    await chrome.tabs.create({ url: webLink(url, selection) });
   }
 }
 
@@ -96,16 +101,26 @@ async function refreshBadge(tabId, url) {
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
+    id: "aa-validate-selection",
+    title: "Validate this selection with AskAmerica",
+    contexts: ["selection"]
+  });
+  chrome.contextMenus.create({
     id: "aa-validate-page",
     title: "Validate this page with AskAmerica",
-    contexts: ["page", "link", "selection"]
+    contexts: ["page", "link"]
   });
 });
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
-  if (info.menuItemId !== "aa-validate-page") return;
   const url = info.linkUrl || info.pageUrl || (tab && tab.url);
-  await launchValidate(url, tab && tab.id, "desktop");
+  if (info.menuItemId === "aa-validate-selection") {
+    await launchValidate(url, tab && tab.id, "desktop", info.selectionText);
+    return;
+  }
+  if (info.menuItemId === "aa-validate-page") {
+    await launchValidate(url, tab && tab.id, "desktop");
+  }
 });
 
 chrome.tabs.onActivated.addListener(async ({ tabId }) => {
@@ -131,7 +146,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         sendResponse(await engineStatus());
         break;
       case "aa:validate":
-        await launchValidate(msg.url, msg.tabId, msg.target || "desktop");
+        await launchValidate(msg.url, msg.tabId, msg.target || "desktop", msg.selection);
         sendResponse({ ok: true });
         break;
       case "aa:highlight": {
