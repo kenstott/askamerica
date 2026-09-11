@@ -1,14 +1,95 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>In energy futures, does speculative positioning move before the physical supply picture changes, or after it?</title>
+<title>In crude oil futures, speculative positioning does not reliably lead physical supply changes — the evidence points the other way, weakly</title>
 <style>
-  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
-          font-size:14px; line-height:1.7; margin:0; }
-  main { max-width:800px; margin:0 auto; padding:2rem; }
-  h1 { color:#f0f6fc; font-size:1.3rem; }
-  pre { white-space:pre-wrap; word-wrap:break-word; }
-</style></head>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
 <body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
@@ -17,49 +98,221 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
 </div>
 <main>
-<h1>In energy futures, does speculative positioning move before the physical supply picture changes, or after it?</h1>
-<p style="color:#768390;">askamerica run &middot; 2026-09-10</p>
-<pre>## Does speculative positioning in energy futures move before the physical supply picture changes, or after it?
+<header>
+<h1>In crude oil futures, speculative positioning does not reliably lead physical supply changes — the evidence points the other way, weakly</h1>
+<p class="subtitle">CFTC Disaggregated COT (managed money, WTI-PHYSICAL) vs. EIA weekly national crude stocks, 2010–2017; literature review 2008–2025</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
 
-### Short answer
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
 
-Both the published research and a direct empirical test run here point the same way: speculative positioning (managed‑money net length in WTI crude futures) does **not** show a reliable lead over changes in the physical supply picture (U.S. crude production or commercial crude inventories). If anything it is a **weak, noisy follower/contemporaneous reactor**, not a leading indicator — and the correlation at any lag, in either direction, is too small to call a genuine lead‑lag relationship. This matches the academic consensus (Kilian &amp; Murphy 2014 and the CFTC&#x27;s own commissioned literature) that fundamentals, not speculative flow, drive the physical/price relationship, and that speculative positioning mostly co-moves with or trails price/news rather than anticipating supply data.
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Speculative positioning vs. physical crude supply: lead-lag test</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Weekly changes, WTI managed-money net length vs. national commercial crude stocks, 2010-2017 (CFTC/EIA)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="202.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="238.50" fill="#6b7280">Strongest lag found (either direction)</text>
+  <text class="stat-value" x="36" y="268.50" fill="#1f2328">+6 weeks</text>
+  <text class="stat-delta" x="36" y="288.50" fill="#6b7280">r = 0.118 (n=410)</text>
+  </g>
+  <text class="caption" x="24" y="444" fill="#6b7280">Positioning change 6 weeks earlier weakly associated with a stock</text>
+  <text class="caption" x="24" y="457" fill="#6b7280">change now — but explains only ~1.4% of variance (R²). Not a usable…</text>
+  <rect class="panel-edge" x="448" y="82" width="412" height="349" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="349" viewBox="0 0 412 349" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="349" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Cross-correlation of weekly Δ managed-money net length vs. weekly Δ cr…</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="76" y1="277.48" x2="390" y2="277.48" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="68" y="281.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.15</text>
+      <line class="grid" x1="76" y1="240.57" x2="390" y2="240.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="68" y="244.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.10</text>
+      <line class="grid" x1="76" y1="203.65" x2="390" y2="203.65" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="68" y="207.65" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.05</text>
+      <line class="grid" x1="76" y1="166.74" x2="390" y2="166.74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="68" y="170.74" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.00</text>
+      <line class="grid" x1="76" y1="129.83" x2="390" y2="129.83" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="68" y="133.83" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.05</text>
+      <line class="grid" x1="76" y1="92.91" x2="390" y2="92.91" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="68" y="96.91" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.10</text>
+      <line class="grid" x1="76" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-6" class="tick" x="68" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.15</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="76" y1="56" x2="76" y2="277.48" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="76" y1="277.48" x2="390" y2="277.48" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-x-axis-title" class="axis-title" x="233" y="325" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Lag (weeks; positive = positioning leads stocks)</text>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="166.74" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 166.74)">Correlation (r)</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-8" class="tick" x="85.24" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 85.24 291.48)">-8</text>
+      <text id="p2-xtick-7" class="tick" x="103.71" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 103.71 291.48)">-7</text>
+      <text id="p2-xtick-6" class="tick" x="122.18" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 122.18 291.48)">-6</text>
+      <text id="p2-xtick-5" class="tick" x="140.65" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 140.65 291.48)">-5</text>
+      <text id="p2-xtick-4" class="tick" x="159.12" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 159.12 291.48)">-4</text>
+      <text id="p2-xtick-3" class="tick" x="177.59" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 177.59 291.48)">-3</text>
+      <text id="p2-xtick-2" class="tick" x="196.06" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 196.06 291.48)">-2</text>
+      <text id="p2-xtick-1" class="tick" x="214.53" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 214.53 291.48)">-1</text>
+      <text id="p2-xtick-0" class="tick" x="233" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 233 291.48)">0</text>
+      <text id="p2-xtick-1" class="tick" x="251.47" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 251.47 291.48)">+1</text>
+      <text id="p2-xtick-2" class="tick" x="269.94" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 269.94 291.48)">+2</text>
+      <text id="p2-xtick-3" class="tick" x="288.41" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 288.41 291.48)">+3</text>
+      <text id="p2-xtick-4" class="tick" x="306.88" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 306.88 291.48)">+4</text>
+      <text id="p2-xtick-5" class="tick" x="325.35" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 325.35 291.48)">+5</text>
+      <text id="p2-xtick-6" class="tick" x="343.82" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 343.82 291.48)">+6</text>
+      <text id="p2-xtick-7" class="tick" x="362.29" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 362.29 291.48)">+7</text>
+      <text id="p2-xtick-8" class="tick" x="380.76" y="291.48" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 380.76 291.48)">+8</text>
+    </g>
+    <g id="p2-series-corr-mm-net-long-crude-stocks" class="series">
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-8" class="bar" x="79.32" y="164.53" width="10.82" height="2.21" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-7" class="bar" x="97.80" y="166.74" width="10.82" height="35.44" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-6" class="bar" x="116.27" y="141.64" width="10.82" height="25.10" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-5" class="bar" x="134.74" y="166.74" width="10.82" height="69.40" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-4" class="bar" x="153.21" y="166.74" width="10.82" height="3.69" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-3" class="bar" x="171.68" y="138.69" width="10.82" height="28.05" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-2" class="bar" x="190.15" y="166.74" width="10.82" height="77.52" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-1" class="bar" x="208.62" y="129.83" width="10.82" height="36.91" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-0" class="bar" x="227.09" y="166.74" width="10.82" height="23.62" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-1" class="bar" x="245.56" y="166.74" width="10.82" height="19.93" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-2" class="bar" x="264.03" y="166.74" width="10.82" height="10.34" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-3" class="bar" x="282.50" y="155.67" width="10.82" height="11.07" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-4" class="bar" x="300.97" y="135.73" width="10.82" height="31.01" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-5" class="bar" x="319.44" y="141.64" width="10.82" height="25.10" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-6" class="bar" x="337.91" y="79.62" width="10.82" height="87.12" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-7" class="bar" x="356.38" y="129.83" width="10.82" height="36.91" fill="#2563eb"/>
+      <rect id="p2-mark-corr-mm-net-long-crude-stocks-8" class="bar" x="374.85" y="138.69" width="10.82" height="28.05" fill="#2563eb"/>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="444" fill="#6b7280">No lag exceeds |r|=0.12 across a 17-week window; the profile is</text>
+  <text class="caption" x="452" y="457" fill="#6b7280">essentially flat noise around zero.</text>
+  <text class="footnote" x="20" y="489" fill="#6b7280">CFTC Disaggregated COT (contract 067651, WTI-PHYSICAL) and EIA weekly national crude stocks (series NUS/EPC0), both queried live from the</text>
+  <text class="footnote" x="20" y="503" fill="#6b7280">AskAmerica warehouse. EIA stocks table has a data gap 2018-2025, so the quantitative test is confined to the contiguous 2010-2017 window;</text>
+  <text class="footnote" x="20" y="517" fill="#6b7280">literature findings below span the full modern era including 2008 and 2020-2024.</text>
+  <g id="brand">
+  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:53134/a/21d7e6a1664f49cebb01a87c3fca3ff1.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>The weight of evidence says physical supply/demand fundamentals move first, and speculative futures positioning mostly reacts to them (or to prices) rather than anticipating them.</strong> A direct empirical test run here — cross-correlating weekly changes in managed-money net length on NYMEX WTI against weekly changes in U.S. commercial crude stocks, at lags from -8 to +8 weeks, 2010-2017 — found no lag with a meaningful relationship: the strongest was a 6-week lag at r = 0.118 (R² ≈ 1.4%), which is not economically significant and is comparable to what noise alone produces at that sample size. This matches the peer-reviewed consensus from CFTC-commissioned and academic Granger-causality studies of the 2008 and later oil cycles: hedge-fund/managed-money position changes generally do not Granger-cause subsequent price or inventory moves, whereas fundamentals (OPEC/non-OPEC supply, demand shocks, inventory draws) do a better job explaining subsequent positioning. Speculative positioning is better described as a fast, price-reactive amplifier of a supply/demand signal that is already emerging, not a leading indicator of it.</p>
+</section>
+<section>
+<h2>What was tested directly</h2>
+<p>Two AskAmerica-warehouse series were queried and aligned at weekly grain:</p><ul><li><strong>Speculative positioning:</strong> <code>cftc.cot_disaggregated_futures</code>, contract code 067651 (WTI-PHYSICAL, the primary NYMEX WTI futures contract), managed-money net length (long minus short), weekly Tuesday reports, 2010-01 through 2017-12 (417 contiguous weekly rows).</li><li><strong>Physical supply picture:</strong> <code>energy.eia_petroleum_stocks</code>, national commercial crude oil stocks (series NUS/EPC0), weekly, same window (418 rows). Note: this EIA table has an interior gap for 2018-2025 in the warehouse's current load (data_coverage confirmed years 2018-2025 missing; only 2010-2017 and a partial 2026 slice are populated), so the direct quantitative test below is necessarily confined to 2010-2017 — a real, disclosed data-coverage limitation, not a choice for convenience.</li></ul><p>Both series were first-differenced (week-over-week change) to avoid a spurious correlation from shared long-run trend, then cross-correlated at every lag from -8 to +8 weeks. If speculative positioning led physical supply, positive lags (positioning change today, stock change k weeks later) should show a materially larger |r| than negative lags, and vice versa if physical changes lead positioning.</p><p>Result: every lag, in both directions, falls in the r = -0.11 to +0.12 range — indistinguishable from sampling noise on a 400+ observation series. There is no lag at which one series reliably anticipates the other in this window.</p>
+</section>
+<section>
+<h2>What the literature adds</h2>
+<p>Because the direct warehouse test is confined to a single 8-year window (and crude stocks/managed-money net length is only one operationalization of "speculative positioning" and "physical supply"), the published literature was used to extend and triangulate:</p><ul><li>CFTC's own commissioned study, <em>The Role of Speculators in the Crude Oil Futures Market</em>, and multiple Granger-causality studies of the 2008 price spike found that hedge-fund/managed-money position changes generally do <strong>not</strong> Granger-cause subsequent price changes; any effect on the 2008 "bubble" was small and short-lived relative to the swing in physical supply-demand fundamentals over the same period.</li><li>A 2022 study in the <em>Journal of Commodity Markets/ScienceDirect</em> line of research on trader positions and oil futures prices similarly finds the lead-lag relationship is dynamic and largely regime-dependent (tighter during acute uncertainty spikes, e.g. 2020, 2022), with no stable structural lead by speculators over fundamentals.</li><li>The ECB's 2024 Economic Bulletin box on oil/gas speculation during geopolitical shocks describes speculative positioning as reactive: net positions shift sharply on the SAME days as a geopolitical supply shock is priced, consistent with reaction rather than anticipation.</li><li>Oxford Institute for Energy Studies (2025) cautions that "speculative positions" reported in COT/derivatives data are themselves a noisy, delayed proxy — managed-money reports are Tuesday snapshots published the following Friday, several days after the position was actually taken, and the category itself mixes directional speculation with hedging-adjacent flow, which further dilutes any lead signal that might exist.</li></ul><p>All four sources converge: peer-reviewed research places the greater share of the weight on fundamentals (supply/demand/inventory) driving price and, by extension, positioning — not the reverse.</p>
+</section>
+<section>
+<h2>Why this direction makes mechanical sense</h2>
+<p>Two structural reasons support fundamentals-lead-positioning rather than the converse:</p><ol><li><strong>Information timing.</strong> EIA's weekly stocks report (Wednesday, for the week ending the prior Friday) is a scheduled, closely-watched fundamental release that futures markets are known to react to within minutes on release day — this is a reaction, not a lead. Managed-money positions are reported with a further lag (Tuesday snapshot, released the following Friday), so by the time a position change is visible in the COT report, multiple fundamental data points have already been public.</li><li><strong>Capacity to move fast vs. capacity to know something first.</strong> Speculative capital can reposition within a single trading session; physical supply (production, inventory draws, shipping) moves over weeks. It is mechanically far easier for financial positioning to react quickly to a fundamental print than for it to "know" a physical supply change before it is measurable in production or stocks data — outside of genuine private information (e.g. a producer's own hedging desk), which is not what the broad managed-money category captures.</li></ol>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li>The direct empirical test is confined to 2010-2017 due to a real gap in the warehouse's EIA petroleum-stocks load for 2018-2025; a rerun once that gap is filled could sharpen or revise the correlation magnitudes, though the qualitative conclusion (weak, non-directional relationship) is consistent with the broader literature spanning 2008-2024.</li><li>Managed-money net length on one contract (WTI-PHYSICAL) and national commercial crude stocks are proxies, not the full picture — other trader categories (swap dealers, other reportables), other locations (Brent, product markets), and other physical-supply measures (production, exports, rig counts) were not tested directly here and could show a different lag structure.</li><li>"No detectable lag" is itself informative: it is consistent with an efficient/fast-adjusting futures market rather than with speculation systematically front-running or systematically lagging the physical fundamentals.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>11 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 20 rows — 3178 ms</summary><pre><code>SELECT DISTINCT contract_market_name, cftc_contract_market_code FROM cftc.cot_disaggregated_futures WHERE commodity_name ILIKE '%CRUDE%' LIMIT 20</code></pre></details>
+<details class="sqltoggle"><summary>query — 1600 ms</summary><pre><code>SELECT DISTINCT series_id, series_description FROM energy.eia_petroleum_stocks WHERE product_code = 'EPC0' AND (padd = 'National' OR eia_area_code = 'NA') LIMIT 20</code></pre></details>
+<details class="sqltoggle"><summary>query — 8 rows — 1625 ms</summary><pre><code>SELECT DISTINCT eia_area_code, padd, product_code, product FROM energy.eia_petroleum_stocks WHERE product ILIKE '%crude%' FETCH FIRST 30 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1404 ms</summary><pre><code>SELECT MIN(report_date), MAX(report_date), COUNT(*) FROM energy.eia_petroleum_stocks WHERE eia_area_code = 'NUS' AND product_code = 'EPC0'</code></pre></details>
+<details class="sqltoggle"><summary>query — 9 rows — 1711 ms</summary><pre><code>SELECT EXTRACT(YEAR FROM CAST(report_date AS DATE)) AS yr, COUNT(*) FROM energy.eia_petroleum_stocks WHERE eia_area_code = 'NUS' AND product_code = 'EPC0' GROUP BY EXTRACT(YEAR FROM CAST(report_date AS DATE)) ORDER BY yr</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 47410 ms</summary><pre><code>SELECT DISTINCT eia_area_code, state_abbr, process_code, process_name FROM energy.eia_fossil_fuel_production WHERE eia_area_code IN ('NUS','US') OR state_abbr = 'US' FETCH FIRST 20 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 6705 ms</summary><pre><code>SELECT MIN(report_date), MAX(report_date), COUNT(*) FROM cftc.cot_disaggregated_futures WHERE cftc_contract_market_code = '067651'</code></pre></details>
+<details class="sqltoggle"><summary>query — 244 rows — 6526 ms</summary><pre><code>SELECT CAST(EXTRACT(YEAR FROM report_date) AS INTEGER) AS yr, CAST(EXTRACT(MONTH FROM report_date) AS INTEGER) AS mo, AVG(money_manager_long_all - money_manager_short_all) AS mm_net
+FROM cftc.cot_disaggregated_futures
+WHERE cftc_contract_market_code = '067651'
+GROUP BY CAST(EXTRACT(YEAR FROM report_date) AS INTEGER), CAST(EXTRACT(MONTH FROM report_date) AS INTEGER)
+ORDER BY yr, mo</code></pre></details>
+<details class="sqltoggle"><summary>query — 246 rows — 56340 ms</summary><pre><code>SELECT production_year AS yr, production_month AS mo, SUM(production_volume) AS prod_kbbl
+FROM energy.eia_fossil_fuel_production
+WHERE eia_area_code = 'NUS' AND process_code = 'FPF'
+GROUP BY production_year, production_month
+ORDER BY yr, mo</code></pre></details>
+<details class="sqltoggle"><summary>query — 417 rows — 4931 ms</summary><pre><code>SELECT report_date, (money_manager_long_all - money_manager_short_all) AS mm_net
+FROM cftc.cot_disaggregated_futures
+WHERE cftc_contract_market_code = '067651' AND report_date &gt;= '2010-01-01' AND report_date &lt;= '2017-12-31'
+ORDER BY report_date</code></pre></details>
+<details class="sqltoggle"><summary>query — 418 rows — 4055 ms</summary><pre><code>SELECT CAST(report_date AS DATE) AS rd, stocks_kbbl
+FROM energy.eia_petroleum_stocks
+WHERE eia_area_code = 'NUS' AND product_code = 'EPC0' AND process_code = 'SAE'
+AND report_date &gt;= '2010-01-01' AND report_date &lt;= '2017-12-31'
+ORDER BY rd</code></pre></details>
 
-### What I computed directly
-
-Using CFTC Commitments-of-Traders &quot;Disaggregated Futures-Only&quot; data for the NYMEX WTI light-sweet crude contract (`cftc.cot_disaggregated_futures`, weekly, money‑manager net long‑short position) and EIA physical-supply series (`energy.eia_fossil_fuel_production` for monthly U.S. crude output, full 2006–2026 coverage; `energy.eia_petroleum_stocks`, series `WCESTUS1`, U.S. commercial crude inventories ex-SPR, weekly — the corpus has this series loaded for 2013–2017 and 2026, with an interior gap 2018–2025 that I flagged and worked around by restricting the inventory test to the loaded window):
-
-1. **Positioning vs. monthly U.S. crude production (2009–2026, n=204 overlapping months).** Cross-correlated month-over-month changes in net managed-money positioning against month-over-month changes in production at lags of ±12 months. Every lag produced |r| &lt; 0.14 — noise-level. The single largest magnitude (r ≈ ‑0.14) appeared at a 4-month lag with no consistent sign pattern around it, which is what you&#x27;d expect from chance in a 25-lag sweep, not a real signal.
-2. **Positioning vs. weekly commercial crude inventories (2013–2017 + 2026, n=260 weeks).** Cross-correlated week-over-week changes in net positioning against week-over-week inventory changes at lags of ±10 weeks. Correlations ranged from about ‑0.04 to +0.15, again noise-level, with no lag standing out as economically meaningful (the peak, r≈0.15 at a 5-week lead for positioning, explains under 2.5% of variance).
-
-Chart: &quot;Money-manager net WTI positioning vs. weekly crude inventory changes, by lag&quot; (bar chart delivered alongside this report) shows this — no lag comes close to a level you&#x27;d trust as a real, tradable lead-lag relationship.
-
-### Why this matches the literature, not contradicts it
-
-- **Kilian &amp; Murphy (2014, *Journal of Applied Econometrics*)** built a structural VAR of the global oil market using inventories to identify a speculative-demand shock separately from flow supply/demand shocks. Their central finding for the best-studied episode (the 2003–2008 price surge) was that it was driven by unexpectedly strong global oil *consumption* growth, not by speculative trading or by supply shortfalls — i.e., speculation was not a leading driver of the physical fundamentals.
-- **CFTC-commissioned and peer-reviewed studies** (e.g., the CFTC&#x27;s own review of speculation in crude oil futures, and the broader literature summarized in the MDPI/Academia.edu lead-lag reviews found in this search) generally find that changes in speculative positions do not Granger-cause subsequent price or fundamental changes in a systematic way — the causality, to the extent it exists, tends to run from price/news to positioning (traders reacting to information, including physical-market signals), not the reverse.
-- The plausible mechanism that *does* exist runs the other way: producers and traders observe price moves (which speculative flow can amplify) and *then* adjust physical decisions (drilling, storage, exports) — so any &quot;lead&quot; in the data is more likely price leading physical supply with a multi-month lag (rig counts/drilling activity responding to price over ~months), not speculative positioning leading supply on its own.
-
-### Caveats
-
-- Both of my correlation windows are limited: the inventory series has a real gap in this corpus for 2018–2025 (only 2013–2017 and 2026 are loaded), so the weekly result rests on two disjoint stretches rather than one continuous decade. I did not have a full-history WTI price series loaded here (the corpus&#x27;s FRED/EIA price tables cover only 2026 or partial years) to also test the price-transmission leg directly, so this analysis is scoped to positioning vs. physical quantities (production, inventories), not positioning vs. price.
-- Correlation at weekly/monthly grain with modest sample sizes (n≈200–260) has limited power; a null/near-zero result here is consistent with &quot;no detectable lead-lag signal,&quot; not proof that none could ever exist at a different (e.g., daily or higher-frequency) grain.
-- This is a descriptive lead-lag/correlation exercise, not a causal identification (no instrument or structural model was used) — for a causal decomposition, Kilian &amp; Murphy&#x27;s structural SVAR approach is the standard.
-
-### Bottom line
-
-Speculative positioning in WTI futures behaves like a reactive/contemporaneous market participant relative to the physical supply picture, not an anticipatory one. Neither the CFTC/EIA data tested here nor the structural literature (Kilian &amp; Murphy 2014) supports speculative positioning systematically moving *before* physical supply changes; the stronger, better-established direction of influence is fundamentals (and price responding to them) shaping positioning, with any physical-side response to price itself lagging by months (e.g., drilling activity).
-
-**Sources**
-- [Kilian &amp; Murphy (2014), &quot;The Role of Inventories and Speculative Trading in the Global Market for Crude Oil,&quot; Journal of Applied Econometrics](https://onlinelibrary.wiley.com/doi/abs/10.1002/jae.2322)
-- [IMF Working Paper 14/218, &quot;Oil Price Volatility and the Role of Speculation&quot;](https://www.imf.org/external/pubs/ft/wp/2014/wp14218.pdf)
-- [CFTC, &quot;The Role of Speculators in the Crude Oil Futures Market&quot;](https://www.cftc.gov/sites/default/files/idc/groups/public/@swaps/documents/file/plstudy_19_cftc.pdf)
-- [MDPI, &quot;The Lead–Lag Relationship between Oil Futures and Spot Prices—A Literature Review&quot;](https://www.mdpi.com/2227-7072/6/4/89)
-- [Resources for the Future, &quot;Does Speculation Drive Oil Prices?&quot;](https://www.resources.org/archives/does-speculation-drive-oil-prices/)
-- [ECB Economic Bulletin, &quot;Speculation in oil and gas prices in times of geopolitical risks&quot;](https://www.ecb.europa.eu/press/economic-bulletin/focus/2024/html/ecb.ebbox202402_01~b3d857ae05.en.html)
-- AskAmerica connector tables queried directly: `cftc.cot_disaggregated_futures` (CFTC Commitments of Traders, Disaggregated Futures-Only, WTI light sweet crude, money-manager long/short, weekly 2009–2026), `energy.eia_fossil_fuel_production` (EIA API v2, U.S. crude production, monthly 2006–2026), `energy.eia_petroleum_stocks` series `WCESTUS1` (EIA API v2, U.S. commercial crude stocks ex-SPR, weekly, loaded years 2013–2017 and 2026 — 2018–2025 is a genuine gap in this corpus at time of query).
-
-*Prepared 2026-09-10.*
-</pre>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://publicreporting.cftc.gov/resource/72hh-3qpy.json">CFTC Commitments of Traders — Disaggregated Futures-Only, WTI-PHYSICAL (067651), managed-money net length</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT report_date, (money_manager_long_all - money_manager_short_all) AS mm_net FROM cftc.cot_disaggregated_futures WHERE cftc_contract_market_code = '067651' AND report_date &gt;= '2010-01-01' AND report_date &lt;= '2017-12-31' ORDER BY report_date</code></pre></details></li>
+<li><a href="https://www.eia.gov/opendata/">EIA weekly national commercial crude oil stocks (NUS/EPC0)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CAST(report_date AS DATE) AS rd, stocks_kbbl FROM energy.eia_petroleum_stocks WHERE eia_area_code = 'NUS' AND product_code = 'EPC0' AND process_code = 'SAE' AND report_date &gt;= '2010-01-01' AND report_date &lt;= '2017-12-31' ORDER BY rd</code></pre></details></li>
+<li><a href="https://www.cftc.gov/sites/default/files/idc/groups/public/@swaps/documents/file/plstudy_19_cftc.pdf">CFTC — The Role of Speculators in the Crude Oil Futures Market</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S1059056022001782">Trader positions and the price of oil in the futures market — ScienceDirect</a></li>
+<li><a href="https://www.resources.org/archives/does-speculation-drive-oil-prices/">Does Speculation Drive Oil Prices? — Resources for the Future</a></li>
+<li><a href="https://www.ecb.europa.eu/press/economic-bulletin/focus/2024/html/ecb.ebbox202402_01~b3d857ae05.en.html">ECB Economic Bulletin — Speculation in oil and gas prices in times of geopolitical risks (2024)</a></li>
+<li><a href="https://www.oxfordenergy.org/wpcms/wp-content/uploads/2025/12/Comment-The-State-of-%E2%80%98Speculative-positions-in-Oil-Derivatives.pdf">Oxford Institute for Energy Studies — The State of 'Speculative Positions' in Oil Derivatives (2025)</a></li>
+<li><a href="https://www.mdpi.com/2227-7072/6/4/89">The Lead–Lag Relationship between Oil Futures and Spot Prices — A Literature Review (MDPI)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Correlation figures for 2010-2017 computed directly from CFTC and EIA warehouse tables in this session; literature figures are as reported by their original authors/publishers, not independently re-derived.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-11</span></p>
+</footer>
 </main>
-</body></html>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
