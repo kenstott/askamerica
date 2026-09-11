@@ -88,10 +88,15 @@ def latest_askamerica_run(n):
         return None
     dates = sorted(
         d for d in os.listdir(persona_dir)
-        if os.path.isdir(os.path.join(persona_dir, d)) and re.match(r"\d{4}-\d{2}-\d{2}", d)
-        # Runs the eval set aside (a wrong-server run, an out-of-scope rerun, a pre-fix
-        # copy) carry a suffix naming why; they are not the run to publish.
-        and not re.search(r"WRONG|invalid|pre-mandate|not-surfaced|out-of-scope|before-fix|after-fix", d, re.I)
+        if os.path.isdir(os.path.join(persona_dir, d))
+        # A publishable run's directory is the bare date, nothing else. Any suffix — a
+        # wrong-server run, an out-of-scope rerun, a pre-fix copy, a hung-engine abort, a
+        # set-aside for any other reason — is deliberately excluded by a full match rather
+        # than a keyword list: a keyword list missed "-zero-connector-calls" once already
+        # (it lexically sorts after the bare date and was picked as "latest" instead of the
+        # actual latest clean run, publishing stale figures silently). A full match can't
+        # miss a suffix whose name nobody thought to add to a list.
+        and re.fullmatch(r"\d{4}-\d{2}-\d{2}", d)
     )
     for d in reversed(dates):
         run_dir = os.path.join(persona_dir, d)

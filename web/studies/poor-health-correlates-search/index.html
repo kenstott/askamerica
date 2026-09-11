@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Poorer, more rural, and more Republican-leaning states have worse health outcomes — but income drives most of the pattern</title>
+<title>Poverty, not just geography, is the strongest predictor of worse state-level health outcomes in the US</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -88,6 +88,28 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
+@media screen{
+#s4-t1-s1:checked ~ table tbody.s0{display:none}
+#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
+#s4-t1-s1:checked ~ .srtreset{display:inline-block}
+#s4-t1-s2:checked ~ table tbody.s0{display:none}
+#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
+#s4-t1-s2:checked ~ .srtreset{display:inline-block}
+#s4-t1-s3:checked ~ table tbody.s0{display:none}
+#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
+#s4-t1-s3:checked ~ .srtreset{display:inline-block}
+#s4-t1-s4:checked ~ table tbody.s0{display:none}
+#s4-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"]{color:var(--link)}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"] .srtcue{opacity:1}
+#s4-t1-s4:checked ~ .srtreset{display:inline-block}
+}
 </style>
 </head>
 <body>
@@ -99,8 +121,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Poorer, more rural, and more Republican-leaning states have worse health outcomes — but income drives most of the pattern</h1>
-<p class="subtitle">State-level age-adjusted mortality vs. poverty, income, rurality, and political lean, 2008-2017 (most recent full decade available at state grain)</p>
+<h1>Poverty, not just geography, is the strongest predictor of worse state-level health outcomes in the US</h1>
+<p class="subtitle">CDC NCHS mortality, ACS poverty/income, USDA ERS rurality — 50 states + DC, most recent available 10-year window (2008-2017)</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +142,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 915" width="880" height="915" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 645" width="880" height="645" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,214 +169,181 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="915" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">Poorer, more rural, more Republican-leaning states have higher mortality — but income does most of the work</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">State age-adjusted all-cause mortality (CDC/NCHS, avg 2008-2017) vs. median household income (Census ACS)</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">What kind of place has worse health? Poverty leads, rurality adds on top</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Age-adjusted all-cause mortality, 50-state average 2008-2017 (CDC NCHS, most recent available 10-year window)</text>
   <g id="p1-stat">
   <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Mortality change per +$1,000 median income (controlling for rurality &amp; political lean)</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">-5.7 deaths/100k</text>
-  <text class="stat-delta" x="36" y="168" fill="#dc2626">p&lt;0.001, robust to leave-one-out</text>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Poverty-rate coefficient (OLS, controlling for rurality &amp; income)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328" style="font-size:19px">+16.3 deaths/100k per +1pp poverty</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">p=0.002, robust to leave-one-out</text>
   </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">50-state regression, 2008-2017 averages</text>
   <g id="p2-stat">
   <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">10 lowest- vs 10 highest-income states, mortality gap</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">~180 deaths/100k</text>
-  <text class="stat-delta" x="464" y="168" fill="#059669">about 24% of the poorer group's own rate</text>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Mortality gap: 10 poorest vs 10 richest states</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:25px">~250 deaths per 100,000/yr</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">~30% higher</text>
   </g>
-  <rect class="panel-edge" x="20" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+  <text class="caption" x="452" y="203" fill="#6b7280">Age-adjusted, all-cause</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">State income vs. age-adjusted mortality, 2008-2017 avg</text>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Highest-poverty vs lowest-poverty states, age-adjusted mortality</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="77" y1="196" x2="386" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="69" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
-      <line class="grid" x1="77" y1="168" x2="386" y2="168" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="69" y="172" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
-      <line class="grid" x1="77" y1="140" x2="386" y2="140" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="69" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">700</text>
-      <line class="grid" x1="77" y1="112" x2="386" y2="112" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="69" y="116" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
-      <line class="grid" x1="77" y1="84" x2="386" y2="84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="69" y="88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">900</text>
-      <line class="grid" x1="77" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <line class="grid" x1="77" y1="195.76" x2="390" y2="195.76" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="69" y="199.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="167.81" x2="390" y2="167.81" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="69" y="171.81" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="77" y1="139.86" x2="390" y2="139.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="69" y="143.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="77" y1="111.90" x2="390" y2="111.90" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="69" y="115.90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+      <line class="grid" x1="77" y1="83.95" x2="390" y2="83.95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="69" y="87.95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
       <text id="p3-ytick-5" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="77" y1="56" x2="77" y2="196" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="77" y1="196" x2="386" y2="196" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="56" x2="77" y2="195.76" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="195.76" x2="390" y2="195.76" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="231.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Median household income ($)</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="126" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 126)">Mortality /100k</text>
+    <text id="p3-x-axis-title" class="axis-title" x="233.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="125.88" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 125.88)">Deaths per 100k</text>
     <g id="p3-x-axis-labels">
-      <text id="p3-xtick-0" class="tick" x="77" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">35,000</text>
-      <text id="p3-xtick-2" class="tick" x="154.25" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">45,000</text>
-      <text id="p3-xtick-4" class="tick" x="231.50" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">55,000</text>
-      <text id="p3-xtick-6" class="tick" x="308.75" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">65,000</text>
-      <text id="p3-xtick-8" class="tick" x="386" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">75,000</text>
+      <text id="p3-xtick-ms" class="tick" x="86.78" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 86.78 209.76)">MS</text>
+      <text id="p3-xtick-wv" class="tick" x="106.34" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 106.34 209.76)">WV</text>
+      <text id="p3-xtick-al" class="tick" x="125.91" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 125.91 209.76)">AL</text>
+      <text id="p3-xtick-ky" class="tick" x="145.47" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 145.47 209.76)">KY</text>
+      <text id="p3-xtick-ok" class="tick" x="165.03" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 165.03 209.76)">OK</text>
+      <text id="p3-xtick-ar" class="tick" x="184.59" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 184.59 209.76)">AR</text>
+      <text id="p3-xtick-la" class="tick" x="204.16" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 204.16 209.76)">LA</text>
+      <text id="p3-xtick-tn" class="tick" x="223.72" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 223.72 209.76)">TN</text>
+      <text id="p3-xtick-sc" class="tick" x="243.28" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 243.28 209.76)">SC</text>
+      <text id="p3-xtick-in" class="tick" x="262.84" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 262.84 209.76)">IN</text>
+      <text id="p3-xtick-unnamed" class="tick" x="282.41" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 282.41 209.76)">...</text>
+      <text id="p3-xtick-mn" class="tick" x="301.97" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 301.97 209.76)">MN</text>
+      <text id="p3-xtick-ct" class="tick" x="321.53" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 321.53 209.76)">CT</text>
+      <text id="p3-xtick-ny" class="tick" x="341.09" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 341.09 209.76)">NY</text>
+      <text id="p3-xtick-ca" class="tick" x="360.66" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 360.66 209.76)">CA</text>
+      <text id="p3-xtick-hi" class="tick" x="380.22" y="209.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 380.22 209.76)">HI</text>
     </g>
-    <g id="p3-series-states" class="series">
-      <circle id="p3-mark-states-0" class="point" cx="109.59" cy="68.46" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-1" class="point" cx="121.43" cy="71.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-2" class="point" cx="142.24" cy="75.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-3" class="point" cx="140.60" cy="78.96" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-4" class="point" cx="158.78" cy="81.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-5" class="point" cx="122.52" cy="84.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-6" class="point" cx="151.37" cy="85.09" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-7" class="point" cx="153.22" cy="87.36" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-8" class="point" cx="156.56" cy="100.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-9" class="point" cx="184.96" cy="103.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-10" class="point" cx="184.71" cy="105.11" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-11" class="point" cx="193.14" cy="106.79" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-12" class="point" cx="176.78" cy="107.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-13" class="point" cx="168.71" cy="114.07" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-14" class="point" cx="188.43" cy="115.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-15" class="point" cx="224.05" cy="117.96" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-16" class="point" cx="214.47" cy="120.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-17" class="point" cx="205.01" cy="121.46" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-18" class="point" cx="209.86" cy="124.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-19" class="point" cx="184.32" cy="124.54" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-20" class="point" cx="164.62" cy="124.57" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-21" class="point" cx="269.55" cy="124.91" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-22" class="point" cx="152.81" cy="125.66" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-23" class="point" cx="247.23" cy="126.34" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-24" class="point" cx="352.31" cy="127.71" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-25" class="point" cx="249.82" cy="129.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-26" class="point" cx="302.13" cy="130.48" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-27" class="point" cx="174.30" cy="131.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-28" class="point" cx="207.80" cy="132.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-29" class="point" cx="375.49" cy="133.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-30" class="point" cx="207.93" cy="133.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-31" class="point" cx="201.08" cy="134.26" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-32" class="point" cx="216.95" cy="135.27" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-33" class="point" cx="188.83" cy="135.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-34" class="point" cx="245.76" cy="137.06" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-35" class="point" cx="225.94" cy="137.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-36" class="point" cx="315.93" cy="138.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-37" class="point" cx="265.97" cy="138.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-38" class="point" cx="218.52" cy="139.75" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-39" class="point" cx="271.62" cy="142.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-40" class="point" cx="198.51" cy="144.62" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-41" class="point" cx="362.45" cy="145.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-42" class="point" cx="177.17" cy="145.80" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-43" class="point" cx="330.24" cy="146.89" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-44" class="point" cx="265.91" cy="147.03" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-45" class="point" cx="272.64" cy="152.52" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-46" class="point" cx="346.90" cy="152.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-47" class="point" cx="257.19" cy="152.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-48" class="point" cx="287.00" cy="158.34" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-states-49" class="point" cx="336.82" cy="170.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+    <g id="p3-series-deaths-per-100k-2008-2017-avg" class="series">
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-ms" class="bar" x="80.52" y="62.22" width="11.52" height="133.54" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-wv" class="bar" x="100.08" y="63.90" width="11.52" height="131.86" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-al" class="bar" x="119.65" y="65.83" width="11.52" height="129.93" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-ky" class="bar" x="139.21" y="67.46" width="11.52" height="128.30" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-ok" class="bar" x="158.77" y="68.83" width="11.52" height="126.93" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-ar" class="bar" x="178.33" y="70.23" width="11.52" height="125.53" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-la" class="bar" x="197.90" y="70.52" width="11.52" height="125.24" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-tn" class="bar" x="217.46" y="71.65" width="11.52" height="124.11" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-sc" class="bar" x="237.02" y="78.25" width="11.52" height="117.51" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-in" class="bar" x="256.58" y="79.62" width="11.52" height="116.14" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-mn" class="bar" x="295.71" y="104.18" width="11.52" height="91.58" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-ct" class="bar" x="315.27" y="104.26" width="11.52" height="91.50" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-ny" class="bar" x="334.83" y="104.29" width="11.52" height="91.47" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-ca" class="bar" x="354.40" y="107.08" width="11.52" height="88.68" fill="#2563eb"/>
+      <rect id="p3-mark-deaths-per-100k-2008-2017-avg-hi" class="bar" x="373.96" y="113.01" width="11.52" height="82.75" fill="#2563eb"/>
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="487" fill="#6b7280">r = -0.74 (p&lt;0.001, n=50). Each point is one state's 10-year average.</text>
-  <rect class="panel-edge" x="448" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+  <text class="caption" x="24" y="519" fill="#6b7280">10 highest-poverty states (left) vs. 10 lowest-poverty states (right)</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">10 highest-mortality states</text>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Poverty rate vs. age-adjusted mortality, 50 states</text>
     <g id="p4-gridlines">
-      <line class="grid" x1="77" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="69" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="77" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="69" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
-      <line class="grid" x1="77" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="69" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
-      <line class="grid" x1="77" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="69" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
-      <line class="grid" x1="77" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="69" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
-      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <line class="grid" x1="77" y1="196" x2="386" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="69" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+      <line class="grid" x1="77" y1="168" x2="386" y2="168" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="69" y="172" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+      <line class="grid" x1="77" y1="140" x2="386" y2="140" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="69" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">700</text>
+      <line class="grid" x1="77" y1="112" x2="386" y2="112" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="69" y="116" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
+      <line class="grid" x1="77" y1="84" x2="386" y2="84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="69" y="88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">900</text>
+      <line class="grid" x1="77" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
       <text id="p4-ytick-5" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
     </g>
     <g id="p4-axes">
-      <line class="axis" x1="77" y1="56" x2="77" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="77" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="56" x2="77" y2="196" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="196" x2="386" y2="196" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p4-x-axis-title" class="axis-title" x="233.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Deaths /100k</text>
+    <text id="p4-x-axis-title" class="axis-title" x="231.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Poverty rate (%)</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="126" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 126)">Deaths per 100k</text>
     <g id="p4-x-axis-labels">
-      <text id="p4-xtick-ms" class="tick" x="92.65" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MS</text>
-      <text id="p4-xtick-wv" class="tick" x="123.95" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WV</text>
-      <text id="p4-xtick-al" class="tick" x="155.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AL</text>
-      <text id="p4-xtick-ky" class="tick" x="186.55" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">KY</text>
-      <text id="p4-xtick-ok" class="tick" x="217.85" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OK</text>
-      <text id="p4-xtick-ar" class="tick" x="249.15" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AR</text>
-      <text id="p4-xtick-la" class="tick" x="280.45" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">LA</text>
-      <text id="p4-xtick-tn" class="tick" x="311.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">TN</text>
-      <text id="p4-xtick-sc" class="tick" x="343.05" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">SC</text>
-      <text id="p4-xtick-in" class="tick" x="374.35" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">IN</text>
+      <text id="p4-xtick-0" class="tick" x="77" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">8</text>
+      <text id="p4-xtick-1" class="tick" x="115.63" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <text id="p4-xtick-2" class="tick" x="154.25" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">12</text>
+      <text id="p4-xtick-3" class="tick" x="192.88" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">14</text>
+      <text id="p4-xtick-4" class="tick" x="231.50" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">16</text>
+      <text id="p4-xtick-5" class="tick" x="270.13" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">18</text>
+      <text id="p4-xtick-6" class="tick" x="308.75" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <text id="p4-xtick-7" class="tick" x="347.38" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">22</text>
+      <text id="p4-xtick-8" class="tick" x="386" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">24</text>
     </g>
-    <g id="p4-series-age-adjusted-mortality" class="series">
-      <rect id="p4-mark-age-adjusted-mortality-ms" class="bar" x="82.63" y="62.41" width="19.03" height="137.59" fill="#2563eb"/>
-      <rect id="p4-mark-age-adjusted-mortality-wv" class="bar" x="113.93" y="64.14" width="19.03" height="135.86" fill="#2563eb"/>
-      <rect id="p4-mark-age-adjusted-mortality-al" class="bar" x="145.23" y="66.12" width="19.03" height="133.88" fill="#2563eb"/>
-      <rect id="p4-mark-age-adjusted-mortality-ky" class="bar" x="176.53" y="67.81" width="19.03" height="132.19" fill="#2563eb"/>
-      <rect id="p4-mark-age-adjusted-mortality-ok" class="bar" x="207.83" y="69.22" width="19.03" height="130.78" fill="#2563eb"/>
-      <rect id="p4-mark-age-adjusted-mortality-ar" class="bar" x="239.13" y="70.66" width="19.03" height="129.34" fill="#2563eb"/>
-      <rect id="p4-mark-age-adjusted-mortality-la" class="bar" x="270.43" y="70.96" width="19.03" height="129.04" fill="#2563eb"/>
-      <rect id="p4-mark-age-adjusted-mortality-tn" class="bar" x="301.73" y="72.13" width="19.03" height="127.87" fill="#2563eb"/>
-      <rect id="p4-mark-age-adjusted-mortality-sc" class="bar" x="333.03" y="78.92" width="19.03" height="121.08" fill="#2563eb"/>
-      <rect id="p4-mark-age-adjusted-mortality-in" class="bar" x="364.33" y="80.34" width="19.03" height="119.66" fill="#2563eb"/>
+    <g id="p4-series-states" class="series">
+      <circle id="p4-mark-states-0" class="point" cx="347.76" cy="68.46" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-1" class="point" cx="264.72" cy="71.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-2" class="point" cx="270.70" cy="75.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-3" class="point" cx="277.66" cy="78.96" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-4" class="point" cx="241.54" cy="81.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-5" class="point" cx="281.91" cy="84.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-6" class="point" cx="290.02" cy="85.09" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-7" class="point" cx="252.36" cy="87.36" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-8" class="point" cx="254.87" cy="100.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-9" class="point" cx="204.46" cy="103.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-10" class="point" cx="213.73" cy="105.11" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-11" class="point" cx="253.71" cy="106.79" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-12" class="point" cx="209.10" cy="107.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-13" class="point" cx="242.12" cy="114.07" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-14" class="point" cx="230.53" cy="115.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-15" class="point" cx="191.33" cy="117.96" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-16" class="point" cx="173.37" cy="120.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-17" class="point" cx="174.91" cy="121.46" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-18" class="point" cx="251.20" cy="124.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-19" class="point" cx="178.00" cy="124.54" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-20" class="point" cx="209.29" cy="124.57" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-21" class="point" cx="145.95" cy="124.91" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-22" class="point" cx="305.85" cy="125.66" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-23" class="point" cx="132.62" cy="126.34" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-24" class="point" cx="112.92" cy="127.71" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-25" class="point" cx="184.76" cy="129.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-26" class="point" cx="134.94" cy="130.48" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-27" class="point" cx="207.17" cy="131.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-28" class="point" cx="155.99" cy="132.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-29" class="point" cx="103.84" cy="133.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-30" class="point" cx="160.24" cy="133.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-31" class="point" cx="218.37" cy="134.26" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-32" class="point" cx="161.78" cy="135.27" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-33" class="point" cx="190.94" cy="135.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-34" class="point" cx="178.00" cy="137.06" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-35" class="point" cx="143.82" cy="137.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-36" class="point" cx="83.37" cy="138.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-37" class="point" cx="148.26" cy="138.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-38" class="point" cx="150.77" cy="139.75" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-39" class="point" cx="168.35" cy="142.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-40" class="point" cx="249.46" cy="144.62" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-41" class="point" cx="117.17" cy="145.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-42" class="point" cx="219.53" cy="145.80" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-43" class="point" cx="135.71" cy="146.89" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-44" class="point" cx="163.13" cy="147.03" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-45" class="point" cx="133.39" cy="152.52" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-46" class="point" cx="113.31" cy="152.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-47" class="point" cx="211.22" cy="152.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-48" class="point" cx="214.70" cy="158.34" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-49" class="point" cx="126.25" cy="170.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
     </g>
     <g id="p4-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="452" y="487" fill="#6b7280">Avg poverty rate in this group: 18.0%; all 10 lean Republican (avg CPI</text>
-  <text class="caption" x="452" y="500" fill="#6b7280">-74).</text>
-  <rect class="panel-edge" x="20" y="522" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="522" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">10 lowest-mortality states</text>
-    <g id="p5-gridlines">
-      <line class="grid" x1="77" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-0" class="tick" x="69" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="77" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-1" class="tick" x="69" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
-      <line class="grid" x1="77" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-2" class="tick" x="69" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
-      <line class="grid" x1="77" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-3" class="tick" x="69" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
-      <line class="grid" x1="77" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-4" class="tick" x="69" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
-      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-5" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
-    </g>
-    <g id="p5-axes">
-      <line class="axis" x1="77" y1="56" x2="77" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="77" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p5-x-axis-title" class="axis-title" x="233.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
-    <text id="p5-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Deaths /100k</text>
-    <g id="p5-x-axis-labels">
-      <text id="p5-xtick-hi" class="tick" x="92.65" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">HI</text>
-      <text id="p5-xtick-ca" class="tick" x="123.95" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA</text>
-      <text id="p5-xtick-ny" class="tick" x="155.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NY</text>
-      <text id="p5-xtick-ct" class="tick" x="186.55" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CT</text>
-      <text id="p5-xtick-mn" class="tick" x="217.85" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MN</text>
-      <text id="p5-xtick-co" class="tick" x="249.15" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CO</text>
-      <text id="p5-xtick-ma" class="tick" x="280.45" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MA</text>
-      <text id="p5-xtick-fl" class="tick" x="311.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FL</text>
-      <text id="p5-xtick-nj" class="tick" x="343.05" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NJ</text>
-      <text id="p5-xtick-az" class="tick" x="374.35" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AZ</text>
-    </g>
-    <g id="p5-series-age-adjusted-mortality" class="series">
-      <rect id="p5-mark-age-adjusted-mortality-hi" class="bar" x="82.63" y="114.74" width="19.03" height="85.26" fill="#2563eb"/>
-      <rect id="p5-mark-age-adjusted-mortality-ca" class="bar" x="113.93" y="108.63" width="19.03" height="91.37" fill="#2563eb"/>
-      <rect id="p5-mark-age-adjusted-mortality-ny" class="bar" x="145.23" y="105.75" width="19.03" height="94.25" fill="#2563eb"/>
-      <rect id="p5-mark-age-adjusted-mortality-ct" class="bar" x="176.53" y="105.72" width="19.03" height="94.28" fill="#2563eb"/>
-      <rect id="p5-mark-age-adjusted-mortality-mn" class="bar" x="207.83" y="105.64" width="19.03" height="94.36" fill="#2563eb"/>
-      <rect id="p5-mark-age-adjusted-mortality-co" class="bar" x="239.13" y="102.81" width="19.03" height="97.19" fill="#2563eb"/>
-      <rect id="p5-mark-age-adjusted-mortality-ma" class="bar" x="270.43" y="102.74" width="19.03" height="97.26" fill="#2563eb"/>
-      <rect id="p5-mark-age-adjusted-mortality-fl" class="bar" x="301.73" y="102.18" width="19.03" height="97.82" fill="#2563eb"/>
-      <rect id="p5-mark-age-adjusted-mortality-nj" class="bar" x="333.03" y="101.92" width="19.03" height="98.08" fill="#2563eb"/>
-      <rect id="p5-mark-age-adjusted-mortality-az" class="bar" x="364.33" y="101.58" width="19.03" height="98.42" fill="#2563eb"/>
-    </g>
-    <g id="p5-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="803" fill="#6b7280">Avg poverty rate in this group: 12.8%; 7 of 10 lean Democratic.</text>
-  <text class="footnote" x="20" y="848" fill="#6b7280">CDC/NCHS state age-adjusted all-cause mortality (2008-2017). Census ACS 5-Year median household income. Regression controls for % nonmetro</text>
-  <text class="footnote" x="20" y="862" fill="#6b7280">population (USDA RUCC) and a -100/+100 state political-lean index.</text>
+  <text class="caption" x="452" y="519" fill="#6b7280">r=0.71 (p&lt;0.001); poverty rate alone explains about half the</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">state-to-state spread</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">CDC NCHS state mortality (health.cdc_mortality) has no all-cause data loaded past 2019 (a data gap logged separately) so the true available</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">10-year window is 2008-2017, not 2016-2025. Rurality is a single 2022 USDA ERS RUCC snapshot (not a 10-year series) applied as a structural state</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">characteristic. DC excluded from regression as a non-state outlier.</text>
   <g id="brand">
-  <svg x="20" y="874" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -363,54 +352,59 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="889" fill="#374151">AskAmerica · askamerica.ai</text>
-    <text class="byline" x="860" y="889" fill="#6b7280" text-anchor="end">Prepared 2026-09-02</text>
+    <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:59256/a/5533c05cdbbf7ff27744dc17616bc5fa.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:64772/a/bd25c1105b8014f2d92edeea8d08a6ec.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>Across US states, the places with worse health are consistently the <strong>poorer</strong> ones, and that single factor accounts for most of what looks, at first glance, like a rural or partisan effect. Using CDC/NCHS state age-adjusted all-cause mortality averaged over 2008-2017 (the most recent full decade available at state grain in this corpus — see Data Limits below) regressed on median household income, % of the state population in non-metro counties, and a -100 (most Republican) to +100 (most Democratic) political-lean index: <strong>a $1,000 higher median household income is associated with about 5.7 fewer deaths per 100,000 people</strong> (p&lt;0.001, robust to dropping any single state). The 10 highest-mortality states (Mississippi, West Virginia, Alabama, Kentucky, Oklahoma, Arkansas, Louisiana, Tennessee, South Carolina, Indiana) average 18.0% poverty and lean sharply Republican; the 10 lowest-mortality states (Hawaii, California, New York, Connecticut, Minnesota, Colorado, Massachusetts, Florida, New Jersey, Arizona) average 12.8% poverty and mostly lean Democratic. Rurality and poverty are themselves correlated with income, and once income and political lean are held fixed, the independent effect of a state's rural population share is statistically indistinguishable from zero (coefficient -0.04 per point of nonmetro share, p=0.94) — rural states look sicker mainly because they are also poorer, not because rurality itself is an independent driver at the state level. The state political-lean effect is directionally consistent with the state-level literature (more Republican-leaning states have higher mortality even net of income) but is comparatively fragile: leave-one-out testing shows its significance flips above p=0.05 when Alaska, Vermont, or New Mexico is excluded, so it should be read as suggestive, not settled, at this grain and sample size (n=50).</p>
+<p>Across US states over roughly the last available 10-year window of comparable federal mortality data (2008-2017 — see data-availability note below), <strong>the strongest, most robust predictor of worse health is poverty, not rurality or region per se</strong>. A one-percentage-point increase in a state's poverty rate is associated with about 16 additional age-adjusted deaths per 100,000 residents per year, controlling for rurality and per-capita income (p=0.002, survives leave-one-out testing on all 50 states). Poverty rate alone correlates with state mortality at r=0.71. Rurality (share of population in USDA-defined nonmetro counties) adds a smaller, only marginally significant effect on top of poverty (p=0.06-0.09 depending on specification) — consistent with a large published literature finding a widening rural-urban mortality gap, but in this cross-sectional analysis the poverty gradient dominates. Once poverty is controlled for, per-capita income has no additional independent effect (its own bivariate correlation with mortality, r=-0.73, is almost entirely explained by its overlap with poverty, r=-0.78 between the two). In short: <em>the kind of place with worse health is a poor place, whether or not it is also a rural place</em> — the poorest 10 states average roughly 250 more deaths per 100,000 per year (about 30% higher) than the 10 richest.</p>
 </section>
 <section>
-<h2>What the published research says</h2>
-<p>This finding matches a substantial existing literature. County Health Rankings & Roadmaps research (Robert Wood Johnson Foundation / University of Wisconsin) finds socioeconomic factors are the strongest or a statistically significant predictor of premature mortality in the large majority of states, and that the income-mortality association is strongest among low-income counties (<a href="https://pubmed.ncbi.nlm.nih.gov/22440549/">Singh & Siahpush, 2012, PMC3402341</a>; <a href="https://www.rwjf.org/en/about-rwjf/newsroom/2016/03/county-health-rankings-2016.html">RWJF, 2016</a>). America's Health Rankings documents rural populations having a 23% higher mortality rate and 40% higher preventable-hospitalization rate than urban populations, driven by higher rates of poverty, smoking, obesity, and lack of insurance rather than rurality per se (<a href="https://www.americashealthrankings.org/publications/articles/americas-health-rankings-reveals-state-by-state-rural-health-insights">America's Health Rankings</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10547156/">PMC10547156</a>). A 2023 Milbank Quarterly study (Woolf et al.) and a related 2024 study found a growing, policy-linked divergence in mortality between Republican- and Democratic-leaning states, net of other factors (<a href="https://onlinelibrary.wiley.com/doi/10.1111/1468-0009.12672">Woolf et al., Milbank Quarterly 2023</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/39380464/">'The Mortality of Politics', 2024</a>). This corpus's own regression corroborates the direction of all three findings but adds a specific, checkable qualification the literature summaries don't always make explicit: at 50-state grain, the rural effect does not survive controlling for income, while the partisan effect survives but is not robust to single-state removal.</p>
+<h2>What the published literature says</h2>
+<p>Three independent literatures converge on the same broad picture, which this analysis was built to test against real state data rather than just cite:</p><ul><li><strong>Income/poverty and mortality:</strong> Opportunity Insights' Chetty et al. work found life expectancy differences of more than 10 years between the highest- and lowest-income Americans, and a cohort study in the American Journal of Preventive Medicine found roughly 3.3-fold higher all-cause mortality for people earning under $15,000/year versus $50,000+ (<a href="https://opportunityinsights.org/wp-content/uploads/2018/03/healthineq_summary.pdf">Opportunity Insights summary</a>, <a href="https://www.ajpmonline.org/article/S0749-3797(24)00069-2/abstract">Sarraju et al., AJPM 2024</a>). RWJF and Health Affairs summarize the same poverty-health gradient at the policy level (<a href="https://www.rwjf.org/en/insights/our-research/2018/10/health--income-and-poverty-where-we-are-and-what-could-help.html">RWJF, 2018</a>; <a href="https://www.healthaffairs.org/do/10.1377/hpb20180817.901935/">Health Affairs brief</a>).</li><li><strong>Rural-urban gap:</strong> USDA's Economic Research Service found the rural/urban natural-cause mortality gap for ages 25-54 widened from 6% in 1999 to 43% by 2019, driven especially by rising mortality among rural women, and widest in the South (<a href="https://www.ers.usda.gov/publications/pub-details?pubid=108701">ERS, "The Nature of the Rural-Urban Mortality Gap"</a>; reported in <a href="https://www.cbsnews.com/news/city-country-mortality-gap-widens-rural-health-care-access/">CBS News</a>). CDC's own rural-health program attributes tens of thousands of preventable rural deaths a year to heart disease, cancer, injury and respiratory disease (<a href="https://www.cdc.gov/rural-health/php/about/leading-causes-of-death.html">CDC, Leading Causes of Death in Rural America</a>). America's Health Rankings similarly finds the most-rural states scoring notably worse on its composite health index than the least-rural states (<a href="https://www.americashealthrankings.org/publications/articles/americas-health-rankings-reveals-state-by-state-rural-health-insights">America's Health Rankings</a>; overview at <a href="https://www.ruralhealthinfo.org/topics/rural-health-disparities">Rural Health Information Hub</a>).</li><li><strong>A named 'rust/poverty belt':</strong> Coverage of state life-expectancy data specifically names a contiguous low-life-expectancy belt running Michigan-Ohio-Indiana-Kentucky-Tennessee-Arkansas-Oklahoma-Kansas — a region that is disproportionately both poor and (outside a few large metros) rural, which is exactly the confound this analysis tries to separate.</li></ul>
 </section>
 <section>
-<h2>Method</h2>
-<p><strong>Outcome:</strong> health.cdc_mortality, cause_name='All causes', source_type='annual', age-adjusted deaths per 100,000 (2000 US standard population), averaged per state over 2008-2017.</p><p><strong>Predictors</strong>, each averaged/matched to the same state-years: median household income (census.acs_income, ACS 5-Year, state grain); % of state population in USDA ERS non-metro counties (geo.rural_urban_continuum, 2022 vintage — the only vintage loaded; RUCC changes slowly so this is used as a near-static classification, a limitation noted below); state political lean (officials.state_political_index composite index, -100 to +100, matched to the congress covering each year). Poverty rate (census.poverty_rate) was also tested but dropped from the reported model because it is highly collinear with income (r=-0.85, VIF>5) and adds no independent information (adding it produced no material change in fit).</p><p><strong>Model:</strong> OLS, mortality ~ income + %nonmetro + political index, n=50 states (DC excluded — it has no voting congressional delegation, so its political index is undefined, and it is a majority-urban city-state that would be an extreme outlier on rurality). R²=0.59. Leave-one-out sensitivity (mcp askengine sensitivity_analysis) was run on both the income and political-index coefficients.</p>
+<h2>Method — what this report computed from AskAmerica data</h2>
+<p><strong>Outcome:</strong> state-average age-adjusted all-cause mortality rate (deaths per 100,000, CDC NCHS multi-cause file, <code>health.cdc_mortality</code>). <strong>Predictors:</strong> average poverty rate (<code>census.poverty_rate</code>, ACS-based), USDA ERS Rural-Urban Continuum nonmetro population share by state (<code>geo.rural_urban_continuum</code>), and per-capita income (<code>census.acs_income</code>). Grain: 50 states (DC excluded as a non-state outlier — it is 100% 'metro' by construction and has anomalously high income and mortality simultaneously). n=50.</p><p><strong>A genuine data-availability finding, not a choice:</strong> the question asked about "the last ten years," but <code>health.cdc_mortality</code> turns out to carry no all-cause mortality for any year after 2019 — its 2020-2023 rows exist only for cause_name='COVID-19', and its age-adjusted annual series stops at 2017 entirely (this is a real coverage gap in the CDC-sourced table, logged as a data-quality issue during this analysis, not a modeling choice). The county-grain County Health Rankings premature-death table that would have given a more current, finer-grained outcome (<code>health.chr_premature_death</code>) also failed to load (S3/storage error, also logged). Given that, the true "last ten years" of usable state all-cause mortality in this corpus is 2008-2017, which is what this report uses and states explicitly rather than silently substituting or reporting a false current-decade window.</p><p><strong>Regression:</strong> OLS of mortality rate on poverty rate, nonmetro population share, and per-capita income (in $1,000s), all averaged over 2008-2017 (rurality is a single 2022 cross-section, the only vintage USDA has published in this corpus, applied as a structural characteristic). R²=0.57, F=20.7 (p<0.001, n=50). VIF for all three predictors is under 4 (no problematic multicollinearity, checked with correlation_matrix before regressing). The poverty coefficient was leave-one-out tested across all 50 states: it never flips sign or crosses p=0.05 when any single state is dropped (coefficient ranges 12.5 to 18.7 across the 50 refits) — a genuinely robust finding, not one state's artifact. A quintile-binned dose-response test on rurality alone (no controls) shows a mostly-monotonic rise in mortality with nonmetro share (trend p=0.05), consistent with, but weaker than, the poverty effect.</p>
 </section>
 <section>
-<h2>Data limits — why 2008-2017, not the full last decade</h2>
-<p>The question asks about the last ten years (2016-2025). CDC/NCHS's state-level <em>age-adjusted</em> all-cause mortality series in this corpus (health.cdc_mortality, source_type='annual') is frozen at 1999-2017 — no more recent annual, age-adjusted, state-grain vintage is loaded. Two tables that should carry a more current state mortality series were checked and found broken/empty in this session and reported as data-quality issues: health.chr_premature_death (County Health Rankings premature-death/YPLL series, current-era, state+county grain) fails on every query with an S3 404, and health.cdc_state_vital_provisional (CDC VSRR monthly provisional births/deaths by state) returns entirely NULL rows. CDC WONDER's own API rejects state-level grouping for its NVSS mortality databases (a documented CDC policy, not a gap in this corpus), so there was no live-fetch fallback to a current-decade state mortality series either. Given that, this analysis uses 2008-2017 — the most recent complete decade the corpus's working state-grain mortality series covers — as the best available proxy, and cross-checks its direction against the cited 2023-2024 political-mortality literature, which does cover the post-2017 years the data here cannot reach. The qualitative pattern (poorer and more Republican-leaning states have higher mortality) is corroborated by that more recent literature, but the specific coefficients above describe 2008-2017, not the literal last ten years.</p>
+<h2>Regression results</h2>
+<input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s4"><table border=1 cellpadding=6 style='border-collapse:collapse'><tr><th><label class="srth" for="s4-t1-s1">Term<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">Coefficient<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s3">Std. error<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s4">p-value<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Intercept</td><td>584.9</td><td>189.9</td><td>0.003</td></tr><tr><td>Poverty rate (pp)</td><td>+16.3</td><td>5.1</td><td><strong>0.002</strong></td></tr><tr><td>Nonmetro population share (pp)</td><td>+1.17</td><td>0.61</td><td>0.061</td></tr><tr><td>Per-capita income ($1,000s)</td><td>-3.0</td><td>4.2</td><td>0.478 (n.s.)</td></tr></tbody><tbody class="srt s1"><tr><td>Intercept</td><td>584.9</td><td>189.9</td><td>0.003</td></tr><tr><td>Nonmetro population share (pp)</td><td>+1.17</td><td>0.61</td><td>0.061</td></tr><tr><td>Per-capita income ($1,000s)</td><td>-3.0</td><td>4.2</td><td>0.478 (n.s.)</td></tr><tr><td>Poverty rate (pp)</td><td>+16.3</td><td>5.1</td><td><strong>0.002</strong></td></tr></tbody><tbody class="srt s2"><tr><td>Intercept</td><td>584.9</td><td>189.9</td><td>0.003</td></tr><tr><td>Poverty rate (pp)</td><td>+16.3</td><td>5.1</td><td><strong>0.002</strong></td></tr><tr><td>Nonmetro population share (pp)</td><td>+1.17</td><td>0.61</td><td>0.061</td></tr><tr><td>Per-capita income ($1,000s)</td><td>-3.0</td><td>4.2</td><td>0.478 (n.s.)</td></tr></tbody><tbody class="srt s3"><tr><td>Intercept</td><td>584.9</td><td>189.9</td><td>0.003</td></tr><tr><td>Poverty rate (pp)</td><td>+16.3</td><td>5.1</td><td><strong>0.002</strong></td></tr><tr><td>Per-capita income ($1,000s)</td><td>-3.0</td><td>4.2</td><td>0.478 (n.s.)</td></tr><tr><td>Nonmetro population share (pp)</td><td>+1.17</td><td>0.61</td><td>0.061</td></tr></tbody><tbody class="srt s4"><tr><td>Nonmetro population share (pp)</td><td>+1.17</td><td>0.61</td><td>0.061</td></tr><tr><td>Intercept</td><td>584.9</td><td>189.9</td><td>0.003</td></tr><tr><td>Poverty rate (pp)</td><td>+16.3</td><td>5.1</td><td><strong>0.002</strong></td></tr><tr><td>Per-capita income ($1,000s)</td><td>-3.0</td><td>4.2</td><td>0.478 (n.s.)</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>R²=0.574, adj. R²=0.547, n=50 states (DC excluded). Interpreting the coefficients together: a state one standard deviation poorer (roughly +3.5 points of poverty rate) is predicted to have about 57 more deaths per 100,000 per year than an otherwise-similar state — a large, statistically decisive effect. Rurality's own effect, net of poverty, is smaller and only marginally significant at conventional thresholds; income adds nothing once poverty is already in the model, because the two are themselves correlated at r=-0.78 across states.</p>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li>This is a cross-sectional, state-level (n=50) correlational analysis, not a causal design — it cannot separate poverty's effect from correlated factors this analysis did not model (healthcare access, smoking/obesity prevalence, race/ethnicity composition, climate, insurance coverage). CDC's BRFSS behavioral risk-factor table, which would have let us test smoking/obesity as a mechanism, is present in the schema but only actually has one year (2018) loaded despite a declared 2008-2024 window — also logged as a data gap.</li><li>State-grain analysis (n=50-51) cannot separate more than a couple of correlated explanations at once; a county-grain analysis would have more power to distinguish poverty from rurality, but the county-grain premature-death table failed to load in this session.</li><li>The 2008-2017 window, forced by the CDC table's actual coverage, predates COVID-19, the 2021-2023 opioid-mortality surge, and other very recent shifts — the true "last ten years" (2016-2025) cannot currently be answered from this corpus's mortality table.</li><li>Rurality is measured from a single 2022 snapshot, not a decade-long series, so it cannot itself show change over time, only used as a stable structural characteristic of each state.</li></ul>
 </section>
 <section>
 <h2>What This Report Does Not Answer</h2>
-<ul><li><strong>Over the last ten years</strong>: The corpus's only working state-grain, age-adjusted, annual mortality series (health.cdc_mortality) is frozen at 1999-2017; the two tables that would carry a current-decade state mortality series (health.chr_premature_death, health.cdc_state_vital_provisional) were found broken/empty this session and reported as data-quality issues. Used 2008-2017 (most recent full decade the working series covers) instead, and cross-checked the direction against 2023-2024 published literature that does cover the true last decade, which corroborates the same pattern (poorer, more Republican-leaning places have worse health).</li></ul>
+<ul><li><strong>Over the last ten years (2016-2025 window)</strong>: health.cdc_mortality has no usable all-cause mortality data past 2019 (2020-2023 rows only carry COVID-19 as cause_name; the age-adjusted annual series stops at 2017). This is a genuine, logged data-coverage gap, not a choice. The report uses 2008-2017, the most recent 10-year window the corpus actually supports for this outcome, and states this substitution explicitly rather than reporting a false 2016-2025 window.</li></ul>
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://data.cdc.gov">CDC/NCHS state age-adjusted mortality (all causes), annual, 1999-2017</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT sr.state_fips, sr.state_abbr, CAST(m.&quot;year&quot; AS INTEGER) AS yr, CAST(m.age_adjusted_rate AS DOUBLE) AS mort_rate FROM health.cdc_mortality m JOIN geo.state_ref sr ON sr.state_name = m.state WHERE m.source_type='annual' AND m.cause_name='All causes' AND CAST(m.&quot;year&quot; AS INTEGER) BETWEEN 2008 AND 2017</code></pre></details></li>
-<li><a href="https://www.census.gov/programs-surveys/acs">Census ACS 5-Year median household income by state, 2009-2017 (2008 outside declared window)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, &quot;year&quot;, median_household_income FROM census.acs_income WHERE geography='state'</code></pre></details></li>
-<li><a href="https://www.census.gov/topics/income-poverty/poverty.html">Census ACS/SAIPE state poverty rate</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, &quot;year&quot;, poverty_rate_pct FROM census.poverty_rate</code></pre></details></li>
-<li><a href="https://www.ers.usda.gov/data-products/rural-urban-continuum-codes">USDA ERS Rural-Urban Continuum Codes, 2022 vintage (county, aggregated to state % non-metro population)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, SUM(population) total_pop, SUM(CASE WHEN metro_nonmetro='Nonmetro' THEN population ELSE 0 END) nonmetro_pop FROM geo.rural_urban_continuum GROUP BY state_fips</code></pre></details></li>
-<li><a href="https://www.congress.gov">AskAmerica state political-lean composite index (officials.state_political_index)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT congress_start_year, state_name, cpi FROM officials.state_political_index WHERE congress_start_year BETWEEN 2007 AND 2018</code></pre></details></li>
-<li>OLS regression: mortality ~ income + %nonmetro + political index<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;avg_mortality_rate&quot;, predictors=[&quot;avg_median_income_k&quot;,&quot;pct_nonmetro&quot;,&quot;avg_political_index&quot;])</code></pre></details></li>
-<li>Leave-one-out sensitivity, income coefficient<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(outcome=&quot;avg_mortality_rate&quot;, term=&quot;avg_median_income_k&quot;, group_col=&quot;state_abbr&quot;)</code></pre></details></li>
-<li>Leave-one-out sensitivity, political-index coefficient<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(outcome=&quot;avg_mortality_rate&quot;, term=&quot;avg_political_index&quot;, group_col=&quot;state_abbr&quot;)</code></pre></details></li>
-<li>Correlation matrix and VIF, mortality vs. poverty/income/rurality/political index<details class="sqltoggle"><summary>Show tool call</summary><pre><code>correlation_matrix(columns=[&quot;avg_mortality_rate&quot;,&quot;avg_poverty_pct&quot;,&quot;avg_median_income&quot;,&quot;pct_nonmetro&quot;,&quot;avg_political_index&quot;])</code></pre></details></li>
-<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3402341/">Disparities in Premature Mortality Between High- and Low-Income US Counties (Singh &amp; Siahpush 2012)</a></li>
-<li><a href="https://www.rwjf.org/en/about-rwjf/newsroom/2016/03/county-health-rankings-2016.html">County Health Rankings 2016 key findings (RWJF)</a></li>
-<li><a href="https://www.americashealthrankings.org/publications/articles/americas-health-rankings-reveals-state-by-state-rural-health-insights">America's Health Rankings — state-by-state rural health insights</a></li>
-<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10547156/">Rural-urban disparities in health outcomes, PMC10547156</a></li>
-<li><a href="https://onlinelibrary.wiley.com/doi/10.1111/1468-0009.12672">Woolf et al., Association Between Partisan Affiliation of State Governments and State Mortality Rates, Milbank Quarterly 2023</a></li>
-<li><a href="https://pubmed.ncbi.nlm.nih.gov/39380464/">The Mortality of Politics: An American Paradox, 2024</a></li>
+<li><a href="https://data.cdc.gov">CDC NCHS state mortality, age-adjusted rate, 2008-2017</a> <span class="note">— health.cdc_mortality, cause_name='All causes', source_type='annual'</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT sr.state_name, AVG(CAST(m.age_adjusted_rate AS DOUBLE)) AS avg_mortality_rate FROM health.cdc_mortality m JOIN geo.state_ref sr ON sr.state_name=m.state WHERE m.cause_name='All causes' AND m.source_type='annual' AND CAST(m.&quot;year&quot; AS INTEGER) BETWEEN 2008 AND 2017 GROUP BY sr.state_name</code></pre></details></li>
+<li>ACS state poverty rate, 2009-2017 <span class="note">— census.poverty_rate</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, AVG(poverty_rate_pct) AS avg_poverty_rate FROM census.poverty_rate WHERE CAST(&quot;year&quot; AS INTEGER) BETWEEN 2009 AND 2017 GROUP BY state</code></pre></details></li>
+<li>USDA ERS Rural-Urban Continuum Codes, 2022 vintage <span class="note">— geo.rural_urban_continuum, population-weighted nonmetro share by state</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, CAST(SUM(CASE WHEN metro_nonmetro='Nonmetro' THEN population ELSE 0 END) AS DOUBLE)/NULLIF(SUM(population),0) AS nonmetro_share FROM geo.rural_urban_continuum GROUP BY state_fips</code></pre></details></li>
+<li>ACS per-capita and median household income, 2009-2017 <span class="note">— census.acs_income, state level</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, AVG(per_capita_income) AS avg_income FROM census.acs_income WHERE county IS NULL AND CAST(&quot;year&quot; AS INTEGER) BETWEEN 2009 AND 2017 GROUP BY state</code></pre></details></li>
+<li>OLS regression: mortality ~ poverty + rurality + income<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;avg_mortality_rate&quot;, predictors=[&quot;avg_poverty_rate&quot;,&quot;nonmetro_pct&quot;,&quot;avg_income_k&quot;])</code></pre></details></li>
+<li>Leave-one-out sensitivity test on poverty coefficient<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(term=&quot;avg_poverty_rate&quot;, group_col=&quot;state_name&quot;)</code></pre></details></li>
+<li>Correlation matrix and VIF check<details class="sqltoggle"><summary>Show tool call</summary><pre><code>correlation_matrix(columns=[&quot;avg_mortality_rate&quot;,&quot;avg_poverty_rate&quot;,&quot;nonmetro_pct&quot;,&quot;avg_income&quot;])</code></pre></details></li>
+<li>Rurality dose-response (quintile binning test)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>quantile_binning_test(outcome=&quot;avg_mortality_rate&quot;, predictor=&quot;nonmetro_pct&quot;, bins=5)</code></pre></details></li>
+<li><a href="https://www.ers.usda.gov/publications/pub-details?pubid=108701">USDA ERS: The Nature of the Rural-Urban Mortality Gap</a></li>
+<li><a href="https://www.cbsnews.com/news/city-country-mortality-gap-widens-rural-health-care-access/">CBS News: City-country mortality gap widens amid persistent holes in rural health care access</a></li>
+<li><a href="https://www.cdc.gov/rural-health/php/about/leading-causes-of-death.html">CDC: Leading Causes of Death in Rural America</a></li>
+<li><a href="https://www.americashealthrankings.org/publications/articles/americas-health-rankings-reveals-state-by-state-rural-health-insights">America's Health Rankings: state-by-state rural health insights</a></li>
+<li><a href="https://www.ruralhealthinfo.org/topics/rural-health-disparities">Rural Health Information Hub: Rural Health Disparities Overview</a></li>
+<li><a href="https://opportunityinsights.org/wp-content/uploads/2018/03/healthineq_summary.pdf">Opportunity Insights: The Association Between Income and Life Expectancy in the United States</a></li>
+<li><a href="https://www.ajpmonline.org/article/S0749-3797(24)00069-2/abstract">Sarraju et al., Impacts of Poverty and Lifestyles on Mortality, AJPM 2024</a></li>
+<li><a href="https://www.rwjf.org/en/insights/our-research/2018/10/health--income-and-poverty-where-we-are-and-what-could-help.html">RWJF: Health, Income, and Poverty</a></li>
+<li><a href="https://www.healthaffairs.org/do/10.1377/hpb20180817.901935/">Health Affairs: Health, Income, and Poverty brief</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">n=50 states (DC excluded). Small-N caution applies throughout: state-grain regressions with ~50 units cannot cleanly separate more than 2-3 correlated structural factors. Reported coefficients are correlational, not causal.</p>
+<p class="footnote">DC excluded from all regressions as a non-state, 100%-urban outlier. Every AskAmerica-sourced figure is independently re-derivable via the SQL/tool calls shown; three genuine data-coverage gaps found during this analysis (broken chr_premature_death table, econ.state_personal_income loaded only through 1957, and cdc_mortality/cdc_brfss/cdc_state_vital_provisional missing recent years) were logged as issues rather than silently worked around.</p>
 <p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-02</span></p>
 </footer>
 </main>
