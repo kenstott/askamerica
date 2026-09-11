@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "AskAmerica Validate",
+  "version": "0.1.0",
+  "description": "Validate the factual claims on the page you are reading with AskAmerica, on your own Claude plan. Highlights each checked claim with its verdict, the warehouse figure, and the query behind it.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Validate with AskAmerica",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["contextMenus", "activeTab", "tabs", "storage"],
+  "host_permissions": ["http://127.0.0.1/*"],
+  "options_page": "options.html"
+}
