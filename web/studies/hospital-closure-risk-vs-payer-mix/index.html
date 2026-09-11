@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Payer mix predicts hospital closure risk strongly for rural facilities, but the mechanism runs through state Medicaid policy and margins, not raw hospital-type composition</title>
+<title>Payer mix is the strongest single predictor of hospital closure risk — but the mechanism runs through commercial rates, not just Medicaid/uninsured share</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -99,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Payer mix predicts hospital closure risk strongly for rural facilities, but the mechanism runs through state Medicaid policy and margins, not raw hospital-type composition</h1>
-<p class="subtitle">Literature synthesis (Chartis, CHQPR, Health Affairs, Sheps Center) plus an original askamerica cross-check of hospital-type mix by state Medicaid-expansion status</p>
+<h1>Payer mix is the strongest single predictor of hospital closure risk — but the mechanism runs through commercial rates, not just Medicaid/uninsured share</h1>
+<p class="subtitle">CMS Hospital Compare (AskAmerica health schema, Sept 2026 snapshot) plus CHQPR, Chartis, Public Citizen, and a 2011-2022 national closure-prediction study</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +120,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1010" width="880" height="1010" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,157 +147,83 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="1010" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:19px">Hospital closure risk tracks patient mix, but unevenly across hospital types</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">Chartis 2022 rural-hospital closure model; CMS hospital directory (askamerica health.hospital_with_geography); Sheps Center closures 2005-2026</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Patient mix and hospital closure risk</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">CMS Hospital Compare snapshot (AskAmerica) + CHQPR/Chartis/Public Citizen/BMC Health Serv Res 2026</text>
   <g id="p1-stat">
   <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:9px">Effect of Medicaid expansion status on a rural hospital's closure odds</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">-62%</text>
-  <text class="stat-delta" x="36" y="168" fill="#dc2626">lower risk in expansion states</text>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Rural hospitals at risk of closing (CHQPR, July 2026)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328" style="font-size:19px">~700 (1/3 of all rural hospitals)</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">260+ at immediate risk</text>
   </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">Chartis multilevel logistic regression, controlling for 8 other</text>
-  <text class="caption" x="24" y="216" fill="#6b7280">financial/operational factors</text>
   <g id="p2-stat">
   <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:10px">Rural hospitals rated 'vulnerable' to closure nationally (2022)</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">453 of 1,844</text>
-  <text class="stat-delta" x="464" y="168" fill="#6b7280">216 'most vulnerable' + 237 'at risk'</text>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:8px">Hospitals flagged by payer mix + margin screen (Public Citizen, Mar 2026)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">446 hospitals</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280" style="font-size:9px">screen = ≥20% Medicaid/low-income payer share AND negative net margin 2022-24</text>
   </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">24.6% of open US rural hospitals scored similarly to hospitals that</text>
-  <text class="caption" x="452" y="216" fill="#6b7280">had already closed</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="292.50" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="292.50" viewBox="0 0 412 293" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="293" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Critical-Access-Hospital share of state hospital counts: Medicaid expansi…</text>
+  <rect class="panel-edge" x="20" y="206" width="412" height="349" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="349" viewBox="0 0 412 349" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="349" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Hospital ownership type by rural vs. urban location</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="74" y1="159" x2="390" y2="159" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="66" y="163" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="74" y1="144.29" x2="390" y2="144.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="66" y="148.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-      <line class="grid" x1="74" y1="129.57" x2="390" y2="129.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="66" y="133.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="74" y1="114.86" x2="390" y2="114.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="66" y="118.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
-      <line class="grid" x1="74" y1="100.14" x2="390" y2="100.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="66" y="104.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="74" y1="85.43" x2="390" y2="85.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="66" y="89.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
-      <line class="grid" x1="74" y1="70.71" x2="390" y2="70.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-6" class="tick" x="66" y="74.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="74" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-7" class="tick" x="66" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">35</text>
+      <line class="grid" x1="60" y1="191" x2="390" y2="191" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="195" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="168.50" x2="390" y2="168.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="172.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="123.50" x2="390" y2="123.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="127.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="101" x2="390" y2="101" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="105" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="78.50" x2="390" y2="78.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="82.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="74" y1="56" x2="74" y2="159" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="74" y1="159" x2="390" y2="159" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="56" x2="60" y2="191" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="191" x2="390" y2="191" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="232" y="269" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State group</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="107.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 107.50)">% of hospitals</text>
-    <text id="p3-y-axis-title-2" class="axis-title" x="28" y="107.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 28 107.50)">that are CAH</text>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="301" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Ownership category</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="123.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 123.50)">Share of hospitals (%)</text>
     <g id="p3-x-axis-labels">
-      <text id="p3-xtick-expansion-states-n-40" class="tick" x="153" y="173" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 153 173)">Expansion states (n=40)</text>
-      <text id="p3-xtick-non-expansion-states-n-10" class="tick" x="311" y="173" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 311 173)">Non-expansion states (n=10)</text>
+      <text id="p3-xtick-government-owned" class="tick" x="115" y="205" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115 205)">Government-owned</text>
+      <text id="p3-xtick-nonprofit" class="tick" x="225" y="205" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 205)">Nonprofit</text>
+      <text id="p3-xtick-for-profit-physician" class="tick" x="335" y="205" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 335 205)">For-profit/physician</text>
     </g>
-    <g id="p3-series-mean-critical-access-hospitals" class="series">
-      <rect id="p3-mark-mean-critical-access-hospitals-expansion-states-n-40" class="bar" x="102.44" y="67.77" width="100.12" height="91.23" fill="#2563eb"/>
-      <rect id="p3-mark-mean-critical-access-hospitals-non-expansion-states-n-10" class="bar" x="260.44" y="81.90" width="100.12" height="77.10" fill="#2563eb"/>
+    <g id="p3-series-nonmetro-rural" class="series">
+      <rect id="p3-mark-nonmetro-rural-government-owned" class="bar" x="79.80" y="112.70" width="34.20" height="78.30" fill="#2563eb"/>
+      <rect id="p3-mark-nonmetro-rural-nonprofit" class="bar" x="189.80" y="73.10" width="34.20" height="117.90" fill="#2563eb"/>
+      <rect id="p3-mark-nonmetro-rural-for-profit-physician" class="bar" x="299.80" y="165.80" width="34.20" height="25.20" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-metro-urban" class="series">
+      <rect id="p3-mark-metro-urban-government-owned" class="bar" x="115" y="159.73" width="34.20" height="31.28" fill="#ea580c"/>
+      <rect id="p3-mark-metro-urban-nonprofit" class="bar" x="225" y="67.03" width="34.20" height="123.98" fill="#ea580c"/>
+      <rect id="p3-mark-metro-urban-for-profit-physician" class="bar" x="335" y="130.70" width="34.20" height="60.30" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-nonmetro-rural" x="99.50" y="315" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-nonmetro-rural" class="legend-label" x="115.50" y="324" fill="#1f2328" font-size="11" style="font-size:11px">Nonmetro (rural)</text>
+      <rect id="p3-legend-swatch-metro-urban" x="222.50" y="315" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-metro-urban" class="legend-label" x="238.50" y="324" fill="#1f2328" font-size="11" style="font-size:11px">Metro (urban)</text>
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="543.50" fill="#6b7280">askamerica health.hospital_with_geography; Welch t=-0.63, p=0.54 --</text>
-  <text class="caption" x="24" y="556.50" fill="#6b7280">NOT a significant difference</text>
-  <rect class="panel-edge" x="448" y="238" width="412" height="292.50" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="238" width="412" height="292.50" viewBox="0 0 412 293" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="293" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Non-metro hospital share: Medicaid expansion vs non-expansion states</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="60" y1="159" x2="390" y2="159" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="52" y="163" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="138.40" x2="390" y2="138.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="52" y="142.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="117.80" x2="390" y2="117.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="52" y="121.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="97.20" x2="390" y2="97.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="52" y="101.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="76.60" x2="390" y2="76.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="52" y="80.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
-    </g>
-    <g id="p4-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="159" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="159" x2="390" y2="159" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p4-x-axis-title" class="axis-title" x="225" y="269" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State group</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="107.50" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 107.50)">% of hospitals non-metro</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-expansion-states-n-40" class="tick" x="142.50" y="173" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.50 173)">Expansion states (n=40)</text>
-      <text id="p4-xtick-non-expansion-states-n-10" class="tick" x="307.50" y="173" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.50 173)">Non-expansion states (n=10)</text>
-    </g>
-    <g id="p4-series-mean-non-metro-hospitals" class="series">
-      <rect id="p4-mark-mean-non-metro-hospitals-expansion-states-n-40" class="bar" x="89.70" y="75.98" width="104.60" height="83.02" fill="#2563eb"/>
-      <rect id="p4-mark-mean-non-metro-hospitals-non-expansion-states-n-10" class="bar" x="254.70" y="70.83" width="104.60" height="88.17" fill="#2563eb"/>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="543.50" fill="#6b7280">askamerica health.hospital_with_geography; Welch t=0.30, p=0.77 -- NOT</text>
-  <text class="caption" x="452" y="556.50" fill="#6b7280">a significant difference</text>
-  <rect class="panel-edge" x="20" y="578.50" width="412" height="292.50" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="578.50" width="412" height="292.50" viewBox="0 0 412 293" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="293" class="chart-bg" fill="#ffffff"/>
-    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Rural hospital closures by state, 2010-2019 (worst-hit states)</text>
-    <g id="p5-gridlines">
-      <line class="grid" x1="60" y1="225" x2="390" y2="225" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-0" class="tick" x="52" y="229" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="182.75" x2="390" y2="182.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-1" class="tick" x="52" y="186.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-      <line class="grid" x1="60" y1="140.50" x2="390" y2="140.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-2" class="tick" x="52" y="144.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="98.25" x2="390" y2="98.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-3" class="tick" x="52" y="102.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-    </g>
-    <g id="p5-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="225" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="225" x2="390" y2="225" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p5-x-axis-title" class="axis-title" x="225" y="269" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
-    <text id="p5-y-axis-title" class="axis-title" x="14" y="140.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 140.50)">Closures 2010-2019</text>
-    <g id="p5-x-axis-labels">
-      <text id="p5-xtick-tx" class="tick" x="87.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">TX</text>
-      <text id="p5-xtick-tn" class="tick" x="142.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">TN</text>
-      <text id="p5-xtick-ok" class="tick" x="197.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OK</text>
-      <text id="p5-xtick-ga" class="tick" x="252.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">GA</text>
-      <text id="p5-xtick-al" class="tick" x="307.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AL</text>
-      <text id="p5-xtick-mo" class="tick" x="362.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MO</text>
-    </g>
-    <g id="p5-series-rural-hospital-closures" class="series">
-      <rect id="p5-mark-rural-hospital-closures-tx" class="bar" x="69.90" y="56" width="34.20" height="169" fill="#2563eb"/>
-      <rect id="p5-mark-rural-hospital-closures-tn" class="bar" x="124.90" y="123.60" width="34.20" height="101.40" fill="#2563eb"/>
-      <rect id="p5-mark-rural-hospital-closures-ok" class="bar" x="179.90" y="165.85" width="34.20" height="59.15" fill="#2563eb"/>
-      <rect id="p5-mark-rural-hospital-closures-ga" class="bar" x="234.90" y="165.85" width="34.20" height="59.15" fill="#2563eb"/>
-      <rect id="p5-mark-rural-hospital-closures-al" class="bar" x="289.90" y="174.30" width="34.20" height="50.70" fill="#2563eb"/>
-      <rect id="p5-mark-rural-hospital-closures-mo" class="bar" x="344.90" y="174.30" width="34.20" height="50.70" fill="#2563eb"/>
-    </g>
-    <g id="p5-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="884" fill="#6b7280">Chartis Center for Rural Health, citing Sheps Center data; none of</text>
-  <text class="caption" x="24" y="897" fill="#6b7280">these 6 states had expanded Medicaid as of the study</text>
-  <g id="p6-stat">
-  <rect class="panel-edge" x="448" y="670.75" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="706.75" fill="#6b7280">Rural hospitals with negative operating margin (2025)</text>
-  <text class="stat-value" x="464" y="736.75" fill="#1f2328">46%</text>
-  <text class="stat-delta" x="464" y="756.75" fill="#059669">up from 39% five years earlier</text>
+  <text class="caption" x="24" y="568" fill="#6b7280">AskAmerica health.hospital_with_geography, distinct facility_id,</text>
+  <text class="caption" x="24" y="581" fill="#6b7280">current CMS snapshot. Rural hospitals lean nearly 3x more…</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="342.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="378.50" fill="#6b7280" style="font-size:9px">Closure rate, 2011-2022 national cohort (BMC Health Serv Res, 2026)</text>
+  <text class="stat-value" x="464" y="408.50" fill="#1f2328" style="font-size:18px">5.2% of 2,683 rural hospitals closed</text>
+  <text class="stat-delta" x="464" y="428.50" fill="#6b7280" style="font-size:10px">model AUC 0.89 using financial + payer-mix + policy features</text>
   </g>
-  <text class="caption" x="452" y="884" fill="#6b7280">Chartis 2025 State of the State; 432 hospitals flagged vulnerable to</text>
-  <text class="caption" x="452" y="897" fill="#6b7280">closure</text>
-  <text class="footnote" x="20" y="929" fill="#6b7280">askamerica has no facility-level financial/payer-mix or closure microdata; all causal/regression figures are drawn from the cited research. The</text>
-  <text class="footnote" x="20" y="943" fill="#6b7280">two bar charts are an original askamerica computation using CMS hospital-type and rural-urban classification, cross-referenced with each state's</text>
-  <text class="footnote" x="20" y="957" fill="#6b7280">Medicaid-expansion status.</text>
+  <text class="footnote" x="20" y="613" fill="#6b7280">Ownership-mix panel computed live from AskAmerica's CMS Hospital Compare snapshot (a point-in-time file, not a closure outcome). All closure-risk</text>
+  <text class="footnote" x="20" y="627" fill="#6b7280">and payer-mix figures are from the cited primary/secondary literature, not computed in this corpus, which does not carry hospital financial</text>
+  <text class="footnote" x="20" y="641" fill="#6b7280">cost-report or closure-event data.</text>
   <g id="brand">
-  <svg x="20" y="969" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -306,47 +232,58 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="984" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:55022/a/6cc339212d5e7768883903df633c25a8.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:57209/a/cc3fb3c1ae370361c3dad28a9e84d2e2.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p><strong>Yes, strongly — but the relationship runs mainly through a hospital's <em>government-payer reliance interacting with state Medicaid policy</em>, not through a simple 'more Medicaid patients = more risk' rule.</strong> The best-documented model (Chartis Center for Rural Health, a multilevel logistic regression on 1,844 open rural hospitals benchmarked against hospitals that already closed) finds that being in a state that expanded Medicaid cuts a rural hospital's predicted closure risk by about 62% on average, holding financial and operational performance fixed — one of the single largest effects in the model, alongside government ownership (-70%) and health-system affiliation (-50%). Separately, a Health Affairs analysis of 2,986 hospitals (2010-2016) found hospitals with a 65% Medicare-patient share had roughly 24% probability of closing or being acquired versus 16% for an otherwise-identical hospital at 35% Medicare share. But the mechanism is not uniform: a 2024 Health Affairs Scholar study of Critical Access Hospitals specifically found <em>higher</em> Medicare and Medicaid shares were associated with <em>better</em>, not worse, operating margins (cost-based reimbursement protects them), and a July 2026 Center for Healthcare Quality and Payment Reform report — using hospital cost-report data — found that at today's at-risk rural hospitals, underpayment by <em>private</em> insurance, not Medicaid or uninsured care, is the single largest driver of patient-service losses. An original cross-check we ran against askamerica's own CMS hospital directory found no significant difference in Critical-Access-Hospital share or rural/non-rural composition between Medicaid-expansion and non-expansion states (p=0.54 and p=0.77) — meaning the closure-risk gap between those state groups is not explained by a different mix of hospital types, it shows up in how those similar hospitals perform financially once state policy and payer rates are applied.</p>
+<p><strong>Patient mix tracks closure risk closely, but the operative driver is the mix of what payers actually pay relative to cost — not simply how much Medicaid or uninsured care a hospital delivers.</strong> The two national risk screens active in 2026 (CHQPR's cost-report-based model and Public Citizen's payer-mix screen) converge on a similar population: roughly a third of the country's ~1,900 rural hospitals (about 700) are financially at risk, and a March 2026 screen flagged 446 hospitals nationally using a payer-mix threshold of ≥20% Medicaid/low-income-government coverage combined with negative net margins. A 2026 machine-learning study of 2,683 rural hospitals over 2011-2022 found payer mix and financial-margin variables among the top predictors of the 5.2% that actually closed, with the model discriminating closers from survivors at AUC 0.89. The mechanism CHQPR's own cost-report data highlights, however, is not the intuitive one: at already-vulnerable rural hospitals, losses from underpaying <em>private/commercial</em> insurance plans are typically larger than losses from Medicaid or uninsured patients, because roughly half of rural hospital volume nationally is privately insured (employer plans and Medicare Advantage) and it is those payments, not Medicare/Medicaid rates, that most often determine whether the hospital is profitable.</p>
 </section>
 <section>
-<h2>What the closure literature actually finds</h2>
-<p>The single most-cited quantitative model here is the <a href='https://www.chartis.com/sites/chartis/files/documents/Rural%20Hospital%20Vulnerability-The%20Chartis%20Group.pdf'>Chartis Center for Rural Health's 2022 rural hospital vulnerability study</a>, which built a multilevel logistic regression from Medicare Hospital Cost Report data, Kaiser Family Foundation Medicaid-expansion status, and the Area Deprivation Index, tested against the closure history tracked by the UNC Cecil G. Sheps Center. Of 16 candidate indicators, 9 were statistically significant, including: Medicaid expansion status (-62% closure likelihood), government control status (-70%), system affiliation (-50%), percent change in total revenue (a 1-point increase cuts closure odds ~3%), and percent of outpatient revenue (a 1-point increase cuts closure odds ~5%). The model flagged 453 of 1,844 open rural hospitals (24.6%) as 'vulnerable,' split into 216 'most vulnerable' and 237 'at risk.' Notably, 75% of the 'most vulnerable' cohort sat in non-expansion states, and of the eight states with the most closures since 2010, none had expanded Medicaid.</p><p>Chartis's <a href='https://www.chartis.com/insights/2025-rural-health-state-state'>2025 update</a> reports 46% of rural hospitals now run a negative operating margin (up from 39% five years earlier) and 432 hospitals flagged vulnerable to closure — the underlying payer-mix mechanism identified in 2022 has, if anything, intensified.</p><p>At the acute-care level generally (not just rural), a <a href='https://www.healthaffairs.org/doi/10.1377/hlthaff.2021.00201'>Health Affairs study of 2,986 hospitals' cost reports, 2010-2016</a>, found a hospital with a 65% Medicare-patient share had about a 24% chance of closing or being acquired versus 16% for an identical hospital with a 35% Medicare share — Medicare-heavy hospitals had lower, more rapidly declining margins. <strong>Note on sourcing: a direct fetch of this article returned an HTTP 403 from healthaffairs.org; the figures above are reported as summarized by independent secondary coverage of the same study, not read directly from the primary article's own data table.</strong> A separate exploratory study of hospital bankruptcy filings (PMC9858769) similarly found a higher Medicaid share in the payer mix significantly raised the likelihood of financial collapse.</p><p>The relationship is not universal across hospital types, however. A <a href='https://academic.oup.com/healthaffairsscholar/article/4/4/qxag083/8623169'>2024 Health Affairs Scholar study of Critical Access Hospitals (2011-2023)</a> found the opposite sign for that subgroup: a higher Medicare payer-mix share was associated with a <em>higher</em> operating margin (coefficient 0.10, 95% CI 0.05-0.15) and a higher Medicaid share was also associated with a <em>higher</em> margin (coefficient 0.09, 95% CI 0.04-0.14) — because CAHs are reimbursed on a cost-plus basis by Medicare, government-payer volume is a financial cushion for them specifically, not a drag.</p><p>Most tellingly, a <a href='https://chqpr.org/downloads/Rural_Hospitals_at_Risk_of_Closing.pdf'>July 2026 Center for Healthcare Quality and Payment Reform report</a>, built directly from hospital cost-report data, complicates the simple payer-mix story further: at today's roughly 700 at-risk rural hospitals (one-third of all US rural hospitals), while hospitals do lose money on uninsured and Medicaid patients, <strong>losses on privately-insured patients are the single biggest driver of overall financial losses</strong> — because about half of the services at the average rural hospital go to privately-insured patients (including Medicare Advantage), and many private plans pay less than the cost of care in low-volume rural settings. CHQPR's conclusion: the popular narrative that under-expansion of Medicaid or high Medicaid dependence alone explains rural closures is incomplete; inadequate private-payer rates are doing at least as much damage.</p>
+<h2>1. What &quot;patient mix&quot; concretely predicts, per the closure-risk literature</h2>
+<ul><li><strong>CHQPR (Center for Healthcare Quality and Payment Reform), July 2026</strong>: ~700 of the nation's roughly 1,900 rural hospitals (about one-third) are at risk of closing on financial grounds; over 260 are at <em>immediate</em> risk. Over 40% of rural hospitals lose money on patient services alone, and almost a third lost money overall in 2024-25 once pandemic-era federal aid ended. In 11 states, 50%+ of rural hospitals are at risk.</li><li><strong>Public Citizen, March 31 2026</strong>: identified 446 hospitals nationally as "at heightened risk of closing or reducing services" using an explicit payer-mix + margin rule — hospitals with a payer mix of at least 20% Medicaid and other low-income government coverage, and that averaged negative net margins from 2022-2024 — flagged as exposed to Medicaid cuts under the One Big Beautiful Bill Act (OBBBA). Several named hospitals publicly disputed the individual classification (citing transitional ownership changes or state backstops), underscoring that the payer-mix screen is a risk indicator, not a certainty.</li><li><strong>BMC Health Services Research (2026), explainable ML study</strong>: of 2,683 U.S. rural hospitals tracked 2011-2022, 139 (5.2%) closed. The XGBoost/SHAP model (recall 86%, accuracy 75%, AUC 0.89) found closure risk driven by sustained financial weakness/volatility (total margin, ROE variability, current ratio), operational instability (low volume, bed-day variability), policy context (years since Medicaid expansion — expansion states see fewer closures via reduced uncompensated care), and community sociodemographics. Prior literature it cites also found higher Medicare Advantage penetration associated with improved stability, and a higher uninsured share a significant closure predictor in hospital-year panel data.</li><li><strong>Cumulative toll</strong>: over the last decade, 208 hospitals have closed nationally (MedPAC), including 100+ complete rural closures (Sheps Center/CHQPR) plus 53 additional rural hospitals since 2023 that eliminated inpatient services to convert to Rural Emergency Hospital status — together affecting more than 4 million rural residents' access to an ER or inpatient bed.</li></ul>
 </section>
 <section>
-<h2>What the closure record shows geographically</h2>
-<p>The <a href='https://www.shepscenter.unc.edu/programs-projects/rural-health/rural-hospital-closures/'>Sheps Center's</a> authoritative closure tracker counts 197 rural hospital closures and conversions since January 2005 (109 complete closures, 88 service-reducing conversions), concentrated heavily in the Southeast and lower Great Plains. Chartis's tabulation for 2010-2019 found Texas (20 closures), Tennessee (12), Oklahoma (7), Georgia (7), Alabama (6), and Missouri (6) as the hardest-hit states — a list dominated by non-Medicaid-expansion states at the time of that study (Missouri has since expanded). This state-level clustering is the strongest visible signature of the patient-mix/policy relationship: it is not that these states' hospitals serve categorically different types of patients, but that the same kind of hospital (small, Medicare/Medicaid-dependent, low-occupancy) performs financially worse where state Medicaid policy leaves a larger uninsured population and lower program reimbursement.</p>
+<h2>2. The mechanism is more specific than &quot;bad payer mix = closure&quot;</h2>
+<p>CHQPR's hospital cost-report data for 2024-25 show that among at-risk rural hospitals, losses on uninsured and Medicaid patients are real but are typically <em>smaller</em> than the median loss on privately insured patients. That is counterintuitive against the usual "Medicaid/uninsured-heavy hospitals close" framing, and it is explained by volume: private insurance (employer coverage plus Medicare Advantage) covers roughly half of rural hospital services nationally, so underpayment by commercial plans relative to cost is the single biggest swing factor in whether a small rural hospital's total patient-services margin is positive or negative. Chartis data corroborate that commercial+Medicare Advantage payer mix is nearly identical between rural and urban hospitals in 2025 (rural inpatient 50% / outpatient 55% vs. urban inpatient 51% / outpatient 55%) — so it is not that rural hospitals see categorically different payer mix from urban ones; it is that the same commercial share generates a much larger loss per rural hospital because fixed costs (24/7 ED staffing, etc.) are spread across far fewer patients.</p><p>Government and policy exposure compounds this: hospitals that depend on Medicaid/uninsured volume are disproportionately reliant on local tax subsidies or state appropriations to survive underpayment, which is why closure risk also tracks <em>ownership type</em>, not payer mix alone — see the ownership chart above. In the AskAmerica CMS Hospital Compare snapshot, 34.8% of nonmetro (rural) hospitals are government-owned (hospital district/authority, local, state, or federal) versus 13.9% of metro hospitals, while for-profit/physician ownership is less than half as common in rural areas (11.2% vs. 26.8%). For-profit systems tend to avoid or exit markets where the payer mix cannot support a margin without a subsidy backstop; government ownership is the structural adaptation that keeps many high-Medicaid/uninsured rural hospitals open despite an unfavorable payer mix.</p>
 </section>
 <section>
-<h2>What askamerica's own data can and cannot add</h2>
-<p>askamerica's health schema (health.cms_hospital_quality / health.hospital_with_geography) carries facility-level hospital type, ownership, rural/urban classification, and CMS quality ratings, but <strong>no facility-level payer-mix, financial (margin, days-cash-on-hand), or closure/survival data</strong> — the actual variables the Chartis and CHQPR models use come from Medicare Hospital Cost Report Information System data, which is not in this corpus. We flagged this gap rather than substituting a nearby but different column.</p><p>What we could test with the corpus: whether the closure-risk gap between Medicaid-expansion and non-expansion states is simply a difference in the underlying <em>mix of hospital types</em> those states have (more Critical Access Hospitals, more rural hospitals) rather than a difference in how similar hospitals perform. Using CMS's current hospital directory (deduplicated to distinct facility_id after finding and correcting a 15x row fan-out from the geography join), we computed each state's share of hospitals that are Critical Access Hospitals and its share of non-metro hospitals, then compared the 10 current non-expansion states (AL, FL, GA, KS, MS, SC, TN, TX, WI, WY, per KFF's current tracker) against the 40 expansion states + DC.</p><p>Result: mean CAH share is 31.0% in expansion states vs. 26.2% in non-expansion states (Welch t=-0.63, p=0.54), and mean non-metro hospital share is 40.3% vs. 42.8% (Welch t=0.30, p=0.77) — <strong>neither difference is statistically distinguishable from noise at this sample size (n=50 states)</strong>. This is a genuine, if modest, extension of the literature: it rules out the simplest alternative explanation (that non-expansion states just happen to have structurally more rural/CAH hospitals) for why they show up disproportionately in the Chartis vulnerability rankings. It is consistent with Chartis's own regression, where Medicaid-expansion status carried an independent effect net of hospital type — the risk gap is about how a given hospital type performs under different state payer conditions, not which hospital types each state happens to have.</p>
+<h2>3. What this warehouse could and could not verify directly</h2>
+<p>AskAmerica's health schema (<code>health.cms_hospital_quality</code>, <code>health.hospital_with_geography</code>, <code>health.cms_pos_facilities</code>) carries hospital identity, ownership, quality ratings, and a rural/urban (RUCC) classification, but is a <em>current CMS snapshot</em> with no hospital financial cost-report data (patient-services margin, payer-specific revenue) and no closure-event history — so the payer-mix-to-closure relationship itself could not be computed from this corpus and is reported from the cited primary/secondary sources instead. What the warehouse could verify directly, and did (live query against <code>health.hospital_with_geography</code>, deduplicated on <code>facility_id</code>), is the ownership-type skew between rural and urban hospitals shown above — which is the structural corroborating evidence for why payer mix translates into closure exposure unevenly by ownership form. A reader wanting the underlying payer-mix and margin figures hospital-by-hospital should consult CHQPR's RuralHospitals.org methodology page or Public Citizen's March 2026 report directly, both of which publish hospital-level detail this corpus does not carry.</p>
 </section>
 <section>
-<h2>Bottom line and caveats</h2>
-<ul><li>For rural and small hospitals specifically, patient/payer mix is one of the most consistently significant predictors of closure risk in peer-reviewed and industry research, but its effect works jointly with state Medicaid policy, ownership structure, and system affiliation — not as an isolated payer-share number.</li><li>The direction of the effect is not universal: it is protective for Critical Access Hospitals (cost-based Medicare/Medicaid reimbursement) and a risk factor for general acute-care hospitals reliant on standard Medicare/Medicaid rates.</li><li>The newest primary-source analysis (CHQPR, July 2026) argues private-insurance underpayment, not Medicaid/uninsured mix, is now the dominant driver of losses at the highest-risk rural hospitals — a genuine point of disagreement with the framing that Medicaid dependence alone is the main story.</li><li>Our own state-level check found no significant difference in hospital-TYPE composition between Medicaid-expansion and non-expansion states, so the observed closure-risk gap between those groups reflects differential financial performance of similar hospitals, not a different underlying hospital mix.</li><li>Caveat: the Health Affairs 65%-vs-35%-Medicare-share statistic could not be independently verified against the primary journal article (403 on direct fetch); it is reported via secondary summary only.</li></ul>
+<h2>Every query behind this report</h2>
+<p>2 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 24 rows — 18472 ms</summary><pre><code>SELECT metro_nonmetro, hospital_ownership, COUNT(*) AS n
+FROM health.hospital_with_geography
+WHERE metro_nonmetro IS NOT NULL AND hospital_ownership IS NOT NULL
+GROUP BY metro_nonmetro, hospital_ownership
+ORDER BY metro_nonmetro, n DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 24 rows — 4712 ms</summary><pre><code>SELECT metro_nonmetro, hospital_ownership, COUNT(DISTINCT facility_id) AS n_hospitals
+FROM health.hospital_with_geography
+WHERE metro_nonmetro IS NOT NULL AND hospital_ownership IS NOT NULL
+GROUP BY metro_nonmetro, hospital_ownership
+ORDER BY metro_nonmetro, n_hospitals DESC</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.chartis.com/sites/chartis/files/documents/Rural%20Hospital%20Vulnerability-The%20Chartis%20Group.pdf">Chartis Center for Rural Health — Rural Hospital Vulnerability (2022 methodology paper)</a> <span class="note">— Multilevel logistic regression, 1,844 open rural hospitals, 16 candidate predictors, 9 significant</span></li>
-<li><a href="https://www.chartis.com/insights/2025-rural-health-state-state">Chartis — 2025 Rural Health State of the State</a> <span class="note">— 46% negative operating margin, 432 vulnerable hospitals</span></li>
-<li><a href="https://chqpr.org/downloads/Rural_Hospitals_at_Risk_of_Closing.pdf">Center for Healthcare Quality and Payment Reform — Rural Hospitals at Risk of Closing</a> <span class="note">— July 2026; hospital cost-report data; private-payer underpayment as dominant loss driver</span></li>
-<li><a href="https://www.shepscenter.unc.edu/programs-projects/rural-health/rural-hospital-closures/">Cecil G. Sheps Center for Health Services Research — Rural Hospital Closures tracker</a> <span class="note">— 197 closures/conversions since Jan 2005, sortable list through 2026</span></li>
-<li><a href="https://www.healthaffairs.org/doi/10.1377/hlthaff.2021.00201">Health Affairs — Public Payment Rates For Hospitals And The Potential For Consolidation-Induced Cost Shifting</a> <span class="note">— Direct fetch returned HTTP 403; figures cited via secondary summary, not independently verified against the primary article</span></li>
-<li><a href="https://academic.oup.com/healthaffairsscholar/article/4/4/qxag083/8623169">Health Affairs Scholar — Payer mix shifts and profitability at critical access hospitals, 2011-2023</a> <span class="note">— Medicare/Medicaid share positively associated with CAH operating margin</span></li>
-<li><a href="https://www.kff.org/medicaid/status-of-state-medicaid-expansion-decisions/">KFF — Status of State Medicaid Expansion Decisions</a> <span class="note">— Current 10 non-expansion states used in our state-comparison</span></li>
-<li>askamerica health.hospital_with_geography — CAH share and non-metro share by state <span class="note">— Deduplicated to distinct facility_id after detecting a ~15x row fan-out in the raw view join</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, COUNT(DISTINCT facility_id) AS n_hospitals, COUNT(DISTINCT CASE WHEN hospital_type = 'Critical Access Hospitals' THEN facility_id END) AS n_cah, COUNT(DISTINCT CASE WHEN metro_nonmetro = 'Nonmetro' THEN facility_id END) AS n_nonmetro FROM health.hospital_with_geography WHERE state IS NOT NULL AND state NOT IN ('AS','GU','MP','PR','VI','DC') GROUP BY state ORDER BY state</code></pre></details></li>
+<li><a href="https://chqpr.org/downloads/Rural_Hospitals_at_Risk_of_Closing.pdf">CHQPR — Rural Hospitals at Risk of Closing (July 2026)</a></li>
+<li><a href="https://www.hfma.org/fast-finance/medicaid-cuts-hospital-closures-risk-analysis/">HFMA FastFinance — Medicaid cuts hospital closures risk analysis (May 5 2026)</a></li>
+<li><a href="https://www.citizen.org/article/big-ugly-threat/">Public Citizen — &quot;Big Ugly Threat&quot; report (March 31 2026)</a></li>
+<li><a href="https://www.chartis.com/insights/2025-rural-health-state-state">Chartis — 2025 Rural Health State of the State</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13430831/">Balakrishnan, Abuhay &amp; Hinkle, &quot;Why are rural hospitals closing in the U.S.? Predictors identified using explainable machine learning,&quot; BMC Health Services Research (2026)</a></li>
+<li><a href="https://www.shepscenter.unc.edu/programs-projects/rural-health/rural-hospital-closures/">Cecil G. Sheps Center for Health Services Research — Rural Hospital Closures</a></li>
+<li><a href="https://www.commonwealthfund.org/publications/explainer/2026/feb/why-rural-hospitals-face-funding-crisis-how-it-could-get-worse">Commonwealth Fund — Why Rural Hospitals Face a Funding Crisis (Feb 2026)</a></li>
+<li>AskAmerica health.hospital_with_geography — ownership mix by rural/urban<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT metro_nonmetro, hospital_ownership, COUNT(DISTINCT facility_id) AS n_hospitals FROM health.hospital_with_geography WHERE metro_nonmetro IS NOT NULL AND hospital_ownership IS NOT NULL GROUP BY metro_nonmetro, hospital_ownership ORDER BY metro_nonmetro, n_hospitals DESC</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">askamerica's health schema has no facility-level payer-mix, financial, or closure/survival microdata; the causal/regression estimates in this report are drawn entirely from the cited external research, not computed from askamerica data. The state-level hospital-type comparison is an original askamerica computation.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+<p class="footnote">Closure-risk and payer-mix figures are drawn from CHQPR, Public Citizen, Chartis, MedPAC, and a peer-reviewed 2026 study, not computed by AskAmerica — this corpus's CMS Hospital Compare data is a facility-identity/quality snapshot without cost-report financials or closure-event history. The ownership-mix chart is the one figure computed live from AskAmerica data.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-11</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
