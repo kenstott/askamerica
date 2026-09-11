@@ -1,11 +1,14 @@
 // Cloudflare Pages Function: /dl/:platform
 //
 // Redirects to the correct installer asset in the LATEST kenstott/calcite
-// release, resolved by file extension. This keeps the download links stable
-// even though the release asset filenames carry version numbers — the site
-// never needs editing when a new engine release ships.
+// release. This keeps the download links stable even though the release
+// asset filenames carry version numbers — the site never needs editing when
+// a new engine release ships.
 //
-// Routes: /dl/macos → .pkg, /dl/windows → .msi, /dl/linux → .deb
+// Routes: /dl/macos → .pkg, /dl/windows → .msi, /dl/linux → .deb,
+//         /dl/browserext → askamerica-extension.zip (matched by exact name,
+//         not just ".zip" — the same release also ships several Trino
+//         plugin .zip archives).
 
 const EXT_BY_PLATFORM = {
   macos: ".pkg",
@@ -13,12 +16,18 @@ const EXT_BY_PLATFORM = {
   linux: ".deb",
 };
 
+const NAME_BY_PLATFORM = {
+  browserext: "askamerica-extension.zip",
+};
+
 const RELEASES_API =
   "https://api.github.com/repos/kenstott/calcite/releases/latest";
 
 export async function onRequest(context) {
-  const ext = EXT_BY_PLATFORM[context.params.platform];
-  if (!ext) {
+  const platform = context.params.platform;
+  const exactName = NAME_BY_PLATFORM[platform];
+  const ext = EXT_BY_PLATFORM[platform];
+  if (!exactName && !ext) {
     return new Response("Unknown platform", { status: 404 });
   }
 
@@ -42,10 +51,13 @@ export async function onRequest(context) {
   }
 
   const asset = (release.assets || []).find((a) =>
-    a.name.toLowerCase().endsWith(ext)
+    exactName
+      ? a.name.toLowerCase() === exactName.toLowerCase()
+      : a.name.toLowerCase().endsWith(ext)
   );
   if (!asset) {
-    return new Response(`No ${ext} asset in the latest release`, { status: 404 });
+    const label = exactName || ext;
+    return new Response(`No ${label} asset in the latest release`, { status: 404 });
   }
 
   return Response.redirect(asset.browser_download_url, 302);

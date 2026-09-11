@@ -1666,6 +1666,7 @@
       <button class="dist-tab-btn active" onclick="switchDist('mcp')">MCP / Claude Desktop</button>
       <button class="dist-tab-btn" onclick="switchDist('python')">Python</button>
       <button class="dist-tab-btn" onclick="switchDist('jdbc')">JDBC / DBeaver</button>
+      <button class="dist-tab-btn" onclick="switchDist('browser')">Browser extension</button>
     </div>
 
     <!-- Claude Desktop panel -->
@@ -1801,6 +1802,32 @@ ResultSet rs = conn.createStatement().executeQuery(
     <span class="s">"SELECT cik, company_name FROM sec.filing_metadata FETCH FIRST 5 ROWS ONLY"</span>);</pre>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Browser extension panel -->
+    <div class="dist-panel" id="dist-browser">
+      <div>
+        <div class="path-badge path-badge-dim">Read published claims</div>
+        <h3 class="path-title">Chrome extension</h3>
+        <p class="path-desc">Highlights claims AskAmerica has already validated on the page you're reading, color-coded true/false/partially true, with the full report one click away. It never calls a model API itself — "Validate with AskAmerica" hands the page off to your own Claude Desktop or claude.ai session, so it runs on your existing plan, not a separate key.</p>
+        <a class="dl-card" href="/dl/browserext" style="max-width:220px">
+          <div class="dl-icon">🧩</div>
+          <div class="dl-label">Download extension</div>
+          <div class="dl-detail">.zip · unpacked install</div>
+        </a>
+        <p class="path-note" style="margin-top:16px">Chrome/Edge/Brave: unzip, open <code>chrome://extensions</code>, enable Developer mode, click <strong>Load unpacked</strong>, select the unzipped folder.</p>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-header">how it works</div>
+          <pre><span class="c">1. You open a page with claims AskAmerica has checked</span>
+<span class="c">2. The extension reads them from your local engine</span>
+<span class="c">3. Matching text is highlighted by verdict</span>
+<span class="c">4. New claim? Click "Validate with AskAmerica" —</span>
+<span class="c">   opens your own Claude session, no API call here</span></pre>
+        </div>
+        <p class="path-note" style="margin-top:16px">Requires the AskAmerica MCP engine running locally (see the MCP tab) to see live claims and launch new validations.</p>
       </div>
     </div>
   </div>
