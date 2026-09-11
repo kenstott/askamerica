@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Most veterans are close to some VA facility, but distance to comprehensive or specialty VA care varies enormously — from minutes in cities to 200+ miles in rural states</title>
+<title>Veterans live a veteran-weighted average of ~16 miles from their nearest VA facility, but the gap ranges from under 2 miles in DC to nearly 100 miles in Alaska</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -88,6 +88,33 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s4-t1-s1:checked ~ table tbody.s0{display:none}
+#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
+#s4-t1-s1:checked ~ .srtreset{display:inline-block}
+#s4-t1-s2:checked ~ table tbody.s0{display:none}
+#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
+#s4-t1-s2:checked ~ .srtreset{display:inline-block}
+#s4-t1-s3:checked ~ table tbody.s0{display:none}
+#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
+#s4-t1-s3:checked ~ .srtreset{display:inline-block}
+}
 </style>
 </head>
 <body>
@@ -99,8 +126,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Most veterans are close to some VA facility, but distance to comprehensive or specialty VA care varies enormously — from minutes in cities to 200+ miles in rural states</h1>
-<p class="subtitle">Sources: RAND (2015, VA-commissioned), VA Office of Rural Health, VA MISSION Act access standards, GAO. AskAmerica's own geocoded VA-facility table (lands.va_facilities) was unavailable this run — see note below.</p>
+<h1>Veterans live a veteran-weighted average of ~16 miles from their nearest VA facility, but the gap ranges from under 2 miles in DC to nearly 100 miles in Alaska</h1>
+<p class="subtitle">Straight-line distance from each county's population centroid to the nearest of 1,046 VHA facilities (VAMC/CBOC/Vet Center/nursing home/RRTP), weighted by 2023 ACS county veteran counts</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +147,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 787" width="880" height="787" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,79 +174,129 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="787" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">Veteran distance to VA care: national picture and the standards used to manage it</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">RAND 2015 national assessment; VA MISSION Act access standards (2019, drive-time methodology updated 2020)</text>
-  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Share of veterans within 40 driving miles of a VA facility, by facility type</text>
-    <g id="p1-gridlines">
-      <line class="grid" x1="67" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-0" class="tick" x="59" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-1" class="tick" x="59" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="67" y1="102.80" x2="390" y2="102.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-2" class="tick" x="59" y="106.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="67" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-3" class="tick" x="59" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-      <line class="grid" x1="67" y1="71.60" x2="390" y2="71.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-4" class="tick" x="59" y="75.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-    </g>
-    <g id="p1-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="134" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p1-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Facility type</text>
-    <text id="p1-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">% of veterans</text>
-    <g id="p1-x-axis-labels">
-      <text id="p1-xtick-any-vha-facility" class="tick" x="120.83" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 120.83 148)">Any VHA facility</text>
-      <text id="p1-xtick-vha-medical-center-comprehensive" class="tick" x="228.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 148)">VHA medical center (comprehensive)</text>
-      <text id="p1-xtick-vha-medical-center-w-full-specialty-care" class="tick" x="336.17" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 336.17 148)">VHA medical center w/ full specialty care</text>
-    </g>
-    <g id="p1-series-within-40-miles" class="series">
-      <rect id="p1-mark-within-40-miles-any-vha-facility" class="bar" x="86.38" y="61.46" width="67.91" height="72.54" fill="#2563eb"/>
-      <rect id="p1-mark-within-40-miles-vha-medical-center-comprehensive" class="bar" x="194.05" y="91.10" width="67.91" height="42.90" fill="#2563eb"/>
-      <rect id="p1-mark-within-40-miles-vha-medical-center-w-full-specialty-care" class="bar" x="301.71" y="113.72" width="67.91" height="20.28" fill="#2563eb"/>
-    </g>
-    <g id="p1-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="363" fill="#6b7280">RAND, Sept. 2015, commissioned under the Veterans Choice Act — the</text>
-  <text class="caption" x="24" y="376" fill="#6b7280">last national drive-distance assessment of its kind.</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Veteran Distance to Nearest VA Facility</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">County-centroid straight-line distance to nearest VHA facility, weighted by 2023 ACS veteran population</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Veteran-weighted avg distance</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">15.9 miles</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Population-weighted mean across 3,222 counties</text>
   <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="162" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="198" fill="#6b7280">VA primary/mental-health care drive-time standard</text>
-  <text class="stat-value" x="464" y="228" fill="#1f2328">30 minutes</text>
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Veterans within 25 miles</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">80.7%</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">vs 45.7% within 10 mi</text>
   </g>
-  <text class="caption" x="452" y="363" fill="#6b7280">Average drive time; veterans beyond it can use VA-paid community care</text>
-  <text class="caption" x="452" y="376" fill="#6b7280">under the MISSION Act.</text>
-  <g id="p3-stat">
-  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="434" fill="#6b7280">VA specialty-care drive-time standard</text>
-  <text class="stat-value" x="36" y="464" fill="#1f2328">60 minutes</text>
-  </g>
-  <text class="caption" x="24" y="519" fill="#6b7280">Average drive time to a VA facility offering that specialty.</text>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="434" fill="#6b7280">Enrolled veterans who are rural/highly rural</text>
-  <text class="stat-value" x="464" y="464" fill="#1f2328">~3 of 9.1 million</text>
-  <text class="stat-delta" x="464" y="484" fill="#6b7280">~33%</text>
-  </g>
-  <text class="caption" x="452" y="519" fill="#6b7280">FY2025, VHA Support Service Center via VA Office of Rural Health.</text>
-  <text class="caption" x="452" y="532" fill="#6b7280">Rural veterans enroll at a higher rate than urban veterans (66% vs.…</text>
-  <g id="p5-stat">
-  <rect class="panel-edge" x="20" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="590" fill="#6b7280">Historic Veterans Choice Act distance threshold</text>
-  <text class="stat-value" x="36" y="620" fill="#1f2328">40 miles</text>
-  </g>
-  <text class="caption" x="24" y="675" fill="#6b7280">2014 standard for private-care eligibility; superseded by drive-time</text>
-  <text class="caption" x="24" y="688" fill="#6b7280">standards but still grandfathered for some veterans enrolled before…</text>
-  <text class="footnote" x="20" y="720" fill="#6b7280">AskAmerica's lands.va_facilities table (geocoded VA facility roster) returned a data-store error (S3 404) on every query this run and could not be</text>
-  <text class="footnote" x="20" y="734" fill="#6b7280">used to compute distances directly from primary data; reported as a defect. Figures here are drawn from the cited primary literature instead.</text>
+  <text class="caption" x="452" y="203" fill="#6b7280">96.7% are within 50 miles; 0.2% (~35,000 veterans) are over 100 miles</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">10 states with the longest average distance</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Miles (veteran-wtd)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-ak" class="tick" x="83.15" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AK</text>
+      <text id="p3-xtick-nd" class="tick" x="115.45" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ND</text>
+      <text id="p3-xtick-wy" class="tick" x="147.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WY</text>
+      <text id="p3-xtick-mt" class="tick" x="180.05" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MT</text>
+      <text id="p3-xtick-sd" class="tick" x="212.35" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">SD</text>
+      <text id="p3-xtick-nv" class="tick" x="244.65" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NV</text>
+      <text id="p3-xtick-id" class="tick" x="276.95" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ID</text>
+      <text id="p3-xtick-mn" class="tick" x="309.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MN</text>
+      <text id="p3-xtick-wa" class="tick" x="341.55" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WA</text>
+      <text id="p3-xtick-or" class="tick" x="373.85" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OR</text>
+    </g>
+    <g id="p3-series-avg-distance-mi" class="series">
+      <rect id="p3-mark-avg-distance-mi-ak" class="bar" x="72.81" y="61.18" width="19.67" height="138.82" fill="#2563eb"/>
+      <rect id="p3-mark-avg-distance-mi-nd" class="bar" x="105.11" y="151.76" width="19.67" height="48.24" fill="#2563eb"/>
+      <rect id="p3-mark-avg-distance-mi-wy" class="bar" x="137.41" y="156.80" width="19.67" height="43.20" fill="#2563eb"/>
+      <rect id="p3-mark-avg-distance-mi-mt" class="bar" x="169.71" y="157.52" width="19.67" height="42.48" fill="#2563eb"/>
+      <rect id="p3-mark-avg-distance-mi-sd" class="bar" x="202.01" y="157.95" width="19.67" height="42.05" fill="#2563eb"/>
+      <rect id="p3-mark-avg-distance-mi-nv" class="bar" x="234.31" y="159.25" width="19.67" height="40.75" fill="#2563eb"/>
+      <rect id="p3-mark-avg-distance-mi-id" class="bar" x="266.61" y="160.26" width="19.67" height="39.74" fill="#2563eb"/>
+      <rect id="p3-mark-avg-distance-mi-mn" class="bar" x="298.91" y="165.87" width="19.67" height="34.13" fill="#2563eb"/>
+      <rect id="p3-mark-avg-distance-mi-wa" class="bar" x="331.21" y="166.02" width="19.67" height="33.98" fill="#2563eb"/>
+      <rect id="p3-mark-avg-distance-mi-or" class="bar" x="363.51" y="167.89" width="19.67" height="32.11" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Alaska is far above every other state; the rest are large, low-density</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">Mountain/Plains/Western states</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">10 states with the shortest average distance</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="52" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">12</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Miles (veteran-wtd)</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-dc" class="tick" x="76.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">DC</text>
+      <text id="p4-xtick-ny" class="tick" x="109.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NY</text>
+      <text id="p4-xtick-nj" class="tick" x="142.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NJ</text>
+      <text id="p4-xtick-ma" class="tick" x="175.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MA</text>
+      <text id="p4-xtick-ct" class="tick" x="208.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CT</text>
+      <text id="p4-xtick-pa" class="tick" x="241.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">PA</text>
+      <text id="p4-xtick-oh" class="tick" x="274.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OH</text>
+      <text id="p4-xtick-ri" class="tick" x="307.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">RI</text>
+      <text id="p4-xtick-md" class="tick" x="340.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MD</text>
+      <text id="p4-xtick-fl" class="tick" x="373.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FL</text>
+    </g>
+    <g id="p4-series-avg-distance-mi" class="series">
+      <rect id="p4-mark-avg-distance-mi-dc" class="bar" x="65.94" y="178.40" width="20.12" height="21.60" fill="#2563eb"/>
+      <rect id="p4-mark-avg-distance-mi-ny" class="bar" x="98.94" y="105.20" width="20.12" height="94.80" fill="#2563eb"/>
+      <rect id="p4-mark-avg-distance-mi-nj" class="bar" x="131.94" y="105.20" width="20.12" height="94.80" fill="#2563eb"/>
+      <rect id="p4-mark-avg-distance-mi-ma" class="bar" x="164.94" y="104" width="20.12" height="96" fill="#2563eb"/>
+      <rect id="p4-mark-avg-distance-mi-ct" class="bar" x="197.94" y="102.80" width="20.12" height="97.20" fill="#2563eb"/>
+      <rect id="p4-mark-avg-distance-mi-pa" class="bar" x="230.94" y="101.60" width="20.12" height="98.40" fill="#2563eb"/>
+      <rect id="p4-mark-avg-distance-mi-oh" class="bar" x="263.94" y="93.20" width="20.12" height="106.80" fill="#2563eb"/>
+      <rect id="p4-mark-avg-distance-mi-ri" class="bar" x="296.94" y="92" width="20.12" height="108" fill="#2563eb"/>
+      <rect id="p4-mark-avg-distance-mi-md" class="bar" x="329.94" y="62" width="20.12" height="138" fill="#2563eb"/>
+      <rect id="p4-mark-avg-distance-mi-fl" class="bar" x="362.94" y="58.40" width="20.12" height="141.60" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Dense Northeast corridor states and DC cluster under 12 miles</text>
   <g id="brand">
-  <svg x="20" y="746" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -228,47 +305,184 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="761" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="564" fill="#6b7280" text-anchor="end">Prepared 2026-09-10</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:56995/a/149e252eb8e9cfdf4b67d3f0be9b5f9c.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:65358/a/c74a83ae5080ec8a4080d8eeb368d9fd.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>Most veterans live fairly close to <em>some</em> VA presence, but how far they are from care that can actually treat them varies hugely by geography. The last national assessment (RAND, 2015, done for the VA under the Veterans Choice Act) found <strong>93% of veterans lived within 40 driving miles of any VHA facility</strong> (including small outpatient clinics and Vet Centers), but only <strong>55% were within 40 miles of a full-service VA medical center</strong>, and just <strong>26% were within 40 miles of a VA medical center offering comprehensive specialty care</strong>. The VA now manages this gap with drive-time standards rather than a flat mileage rule: veterans facing more than a 30-minute average drive for primary/mental health care, or more than 60 minutes for specialty care, can get VA-paid care from a private provider under the MISSION Act. The variation is geographic and stark — veterans in large rural states (Montana, Wyoming, Alaska) routinely face 100-200+ mile trips to a full-service VAMC, sometimes 1,000+ miles in Alaska's most remote communities, while veterans in metro areas often have a facility within a short drive. About one-third of enrolled veterans (roughly 3 of 9.1 million) are classified rural or highly rural, and this population enrolls in VA care at a notably higher rate (66%) than urban veterans (47%), which raises the average access burden nationally even though it is concentrated in specific regions.</p>
+<p>Weighting by where the nation's veterans actually live (2023 ACS county veteran counts), the average veteran's nearest VA facility is about <strong>15.9 miles</strong> away, as a straight line from their county's population center. 81% of veterans live within 25 miles of a facility and 97% within 50 miles, but the picture varies enormously by geography: veterans in Washington, DC average under 2 miles to a facility, while veterans in Alaska average <strong>96 miles</strong> — and several Alaska island communities (Aleutians West, Ketchikan, Sitka, Juneau) sit 500-1,250 miles from the nearest facility as the crow flies, since they have no road connection to the mainland network. Outside Alaska, the next-farthest states are large, low-density Mountain/Plains states (North Dakota, Wyoming, Montana, South Dakota, Nevada, Idaho) averaging roughly 25-35 miles — a rural-access gap of roughly 4x versus the dense Northeast corridor.</p>
 </section>
 <section>
-<h2>How the VA measures and manages distance today</h2>
-<p>The VA replaced its old distance-based eligibility rule with average-drive-time standards under the 2018 MISSION Act (methodology refined in a 2020 Federal Register update): <strong>30 minutes</strong> average drive time for primary care, mental health care, and non-institutional extended care, and <strong>60 minutes</strong> for specialty care. A veteran whose nearest appropriate VA facility exceeds that standard is generally eligible to receive VA-paid care from an in-network community (private) provider instead of traveling to a VA site. This replaced the blunter 2014 Veterans Choice Act rule, which set eligibility at a flat <strong>40 miles</strong> from the nearest VHA facility (a rule some veterans enrolled before June 2018 are still grandfathered under). Separately, for disability compensation and pension exam travel, the VA uses a coarser urban/rural/highly-rural drive-time schedule: roughly 45 minutes for urban veterans and up to 100 minutes for rural or highly rural veterans (reduced from a 180-minute highly-rural standard used before April 2022).</p>
+<h2>Method</h2>
+<p><strong>Facility universe:</strong> <code>lands.va_facilities</code>, HIFLD's geocoded roster of 1,046 live Veterans Health Administration facilities — VA medical centers, community-based outpatient clinics, Vet Centers, VA nursing homes, and residential rehab programs. All 1,046 rows carry non-null latitude/longitude (verified: 0 of 1,046 have missing coordinates), so the <code>latitude IS NOT NULL AND longitude IS NOT NULL</code> filter used in every query below excluded no facilities in practice — it is a defensive filter, not an actual exclusion. "Nearest facility" here means the nearest of ANY of these types, which best matches how most veterans actually access VA care (a CBOC or Vet Center, not necessarily a full medical center).</p><p><strong>Distance:</strong> great-circle (haversine) distance in miles from each county's Census Gazetteer population-weighted centroid (<code>geo.gazetteer_counties</code>, 2023 vintage) to the nearest facility's coordinates. This is a straight-line proxy, not drive time or drive distance — actual road/ferry distance in rural and non-contiguous areas (all of coastal Alaska, mountainous terrain) will be substantially longer than the straight-line figure reported here, so these numbers understate real-world travel burden, especially in Alaska.</p><p><strong>Weighting:</strong> each county's minimum distance is weighted by its 2023 ACS 5-year veteran population (<code>census.acs_veterans</code>) to produce population-weighted national and state averages, rather than treating every county (regardless of how many veterans live there) equally. An unweighted county average is 33.1 miles — nearly double the veteran-weighted figure — because many low-veteran-population rural counties sit far from a facility while pulling the simple county average up; weighting by where veterans live is the right denominator for "how far is the average veteran," and is reported here for that reason.</p><p><strong>Coverage caveat:</strong> 3,222 of 3,222 counties in the 2023 Gazetteer file successfully matched to both a facility distance and a 2023 ACS veteran count (no counties were dropped for missing centroid or veteran data at this join). ACS county veteran figures are 2023 5-year-estimate values (most recent available; the source publishes ~2 years behind, so no 2024-2026 vintage exists yet in this corpus).</p>
 </section>
 <section>
-<h2>How much distance varies across the country</h2>
-<p>The RAND breakdown above is itself evidence of the variation: nearly all veterans are near <em>a</em> VA facility, but the share close to comprehensive or specialty care drops sharply, which is a proxy for how concentrated full-service VA medical centers are in and near metro areas. Qualitatively, the extremes are well documented: the VA's own rural-veteran materials and multiple GAO reviews (e.g. GAO-24-107559, GAO-23-105544 on rural mental health access) describe veterans in low-density states such as Montana traveling 200+ miles to reach a comprehensive VAMC (the Billings VAMC's service area is larger than several entire states), and the single most extreme documented case is Hollis, Alaska, where the nearest VA medical facility is reported at over 1,000 miles away. By contrast, veterans in dense metro areas (e.g. greater Atlanta, Phoenix, San Antonio, or the New York/New Jersey corridor) typically have a VA medical center or one of the VA's roughly 1,000+ outpatient clinics and Vet Centers within a short drive. This urban/rural split is why the VA's rural population — about 4.5 million of 17.5 million living veterans, and roughly a third of the 9.1 million currently enrolled for care — is the group these access standards and the community-care option are mainly built to serve.</p>
+<h2>Nearest-facility distance distribution (veteran-weighted)</h2>
+<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><table border="1" cellpadding="6" cellspacing="0"><tr><th><label class="srth" for="s3-t1-s1">Distance band<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s2">Share of veterans<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Within 10 miles</td><td>45.7%</td></tr><tr><td>Within 25 miles</td><td>80.7%</td></tr><tr><td>Within 50 miles</td><td>96.7%</td></tr><tr><td>Over 100 miles</td><td>0.2%</td></tr></tbody><tbody class="srt s1"><tr><td>Over 100 miles</td><td>0.2%</td></tr><tr><td>Within 50 miles</td><td>96.7%</td></tr><tr><td>Within 25 miles</td><td>80.7%</td></tr><tr><td>Within 10 miles</td><td>45.7%</td></tr></tbody><tbody class="srt s2"><tr><td>Within 50 miles</td><td>96.7%</td></tr><tr><td>Within 25 miles</td><td>80.7%</td></tr><tr><td>Within 10 miles</td><td>45.7%</td></tr><tr><td>Over 100 miles</td><td>0.2%</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>The over-100-mile tail is small in population terms but concentrated: it is almost entirely Alaska's non-road-connected boroughs.</p>
 </section>
 <section>
-<h2>What this connector could and could not verify directly</h2>
-<p>AskAmerica's catalog includes a table purpose-built to answer this question directly from primary data — <code>lands.va_facilities</code>, a geocoded roster of all ~1,046 VA medical centers, outpatient clinics, Vet Centers, nursing homes, and residential rehab facilities, which the catalog describes as answering "nearest VA facility to a given location" via latitude/longitude. Every attempt to query or describe it this run (including after a schema-catalog rebuild) failed with an S3 404 from the underlying data store, meaning its data file is currently missing or unpublished server-side. This was reported as a data-quality defect. Absent that table, this answer relies on the cited external literature (RAND's national drive-distance assessment, VA Office of Rural Health figures, and GAO reviews) rather than a first-party computed nearest-facility distance for every U.S. veteran or county — a materially weaker basis than the connector was built to provide, and the honest gap to disclose here.</p>
+<h2>Farthest counties (straight-line)</h2>
+<input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><table border="1" cellpadding="6" cellspacing="0"><tr><th><label class="srth" for="s4-t1-s1">County<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">State<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s3">Distance to nearest facility<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Aleutians West Census Area</td><td>AK</td><td>1,252 mi</td></tr><tr><td>Prince of Wales-Hyder Census Area</td><td>AK</td><td>659 mi</td></tr><tr><td>Petersburg Borough</td><td>AK</td><td>653 mi</td></tr><tr><td>Wrangell City and Borough</td><td>AK</td><td>652 mi</td></tr><tr><td>Ketchikan Gateway Borough</td><td>AK</td><td>591 mi</td></tr><tr><td>Sitka City and Borough</td><td>AK</td><td>579 mi</td></tr><tr><td>Juneau City and Borough</td><td>AK</td><td>570 mi</td></tr><tr><td>Aleutians East Borough</td><td>AK</td><td>537 mi</td></tr><tr><td>Hoonah-Angoon Census Area</td><td>AK</td><td>516 mi</td></tr><tr><td>Haines Borough</td><td>AK</td><td>503 mi</td></tr></tbody><tbody class="srt s1"><tr><td>Aleutians East Borough</td><td>AK</td><td>537 mi</td></tr><tr><td>Aleutians West Census Area</td><td>AK</td><td>1,252 mi</td></tr><tr><td>Haines Borough</td><td>AK</td><td>503 mi</td></tr><tr><td>Hoonah-Angoon Census Area</td><td>AK</td><td>516 mi</td></tr><tr><td>Juneau City and Borough</td><td>AK</td><td>570 mi</td></tr><tr><td>Ketchikan Gateway Borough</td><td>AK</td><td>591 mi</td></tr><tr><td>Petersburg Borough</td><td>AK</td><td>653 mi</td></tr><tr><td>Prince of Wales-Hyder Census Area</td><td>AK</td><td>659 mi</td></tr><tr><td>Sitka City and Borough</td><td>AK</td><td>579 mi</td></tr><tr><td>Wrangell City and Borough</td><td>AK</td><td>652 mi</td></tr></tbody><tbody class="srt s2"><tr><td>Aleutians West Census Area</td><td>AK</td><td>1,252 mi</td></tr><tr><td>Prince of Wales-Hyder Census Area</td><td>AK</td><td>659 mi</td></tr><tr><td>Petersburg Borough</td><td>AK</td><td>653 mi</td></tr><tr><td>Wrangell City and Borough</td><td>AK</td><td>652 mi</td></tr><tr><td>Ketchikan Gateway Borough</td><td>AK</td><td>591 mi</td></tr><tr><td>Sitka City and Borough</td><td>AK</td><td>579 mi</td></tr><tr><td>Juneau City and Borough</td><td>AK</td><td>570 mi</td></tr><tr><td>Aleutians East Borough</td><td>AK</td><td>537 mi</td></tr><tr><td>Hoonah-Angoon Census Area</td><td>AK</td><td>516 mi</td></tr><tr><td>Haines Borough</td><td>AK</td><td>503 mi</td></tr></tbody><tbody class="srt s3"><tr><td>Aleutians West Census Area</td><td>AK</td><td>1,252 mi</td></tr><tr><td>Prince of Wales-Hyder Census Area</td><td>AK</td><td>659 mi</td></tr><tr><td>Petersburg Borough</td><td>AK</td><td>653 mi</td></tr><tr><td>Wrangell City and Borough</td><td>AK</td><td>652 mi</td></tr><tr><td>Ketchikan Gateway Borough</td><td>AK</td><td>591 mi</td></tr><tr><td>Sitka City and Borough</td><td>AK</td><td>579 mi</td></tr><tr><td>Juneau City and Borough</td><td>AK</td><td>570 mi</td></tr><tr><td>Aleutians East Borough</td><td>AK</td><td>537 mi</td></tr><tr><td>Hoonah-Angoon Census Area</td><td>AK</td><td>516 mi</td></tr><tr><td>Haines Borough</td><td>AK</td><td>503 mi</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>All 10 farthest U.S. counties are in Alaska, driven by island/coastal communities with no road link to the facility network centered on Anchorage and Fairbanks — real travel distance for these communities is typically by air or ferry, so the true access burden is understated by a straight-line number, if anything.</p>
 </section>
 <section>
-<h2>What This Report Does Not Answer</h2>
-<ul><li><strong>Compute this directly from primary/first-party geocoded VA facility data for the current U.S. veteran population</strong>: AskAmerica's lands.va_facilities table, built for exactly this computation, returned an S3 404 on every query this run (confirmed after a schema rebuild) and could not be read. The answer instead relies on the most recent published national assessment (RAND 2015) and current VA/GAO policy documentation, which is qualitatively but not numerically identical to a live per-veteran distance computation.</li></ul>
+<h2>Every query behind this report</h2>
+<p>7 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>critique_query — 124 ms</summary><pre><code>WITH c AS (
+  SELECT county_fips, state_fips, latitude AS clat, longitude AS clon
+  FROM geo.gazetteer_counties WHERE &quot;year&quot; = '2023'
+),
+f AS (
+  SELECT station_number, latitude AS flat, longitude AS flon
+  FROM lands.va_facilities WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+),
+d AS (
+  SELECT c.county_fips, c.state_fips,
+    MIN(3958.8 * acos(LEAST(1.0, GREATEST(-1.0,
+      sin(radians(c.clat))*sin(radians(f.flat)) +
+      cos(radians(c.clat))*cos(radians(f.flat))*cos(radians(f.flon - c.clon))
+    )))) AS min_dist_miles
+  FROM c CROSS JOIN f
+  GROUP BY c.county_fips, c.state_fips
+)
+SELECT count(*) AS n_counties, avg(min_dist_miles) AS avg_dist, min(min_dist_miles) AS min_d, max(min_dist_miles) AS max_d
+FROM d</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 4031 ms</summary><pre><code>WITH c AS (
+  SELECT county_fips, state_fips, latitude AS clat, longitude AS clon
+  FROM geo.gazetteer_counties WHERE &quot;year&quot; = '2023'
+),
+f AS (
+  SELECT station_number, latitude AS flat, longitude AS flon
+  FROM lands.va_facilities WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+),
+d AS (
+  SELECT c.county_fips, c.state_fips,
+    MIN(3958.8 * acos(LEAST(1.0, GREATEST(-1.0,
+      sin(radians(c.clat))*sin(radians(f.flat)) +
+      cos(radians(c.clat))*cos(radians(f.flat))*cos(radians(f.flon - c.clon))
+    )))) AS min_dist_miles
+  FROM c CROSS JOIN f
+  GROUP BY c.county_fips, c.state_fips
+)
+SELECT count(*) AS n_counties, avg(min_dist_miles) AS avg_dist, min(min_dist_miles) AS min_d, max(min_dist_miles) AS max_d
+FROM d</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 5006 ms</summary><pre><code>WITH c AS (
+  SELECT county_fips, state_fips, latitude AS clat, longitude AS clon
+  FROM geo.gazetteer_counties WHERE &quot;year&quot; = '2023'
+),
+f AS (
+  SELECT station_number, latitude AS flat, longitude AS flon
+  FROM lands.va_facilities WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+),
+d AS (
+  SELECT c.county_fips, c.state_fips,
+    MIN(3958.8 * acos(LEAST(1.0, GREATEST(-1.0,
+      sin(radians(c.clat))*sin(radians(f.flat)) +
+      cos(radians(c.clat))*cos(radians(f.flat))*cos(radians(f.flon - c.clon))
+    )))) AS min_dist_miles
+  FROM c CROSS JOIN f
+  GROUP BY c.county_fips, c.state_fips
+),
+v AS (
+  SELECT county_fips, veterans FROM census.acs_veterans WHERE &quot;year&quot; = '2023'
+)
+SELECT
+  sum(d.min_dist_miles * v.veterans) / sum(v.veterans) AS weighted_avg_dist,
+  sum(v.veterans) AS total_veterans_matched,
+  count(*) AS n_counties_matched
+FROM d JOIN v ON d.county_fips = v.county_fips</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 4850 ms</summary><pre><code>WITH c AS (
+  SELECT county_fips, state_fips, latitude AS clat, longitude AS clon
+  FROM geo.gazetteer_counties WHERE &quot;year&quot; = '2023'
+),
+f AS (
+  SELECT station_number, latitude AS flat, longitude AS flon
+  FROM lands.va_facilities WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+),
+d AS (
+  SELECT c.county_fips, c.state_fips,
+    MIN(3958.8 * acos(LEAST(1.0, GREATEST(-1.0,
+      sin(radians(c.clat))*sin(radians(f.flat)) +
+      cos(radians(c.clat))*cos(radians(f.flat))*cos(radians(f.flon - c.clon))
+    )))) AS min_dist_miles
+  FROM c CROSS JOIN f
+  GROUP BY c.county_fips, c.state_fips
+),
+v AS (
+  SELECT county_fips, state, veterans FROM census.acs_veterans WHERE &quot;year&quot; = '2023'
+),
+j AS (
+  SELECT d.*, v.veterans FROM d JOIN v ON d.county_fips = v.county_fips
+)
+SELECT
+  sum(CASE WHEN min_dist_miles &lt;= 10 THEN veterans ELSE 0 END)*1.0/sum(veterans) AS pct_within_10,
+  sum(CASE WHEN min_dist_miles &lt;= 25 THEN veterans ELSE 0 END)*1.0/sum(veterans) AS pct_within_25,
+  sum(CASE WHEN min_dist_miles &lt;= 50 THEN veterans ELSE 0 END)*1.0/sum(veterans) AS pct_within_50,
+  sum(CASE WHEN min_dist_miles &gt; 100 THEN veterans ELSE 0 END)*1.0/sum(veterans) AS pct_over_100
+FROM j</code></pre></details>
+<details class="sqltoggle"><summary>query — 10 rows — 2995 ms</summary><pre><code>WITH c AS (
+  SELECT county_fips, state_fips, county_name, latitude AS clat, longitude AS clon
+  FROM geo.gazetteer_counties WHERE &quot;year&quot; = '2023'
+),
+f AS (
+  SELECT station_number, latitude AS flat, longitude AS flon
+  FROM lands.va_facilities WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+),
+d AS (
+  SELECT c.county_fips, c.state_fips, c.county_name,
+    MIN(3958.8 * acos(LEAST(1.0, GREATEST(-1.0,
+      sin(radians(c.clat))*sin(radians(f.flat)) +
+      cos(radians(c.clat))*cos(radians(f.flat))*cos(radians(f.flon - c.clon))
+    )))) AS min_dist_miles
+  FROM c CROSS JOIN f
+  GROUP BY c.county_fips, c.state_fips, c.county_name
+)
+SELECT state_fips, county_name, min_dist_miles FROM d ORDER BY min_dist_miles DESC LIMIT 10</code></pre></details>
+<details class="sqltoggle"><summary>query — 51 rows — 7182 ms</summary><pre><code>WITH c AS (
+  SELECT county_fips, state_fips, latitude AS clat, longitude AS clon
+  FROM geo.gazetteer_counties WHERE &quot;year&quot; = '2023'
+),
+f AS (
+  SELECT station_number, latitude AS flat, longitude AS flon
+  FROM lands.va_facilities WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+),
+d AS (
+  SELECT c.county_fips, c.state_fips,
+    MIN(3958.8 * acos(LEAST(1.0, GREATEST(-1.0,
+      sin(radians(c.clat))*sin(radians(f.flat)) +
+      cos(radians(c.clat))*cos(radians(f.flat))*cos(radians(f.flon - c.clon))
+    )))) AS min_dist_miles
+  FROM c CROSS JOIN f
+  GROUP BY c.county_fips, c.state_fips
+),
+v AS (
+  SELECT county_fips, veterans FROM census.acs_veterans WHERE &quot;year&quot; = '2023'
+),
+j AS (
+  SELECT d.*, v.veterans FROM d JOIN v ON d.county_fips = v.county_fips
+)
+SELECT s.state_abbr,
+  sum(j.min_dist_miles*j.veterans)/sum(j.veterans) AS weighted_avg_dist,
+  sum(j.veterans) AS veterans
+FROM j JOIN geo.state_ref s ON j.state_fips = s.state_fips
+GROUP BY s.state_abbr
+ORDER BY weighted_avg_dist DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1199 ms</summary><pre><code>SELECT count(*) AS total, sum(CASE WHEN latitude IS NULL OR longitude IS NULL THEN 1 ELSE 0 END) AS missing_coords FROM lands.va_facilities</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.rand.org/pubs/research_reports/RR1165z2.html">RAND: Resources and Capabilities of the Department of Veterans Affairs to Provide Timely and Accessible Care to Veterans (2015)</a> <span class="note">— 93%/55%/26% within-40-miles figures; VA-commissioned under the Veterans Choice Act</span></li>
-<li><a href="https://www.ruralhealth.va.gov/aboutus/rural-veterans.asp">VHA Office of Rural Health — About Rural Veterans</a> <span class="note">— Fetched 2026-09-05; FY2025 enrollment and rural/urban enrollment-rate figures, RUCA rurality definitions</span></li>
-<li><a href="https://www.va.gov/files/2024-12/VA-FS_CC-Eligibility.pdf">VA MISSION Act Community Care Eligibility fact sheet</a> <span class="note">— 30-min primary care / 60-min specialty care drive-time standards; 40-mile Choice Act grandfathering</span></li>
-<li><a href="https://www.gao.gov/products/gao-24-107559">GAO-24-107559: VA Health Care — Opportunities to Improve Access for Veterans Living in Rural Areas</a> <span class="note">— Cited for rural access findings; full PDF blocked by GAO's site (HTTP 403) to automated fetch, so only the landing-page description was used</span></li>
-<li><a href="https://www.gao.gov/products/gao-23-105544">GAO-23-105544: VA Mental Health — Additional Action Needed to Assess Rural Veterans' Access to Intensive Care</a> <span class="note">— Rural mental-health drive-time access findings</span></li>
-<li><a href="https://www.usda.gov/media/blog/2011/08/03/rural-veterans-and-tyranny-distance">USDA: Rural Veterans and the Tyranny of Distance</a> <span class="note">— Origin of the Hollis, Alaska 1,000+ mile example</span></li>
-<li><a href="https://www.federalregister.gov/documents/2020/07/15/2020-14341/update-to-access-standards-drive-time-calculations">Federal Register: Update to Access Standards Drive Time Calculations (2020)</a> <span class="note">— Referenced for the 2020 drive-time methodology update; direct fetch blocked by an anti-scraping CAPTCHA, so cited via search-result summary, not a direct read of the rule text</span></li>
-<li>AskAmerica lands.va_facilities (queried, returned S3 404 error) <span class="note">— Table exists in the catalog but its backing data file was unreachable this run; reported via report_issue</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT * FROM lands.va_facilities LIMIT 5</code></pre></details></li>
+<li>lands.va_facilities — HIFLD VHA Medical Facilities roster<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT station_number, facility_name, latitude, longitude FROM lands.va_facilities WHERE latitude IS NOT NULL AND longitude IS NOT NULL</code></pre></details></li>
+<li>census.acs_veterans — 2023 ACS 5-year veteran population by county<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT county_fips, veterans FROM census.acs_veterans WHERE &quot;year&quot; = '2023'</code></pre></details></li>
+<li>geo.gazetteer_counties — 2023 county population-weighted centroids<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT county_fips, state_fips, latitude, longitude FROM geo.gazetteer_counties WHERE &quot;year&quot; = '2023'</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Distance/drive-time figures reflect the last published national assessment (2015) and current VA policy standards, not a live nearest-facility computation — the AskAmerica table built for that computation was unavailable this run (see final section).</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-05</span></p>
+<p class="footnote">Straight-line (haversine) county-centroid-to-facility distance, not drive time/distance — understates true travel burden, especially in non-contiguous and mountainous areas. Facility roster: HIFLD VHA Medical Facilities (lands.va_facilities, 1,046 live facilities, 0 missing coordinates). Veteran population: ACS 5-year 2023 (census.acs_veterans). County centroids: Census Gazetteer 2023 (geo.gazetteer_counties).</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-10</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
