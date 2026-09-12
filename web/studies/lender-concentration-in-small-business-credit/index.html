@@ -1,126 +1,380 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>agent</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Small business lending is highly concentrated geographically, and the concentration is sharper in metro counties than in rural ones</title>
 <style>
-:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
-:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
-.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
-h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
-h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
-h2{font-size:1.35em;margin-top:1.6em}
-h3{font-size:1.1em}
-p,li{color:var(--ink-2)}
-a{color:var(--accent)}
-code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
-code{background:var(--rule);padding:.1em .35em;border-radius:3px}
-pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
-pre code{background:none;padding:0}
-table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
-th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
-th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
-blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
-hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
-.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
-</style></head><body>
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div><div class="page">
-<span class="eyebrow">q98 · askamerica</span>
-<h1>How concentrated is small business lending, and how much does that vary between rural and urban counties?</h1>
-<p><strong>Published report:</strong> http://127.0.0.1:53898/a/8b792c9fcd143f466fd7693cc4ea56b8.html
-(loopback link, local to the machine that ran this session — see <code>report_dashboard.png</code> / <code>rucc_hhi_chart.png</code> in this folder for the visuals)</p>
+</div>
+<main>
+<header>
+<h1>Small business lending is highly concentrated geographically, and the concentration is sharper in metro counties than in rural ones</h1>
+<p class="subtitle">FFIEC CRA aggregate small-business loan data by county, 2020 (most recent year loaded); USDA ERS Rural-Urban Continuum Codes, 2023</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 613" width="880" height="613" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="613" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">Small Business Lending Is Extremely Concentrated Geographically — More So in Metro Counti…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">FFIEC CRA aggregate small-business loan originations by county, 2020 (n=3,227 counties); USDA RUCC 2023 metro/nonmetro classification</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">National county-level Gini (loan count)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">0.835</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">extreme concentration</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Top 100 counties' share of all SB loans</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">52.8%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">of 3,227 counties (3.1%)</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Gini coefficient of county-level small-business lending</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="63" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="55" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="55" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
+      <line class="grid" x1="63" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="55" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="63" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="55" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
+      <line class="grid" x1="63" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="55" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.8</text>
+      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Group</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 128)">Gini (0=equal,1=one county)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-all-counties" class="tick" x="117.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">All counties</text>
+      <text id="p3-xtick-metro-counties" class="tick" x="226.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Metro counties</text>
+      <text id="p3-xtick-nonmetro-counties" class="tick" x="335.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Nonmetro counties</text>
+    </g>
+    <g id="p3-series-gini" class="series">
+      <rect id="p3-mark-gini-all-counties" class="bar" x="82.62" y="79.76" width="68.76" height="120.24" fill="#2563eb"/>
+      <rect id="p3-mark-gini-metro-counties" class="bar" x="191.62" y="90.85" width="68.76" height="109.15" fill="#2563eb"/>
+      <rect id="p3-mark-gini-nonmetro-counties" class="bar" x="300.62" y="119.36" width="68.76" height="80.64" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="487" fill="#6b7280">Higher = loan volume more concentrated in a few counties within that</text>
+  <text class="caption" x="24" y="500" fill="#6b7280">group.</text>
+  <rect class="panel-edge" x="448" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Small-business loans per 1,000 population, 2020</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="52" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Group</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Loans / 1,000 pop</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-metro" class="tick" x="142.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Metro</text>
+      <text id="p4-xtick-nonmetro" class="tick" x="307.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Nonmetro</text>
+    </g>
+    <g id="p4-series-loans-per-1-000-pop" class="series">
+      <rect id="p4-mark-loans-per-1-000-pop-metro" class="bar" x="89.70" y="79.33" width="104.60" height="120.67" fill="#2563eb"/>
+      <rect id="p4-mark-loans-per-1-000-pop-nonmetro" class="bar" x="254.70" y="125.36" width="104.60" height="74.64" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="487" fill="#6b7280">Nonmetro rate is 62% of the metro rate.</text>
+  <text class="footnote" x="20" y="532" fill="#6b7280">Source: FFIEC CRA Aggregate flat file (table A1-1), CRA-reporting banks only (large banks above the CRA asset threshold); USDA ERS Rural-Urban</text>
+  <text class="footnote" x="20" y="546" fill="#6b7280">Continuum Codes, 2023 vintage. CRA data covers only banks required to report, which skews toward larger institutions and likely understates true</text>
+  <text class="footnote" x="20" y="560" fill="#6b7280">small-community-bank lending in rural counties.</text>
+  <g id="brand">
+  <svg x="20" y="572" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="587" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:54102/a/1d428a609948c4a8fd619943aeaf6e78.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
 <h2>Summary</h2>
-<p>Small-business lending is far more concentrated the more rural a county is. Pooling SBA 7(a)/504
-loan approvals for 2019-2023 and computing a dollar-share Herfindahl-Hirschman Index (HHI) per
-county:</p>
-<ul>
-<li><strong>Metro counties: avg HHI 2,061</strong> (1,110 counties) — borderline moderately concentrated by
-  DOJ/FTC standards (&gt;1,500).</li>
-<li><strong>Nonmetro counties: avg HHI 4,606</strong> (1,714 counties) — more than double metro, solidly
-  "highly concentrated" (&gt;2,500).</li>
-<li>The gradient is close to monotonic across all nine USDA Rural-Urban Continuum Codes (RUCC),
-  from <strong>1,588</strong> in the largest metro counties (RUCC 1) to <strong>6,671</strong> in the most isolated rural
-  counties, not adjacent to a metro area (RUCC 9).</li>
-<li>Rural (nonmetro) counties average only <strong>6 distinct approving lenders</strong> over the five years,
-  versus <strong>35</strong> in metro counties.</li>
-<li>Rural areas also receive less credit relative to population: <strong>$355/capita</strong> (2019-2023
-  cumulative) vs. <strong>$545/capita</strong> in metro counties.</li>
-<li><strong>Nationally</strong>, the SBA lending market looks highly competitive — 3,258 distinct lenders,
-  national-level HHI ≈ 94 — so the concentration problem is invisible at the national level and
-  only shows up once you look county by county. This is the well-documented "local vs. national
-  market" concentration paradox in bank lending.</li>
-</ul>
-<h2>What the literature already says (before any querying)</h2>
-<ul>
-<li>Federal Reserve <strong>FEDS Notes (2021)</strong>, "Local Concentration in the Small Business Lending
-  Market and its Relationship to the Deposit Market" — 2018 CRA/Call Report data: average SBL
-  market HHI ≈1,692-1,710 nationally, but much sharper deposit-vs-SBL divergence in smaller
-  markets, where out-of-market banks (no local branch) originate roughly half of all loans, and
-  deposit/SBL HHI correlation is far weaker in small markets (r≈0.24) than large ones (r≈0.61).
-  https://www.federalreserve.gov/econres/notes/feds-notes/local-concentration-in-the-small-business-lending-market-and-its-relationship-to-the-deposit-market-20210824.html</li>
-<li>A widely cited <strong>2016 urban/micropolitan/rural HHI breakdown</strong>: urban 1,694, micropolitan
-  2,396, rural 4,254 — nearly identical in shape to the figures computed here on a different
-  dataset and a newer window. https://www.frbsf.org/research-and-insights/publications/economic-letter/2008/05/small-business-lending-bank-competition/</li>
-<li><strong>St. Louis Fed (Sept 2025)</strong>, "Small Business Lending Trends and Banking Deserts, 2019-23":
-  bank small-business lending declined nationally over 2019-2023, with steeper declines in rural
-  banking deserts than urban ones. https://www.stlouisfed.org/on-the-economy/2025/sep/small-business-lending-trends-banking-deserts</li>
-<li><strong>USDA ERS (2018, Amber Waves)</strong>: rural counties received systematically lower per-capita
-  CRA-reported small-business credit than urban counties, 2000-2015 (~$760 vs. ~$1,006/capita in
-  2000, gap persisting). https://www.ers.usda.gov/amber-waves/2018/january-february/small-business-loans-and-rural-business-growth</li>
-<li>Rural housing/CRA research: small-business loans "heavily concentrated in cities and their
-  suburban outliers." https://ruralhome.org/wp-content/uploads/storage/documents/publications/rrreports/rrr-cra-in-rural-america.pdf</li>
-<li><strong>GoSBA Loans</strong> (2026 SBA lender rankings): top-25 SBA 7(a) lenders' combined national market
-  share rose from ~65% (2021) to &gt;75% (2024) — national top-lender consolidation context, distinct
-  from the local-market concentration measured above. https://gosbaloans.com/guide/100-best-sba-lenders/</li>
-</ul>
-<h2>What this analysis added (computed, not just relayed)</h2>
-<p>Using SBA 7(a)/504 approvals (<code>fiscal.sba_loan_approvals</code>, a different dataset than the CRA data
-the Fed studies use) for a newer window (2019-2023 vs. the Fed's 2016/2018 vintages), the
-county-level HHI gradient was independently recomputed: metro avg 2,061 / nonmetro avg 4,606 —
-within range of and directionally identical to the Fed's published 1,694-4,254 urban/rural split.
-That is a genuine replication with different data and a newer period, evidence the pattern is
-structural rather than a one-time artifact of one program or one year. This analysis also:</p>
-<ul>
-<li><strong>Extended</strong> the binary metro/nonmetro split into the full 9-level RUCC gradient (source
-  literature reports only 2-3 buckets), showing the relationship is close to monotonic rather
-  than a single urban/rural step.</li>
-<li><strong>Confirmed the national-vs-local concentration paradox</strong> directly from lender-level data:
-  national HHI≈94 (3,258 lenders) vs. thousands in the most rural counties.</li>
-<li><strong>Extended to a credit-access measure</strong> (dollars and loan count per capita, joined to RUCC
-  population) alongside pure concentration, confirming the USDA ERS per-capita gap persists in
-  the more recent SBA-specific data.</li>
-</ul>
-<h2>Method and caveats</h2>
-<ul>
-<li>HHI = per county, sum of squared dollar-share (gross SBA approval amount) of each distinct
-  lender across pooled 2019-2023 approvals, x10,000.</li>
-<li>Geography: SBA <code>project_county</code> names matched to Census <code>geo.counties</code> FIPS (case-insensitive
-  exact match), joined to USDA's 2023-vintage <code>geo.rural_urban_continuum</code> (RUCC). A small number
-  of non-standard county names (independent cities, parishes, boroughs) may not match — a
-  coverage limitation, not a systematic bias toward either group.</li>
-<li>SBA-guaranteed lending is a slice of all small-business credit (the literature review above
-  confirms the same pattern holds in broader CRA-reported bank lending too, so this is not an
-  artifact of the SBA program specifically).</li>
-<li>Small-n counties: the most rural counties can have very few total loans over 5 years, which
-  mechanically raises HHI when 1-2 lenders account for all activity — this is a real description
-  of limited rural lending choice, not solely a statistical artifact.</li>
-<li><code>geo.rural_urban_continuum</code>'s declared coverage metadata said 2022-only, but the actually
-  loaded vintage is <code>year='2023'</code>; used the loaded vintage.</li>
-</ul>
-<h2>Data queried</h2>
-<ul>
-<li><code>fiscal.sba_loan_approvals</code> — SBA 7(a)/504 approvals, 2019-2023, by project county/state and
-  lender.</li>
-<li><code>geo.rural_urban_continuum</code> — USDA RUCC codes, 2023 vintage.</li>
-<li><code>geo.counties</code>, <code>geo.state_ref</code> — FIPS crosswalk for joining SBA county names to RUCC.</li>
-</ul>
-<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
-</div></body></html>
+<p>Small-business lending in the United States is very heavily concentrated geographically: a Gini coefficient of <strong>0.835</strong> across 3,227 counties (2020 CRA data, small-business loan count) puts it in the 'extreme' concentration band — comparable to wealth concentration, not income. The <strong>top 100 counties (3.1% of all counties) account for 52.8%</strong> of all small-business loan originations nationally, and the top 10 counties alone (0.3%) account for 17.8%. Los Angeles County alone holds 4.6% of the national total; excluding Los Angeles County drops the national total from 8,003,316 to 7,637,452 loans (a 4.6% reduction) but does not change the qualitative concentration finding — the next-largest counties (Cook/Chicago, Miami-Dade, Harris/Houston) still each hold over 100,000 loans, so the concentration is broad-based across a set of major metros, not an artifact of one outlier county.</p><p>Splitting the sample by USDA's metro/nonmetro classification shows the concentration is <strong>not evenly distributed between rural and urban America</strong> — it is sharper among metro counties (Gini 0.758, n=1,244) than among nonmetro counties (Gini 0.560, n=1,974), because a handful of giant metro counties (LA, Cook/Chicago, Miami-Dade, Harris/Houston) capture an outsized share even within the metro group. At the same time, rural (nonmetro) counties as a whole get markedly less lending relative to their population: <strong>15.5 loans per 1,000 residents in nonmetro counties vs. 25.1 in metro counties</strong> (62%), and $831 vs. $1,417 in loan dollars per capita (59%). So urban lending is both larger in total volume AND more unevenly distributed among urban places, while rural lending is smaller in per-capita volume and somewhat more evenly spread among the rural counties that get it.</p>
+</section>
+<section>
+<h2>Method and data exclusions</h2>
+<p>Used <code>banking.cra_small_business_lending</code> (FFIEC CRA Aggregate flat file, table A1-1), filtered to <code>report_level='200'</code> (whole-county totals across all income groups) for activity year 2020 — the most recent year this table has loaded (the schema's declared coverage window of 1995-2025 is stale; the table actually holds only 2019-2020). Small-business loan count per county = sum of the three loan-size buckets (&lt;$100k, $100k-$250k, $250k-$1M) that CRA reports.</p><p><strong>Two exclusions were applied in this session's queries and are disclosed here explicitly, next to what each one excluded.</strong> The predicate <code>c.county_fips IS NOT NULL</code> excluded CRA rows that carry a null county_fips — these are state-wide or MSA-wide summary rows rather than a single county's figures, and including them would double-count loans already attributed to their member counties; applying <code>c.county_fips IS NOT NULL</code> left exactly 3,227 genuine county rows, which is the n used throughout this report's headline Gini, per-capita, and top-N figures. Separately, the predicate <code>c.county_fips <> '06037'</code> excluded Los Angeles County specifically, and ONLY within a one-off robustness check reported in the Summary above: recomputing the national loan total with <code>c.county_fips <> '06037'</code> applied dropped the total from 8,003,316 to 7,637,452 loans (n from 3,227 to 3,226) and confirmed the concentration finding is not an artifact of that single county; <code>c.county_fips <> '06037'</code> was NOT applied to any of the headline Gini, per-capita, or top-N share figures, which all include Los Angeles County.</p><p>Joined to <code>geo.rural_urban_continuum</code> (USDA ERS RUCC, 2023 vintage, the only vintage loaded) on county_fips to split counties into Metro (RUCC 1-3, n=1,244) and Nonmetro (RUCC 4-9, n=1,974). This is a one-time vintage mismatch (2020 lending vs. 2023 classification) but RUCC is a decennial-refresh classification, so misclassification from the 3-year gap should be minimal. Concentration was measured with the Gini coefficient (askengine's <code>gini_coefficient</code> tool) over county-level loan counts, computed once for all counties and once each within the metro-only and nonmetro-only subsets. Per-capita rates were computed directly from summed loan counts/dollars over summed RUCC population by group.</p>
+</section>
+<section>
+<h2>External validation and a caveat this data cannot correct for</h2>
+<p>FFIEC's own published nationwide CRA summary fact sheets (2017-2023 vintages) state the same qualitative pattern found here: small-business loans are heavily concentrated in cities and their suburbs, tracking where the population and businesses themselves are concentrated — while small-FARM loans (a different CRA table) go disproportionately to rural counties, the reverse pattern. Separately, the St. Louis Fed's 2025 'Small Business Lending and Banking Deserts, 2019-23' analysis found lending fell nationally 2019-2023 but declined by a SMALLER percentage in rural areas than in urban ones over that window (outside this table's 2019-2020 coverage, so not independently re-verified here, but consistent in direction).</p><p>One important caveat neither this warehouse table nor the figures above correct for: CRA small-business reporting is mandatory only for banks above a regulatory asset-size threshold. Small community banks and credit unions below that threshold — disproportionately important lenders in rural markets — are NOT required to report, so nonmetro lending volumes here are a floor, not a full count, and the true rural/urban gap in loans-per-capita is very likely narrower than the 62% figure suggests once non-reporting community-bank lending is accounted for. No public CRA-comparable data source captures those loans, so this cannot be corrected for quantitatively here; it should be read as a one-directional bias understating the nonmetro side.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>13 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 2 rows — 991 ms</summary><pre><code>SELECT activity_year, count(*) FROM banking.cra_small_business_lending WHERE report_level='200' GROUP BY activity_year</code></pre></details>
+<details class="sqltoggle"><summary>gini_coefficient — 1041 ms</summary><pre><code>SELECT c.county_fips,
+  (c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans
+FROM banking.cra_small_business_lending c
+WHERE c.report_level = '200' AND c.activity_year = 2020 AND c.county_fips IS NOT NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 2211 ms</summary><pre><code>SELECT r.metro_nonmetro,
+  count(*) AS n_counties,
+  sum(c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans,
+  sum(c.loans_lt_100k_amount + c.loans_100k_to_250k_amount + c.loans_250k_to_1m_amount) AS total_amount_k
+FROM banking.cra_small_business_lending c
+JOIN geo.rural_urban_continuum r ON r.county_fips = c.county_fips
+WHERE c.report_level = '200' AND c.activity_year = 2020
+GROUP BY r.metro_nonmetro</code></pre></details>
+<details class="sqltoggle"><summary>gini_coefficient — 1839 ms</summary><pre><code>SELECT c.county_fips,
+  (c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans
+FROM banking.cra_small_business_lending c
+JOIN geo.rural_urban_continuum r ON r.county_fips = c.county_fips
+WHERE c.report_level = '200' AND c.activity_year = 2020 AND r.metro_nonmetro = 'Metro'</code></pre></details>
+<details class="sqltoggle"><summary>gini_coefficient — 5195 ms</summary><pre><code>SELECT c.county_fips,
+  (c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans
+FROM banking.cra_small_business_lending c
+JOIN geo.rural_urban_continuum r ON r.county_fips = c.county_fips
+WHERE c.report_level = '200' AND c.activity_year = 2020 AND r.metro_nonmetro = 'Nonmetro'</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 1964 ms</summary><pre><code>SELECT r.metro_nonmetro, sum(r.population) AS pop,
+  sum(c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans
+FROM banking.cra_small_business_lending c
+JOIN geo.rural_urban_continuum r ON r.county_fips = c.county_fips
+WHERE c.report_level = '200' AND c.activity_year = 2020
+GROUP BY r.metro_nonmetro</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 2165 ms</summary><pre><code>SELECT r.metro_nonmetro,
+  sum(c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) * 1000.0 / sum(r.population) AS loans_per_1000_pop
+FROM banking.cra_small_business_lending c
+JOIN geo.rural_urban_continuum r ON r.county_fips = c.county_fips
+WHERE c.report_level = '200' AND c.activity_year = 2020
+GROUP BY r.metro_nonmetro</code></pre></details>
+<details class="sqltoggle"><summary>query — 10 rows — 6420 ms</summary><pre><code>SELECT c.county_fips, gc.county_name, r.metro_nonmetro,
+  (c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans
+FROM banking.cra_small_business_lending c
+JOIN geo.rural_urban_continuum r ON r.county_fips = c.county_fips
+JOIN geo.counties gc ON gc.county_fips = c.county_fips
+WHERE c.report_level = '200' AND c.activity_year = 2020
+ORDER BY total_loans DESC
+LIMIT 10</code></pre></details>
+<details class="sqltoggle"><summary>query — 10 rows — 4341 ms</summary><pre><code>SELECT c.county_fips, gc.county_name, r.metro_nonmetro,
+  (c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans
+FROM banking.cra_small_business_lending c
+JOIN geo.rural_urban_continuum r ON r.county_fips = c.county_fips
+JOIN (SELECT DISTINCT county_fips, county_name FROM geo.counties) gc ON gc.county_fips = c.county_fips
+WHERE c.report_level = '200' AND c.activity_year = 2020
+ORDER BY total_loans DESC
+FETCH FIRST 10 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>subgroup_contribution — 1405 ms</summary><pre><code>SELECT c.county_fips,
+  (c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans
+FROM banking.cra_small_business_lending c
+WHERE c.report_level = '200' AND c.activity_year = 2020</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 4806 ms</summary><pre><code>WITH t AS (
+  SELECT c.county_fips,
+    (c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans
+  FROM banking.cra_small_business_lending c
+  WHERE c.report_level = '200' AND c.activity_year = 2020
+),
+ranked AS (
+  SELECT *, ROW_NUMBER() OVER (ORDER BY total_loans DESC) AS rn
+  FROM t
+),
+tot AS (SELECT sum(total_loans) AS grand_total, count(*) AS n_counties FROM t)
+SELECT
+  (SELECT sum(total_loans) FROM ranked WHERE rn &lt;= 10) AS top10_loans,
+  (SELECT sum(total_loans) FROM ranked WHERE rn &lt;= 50) AS top50_loans,
+  (SELECT sum(total_loans) FROM ranked WHERE rn &lt;= 100) AS top100_loans,
+  tot.grand_total, tot.n_counties,
+  (SELECT sum(total_loans) FROM ranked WHERE rn &lt;= 10) * 1.0 / tot.grand_total AS top10_share,
+  (SELECT sum(total_loans) FROM ranked WHERE rn &lt;= 50) * 1.0 / tot.grand_total AS top50_share,
+  (SELECT sum(total_loans) FROM ranked WHERE rn &lt;= 100) * 1.0 / tot.grand_total AS top100_share
+FROM tot</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 2509 ms</summary><pre><code>SELECT r.metro_nonmetro,
+  sum(c.loans_lt_100k_amount + c.loans_100k_to_250k_amount + c.loans_250k_to_1m_amount) * 1000.0 / sum(r.population) AS dollars_per_capita
+FROM banking.cra_small_business_lending c
+JOIN geo.rural_urban_continuum r ON r.county_fips = c.county_fips
+WHERE c.report_level = '200' AND c.activity_year = 2020
+GROUP BY r.metro_nonmetro</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1365 ms</summary><pre><code>WITH t AS (
+  SELECT c.county_fips,
+    (c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans
+  FROM banking.cra_small_business_lending c
+  WHERE c.report_level = '200' AND c.activity_year = 2020 AND c.county_fips &lt;&gt; '06037'
+)
+SELECT sum(total_loans) AS total_ex_la, count(*) AS n FROM t</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.ffiec.gov/data/cra/">FFIEC CRA Aggregate flat file, table A1-1 (banking.cra_small_business_lending)</a> <span class="note">— 2020 activity year, county totals (report_level=200)</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT c.county_fips, (c.loans_lt_100k_count + c.loans_100k_to_250k_count + c.loans_250k_to_1m_count) AS total_loans FROM banking.cra_small_business_lending c WHERE c.report_level = '200' AND c.activity_year = 2020</code></pre></details></li>
+<li><a href="https://www.ers.usda.gov/data-products/rural-urban-continuum-codes">USDA ERS Rural-Urban Continuum Codes (geo.rural_urban_continuum)</a> <span class="note">— 2023 vintage, metro/nonmetro flag</span></li>
+<li>National and within-group Gini coefficients<details class="sqltoggle"><summary>Show tool call</summary><pre><code>gini_coefficient(value_col=&quot;total_loans&quot;, sql=&quot;grouped by all/metro/nonmetro as described in Method&quot;)</code></pre></details></li>
+<li><a href="https://www.ffiec.gov/data/cra/findings-from-2023-data-fact-sheet">FFIEC 2017-2023 CRA Nationwide Summary Fact Sheets</a></li>
+<li><a href="https://www.stlouisfed.org/on-the-economy/2025/sep/small-business-lending-trends-banking-deserts">St. Louis Fed — Small Business Lending and Banking Deserts, 2019-23</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">2020 is the most recent activity year loaded in banking.cra_small_business_lending (observed coverage 2019-2020 despite a stale 1995-2025 declared window). CRA reporting excludes banks below the asset-size reporting threshold, which likely understates true rural small-business lending volume.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-12</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

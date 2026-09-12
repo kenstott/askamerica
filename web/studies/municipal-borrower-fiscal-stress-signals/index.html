@@ -1,77 +1,414 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>agent</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Local government debt burden eased 2017-2024, but it is concentrated: DC, California, New York, Colorado, Texas and Nevada carry the heaviest loads</title>
 <style>
-:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
-:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
-.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
-h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
-h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
-h2{font-size:1.35em;margin-top:1.6em}
-h3{font-size:1.1em}
-p,li{color:var(--ink-2)}
-a{color:var(--accent)}
-code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
-code{background:var(--rule);padding:.1em .35em;border-radius:3px}
-pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
-pre code{background:none;padding:0}
-table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
-th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
-th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
-blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
-hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
-.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
-</style></head><body>
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div><div class="page">
-<span class="eyebrow">q101 · askamerica</span>
-<h1>How much fiscal stress shows up in the finances of local governments that borrow, and where is it worst?</h1>
-<p><strong>Published report:</strong> http://127.0.0.1:64891/a/d8d9c67310eadc5160b7a19cf8cf2da1.html (local artifact link — see <code>dashboard.png</code> in this folder for the visuals)</p>
-<p><img alt="Local Government Fiscal Stress dashboard" src="./dashboard.png" /></p>
+</div>
+<main>
+<header>
+<h1>Local government debt burden eased 2017-2024, but it is concentrated: DC, California, New York, Colorado, Texas and Nevada carry the heaviest loads</h1>
+<p class="subtitle">Census Bureau Annual/Census-of-Governments finance survey (fiscal.govt_finance_by_unit), counties+cities+townships+special districts+school districts, FY2017-FY2024</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Local government borrowing and fiscal stress, 2017-2024</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">Census Bureau state &amp; local government finance survey, gov types: county/city/township/special district/school district</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">National debt-to-tax ratio, FY2024</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">2.23x</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">-6.3% vs 2017</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Debt outstanding as a multiple of annual local tax revenue; lower</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">means less relative stress</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Real local govt debt, 2017 vs 2024</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">-8.2%</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">$2.13T (2017, in 2024 $) vs $1.95T (2024)</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Nominal debt rose 17.5% but CPI-U rose ~28% over the same span</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Local government debt burden relative to tax revenue, 2017-2024</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="156" x2="390" y2="156" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="136" x2="390" y2="136" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="140" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="96" x2="390" y2="96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="100" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="76" x2="390" y2="76" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="156" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="156" x2="390" y2="156" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="200" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="106" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 106)">Ratio / percent</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2017" class="tick" x="80.63" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="121.88" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="163.13" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="204.38" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="245.63" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="286.88" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="328.13" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="369.38" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+    </g>
+    <g id="p3-series-debt-outstanding-total-taxes-ratio" class="series">
+      <path id="p3-line-debt-outstanding-total-taxes-ratio" class="line" d="M 80.63 132.22 L 121.88 131.78 L 163.13 131.96 L 204.38 132.10 L 245.63 132.60 L 286.88 133.57 L 328.13 133.29 L 369.38 133.73" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-debt-outstanding-total-taxes-ratio-2017" class="point" cx="80.63" cy="132.22" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-debt-outstanding-total-taxes-ratio-2018" class="point" cx="121.88" cy="131.78" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-debt-outstanding-total-taxes-ratio-2019" class="point" cx="163.13" cy="131.96" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-debt-outstanding-total-taxes-ratio-2020" class="point" cx="204.38" cy="132.10" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-debt-outstanding-total-taxes-ratio-2021" class="point" cx="245.63" cy="132.60" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-debt-outstanding-total-taxes-ratio-2022" class="point" cx="286.88" cy="133.57" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-debt-outstanding-total-taxes-ratio-2023" class="point" cx="328.13" cy="133.29" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-debt-outstanding-total-taxes-ratio-2024" class="point" cx="369.38" cy="133.73" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-interest-on-debt-total-taxes" class="series">
+      <path id="p3-line-interest-on-debt-total-taxes" class="line" d="M 80.63 67.30 L 121.88 64.80 L 163.13 64.80 L 204.38 66.90 L 245.63 70.40 L 286.88 82.10 L 328.13 81.50 L 369.38 80.10" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-interest-on-debt-total-taxes-2017" class="point" cx="80.63" cy="67.30" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-interest-on-debt-total-taxes-2018" class="point" cx="121.88" cy="64.80" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-interest-on-debt-total-taxes-2019" class="point" cx="163.13" cy="64.80" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-interest-on-debt-total-taxes-2020" class="point" cx="204.38" cy="66.90" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-interest-on-debt-total-taxes-2021" class="point" cx="245.63" cy="70.40" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-interest-on-debt-total-taxes-2022" class="point" cx="286.88" cy="82.10" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-interest-on-debt-total-taxes-2023" class="point" cx="328.13" cy="81.50" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-interest-on-debt-total-taxes-2024" class="point" cx="369.38" cy="80.10" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-debt-outstanding-total-taxes-ratio" x="99.50" y="214" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-debt-outstanding-total-taxes-ratio" class="legend-label" x="115.50" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Debt outstanding / total taxes (ratio)</text>
+      <rect id="p3-legend-swatch-interest-on-debt-total-taxes" x="112.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-interest-on-debt-total-taxes" class="legend-label" x="128.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Interest on debt / total taxes (%)</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">50 states only, DC excluded as a non-comparable consolidated</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">city-county-state government; both ratios fell 2017-2022 then…</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Highest local-government debt per capita by state, FY2022</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="84" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="76" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="179.43" x2="390" y2="179.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="76" y="183.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5,000</text>
+      <line class="grid" x1="84" y1="158.86" x2="390" y2="158.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="76" y="162.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+      <line class="grid" x1="84" y1="138.29" x2="390" y2="138.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="76" y="142.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15,000</text>
+      <line class="grid" x1="84" y1="117.71" x2="390" y2="117.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="76" y="121.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+      <line class="grid" x1="84" y1="97.14" x2="390" y2="97.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="76" y="101.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25,000</text>
+      <line class="grid" x1="84" y1="76.57" x2="390" y2="76.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="76" y="80.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">35,000</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="237" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Debt $ per capita</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-dc" class="tick" x="99.30" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">DC</text>
+      <text id="p4-xtick-ca" class="tick" x="129.90" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA</text>
+      <text id="p4-xtick-ny" class="tick" x="160.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NY</text>
+      <text id="p4-xtick-co" class="tick" x="191.10" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CO</text>
+      <text id="p4-xtick-tx" class="tick" x="221.70" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">TX</text>
+      <text id="p4-xtick-wa" class="tick" x="252.30" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WA</text>
+      <text id="p4-xtick-il" class="tick" x="282.90" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">IL</text>
+      <text id="p4-xtick-ne" class="tick" x="313.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NE</text>
+      <text id="p4-xtick-nd" class="tick" x="344.10" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ND</text>
+      <text id="p4-xtick-nm" class="tick" x="374.70" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NM</text>
+    </g>
+    <g id="p4-series-debt-per-capita" class="series">
+      <rect id="p4-mark-debt-per-capita-dc" class="bar" x="89.51" y="70.56" width="18.58" height="129.44" fill="#2563eb"/>
+      <rect id="p4-mark-debt-per-capita-ca" class="bar" x="120.11" y="158.01" width="18.58" height="41.99" fill="#2563eb"/>
+      <rect id="p4-mark-debt-per-capita-ny" class="bar" x="150.71" y="159.93" width="18.58" height="40.07" fill="#2563eb"/>
+      <rect id="p4-mark-debt-per-capita-co" class="bar" x="181.31" y="162.33" width="18.58" height="37.67" fill="#2563eb"/>
+      <rect id="p4-mark-debt-per-capita-tx" class="bar" x="211.91" y="163.86" width="18.58" height="36.14" fill="#2563eb"/>
+      <rect id="p4-mark-debt-per-capita-wa" class="bar" x="242.51" y="167.92" width="18.58" height="32.08" fill="#2563eb"/>
+      <rect id="p4-mark-debt-per-capita-il" class="bar" x="273.11" y="169.97" width="18.58" height="30.03" fill="#2563eb"/>
+      <rect id="p4-mark-debt-per-capita-ne" class="bar" x="303.71" y="170.69" width="18.58" height="29.31" fill="#2563eb"/>
+      <rect id="p4-mark-debt-per-capita-nd" class="bar" x="334.31" y="174.61" width="18.58" height="25.39" fill="#2563eb"/>
+      <rect id="p4-mark-debt-per-capita-nm" class="bar" x="364.91" y="174.95" width="18.58" height="25.05" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">DC is a consolidated city-county-state government and an extreme</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">outlier, not comparable to a normal local-government layer</text>
+  <g id="brand">
+  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:55927/a/3c1c77cb8145bced08229950492137d7.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
 <h2>Summary</h2>
-<p>Local governments that borrow (counties, cities, townships, special districts and school districts) carried <strong>$2.01 trillion in long-term debt outstanding</strong> at the end of FY2022, up <strong>19.9% since 2017</strong> in nominal dollars. Measured against local tax revenue, that debt equals <strong>3.2x annual local tax collections nationally</strong> — a ratio that has been flat-to-slightly-improving since 2017 (3.3x), because local tax revenue grew almost as fast as debt. The aggregate trend is rising leverage without yet rising overall stress: unfunded pension liabilities have also improved substantially nationally since 2020.</p>
-<p>The burden is highly uneven, however:</p>
-<ul>
-<li><strong>By debt per capita (2022):</strong> California ($10,112), New York ($9,583), Colorado ($9,281), Texas ($9,019), Washington ($7,903), Illinois ($7,197), Nebraska ($7,157), Oregon ($6,639), Nevada ($6,258) and North Dakota ($6,203) carry the heaviest per-resident local debt loads — all above the $3,000-5,000 range municipal-credit literature flags as a caution signal, and above the ~$6,036 national average. Idaho ($1,484), Vermont ($1,817), Wyoming ($1,856) and West Virginia ($1,881) carry the lightest.</li>
-<li><strong>By debt-to-local-tax-revenue ratio (2022):</strong> Arkansas (7.75x), Alabama (6.90x), Nevada (6.76x), Washington (5.46x), California (4.95x), Tennessee (4.77x), Kentucky (4.71x), Colorado (4.33x), Arizona (4.14x) and Texas (3.91x) rank highest — all above the 3:1 threshold flagged as high-risk in muni-credit literature. This ratio partly reflects each state's revenue mix (local-tax reliance vs. state aid), not pure overleverage — a stated caveat.</li>
-<li><strong>By individual issuer (cities with ≥$50M local tax revenue):</strong> the most extreme debt/tax ratios (16x–79x) cluster in fast-growing Sunbelt/Western metros (Arizona, Texas, California, Colorado, Washington, Ohio), most plausibly enterprise (water/electric utility) revenue-bond debt rather than general-fund distress. This corpus does not carry government unit names, only county location, so these issuers are geographically but not nominally identified — a disclosed gap.</li>
-</ul>
-<p><strong>Cross-check against independent monitoring:</strong> New York's own Fiscal Stress Monitoring System (FY2025, released March 2026) — which uses fund balance, cash position, cash-flow borrowing, and operating-deficit indicators this corpus's debt-only data cannot replicate — designated only <strong>7 of 518 scored villages/cities (~1.3%)</strong> in fiscal stress, with just <strong>1 (Island Park, NY)</strong> in "significant" stress. This is consistent with the debt/tax evidence: debt stock is climbing, but broad acute distress is not yet widespread, even as 2026 municipal-sector outlooks turn more cautious on labor, construction and healthcare cost growth outpacing slowing revenue growth.</p>
-<h2>Method and validation</h2>
-<p>Used AskAmerica's <code>fiscal.govt_finance_by_unit</code> (Census Individual Unit File / Census of Governments), item code 49U = long-term debt outstanding at fiscal year end, T01 = total local tax revenue. Item-code meanings were not documented in plain English anywhere findable, so they were validated empirically against New York City's own numbers: 2022 beginning debt (19U, $124.33B) + debt issued (29U, $13.24B) − debt retired (39U, $10.48B) ≈ ending debt (49U, $127.16B vs. computed $127.09B, &lt;0.1% gap) — confirming the roll-forward identity holds. Per-capita figures used the <code>per_capita</code> tool against <code>census.acs_population</code>. Concentration of debt across states measured via <code>gini_coefficient</code> (0.63, high — expected given population-size differences, not itself stress evidence).</p>
-<h2>Literature grounding</h2>
-<ul>
-<li>Muni-credit heuristics: debt per capita &gt;$3,000-5,000 and debt-to-revenue &gt;3:1 signal elevated risk.</li>
-<li>Nationally, unfunded public pension liabilities have declined ~$3T since 2020.</li>
-<li>2026 sector outlooks (Governing.com, HilltopSecurities) downgraded local governments to "Cautious" from "Stable" on labor/construction/healthcare cost pressure outpacing slowing revenue growth — a forward risk not yet visible in trailing 2022-2024 debt/tax data.</li>
-<li>New York State Comptroller's Fiscal Stress Monitoring System (FY2025) is the best available name-level ground truth for actual designated fiscal distress and was used as an independent cross-check.</li>
-</ul>
-<h2>Key caveats</h2>
-<ol>
-<li>Item codes (49U, T01, etc.) inferred and validated empirically, not from an official codebook — high confidence but not a documented mapping.</li>
-<li>No fund-balance/cash-flow data in this corpus, so a true multi-indicator fiscal-stress score (like NY's) could not be computed directly — addressed by citing NY's independent scores instead.</li>
-<li>Government unit names are not in this table (only numeric IDs + county), so the worst individual issuers are identified by county, not by name.</li>
-<li>Debt-to-tax ratio confounds state revenue structure (tax vs. state-aid reliance) and debt type (general obligation vs. enterprise revenue bonds) — flagged throughout, not fully separable with available tables.</li>
-<li>2023/2024 are annual-survey (sample, ~24-25k units) years vs. the full ~89k-unit 2017/2022 Census-of-Governments years — levels are not perfectly comparable across the two designs.</li>
-</ol>
+<p>Nationally, the aggregate financial stress local governments carry from borrowing has <strong>eased, not worsened</strong>, between FY2017 and FY2024: debt outstanding fell relative to tax revenue (2.38x to 2.23x), interest paid on that debt fell as a share of tax revenue (8.9% to 7.6%), and in inflation-adjusted terms total local-government debt outstanding is about <strong>8% lower</strong> in 2024 than an inflation-matched 2017 baseline, even though the nominal dollar figure rose. But that national average hides sharp geographic concentration: on a per-resident basis, local-government debt is far higher in <strong>Washington DC, California, New York, Colorado, and Texas</strong>; measured against each state's own tax base, <strong>Nevada, California, Texas, Tennessee, and Arkansas</strong> carry the heaviest relative loads; and on interest burden (debt service as a share of tax revenue), <strong>Kentucky, Nevada, Texas, and Indiana</strong> stand out. The improving national trend is itself now at risk: 2025-2026 market commentary (Volcker Alliance, HilltopSecurities) describes record municipal bond issuance (~$600B in 2025) alongside rising downgrades and a fading of pandemic-era federal aid, meaning the easing this data shows through 2024 may not continue.</p>
+</section>
+<section>
+<h2>What counts as &quot;fiscal stress from borrowing&quot; here, and what was excluded from every figure</h2>
+<p>This analysis measures stress from local-government borrowing using three ratios computed from the Census Bureau's Annual Survey of Local Government Finances (aggregated over counties, cities, townships, special districts, and independent school districts — <strong>state governments' own debt is excluded</strong> throughout). <strong>Every dollar figure and ratio in this report also excludes the five U.S. territory FIPS codes (60 American Samoa, 66 Guam, 69 Northern Mariana Islands, 72 Puerto Rico, 78 U.S. Virgin Islands)</strong> — the Census finance survey does not treat them as states, and including them would mix a different governance and tax structure into a 50-state comparison. The national FY2017-FY2024 trend figures (the debt-to-tax and interest-to-tax ratios, and the $1,662.8B / $1,988.9B / $1,954.2B national debt totals) additionally exclude the District of Columbia (FIPS 11) from the 50-state sums and averages, because DC is a single consolidated city-county-state government whose per-unit debt figures ($20,279-$31,461 per resident, 3-8x any state) would distort a 50-unit national total; DC is shown separately, labeled, in the per-capita state ranking instead. This table does not carry short-term debt or unfunded pension/OPEB obligations — a separate, and in many states larger, source of long-run local fiscal stress this dataset cannot speak to (see below).</p><p><strong>Data quality note (a genuine defect found while building this):</strong> the same table's 2012 vintage is badly under-populated — it shows only 193 reporting cities nationally versus ~19,400 in the 2017 and 2022 Census-of-Governments years — which produces implausible state-level swings (e.g. one state's reported debt falling 96% between 2012 and 2022). 2012 was therefore dropped entirely from this analysis; all figures below use 2017 through 2024, and the two full-enumeration years (2017, 2022) anchor the state-level comparison.</p>
+</section>
+<section>
+<h2>The national trend: stress eased 2017-2022, then flattened</h2>
+<p>Summed across the 50 states (territories FIPS 60/66/69/72/78 and DC FIPS 11 excluded, as noted above), local-government debt outstanding rose from $1,662.8B (2017) to $1,988.9B (2022) and $1,954.2B (2024) in nominal dollars — a 17.5% nominal increase over seven years. But local tax revenue rose faster: from $699.3B (2017) to $886.8B (2022) and $877.6B (2024), up 25.5%, driven by inflation and a post-pandemic revenue surge (including federal aid that flowed through state and local tax bases). As a result the debt-to-tax ratio fell from 2.38x to about 2.23x, and interest paid on debt fell from 8.9% to 7.6% of tax revenue. In real (2024) dollars, the $1,662.8B of 2017 debt is equivalent to $2,128.0B today (using the BLS CPI-U deflator), while actual 2024 debt is $1,954.2B — an <strong>8.2% real decline</strong>.</p>
+</section>
+<section>
+<h2>Where it is worst: state-level breakdown, FY2022</h2>
+<p>Using FY2022 (a full Census-of-Governments enumeration year, so every state is measured on the same basis rather than a smaller sample; territories excluded as above, DC retained and labeled separately here since this is a per-unit ranking, not a national sum):</p><ul><li><strong>Debt per resident</strong> is highest in DC ($31,461 — an outlier, not a normal local-government layer), then California ($10,206), New York ($9,740), Colorado ($9,157), Texas ($8,783), Washington ($7,798), Illinois ($7,298), Nebraska ($7,124), North Dakota ($6,170), and New Mexico ($6,088). The national median across the 50 states is roughly $4,200-4,500 per resident.</li><li><strong>Debt relative to the state's own tax base</strong> (debt-to-tax ratio) is highest in Nevada (3.35x), California (3.31x), Texas (3.21x), Tennessee (3.11x), and Arkansas (3.09x) — a different ranking than the per-capita one, since it controls for the size of each state's revenue base rather than its population.</li><li><strong>Interest burden</strong> (interest paid / tax revenue) is highest in Kentucky (12.5%), Nevada (11.8%), Texas (9.8%), Indiana (9.8%), and North Dakota (9.7%), versus a 50-state average of about 7.4% in 2022.</li></ul><p>Nevada and Texas appear near the top on all three measures, which is the strongest evidence in this data of concentrated, multi-dimensional local fiscal stress from borrowing. California and New York carry the largest absolute per-capita debt loads but more moderate interest burdens, because their revenue bases are also unusually large relative to most states.</p>
+</section>
+<section>
+<h2>By type of local government</h2>
+<p>Nationally in FY2022, of roughly $2.01 trillion in local-government debt outstanding (50 states + DC; territories excluded as above): cities carried the largest share ($748B), followed by independent school districts ($525B), special districts ($440B), counties ($264B), and townships ($33B). School-district and special-district debt — much of it revenue bonds tied to specific capital projects or enrollment growth — has grown faster since 2017 than general-purpose city and county debt, though a full year-by-year breakdown by type was not run given the scope of this question.</p>
+</section>
+<section>
+<h2>What this data cannot show: pensions and the emerging 2025-2026 turn</h2>
+<p>Unfunded public pension and retiree health liabilities are, in many states, a larger source of local fiscal stress than bonded debt, and this Census finance table does not carry them at all — no query in this report attempted to compute a pension figure from this warehouse. Equable Institute's 2025 State of Pensions research reports unfunded public pension liabilities have declined roughly $3 trillion since 2020 nationally, driven by higher discount rates and strong markets — consistent in direction with the debt-side easing found here, though it is a different liability measured a different way and not verified against this warehouse.</p><p>Separately, 2025-2026 municipal-market commentary flags a turn that this dataset's window (through 2024) cannot yet show: record new issuance (~$600B in 2025, up roughly 20% year-over-year per Volcker Alliance reporting) at post-2022 interest rates, receding federal discretionary aid to states and localities, and municipal-bond rating downgrades outpacing upgrades in most months through early 2026 (HilltopSecurities, Cumberland Advisors). If new borrowing at higher coupon rates continues to replace low-rate debt issued before the 2022-2023 rate-hiking cycle, the interest-burden ratio this report shows easing through 2024 is a plausible candidate to reverse in the 2025-2027 data this table has not yet published.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Coverage of pension/OPEB liabilities as a fiscal-stress dimension</strong>: This table only carries bonded/other debt (item 49U) and general-debt interest (I89); unfunded pension and retiree health liabilities are a separate, often larger, source of local fiscal stress not computed here — cited qualitatively from Equable Institute research instead, not verified against this warehouse</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>9 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 1 rows — 2864 ms</summary><pre><code>SELECT item_code, count(*) as n, avg(amount_thousands) as avg_amt FROM fiscal.govt_finance_by_unit WHERE item_code IN ('19','21','25','44','84','89','91','92','93','94','F19','F21') AND year='2022' GROUP BY item_code ORDER BY item_code</code></pre></details>
+<details class="sqltoggle"><summary>query — 211 rows — 1109 ms</summary><pre><code>SELECT item_code, count(*) as n, sum(amount_thousands) as tot FROM fiscal.govt_finance_by_unit WHERE &quot;year&quot;='2022' GROUP BY item_code ORDER BY item_code</code></pre></details>
+<details class="sqltoggle"><summary>query — 102 rows — 2349 ms</summary><pre><code>SELECT state_fips, &quot;year&quot;,
+  SUM(CASE WHEN item_code='49U' THEN amount_thousands ELSE 0 END) AS debt_outstanding,
+  SUM(CASE WHEN item_code='I89' THEN amount_thousands ELSE 0 END) AS interest_on_debt,
+  SUM(CASE WHEN item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T27','T28','T29','T40','T41','T50','T51','T53','T99') THEN amount_thousands ELSE 0 END) AS total_taxes
+FROM fiscal.govt_finance_by_unit
+WHERE gov_type_code IN ('1','2','3','4','5') AND &quot;year&quot; IN ('2012','2022')
+GROUP BY state_fips, &quot;year&quot;
+ORDER BY state_fips, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 15 rows — 1781 ms</summary><pre><code>SELECT &quot;year&quot;, gov_type_name, count(distinct unit_id) as units, SUM(CASE WHEN item_code='49U' THEN amount_thousands ELSE 0 END) AS debt_outstanding
+FROM fiscal.govt_finance_by_unit
+WHERE gov_type_code IN ('1','2','3','4','5') AND &quot;year&quot; IN ('2012','2017','2022')
+GROUP BY &quot;year&quot;, gov_type_name ORDER BY &quot;year&quot;, gov_type_name</code></pre></details>
+<details class="sqltoggle"><summary>query — 102 rows — 1585 ms</summary><pre><code>SELECT state_fips, &quot;year&quot;,
+  SUM(CASE WHEN item_code='49U' THEN amount_thousands ELSE 0 END) AS debt_outstanding,
+  SUM(CASE WHEN item_code='I89' THEN amount_thousands ELSE 0 END) AS interest_on_debt,
+  SUM(CASE WHEN item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T27','T28','T29','T40','T41','T50','T51','T53','T99') THEN amount_thousands ELSE 0 END) AS total_taxes,
+  count(distinct unit_id) as n_units
+FROM fiscal.govt_finance_by_unit
+WHERE gov_type_code IN ('1','2','3','4','5') AND &quot;year&quot; IN ('2017','2022') AND state_fips NOT IN ('60','66','69','72','78')
+GROUP BY state_fips, &quot;year&quot;
+ORDER BY state_fips, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 52 rows — 1233 ms</summary><pre><code>SELECT state as state_fips, population FROM census.pep_population WHERE &quot;year&quot;='2022' AND geography='state' AND county IS NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 102 rows — 2823 ms</summary><pre><code>WITH debt AS (
+  SELECT state_fips, &quot;year&quot;,
+    SUM(CASE WHEN item_code='49U' THEN amount_thousands ELSE 0 END) AS debt_outstanding,
+    SUM(CASE WHEN item_code='I89' THEN amount_thousands ELSE 0 END) AS interest_on_debt,
+    SUM(CASE WHEN item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T27','T28','T29','T40','T41','T50','T51','T53','T99') THEN amount_thousands ELSE 0 END) AS total_taxes
+  FROM fiscal.govt_finance_by_unit
+  WHERE gov_type_code IN ('1','2','3','4','5') AND &quot;year&quot; IN ('2017','2022') AND state_fips NOT IN ('60','66','69','72','78')
+  GROUP BY state_fips, &quot;year&quot;
+), pop AS (
+  SELECT state AS state_fips, population FROM census.pep_population WHERE &quot;year&quot;='2022' AND geography='state' AND county IS NULL
+)
+SELECT d.state_fips, d.&quot;year&quot;, d.debt_outstanding, d.interest_on_debt, d.total_taxes, p.population,
+  1000.0*d.debt_outstanding/NULLIF(p.population,0) AS debt_per_capita,
+  1.0*d.debt_outstanding/NULLIF(d.total_taxes,0) AS debt_to_tax_ratio,
+  1.0*d.interest_on_debt/NULLIF(d.total_taxes,0) AS interest_burden_ratio
+FROM debt d JOIN pop p ON d.state_fips=p.state_fips
+ORDER BY d.&quot;year&quot;, debt_per_capita DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 1659 ms</summary><pre><code>SELECT &quot;year&quot;,
+  SUM(CASE WHEN item_code='49U' THEN amount_thousands ELSE 0 END) AS debt_outstanding,
+  SUM(CASE WHEN item_code='I89' THEN amount_thousands ELSE 0 END) AS interest_on_debt,
+  SUM(CASE WHEN item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T27','T28','T29','T40','T41','T50','T51','T53','T99') THEN amount_thousands ELSE 0 END) AS total_taxes
+FROM fiscal.govt_finance_by_unit
+WHERE gov_type_code IN ('1','2','3','4','5') AND &quot;year&quot; IN ('2017','2022') AND state_fips NOT IN ('60','66','69','72','78','11')
+GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 6 rows — 5015 ms</summary><pre><code>SELECT &quot;year&quot;,
+  SUM(CASE WHEN item_code='49U' THEN amount_thousands ELSE 0 END) AS debt_outstanding,
+  SUM(CASE WHEN item_code='I89' THEN amount_thousands ELSE 0 END) AS interest_on_debt,
+  SUM(CASE WHEN item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T27','T28','T29','T40','T41','T50','T51','T53','T99') THEN amount_thousands ELSE 0 END) AS total_taxes,
+  count(distinct unit_id||gov_type_code) as units
+FROM fiscal.govt_finance_by_unit
+WHERE gov_type_code IN ('1','2','3','4','5') AND &quot;year&quot; IN ('2018','2019','2020','2021','2023','2024') AND state_fips NOT IN ('60','66','69','72','78','11')
+GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details>
+
+</section>
+<section class="sources">
 <h2>Sources</h2>
-<ul>
-<li>fiscal.govt_finance_by_unit (AskAmerica / Census Individual Unit File), census.acs_population (AskAmerica)</li>
-<li><a href="https://www.osc.ny.gov/press/releases/2026/03/dinapoli-releases-2025-fiscal-stress-scores-villages-and-some-cities">DiNapoli Releases 2025 Fiscal Stress Scores for Villages and Some Cities</a></li>
-<li><a href="https://www.governing.com/finance/city-financial-officers-approach-2026-with-caution">City Financial Officers Approach 2026 With Caution</a></li>
-<li><a href="https://www.hilltopsecurities.com/municipal_commentary/the-municipal-market-in-2026-hilltopsecurities-sector-credit-outlooks/">The Municipal Market in 2026, HilltopSecurities</a></li>
-<li><a href="https://www.lordabbett.com/en-us/financial-advisor/insights/investment-objectives/2025/municipal-bonds-the-state-of-states-fiscal-health.html">Municipal Bonds: The State of States' Fiscal Health, Lord Abbett</a></li>
-<li><a href="https://www.fidelity.com/bin-public/060_www_fidelity_com/documents/fixed-income/moodys-investors-service-data-report-us-municipal-bond.pdf">US municipal bond defaults and recoveries, 1970-2022 (Moody's, via Fidelity)</a></li>
-<li><a href="https://www.pew.org/-/media/assets/2019/10/state_strategies_fiscal_distress_v4.pdf">State Strategies to Detect Local Fiscal Distress, Pew Charitable Trusts</a></li>
-</ul>
-<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
-</div></body></html>
+<ol>
+<li><a href="https://www.census.gov/programs-surveys/gov-finances.html">Census Bureau Annual Survey of Local Government Finances - state-level debt/interest/tax by year, 2017 and 2022</a> <span class="note">— queried via askamerica fiscal schema; item 49U = debt outstanding end of FY, I89 = interest on general debt, T-prefix codes summed for total taxes; excludes territory FIPS 60/66/69/72/78</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, &quot;year&quot;, SUM(CASE WHEN item_code='49U' THEN amount_thousands ELSE 0 END) AS debt_outstanding, SUM(CASE WHEN item_code='I89' THEN amount_thousands ELSE 0 END) AS interest_on_debt, SUM(CASE WHEN item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T27','T28','T29','T40','T41','T50','T51','T53','T99') THEN amount_thousands ELSE 0 END) AS total_taxes FROM fiscal.govt_finance_by_unit WHERE gov_type_code IN ('1','2','3','4','5') AND &quot;year&quot; IN ('2017','2022') AND state_fips NOT IN ('60','66','69','72','78') GROUP BY state_fips, &quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.census.gov/programs-surveys/gov-finances.html">National debt/tax and interest/tax time series, 2017-2024 (50 states only: excludes territory FIPS 60/66/69/72/78 and DC FIPS 11)</a> <span class="note">— DC excluded here because its consolidated city-county-state structure makes its per-unit ratios non-comparable to a state total and would distort the 50-state national average; DC appears separately, labeled, in the per-capita state chart instead</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, SUM(CASE WHEN item_code='49U' THEN amount_thousands ELSE 0 END) AS debt_outstanding, SUM(CASE WHEN item_code='I89' THEN amount_thousands ELSE 0 END) AS interest_on_debt, SUM(CASE WHEN item_code IN ('T01',...,'T99') THEN amount_thousands ELSE 0 END) AS total_taxes FROM fiscal.govt_finance_by_unit WHERE gov_type_code IN ('1','2','3','4','5') AND &quot;year&quot; IN ('2017','2018','2019','2020','2021','2022','2023','2024') AND state_fips NOT IN ('60','66','69','72','78','11') GROUP BY &quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.census.gov/programs-surveys/popest.html">Census Bureau Population Estimates Program, state population 2022 (used for per-capita denominators)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state AS state_fips, population FROM census.pep_population WHERE &quot;year&quot;='2022' AND geography='state' AND county IS NULL</code></pre></details></li>
+<li>BLS CPI-U deflator, 2017 nominal debt restated in 2024 dollars<details class="sqltoggle"><summary>Show tool call</summary><pre><code>adjust_inflation(amount=1662836.631, from_year=2017, base_year=2024)</code></pre></details></li>
+<li><a href="https://www.volckeralliance.org/events/special-briefing-muni-debt-boom-record-borrowing-amid-budget-strains">https://www.volckeralliance.org/events/special-briefing-muni-debt-boom-record-borrowing-amid-budget-strains</a></li>
+<li><a href="https://www.hilltopsecurities.com/municipal_commentary/the-municipal-market-in-2026-hilltopsecurities-sector-credit-outlooks/">https://www.hilltopsecurities.com/municipal_commentary/the-municipal-market-in-2026-hilltopsecurities-sector-credit-outlooks/</a></li>
+<li><a href="https://www.cumber.com/market-commentary/q1-2026-municipal-credit-turn-credit-quality-war-federal-funding-and-risky-assets">https://www.cumber.com/market-commentary/q1-2026-municipal-credit-turn-credit-quality-war-federal-funding-and-risky-assets</a></li>
+<li><a href="https://equable.org/report/state-of-pensions-2025/">https://equable.org/report/state-of-pensions-2025/</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Source: U.S. Census Bureau Annual Survey of Local Government Finances / Census of Governments (fiscal.govt_finance_by_unit), item codes 49U (long-term debt outstanding, end of fiscal year), I89 (interest on general debt), and the full T-prefix set for total taxes, aggregated over gov_type_code 1-5 (county, city, township, special district, school district). 2017 and 2022 are full Census-of-Governments enumeration years; 2018-2021/2023-2024 are sampled estimates. Debt figures exclude state governments' own debt, short-term debt, and unfunded pension/OPEB liabilities.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-12</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

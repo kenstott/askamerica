@@ -1,181 +1,338 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>agent</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>The US public-company audit market is only moderately concentrated by client count (Big Four = 51% of registrants, 2025) but extremely concentrated by economic weight (~91-97% of audit fees and market capitalization) — and concentration is easing at the small-cap margin, not the core</title>
 <style>
-:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
-:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
-.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
-h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
-h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
-h2{font-size:1.35em;margin-top:1.6em}
-h3{font-size:1.1em}
-p,li{color:var(--ink-2)}
-a{color:var(--accent)}
-code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
-code{background:var(--rule);padding:.1em .35em;border-radius:3px}
-pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
-pre code{background:none;padding:0}
-table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
-th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
-th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
-blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
-hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
-.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
-</style></head><body>
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div><div class="page">
-<span class="eyebrow">q103 · askamerica</span>
-<p><em>Full formatted report (with question-coverage checklist and collapsible SQL) published via the connector's <code>publish_report</code>: http://127.0.0.1:62772/a/7aa4fb0768fdf223d002c41bf7b013cd.html — that link is local to the machine that ran this session and is included for completeness; this file is the durable answer.</em></p>
-<h1>How concentrated is the US public-company audit market, and how much has it changed?</h1>
-<p><strong>Bottom line:</strong> The Big Four (Deloitte, EY, KPMG, PwC) audit a <strong>minority of SEC registrants by simple company count (~46-52%)</strong> but an <strong>overwhelming majority of the market capitalization</strong> they collectively represent (~90-97%). Concentration is heavily size-weighted: it is moderate across the full population of ~7,000-8,000 filers (many of them micro-caps using small regional CPA firms) and extreme among large, economically significant companies. There is no evidence of a strong secular <em>increase</em> in Big Four share over the last five years — it has been roughly flat to modestly declining by simple count — but the <em>level</em> of concentration among large filers remains high enough that PCAOB and academic commentary treat "too few to fail" as a live systemic-fragility concern, not primarily a "getting worse" one.</p>
-<h2>1. Market share today</h2>
-<h3>By company count (askamerica-computed, real scale)</h3>
-<p>Using SEC XBRL cover-page tag <code>dei:AuditorName</code> (mandatory since fiscal year 2021 under the Holding Foreign Companies Accountable Act disclosure rules) in <code>sec.financial_line_items</code>, I took each filer's most recent tagged auditor across <strong>7,969 distinct CIKs</strong> (34,981 filing-year rows, 2010-2026 vintage, effectively concentrated in 2021-2026 since the tag is recent):</p>
-<table>
-<thead>
-<tr>
-<th>Auditor</th>
-<th>Companies</th>
-<th>Share</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>EY</td>
-<td>1,044</td>
-<td>13.1%</td>
-</tr>
-<tr>
-<td>Deloitte &amp; Touche</td>
-<td>1,026</td>
-<td>12.9%</td>
-</tr>
-<tr>
-<td>PwC</td>
-<td>857</td>
-<td>10.8%</td>
-</tr>
-<tr>
-<td>KPMG</td>
-<td>771</td>
-<td>9.7%</td>
-</tr>
-<tr>
-<td><strong>Big Four combined</strong></td>
-<td><strong>3,698</strong></td>
-<td><strong>46.4%</strong></td>
-</tr>
-<tr>
-<td>All other firms (~200+ named firms, e.g. Marcum, Grant Thornton, BDO, Withum, RSM, BF Borgers, M&amp;K CPAS, Crowe, MaloneBailey...)</td>
-<td>4,271</td>
-<td>53.6%</td>
-</tr>
-</tbody>
-</table>
-<p>This computed figure (46.4%) is in the same neighborhood as, though a bit below, Ideagen/Audit Analytics' published "Who Audits Public Companies" figures (49.7% of SEC registrants in 2024, ~51% in 2025) — the difference is denominator: my query counts every CIK that has ever tagged <code>dei:AuditorName</code> (skews toward smaller/newer registrants that entered EDGAR post-2021), while Audit Analytics counts the full active SEC registrant population including older filers that may not have refiled a 10-K recently enough to carry the tag.</p>
-<p><strong>Concentration index (company-count basis, my own estimate):</strong> Approximating a Herfindahl-Hirschman Index (HHI) by splitting the "Other" bucket using each named firm's relative share of total filing-year mentions (Marcum, Grant Thornton, BDO, Withum, RSM, BF Borgers, etc., scaled to the snapshot totals above, remainder treated as a long tail of small independent CPA firms) gives an estimated <strong>HHI ≈ 600-650</strong> for the full filer population — below the DOJ/FTC "moderately concentrated" threshold of 1,500. This is an approximation (exact only for the Big Four; the non-Big-Four split is scaled from mention counts, not audited directly), disclosed as such.</p>
-<h3>By economic weight (market cap / size) — sourced, not computed here</h3>
-<p>I was not able to complete a market-cap-weighted join at scale in this session (see Limitations) — a real gap I am flagging rather than papering over. The published, well-established figures are unambiguous on this dimension and orders of magnitude more concentrated than the count-based numbers:
-- The Big Four collectively audit <strong>~97% of total US public-company market capitalization</strong> (PCAOB, "Audit Industry Concentration and Potential Implications").
-- The Big Four audit <strong>90% of "large accelerated filers"</strong> (public float ≥ $700M) as of January 2024, up from 88% the year before (Ideagen/Audit Analytics, "Who Audits Public Companies — 2024 edition").
-- In specific S&amp;P 500 sectors the concentration is even more extreme: one firm audits ~92% of S&amp;P 500 telecom market cap; two firms audit ~75% of S&amp;P 500 energy, materials, and IT market cap each (PCAOB).
-- A 2017 estimate specifically for large-accelerated filers put the <strong>HHI at 2,128</strong> — well above the DOJ "highly concentrated" threshold of 1,800 (ProMarket / McKenna, citing DOJ guidelines).</p>
-<p><strong>Read together, my computed count-based numbers and the sourced market-cap numbers tell a coherent, not contradictory, story:</strong> count-weighting treats a $50M micro-cap audited by a regional CPA firm the same as a $2 trillion mega-cap audited by a Big Four firm, which is why the company-count HHI (~600) looks moderate. Weight by the dollars actually at stake and the picture flips to genuinely extreme concentration (HHI &gt;2,000, ~90-97% of market cap) — which is the systemic-fragility-relevant number for a PCAOB-adjacent regulator, since it is large, economically significant, interconnected issuers whose audit-firm failure would matter most.</p>
-<h2>2. How has it changed over time?</h2>
-<p><strong>Historical baseline (GAO, 2008):</strong> the four largest firms already dominated large-company audits by the mid-2000s. GAO's 2008 report found 82% of Fortune 1000 companies felt their choice of auditor was limited to three or fewer firms, and concentration for companies with revenue &gt;$500M was already "highly concentrated," while the market for smaller issuers (≤$500M revenue) was comparatively less concentrated — the same size-stratification pattern still visible in 2026.</p>
-<p><strong>Recent trend (2020-2025), from published Audit Analytics/Ideagen data:</strong>
-- 2019→2020: Big Four combined share fell 2.2 percentage points (after gaining 2.1 points in 2019) — no one-directional trend even short-term; smaller firms (Grant Thornton, BDO, RSM, Marcum, Withum, BF Borgers) gained the offsetting 3.4 points.
-- 2023→2024: the top-10-firm combined share fell from 70% to 65% of the market (excluding SPACs) — a <em>decline</em> in concentration among the largest cohort of firms, driven partly by SEC registrant count itself shrinking (down 4.9% in 2024, the first decline in five years) and partly by smaller firms gaining registrants.
-- 2024→2025: Big Four share held roughly steady at just over 50% (49.7% in 2024, ~51% in 2025).
-- Among <strong>large accelerated filers specifically</strong>, Big Four share crept up slightly, 88%→90%, 2023→2024 — i.e., the segment that matters most for systemic risk shows a small increase even while the market-wide count share was flat or falling.</p>
-<p><strong>My own year-by-year computed series</strong> (same <code>dei:AuditorName</code> tag, deduplicated to one auditor per CIK per fiscal year) is noisy — 2021 is a partial/rollout year for the tag and 2023/2026 rows look under-filed relative to neighboring years, which I flag as a data-completeness artifact rather than a real swing:</p>
-<table>
-<thead>
-<tr>
-<th>Year</th>
-<th>Big Four companies</th>
-<th>Other</th>
-<th>Big Four share</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2021</td>
-<td>2,441</td>
-<td>1,875</td>
-<td>56.6%</td>
-</tr>
-<tr>
-<td>2022</td>
-<td>3,071</td>
-<td>3,269</td>
-<td>48.4%</td>
-</tr>
-<tr>
-<td>2023</td>
-<td>1,837</td>
-<td>2,432</td>
-<td>43.0%</td>
-</tr>
-<tr>
-<td>2024</td>
-<td>3,000</td>
-<td>2,675</td>
-<td>52.9%</td>
-</tr>
-<tr>
-<td>2025</td>
-<td>2,943</td>
-<td>2,633</td>
-<td>52.8%</td>
-</tr>
-</tbody>
-</table>
-<p>The 2024 (52.9%) and 2025 (52.8%) figures from my own query land close to the independently published 49.7%/51% figures — a useful cross-check that the tag-based approach is measuring approximately the right thing, even though the 2021-2023 rows are too incomplete to support a clean multi-year trend line on their own. <strong>Net read: no strong, consistent secular increase in Big Four share by company count over 2021-2025; it oscillates in a ~43-57% band that is plausibly mostly filing-completeness noise around a genuinely flat-to-slightly-declining level, consistent with the published top-10/Big-Four figures for the same years.</strong> The more robust, slow-moving increase is in the <em>large-filer</em> segment (88%→90%) and has held near/above 90% for years, not something moving fast in either direction.</p>
-<h2>3. Why "too few to fail" is a live concern regardless of the recent flat trend</h2>
-<ul>
-<li>Each Big Four firm individually would rank in the Fortune 500 (two in the Fortune 250); together they employ ~900,000 people globally (PCAOB).</li>
-<li>Precedent: Arthur Andersen's 2002 collapse forced ~1,300 companies to find new auditors virtually overnight and triggered direct SEC intervention (PCAOB; ProMarket).</li>
-<li>When KPMG faced comparable criminal exposure in 2005, DOJ used a deferred-prosecution agreement instead of an indictment — explicit regulatory forbearance attributed by commentators to the absence of a "fifth" firm able to absorb another failure (ProMarket/McKenna).</li>
-<li>The concern is structural (only three firms would remain to absorb a fourth's clients) rather than a claim that concentration is currently accelerating — the level, not necessarily the trend, is what sustains the fragility argument.</li>
-</ul>
-<h2>4. What I computed vs. what I sourced</h2>
-<ul>
-<li><strong>Computed from the government-data warehouse (askamerica), real scale (n=7,969 SEC filers, cross-domain join of SEC filing metadata + XBRL auditor-name tag):</strong> company-count market shares by firm (Section 1, table 1), the approximate company-count HHI (~600-650), and the 2021-2025 year-by-year count series (Section 2, table 2).</li>
-<li><strong>Sourced from published research/regulatory material, not independently recomputed here:</strong> market-cap-weighted Big Four share (~97% of total market cap, ~90% of large-accelerated filers), the 2017 large-filer HHI of 2,128, the GAO 2008 findings, and the multi-year top-10/Big-Four trend narrative from Ideagen/Audit Analytics and Accounting Today. I was not able to complete a market-cap-weighted concentration computation of my own within this session (see Limitations) — this is a genuine gap, flagged rather than silently patched with a proxy.</li>
-</ul>
-<h2>Limitations / what I could not do</h2>
-<ul>
-<li>I attempted to join auditor identity to company size (revenue via <code>sec.financial_facts</code>/<code>financial_line_items</code>, or market cap) to compute my own market-cap-weighted HHI at scale. The connector's underlying queries against <code>sec.financial_line_items</code> (a very large XBRL fact table) were slow enough in this session that several attempts (window-function dedup by year, <code>COUNT(DISTINCT cik) ... GROUP BY year</code>) either ran many minutes without returning or errored; I did not force a low-value partial result and instead report the sourced, well-established market-cap figures above with clear attribution.</li>
-<li>The "Other" firm breakdown behind my ~600-650 HHI estimate is an approximation (scaled from each firm's share of total filing-year mentions across the corpus, not an exact per-firm latest-year count), disclosed above.</li>
-<li><code>dei:AuditorName</code> is only mandatory from FY2021 onward, so pre-2021 rows in the table are sparse/incidental, and my company-count denominator (7,969) is the set of filers that have ever carried the tag, not the full historical SEC registrant population — a different, generally younger-skewing population than Audit Analytics' full registrant count.</li>
-</ul>
-<h2>Confidence</h2>
-<ul>
-<li><strong>Company-count Big Four share and its ~46% figure: Medium-High.</strong> Directly computed from a large (n=7,969), real cross-domain join; corroborated by independent published figures in the same range for the years where both are comparable (2024/2025).</li>
-<li><strong>Market-cap-weighted concentration (~90-97%) and the 2017 HHI=2,128: Medium.</strong> These are well-established, frequently cited figures from PCAOB and audit-industry trade press, but they are sourced, not recomputed by me at scale in this session — a real limitation for a "cross-domain join" answer, disclosed above rather than hidden.</li>
-<li><strong>Trend direction (flat-to-modestly-declining company-count share; slow-creeping large-filer share): Medium.</strong> Multiple independent-year data points agree qualitatively (my own 2024/2025 figures track published figures), but my own year-by-year series is too noisy pre-2024 to support a confident slope estimate on its own.</li>
-</ul>
+</div>
+<main>
+<header>
+<h1>The US public-company audit market is only moderately concentrated by client count (Big Four = 51% of registrants, 2025) but extremely concentrated by economic weight (~91-97% of audit fees and market capitalization) — and concentration is easing at the small-cap margin, not the core</h1>
+<p class="subtitle">Sourced from Ideagen Audit Analytics 'Who Audits Public Companies' (2023-2026 editions), Bourveau, Fluharty-Jaidee, Mao, Ren, Schmalz &amp; White (2024, SSRN), and PCAOB Board Member Harris (2017 speech)</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 590" width="1300" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="1300" height="590" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">The US Audit Market: Highly Concentrated by Dollars, Less So by Client Count</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Ideagen Audit Analytics annual reports (2023-2026 editions); Bourveau et al. 2024 SSRN; PCAOB 2017 speech</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="409.33" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Big Four share of audit FEES, 2003-2023</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">91-95%</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">essentially flat</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Bourveau et al. (SSRN 2024)</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="445.33" y="82" width="409.33" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="461.33" y="118" fill="#6b7280">Big Four share of total US public-company market cap</text>
+  <text class="stat-value" x="461.33" y="148" fill="#1f2328">~97%</text>
+  </g>
+  <text class="caption" x="449.33" y="203" fill="#6b7280">PCAOB Board Member Harris, 2017 speech</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="870.67" y="82" width="409.33" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="886.67" y="118" fill="#6b7280">Big Four share of SEC registrant COUNT, 2025</text>
+  <text class="stat-value" x="886.67" y="148" fill="#1f2328">51%</text>
+  <text class="stat-delta" x="886.67" y="168" fill="#059669">+2.6pp vs 2023</text>
+  </g>
+  <text class="caption" x="874.67" y="203" fill="#6b7280">Ideagen Audit Analytics 2026 report</text>
+  <rect class="panel-edge" x="20" y="238" width="409.33" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="409.33" height="268" viewBox="0 0 409 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="409" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="204.50" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Big Four share of all SEC registrants, by client count</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="200" x2="387" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="176" x2="387" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="152" x2="387" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="128" x2="387" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="104" x2="387" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="80" x2="387" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="52" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="60" y1="56" x2="387" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="387" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="223.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Big 4 share</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-2022" class="tick" x="100.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p4-xtick-2023" class="tick" x="182.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p4-xtick-2024" class="tick" x="264.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+      <text id="p4-xtick-2025" class="tick" x="346.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
+    </g>
+    <g id="p4-series-big-four-share-of-sec-registrants" class="series">
+      <path id="p4-line-big-four-share-of-sec-registrants" class="line" d="M 100.88 86 L 182.63 83.84 L 264.38 80.72 L 346.13 77.60" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p4-mark-big-four-share-of-sec-registrants-2022" class="point" cx="100.88" cy="86" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-big-four-share-of-sec-registrants-2023" class="point" cx="182.63" cy="83.84" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-big-four-share-of-sec-registrants-2024" class="point" cx="264.38" cy="80.72" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-big-four-share-of-sec-registrants-2025" class="point" cx="346.13" cy="77.60" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">2022 approximate; 2023-2025 as reported directly by IAA.</text>
+  <rect class="panel-edge" x="445.33" y="238" width="409.33" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="445.33" y="238" width="409.33" height="268" viewBox="0 0 409 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="409" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="204.50" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Concentration is far higher among the biggest filers</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="67" y1="134" x2="387" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="59" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="118.40" x2="387" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="59" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="102.80" x2="387" y2="102.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="59" y="106.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="87.20" x2="387" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="59" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="71.60" x2="387" y2="71.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="59" y="75.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="387" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="134" x2="387" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="227" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Filer segment</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">Big 4 share</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-all-sec-registrants" class="tick" x="120.33" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 120.33 148)">All SEC registrants</text>
+      <text id="p5-xtick-large-accelerated-filers-lafs" class="tick" x="227" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 227 148)">Large accelerated filers (LAFs)</text>
+      <text id="p5-xtick-lafs-incl-grant-thornton-bdo" class="tick" x="333.67" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 333.67 148)">LAFs incl. Grant Thornton &amp; BDO</text>
+    </g>
+    <g id="p5-series-2024-share" class="series">
+      <rect id="p5-mark-2024-share-all-sec-registrants" class="bar" x="86.20" y="95.23" width="67.27" height="38.77" fill="#2563eb"/>
+      <rect id="p5-mark-2024-share-large-accelerated-filers-lafs" class="bar" x="192.87" y="64.19" width="67.27" height="69.81" fill="#2563eb"/>
+      <rect id="p5-mark-2024-share-lafs-incl-grant-thornton-bdo" class="bar" x="299.53" y="59.98" width="67.27" height="74.02" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="449.33" y="519" fill="#6b7280">IAA 2025 report, FY2024 data.</text>
+  <rect class="panel-edge" x="870.67" y="238" width="409.33" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="870.67" y="238" width="409.33" height="268" viewBox="0 0 409 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="409" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p6-chart-title" class="title" x="204.50" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Nasdaq vs OTC: retreat is at the small-cap fringe</text>
+    <g id="p6-gridlines">
+      <line class="grid" x1="67" y1="200" x2="387" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-0" class="tick" x="59" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="171.20" x2="387" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-1" class="tick" x="59" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="142.40" x2="387" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-2" class="tick" x="59" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="113.60" x2="387" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-3" class="tick" x="59" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="84.80" x2="387" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-4" class="tick" x="59" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="56" x2="387" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p6-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="200" x2="387" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p6-x-axis-title" class="axis-title" x="227" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Market segment</text>
+    <text id="p6-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Big 4 fee share</text>
+    <g id="p6-x-axis-labels">
+      <text id="p6-xtick-nasdaq-2003" class="tick" x="107" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Nasdaq, 2003</text>
+      <text id="p6-xtick-nasdaq-2023" class="tick" x="187" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Nasdaq, 2023</text>
+      <text id="p6-xtick-otc-2003" class="tick" x="267" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OTC, 2003</text>
+      <text id="p6-xtick-otc-2023" class="tick" x="347" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OTC, 2023</text>
+    </g>
+    <g id="p6-series-big-4-share-of-audit-fees" class="series">
+      <rect id="p6-mark-big-4-share-of-audit-fees-nasdaq-2003" class="bar" x="81.40" y="66.08" width="50.20" height="133.92" fill="#2563eb"/>
+      <rect id="p6-mark-big-4-share-of-audit-fees-nasdaq-2023" class="bar" x="161.40" y="79.04" width="50.20" height="120.96" fill="#2563eb"/>
+      <rect id="p6-mark-big-4-share-of-audit-fees-otc-2003" class="bar" x="241.40" y="93.44" width="50.20" height="106.56" fill="#2563eb"/>
+      <rect id="p6-mark-big-4-share-of-audit-fees-otc-2023" class="bar" x="321.40" y="122.24" width="50.20" height="77.76" fill="#2563eb"/>
+    </g>
+    <g id="p6-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="874.67" y="519" fill="#6b7280">Bourveau et al. 2024.</text>
+  <g id="brand">
+  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:63099/a/76525537ccff15956001ae582b9402ff.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>The US audit market shows a sharp split depending on how you measure concentration. By <strong>client count</strong>, the Big Four (Deloitte, EY, PwC, KPMG) audit a bare majority of SEC registrants — <strong>51% in 2025</strong>, up slightly from 48.4% in 2023 — and the ten largest firms together handle 65%, leaving 35% of registrants (mostly small-cap and OTC companies) to 219 smaller firms. But by <strong>economic weight</strong> — audit fees or market capitalization — the market is far more concentrated: the Big Four have held <strong>91-95% of total US audit fees every year from 2003 to 2023</strong> with essentially no trend, and audited roughly <strong>97% of total US public-company market capitalization</strong> as of the most recent public estimate (PCAOB, 2017). Among the largest companies (large accelerated filers), the Big Four alone audit <strong>89.5%</strong>, rising to <strong>94.9%</strong> once Grant Thornton and BDO are added. So concentration at the core of the market (large, high-fee clients) has been stable and extreme for two decades; the modest erosion in the Big Four's overall client-count share is happening almost entirely at the small-cap/Nasdaq/OTC fringe, where their fee share fell from 93% to 84% (Nasdaq) and 74% to 54% (OTC) between 2003 and 2023.</p>
+</section>
+<section>
+<h2>What changed, and what didn't</h2>
+<ul><li><strong>Client-count share is drifting down for the Big Four, then partially recovering</strong>: Ideagen Audit Analytics' annual 'Who Audits Public Companies' reports show the Big Four's share of all SEC registrants at roughly 48.4% (2023), 49.7% (2024), and 51% (2025) — Deloitte overtook EY for the top spot in 2024 largely because EY shed over 100 smaller clients while Deloitte's roster barely moved. The number of PCAOB-registered audit firms has been shrinking for two decades (from ~1,500 in 2010 to below 750 by 2023), and the number of SEC registrants overall has fallen ~54% since 2003 (from ~7,200 to ~4,700), so the client-count denominator itself has been shrinking.</li><li><strong>Fee and market-cap concentration has NOT changed materially</strong>: an academic working paper covering 2003-2023 (Bourveau, Fluharty-Jaidee, Mao, Ren, Schmalz & White, 'The Landscape of Auditing in U.S. Capital Markets,' SSRN 2024) finds the Big Four's share of total audit fees stayed in a narrow 91-95% band for the full 20-year window — 'remarkable stability.' The PCAOB's own 2017 estimate put the Big Four's share of total US market capitalization at approximately 97%, with even higher single-firm concentration in specific sectors (e.g., one firm audits ~92% of S&P 500 telecom-sector market cap; two firms audit ~75% of energy, materials, and IT sector market cap).</li><li><strong>Where the erosion is happening</strong>: Big Four fee share among Nasdaq-listed companies fell from 93% (2003) to 84% (2023); among OTC-quoted issuers it fell from 74% to 54%, with smaller audit firms now auditing nearly 90% of OTC issuers. This is a shift at the small end of the market, not among the large-cap, high-revenue clients that generate the bulk of audit fees — which is why the overall fee-share number barely moved despite the visible client-count erosion.</li><li><strong>Client stickiness reinforces concentration</strong>: Big Four clients switch auditors at only a 3-4% annual rate (down from 8-9% in the early 2000s), versus 8% for mid-size-firm clients and 12-18% for small-firm clients — and 89% of small-firm clients that do switch stay with another small firm. Concentration at the top is self-reinforcing partly through very low churn among the largest clients.</li></ul>
+</section>
+<section>
+<h2>A rough concentration-index illustration</h2>
+<p>Using the 2025 client-count shares reported by Ideagen Audit Analytics (Deloitte 15%, EY 13%, PwC 12%, KPMG 11%, remaining ~14 percentage points split across five more Top-10 firms, and 35% spread across 219 smaller firms), a back-of-envelope Herfindahl-Hirschman Index (HHI) contribution from the Big Four alone is approximately <strong>15&sup2;+13&sup2;+12&sup2;+11&sup2; = 659</strong> — nowhere near the DOJ/FTC's 2,500 threshold for a 'highly concentrated' market, because the long tail of 200+ small firms dilutes an HHI computed on <em>client counts</em>. But an HHI computed on <em>audit fees or market-cap share</em> — where four firms hold roughly a quarter each of ~91-97% of the total, and the remaining several hundred firms split the rest — would land well above 2,000, solidly in 'highly concentrated' territory. <em>This HHI figure is an illustrative calculation performed for this answer from the reported percentages, not a number published by any of the cited sources</em>, and it does not account for shares below the Top 10 (each individually estimated as small, so their contribution to the total HHI is modest but not zero).</p>
+</section>
+<section>
+<h2>Data and methodology notes</h2>
+<p>The AskAmerica warehouse (askengine/sec schema) does not carry auditor-of-record data for SEC filings — a catalog search for 'auditor' returned no matching table or column, and find_recipe returned no worked recipe specific to audit-market concentration — so this answer relies entirely on external primary/secondary sources fetched live: Ideagen Audit Analytics' annual market-share reports (as summarized and linked via auditupdate.com and Accounting Today, since the underlying IAA whitepapers themselves sit behind a registration wall), the working-paper analysis by Bourveau et al. (SSRN, 2024) covering 2003-2023, and a 2017 PCAOB Board speech for the market-cap concentration figure — the most recent public estimate of that specific statistic found in this research pass. No more recent (2020s) market-cap concentration estimate was located; if one exists, it was not surfaced by this search.</p>
+</section>
+<section class="sources">
 <h2>Sources</h2>
-<ul>
-<li><a href="https://pcaobus.org/news-events/speeches/speech-detail/audit-industry-concentration-and-potential-implications_674">PCAOB — Audit Industry Concentration and Potential Implications (speech)</a></li>
-<li><a href="https://www.gao.gov/products/gao-08-163">GAO-08-163 — Audits of Public Companies: Continued Concentration in Audit Market for Large Public Companies Does Not Call for Immediate Action</a></li>
-<li><a href="https://www.promarket.org/2017/07/14/big-four-audit-firms-enjoy-fail-regulatory-hall-pass/">ProMarket — Big Four Audit Firms Enjoy a "Too Few to Fail" Regulatory Hall Pass (Francine McKenna)</a></li>
-<li><a href="https://www.ideagen.com/thought-leadership/blog/who-audits-public-companies-2024-edition">Ideagen/Audit Analytics — Who Audits Public Companies, 2024 edition</a></li>
-<li><a href="https://www.accountingtoday.com/list/the-big-fours-share-of-public-company-audits-dips">Accounting Today — the Big Four's share of public company audits dips</a></li>
-<li><a href="https://www.accountingtoday.com/news/big-four-firms-lose-a-bite-of-share-for-audits-in-2024">Accounting Today — Big Four firms lose a bite of share for audits in 2024</a></li>
-<li><a href="https://www.accountingtoday.com/news/big-four-hold-onto-their-share-of-sec-market">Accounting Today — Big Four hold onto their share of SEC market</a></li>
-<li><a href="https://www.cpapracticeadvisor.com/2024/04/22/ey-holds-top-spot-public-company-audit-market-share-2024/104297/">CPA Practice Advisor — EY Is the Busiest Among the Public Company Audit Firms (2024)</a></li>
-<li>AskAmerica connector query results (this session): <code>sec.financial_line_items</code> filtered to <code>concept = 'dei:AuditorName'</code>, cross-referenced against <code>sec.filing_metadata</code>/CIK — n=7,969 companies, 34,981 filing-year rows, declared coverage 2010-2026.</li>
-</ul>
-<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
-</div></body></html>
+<ol>
+<li><a href="https://www.auditupdate.com/post/who-audits-public-companies-large-firms-dominate-although-the-pie-is-shrinking">https://www.auditupdate.com/post/who-audits-public-companies-large-firms-dominate-although-the-pie-is-shrinking</a></li>
+<li><a href="https://www.accountingtoday.com/news/big-four-hold-onto-their-share-of-sec-market">https://www.accountingtoday.com/news/big-four-hold-onto-their-share-of-sec-market</a></li>
+<li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238248">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238248</a></li>
+<li><a href="https://pcaobus.org/news-events/speeches/speech-detail/audit-industry-concentration-and-potential-implications_674">https://pcaobus.org/news-events/speeches/speech-detail/audit-industry-concentration-and-potential-implications_674</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Client-count shares from Ideagen Audit Analytics via secondary reporting (auditupdate.com, Accounting Today) since the primary IAA whitepapers require registration; fee/market-cap figures from an academic working paper (not yet peer-reviewed as of this writing) and a 2017 PCAOB speech, the most recent public market-cap concentration estimate located. The 2022 registrant-share data point in the trend chart is an approximation, not a directly reported IAA figure.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-12</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
