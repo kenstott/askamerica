@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>High-uninsured US counties are poorer, smaller, and concentrated in non-Medicaid-expansion Texas - but they are not simply the highest-mortality counties</title>
+<title>Counties with the most uninsured people: huge population, disproportionately Texas/non-expansion states, high Hispanic/immigrant share</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -72,6 +73,12 @@ a{color:var(--link)}
 .sources ol{padding-left:1.2rem;font-size:.92rem}
 .sources li{margin:.3rem 0}
 .note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
 footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
 .footnote{font-style:italic}
 .brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
@@ -92,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>High-uninsured US counties are poorer, smaller, and concentrated in non-Medicaid-expansion Texas - but they are not simply the highest-mortality counties</h1>
-<p class="subtitle">Census SAHIE 2023 (county) vs CDC/NCHS mortality 2017 (state) - askamerica</p>
+<h1>Counties with the most uninsured people: huge population, disproportionately Texas/non-expansion states, high Hispanic/immigrant share</h1>
+<p class="subtitle">Census SAHIE county estimates, 2023 (published ~3-year lag); ACS 5-Year 2019-2023 demographics</p>
 </header>
 <figure class="board">
 <!--
@@ -113,7 +120,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 947" width="880" height="947" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -140,311 +147,224 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="947" fill="#ffffff"></rect>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">What the highest- and lowest-uninsured US counties have in common</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Census SAHIE 2023 (county), CDC/NCHS mortality 2017 (state, last year with an age-adjusted rate)</text>
-  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"></rect>
+  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">The counties with the most uninsured people are big, Hispanic, and in non-expansion st…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Census SAHIE county estimates, 2023; ACS 5-Year 2019-2023</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
   <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"></rect>
-    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">10 highest county uninsured rates, 2023</text>
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Top 12 counties by number of uninsured people, 2023</text>
     <g id="p1-gridlines">
-      <line class="grid" x1="60" y1="144.64" x2="390" y2="144.64" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p1-ytick-0" class="tick" x="52" y="148.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="131.98" x2="390" y2="131.98" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p1-ytick-1" class="tick" x="52" y="135.98" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-      <line class="grid" x1="60" y1="119.31" x2="390" y2="119.31" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p1-ytick-2" class="tick" x="52" y="123.31" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="106.65" x2="390" y2="106.65" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p1-ytick-3" class="tick" x="52" y="110.65" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
-      <line class="grid" x1="60" y1="93.99" x2="390" y2="93.99" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p1-ytick-4" class="tick" x="52" y="97.99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="81.33" x2="390" y2="81.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p1-ytick-5" class="tick" x="52" y="85.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
-      <line class="grid" x1="60" y1="68.66" x2="390" y2="68.66" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p1-ytick-6" class="tick" x="52" y="72.66" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p1-ytick-7" class="tick" x="52" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">35</text>
+      <line class="grid" x1="77" y1="151.12" x2="390" y2="151.12" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="69" y="155.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="132.10" x2="390" y2="132.10" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="69" y="136.10" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="77" y1="113.07" x2="390" y2="113.07" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="69" y="117.07" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="77" y1="94.05" x2="390" y2="94.05" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="69" y="98.05" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+      <line class="grid" x1="77" y1="75.02" x2="390" y2="75.02" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="69" y="79.02" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
     </g>
     <g id="p1-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="144.64" stroke="#9ca3af" stroke-width="1"></line>
-      <line class="axis" x1="60" y1="144.64" x2="390" y2="144.64" stroke="#9ca3af" stroke-width="1"></line>
+      <line class="axis" x1="77" y1="56" x2="77" y2="151.12" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="151.12" x2="390" y2="151.12" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p1-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County</text>
-    <text id="p1-y-axis-title" class="axis-title" x="14" y="100.32" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 100.32)">Uninsured rate (%)</text>
+    <text id="p1-x-axis-title" class="axis-title" x="233.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="103.56" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 103.56)">Uninsured (thousands)</text>
     <g id="p1-x-axis-labels">
-      <text id="p1-xtick-gaines-co-tx" class="tick" x="76.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 76.50 158.64)">Gaines Co, TX</text>
-      <text id="p1-xtick-holmes-co-oh" class="tick" x="109.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 109.50 158.64)">Holmes Co, OH</text>
-      <text id="p1-xtick-lagrange-co-in" class="tick" x="142.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.50 158.64)">Lagrange Co, IN</text>
-      <text id="p1-xtick-presidio-co-tx" class="tick" x="175.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 175.50 158.64)">Presidio Co, TX</text>
-      <text id="p1-xtick-kenedy-co-tx" class="tick" x="208.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 208.50 158.64)">Kenedy Co, TX</text>
-      <text id="p1-xtick-hansford-co-tx" class="tick" x="241.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 241.50 158.64)">Hansford Co, TX</text>
-      <text id="p1-xtick-edwards-co-tx" class="tick" x="274.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 274.50 158.64)">Edwards Co, TX</text>
-      <text id="p1-xtick-webb-co-tx" class="tick" x="307.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.50 158.64)">Webb Co, TX</text>
-      <text id="p1-xtick-hidalgo-co-tx" class="tick" x="340.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 340.50 158.64)">Hidalgo Co, TX</text>
-      <text id="p1-xtick-cochran-co-tx" class="tick" x="373.50" y="158.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.50 158.64)">Cochran Co, TX</text>
+      <text id="p1-xtick-harris-tx" class="tick" x="90.04" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 90.04 165.12)">Harris TX</text>
+      <text id="p1-xtick-la-ca" class="tick" x="116.13" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 116.13 165.12)">LA CA</text>
+      <text id="p1-xtick-dallas-tx" class="tick" x="142.21" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.21 165.12)">Dallas TX</text>
+      <text id="p1-xtick-maricopa-az" class="tick" x="168.29" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 168.29 165.12)">Maricopa AZ</text>
+      <text id="p1-xtick-cook-il" class="tick" x="194.38" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 194.38 165.12)">Cook IL</text>
+      <text id="p1-xtick-tarrant-tx" class="tick" x="220.46" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 220.46 165.12)">Tarrant TX</text>
+      <text id="p1-xtick-miami-dade-fl" class="tick" x="246.54" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 246.54 165.12)">Miami-Dade FL</text>
+      <text id="p1-xtick-bexar-tx" class="tick" x="272.63" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 272.63 165.12)">Bexar TX</text>
+      <text id="p1-xtick-clark-nv" class="tick" x="298.71" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 298.71 165.12)">Clark NV</text>
+      <text id="p1-xtick-hidalgo-tx" class="tick" x="324.79" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 324.79 165.12)">Hidalgo TX</text>
+      <text id="p1-xtick-broward-fl" class="tick" x="350.88" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 350.88 165.12)">Broward FL</text>
+      <text id="p1-xtick-orange-ca" class="tick" x="376.96" y="165.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 376.96 165.12)">Orange CA</text>
     </g>
-    <g id="p1-series-uninsured-rate" class="series">
-      <rect id="p1-mark-uninsured-rate-gaines-co-tx" class="bar" x="65.94" y="59.80" width="20.12" height="84.84" fill="#2563eb"></rect>
-      <rect id="p1-mark-uninsured-rate-holmes-co-oh" class="bar" x="98.94" y="64.86" width="20.12" height="79.78" fill="#2563eb"></rect>
-      <rect id="p1-mark-uninsured-rate-lagrange-co-in" class="bar" x="131.94" y="65.37" width="20.12" height="79.27" fill="#2563eb"></rect>
-      <rect id="p1-mark-uninsured-rate-presidio-co-tx" class="bar" x="164.94" y="69.68" width="20.12" height="74.96" fill="#2563eb"></rect>
-      <rect id="p1-mark-uninsured-rate-kenedy-co-tx" class="bar" x="197.94" y="70.69" width="20.12" height="73.95" fill="#2563eb"></rect>
-      <rect id="p1-mark-uninsured-rate-hansford-co-tx" class="bar" x="230.94" y="70.94" width="20.12" height="73.70" fill="#2563eb"></rect>
-      <rect id="p1-mark-uninsured-rate-edwards-co-tx" class="bar" x="263.94" y="71.70" width="20.12" height="72.94" fill="#2563eb"></rect>
-      <rect id="p1-mark-uninsured-rate-webb-co-tx" class="bar" x="296.94" y="71.96" width="20.12" height="72.68" fill="#2563eb"></rect>
-      <rect id="p1-mark-uninsured-rate-hidalgo-co-tx" class="bar" x="329.94" y="74.99" width="20.12" height="69.65" fill="#2563eb"></rect>
-      <rect id="p1-mark-uninsured-rate-cochran-co-tx" class="bar" x="362.94" y="75.50" width="20.12" height="69.14" fill="#2563eb"></rect>
+    <g id="p1-series-uninsured-people-thousands" class="series">
+      <rect id="p1-mark-uninsured-people-thousands-harris-tx" class="bar" x="81.70" y="63.42" width="15.69" height="87.70" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-la-ca" class="bar" x="107.78" y="84.25" width="15.69" height="66.87" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-dallas-tx" class="bar" x="133.86" y="101.56" width="15.69" height="49.56" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-maricopa-az" class="bar" x="159.95" y="108.60" width="15.69" height="42.52" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-cook-il" class="bar" x="186.03" y="115.74" width="15.69" height="35.38" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-tarrant-tx" class="bar" x="212.11" y="119.64" width="15.69" height="31.48" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-miami-dade-fl" class="bar" x="238.20" y="120.59" width="15.69" height="30.53" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-bexar-tx" class="bar" x="264.28" y="122.49" width="15.69" height="28.63" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-clark-nv" class="bar" x="290.36" y="126.39" width="15.69" height="24.73" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-hidalgo-tx" class="bar" x="316.45" y="130.95" width="15.69" height="20.17" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-broward-fl" class="bar" x="342.53" y="131.72" width="15.69" height="19.40" fill="#2563eb"/>
+      <rect id="p1-mark-uninsured-people-thousands-orange-ca" class="bar" x="368.61" y="133.81" width="15.69" height="17.31" fill="#2563eb"/>
     </g>
     <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="363" fill="#6b7280">Top decile is 90% Texas counties; TX never expanded Medicaid.</text>
-  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"></rect>
+  <text class="caption" x="24" y="363" fill="#6b7280">10 of the top 30 counties by uninsured count are in Texas alone.</text>
+  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
   <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"></rect>
-    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">10 lowest county uninsured rates, 2023</text>
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Avg uninsured rate: Medicaid non-expansion vs expansion state counties, …</text>
     <g id="p2-gridlines">
-      <line class="grid" x1="63" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p2-ytick-0" class="tick" x="55" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="63" y1="122.86" x2="390" y2="122.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p2-ytick-1" class="tick" x="55" y="126.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
-      <line class="grid" x1="63" y1="111.71" x2="390" y2="111.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p2-ytick-2" class="tick" x="55" y="115.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
-      <line class="grid" x1="63" y1="100.57" x2="390" y2="100.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p2-ytick-3" class="tick" x="55" y="104.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5</text>
-      <line class="grid" x1="63" y1="89.43" x2="390" y2="89.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p2-ytick-4" class="tick" x="55" y="93.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.0</text>
-      <line class="grid" x1="63" y1="78.29" x2="390" y2="78.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p2-ytick-5" class="tick" x="55" y="82.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.5</text>
-      <line class="grid" x1="63" y1="67.14" x2="390" y2="67.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p2-ytick-6" class="tick" x="55" y="71.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3.0</text>
-      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p2-ytick-7" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3.5</text>
+      <line class="grid" x1="74" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="66" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="74" y1="122.86" x2="390" y2="122.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="66" y="126.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="74" y1="111.71" x2="390" y2="111.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="66" y="115.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="74" y1="100.57" x2="390" y2="100.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="66" y="104.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="74" y1="89.43" x2="390" y2="89.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="66" y="93.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="74" y1="78.29" x2="390" y2="78.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="66" y="82.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="74" y1="67.14" x2="390" y2="67.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-6" class="tick" x="66" y="71.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">12</text>
+      <line class="grid" x1="74" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-7" class="tick" x="66" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">14</text>
     </g>
     <g id="p2-axes">
-      <line class="axis" x1="63" y1="56" x2="63" y2="134" stroke="#9ca3af" stroke-width="1"></line>
-      <line class="axis" x1="63" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"></line>
+      <line class="axis" x1="74" y1="56" x2="74" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="74" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p2-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County</text>
-    <text id="p2-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">Uninsured rate (%)</text>
+    <text id="p2-x-axis-title" class="axis-title" x="232" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Medicaid status (2023)</text>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 95)">Avg uninsured</text>
+    <text id="p2-y-axis-title-2" class="axis-title" x="26" y="95" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 26 95)">rate (%)</text>
     <g id="p2-x-axis-labels">
-      <text id="p2-xtick-norfolk-co-ma" class="tick" x="79.35" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 79.35 148)">Norfolk Co, MA</text>
-      <text id="p2-xtick-hampshire-co-ma" class="tick" x="112.05" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 112.05 148)">Hampshire Co, MA</text>
-      <text id="p2-xtick-middlesex-co-ma" class="tick" x="144.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 144.75 148)">Middlesex Co, MA</text>
-      <text id="p2-xtick-plymouth-co-ma" class="tick" x="177.45" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 177.45 148)">Plymouth Co, MA</text>
-      <text id="p2-xtick-berkshire-co-ma" class="tick" x="210.15" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 210.15 148)">Berkshire Co, MA</text>
-      <text id="p2-xtick-los-alamos-co-nm" class="tick" x="242.85" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 242.85 148)">Los Alamos Co, NM</text>
-      <text id="p2-xtick-nantucket-co-ma" class="tick" x="275.55" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 275.55 148)">Nantucket Co, MA</text>
-      <text id="p2-xtick-franklin-co-ma" class="tick" x="308.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 308.25 148)">Franklin Co, MA</text>
-      <text id="p2-xtick-oldham-co-ky" class="tick" x="340.95" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 340.95 148)">Oldham Co, KY</text>
-      <text id="p2-xtick-barnstable-co-ma" class="tick" x="373.65" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.65 148)">Barnstable Co, MA</text>
+      <text id="p2-xtick-non-expansion-states-n-970-counties" class="tick" x="153" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 153 148)">Non-expansion states (n=970 counties)</text>
+      <text id="p2-xtick-expansion-states-n-2-173-counties" class="tick" x="311" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 311 148)">Expansion states (n=2,173 counties)</text>
     </g>
-    <g id="p2-series-uninsured-rate" class="series">
-      <rect id="p2-mark-uninsured-rate-norfolk-co-ma" class="bar" x="68.89" y="87.20" width="19.93" height="46.80" fill="#2563eb"></rect>
-      <rect id="p2-mark-uninsured-rate-hampshire-co-ma" class="bar" x="101.59" y="80.51" width="19.93" height="53.49" fill="#2563eb"></rect>
-      <rect id="p2-mark-uninsured-rate-middlesex-co-ma" class="bar" x="134.29" y="80.51" width="19.93" height="53.49" fill="#2563eb"></rect>
-      <rect id="p2-mark-uninsured-rate-plymouth-co-ma" class="bar" x="166.99" y="73.83" width="19.93" height="60.17" fill="#2563eb"></rect>
-      <rect id="p2-mark-uninsured-rate-berkshire-co-ma" class="bar" x="199.69" y="71.60" width="19.93" height="62.40" fill="#2563eb"></rect>
-      <rect id="p2-mark-uninsured-rate-los-alamos-co-nm" class="bar" x="232.39" y="71.60" width="19.93" height="62.40" fill="#2563eb"></rect>
-      <rect id="p2-mark-uninsured-rate-nantucket-co-ma" class="bar" x="265.09" y="67.14" width="19.93" height="66.86" fill="#2563eb"></rect>
-      <rect id="p2-mark-uninsured-rate-franklin-co-ma" class="bar" x="297.79" y="67.14" width="19.93" height="66.86" fill="#2563eb"></rect>
-      <rect id="p2-mark-uninsured-rate-oldham-co-ky" class="bar" x="330.49" y="64.91" width="19.93" height="69.09" fill="#2563eb"></rect>
-      <rect id="p2-mark-uninsured-rate-barnstable-co-ma" class="bar" x="363.19" y="64.91" width="19.93" height="69.09" fill="#2563eb"></rect>
+    <g id="p2-series-average-county-uninsured-rate" class="series">
+      <rect id="p2-mark-average-county-uninsured-rate-non-expansion-states-n-970-counties" class="bar" x="102.44" y="56.28" width="100.12" height="77.72" fill="#2563eb"/>
+      <rect id="p2-mark-average-county-uninsured-rate-expansion-states-n-2-173-counties" class="bar" x="260.44" y="86.20" width="100.12" height="47.80" fill="#2563eb"/>
     </g>
     <g id="p2-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="452" y="363" fill="#6b7280">13 of the 100 lowest-uninsured counties are in Massachusetts (2006</text>
-  <text class="caption" x="452" y="376" fill="#6b7280">universal-coverage law).</text>
-  <rect class="panel-edge" x="20" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"></rect>
-  <svg x="20" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"></rect>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">State uninsured rate vs. age-adjusted mortality, 2017</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="63" y1="196" x2="386" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p3-ytick-0" class="tick" x="55" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="63" y1="168" x2="386" y2="168" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p3-ytick-1" class="tick" x="55" y="172" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
-      <line class="grid" x1="63" y1="140" x2="386" y2="140" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p3-ytick-2" class="tick" x="55" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
-      <line class="grid" x1="63" y1="112.00" x2="386" y2="112.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p3-ytick-3" class="tick" x="55" y="116.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
-      <line class="grid" x1="63" y1="84" x2="386" y2="84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p3-ytick-4" class="tick" x="55" y="88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.8</text>
-      <line class="grid" x1="63" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p3-ytick-5" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
-    </g>
-    <g id="p3-axes">
-      <line class="axis" x1="63" y1="56" x2="63" y2="196" stroke="#9ca3af" stroke-width="1"></line>
-      <line class="axis" x1="63" y1="196" x2="386" y2="196" stroke="#9ca3af" stroke-width="1"></line>
-    </g>
-    <text id="p3-x-axis-title" class="axis-title" x="224.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Uninsured rate (%)</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="126" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 126)">Age-adjusted deaths per 100k</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-0" class="tick" x="63" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.0</text>
-      <text id="p3-xtick-1" class="tick" x="127.60" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.2</text>
-      <text id="p3-xtick-2" class="tick" x="192.20" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.4</text>
-      <text id="p3-xtick-3" class="tick" x="256.80" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.6</text>
-      <text id="p3-xtick-4" class="tick" x="321.40" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.8</text>
-      <text id="p3-xtick-5" class="tick" x="386" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1.0</text>
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-series-unnamed" class="series">
-    </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="679" fill="#6b7280">State grain (n=51, 2017 - the last year with an age-adjusted all-cause</text>
-  <text class="caption" x="24" y="692" fill="#6b7280">rate). r=0.28; controlling for median household income, r drops to…</text>
-  <rect class="panel-edge" x="448" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"></rect>
-  <svg x="448" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"></rect>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Mortality by uninsured-rate decile (state grain, 2017)</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="91" y1="167.68" x2="390" y2="167.68" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p4-ytick-0" class="tick" x="83" y="171.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="91" y1="145.34" x2="390" y2="145.34" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p4-ytick-1" class="tick" x="83" y="149.34" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
-      <line class="grid" x1="91" y1="123.01" x2="390" y2="123.01" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p4-ytick-2" class="tick" x="83" y="127.01" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
-      <line class="grid" x1="91" y1="100.67" x2="390" y2="100.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p4-ytick-3" class="tick" x="83" y="104.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
-      <line class="grid" x1="91" y1="78.34" x2="390" y2="78.34" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p4-ytick-4" class="tick" x="83" y="82.34" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
-      <line class="grid" x1="91" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"></line>
-      <text id="p4-ytick-5" class="tick" x="83" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
-    </g>
-    <g id="p4-axes">
-      <line class="axis" x1="91" y1="56" x2="91" y2="167.68" stroke="#9ca3af" stroke-width="1"></line>
-      <line class="axis" x1="91" y1="167.68" x2="390" y2="167.68" stroke="#9ca3af" stroke-width="1"></line>
-    </g>
-    <text id="p4-x-axis-title" class="axis-title" x="240.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Decile (mean uninsured rate)</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="111.84" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 111.84)">Age-adjusted</text>
-    <text id="p4-y-axis-title-2" class="axis-title" x="28" y="111.84" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 28 111.84)">deaths per 100k</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-1-4-5" class="tick" x="105.95" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 105.95 181.68)">1 (4.5%)</text>
-      <text id="p4-xtick-2-5-9" class="tick" x="135.85" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 135.85 181.68)">2 (5.9%)</text>
-      <text id="p4-xtick-3-6-6" class="tick" x="165.75" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 165.75 181.68)">3 (6.6%)</text>
-      <text id="p4-xtick-4-7-3" class="tick" x="195.65" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 195.65 181.68)">4 (7.3%)</text>
-      <text id="p4-xtick-5-8-5" class="tick" x="225.55" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225.55 181.68)">5 (8.5%)</text>
-      <text id="p4-xtick-6-9-6" class="tick" x="255.45" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 255.45 181.68)">6 (9.6%)</text>
-      <text id="p4-xtick-7-10-3" class="tick" x="285.35" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 285.35 181.68)">7 (10.3%)</text>
-      <text id="p4-xtick-8-11-2" class="tick" x="315.25" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 315.25 181.68)">8 (11.2%)</text>
-      <text id="p4-xtick-9-13-0" class="tick" x="345.15" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 345.15 181.68)">9 (13.0%)</text>
-      <text id="p4-xtick-10-16-1" class="tick" x="375.05" y="181.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 375.05 181.68)">10 (16.1%)</text>
-    </g>
-    <g id="p4-series-age-adjusted-deaths-per-100k" class="series">
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-1-4-5" class="bar" x="96.38" y="92.70" width="18.14" height="74.98" fill="#2563eb"></rect>
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-2-5-9" class="bar" x="126.28" y="86.47" width="18.14" height="81.21" fill="#2563eb"></rect>
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-3-6-6" class="bar" x="156.18" y="83.47" width="18.14" height="84.21" fill="#2563eb"></rect>
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-4-7-3" class="bar" x="186.08" y="79.73" width="18.14" height="87.95" fill="#2563eb"></rect>
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-5-8-5" class="bar" x="215.98" y="92.64" width="18.14" height="75.04" fill="#2563eb"></rect>
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-6-9-6" class="bar" x="245.88" y="77.09" width="18.14" height="90.59" fill="#2563eb"></rect>
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-7-10-3" class="bar" x="275.78" y="83.77" width="18.14" height="83.91" fill="#2563eb"></rect>
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-8-11-2" class="bar" x="305.68" y="75.40" width="18.14" height="92.28" fill="#2563eb"></rect>
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-9-13-0" class="bar" x="335.58" y="83.43" width="18.14" height="84.25" fill="#2563eb"></rect>
-      <rect id="p4-mark-age-adjusted-deaths-per-100k-10-16-1" class="bar" x="365.48" y="79.01" width="18.14" height="88.67" fill="#2563eb"></rect>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="679" fill="#6b7280">Not monotonic (trend p=0.078): dips at deciles 5 and 9, so the</text>
-  <text class="caption" x="452" y="692" fill="#6b7280">mortality gradient is not a clean staircase across the uninsured-rate…</text>
-  <g id="p5-stat">
-  <rect class="panel-edge" x="20" y="714" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"></rect>
-  <text class="stat-label" x="36" y="750" fill="#6b7280">Avg. median household income, high-uninsured 100 vs low-uninsured 100</text>
-  <text class="stat-value" x="36" y="780" fill="#1f2328">$60,225 vs $96,890</text>
-  <text class="stat-delta" x="36" y="800" fill="#dc2626">-38%</text>
+  <text class="caption" x="452" y="363" fill="#6b7280">County-level average, unweighted; matches KFF's population-weighted</text>
+  <text class="caption" x="452" y="376" fill="#6b7280">14.5% vs 8.0% national split.</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="434" fill="#6b7280">Correlation: uninsured count vs county population</text>
+  <text class="stat-value" x="36" y="464" fill="#1f2328">r = 0.89</text>
   </g>
-  <text class="caption" x="24" y="835" fill="#6b7280">High-uninsured counties</text>
-  <g id="p6-stat">
-  <rect class="panel-edge" x="448" y="714" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"></rect>
-  <text class="stat-label" x="464" y="750" fill="#6b7280">Avg. county population, high vs low group</text>
-  <text class="stat-value" x="464" y="780" fill="#1f2328">104,361 vs 195,388</text>
-  <text class="stat-delta" x="464" y="800" fill="#dc2626">smaller</text>
+  <text class="caption" x="24" y="519" fill="#6b7280">Raw uninsured COUNT is overwhelmingly a population-size artifact, not</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">a rate signal (r for rate vs population is only -0.06).</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="434" fill="#6b7280">Avg Hispanic/Latino share, top-30 counties</text>
+  <text class="stat-value" x="464" y="464" fill="#1f2328">~35%</text>
+  <text class="stat-delta" x="464" y="484" fill="#059669">vs 20.0% nationally</text>
   </g>
-  <text class="caption" x="452" y="835" fill="#6b7280">High-uninsured counties trend smaller/more rural</text>
-  <text class="footnote" x="20" y="880" fill="#6b7280">County-grain uninsured rates (SAHIE 2023) cannot be joined to mortality, which this corpus carries only at state grain and only through 2017 for</text>
-  <text class="footnote" x="20" y="894" fill="#6b7280">the age-adjusted all-cause rate.</text>
+  <text class="caption" x="452" y="519" fill="#6b7280">Foreign-born share in the top 30 also runs well above the 13.9%</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">national average (Miami-Dade 54%, Queens 48%).</text>
   <g id="brand">
-  <svg x="20" y="906" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
-    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"></rect></clipPath></defs>
+  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
-      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"></polygon>
-      <polygon fill="#d5322f" points="100,0 100,100 0,100"></polygon>
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
     </g>
-    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"></path>
-    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"></polygon>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="921" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:50755/a/3d46b4c828198c2869e40d6b4e25870b.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:62977/a/6b8daa1f01d5ed1cb19f3b988b0adcf0.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>The 100 US counties with the highest uninsured rates (2023 SAHIE, ranging 20.6%–33.5%) are overwhelmingly small, rural, lower-income, and concentrated in one state that never expanded Medicaid: 90 of the 100 are in Texas. The 100 lowest-uninsured counties (2.1%–4.5%) cluster in Massachusetts, Minnesota, Iowa, Michigan and the Upper Midwest/Northeast — states with either near-universal state coverage mandates (Massachusetts, pre-dating the ACA) or full Medicaid expansion. The high group averages 38% lower median household income ($60,225 vs $96,890) and is smaller/more rural (median county population ~12,000 vs ~94,000). At the only grain where uninsured rate and an age-adjusted mortality rate can both be measured here — state, 2017 — the raw correlation is weak (r=0.28, n=51) and NOT monotonic across deciles (trend p=0.078, dips at deciles 5 and 9); once median household income is controlled for, the partial correlation collapses to -0.05 (p=0.74). That collapse, plus the state-vs-county grain mismatch discussed below, is why this is a textbook ecological-fallacy case: county-level uninsured/mortality association here is largely explainable by income, not a demonstrated individual-level causal chain from being uninsured to dying.</p>
+<p>Ranked by the raw NUMBER of uninsured residents (Census SAHIE, 2023), the top 30 U.S. counties share three traits: (1) they are simply the country's biggest counties by population &mdash; county population explains most of the variance in uninsured count (r=0.89) &mdash; (2) they are disproportionately concentrated in states that had not adopted ACA Medicaid expansion as of 2023, above all Texas, which places 10 of the 30 (Harris, Dallas, Tarrant, Bexar, Hidalgo, El Paso, Travis, Collin, Montgomery, Denton); and (3) they carry Hispanic/Latino and foreign-born population shares well above the national average (~35% Hispanic vs 20.0% nationally; ~24% foreign-born vs 13.9% nationally in the top 30). Counties in non-expansion states average a 13.95% uninsured rate vs 8.58% in expansion states &mdash; a gap that closely matches KFF's independently published, population-weighted 14.5%-vs-8.0% figure.</p>
 </section>
 <section>
-<h2>1. The extremes, with actual rates</h2>
-<p>Highest uninsured rate (2023, county grain, n=3,144 counties with a non-null SAHIE estimate): <strong>Gaines County, TX 33.5%</strong>, Holmes County, OH 31.5%, Lagrange County, IN 31.3%, Presidio County, TX 29.6%, down to the 100th-ranked county, Wood County, TX, at 20.6%. Lowest: <strong>Norfolk County, MA 2.1%</strong>, Hampshire County, MA 2.4%, Middlesex County, MA 2.4%, Plymouth County, MA 2.7%, up to the 100th-ranked county, Union County, OH, at 4.5%. (Kalawao County, HI, the smallest county in the US at roughly 90 residents, has a suppressed/null SAHIE estimate and was excluded rather than treated as a true extreme.)</p>
+<h2>Step 1 &amp;mdash; The ranking itself, and why it is mostly a population story</h2>
+<p>Source: <code>census.sahie_insurance</code> (Small Area Health Insurance Estimates), county grain, 2023 (SAHIE publishes roughly 3 years behind, so 2023 is the most recent year loaded). The top of the list: Harris County TX (922k uninsured, 22.2% rate), Los Angeles County CA (703k, 8.8%), Dallas County TX (521k, 23.3%), Maricopa County AZ (447k, 11.8%), Cook County IL (372k, 9.0%), Tarrant County TX (331k, 17.6%), Miami-Dade County FL (321k, 14.8%), Bexar County TX (301k, 16.9%), Clark County NV (260k, 13.4%), and Hidalgo County TX (212k, 27.5%).</p><p>Across all counties with a usable SAHIE estimate, the correlation between total population and uninsured COUNT is r=0.89 &mdash; strongly positive, as expected for any raw count of a roughly-constant-rate phenomenon. The correlation between population and uninsured RATE, by contrast, is essentially zero (r=-0.06). This means the ranking by raw count is mechanically dominated by county size: Los Angeles County appears near the top with a below-average 8.8% uninsured rate purely because it has 9.8 million residents. The genuinely distinctive finding is not in the count ranking itself but in which large counties have unusually HIGH rates on top of their large populations &mdash; and that is where Texas and Florida counties stand out (17-28% uninsured vs 5-9% for similarly large counties in Medicaid-expansion states like California, Illinois, Washington, and New York).</p><p><strong>Disclosed exclusion:</strong> every query behind this analysis filtered with the predicate <code>s.uninsured_count IS NOT NULL</code>. Against the full SAHIE county table this predicate (s.uninsured_count IS NOT NULL) removes exactly one row: Kalawao County, HI (population 43, Hawaii's historic Kalaupapa leprosy-settlement county), for which SAHIE publishes no insurance estimate at all &mdash; too small for the Census Bureau's small-area model to produce one. All 3,142 remaining counties are otherwise included; removing this single 43-person county has no material effect on any reported statistic.</p>
 </section>
 <section>
-<h2>2. How the two groups differ</h2>
-<p><strong>Population:</strong> the high-uninsured group is smaller and far more skewed — mean 104,361 but median only 11,977 (a few large metro counties like Harris/Dallas/Cameron TX pull the mean up); the low-uninsured group has mean 195,388, median 93,987. <strong>Income:</strong> mean median-household-income is $60,225 in the high group vs $96,890 in the low group, a 38% gap; median MHI $59,830 vs $93,528. <strong>State distribution:</strong> 90 of the top-100 uninsured counties are in Texas, with the rest scattered (FL 3, AK 2, IN, GA, ID, OH, OK 1 each). The bottom-100 is spread across MA (13), MN (12), IA (11), MI (10), NY (9), WI (9), plus RI, VT, MD, CO, IL, CA, VA, HI, PA. <strong>Geographic clustering:</strong> the high-uninsured extreme clusters almost entirely along the Texas–Mexico border and Texas Panhandle/South Plains (Webb, Hidalgo, Cameron, Starr, Maverick, the Panhandle wheat/cattle counties), consistent with prior research (Texas 2036) identifying the Rio Grande Valley, West Texas and Panhandle as the state's uninsured epicenters. This is not simply a rural-income story: Texas is one of the ten states that has not adopted ACA Medicaid expansion, which mechanically removes a coverage pathway available to low-income adults in expansion states. The low-uninsured extreme clusters in the Northeast/Upper Midwest, led by Massachusetts (its 2006 near-universal coverage law, the ACA's model, predates and exceeds ACA-driven gains elsewhere).</p>
+<h2>Step 2 &amp;mdash; Medicaid expansion status is the sharpest single dividing line</h2>
+<p>States without 2023 ACA Medicaid expansion (Alabama, Florida, Georgia, Kansas, Mississippi, South Carolina, Tennessee, Texas, Wisconsin, Wyoming) contain 970 of the 3,142 counties left after the s.uninsured_count IS NOT NULL filter (see Step 1's disclosed exclusion of Kalawao County, HI), but their average county uninsured rate is 13.95%, versus 8.58% for the 2,173 counties in expansion states &mdash; a 5.4 percentage-point gap. This tracks closely with the independently published KFF figure for the same year: 14.5% in non-expansion states vs 8.0% in expansion states (KFF, 'Key Facts about the Uninsured Population'). Ten of the top 30 uninsured-count counties sit in Texas, plus 5 more in Florida &mdash; the two largest non-expansion states by population &mdash; even though non-expansion states hold well under a third of all U.S. counties. Large California, Illinois, Washington, and New York counties also appear on the list (their sheer size still produces big raw counts) but at roughly half the uninsured rate of similarly sized Texas/Florida counties.</p>
 </section>
 <section>
-<h2>3. Decile analysis: is the uninsured-mortality relationship monotonic?</h2>
-<p>Because SAHIE has no direct mortality companion at county grain in this corpus, deciles were built at state grain (n=51 states+DC) for the one year (2017) where CDC/NCHS still published a state-level age-adjusted all-cause rate. Binning states into decile groups by 2017 uninsured rate and averaging each decile's age-adjusted mortality rate: bin 1 (mean 4.5% uninsured) averages 671 deaths/100k; the rate rises through the middle deciles to a peak of 826/100k at decile 8 (mean 11.2% uninsured), but bin 5 (8.5% uninsured) dips back to 672 — matching bin 1 — and bin 9 (13.0% uninsured) falls back to 754, below bin 8. <strong>The relationship is not monotonic</strong> (formal trend test p=0.078, monotonic=false) and it does not simply weaken or reverse at one tail — it is noisy throughout, with the worst-uninsured decile (16.1% mean) landing mid-pack at 794/100k, well below West Virginia (7.5% uninsured, 957/100k) or Kentucky (6.4% uninsured, 929.9/100k) individually. States with historically high mortality (KY, WV, MS, AR, AL, OK) are Appalachian/Deep South states with comparatively moderate uninsured rates but severe chronic-disease and overdose burdens; Texas, the single highest-uninsured state (19.4%), has middling mortality (735.7/100k) because its large young/working-age population is not the demographic driving age-adjusted mortality risk. The zero-order correlation (r=0.28) is weak to begin with; the fact that it fully collapses once median household income is controlled for (partial r=-0.05, p=0.74, see Section 4) confirms the raw pattern is not being carried by uninsurance itself.</p>
+<h2>Step 3 &amp;mdash; Demographic composition: Hispanic and immigrant population share</h2>
+<p>The top-30 counties carry a Hispanic/Latino population share averaging roughly 35%, compared with 20.0% nationally (computed from ACS 2019-2023 5-year estimates, county grain). Several counties are far above that: Hidalgo County TX 91.9%, El Paso County TX 82.7%, Miami-Dade County FL 68.8%, Bexar County TX 59.5%, San Bernardino County CA 54.6%. Foreign-born population share averages roughly 24% in the top 30 vs 13.9% nationally, with Miami-Dade at 54.3% and Queens County NY at 47.6%. This matches the well-documented national pattern (KFF, 'Key Facts on Health Coverage of Immigrants'): Hispanic adults had an 18.4% uninsured rate in 2024 nationally, and roughly 46% of likely undocumented immigrant adults and 21% of lawfully present immigrant adults report being uninsured, versus 6-7% for citizens &mdash; both well above the 8% national average. Large metro counties with substantial Hispanic and immigrant populations concentrate this gap into a small number of very populous counties.</p>
 </section>
 <section>
-<h2>4. The ecological fallacy, and how the grain mismatch was handled</h2>
-<p><strong>What the county/state association does and does not show.</strong> Even a clean state-level or county-level correlation between uninsured rate and mortality is a claim about places, not people. A high-uninsured county's excess deaths could come disproportionately from the insured majority (via crowded emergency departments, understaffed rural hospitals that close because of high uncompensated-care burdens, or correlated risk factors like poverty and occupational hazard exposure that affect insured and uninsured residents alike) rather than from uninsured individuals dying at elevated rates themselves. Attributing an ecological (county-level) association to individual uninsured people requires individual-level linked data: e.g., death certificates or vital-statistics microdata linked to insurance-status records at time of death (or near it), of the kind used in the Oregon Health Insurance Experiment (randomized Medicaid lottery, individual-level mortality/hospitalization follow-up) or in NBER's 'Saved by Medicaid' study (universe of low-income adults, administrative linkage of enrollment to mortality records). Absent that individual linkage, this corpus's finding is properly read as: 'higher-uninsured places are not clearly higher-mortality places once income is accounted for' — a materially weaker and more defensible claim than 'being uninsured raises an individual's risk of dying,' which this data cannot test.</p><p><strong>How the grain mismatch was handled.</strong> census.sahie_insurance carries uninsured rates for all roughly 3,144 US counties for 2023 (most recent year); health.cdc_mortality in this corpus carries an age-adjusted all-cause mortality rate only at the state level, and only through 2017 (2018-2023 mortality rows in this table drop the age_adjusted_rate field entirely, carrying only weekly COVID-era counts instead). Two mismatches therefore had to be resolved, not silently absorbed: (a) grain — rather than aggregating county uninsured rates up to a population-weighted state figure and calling that 'county-level,' the state-level SAHIE rows (a directly-published state estimate, not a derived aggregate) were joined to state mortality, and the analysis is reported at state grain throughout Section 3, explicitly flagged as coarser than the county-level extremes in Sections 1-2; and (b) vintage — rather than pairing 2023 uninsured rates with a stale 2017 mortality rate under a false appearance of currency, both series were pulled from the same year (2017) so the comparison is at least contemporaneous, at the cost of not reflecting post-2017 uninsured-rate levels. Both choices trade an inflated appearance of precision for an honest, matched comparison; a reader wanting a true county-grain mortality comparison would need CDC WONDER's restricted-use county mortality files, which are outside this corpus.</p>
+<h2>What this does and does not show</h2>
+<p>This is a descriptive, not causal, comparison: Medicaid expansion status is correlated with lower uninsured rates in this data and in the independently published KFF figures, but Texas and Florida also differ from expansion-state peers on immigration composition, workforce structure (higher shares of small-business/agricultural/service employment without employer coverage), and state eligibility rules more broadly &mdash; this analysis does not isolate the expansion effect from those other factors. The raw-count ranking itself should not be read as 'these counties have unusually bad insurance access' without separating out the population-size effect, which is why the rate comparison (Step 2) and demographic comparison (Step 3) are reported alongside the count ranking rather than in place of it.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>7 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 979 ms</summary><pre><code>SELECT s.county_fips, s.geo_name, s.state, s.uninsured_count, s.uninsured_rate, s.insured_count
+FROM census.sahie_insurance s
+WHERE s.year = '2023' AND s.geography = 'county' AND s.type = 'Total'
+ORDER BY s.uninsured_count DESC
+FETCH FIRST 30 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 7201 ms</summary><pre><code>SELECT DISTINCT type, geography FROM census.sahie_insurance WHERE year='2023' LIMIT 20</code></pre></details>
+<details class="sqltoggle"><summary>query — 30 rows — 2243 ms</summary><pre><code>SELECT county_fips, geo_name, state, uninsured_count, uninsured_rate, insured_count
+FROM census.sahie_insurance
+WHERE &quot;year&quot; = '2023' AND geography = 'county'
+ORDER BY uninsured_count DESC
+FETCH FIRST 30 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 30 rows — 32251 ms</summary><pre><code>WITH top30 AS (
+  SELECT county_fips, geo_name, state, uninsured_count, uninsured_rate, insured_count
+  FROM census.sahie_insurance
+  WHERE &quot;year&quot; = '2023' AND geography = 'county'
+  ORDER BY uninsured_count DESC
+  FETCH FIRST 30 ROWS ONLY
+)
+SELECT t.geo_name, t.state, t.uninsured_count, t.uninsured_rate,
+       n.total_population AS pop,
+       ROUND(100.0*r.hispanic_latino/NULLIF(n.total_population,0),1) AS hispanic_pct,
+       ROUND(100.0*n.foreign_born/NULLIF(n.total_population,0),1) AS foreign_born_pct,
+       ROUND(100.0*p.below_poverty/NULLIF(p.poverty_universe,0),1) AS poverty_pct
+FROM top30 t
+LEFT JOIN census.acs_race_ethnicity r ON r.county_fips = t.county_fips AND r.&quot;year&quot; = '2023'
+LEFT JOIN census.acs_nativity n ON n.county_fips = t.county_fips AND n.&quot;year&quot; = '2023'
+LEFT JOIN census.acs_poverty p ON p.county_fips = t.county_fips AND p.&quot;year&quot; = '2023'
+ORDER BY t.uninsured_count DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 3387 ms</summary><pre><code>SELECT corr(CAST(s.uninsured_count AS DOUBLE), CAST(n.total_population AS DOUBLE)) AS corr_count_pop,
+       corr(s.uninsured_rate, CAST(n.total_population AS DOUBLE)) AS corr_rate_pop,
+       count(*) AS n
+FROM census.sahie_insurance s
+JOIN census.acs_nativity n ON n.county_fips = s.county_fips AND n.&quot;year&quot; = '2023'
+WHERE s.&quot;year&quot; = '2023' AND s.geography = 'county' AND s.uninsured_count IS NOT NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 1653 ms</summary><pre><code>SELECT
+  CASE WHEN s.state IN ('01','12','13','20','28','45','47','48','55','56') THEN 'non_expansion_2023' ELSE 'expansion_2023' END AS medicaid_status,
+  count(*) AS n_counties,
+  avg(s.uninsured_rate) AS avg_uninsured_rate,
+  sum(s.uninsured_count) AS total_uninsured
+FROM census.sahie_insurance s
+WHERE s.&quot;year&quot; = '2023' AND s.geography = 'county' AND s.uninsured_count IS NOT NULL
+GROUP BY CASE WHEN s.state IN ('01','12','13','20','28','45','47','48','55','56') THEN 'non_expansion_2023' ELSE 'expansion_2023' END</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 4149 ms</summary><pre><code>SELECT
+  SUM(r.hispanic_latino)*1.0/SUM(n.total_population) AS us_hispanic_pct,
+  SUM(n.foreign_born)*1.0/SUM(n.total_population) AS us_foreign_born_pct
+FROM census.acs_nativity n
+JOIN census.acs_race_ethnicity r ON r.county_fips = n.county_fips AND r.&quot;year&quot; = n.&quot;year&quot;
+WHERE n.&quot;year&quot; = '2023' AND n.geography = 'county'</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.census.gov/programs-surveys/sahie.html">Census Bureau SAHIE (Small Area Health Insurance Estimates), county 2023</a> <span class="note">— askamerica census.sahie_insurance</span></li>
-<li><a href="https://data.cdc.gov/NCHS/NCHS-Leading-Causes-of-Death-United-States/bi63-dtpu">CDC/NCHS mortality (NCHS 113-cause, age-adjusted rate), state, 1999-2017</a> <span class="note">— askamerica health.cdc_mortality</span></li>
-<li><a href="https://www.census.gov/programs-surveys/acs">Census ACS 5-year median household income, county 2023</a> <span class="note">— askamerica census.acs_income</span></li>
-<li><a href="https://texas2036.org/posts/where-are-the-uninsured-located-in-texas-part-1-tx-county-view/">Texas 2036 - Where are the uninsured located in Texas? Part 1: The county view</a></li>
-<li><a href="https://www.wkyt.com/2026/08/06/kentucky-uninsured-rate-holds-below-national-median-rural-counties-lag/">WKYT - Kentucky uninsured rate holds below national median, but rural counties lag</a></li>
-<li><a href="https://www.ncbi.nlm.nih.gov/books/NBK221318/">NCBI Bookshelf - Geographic Differences in Uninsured Rates, A Shared Destiny</a></li>
-<li><a href="https://www.researchgate.net/publication/369200958_Ecological_and_Individualistic_Fallacies_in_Health_Disparities_Research">Ecological and Individualistic Fallacies in Health Disparities Research</a></li>
-<li><a href="https://www.nber.org/papers/w33719">NBER w33719 - Saved by Medicaid: New Evidence on Health Insurance and Mortality</a></li>
-<li><a href="https://www.nejm.org/doi/full/10.1056/NEJMsa1202099">NEJM - Mortality and Access to Care among Adults after State Medicaid Expansions</a></li>
-<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11675252/">Healthcare Access and County-Level COVID-19 Mortality: Hospital Proximity and Uninsurance Rates</a></li>
+<li><a href="https://www.census.gov/programs-surveys/sahie.html">Census SAHIE county-level insured/uninsured estimates, 2023</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT county_fips, geo_name, state, uninsured_count, uninsured_rate FROM census.sahie_insurance WHERE &quot;year&quot;='2023' AND geography='county' ORDER BY uninsured_count DESC FETCH FIRST 30 ROWS ONLY</code></pre></details></li>
+<li><a href="https://www.census.gov/data/developers/data-sets/acs-5year.html">ACS 5-Year 2019-2023 Hispanic/Latino and foreign-born county shares</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT r.hispanic_latino, n.foreign_born, n.total_population FROM census.acs_race_ethnicity r JOIN census.acs_nativity n ON n.county_fips=r.county_fips AND n.&quot;year&quot;=r.&quot;year&quot; WHERE r.&quot;year&quot;='2023'</code></pre></details></li>
+<li><a href="https://www.census.gov/programs-surveys/sahie.html">Non-expansion vs expansion average county uninsured rate, 2023</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT CASE WHEN s.state IN ('01','12','13','20','28','45','47','48','55','56') THEN 'non_expansion' ELSE 'expansion' END, avg(s.uninsured_rate) FROM census.sahie_insurance s WHERE s.&quot;year&quot;='2023' AND s.geography='county' AND s.uninsured_count IS NOT NULL GROUP BY 1</code></pre></details></li>
+<li><a href="https://www.kff.org/uninsured/key-facts-about-the-uninsured-population/">KFF, Key Facts about the Uninsured Population (2023 expansion vs non-expansion uninsured rates)</a></li>
+<li><a href="https://www.kff.org/racial-equity-and-health-policy/key-facts-on-health-coverage-of-immigrants/">KFF, Key Facts on Health Coverage of Immigrants</a></li>
+<li><a href="https://kffhealthnews.org/medicaid/texas-border-counties-medicaid/">KFF Health News, Texas' Struggling Rio Grande Valley Presses for Medicaid Expansion</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">SAHIE 2023 is the most recent year loaded (2018-2020 are interior gaps in this table). CDC/NCHS age-adjusted mortality is only populated for 1999-2017 in this corpus; no county-grain mortality series is available at all. Small-n cautions apply to all state-grain (n=51) statistics.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"></rect></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"></polygon><polygon fill="#d5322f" points="100,0 100,100 0,100"></polygon></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"></path><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"></polygon></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-08-25</span></p>
+<p class="footnote">SAHIE county estimates for 2023 (most recent published year, ~3-year lag). Medicaid non-expansion group as of 2023: AL, FL, GA, KS, MS, SC, TN, TX, WI, WY (South Dakota and North Carolina both expanded partway through 2023 and are grouped with expansion states here). Hispanic/foreign-born shares from ACS 2019-2023 5-year estimates. Kalawao County, HI excluded from all counts/correlations (no SAHIE estimate available).</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-11</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
-
-
-</body></html>
+</body>
+</html>

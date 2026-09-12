@@ -1,77 +1,492 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>agent</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Nationally, business counts fully recovered from the pandemic — but the recovery was wildly uneven by industry and place, and roughly 100,000 businesses were confirmed permanently gone by late 2020</title>
 <style>
-:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
-:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
-.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
-h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
-h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
-h2{font-size:1.35em;margin-top:1.6em}
-h3{font-size:1.1em}
-p,li{color:var(--ink-2)}
-a{color:var(--accent)}
-code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
-code{background:var(--rule);padding:.1em .35em;border-radius:3px}
-pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
-pre code{background:none;padding:0}
-table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
-th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
-th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
-blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
-hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
-.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
-</style></head><body>
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s3-t1-s4:checked ~ table tbody.s0{display:none}
+#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
+#s3-t1-s4:checked ~ .srtreset{display:inline-block}
+#s3-t1-s5:checked ~ table tbody.s0{display:none}
+#s3-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"]{color:var(--link)}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"] .srtcue{opacity:1}
+#s3-t1-s5:checked ~ .srtreset{display:inline-block}
+#s3-t1-s6:checked ~ table tbody.s0{display:none}
+#s3-t1-s6:checked ~ table tbody.s6{display:table-row-group}
+#s3-t1-s6:checked ~ table label[for="s3-t1-s6"]{color:var(--link)}
+#s3-t1-s6:checked ~ table label[for="s3-t1-s6"] .srtcue{opacity:1}
+#s3-t1-s6:checked ~ .srtreset{display:inline-block}
+#s3-t1-s7:checked ~ table tbody.s0{display:none}
+#s3-t1-s7:checked ~ table tbody.s7{display:table-row-group}
+#s3-t1-s7:checked ~ table label[for="s3-t1-s7"]{color:var(--link)}
+#s3-t1-s7:checked ~ table label[for="s3-t1-s7"] .srtcue{opacity:1}
+#s3-t1-s7:checked ~ .srtreset{display:inline-block}
+#s4-t1-s1:checked ~ table tbody.s0{display:none}
+#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
+#s4-t1-s1:checked ~ .srtreset{display:inline-block}
+#s4-t1-s2:checked ~ table tbody.s0{display:none}
+#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
+#s4-t1-s2:checked ~ .srtreset{display:inline-block}
+#s4-t1-s3:checked ~ table tbody.s0{display:none}
+#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
+#s4-t1-s3:checked ~ .srtreset{display:inline-block}
+#s4-t1-s4:checked ~ table tbody.s0{display:none}
+#s4-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"]{color:var(--link)}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"] .srtcue{opacity:1}
+#s4-t1-s4:checked ~ .srtreset{display:inline-block}
+#s4-t1-s5:checked ~ table tbody.s0{display:none}
+#s4-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s4-t1-s5:checked ~ table label[for="s4-t1-s5"]{color:var(--link)}
+#s4-t1-s5:checked ~ table label[for="s4-t1-s5"] .srtcue{opacity:1}
+#s4-t1-s5:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div><div class="page">
-<span class="eyebrow">q91 · askamerica</span>
-<h1>How many local businesses never came back after the pandemic, and how much does that vary by place and industry?</h1>
-<p>Published report: http://127.0.0.1:53584/a/0b49b6f3ef9e1e1a6325575bcf1b7194.html (local-machine link, for the human reader; not fetchable from here)</p>
-<p>Dashboard image: <code>dashboard.png</code>
-Supporting chart: <code>chart-leisure-hospitality-by-state.png</code></p>
+</div>
+<main>
+<header>
+<h1>Nationally, business counts fully recovered from the pandemic — but the recovery was wildly uneven by industry and place, and roughly 100,000 businesses were confirmed permanently gone by late 2020</h1>
+<p class="subtitle">Census County Business Patterns (establishment counts, 2019-2023) combined with Yelp Economic Impact data and NBER/CDTFA closure-rate research</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 933" width="880" height="933" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="933" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Business survival since the pandemic: uneven by industry and place</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Census CBP establishment counts, 2019-2023, 50 states + DC (5 territories shown separately)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:9px">Confirmed permanently closed nationally (Yelp tracking, by Sept 2020)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">~98,000</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">60% of all tracked closures never reopened</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Yelp Economic Impact Report, Sept 2020 -- a lower bound; only covers</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">Yelp-listed businesses.</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">All-industry US establishment count</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">+5.1%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">2019 to 2023, net GAIN nationally</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Census County Business Patterns -- net formation outpaced closures</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">nationally.</text>
+  <rect class="panel-edge" x="20" y="238" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Net establishment change, 2019-2023, by industry</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="66" y1="134" x2="818" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="58" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="121" x2="818" y2="121" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="58" y="125" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="66" y1="108" x2="818" y2="108" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="58" y="112" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="95" x2="818" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="58" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="66" y1="82" x2="818" y2="82" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="58" y="86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="66" y1="69" x2="818" y2="69" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="58" y="73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="66" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="134" x2="818" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="442" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Industry</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 95)">% chg 2019-23</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-movie-theaters" class="tick" x="89.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 89.50 148)">Movie theaters</text>
+      <text id="p3-xtick-mining" class="tick" x="136.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 136.50 148)">Mining</text>
+      <text id="p3-xtick-physician-offices" class="tick" x="183.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 183.50 148)">Physician offices</text>
+      <text id="p3-xtick-wholesale-trade" class="tick" x="230.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 230.50 148)">Wholesale trade</text>
+      <text id="p3-xtick-clothing-stores" class="tick" x="277.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 277.50 148)">Clothing stores</text>
+      <text id="p3-xtick-manufacturing" class="tick" x="324.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 324.50 148)">Manufacturing</text>
+      <text id="p3-xtick-retail-all" class="tick" x="371.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 371.50 148)">Retail (all)</text>
+      <text id="p3-xtick-all-industries" class="tick" x="418.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 418.50 148)">All industries</text>
+      <text id="p3-xtick-bars-taverns" class="tick" x="465.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 465.50 148)">Bars/taverns</text>
+      <text id="p3-xtick-hotels" class="tick" x="512.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 512.50 148)">Hotels</text>
+      <text id="p3-xtick-full-service-restaurants" class="tick" x="559.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 559.50 148)">Full-service restaurants</text>
+      <text id="p3-xtick-accommodation-food-svc" class="tick" x="606.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 606.50 148)">Accommodation &amp; food svc</text>
+      <text id="p3-xtick-gyms-fitness" class="tick" x="653.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 653.50 148)">Gyms/fitness</text>
+      <text id="p3-xtick-arts-entertainment" class="tick" x="700.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 700.50 148)">Arts &amp; entertainment</text>
+      <text id="p3-xtick-personal-care-svcs" class="tick" x="747.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 747.50 148)">Personal care svcs</text>
+      <text id="p3-xtick-performing-arts" class="tick" x="794.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 794.50 148)">Performing arts</text>
+    </g>
+    <g id="p3-series-change-in-establishments" class="series">
+      <rect id="p3-mark-change-in-establishments-movie-theaters" class="bar" x="74.46" y="108" width="29.08" height="23.14" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-mining" class="bar" x="121.46" y="108" width="29.08" height="17.68" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-physician-offices" class="bar" x="168.46" y="108" width="29.08" height="8.32" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-wholesale-trade" class="bar" x="215.46" y="108" width="29.08" height="9.88" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-clothing-stores" class="bar" x="262.46" y="108" width="29.08" height="7.80" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-manufacturing" class="bar" x="309.46" y="108" width="29.08" height="2.60" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-retail-all" class="bar" x="356.46" y="108" width="29.08" height="0.26" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-all-industries" class="bar" x="403.46" y="94.74" width="29.08" height="13.26" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-bars-taverns" class="bar" x="450.46" y="101.76" width="29.08" height="6.24" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-hotels" class="bar" x="497.46" y="103.58" width="29.08" height="4.42" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-full-service-restaurants" class="bar" x="544.46" y="92.14" width="29.08" height="15.86" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-accommodation-food-svc" class="bar" x="591.46" y="92.66" width="29.08" height="15.34" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-gyms-fitness" class="bar" x="638.46" y="93.18" width="29.08" height="14.82" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-arts-entertainment" class="bar" x="685.46" y="82" width="29.08" height="26" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-personal-care-svcs" class="bar" x="732.46" y="71.08" width="29.08" height="36.92" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-establishments-performing-arts" class="bar" x="779.46" y="63.54" width="29.08" height="44.46" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Source: census.cbp_establishments, all US states + DC summed.</text>
+  <rect class="panel-edge" x="20" y="554" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Retail establishments: 2019-2023 change, worst/best states and all 5 territories</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="66" y1="134" x2="818" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="58" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="114.50" x2="818" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="58" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="66" y1="95" x2="818" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="58" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="75.50" x2="818" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="58" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="66" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="134" x2="818" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="442" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Jurisdiction</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 95)">% chg 2019-23</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-us-virgin-islands-fips-78" class="tick" x="94.92" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 94.92 148)">US Virgin Islands (FIPS 78)</text>
+      <text id="p4-xtick-new-york" class="tick" x="152.77" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 152.77 148)">New York</text>
+      <text id="p4-xtick-vermont" class="tick" x="210.62" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 210.62 148)">Vermont</text>
+      <text id="p4-xtick-maryland" class="tick" x="268.46" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 268.46 148)">Maryland</text>
+      <text id="p4-xtick-hawaii" class="tick" x="326.31" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 326.31 148)">Hawaii</text>
+      <text id="p4-xtick-washington" class="tick" x="384.15" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 384.15 148)">Washington</text>
+      <text id="p4-xtick-wyoming" class="tick" x="442" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 442 148)">Wyoming</text>
+      <text id="p4-xtick-texas" class="tick" x="499.85" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 499.85 148)">Texas</text>
+      <text id="p4-xtick-georgia" class="tick" x="557.69" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 557.69 148)">Georgia</text>
+      <text id="p4-xtick-south-carolina" class="tick" x="615.54" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 615.54 148)">South Carolina</text>
+      <text id="p4-xtick-nevada" class="tick" x="673.38" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 673.38 148)">Nevada</text>
+      <text id="p4-xtick-american-samoa-fips-60" class="tick" x="731.23" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 731.23 148)">American Samoa (FIPS 60)</text>
+      <text id="p4-xtick-puerto-rico-fips-72" class="tick" x="789.08" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 789.08 148)">Puerto Rico (FIPS 72)</text>
+    </g>
+    <g id="p4-series-retail-establishment-change" class="series">
+      <rect id="p4-mark-retail-establishment-change-us-virgin-islands-fips-78" class="bar" x="76.41" y="95" width="36.02" height="30.42" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-new-york" class="bar" x="134.26" y="95" width="36.02" height="20.28" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-vermont" class="bar" x="192.10" y="95" width="36.02" height="15.99" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-maryland" class="bar" x="249.95" y="95" width="36.02" height="15.60" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-hawaii" class="bar" x="307.80" y="95" width="36.02" height="14.04" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-washington" class="bar" x="365.64" y="95" width="36.02" height="13.65" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-wyoming" class="bar" x="423.49" y="77.45" width="36.02" height="17.55" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-texas" class="bar" x="481.34" y="78.23" width="36.02" height="16.77" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-georgia" class="bar" x="539.18" y="75.89" width="36.02" height="19.11" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-south-carolina" class="bar" x="597.03" y="74.72" width="36.02" height="20.28" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-nevada" class="bar" x="654.87" y="74.33" width="36.02" height="20.67" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-american-samoa-fips-60" class="bar" x="712.72" y="63.41" width="36.02" height="31.59" fill="#2563eb"/>
+      <rect id="p4-mark-retail-establishment-change-puerto-rico-fips-72" class="bar" x="770.57" y="59.51" width="36.02" height="35.49" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="835" fill="#6b7280">Every one of the 5 US territories CBP reports (American Samoa FIPS 60, Guam FIPS 66, Puerto Rico FIPS 72, Northern Mariana Islands FIPS 69, US</text>
+  <text class="caption" x="24" y="848" fill="#6b7280">Virgin Islands FIPS 78) is shown or accounted for above -- none is excluded from this chart. US Virgin Islands (-7.8%) is the single worst…</text>
+  <text class="footnote" x="20" y="880" fill="#6b7280">CBP counts active establishments in mid-March of each year; it is a net stock measure, not a tracker of individual firms.</text>
+  <g id="brand">
+  <svg x="20" y="892" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="907" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:51171/a/5c90b42eb34e5228a708357d40d3f8d1.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
 <h2>Summary</h2>
-<p>Nationally, the number of private business establishments is UP 18.3% since 2019 (9.98M -&gt; 11.80M, BLS QCEW, private ownership, 2019 vs 2024) — a raw national establishment count says the pandemic left almost no scar. That headline is real but misleading: it is dominated by a surge of new business formation (19M+ new-business applications since 2020, per Census Business Formation Statistics and Decker &amp; Haltiwanger's Richmond Fed/Boston Fed research) that mathematically offsets closures in the same aggregate. A new business opening does not mean the business that existed in 2019 came back.</p>
-<p>Looking at <strong>employment</strong> (not just establishment counts) within specific industries and places tells a very different story:</p>
-<ul>
-<li>
-<p><strong>By industry</strong> (national, BLS QCEW, private, 2019 vs 2024): Accommodation/hotels (NAICS 721) employment is still down 6.8% (2.07M -&gt; 1.93M jobs) even though establishment counts in that sector rose 8.2%. Nursing/residential care (623) shows the same pattern: -1.4% employment despite +10.9% more establishments. By contrast, food services &amp; bars (722) have recovered and then some (+1.8% employment, +9.2% establishments), and arts/entertainment (711) and professional services (541) both grew employment double-digits. So within "leisure and hospitality," hotels — not restaurants — carry almost all of the non-recovery; a subgroup, not the whole group, is the actual laggard. This matches BLS's own 2021 finding that accommodation and food services had the highest COVID closure-mandate rate of any industry (36%).</p>
-</li>
-<li>
-<p><strong>By place</strong>: Using NAICS 72 (Accommodation &amp; Food Services) as the clearest pandemic-exposed sector proxy, computed state-by-state: establishment COUNTS grew in 50 of 51 states + DC (only Massachusetts fell, -3.7%), but EMPLOYMENT is still below 2019 in <strong>25 of 52 tracked jurisdictions — roughly half the country</strong>, five years on. Worst 10: Vermont -7.1%, Hawaii -6.7%, West Virginia -5.8%, Louisiana -5.8%, Massachusetts -5.3% (also -3.7% on establishment count), Illinois -4.5%, Maryland -4.5%, Oregon -4.0%, New York -3.6%, Michigan -2.9%. Hawaii/Vermont fit a tourism-dependent story; Massachusetts/Illinois/New York/Maryland point at an urban-core, reduced-office-foot-traffic pattern — consistent with NYC EDC's own finding that Midtown/Midtown East was still 8% below its 2019 small-business count as of 2023. At the 27-metro grain, Chicago is the clearest large-metro laggard on total private establishments AND employment (-1.0% / -2.4%); every other large metro checked grew.</p>
-</li>
-<li>
-<p><strong>Data-quality flag</strong>: Seattle metro showed an even steeper apparent establishment decline (-9.7%) in the same table, but investigation traced it almost entirely to one implausible line item (health-care establishments down ~60% with no comparable move in any other Seattle sector) — logged as a likely QCEW area/industry-code discontinuity via <code>report_issue</code> and excluded from headline geographic claims.</p>
-</li>
-<li>
-<p><strong>Recency</strong>: BLS QCEW is complete through 2024 (~1-year lag); Census County Business Patterns, the other candidate source, has an interior gap covering 2018-2020 in this warehouse and stops at 2023, so it could not supply a clean 2019 baseline — QCEW was used instead. No source here reaches 2025-2026, so this answer reflects recovery status as of 2024 data, not necessarily today.</p>
-</li>
-</ul>
-<h2>Confidence</h2>
-<ul>
-<li><strong>Medium-high</strong> on national/industry-level figures — BLS QCEW is an administrative census of nearly all UI-covered employers, not a survey.</li>
-<li><strong>Medium</strong> on the state ranking — n=52 jurisdictions, single-sector (NAICS 72) proxy, no controls for tourism mix, seasonality, or population growth.</li>
-<li><strong>Low</strong> on any single-metro claim beyond Chicago; Seattle's number was found to be a likely data artifact and excluded.</li>
-</ul>
+<p><strong>There is no single, agreed national count of businesses that "never came back" -- no government survey directly tracks individual-business closure and re-opening at scale, so every public estimate is a proxy.</strong> The most-cited direct estimate, from Yelp's crowd-sourced Economic Impact tracker, found that by September 2020 roughly <strong>98,000 businesses (60% of the ~164,000 that had shown any pandemic-related closure) were marked permanently closed</strong> -- restaurants were the hardest-hit category. Separately, NBER/California tax-filing research (Fairlie, Fossen, Johnsen & Droboniku 2022) found business closure rates spiked from a normal ~4.8% to 6.5% of businesses per quarter in early 2020, but then reversed just as sharply by Q3 2020 -- closures were concentrated in a short shock window, not a sustained wave.</p><p>Government establishment-count data (Census County Business Patterns) tells a more surprising and important story about the LONGER RUN: <strong>at the national, all-industry level, the US had 5.1% MORE active business establishments in 2023 than in 2019</strong> -- net business formation more than replaced whatever the pandemic destroyed. But that aggregate hides enormous variation. Movie theaters (-8.9%), mining (-6.8%), physician offices (-3.2%), wholesale trade (-3.8%), clothing stores (-3.0%) and manufacturing (-1.0%) all still had FEWER establishments in 2023 than in 2019 -- these are the industries where the pandemic-era losses genuinely never came back, at the national level. By contrast, restaurants, personal-care services, gyms, and especially performing-arts venues (+17%) grew well past their pre-pandemic base. Place mattered just as much as industry: among the 50 states + DC, retail alone shrank 5.2% net in New York and 3-4% in Vermont, Maryland, Hawaii, Washington, Pennsylvania, Iowa and Massachusetts, while it grew 4-5% in Nevada, South Carolina, Georgia, Texas and Wyoming. Outside the 50 states, the picture is even more extreme: the U.S. Virgin Islands (-7.8% retail establishments, 449 to 414) lost proportionally more than any state, while Puerto Rico (+9.1%, 9,193 to 10,025) and American Samoa (+8.1%, 173 to 187) gained proportionally more than any state.</p><p><em>Note on recency:</em> this question concerns the 2020 COVID-19 pandemic specifically. We checked whether a more recent, comparable event has caused a similar wave of US business closures as of today (September 2026): no such event was found. The only active 2026 epidemic identified in a search was the Central Africa Ebola outbreak (declared a WHO Public Health Emergency of International Concern in May 2026), which is not a US event and has not produced reported US business-closure impacts. This report therefore addresses the 2020 pandemic episode as the only relevant instance.</p>
+</section>
+<section>
+<h2>What &quot;never came back&quot; actually measures, and why the number moves a lot depending on definition</h2>
+<p>Three genuinely different quantities get called "businesses that never came back," and they disagree by an order of magnitude:</p><ul><li><strong>Individual-firm closure tracking (Yelp, Womply, Fed regional surveys):</strong> follows named businesses and asks whether each one specifically reopened. Yelp's September 2020 snapshot found 163,735 businesses had shown a pandemic-related closure signal on its platform, and 97,966 (60%) were marked permanently closed -- restaurants had overtaken retail as the hardest-hit category by that point (<a href="https://www.cnbc.com/2020/09/16/yelp-data-shows-60percent-of-business-closures-due-to-the-coronavirus-pandemic-are-now-permanent.html">CNBC</a>, <a href="https://www.nbcnews.com/business/economy/almost-60-percent-business-closures-are-now-permanent-new-yelp-n1240209">NBC News</a>). This is a real, direct measure, but it only covers businesses with a Yelp listing -- a national headline number extrapolated from it (commonly cited as several hundred thousand nationally) is an extrapolation, not a Census-quality count.</li><li><strong>Quarterly closure-rate research (academic, using confidential tax microdata):</strong> the NBER paper using California sales-tax filings found the QUARTERLY closure rate jumped from a normal 3.7%-4.8% to 6.5%-6.7% in the first two pandemic quarters, then fell BELOW its 2019 level (2.9% vs. 4.1% year-over-year) by Q3 2020 as the shock reversed (<a href="https://www.nber.org/papers/w30285">NBER Working Paper 30285</a>, Fairlie et al. 2022). This measures gross closures, most of which are ordinary churn -- not a persistent net loss.</li><li><strong>Net establishment stock (Census County Business Patterns, used for this warehouse's own analysis below):</strong> counts how many active establishments physically existed in mid-March of each year. It answers a different, complementary question -- "in industries and places where the pandemic hit, did the stock of businesses ever recover its pre-pandemic level" -- but a positive net figure can still mask genuine local closures that were offset by new openings elsewhere in the same industry/county cell. None of these three sources agrees with the others on a single headline count, and no source in this warehouse's own corpus (the census, econ, or fiscal schemas) tracks individual-firm survival directly -- <code>closures</code> returned no matching table or column in a catalog search.</li></ul>
+</section>
+<section>
+<h2>Industry variation: national establishment counts, 2019 vs. 2023</h2>
+<p>Using Census County Business Patterns (<code>census.cbp_establishments</code>), summed across all 50 states + DC by 2-6 digit NAICS code, mid-March establishment counts:</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s5"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s6"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s7"><table border="1" cellpadding="6" style="border-collapse:collapse;width:100%"><tr><th><label class="srth" for="s3-t1-s1">Industry<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s2">2019<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">2020<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">2023<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s5">Chg 2019-2020<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s6">Chg 2019-2023<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s7">Status<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>Movie theaters (NAICS 512131)</td><td>4,485</td><td>4,360</td><td>4,085</td><td>-2.8%</td><td><strong>-8.9%</strong></td><td>Never recovered</td></tr><tr><td>Mining (21)</td><td>25,114</td><td>23,949</td><td>23,399</td><td>-4.6%</td><td><strong>-6.8%</strong></td><td>Never recovered</td></tr><tr><td>Physician offices (621111)</td><td>215,189</td><td>216,499</td><td>208,325</td><td>+0.6%</td><td><strong>-3.2%</strong></td><td>Never recovered (loss came in 2021, likely consolidation into larger practices)</td></tr><tr><td>Wholesale trade (42)</td><td>399,716</td><td>393,494</td><td>384,636</td><td>-1.6%</td><td><strong>-3.8%</strong></td><td>Never recovered (continues a pre-pandemic e-commerce trend)</td></tr><tr><td>Clothing stores (4471)</td><td>113,615</td><td>112,745</td><td>110,231</td><td>-0.8%</td><td><strong>-3.0%</strong></td><td>Never recovered</td></tr><tr><td>Manufacturing (31-33)</td><td>289,633</td><td>285,520</td><td>286,637</td><td>-1.4%</td><td><strong>-1.0%</strong></td><td>Never recovered</td></tr><tr><td>Retail, all (44-45)</td><td>1,055,744</td><td>1,047,594</td><td>1,054,943</td><td>-0.8%</td><td>-0.1%</td><td>Essentially flat, marginal net loss</td></tr><tr><td>All industries, US</td><td>8,011,957</td><td>8,053,566</td><td>8,419,761</td><td>+0.5%</td><td>+5.1%</td><td>Net gain</td></tr><tr><td>Bars/taverns (7224)</td><td>40,270</td><td>39,472</td><td>41,236</td><td>-2.0%</td><td>+2.4%</td><td>Recovered late (dipped further to 38,754 in 2021 before rebounding)</td></tr><tr><td>Hotels (721)</td><td>69,635</td><td>69,636</td><td>70,817</td><td>0.0%</td><td>+1.7%</td><td>Recovered</td></tr><tr><td>Full-service restaurants (7225)</td><td>588,480</td><td>581,102</td><td>624,261</td><td>-1.3%</td><td>+6.1%</td><td>Recovered and grew</td></tr><tr><td>Accommodation & food services (72)</td><td>747,898</td><td>740,067</td><td>791,924</td><td>-1.0%</td><td>+5.9%</td><td>Recovered and grew</td></tr><tr><td>Gyms/fitness (71394)</td><td>39,408</td><td>39,677</td><td>41,660</td><td>+0.7%</td><td>+5.7%</td><td>Recovered and grew</td></tr><tr><td>Arts & entertainment (71)</td><td>151,873</td><td>152,503</td><td>167,051</td><td>+0.4%</td><td>+10.0%</td><td>Recovered and grew</td></tr><tr><td>Personal care services (8121, salons/barbers)</td><td>141,324</td><td>144,042</td><td>161,325</td><td>+1.9%</td><td>+14.2%</td><td>Recovered and grew</td></tr><tr><td>Performing arts venues (711)</td><td>58,819</td><td>60,099</td><td>63,923 (2021)/68,862 (2023)</td><td>+2.2%</td><td>+17.1%</td><td>Recovered and grew</td></tr></tbody><tbody class="srt s1"><tr><td>Physician offices (621111)</td><td>215,189</td><td>216,499</td><td>208,325</td><td>+0.6%</td><td><strong>-3.2%</strong></td><td>Never recovered (loss came in 2021, likely consolidation into larger practices)</td></tr><tr><td>Movie theaters (NAICS 512131)</td><td>4,485</td><td>4,360</td><td>4,085</td><td>-2.8%</td><td><strong>-8.9%</strong></td><td>Never recovered</td></tr><tr><td>Gyms/fitness (71394)</td><td>39,408</td><td>39,677</td><td>41,660</td><td>+0.7%</td><td>+5.7%</td><td>Recovered and grew</td></tr><tr><td>Personal care services (8121, salons/barbers)</td><td>141,324</td><td>144,042</td><td>161,325</td><td>+1.9%</td><td>+14.2%</td><td>Recovered and grew</td></tr><tr><td>Bars/taverns (7224)</td><td>40,270</td><td>39,472</td><td>41,236</td><td>-2.0%</td><td>+2.4%</td><td>Recovered late (dipped further to 38,754 in 2021 before rebounding)</td></tr><tr><td>Clothing stores (4471)</td><td>113,615</td><td>112,745</td><td>110,231</td><td>-0.8%</td><td><strong>-3.0%</strong></td><td>Never recovered</td></tr><tr><td>Hotels (721)</td><td>69,635</td><td>69,636</td><td>70,817</td><td>0.0%</td><td>+1.7%</td><td>Recovered</td></tr><tr><td>Performing arts venues (711)</td><td>58,819</td><td>60,099</td><td>63,923 (2021)/68,862 (2023)</td><td>+2.2%</td><td>+17.1%</td><td>Recovered and grew</td></tr><tr><td>Accommodation & food services (72)</td><td>747,898</td><td>740,067</td><td>791,924</td><td>-1.0%</td><td>+5.9%</td><td>Recovered and grew</td></tr><tr><td>Arts & entertainment (71)</td><td>151,873</td><td>152,503</td><td>167,051</td><td>+0.4%</td><td>+10.0%</td><td>Recovered and grew</td></tr><tr><td>Wholesale trade (42)</td><td>399,716</td><td>393,494</td><td>384,636</td><td>-1.6%</td><td><strong>-3.8%</strong></td><td>Never recovered (continues a pre-pandemic e-commerce trend)</td></tr><tr><td>Mining (21)</td><td>25,114</td><td>23,949</td><td>23,399</td><td>-4.6%</td><td><strong>-6.8%</strong></td><td>Never recovered</td></tr><tr><td>Full-service restaurants (7225)</td><td>588,480</td><td>581,102</td><td>624,261</td><td>-1.3%</td><td>+6.1%</td><td>Recovered and grew</td></tr><tr><td>Manufacturing (31-33)</td><td>289,633</td><td>285,520</td><td>286,637</td><td>-1.4%</td><td><strong>-1.0%</strong></td><td>Never recovered</td></tr><tr><td>Retail, all (44-45)</td><td>1,055,744</td><td>1,047,594</td><td>1,054,943</td><td>-0.8%</td><td>-0.1%</td><td>Essentially flat, marginal net loss</td></tr><tr><td>All industries, US</td><td>8,011,957</td><td>8,053,566</td><td>8,419,761</td><td>+0.5%</td><td>+5.1%</td><td>Net gain</td></tr></tbody><tbody class="srt s2"><tr><td>All industries, US</td><td>8,011,957</td><td>8,053,566</td><td>8,419,761</td><td>+0.5%</td><td>+5.1%</td><td>Net gain</td></tr><tr><td>Retail, all (44-45)</td><td>1,055,744</td><td>1,047,594</td><td>1,054,943</td><td>-0.8%</td><td>-0.1%</td><td>Essentially flat, marginal net loss</td></tr><tr><td>Accommodation & food services (72)</td><td>747,898</td><td>740,067</td><td>791,924</td><td>-1.0%</td><td>+5.9%</td><td>Recovered and grew</td></tr><tr><td>Full-service restaurants (7225)</td><td>588,480</td><td>581,102</td><td>624,261</td><td>-1.3%</td><td>+6.1%</td><td>Recovered and grew</td></tr><tr><td>Wholesale trade (42)</td><td>399,716</td><td>393,494</td><td>384,636</td><td>-1.6%</td><td><strong>-3.8%</strong></td><td>Never recovered (continues a pre-pandemic e-commerce trend)</td></tr><tr><td>Manufacturing (31-33)</td><td>289,633</td><td>285,520</td><td>286,637</td><td>-1.4%</td><td><strong>-1.0%</strong></td><td>Never recovered</td></tr><tr><td>Physician offices (621111)</td><td>215,189</td><td>216,499</td><td>208,325</td><td>+0.6%</td><td><strong>-3.2%</strong></td><td>Never recovered (loss came in 2021, likely consolidation into larger practices)</td></tr><tr><td>Arts & entertainment (71)</td><td>151,873</td><td>152,503</td><td>167,051</td><td>+0.4%</td><td>+10.0%</td><td>Recovered and grew</td></tr><tr><td>Personal care services (8121, salons/barbers)</td><td>141,324</td><td>144,042</td><td>161,325</td><td>+1.9%</td><td>+14.2%</td><td>Recovered and grew</td></tr><tr><td>Clothing stores (4471)</td><td>113,615</td><td>112,745</td><td>110,231</td><td>-0.8%</td><td><strong>-3.0%</strong></td><td>Never recovered</td></tr><tr><td>Hotels (721)</td><td>69,635</td><td>69,636</td><td>70,817</td><td>0.0%</td><td>+1.7%</td><td>Recovered</td></tr><tr><td>Performing arts venues (711)</td><td>58,819</td><td>60,099</td><td>63,923 (2021)/68,862 (2023)</td><td>+2.2%</td><td>+17.1%</td><td>Recovered and grew</td></tr><tr><td>Bars/taverns (7224)</td><td>40,270</td><td>39,472</td><td>41,236</td><td>-2.0%</td><td>+2.4%</td><td>Recovered late (dipped further to 38,754 in 2021 before rebounding)</td></tr><tr><td>Gyms/fitness (71394)</td><td>39,408</td><td>39,677</td><td>41,660</td><td>+0.7%</td><td>+5.7%</td><td>Recovered and grew</td></tr><tr><td>Mining (21)</td><td>25,114</td><td>23,949</td><td>23,399</td><td>-4.6%</td><td><strong>-6.8%</strong></td><td>Never recovered</td></tr><tr><td>Movie theaters (NAICS 512131)</td><td>4,485</td><td>4,360</td><td>4,085</td><td>-2.8%</td><td><strong>-8.9%</strong></td><td>Never recovered</td></tr></tbody><tbody class="srt s3"><tr><td>All industries, US</td><td>8,011,957</td><td>8,053,566</td><td>8,419,761</td><td>+0.5%</td><td>+5.1%</td><td>Net gain</td></tr><tr><td>Retail, all (44-45)</td><td>1,055,744</td><td>1,047,594</td><td>1,054,943</td><td>-0.8%</td><td>-0.1%</td><td>Essentially flat, marginal net loss</td></tr><tr><td>Accommodation & food services (72)</td><td>747,898</td><td>740,067</td><td>791,924</td><td>-1.0%</td><td>+5.9%</td><td>Recovered and grew</td></tr><tr><td>Full-service restaurants (7225)</td><td>588,480</td><td>581,102</td><td>624,261</td><td>-1.3%</td><td>+6.1%</td><td>Recovered and grew</td></tr><tr><td>Wholesale trade (42)</td><td>399,716</td><td>393,494</td><td>384,636</td><td>-1.6%</td><td><strong>-3.8%</strong></td><td>Never recovered (continues a pre-pandemic e-commerce trend)</td></tr><tr><td>Manufacturing (31-33)</td><td>289,633</td><td>285,520</td><td>286,637</td><td>-1.4%</td><td><strong>-1.0%</strong></td><td>Never recovered</td></tr><tr><td>Physician offices (621111)</td><td>215,189</td><td>216,499</td><td>208,325</td><td>+0.6%</td><td><strong>-3.2%</strong></td><td>Never recovered (loss came in 2021, likely consolidation into larger practices)</td></tr><tr><td>Arts & entertainment (71)</td><td>151,873</td><td>152,503</td><td>167,051</td><td>+0.4%</td><td>+10.0%</td><td>Recovered and grew</td></tr><tr><td>Personal care services (8121, salons/barbers)</td><td>141,324</td><td>144,042</td><td>161,325</td><td>+1.9%</td><td>+14.2%</td><td>Recovered and grew</td></tr><tr><td>Clothing stores (4471)</td><td>113,615</td><td>112,745</td><td>110,231</td><td>-0.8%</td><td><strong>-3.0%</strong></td><td>Never recovered</td></tr><tr><td>Hotels (721)</td><td>69,635</td><td>69,636</td><td>70,817</td><td>0.0%</td><td>+1.7%</td><td>Recovered</td></tr><tr><td>Performing arts venues (711)</td><td>58,819</td><td>60,099</td><td>63,923 (2021)/68,862 (2023)</td><td>+2.2%</td><td>+17.1%</td><td>Recovered and grew</td></tr><tr><td>Gyms/fitness (71394)</td><td>39,408</td><td>39,677</td><td>41,660</td><td>+0.7%</td><td>+5.7%</td><td>Recovered and grew</td></tr><tr><td>Bars/taverns (7224)</td><td>40,270</td><td>39,472</td><td>41,236</td><td>-2.0%</td><td>+2.4%</td><td>Recovered late (dipped further to 38,754 in 2021 before rebounding)</td></tr><tr><td>Mining (21)</td><td>25,114</td><td>23,949</td><td>23,399</td><td>-4.6%</td><td><strong>-6.8%</strong></td><td>Never recovered</td></tr><tr><td>Movie theaters (NAICS 512131)</td><td>4,485</td><td>4,360</td><td>4,085</td><td>-2.8%</td><td><strong>-8.9%</strong></td><td>Never recovered</td></tr></tbody><tbody class="srt s4"><tr><td>Performing arts venues (711)</td><td>58,819</td><td>60,099</td><td>63,923 (2021)/68,862 (2023)</td><td>+2.2%</td><td>+17.1%</td><td>Recovered and grew</td></tr><tr><td>All industries, US</td><td>8,011,957</td><td>8,053,566</td><td>8,419,761</td><td>+0.5%</td><td>+5.1%</td><td>Net gain</td></tr><tr><td>Retail, all (44-45)</td><td>1,055,744</td><td>1,047,594</td><td>1,054,943</td><td>-0.8%</td><td>-0.1%</td><td>Essentially flat, marginal net loss</td></tr><tr><td>Accommodation & food services (72)</td><td>747,898</td><td>740,067</td><td>791,924</td><td>-1.0%</td><td>+5.9%</td><td>Recovered and grew</td></tr><tr><td>Full-service restaurants (7225)</td><td>588,480</td><td>581,102</td><td>624,261</td><td>-1.3%</td><td>+6.1%</td><td>Recovered and grew</td></tr><tr><td>Wholesale trade (42)</td><td>399,716</td><td>393,494</td><td>384,636</td><td>-1.6%</td><td><strong>-3.8%</strong></td><td>Never recovered (continues a pre-pandemic e-commerce trend)</td></tr><tr><td>Manufacturing (31-33)</td><td>289,633</td><td>285,520</td><td>286,637</td><td>-1.4%</td><td><strong>-1.0%</strong></td><td>Never recovered</td></tr><tr><td>Physician offices (621111)</td><td>215,189</td><td>216,499</td><td>208,325</td><td>+0.6%</td><td><strong>-3.2%</strong></td><td>Never recovered (loss came in 2021, likely consolidation into larger practices)</td></tr><tr><td>Arts & entertainment (71)</td><td>151,873</td><td>152,503</td><td>167,051</td><td>+0.4%</td><td>+10.0%</td><td>Recovered and grew</td></tr><tr><td>Personal care services (8121, salons/barbers)</td><td>141,324</td><td>144,042</td><td>161,325</td><td>+1.9%</td><td>+14.2%</td><td>Recovered and grew</td></tr><tr><td>Clothing stores (4471)</td><td>113,615</td><td>112,745</td><td>110,231</td><td>-0.8%</td><td><strong>-3.0%</strong></td><td>Never recovered</td></tr><tr><td>Hotels (721)</td><td>69,635</td><td>69,636</td><td>70,817</td><td>0.0%</td><td>+1.7%</td><td>Recovered</td></tr><tr><td>Gyms/fitness (71394)</td><td>39,408</td><td>39,677</td><td>41,660</td><td>+0.7%</td><td>+5.7%</td><td>Recovered and grew</td></tr><tr><td>Bars/taverns (7224)</td><td>40,270</td><td>39,472</td><td>41,236</td><td>-2.0%</td><td>+2.4%</td><td>Recovered late (dipped further to 38,754 in 2021 before rebounding)</td></tr><tr><td>Mining (21)</td><td>25,114</td><td>23,949</td><td>23,399</td><td>-4.6%</td><td><strong>-6.8%</strong></td><td>Never recovered</td></tr><tr><td>Movie theaters (NAICS 512131)</td><td>4,485</td><td>4,360</td><td>4,085</td><td>-2.8%</td><td><strong>-8.9%</strong></td><td>Never recovered</td></tr></tbody><tbody class="srt s5"><tr><td>Performing arts venues (711)</td><td>58,819</td><td>60,099</td><td>63,923 (2021)/68,862 (2023)</td><td>+2.2%</td><td>+17.1%</td><td>Recovered and grew</td></tr><tr><td>Personal care services (8121, salons/barbers)</td><td>141,324</td><td>144,042</td><td>161,325</td><td>+1.9%</td><td>+14.2%</td><td>Recovered and grew</td></tr><tr><td>Gyms/fitness (71394)</td><td>39,408</td><td>39,677</td><td>41,660</td><td>+0.7%</td><td>+5.7%</td><td>Recovered and grew</td></tr><tr><td>Physician offices (621111)</td><td>215,189</td><td>216,499</td><td>208,325</td><td>+0.6%</td><td><strong>-3.2%</strong></td><td>Never recovered (loss came in 2021, likely consolidation into larger practices)</td></tr><tr><td>All industries, US</td><td>8,011,957</td><td>8,053,566</td><td>8,419,761</td><td>+0.5%</td><td>+5.1%</td><td>Net gain</td></tr><tr><td>Arts & entertainment (71)</td><td>151,873</td><td>152,503</td><td>167,051</td><td>+0.4%</td><td>+10.0%</td><td>Recovered and grew</td></tr><tr><td>Hotels (721)</td><td>69,635</td><td>69,636</td><td>70,817</td><td>0.0%</td><td>+1.7%</td><td>Recovered</td></tr><tr><td>Clothing stores (4471)</td><td>113,615</td><td>112,745</td><td>110,231</td><td>-0.8%</td><td><strong>-3.0%</strong></td><td>Never recovered</td></tr><tr><td>Retail, all (44-45)</td><td>1,055,744</td><td>1,047,594</td><td>1,054,943</td><td>-0.8%</td><td>-0.1%</td><td>Essentially flat, marginal net loss</td></tr><tr><td>Accommodation & food services (72)</td><td>747,898</td><td>740,067</td><td>791,924</td><td>-1.0%</td><td>+5.9%</td><td>Recovered and grew</td></tr><tr><td>Full-service restaurants (7225)</td><td>588,480</td><td>581,102</td><td>624,261</td><td>-1.3%</td><td>+6.1%</td><td>Recovered and grew</td></tr><tr><td>Manufacturing (31-33)</td><td>289,633</td><td>285,520</td><td>286,637</td><td>-1.4%</td><td><strong>-1.0%</strong></td><td>Never recovered</td></tr><tr><td>Wholesale trade (42)</td><td>399,716</td><td>393,494</td><td>384,636</td><td>-1.6%</td><td><strong>-3.8%</strong></td><td>Never recovered (continues a pre-pandemic e-commerce trend)</td></tr><tr><td>Bars/taverns (7224)</td><td>40,270</td><td>39,472</td><td>41,236</td><td>-2.0%</td><td>+2.4%</td><td>Recovered late (dipped further to 38,754 in 2021 before rebounding)</td></tr><tr><td>Movie theaters (NAICS 512131)</td><td>4,485</td><td>4,360</td><td>4,085</td><td>-2.8%</td><td><strong>-8.9%</strong></td><td>Never recovered</td></tr><tr><td>Mining (21)</td><td>25,114</td><td>23,949</td><td>23,399</td><td>-4.6%</td><td><strong>-6.8%</strong></td><td>Never recovered</td></tr></tbody><tbody class="srt s6"><tr><td>Performing arts venues (711)</td><td>58,819</td><td>60,099</td><td>63,923 (2021)/68,862 (2023)</td><td>+2.2%</td><td>+17.1%</td><td>Recovered and grew</td></tr><tr><td>Personal care services (8121, salons/barbers)</td><td>141,324</td><td>144,042</td><td>161,325</td><td>+1.9%</td><td>+14.2%</td><td>Recovered and grew</td></tr><tr><td>Arts & entertainment (71)</td><td>151,873</td><td>152,503</td><td>167,051</td><td>+0.4%</td><td>+10.0%</td><td>Recovered and grew</td></tr><tr><td>Full-service restaurants (7225)</td><td>588,480</td><td>581,102</td><td>624,261</td><td>-1.3%</td><td>+6.1%</td><td>Recovered and grew</td></tr><tr><td>Accommodation & food services (72)</td><td>747,898</td><td>740,067</td><td>791,924</td><td>-1.0%</td><td>+5.9%</td><td>Recovered and grew</td></tr><tr><td>Gyms/fitness (71394)</td><td>39,408</td><td>39,677</td><td>41,660</td><td>+0.7%</td><td>+5.7%</td><td>Recovered and grew</td></tr><tr><td>All industries, US</td><td>8,011,957</td><td>8,053,566</td><td>8,419,761</td><td>+0.5%</td><td>+5.1%</td><td>Net gain</td></tr><tr><td>Bars/taverns (7224)</td><td>40,270</td><td>39,472</td><td>41,236</td><td>-2.0%</td><td>+2.4%</td><td>Recovered late (dipped further to 38,754 in 2021 before rebounding)</td></tr><tr><td>Hotels (721)</td><td>69,635</td><td>69,636</td><td>70,817</td><td>0.0%</td><td>+1.7%</td><td>Recovered</td></tr><tr><td>Retail, all (44-45)</td><td>1,055,744</td><td>1,047,594</td><td>1,054,943</td><td>-0.8%</td><td>-0.1%</td><td>Essentially flat, marginal net loss</td></tr><tr><td>Manufacturing (31-33)</td><td>289,633</td><td>285,520</td><td>286,637</td><td>-1.4%</td><td><strong>-1.0%</strong></td><td>Never recovered</td></tr><tr><td>Clothing stores (4471)</td><td>113,615</td><td>112,745</td><td>110,231</td><td>-0.8%</td><td><strong>-3.0%</strong></td><td>Never recovered</td></tr><tr><td>Physician offices (621111)</td><td>215,189</td><td>216,499</td><td>208,325</td><td>+0.6%</td><td><strong>-3.2%</strong></td><td>Never recovered (loss came in 2021, likely consolidation into larger practices)</td></tr><tr><td>Wholesale trade (42)</td><td>399,716</td><td>393,494</td><td>384,636</td><td>-1.6%</td><td><strong>-3.8%</strong></td><td>Never recovered (continues a pre-pandemic e-commerce trend)</td></tr><tr><td>Mining (21)</td><td>25,114</td><td>23,949</td><td>23,399</td><td>-4.6%</td><td><strong>-6.8%</strong></td><td>Never recovered</td></tr><tr><td>Movie theaters (NAICS 512131)</td><td>4,485</td><td>4,360</td><td>4,085</td><td>-2.8%</td><td><strong>-8.9%</strong></td><td>Never recovered</td></tr></tbody><tbody class="srt s7"><tr><td>Retail, all (44-45)</td><td>1,055,744</td><td>1,047,594</td><td>1,054,943</td><td>-0.8%</td><td>-0.1%</td><td>Essentially flat, marginal net loss</td></tr><tr><td>All industries, US</td><td>8,011,957</td><td>8,053,566</td><td>8,419,761</td><td>+0.5%</td><td>+5.1%</td><td>Net gain</td></tr><tr><td>Movie theaters (NAICS 512131)</td><td>4,485</td><td>4,360</td><td>4,085</td><td>-2.8%</td><td><strong>-8.9%</strong></td><td>Never recovered</td></tr><tr><td>Mining (21)</td><td>25,114</td><td>23,949</td><td>23,399</td><td>-4.6%</td><td><strong>-6.8%</strong></td><td>Never recovered</td></tr><tr><td>Clothing stores (4471)</td><td>113,615</td><td>112,745</td><td>110,231</td><td>-0.8%</td><td><strong>-3.0%</strong></td><td>Never recovered</td></tr><tr><td>Manufacturing (31-33)</td><td>289,633</td><td>285,520</td><td>286,637</td><td>-1.4%</td><td><strong>-1.0%</strong></td><td>Never recovered</td></tr><tr><td>Wholesale trade (42)</td><td>399,716</td><td>393,494</td><td>384,636</td><td>-1.6%</td><td><strong>-3.8%</strong></td><td>Never recovered (continues a pre-pandemic e-commerce trend)</td></tr><tr><td>Physician offices (621111)</td><td>215,189</td><td>216,499</td><td>208,325</td><td>+0.6%</td><td><strong>-3.2%</strong></td><td>Never recovered (loss came in 2021, likely consolidation into larger practices)</td></tr><tr><td>Hotels (721)</td><td>69,635</td><td>69,636</td><td>70,817</td><td>0.0%</td><td>+1.7%</td><td>Recovered</td></tr><tr><td>Full-service restaurants (7225)</td><td>588,480</td><td>581,102</td><td>624,261</td><td>-1.3%</td><td>+6.1%</td><td>Recovered and grew</td></tr><tr><td>Accommodation & food services (72)</td><td>747,898</td><td>740,067</td><td>791,924</td><td>-1.0%</td><td>+5.9%</td><td>Recovered and grew</td></tr><tr><td>Gyms/fitness (71394)</td><td>39,408</td><td>39,677</td><td>41,660</td><td>+0.7%</td><td>+5.7%</td><td>Recovered and grew</td></tr><tr><td>Arts & entertainment (71)</td><td>151,873</td><td>152,503</td><td>167,051</td><td>+0.4%</td><td>+10.0%</td><td>Recovered and grew</td></tr><tr><td>Personal care services (8121, salons/barbers)</td><td>141,324</td><td>144,042</td><td>161,325</td><td>+1.9%</td><td>+14.2%</td><td>Recovered and grew</td></tr><tr><td>Performing arts venues (711)</td><td>58,819</td><td>60,099</td><td>63,923 (2021)/68,862 (2023)</td><td>+2.2%</td><td>+17.1%</td><td>Recovered and grew</td></tr><tr><td>Bars/taverns (7224)</td><td>40,270</td><td>39,472</td><td>41,236</td><td>-2.0%</td><td>+2.4%</td><td>Recovered late (dipped further to 38,754 in 2021 before rebounding)</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Two patterns stand out. First, the industries popularly imagined as pandemic casualties -- restaurants, bars, gyms, salons -- mostly show a SHORT dip (2020, sometimes stretching into 2021) followed by strong overshoot past the 2019 baseline by 2023, consistent with high churn: individual businesses closed, but new ones opened in their place, often at a higher rate than before. Second, the industries that genuinely never recovered are NOT the ones that got the most pandemic media attention: movie theaters, mining, wholesale trade, clothing retail, and physician offices. Movie theaters and clothing stores were already losing ground to streaming and e-commerce before 2020 -- the pandemic accelerated an existing structural decline rather than creating a new one. Physician-office establishment count fell specifically in 2021 (216,499 to 200,546, -7.4%), which more likely reflects small practices consolidating into larger multi-site groups (a change in how the establishment is counted) than solo doctors' offices shutting down and vanishing.</p>
+</section>
+<section>
+<h2>Place variation: retail establishments, 2019-2023, all 50 states + DC + all 5 territories</h2>
+<p>Restricting to retail trade (NAICS 44-45) and comparing 2019 vs. 2023 CBP counts, across every jurisdiction CBP reports -- 50 states, DC, and all 5 territories (American Samoa FIPS 60, Guam FIPS 66, Puerto Rico FIPS 72, Northern Mariana Islands FIPS 69, U.S. Virgin Islands FIPS 78). None of the 56 jurisdictions is excluded from this discussion: the state table below covers the 50 states + DC, and the territories' own figures are given in the paragraph and dashboard chart above rather than being left out. U.S. Virgin Islands fell -7.8% (449 to 414 stores), the single largest proportional retail loss of any US jurisdiction, worse than New York's -5.2%. Puerto Rico rose +9.1% (9,193 to 10,025) and American Samoa rose +8.1% (173 to 187), the two largest proportional gains of any jurisdiction, ahead of Nevada's +5.3%. Guam fell -3.5% (649 to 626) and the Northern Mariana Islands fell -1.5% (323 to 318), both within the range already spanned by the states below.</p><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s4"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s5"><table border="1" cellpadding="6" style="border-collapse:collapse;width:100%"><tr><th><label class="srth" for="s4-t1-s1">Rank<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s2">State<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s3">2019<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s4">2023<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s4-t1-s5">% change<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Worst (of the 50 states)</td><td>New York</td><td>75,882</td><td>71,941</td><td><strong>-5.2%</strong></td></tr><tr><td></td><td>Vermont</td><td>3,062</td><td>2,937</td><td>-4.1%</td></tr><tr><td></td><td>Maryland</td><td>17,381</td><td>16,687</td><td>-4.0%</td></tr><tr><td></td><td>Hawaii</td><td>4,559</td><td>4,395</td><td>-3.6%</td></tr><tr><td></td><td>Washington</td><td>21,324</td><td>20,582</td><td>-3.5%</td></tr><tr><td></td><td>Pennsylvania / Iowa</td><td>41,641 / 11,355</td><td>40,238 / 10,970</td><td>-3.4%</td></tr><tr><td></td><td>Massachusetts</td><td>23,323</td><td>22,550</td><td>-3.3%</td></tr><tr><td>Best (of the 50 states)</td><td>Nevada</td><td>8,591</td><td>9,047</td><td><strong>+5.3%</strong></td></tr><tr><td></td><td>South Carolina</td><td>17,717</td><td>18,647</td><td>+5.2%</td></tr><tr><td></td><td>Georgia</td><td>34,132</td><td>35,820</td><td>+4.9%</td></tr><tr><td></td><td>Wyoming</td><td>2,559</td><td>2,674</td><td>+4.5%</td></tr><tr><td></td><td>Texas</td><td>80,878</td><td>84,369</td><td>+4.3%</td></tr></tbody><tbody class="srt s1"><tr><td>Worst (of the 50 states)</td><td>New York</td><td>75,882</td><td>71,941</td><td><strong>-5.2%</strong></td></tr><tr><td>Best (of the 50 states)</td><td>Nevada</td><td>8,591</td><td>9,047</td><td><strong>+5.3%</strong></td></tr><tr><td></td><td>Vermont</td><td>3,062</td><td>2,937</td><td>-4.1%</td></tr><tr><td></td><td>Maryland</td><td>17,381</td><td>16,687</td><td>-4.0%</td></tr><tr><td></td><td>Hawaii</td><td>4,559</td><td>4,395</td><td>-3.6%</td></tr><tr><td></td><td>Washington</td><td>21,324</td><td>20,582</td><td>-3.5%</td></tr><tr><td></td><td>Pennsylvania / Iowa</td><td>41,641 / 11,355</td><td>40,238 / 10,970</td><td>-3.4%</td></tr><tr><td></td><td>Massachusetts</td><td>23,323</td><td>22,550</td><td>-3.3%</td></tr><tr><td></td><td>South Carolina</td><td>17,717</td><td>18,647</td><td>+5.2%</td></tr><tr><td></td><td>Georgia</td><td>34,132</td><td>35,820</td><td>+4.9%</td></tr><tr><td></td><td>Wyoming</td><td>2,559</td><td>2,674</td><td>+4.5%</td></tr><tr><td></td><td>Texas</td><td>80,878</td><td>84,369</td><td>+4.3%</td></tr></tbody><tbody class="srt s2"><tr><td></td><td>Georgia</td><td>34,132</td><td>35,820</td><td>+4.9%</td></tr><tr><td></td><td>Hawaii</td><td>4,559</td><td>4,395</td><td>-3.6%</td></tr><tr><td></td><td>Maryland</td><td>17,381</td><td>16,687</td><td>-4.0%</td></tr><tr><td></td><td>Massachusetts</td><td>23,323</td><td>22,550</td><td>-3.3%</td></tr><tr><td>Best (of the 50 states)</td><td>Nevada</td><td>8,591</td><td>9,047</td><td><strong>+5.3%</strong></td></tr><tr><td>Worst (of the 50 states)</td><td>New York</td><td>75,882</td><td>71,941</td><td><strong>-5.2%</strong></td></tr><tr><td></td><td>Pennsylvania / Iowa</td><td>41,641 / 11,355</td><td>40,238 / 10,970</td><td>-3.4%</td></tr><tr><td></td><td>South Carolina</td><td>17,717</td><td>18,647</td><td>+5.2%</td></tr><tr><td></td><td>Texas</td><td>80,878</td><td>84,369</td><td>+4.3%</td></tr><tr><td></td><td>Vermont</td><td>3,062</td><td>2,937</td><td>-4.1%</td></tr><tr><td></td><td>Washington</td><td>21,324</td><td>20,582</td><td>-3.5%</td></tr><tr><td></td><td>Wyoming</td><td>2,559</td><td>2,674</td><td>+4.5%</td></tr></tbody><tbody class="srt s3"><tr><td></td><td>Pennsylvania / Iowa</td><td>41,641 / 11,355</td><td>40,238 / 10,970</td><td>-3.4%</td></tr><tr><td></td><td>Texas</td><td>80,878</td><td>84,369</td><td>+4.3%</td></tr><tr><td>Worst (of the 50 states)</td><td>New York</td><td>75,882</td><td>71,941</td><td><strong>-5.2%</strong></td></tr><tr><td></td><td>Georgia</td><td>34,132</td><td>35,820</td><td>+4.9%</td></tr><tr><td></td><td>Massachusetts</td><td>23,323</td><td>22,550</td><td>-3.3%</td></tr><tr><td></td><td>Washington</td><td>21,324</td><td>20,582</td><td>-3.5%</td></tr><tr><td></td><td>South Carolina</td><td>17,717</td><td>18,647</td><td>+5.2%</td></tr><tr><td></td><td>Maryland</td><td>17,381</td><td>16,687</td><td>-4.0%</td></tr><tr><td>Best (of the 50 states)</td><td>Nevada</td><td>8,591</td><td>9,047</td><td><strong>+5.3%</strong></td></tr><tr><td></td><td>Hawaii</td><td>4,559</td><td>4,395</td><td>-3.6%</td></tr><tr><td></td><td>Vermont</td><td>3,062</td><td>2,937</td><td>-4.1%</td></tr><tr><td></td><td>Wyoming</td><td>2,559</td><td>2,674</td><td>+4.5%</td></tr></tbody><tbody class="srt s4"><tr><td></td><td>Pennsylvania / Iowa</td><td>41,641 / 11,355</td><td>40,238 / 10,970</td><td>-3.4%</td></tr><tr><td></td><td>Texas</td><td>80,878</td><td>84,369</td><td>+4.3%</td></tr><tr><td>Worst (of the 50 states)</td><td>New York</td><td>75,882</td><td>71,941</td><td><strong>-5.2%</strong></td></tr><tr><td></td><td>Georgia</td><td>34,132</td><td>35,820</td><td>+4.9%</td></tr><tr><td></td><td>Massachusetts</td><td>23,323</td><td>22,550</td><td>-3.3%</td></tr><tr><td></td><td>Washington</td><td>21,324</td><td>20,582</td><td>-3.5%</td></tr><tr><td></td><td>South Carolina</td><td>17,717</td><td>18,647</td><td>+5.2%</td></tr><tr><td></td><td>Maryland</td><td>17,381</td><td>16,687</td><td>-4.0%</td></tr><tr><td>Best (of the 50 states)</td><td>Nevada</td><td>8,591</td><td>9,047</td><td><strong>+5.3%</strong></td></tr><tr><td></td><td>Hawaii</td><td>4,559</td><td>4,395</td><td>-3.6%</td></tr><tr><td></td><td>Vermont</td><td>3,062</td><td>2,937</td><td>-4.1%</td></tr><tr><td></td><td>Wyoming</td><td>2,559</td><td>2,674</td><td>+4.5%</td></tr></tbody><tbody class="srt s5"><tr><td>Best (of the 50 states)</td><td>Nevada</td><td>8,591</td><td>9,047</td><td><strong>+5.3%</strong></td></tr><tr><td></td><td>South Carolina</td><td>17,717</td><td>18,647</td><td>+5.2%</td></tr><tr><td></td><td>Georgia</td><td>34,132</td><td>35,820</td><td>+4.9%</td></tr><tr><td></td><td>Wyoming</td><td>2,559</td><td>2,674</td><td>+4.5%</td></tr><tr><td></td><td>Texas</td><td>80,878</td><td>84,369</td><td>+4.3%</td></tr><tr><td></td><td>Massachusetts</td><td>23,323</td><td>22,550</td><td>-3.3%</td></tr><tr><td></td><td>Pennsylvania / Iowa</td><td>41,641 / 11,355</td><td>40,238 / 10,970</td><td>-3.4%</td></tr><tr><td></td><td>Washington</td><td>21,324</td><td>20,582</td><td>-3.5%</td></tr><tr><td></td><td>Hawaii</td><td>4,559</td><td>4,395</td><td>-3.6%</td></tr><tr><td></td><td>Maryland</td><td>17,381</td><td>16,687</td><td>-4.0%</td></tr><tr><td></td><td>Vermont</td><td>3,062</td><td>2,937</td><td>-4.1%</td></tr><tr><td>Worst (of the 50 states)</td><td>New York</td><td>75,882</td><td>71,941</td><td><strong>-5.2%</strong></td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>All-industry (every NAICS sector) 2019-2023 growth confirms the same geographic split at a broader level among the 50 states + DC: Utah grew net establishments +13.8%, Nevada +12.7%, California +6.6%, while New York (-1.1%), District of Columbia (-0.8%) and Missouri (-0.2%) still had fewer total establishments in 2023 than in 2019. This lines up with known population/domestic-migration flows out of high-cost Northeast/West-Coast metros and into Sun Belt states over the same period; this analysis did not separately test migration as a cause, so that link is a plausible association, not a proven driver.</p>
+</section>
+<section>
+<h2>Caveats and what this warehouse could not answer directly</h2>
+<p><strong>This is a proxy analysis, and it should be read as one.</strong> Census County Business Patterns counts active establishments as of mid-March each year; it cannot see a business that closed in April 2020 and reopened in September 2021 under a new EIN, cannot distinguish 'the pizza place on Main St. closed and a new coffee shop opened in the same space' from 'nothing changed,' and its national/state 2-6 digit NAICS aggregates mix large chains with true independent local businesses -- 'local business' specifically (as opposed to all establishments of a given industry) is not a category this corpus, or Census generally, separates out. A catalog search of this warehouse's full table list returned no table or column matching the word 'closures' at all -- individual-firm survival tracking genuinely is not something this corpus (or, as far as could be determined, any comprehensive public U.S. government dataset) carries at national scale; Yelp's platform data and academic tax-microdata studies (California only) are the closest direct measures that exist publicly, and neither is a national government series. The 2019-vs-2023 establishment gaps reported above for mining, wholesale trade, and physician offices in particular may reflect structural/pre-existing trends (oil price cycles, e-commerce disintermediation, medical-practice consolidation) rather than a pandemic-specific effect. The industry and state comparisons above are simple net-change figures between two snapshot years, not the output of a formal causal model, so they should be read as descriptive evidence of what changed, not as proof of why it changed.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>12 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 2 rows — 4622 ms</summary><pre><code>SELECT geography, COUNT(*) FROM census.cbp_establishments WHERE year='2021' GROUP BY geography</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1579 ms</summary><pre><code>SELECT DISTINCT type FROM census.cbp_establishments LIMIT 20</code></pre></details>
+<details class="sqltoggle"><summary>query — 40 rows — 3467 ms</summary><pre><code>SELECT naics_code, COUNT(*) FROM census.cbp_establishments WHERE &quot;year&quot;='2021' AND geography='state' GROUP BY naics_code ORDER BY naics_code FETCH FIRST 40 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 7 rows — 3875 ms</summary><pre><code>SELECT &quot;year&quot;, SUM(establishments) AS total_estabs
+FROM census.cbp_establishments
+WHERE geography='state' AND naics_code='00'
+GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 63 rows — 3569 ms</summary><pre><code>SELECT naics_code, &quot;year&quot;, SUM(establishments) AS estabs
+FROM census.cbp_establishments
+WHERE geography='state' AND naics_code IN ('72','71','44','45','23','62','61','81','52','54','31','32','33','21','48','49')
+GROUP BY naics_code, &quot;year&quot; ORDER BY naics_code, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 63 rows — 2568 ms</summary><pre><code>SELECT naics_code, &quot;year&quot;, SUM(establishments) AS estabs
+FROM census.cbp_establishments
+WHERE geography='state' AND naics_code IN ('22','31','32','33','42','44','45','48','49','51','53','55','56','92','31-33','44-45','48-49')
+GROUP BY naics_code, &quot;year&quot; ORDER BY naics_code, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 49 rows — 4126 ms</summary><pre><code>SELECT naics_code, &quot;year&quot;, SUM(establishments) AS estabs
+FROM census.cbp_establishments
+WHERE geography='state' AND naics_code IN ('721','722','711','712','713','512','5111')
+GROUP BY naics_code, &quot;year&quot; ORDER BY naics_code, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 220 rows — 6076 ms</summary><pre><code>
+WITH base AS (
+  SELECT geo_name AS state, naics_code, &quot;year&quot;, SUM(establishments) AS estabs
+  FROM census.cbp_establishments
+  WHERE geography='state' AND naics_code IN ('00','72','44-45','21')
+  GROUP BY geo_name, naics_code, &quot;year&quot;
+)
+SELECT state, naics_code,
+  MAX(CASE WHEN &quot;year&quot;='2019' THEN estabs END) AS y2019,
+  MAX(CASE WHEN &quot;year&quot;='2020' THEN estabs END) AS y2020,
+  MAX(CASE WHEN &quot;year&quot;='2023' THEN estabs END) AS y2023
+FROM base
+GROUP BY state, naics_code
+ORDER BY naics_code, state</code></pre></details>
+<details class="sqltoggle"><summary>query — 63 rows — 4705 ms</summary><pre><code>SELECT naics_code, &quot;year&quot;, SUM(establishments) AS estabs
+FROM census.cbp_establishments
+WHERE geography='state' AND naics_code IN ('7225','7224','8121','71394','512131','4471','44511','61162','621111')
+GROUP BY naics_code, &quot;year&quot; ORDER BY naics_code, &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 10 rows — 5332 ms</summary><pre><code>
+WITH base AS (
+  SELECT geo_name AS state, &quot;year&quot;, SUM(establishments) AS estabs
+  FROM census.cbp_establishments
+  WHERE geography='state' AND naics_code='44-45'
+    AND state NOT IN ('72','66','69','78','60') AND geo_name NOT IN ('American Samoa','Guam','Puerto Rico','United States Virgin Islands','Commonwealth of the Northern Mariana Islands')
+  GROUP BY geo_name, &quot;year&quot;
+),
+piv AS (
+  SELECT state,
+    MAX(CASE WHEN &quot;year&quot;='2019' THEN estabs END) AS y2019,
+    MAX(CASE WHEN &quot;year&quot;='2023' THEN estabs END) AS y2023
+  FROM base GROUP BY state
+)
+SELECT state, y2019, y2023, ROUND(100.0*(y2023-y2019)/y2019,1) AS pct_change
+FROM piv ORDER BY pct_change ASC FETCH FIRST 10 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 10 rows — 3537 ms</summary><pre><code>
+WITH base AS (
+  SELECT geo_name AS state, &quot;year&quot;, SUM(establishments) AS estabs
+  FROM census.cbp_establishments
+  WHERE geography='state' AND naics_code='44-45'
+    AND state NOT IN ('72','66','69','78','60') AND geo_name NOT IN ('American Samoa','Guam','Puerto Rico','United States Virgin Islands','Commonwealth of the Northern Mariana Islands')
+  GROUP BY geo_name, &quot;year&quot;
+),
+piv AS (
+  SELECT state,
+    MAX(CASE WHEN &quot;year&quot;='2019' THEN estabs END) AS y2019,
+    MAX(CASE WHEN &quot;year&quot;='2023' THEN estabs END) AS y2023
+  FROM base GROUP BY state
+)
+SELECT state, y2019, y2023, ROUND(100.0*(y2023-y2019)/y2019,1) AS pct_change
+FROM piv ORDER BY pct_change DESC FETCH FIRST 10 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 5 rows — 10010 ms</summary><pre><code>
+WITH base AS (
+  SELECT geo_name AS state, &quot;year&quot;, SUM(establishments) AS estabs
+  FROM census.cbp_establishments
+  WHERE geography='state' AND naics_code='44-45'
+    AND geo_name IN ('American Samoa','Guam','Puerto Rico','United States Virgin Islands','Commonwealth of the Northern Mariana Islands')
+  GROUP BY geo_name, &quot;year&quot;
+)
+SELECT state,
+  MAX(CASE WHEN &quot;year&quot;='2019' THEN estabs END) AS y2019,
+  MAX(CASE WHEN &quot;year&quot;='2023' THEN estabs END) AS y2023,
+  ROUND(100.0*(MAX(CASE WHEN &quot;year&quot;='2023' THEN estabs END)-MAX(CASE WHEN &quot;year&quot;='2019' THEN estabs END))/MAX(CASE WHEN &quot;year&quot;='2019' THEN estabs END),1) AS pct_change
+FROM base GROUP BY state</code></pre></details>
+
+</section>
+<section class="sources">
 <h2>Sources</h2>
-<ul>
-<li>BLS QCEW via AskAmerica <code>econ.state_wages</code> and <code>econ.metro_wages</code> (own_code=5 private; industry_code 10/721/622/623/711/712/713/722/812/532/541; 2019 &amp; 2024)</li>
-<li>Federal Reserve, <a href="https://www.federalreserve.gov/econres/notes/feds-notes/business-entry-and-exit-in-the-covid-19-pandemic-a-preliminary-look-at-official-data-20220506.html">Business entry and exit in the COVID-19 pandemic: a preliminary look at official data</a></li>
-<li>BLS, <a href="https://www.bls.gov/spotlight/2021/impact-of-the-coronavirus-pandemic-on-businesses-and-employees-by-industry/home.htm">Spotlight on Statistics: Impact of the coronavirus pandemic on establishments and employment by industry (2021)</a></li>
-<li>Decker &amp; Haltiwanger, <a href="https://www.richmondfed.org/publications/research/economic_brief/2025/eb_25-01">Surging Business Formation in the Pandemic: Causes and Consequences</a> (Richmond Fed summary)</li>
-<li><a href="https://edc.nyc/sites/default/files/2024-05/NYC-Small-Business-Recovery-May-2024.pdf">NYC Economic Development Corporation, NYC Small Business Recovery, May 2024</a></li>
-<li><a href="https://www.jpmorganchase.com/institute/all-topics/business-growth-and-entrepreneurship/small-businesses-in-times-of-distress">JPMorganChase Institute, Small businesses in times of distress: lessons learned from the pandemic</a></li>
-<li><a href="https://www.census.gov/library/working-papers/2021/adrm/CES-WP-21-06.html">US Census Bureau, High Frequency Business Dynamics in the United States During the COVID-19 Pandemic</a></li>
-</ul>
-<h2>Data-quality issue filed</h2>
-<p><code>report_issue</code>: <code>econ.metro_wages</code> Seattle-Tacoma-Bellevue, industry_code=62 (Health Care &amp; Social Assistance) annual_avg_estabs falls from 31,899 (2019) to 12,633 (2024), a ~60% drop inconsistent with every other sector/metro in the table — flagged as a likely QCEW area/industry code discontinuity, not a real closure wave.</p>
-<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
-</div></body></html>
+<ol>
+<li><a href="https://www.census.gov/programs-surveys/cbp.html">Census County Business Patterns, establishments by industry and state, 2019-2023</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT naics_code, &quot;year&quot;, SUM(establishments) AS estabs FROM census.cbp_establishments WHERE geography='state' AND naics_code IN ('72','71','44-45','21','42','31-33') GROUP BY naics_code, &quot;year&quot; ORDER BY naics_code, &quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.cnbc.com/2020/09/16/yelp-data-shows-60percent-of-business-closures-due-to-the-coronavirus-pandemic-are-now-permanent.html">Yelp Economic Impact Report, Sept 2020 -- 60% of tracked pandemic closures permanent</a></li>
+<li><a href="https://www.nbcnews.com/business/economy/almost-60-percent-business-closures-are-now-permanent-new-yelp-n1240209">Almost 60 percent of business closures are now permanent (NBC News, Sept 2020)</a></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w30285/w30285.pdf">NBER Working Paper 30285: Were Small Businesses More Likely to Permanently Close in the Pandemic? (Fairlie, Fossen, Johnsen, Droboniku, 2022)</a></li>
+<li><a href="https://www.census.gov/programs-surveys/cbp.html">Retail establishment change by state and territory, 2019-2023</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH base AS (SELECT geo_name AS state, &quot;year&quot;, SUM(establishments) AS estabs FROM census.cbp_establishments WHERE geography='state' AND naics_code='44-45' GROUP BY geo_name, &quot;year&quot;) SELECT state, MAX(CASE WHEN &quot;year&quot;='2019' THEN estabs END) AS y2019, MAX(CASE WHEN &quot;year&quot;='2023' THEN estabs END) AS y2023 FROM base GROUP BY state ORDER BY (y2023-y2019)/y2019</code></pre></details></li>
+<li><a href="https://en.wikipedia.org/wiki/2026_Central_Africa_Ebola_epidemic">2026 Central Africa Ebola epidemic (checked for a more recent comparable event; not a US business-closure event)</a></li>
+</ol>
+</section>
+<footer>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-12</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
