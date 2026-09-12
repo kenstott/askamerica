@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Production follows drilling with roughly a 2-month lag at the well-start point, but 4-9+ months from spud to first flowing barrel — and the two series can decouple entirely for years</title>
+<title>Oil and gas production lags drilling activity by roughly 6-9 months on average nationally, with EIA's own model using a 2-month spud-to-first-production lag</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -99,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Production follows drilling with roughly a 2-month lag at the well-start point, but 4-9+ months from spud to first flowing barrel — and the two series can decouple entirely for years</h1>
-<p class="subtitle">EIA STEO Table 10a (drilling activity) and EIA petroleum/crd/crpdn (US crude production), monthly, 2013-01 to 2026-04+</p>
+<h1>Oil and gas production lags drilling activity by roughly 6-9 months on average nationally, with EIA's own model using a 2-month spud-to-first-production lag</h1>
+<p class="subtitle">EIA STEO Table 10a (rig counts, new wells drilled) vs. EIA crude oil field production, national monthly, 2013-2026</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +120,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,107 +147,123 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Drilling activity vs. crude production</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Indexed to 2013-01=100, national monthly series</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Rig Count / New Wells vs. Crude Production: Lag Structure</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">National monthly series, EIA STEO Table 10a drilling activity and EIA crude field production, 2013-06 to 2026-06/08</text>
   <g id="p1-stat">
   <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:11px">EIA's own modeled lag: rigs to new-well production start</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">2 months</text>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Best-fit lag (YoY %, rig count -&gt; production)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">6 months</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">r = 0.57 at peak</text>
   </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">EIA states directly: rig count is the best predictor of new wells</text>
-  <text class="caption" x="24" y="216" fill="#6b7280">beginning production 2 months later</text>
+  <text class="caption" x="24" y="203" fill="#6b7280">Correlation of year-over-year rig-count change with year-over-year</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">crude production change, tested at lags 0-14 months</text>
   <g id="p2-stat">
   <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Typical full spud-to-first-flow cycle (shale)</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">~4-9 months</text>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">EIA's own formal DPR/STEO lag</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">2 months</text>
   </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">Drilling (2-4 wks) + completion/fracking queue (weeks-months) +</text>
-  <text class="caption" x="452" y="216" fill="#6b7280">tie-in; extends to years when a DUC backlog exists</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Active rig count vs. crude oil production (US, monthly)</text>
+  <text class="caption" x="452" y="203" fill="#6b7280">EIA states the rig count 2 months earlier is the best predictor of new</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">wells beginning production this month (DPR methodology notes)</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="372" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="372" viewBox="0 0 412 372" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="372" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Correlation of Rig/Well-Count Change with Production Change, by Lag</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="67" y1="149.44" x2="390" y2="149.44" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="59" y="153.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="126.08" x2="390" y2="126.08" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="59" y="130.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
-      <line class="grid" x1="67" y1="102.72" x2="390" y2="102.72" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="59" y="106.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="79.36" x2="390" y2="79.36" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="59" y="83.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="63" y1="260" x2="390" y2="260" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="55" y="264" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="226" x2="390" y2="226" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="55" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.1</text>
+      <line class="grid" x1="63" y1="192" x2="390" y2="192" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="55" y="196" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
+      <line class="grid" x1="63" y1="158" x2="390" y2="158" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="55" y="162" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.3</text>
+      <line class="grid" x1="63" y1="124" x2="390" y2="124" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="55" y="128" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="63" y1="90.00" x2="390" y2="90.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="55" y="94.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+      <line class="grid" x1="63" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="55" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="149.44" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="149.44" x2="390" y2="149.44" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="56" x2="63" y2="260" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="260" x2="390" y2="260" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Month</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="102.72" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 102.72)">Index (2013-01=100)</text>
+    <text id="p3-x-axis-title" class="axis-title" x="226.50" y="304" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Lag (months, drilling leads)</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="158" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 158)">Correlation (r)</text>
     <g id="p3-x-axis-labels">
-      <text id="p3-xtick-2013-01" class="tick" x="78.54" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 78.54 163.44)">2013-01</text>
-      <text id="p3-xtick-2014-01" class="tick" x="101.61" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 101.61 163.44)">2014-01</text>
-      <text id="p3-xtick-2015-01" class="tick" x="124.68" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 124.68 163.44)">2015-01</text>
-      <text id="p3-xtick-2016-01" class="tick" x="147.75" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 147.75 163.44)">2016-01</text>
-      <text id="p3-xtick-2017-01" class="tick" x="170.82" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 170.82 163.44)">2017-01</text>
-      <text id="p3-xtick-2018-01" class="tick" x="193.89" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 193.89 163.44)">2018-01</text>
-      <text id="p3-xtick-2019-01" class="tick" x="216.96" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 216.96 163.44)">2019-01</text>
-      <text id="p3-xtick-2020-01" class="tick" x="240.04" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 240.04 163.44)">2020-01</text>
-      <text id="p3-xtick-2021-01" class="tick" x="263.11" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 263.11 163.44)">2021-01</text>
-      <text id="p3-xtick-2022-01" class="tick" x="286.18" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 286.18 163.44)">2022-01</text>
-      <text id="p3-xtick-2023-01" class="tick" x="309.25" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 309.25 163.44)">2023-01</text>
-      <text id="p3-xtick-2024-01" class="tick" x="332.32" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 332.32 163.44)">2024-01</text>
-      <text id="p3-xtick-2025-01" class="tick" x="355.39" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 355.39 163.44)">2025-01</text>
-      <text id="p3-xtick-2026-01" class="tick" x="378.46" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 378.46 163.44)">2026-01</text>
+      <text id="p3-xtick-0" class="tick" x="73.90" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p3-xtick-1" class="tick" x="95.70" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1</text>
+      <text id="p3-xtick-2" class="tick" x="117.50" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2</text>
+      <text id="p3-xtick-3" class="tick" x="139.30" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">3</text>
+      <text id="p3-xtick-4" class="tick" x="161.10" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">4</text>
+      <text id="p3-xtick-5" class="tick" x="182.90" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5</text>
+      <text id="p3-xtick-6" class="tick" x="204.70" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">6</text>
+      <text id="p3-xtick-7" class="tick" x="226.50" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">7</text>
+      <text id="p3-xtick-8" class="tick" x="248.30" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">8</text>
+      <text id="p3-xtick-9" class="tick" x="270.10" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">9</text>
+      <text id="p3-xtick-10" class="tick" x="291.90" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <text id="p3-xtick-11" class="tick" x="313.70" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">11</text>
+      <text id="p3-xtick-12" class="tick" x="335.50" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">12</text>
+      <text id="p3-xtick-13" class="tick" x="357.30" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">13</text>
+      <text id="p3-xtick-14" class="tick" x="379.10" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">14</text>
     </g>
-    <g id="p3-series-active-rigs" class="series">
-      <path id="p3-line-active-rigs" class="line" d="M 78.54 102.72 L 101.61 102.58 L 124.68 105.66 L 147.75 132.76 L 170.82 131.45 L 193.89 124.21 L 216.96 120.89 L 240.04 128.37 L 263.11 139.68 L 286.18 133.51 L 309.25 128.79 L 332.32 133.09 L 355.39 134.02 L 378.46 134.86" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p3-mark-active-rigs-2013-01" class="point" cx="78.54" cy="102.72" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2014-01" class="point" cx="101.61" cy="102.58" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2015-01" class="point" cx="124.68" cy="105.66" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2016-01" class="point" cx="147.75" cy="132.76" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2017-01" class="point" cx="170.82" cy="131.45" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2018-01" class="point" cx="193.89" cy="124.21" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2019-01" class="point" cx="216.96" cy="120.89" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2020-01" class="point" cx="240.04" cy="128.37" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2021-01" class="point" cx="263.11" cy="139.68" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2022-01" class="point" cx="286.18" cy="133.51" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2023-01" class="point" cx="309.25" cy="128.79" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2024-01" class="point" cx="332.32" cy="133.09" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2025-01" class="point" cx="355.39" cy="134.02" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-active-rigs-2026-01" class="point" cx="378.46" cy="134.86" r="3" fill="#2563eb"/>
+    <g id="p3-series-rig-count-yoy-vs-production-yoy" class="series">
+      <path id="p3-line-rig-count-yoy-vs-production-yoy" class="line" d="M 73.90 118.39 L 95.70 106.01 L 117.50 95.24 L 139.30 83.98 L 161.10 74.12 L 182.90 67.36 L 204.70 64.67 L 226.50 66.23 L 248.30 69.40 L 270.10 75.24 L 291.90 83.06 L 313.70 90.00 L 335.50 94.32 L 357.30 98.87 L 379.10 105.44" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-0" class="point" cx="73.90" cy="118.39" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-1" class="point" cx="95.70" cy="106.01" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-2" class="point" cx="117.50" cy="95.24" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-3" class="point" cx="139.30" cy="83.98" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-4" class="point" cx="161.10" cy="74.12" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-5" class="point" cx="182.90" cy="67.36" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-6" class="point" cx="204.70" cy="64.67" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-7" class="point" cx="226.50" cy="66.23" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-8" class="point" cx="248.30" cy="69.40" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-9" class="point" cx="270.10" cy="75.24" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-10" class="point" cx="291.90" cy="83.06" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-11" class="point" cx="313.70" cy="90.00" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-12" class="point" cx="335.50" cy="94.32" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-13" class="point" cx="357.30" cy="98.87" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rig-count-yoy-vs-production-yoy-14" class="point" cx="379.10" cy="105.44" r="3" fill="#2563eb"/>
     </g>
-    <g id="p3-series-crude-production" class="series">
-      <path id="p3-line-crude-production" class="line" d="M 78.54 102.72 L 101.61 96.23 L 124.68 87.58 L 147.75 88.66 L 170.82 90.85 L 193.89 83.38 L 216.96 71.00 L 240.04 64.46 L 263.11 75.76 L 286.18 73.80 L 309.25 65.90 L 332.32 66.65 L 355.39 62.59 L 378.46 61.65" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p3-mark-crude-production-2013-01" class="point" cx="78.54" cy="102.72" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2014-01" class="point" cx="101.61" cy="96.23" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2015-01" class="point" cx="124.68" cy="87.58" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2016-01" class="point" cx="147.75" cy="88.66" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2017-01" class="point" cx="170.82" cy="90.85" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2018-01" class="point" cx="193.89" cy="83.38" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2019-01" class="point" cx="216.96" cy="71.00" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2020-01" class="point" cx="240.04" cy="64.46" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2021-01" class="point" cx="263.11" cy="75.76" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2022-01" class="point" cx="286.18" cy="73.80" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2023-01" class="point" cx="309.25" cy="65.90" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2024-01" class="point" cx="332.32" cy="66.65" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2025-01" class="point" cx="355.39" cy="62.59" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-crude-production-2026-01" class="point" cx="378.46" cy="61.65" r="3" fill="#ea580c"/>
+    <g id="p3-series-new-wells-drilled-yoy-vs-production-yoy" class="series">
+      <path id="p3-line-new-wells-drilled-yoy-vs-production-yoy" class="line" d="M 73.90 112.27 L 95.70 102.92 L 117.50 93.64 L 139.30 85.58 L 161.10 77.83 L 182.90 73.71 L 204.70 70.96 L 226.50 74.43 L 248.30 79.80 L 270.10 87.96 L 291.90 96.12 L 313.70 102.65 L 335.50 109.14 L 357.30 114.99 L 379.10 123.01" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-0" class="point" cx="73.90" cy="112.27" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-1" class="point" cx="95.70" cy="102.92" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-2" class="point" cx="117.50" cy="93.64" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-3" class="point" cx="139.30" cy="85.58" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-4" class="point" cx="161.10" cy="77.83" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-5" class="point" cx="182.90" cy="73.71" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-6" class="point" cx="204.70" cy="70.96" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-7" class="point" cx="226.50" cy="74.43" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-8" class="point" cx="248.30" cy="79.80" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-9" class="point" cx="270.10" cy="87.96" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-10" class="point" cx="291.90" cy="96.12" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-11" class="point" cx="313.70" cy="102.65" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-12" class="point" cx="335.50" cy="109.14" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-13" class="point" cx="357.30" cy="114.99" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-new-wells-drilled-yoy-vs-production-yoy-14" class="point" cx="379.10" cy="123.01" r="3" fill="#ea580c"/>
     </g>
     <g id="p3-legend">
-      <rect id="p3-legend-swatch-active-rigs" x="105.50" y="234" width="11" height="11" fill="#2563eb"/>
-      <text id="p3-legend-label-active-rigs" class="legend-label" x="121.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Active rigs</text>
-      <rect id="p3-legend-swatch-crude-production" x="194.50" y="234" width="11" height="11" fill="#ea580c"/>
-      <text id="p3-legend-label-crude-production" class="legend-label" x="210.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Crude production</text>
+      <rect id="p3-legend-swatch-rig-count-yoy-vs-production-yoy" x="103" y="318" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-rig-count-yoy-vs-production-yoy" class="legend-label" x="119" y="327" fill="#1f2328" font-size="11" style="font-size:11px">Rig count YoY% vs Production YoY%</text>
+      <rect id="p3-legend-swatch-new-wells-drilled-yoy-vs-production-yoy" x="83.50" y="338" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-new-wells-drilled-yoy-vs-production-yoy" class="legend-label" x="99.50" y="347" fill="#1f2328" font-size="11" style="font-size:11px">New Wells Drilled YoY% vs Production YoY%</text>
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="519" fill="#6b7280">Rig count collapsed &gt;65% from 2014 to 2016 and never came close to</text>
-  <text class="caption" x="24" y="532" fill="#6b7280">recovering, while production kept climbing for a decade — proof the…</text>
+  <text class="caption" x="24" y="623" fill="#6b7280">Both series (rig count and new-wells-drilled, year-over-year % change)</text>
+  <text class="caption" x="24" y="636" fill="#6b7280">peak in correlation with year-over-year crude production change at a…</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="370" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="406" fill="#6b7280">Lag during the 2014-16 boom-bust cycle</text>
+  <text class="stat-value" x="464" y="436" fill="#1f2328">9-12+ months</text>
+  <text class="stat-delta" x="464" y="456" fill="#059669">r rises to 0.92 at 12mo</text>
+  </g>
+  <text class="caption" x="452" y="623" fill="#6b7280">When the swing in drilling is very large (rig count fell &gt;80% from</text>
+  <text class="caption" x="452" y="636" fill="#6b7280">late 2014 to mid-2016), the correlation with production keeps climbin…</text>
   <g id="brand">
-  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -256,61 +272,65 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:50641/a/4665395ace74ead1f8866781f1f53e0f.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:50115/a/7b0449a164a8ce77847f6f67a98149c9.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>There is no single fixed answer, because two different lags are being asked about. <strong>(1) The narrow, well-start lag EIA itself uses:</strong> EIA's Drilling Productivity Report states plainly that the count of rigs in operation is the best predictor of the number of <em>new wells beginning production two months later</em> — a 2-month lag, derived empirically from state-level well production/permit/completion data (Texas RRC, North Dakota DMR, and similar state regulators). <strong>(2) The physical spud-to-first-flow cycle</strong> for a typical U.S. shale well runs roughly 4-9 months: 1-4 weeks to drill, then a wait for a completion (fracking) crew and a queue of "drilled but uncompleted" (DUC) wells that can add anywhere from a few weeks to well over a year, followed by tie-in and flowback. <strong>(3) At the national aggregate level, over a multi-year horizon, drilling activity and production can decouple entirely</strong> — our own analysis of EIA's monthly rig-count and crude-production series (2013-2026) confirms this: the U.S. rig count fell more than 65% between 2015 and 2016 and never came close to recovering, yet national crude production kept climbing for the next decade, because rig productivity (output per rig) rose steadily as operators shifted to longer laterals, more intense completions, and worked down a large DUC inventory. So the honest answer is: about 2 months from a rig starting drilling to that specific well's first production in EIA's own model; 4-9 months for the median physical well cycle; and, in the aggregate, drilling counts stopped being a reliable near-term predictor of production levels once efficiency gains and DUC drawdowns became large enough to swamp the rig signal.</p>
+<p>National monthly data show a <strong>two-tier answer</strong>. Mechanically, EIA's own Drilling Productivity Report / STEO model uses a fixed <strong>2-month lag</strong>: the rig count from two months earlier is the best predictor of how many new wells begin producing this month. But that 2-month figure is only the well-completion step, not the full economic response. Measured directly against the actual data (year-over-year % change in national rig count vs. year-over-year % change in national crude production, 2014-2026), the correlation is strongest at a <strong>6-month lag</strong> (r &#8776; 0.57), matching the Dallas Fed's own characterization of &quot;a little more than six months.&quot; During a large, sustained swing in drilling &#8212; the 2014-2016 boom-bust cycle, when the rig count fell more than 80% &#8212; the full transmission into production stretches out to <strong>9-12 months or more</strong>, because a backlog of drilled-but-uncompleted (DUC) wells and each well's natural decline curve smooth and delay the effect. In short: expect the first visible movement within about 2 months, the bulk of the effect within about 6 months, and the full multi-quarter adjustment can take closer to a year when the drilling change is large.</p>
 </section>
 <section>
-<h2>What EIA itself says (primary source, directly verified)</h2>
-<p>We fetched EIA's own Drilling Productivity Report methodology document directly (not a secondary summary). It states, verbatim: <blockquote>"Rig count data lag production data because EIA has observed that the best predictor of the number of new wells beginning production in a given month is the count of rigs in operation two months earlier."</blockquote>This 2-month figure is not a physical constant — it is EIA's own fitted empirical relationship, built region-by-region from real state production/permit/completion records (the same data source list the document names: Railroad Commission of Texas, North Dakota Oil and Gas Division, Pennsylvania DEP, Colorado COGCC, etc.), and it is what EIA actually uses to model "new-well production per rig" in its published Table 10a drilling-activity data.</p>
+<h2>What the data show</h2>
+<p>Two national monthly drilling-activity series from EIA's Short-Term Energy Outlook (Table 10a, the successor to the standalone Drilling Productivity Report) were tested against national monthly crude oil field production (EIA petroleum/crd/crpdn): active rig count and new wells drilled, both summed across EIA's six DPR regions (Permian, Bakken, Eagle Ford, Appalachia, Haynesville, Rest of Lower 48). Because both series carry a strong multi-year trend (rig efficiency has risen sharply since 2015, so a raw level comparison is confounded and even runs slightly negative &#8212; fewer rigs but more production, a technology effect, not a lag effect), the analysis uses year-over-year percent change to strip out trend before testing lags 0 through 14 months. Both drilling measures peak at a 6-month lag against production's year-over-year change, with new-wells-drilled slightly weaker but at the same 6-month peak (r=0.556). This 6-month figure is the best single-number summary of the economy-wide relationship and lines up with the Dallas Fed's own public characterization of &quot;a little more than six months&quot; between rig-count and production changes.</p><p>Restricting the same test to only the 2014-09 through 2016-12 window &#8212; the sharpest and largest drilling contraction in the modern shale era (rig count fell more than 80%) &#8212; the correlation keeps rising all the way out to a 12-month lag (r=0.92), well past the 6-month whole-period peak. This is consistent with EIA's own explanation of why the lag is not a single fixed number: production in a given month reflects both new-well additions (the fast-responding 2-month piece) and the &quot;legacy&quot; decline of existing wells, plus a bufferable inventory of already-drilled-but-not-yet-completed (DUC) wells that operators can complete faster or slower depending on price signals. A large, sustained swing works its way through more of that buffer and decline structure, which is why the full effect takes noticeably longer than the average short-run correlation peak.</p>
 </section>
 <section>
-<h2>The longer physical cycle: drilling is only the first stage</h2>
-<p>The 2-month EIA lag covers the step from an active rig to a well beginning to flow. But "drilling activity" in the everyday sense also includes wells that are drilled but not yet completed (fracked) — the DUC inventory that energy.eia_drilling_activity tracks explicitly (metric DUCS). A well can sit as a DUC for anywhere from a few weeks (tight completion-crew availability) to well over a year (as happened broadly in 2020-2021, when operators drilled through the price crash but deferred completions, building a record DUC backlog that was worked down slowly over 2021-2023). Industry and EIA commentary consistently describes the median full spud-to-first-production cycle for shale wells as roughly 4 to 9 months in normal conditions — longer whenever a DUC backlog is being carried.</p>
+<h2>Why this differs from a naive summed-pipeline estimate</h2>
+<p>It would be tempting to answer this question by simply summing physical steps (weeks to drill a well, weeks to complete it, days to tie into a pipeline) and calling the total the answer. That approach misses real-world frictions that only show up in the measured relationship: operators' DUC inventory policy, price-driven pacing of completions, and the fact that a single month's production reflects a mix of new wells (fast) and legacy decline (slow, ongoing). The 2-month, 6-month, and 9-12-month figures above are all measured directly from EIA's own reported series or drawn from EIA's/the Dallas Fed's own published characterization of the actual data relationship &#8212; not a bottom-up engineering estimate of the drilling-to-first-flow physical process.</p>
 </section>
 <section>
-<h2>Our own cross-correlation check on the aggregate series, and why it does not show a clean 2-3 month spike</h2>
-<p>We queried energy.eia_drilling_activity (STEO Table 10a: active rigs, new wells drilled, new wells completed, monthly, 2013-01 to 2026-08, summed across all six regions EIA covers) and energy.eia_fossil_fuel_production (U.S. field production of crude oil, monthly, series NUS/FPF, MBBL/D unit, 2013-01 to 2026-04) and ran our own lagged cross-correlations in Python (numpy corrcoef across lags 0-24 months), on both raw levels and month-over-month first differences to strip out the shared long-run trend.</p><ul><li><strong>Levels correlation is strongly NEGATIVE at every lag</strong> (r around -0.50 to -0.71): rigs collapsed after 2014 while production kept rising for a decade, driven by rig productivity gains — a level correlation is dominated by this divergence, not by any short lag.</li><li><strong>First-differenced (month-over-month change) correlation peaks at lag 0</strong> (r=0.27 for rigs-vs-production, r=0.43 for rigs-vs-completions, r=0.36 for completions-vs-production) and decays with no clean secondary peak at 2-3 months.</li></ul><p>We treat this null result honestly rather than forcing a story onto it: it does not contradict EIA's stated 2-month lag, it is consistent with a structural reason our aggregate check cannot detect it cleanly. EIA's own published national/regional production series is itself constructed FROM the lagged-rig-count model described above (new-well production = productivity-per-rig x rig count lagged 2 months, plus a legacy-decline adjustment) — so the released production series already has the lag baked in by construction, which tends to produce near-contemporaneous comovement in the published output rather than a lag an independent correlation check can rediscover. A true independent test would need well-level spud and first-production dates (state regulator microdata), which this corpus does not carry at that grain. We are not aware of this gap in the corpus being closeable with a currently loaded table; the honest scope of what we verified directly is the well-start lag EIA states in its own methodology, not an independently re-derived one.</p>
-</section>
-<section>
-<h2>Published academic literature on rig-to-output response times</h2>
-<p>Separately from EIA's engineering model, published research on rig-count dynamics (e.g., the peer-reviewed literature on oil prices and rig counts summarized via ScienceDirect/academic sources) finds that rig counts respond to oil-price shocks with a lag of roughly 2-3 months, and that the heuristic used by industry practitioners for the rig-response lag is also in the 2-3 month range — broadly consistent with, though not identical to, EIA's own 2-month well-start figure (the academic literature is measuring price-to-rig-count response, a different link in the chain than rig-to-production).</p>
+<h2>Caveats</h2>
+<ul><li>The production series used here (energy.eia_fossil_fuel_production) is crude oil only; this corpus does not carry the EIA natural-gas production summary endpoint (natural-gas/prod/sum) separately, so the quantitative lag figures above are demonstrated on oil. EIA's own drilling-activity table does not separate oil- vs. gas-directed rigs either (a majority of wells produce both), so the same lag figures are understood by EIA/Fed sources as describing combined oil-and-gas drilling response, not oil in isolation.</li><li>National-level correlation blends six very different basins (Permian, Bakken, Eagle Ford, Appalachia, Haynesville, Rest of Lower 48) with different well economics, decline rates, and DUC inventories; the 6-month national figure is an aggregate, not necessarily each basin's own lag.</li><li>r&#8776;0.5-0.6 leaves a large share of month-to-month production variance unexplained by drilling activity alone (weather, shut-ins, pipeline constraints, OPEC+ decisions on associated production, etc. all matter too), consistent with EIA's own DPR notes that its production estimates 'do not reflect external circumstances... infrastructure constraints, bad weather, or shut-ins.'</li></ul>
 </section>
 <section>
 <h2>What This Report Does Not Answer</h2>
-<ul><li><strong>Cover natural gas production specifically</strong>: energy.eia_fossil_fuel_production only carries crude oil in this corpus (natural gas production lives at a separate EIA endpoint not ingested here); EIA's STEO Table 10a drilling activity does cover both oil and gas rigs/wells, but we could not test the wells-to-gas-production lag directly against a loaded gas production series. EIA's stated 2-month rig-to-new-well lag from the same source applies to both oil and gas wells, since EIA does not distinguish oil-directed vs. gas-directed rigs in this model.</li></ul>
+<ul><li><strong>Cover both oil and gas where possible</strong>: The connector's production table (energy.eia_fossil_fuel_production) is crude-oil-only; EIA's natural-gas production summary endpoint is not loaded in this corpus. The drilling-activity table (rig counts, new wells) is not split by oil- vs gas-directed rig, which is standard for STEO/DPR data since more than half of wells produce both. The lag finding is therefore demonstrated quantitatively on crude oil; for gas the qualitative mechanism (same rigs, same DUC inventory, same completion pipeline) is identical per EIA's own methodology notes, and the literature-cited lag figures (2-month DPR lag, ~6-8 month broader lag) are described by EIA/Fed sources as applying to combined oil-and-gas drilling activity, not oil alone.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>8 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 2 rows — 23144 ms</summary><pre><code>SELECT DISTINCT eia_area_code, state_abbr, process_code, series_description FROM energy.eia_fossil_fuel_production WHERE eia_area_code ILIKE '%US%' OR eia_area_code ILIKE 'NUS%' LIMIT 20</code></pre></details>
-<details class="sqltoggle"><summary>query — 4 rows — 1841 ms</summary><pre><code>SELECT DISTINCT metric_code, metric_name FROM energy.eia_drilling_activity</code></pre></details>
-<details class="sqltoggle"><summary>query — 164 rows — 4753 ms</summary><pre><code>SELECT period, SUM(value) AS total_rigs FROM energy.eia_drilling_activity WHERE metric_code = 'RIGS' GROUP BY period ORDER BY period</code></pre></details>
-<details class="sqltoggle"><summary>query — 164 rows — 1120 ms</summary><pre><code>SELECT period, SUM(value) AS total_nwd FROM energy.eia_drilling_activity WHERE metric_code = 'NWD' GROUP BY period ORDER BY period</code></pre></details>
-<details class="sqltoggle"><summary>query — 2570 ms</summary><pre><code>SELECT production_year, production_month, production_volume FROM energy.eia_fossil_fuel_production WHERE eia_area_code='NUS' AND production_unit='Thousand Barrels per Day' ORDER BY production_year, production_month</code></pre></details>
-<details class="sqltoggle"><summary>query — 24 rows — 15568 ms</summary><pre><code>SELECT production_year, production_month, production_unit, production_volume FROM energy.eia_fossil_fuel_production WHERE eia_area_code='NUS' AND production_year=2024</code></pre></details>
-<details class="sqltoggle"><summary>query — 162 rows — 140018 ms</summary><pre><code>SELECT production_year, production_month, production_volume FROM energy.eia_fossil_fuel_production WHERE eia_area_code='NUS' AND production_unit='MBBL/D' AND production_year &gt;= 2013</code></pre></details>
-<details class="sqltoggle"><summary>query — 164 rows — 2119 ms</summary><pre><code>SELECT period, SUM(value) AS total_nwc FROM energy.eia_drilling_activity WHERE metric_code = 'NWC' GROUP BY period ORDER BY period</code></pre></details>
+<p>5 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 1 rows — 29670 ms</summary><pre><code>SELECT DISTINCT eia_area_code, state_abbr, process_code, process_name FROM energy.eia_fossil_fuel_production WHERE eia_area_code ILIKE '%US%' OR eia_area_code ILIKE '%NUS%' LIMIT 50</code></pre></details>
+<details class="sqltoggle"><summary>query — 24 rows — 2893 ms</summary><pre><code>SELECT DISTINCT metric_code, metric_name, region_code FROM energy.eia_drilling_activity ORDER BY 1,3</code></pre></details>
+<details class="sqltoggle"><summary>query — 164 rows — 2921 ms</summary><pre><code>SELECT period, SUM(value) AS total_rigs
+FROM energy.eia_drilling_activity
+WHERE metric_code = 'RIGS'
+GROUP BY period
+ORDER BY period</code></pre></details>
+<details class="sqltoggle"><summary>query — 246 rows — 40930 ms</summary><pre><code>SELECT production_year, production_month, production_volume
+FROM energy.eia_fossil_fuel_production
+WHERE eia_area_code = 'NUS' AND process_code = 'FPF' AND production_unit = 'MBBL/D'
+ORDER BY production_year, production_month</code></pre></details>
+<details class="sqltoggle"><summary>query — 164 rows — 1830 ms</summary><pre><code>SELECT period, SUM(value) AS total_nwd
+FROM energy.eia_drilling_activity
+WHERE metric_code = 'NWD'
+GROUP BY period
+ORDER BY period</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.eia.gov/petroleum/drilling/pdf/notes-sources.pdf">EIA Drilling Productivity Report — Explanatory notes (primary source, fetched directly)</a> <span class="note">— States the 2-month rig-to-new-well-production lag verbatim; fetched and parsed in this session</span></li>
-<li>energy.eia_drilling_activity — active rigs, new wells drilled, new wells completed, monthly by region<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT \&quot;period\&quot;, SUM(\&quot;value\&quot;) FROM energy.eia_drilling_activity WHERE metric_code IN ('RIGS','NWD','NWC') GROUP BY \&quot;period\&quot; ORDER BY \&quot;period\&quot;&quot;)</code></pre></details></li>
-<li>energy.eia_fossil_fuel_production — US crude oil field production, monthly (NUS/FPF, MBBL/D)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT production_year, production_month, production_volume FROM energy.eia_fossil_fuel_production WHERE eia_area_code='NUS' AND production_unit='MBBL/D'&quot;)</code></pre></details></li>
-<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S0140988317300257">The relationship between oil prices and rig counts: the importance of lags (academic literature, via search)</a></li>
-<li><a href="https://www.eia.gov/petroleum/drilling/pdf/dpr-full.PDF">EIA Drilling Productivity Report, full report (context)</a></li>
+<li>EIA STEO Table 10a — upstream drilling activity (rig counts, new wells drilled/completed, DUC inventory), national monthly 2013-2026<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT \&quot;period\&quot;, SUM(\&quot;value\&quot;) FROM energy.eia_drilling_activity WHERE metric_code = 'RIGS' GROUP BY \&quot;period\&quot; ORDER BY \&quot;period\&quot;&quot;)</code></pre></details></li>
+<li>EIA petroleum/crd/crpdn — US crude oil field production (NUS, Field Production), monthly 2006-2026<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT production_year, production_month, production_volume FROM energy.eia_fossil_fuel_production WHERE eia_area_code = 'NUS' AND process_code = 'FPF' AND production_unit = 'MBBL/D' ORDER BY production_year, production_month&quot;)</code></pre></details></li>
+<li><a href="https://www.eia.gov/petroleum/drilling/pdf/notes-sources.pdf">EIA Drilling Productivity Report — explanatory notes (2-month rig-count-to-new-well-production lag, methodology)</a></li>
+<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=13651">EIA Today in Energy — Drilling efficiency is a key driver of oil and natural gas production</a></li>
+<li><a href="https://www.dallasfed.org/-/media/Documents/research/energy/energycharts.pdf">Dallas Fed characterization of the rig-count-to-production lag (&quot;a little more than six months&quot;)</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Our own cross-correlation check on national monthly aggregates could not independently re-derive EIA's stated 2-month lag, likely because EIA's published production series is itself built using that same lagged-rig model — a limitation of the aggregate data available here, disclosed rather than papered over. Well-level spud/completion/first-production microdata (state regulator data) would be needed for an independent re-derivation and is not loaded in this corpus.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-11</span></p>
+<p class="footnote">National aggregate analysis; basin-level lags vary. Crude oil only (gas production series not separately loaded in this corpus); qualitative mechanism applies to gas per EIA's own methodology since DPR rig counts are not oil/gas-split.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-12</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

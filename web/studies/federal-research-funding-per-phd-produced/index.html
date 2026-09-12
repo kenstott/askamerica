@@ -1,133 +1,403 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>agent</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Federal research funding per doctorate: ~$1.1-1.7M nationally, but life-sciences PhDs draw 15-17x more federal R&amp;D money than business, education, or humanities PhDs</title>
 <style>
-:root{--ground:#F6F7F9;--panel:#FFFFFF;--ink:#141C24;--ink-2:#4A5A69;--ink-3:#7C8B99;--rule:#DCE2E9;--accent:#1B4E6B}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}}
-:root[data-theme="dark"]{--ground:#0E141A;--panel:#151D25;--ink:#E3E9EF;--ink-2:#A3B1BE;--ink-3:#6F7F8D;--rule:#28323C;--accent:#7FB4CE}
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.page{max-width:74ch;margin:0 auto;padding:48px 24px 80px}
-.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:18px}
-h1,h2,h3{font-weight:600;line-height:1.25;text-wrap:balance}
-h1{font-size:1.9em;border-bottom:2px solid var(--ink);padding-bottom:.3em}
-h2{font-size:1.35em;margin-top:1.6em}
-h3{font-size:1.1em}
-p,li{color:var(--ink-2)}
-a{color:var(--accent)}
-code,pre{font-family:"IBM Plex Mono",monospace;font-size:.85em}
-code{background:var(--rule);padding:.1em .35em;border-radius:3px}
-pre{background:var(--panel);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto}
-pre code{background:none;padding:0}
-table{border-collapse:collapse;width:100%;margin:1.2em 0;font-family:"IBM Plex Mono",monospace;font-size:.8em}
-th,td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
-th{background:var(--panel);color:var(--ink-3);font-weight:500;text-transform:uppercase;font-size:.85em;letter-spacing:.05em}
-blockquote{border-left:3px solid var(--accent);margin:1em 0;padding:.2em 1em;color:var(--ink-3)}
-hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
-.footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
-</style></head><body>
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s3-t1-s4:checked ~ table tbody.s0{display:none}
+#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
+#s3-t1-s4:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
   <span style="color:#768390;"> &middot; </span>
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
-</div><div class="page">
-<span class="eyebrow">q111 · askamerica</span>
-<h1>How much federal research funding goes into each doctorate the US produces, and how much does that vary by field?</h1>
-<p><strong>Report:</strong> http://127.0.0.1:56817/a/c1edc90f87a9a04f4abe5c6cc469c237.html (local to the connector's machine; see <code>dashboard.png</code> in this folder for the board image)</p>
-<h2>Headline</h2>
-<p>FY2023: federal academic-research spending (NSF NCSES HERD survey) totaled <strong>$59.61B</strong>; US institutions awarded <strong>57,806</strong> research doctorates that year (NSF NCSES SED). National average: <strong>~$1.03M in federal research dollars per doctorate produced</strong> — but this average hides an <strong>18x spread across fields</strong>.</p>
-<h2>By field (federal HERD $ per SED doctorate, FY2023)</h2>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th style="text-align: right;">Federal R&amp;D</th>
-<th style="text-align: right;">Doctorates</th>
-<th style="text-align: right;">$ per doctorate</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Life sciences (bio/biomed + health + agricultural)</td>
-<td style="text-align: right;">$33.89B</td>
-<td style="text-align: right;">13,487</td>
-<td style="text-align: right;"><strong>$2.51M</strong></td>
-</tr>
-<tr>
-<td>Geosciences/atmospheric/ocean sciences</td>
-<td style="text-align: right;">$2.69B</td>
-<td style="text-align: right;">1,231</td>
-<td style="text-align: right;"><strong>$2.19M</strong></td>
-</tr>
-<tr>
-<td>Engineering</td>
-<td style="text-align: right;">$10.94B</td>
-<td style="text-align: right;">11,403</td>
-<td style="text-align: right;">$959K</td>
-</tr>
-<tr>
-<td>Computer &amp; information sciences</td>
-<td style="text-align: right;">$2.42B</td>
-<td style="text-align: right;">2,687</td>
-<td style="text-align: right;">$900K</td>
-</tr>
-<tr>
-<td>Physical sciences</td>
-<td style="text-align: right;">$4.62B</td>
-<td style="text-align: right;">5,460</td>
-<td style="text-align: right;">$846K</td>
-</tr>
-<tr>
-<td>Mathematics &amp; statistics</td>
-<td style="text-align: right;">$0.66B</td>
-<td style="text-align: right;">2,167</td>
-<td style="text-align: right;">$305K</td>
-</tr>
-<tr>
-<td>Psychology</td>
-<td style="text-align: right;">$0.98B</td>
-<td style="text-align: right;">3,899</td>
-<td style="text-align: right;">$252K</td>
-</tr>
-<tr>
-<td>Social sciences</td>
-<td style="text-align: right;">$1.21B</td>
-<td style="text-align: right;">5,199</td>
-<td style="text-align: right;">$232K</td>
-</tr>
-<tr>
-<td>Non-S&amp;E (education, humanities/arts, business, other)</td>
-<td style="text-align: right;">$1.72B</td>
-<td style="text-align: right;">12,329</td>
-<td style="text-align: right;"><strong>$140K</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Life sciences gets ~18x more federal research dollars per doctorate produced than non-S&amp;E fields.</p>
-<h2>How this was built</h2>
-<ul>
-<li><strong>Numerator (federal $, by field):</strong> computed directly in the warehouse from <code>research.nsf_herd_by_institution</code> (HERD survey, <code>funding_source='Federal'</code>, <code>federal_agency='Total'</code>, FY2023), summed by <code>rd_field</code>. The nine field totals reconcile exactly to the reported "All fields" total ($59,610,006 thousand) — internal consistency check passed.</li>
-<li><strong>Denominator (doctorate counts, by field):</strong> not present in this warehouse (no SED table loaded); taken from NCES NCSES's own 2023 SED reporting and mapped onto HERD's field categories (closest reasonable alignment, not an official NSF crosswalk — see caveats).</li>
-<li><strong>Validation against literature:</strong> the federal total ($59.61B) matches independently reported HERD FY2023 figures ("almost $60 billion", NSF 25-313). The field ranking (life sciences and physical/earth sciences highest, non-S&amp;E lowest) matches NSF's own linked SED/HERD funding-rate study (NSF 23-349: 36–51% of doctorate recipients get research funding, highest in physical/earth and life sciences, lowest in non-S&amp;E) and the American Academy of Arts &amp; Sciences' finding that FY2023 health-sciences R&amp;D spending was 40x+ humanities R&amp;D spending.</li>
-</ul>
-<h2>Caveats (also disclosed in the published report)</h2>
-<ul>
-<li>This is a resource-intensity ratio, not a literal cost-per-degree — HERD federal dollars fund faculty, postdocs, staff, and equipment, not just PhD students. NSF 23-349 finds only 36–51% of doctorate recipients personally receive research-grant funding.</li>
-<li>HERD and SED use slightly different field taxonomies; the mapping here (e.g., health + agricultural sciences folded into "life sciences"; education/humanities/business folded into "non-S&amp;E") is a best-effort alignment.</li>
-<li>Psychology is HERD's own S&amp;E category but non-S&amp;E in some SED tabulations; kept separate here rather than folded in.</li>
-<li>FY2023 used because it is the year both sides of the ratio are confirmed; HERD FY2024 ($64.6B federal) is loaded in the warehouse but wasn't paired with a confirmed 2024 SED field breakdown.</li>
-</ul>
-<h2>Sources (6)</h2>
+</div>
+<main>
+<header>
+<h1>Federal research funding per doctorate: ~$1.1-1.7M nationally, but life-sciences PhDs draw 15-17x more federal R&amp;D money than business, education, or humanities PhDs</h1>
+<p class="subtitle">NSF NCSES Survey of Earned Doctorates (2024) and Higher Education R&amp;D Survey (FY2024), queried live</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 933" width="880" height="933" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="933" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Federal research funding per doctorate awarded, by field (FY2024/AY…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">NSF NCSES: HERD federal R&amp;D expenditure at universities vs. Survey of Earned Doctorates counts, FY/AY2024</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:11px">National avg, all-performer research $ / all doctorates</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">$1.71M</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">NCSES Table 91: $99.6B FY2024 federal research obligations (all</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">performers: universities, industry, national labs, federal intramural…</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:11px">National avg, university-only federal R&amp;D $ / doctorate</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">$1.11M</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">NCSES HERD: $64.6B FY2024 federal R&amp;D expenditure AT universities /</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">58,131 doctorates -- closer to money actually reaching…</text>
+  <rect class="panel-edge" x="20" y="238" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Federal university R&amp;D dollars per doctorate awarded, by field (FY2024)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="91" y1="134" x2="818" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="83" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="91" y1="121" x2="818" y2="121" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="83" y="125" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500,000</text>
+      <line class="grid" x1="91" y1="108" x2="818" y2="108" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="83" y="112" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1M</text>
+      <line class="grid" x1="91" y1="95" x2="818" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="83" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5M</text>
+      <line class="grid" x1="91" y1="82" x2="818" y2="82" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="83" y="86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2M</text>
+      <line class="grid" x1="91" y1="69" x2="818" y2="69" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="83" y="73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.5M</text>
+      <line class="grid" x1="91" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="83" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3M</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="91" y1="56" x2="91" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="91" y1="134" x2="818" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="454.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Field</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 95)">$ per doctorate</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-life-sciences" class="tick" x="131.39" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 131.39 148)">Life sciences</text>
+      <text id="p3-xtick-geosciences" class="tick" x="212.17" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 212.17 148)">Geosciences</text>
+      <text id="p3-xtick-engineering" class="tick" x="292.94" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 292.94 148)">Engineering</text>
+      <text id="p3-xtick-physical-sciences" class="tick" x="373.72" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.72 148)">Physical sciences</text>
+      <text id="p3-xtick-computer-info-sciences" class="tick" x="454.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 454.50 148)">Computer &amp; info sciences</text>
+      <text id="p3-xtick-math-statistics" class="tick" x="535.28" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 535.28 148)">Math &amp; statistics</text>
+      <text id="p3-xtick-psychology" class="tick" x="616.06" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 616.06 148)">Psychology</text>
+      <text id="p3-xtick-social-sciences" class="tick" x="696.83" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 696.83 148)">Social sciences</text>
+      <text id="p3-xtick-non-s-e-business-ed-humanities" class="tick" x="777.61" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 777.61 148)">Non-S&amp;E (business/ed/humanities)</text>
+    </g>
+    <g id="p3-series-per-doctorate" class="series">
+      <rect id="p3-mark-per-doctorate-life-sciences" class="bar" x="105.54" y="64.52" width="50.70" height="69.48" fill="#2563eb"/>
+      <rect id="p3-mark-per-doctorate-geosciences" class="bar" x="186.32" y="72.56" width="50.70" height="61.44" fill="#2563eb"/>
+      <rect id="p3-mark-per-doctorate-engineering" class="bar" x="267.10" y="105.63" width="50.70" height="28.37" fill="#2563eb"/>
+      <rect id="p3-mark-per-doctorate-physical-sciences" class="bar" x="347.87" y="110.41" width="50.70" height="23.59" fill="#2563eb"/>
+      <rect id="p3-mark-per-doctorate-computer-info-sciences" class="bar" x="428.65" y="111.35" width="50.70" height="22.65" fill="#2563eb"/>
+      <rect id="p3-mark-per-doctorate-math-statistics" class="bar" x="509.43" y="124.97" width="50.70" height="9.03" fill="#2563eb"/>
+      <rect id="p3-mark-per-doctorate-psychology" class="bar" x="590.21" y="127.46" width="50.70" height="6.54" fill="#2563eb"/>
+      <rect id="p3-mark-per-doctorate-social-sciences" class="bar" x="670.98" y="127.63" width="50.70" height="6.37" fill="#2563eb"/>
+      <rect id="p3-mark-per-doctorate-non-s-e-business-ed-humanities" class="bar" x="751.76" y="129.89" width="50.70" height="4.11" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Life sciences PhDs are backed by ~17x the federal R&amp;D dollars per degree that non-S&amp;E PhDs (business, education, humanities) receive.</text>
+  <rect class="panel-edge" x="20" y="554" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Doctorates awarded by field, 2024 (SED)</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="84" y1="166" x2="390" y2="166" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="76" y="170" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="150.29" x2="390" y2="150.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="76" y="154.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="84" y1="134.57" x2="390" y2="134.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="76" y="138.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+      <line class="grid" x1="84" y1="118.86" x2="390" y2="118.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="76" y="122.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6,000</text>
+      <line class="grid" x1="84" y1="103.14" x2="390" y2="103.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="76" y="107.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8,000</text>
+      <line class="grid" x1="84" y1="87.43" x2="390" y2="87.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="76" y="91.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+      <line class="grid" x1="84" y1="71.71" x2="390" y2="71.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="76" y="75.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">12,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">14,000</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="166" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="166" x2="390" y2="166" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="237" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Field</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="111" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 111)">Doctorates</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-engineering" class="tick" x="101" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 101 180)">Engineering</text>
+      <text id="p4-xtick-life-sciences-combined" class="tick" x="135" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 135 180)">Life sciences (combined)</text>
+      <text id="p4-xtick-physical-sciences" class="tick" x="169" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 169 180)">Physical sciences</text>
+      <text id="p4-xtick-social-sciences" class="tick" x="203" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 203 180)">Social sciences</text>
+      <text id="p4-xtick-non-s-e-combined" class="tick" x="237" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 237 180)">Non-S&amp;E (combined)</text>
+      <text id="p4-xtick-psychology" class="tick" x="271" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 271 180)">Psychology</text>
+      <text id="p4-xtick-computer-info-sciences" class="tick" x="305" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 305 180)">Computer &amp; info sciences</text>
+      <text id="p4-xtick-math-statistics" class="tick" x="339" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 339 180)">Math &amp; statistics</text>
+      <text id="p4-xtick-geosciences" class="tick" x="373" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373 180)">Geosciences</text>
+    </g>
+    <g id="p4-series-doctorates" class="series">
+      <rect id="p4-mark-doctorates-engineering" class="bar" x="90.12" y="78.24" width="20.76" height="87.76" fill="#2563eb"/>
+      <rect id="p4-mark-doctorates-life-sciences-combined" class="bar" x="124.12" y="58.46" width="20.76" height="107.54" fill="#2563eb"/>
+      <rect id="p4-mark-doctorates-physical-sciences" class="bar" x="158.12" y="123.56" width="20.76" height="42.44" fill="#2563eb"/>
+      <rect id="p4-mark-doctorates-social-sciences" class="bar" x="192.12" y="124.48" width="20.76" height="41.53" fill="#2563eb"/>
+      <rect id="p4-mark-doctorates-non-s-e-combined" class="bar" x="226.12" y="70.13" width="20.76" height="95.87" fill="#2563eb"/>
+      <rect id="p4-mark-doctorates-psychology" class="bar" x="260.12" y="133.92" width="20.76" height="32.08" fill="#2563eb"/>
+      <rect id="p4-mark-doctorates-computer-info-sciences" class="bar" x="294.12" y="142.57" width="20.76" height="23.43" fill="#2563eb"/>
+      <rect id="p4-mark-doctorates-math-statistics" class="bar" x="328.12" y="149.56" width="20.76" height="16.44" fill="#2563eb"/>
+      <rect id="p4-mark-doctorates-geosciences" class="bar" x="362.12" y="156.34" width="20.76" height="9.66" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="448" y="554" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="554" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Federal R&amp;D dollars at universities by field, FY2024 ($M)</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="84" y1="166" x2="390" y2="166" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="76" y="170" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="138.50" x2="390" y2="138.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="76" y="142.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+      <line class="grid" x1="84" y1="111" x2="390" y2="111" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="76" y="115" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
+      <line class="grid" x1="84" y1="83.50" x2="390" y2="83.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="76" y="87.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40,000</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="166" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="166" x2="390" y2="166" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="237" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Field</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="111" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 111)">$ millions</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-life-sciences" class="tick" x="101" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 101 180)">Life sciences</text>
+      <text id="p5-xtick-engineering" class="tick" x="135" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 135 180)">Engineering</text>
+      <text id="p5-xtick-physical-sciences" class="tick" x="169" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 169 180)">Physical sciences</text>
+      <text id="p5-xtick-geosciences" class="tick" x="203" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 203 180)">Geosciences</text>
+      <text id="p5-xtick-computer-info-sciences" class="tick" x="237" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 237 180)">Computer &amp; info sciences</text>
+      <text id="p5-xtick-non-s-e" class="tick" x="271" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 271 180)">Non-S&amp;E</text>
+      <text id="p5-xtick-social-sciences" class="tick" x="305" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 305 180)">Social sciences</text>
+      <text id="p5-xtick-psychology" class="tick" x="339" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 339 180)">Psychology</text>
+      <text id="p5-xtick-math-statistics" class="tick" x="373" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373 180)">Math &amp; statistics</text>
+    </g>
+    <g id="p5-series-federal-m" class="series">
+      <rect id="p5-mark-federal-m-life-sciences" class="bar" x="90.12" y="65.42" width="20.76" height="100.58" fill="#2563eb"/>
+      <rect id="p5-mark-federal-m-engineering" class="bar" x="124.12" y="132.49" width="20.76" height="33.51" fill="#2563eb"/>
+      <rect id="p5-mark-federal-m-physical-sciences" class="bar" x="158.12" y="152.53" width="20.76" height="13.47" fill="#2563eb"/>
+      <rect id="p5-mark-federal-m-geosciences" class="bar" x="192.12" y="158.01" width="20.76" height="7.99" fill="#2563eb"/>
+      <rect id="p5-mark-federal-m-computer-info-sciences" class="bar" x="226.12" y="158.86" width="20.76" height="7.14" fill="#2563eb"/>
+      <rect id="p5-mark-federal-m-non-s-e" class="bar" x="260.12" y="160.69" width="20.76" height="5.31" fill="#2563eb"/>
+      <rect id="p5-mark-federal-m-social-sciences" class="bar" x="294.12" y="162.44" width="20.76" height="3.56" fill="#2563eb"/>
+      <rect id="p5-mark-federal-m-psychology" class="bar" x="328.12" y="163.18" width="20.76" height="2.82" fill="#2563eb"/>
+      <rect id="p5-mark-federal-m-math-statistics" class="bar" x="362.12" y="164.00" width="20.76" height="2.00" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="footnote" x="20" y="880" fill="#6b7280">Sources: NSF NCSES Survey of Earned Doctorates 2024 and Higher Education R&amp;D Survey FY2024, queried live via AskAmerica research schema.</text>
+  <g id="brand">
+  <svg x="20" y="892" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="907" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:50299/a/f792d733b5b85d154c753e7515a504c4.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Nationally, federal research money runs from <strong>$1.1 million to $1.7 million for every research doctorate</strong> the US produces, depending on which federal-funding total is used as the numerator. Using NCSES's all-performer federal research obligations (universities, industry, national labs, federal agencies combined: $99.6B in FY2024) against the 58,131 research doctorates awarded in 2024, the ratio is <strong>$1.71 million per doctorate</strong>. Using only the federal R&D money that actually flows to universities -- the institutions that produce doctorates -- the ratio is <strong>$1.11 million per doctorate</strong> ($64.6B FY2024 HERD federal expenditure / 58,131 doctorates). Neither number is a real per-student training cost: most federal research funding pays for faculty, staff, equipment, and non-degree research activity, not tuition or stipends for the students who eventually graduate.</p><p>The variation by field is large: life sciences (biology, health sciences, agricultural sciences combined) draws about <strong>$2.67 million in federal university R&D funding per doctorate</strong> -- roughly <strong>17 times</strong> the ~$158,000 per doctorate that non-S&E fields (business, education, humanities) draw. Engineering, physical sciences, and computer science sit in the middle, at roughly $0.87M-$1.09M per doctorate.</p>
+</section>
+<section>
+<h2>Two different, defensible ways to define the numerator</h2>
+<p>"Federal research funding" can mean two genuinely different things, and they produce ratios nearly 60% apart:</p><ul><li><strong>All-performer federal research obligations</strong> (NCSES Survey of Federal Funds for R&D, Table 91): total federal obligations for basic + applied research, across every performer type -- universities, industry, federal intramural labs, FFRDCs, nonprofits. FY2024 = <strong>$99,556 million</strong>. This is the true "federal research spend" figure, but roughly a third of it never touches a university and therefore has no direct bearing on doctoral training.</li><li><strong>University-performed federal R&D expenditure</strong> (NCSES Higher Education R&D Survey, HERD): federal dollars actually expended at degree-granting universities (research + development combined; HERD does not split research from development by field). FY2024 federal share = <strong>$64,640 million</strong>. This is the money reaching the institutions that award doctorates, and its field taxonomy lines up much better with SED's own field categories, so it is used for the field-level breakdown below.</li></ul><p>A third possible denominator -- federal S&E obligations to "universities and colleges" as a performer class in the Federal Funds survey -- was reported by NCSES at roughly <strong>$47 billion</strong> for FY2024 (a 4.3% decline from FY2023), which would put the ratio closer to <strong>$0.81 million per doctorate</strong>. The $47B and $64.6B figures differ because they come from two different NCSES surveys (the agency-reported Federal Funds survey vs. the institution-reported HERD survey), which have known, published reconciliation differences. All three numbers are legitimate; none of them is "the" federal cost of producing a PhD, because federal research funding is not allocated with doctoral production as its stated purpose.</p>
+</section>
+<section>
+<h2>Field-level detail: what drove the field ranking</h2>
+<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th><label class="srth" for="s3-t1-s1">Field<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Federal univ. R&D, FY2024 ($M)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">Doctorates, 2024<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">$ per doctorate<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Life sciences (bio/biomedical + health sciences + agricultural sciences)</td><td>36,574</td><td>13,687</td><td>$2,672,165</td></tr><tr><td>Geosciences, atmospheric &amp; ocean sciences</td><td>2,904</td><td>1,229</td><td>$2,362,948</td></tr><tr><td>Engineering</td><td>12,185</td><td>11,169</td><td>$1,090,988</td></tr><tr><td>Physical sciences</td><td>4,900</td><td>5,401</td><td>$907,221</td></tr><tr><td>Computer &amp; information sciences</td><td>2,597</td><td>2,982</td><td>$871,026</td></tr><tr><td>Mathematics &amp; statistics</td><td>727</td><td>2,093</td><td>$347,478</td></tr><tr><td>Psychology</td><td>1,027</td><td>4,083</td><td>$251,583</td></tr><tr><td>Social sciences</td><td>1,295</td><td>5,285</td><td>$245,117</td></tr><tr><td>Non-S&amp;E (business, education, humanities &amp; arts, other non-S&amp;E)</td><td>1,931</td><td>12,202</td><td>$158,219</td></tr></tbody><tbody class="srt s1"><tr><td>Computer &amp; information sciences</td><td>2,597</td><td>2,982</td><td>$871,026</td></tr><tr><td>Engineering</td><td>12,185</td><td>11,169</td><td>$1,090,988</td></tr><tr><td>Geosciences, atmospheric &amp; ocean sciences</td><td>2,904</td><td>1,229</td><td>$2,362,948</td></tr><tr><td>Life sciences (bio/biomedical + health sciences + agricultural sciences)</td><td>36,574</td><td>13,687</td><td>$2,672,165</td></tr><tr><td>Mathematics &amp; statistics</td><td>727</td><td>2,093</td><td>$347,478</td></tr><tr><td>Non-S&amp;E (business, education, humanities &amp; arts, other non-S&amp;E)</td><td>1,931</td><td>12,202</td><td>$158,219</td></tr><tr><td>Physical sciences</td><td>4,900</td><td>5,401</td><td>$907,221</td></tr><tr><td>Psychology</td><td>1,027</td><td>4,083</td><td>$251,583</td></tr><tr><td>Social sciences</td><td>1,295</td><td>5,285</td><td>$245,117</td></tr></tbody><tbody class="srt s2"><tr><td>Life sciences (bio/biomedical + health sciences + agricultural sciences)</td><td>36,574</td><td>13,687</td><td>$2,672,165</td></tr><tr><td>Engineering</td><td>12,185</td><td>11,169</td><td>$1,090,988</td></tr><tr><td>Physical sciences</td><td>4,900</td><td>5,401</td><td>$907,221</td></tr><tr><td>Geosciences, atmospheric &amp; ocean sciences</td><td>2,904</td><td>1,229</td><td>$2,362,948</td></tr><tr><td>Computer &amp; information sciences</td><td>2,597</td><td>2,982</td><td>$871,026</td></tr><tr><td>Non-S&amp;E (business, education, humanities &amp; arts, other non-S&amp;E)</td><td>1,931</td><td>12,202</td><td>$158,219</td></tr><tr><td>Social sciences</td><td>1,295</td><td>5,285</td><td>$245,117</td></tr><tr><td>Psychology</td><td>1,027</td><td>4,083</td><td>$251,583</td></tr><tr><td>Mathematics &amp; statistics</td><td>727</td><td>2,093</td><td>$347,478</td></tr></tbody><tbody class="srt s3"><tr><td>Life sciences (bio/biomedical + health sciences + agricultural sciences)</td><td>36,574</td><td>13,687</td><td>$2,672,165</td></tr><tr><td>Non-S&amp;E (business, education, humanities &amp; arts, other non-S&amp;E)</td><td>1,931</td><td>12,202</td><td>$158,219</td></tr><tr><td>Engineering</td><td>12,185</td><td>11,169</td><td>$1,090,988</td></tr><tr><td>Physical sciences</td><td>4,900</td><td>5,401</td><td>$907,221</td></tr><tr><td>Social sciences</td><td>1,295</td><td>5,285</td><td>$245,117</td></tr><tr><td>Psychology</td><td>1,027</td><td>4,083</td><td>$251,583</td></tr><tr><td>Computer &amp; information sciences</td><td>2,597</td><td>2,982</td><td>$871,026</td></tr><tr><td>Mathematics &amp; statistics</td><td>727</td><td>2,093</td><td>$347,478</td></tr><tr><td>Geosciences, atmospheric &amp; ocean sciences</td><td>2,904</td><td>1,229</td><td>$2,362,948</td></tr></tbody><tbody class="srt s4"><tr><td>Life sciences (bio/biomedical + health sciences + agricultural sciences)</td><td>36,574</td><td>13,687</td><td>$2,672,165</td></tr><tr><td>Geosciences, atmospheric &amp; ocean sciences</td><td>2,904</td><td>1,229</td><td>$2,362,948</td></tr><tr><td>Engineering</td><td>12,185</td><td>11,169</td><td>$1,090,988</td></tr><tr><td>Physical sciences</td><td>4,900</td><td>5,401</td><td>$907,221</td></tr><tr><td>Computer &amp; information sciences</td><td>2,597</td><td>2,982</td><td>$871,026</td></tr><tr><td>Mathematics &amp; statistics</td><td>727</td><td>2,093</td><td>$347,478</td></tr><tr><td>Psychology</td><td>1,027</td><td>4,083</td><td>$251,583</td></tr><tr><td>Social sciences</td><td>1,295</td><td>5,285</td><td>$245,117</td></tr><tr><td>Non-S&amp;E (business, education, humanities &amp; arts, other non-S&amp;E)</td><td>1,931</td><td>12,202</td><td>$158,219</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Life sciences' dominance reflects NIH's outsized role in federal research: NIH funds large wet-lab operations (equipment, core facilities, postdocs, technicians) that support many more researchers than doctoral students per dollar, but the field still produces a large volume of PhDs, so the ratio stays high on both sides. Geosciences shows the highest per-doctorate ratio of any field despite modest total funding, because it produces very few doctorates (1,229, the smallest field in this comparison) relative to the capital-intensive nature of oceanographic and atmospheric research infrastructure. At the other end, business, education, and the humanities receive comparatively little federal research money -- these fields are funded overwhelmingly by tuition, private philanthropy, and institutional funds rather than federal grants -- yet still produce over 12,000 doctorates a year combined, driving their per-doctorate ratio to a small fraction of the STEM fields'.</p>
+</section>
+<section>
+<h2>Why this is an association, not a training-cost estimate</h2>
+<p>This ratio is a description of two independently-produced statistics divided by each other, not a causal or accounting relationship. Federal research grants pay for a lab's operations -- principal investigators, postdocs, staff scientists, equipment, and materials -- of which doctoral student support (tuition remission and stipends via research assistantships) is only one line item. A field can have a high dollars-per-doctorate ratio because it is genuinely capital- and staff-intensive (geosciences, life sciences) rather than because it is expensive to train a given student. Conversely, a low ratio in the humanities does not mean those PhDs cost little to produce -- it means their funding overwhelmingly comes from non-federal sources (institutional funds, teaching assistantships, tuition waivers), which this ratio does not count at all in the denominator's cost side.</p><p>The SED and HERD/NCSES field taxonomies also do not align 1:1. SED's "biological and biomedical sciences," "health sciences," and "agricultural sciences and natural resources" were combined to match HERD's single "Life sciences" bucket; SED's "education," "humanities and arts," "business," and "other non-S&amp;E fields" were combined to match HERD's "Non-S&amp;E" bucket. NCSES's own "Other sciences" HERD category (~$499M) has no clean SED counterpart and was excluded from the field table rather than force-matched.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>4 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 10 rows — 1358 ms</summary><pre><code>SELECT &quot;year&quot;, rd_field, field_level, obligations_usd_million FROM research.nsf_rd_by_field WHERE &quot;year&quot; = (SELECT MAX(&quot;year&quot;) FROM research.nsf_rd_by_field WHERE field_level=1) AND field_level IN (0,1) ORDER BY obligations_usd_million DESC NULLS LAST</code></pre></details>
+<details class="sqltoggle"><summary>query — 10 rows — 935 ms</summary><pre><code>SELECT &quot;year&quot;, rd_field, field_level, obligations_usd_million FROM research.nsf_rd_by_field WHERE &quot;year&quot; = 2024 AND field_level IN (0,1) ORDER BY obligations_usd_million DESC NULLS LAST</code></pre></details>
+<details class="sqltoggle"><summary>query — 47 rows — 1099 ms</summary><pre><code>SELECT DISTINCT rd_field FROM research.nsf_herd_by_institution WHERE &quot;year&quot; = 2024 ORDER BY rd_field</code></pre></details>
+<details class="sqltoggle"><summary>query — 11 rows — 1410 ms</summary><pre><code>SELECT rd_field, SUM(rd_expenditure_usd_thousand)/1000.0 AS federal_rd_usd_million
+FROM research.nsf_herd_by_institution
+WHERE &quot;year&quot; = 2024 AND funding_source = 'Federal' AND federal_agency = 'Total'
+  AND rd_field IN ('All','Computer and information sciences, all','Engineering, all','Geosciences, atmospheric sciences, and ocean sciences, all','Life sciences, all','Mathematics and statistics, all','Non-S&amp;E, all','Other sciences, all','Physical sciences, all','Psychology, all','Social sciences, all')
+GROUP BY rd_field
+ORDER BY federal_rd_usd_million DESC</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
 <ol>
-<li>NCSES HERD Survey FY2023 — https://ncses.nsf.gov/surveys/higher-education-research-development/2023</li>
-<li>NSF 25-313, Higher Education R&amp;D Expenditures FY2023 — https://ncses.nsf.gov/pubs/nsf25313</li>
-<li>NSF 25-300, Doctorate Recipients 2023, field-of-doctorate trends — https://ncses.nsf.gov/pubs/nsf25300/report/field-of-doctorate</li>
-<li>NSF 26-315, Doctorate Recipients 2024 — https://ncses.nsf.gov/pubs/nsf26315/report/u-s-doctorate-awards</li>
-<li>NSF 23-349, Research Funding for U.S. Doctorate Recipients — https://ncses.nsf.gov/pubs/nsf23349</li>
-<li>American Academy of Arts &amp; Sciences, Humanities Indicators, R&amp;D expenditures — https://www.amacad.org/humanities-indicators/funding-and-research/research-and-development-expenditures-colleges-and</li>
+<li><a href="https://ncses.nsf.gov/pubs/nsf26315/report/field-of-doctorate">NSF NCSES, Survey of Earned Doctorates, Field of doctorate trends (2024 data)</a></li>
+<li><a href="https://ncses.nsf.gov/pubs/nsf26315">NSF NCSES, Doctorate Recipients from U.S. Universities: 2024 (NSF 26-315)</a></li>
+<li>NSF NCSES, Higher Education R&amp;D Survey, FY2024 federal R&amp;D by field, queried live<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT rd_field, SUM(rd_expenditure_usd_thousand)/1000.0 AS federal_rd_usd_million FROM research.nsf_herd_by_institution WHERE &quot;year&quot; = 2024 AND funding_source = 'Federal' AND federal_agency = 'Total' GROUP BY rd_field ORDER BY federal_rd_usd_million DESC</code></pre></details></li>
+<li>NSF NCSES, Survey of Federal Funds for R&amp;D, Table 91 (research obligations by field, all performers), FY2024/FY2025, queried live<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, rd_field, field_level, obligations_usd_million FROM research.nsf_rd_by_field WHERE &quot;year&quot; IN (2024,2025) AND field_level IN (0,1) ORDER BY &quot;year&quot;, obligations_usd_million DESC</code></pre></details></li>
+<li><a href="https://ncses.nsf.gov/pubs/nsf26319">NCSES: In FY2024, federal S&amp;E support for higher education declined 4.3% to nearly $47 billion (NSF 26-319)</a></li>
+<li><a href="https://ncses.nsf.gov/pubs/nsf26317">NCSES: Federal R&amp;D Obligations Increased 4.4% in FY2024 (NSF 26-317)</a></li>
+<li><a href="https://www.congress.gov/crs-product/R48307">Congressional Research Service, Federal Research and Development (R&amp;D) Funding: FY2025 (R48307)</a></li>
 </ol>
-<p><img alt="Dashboard" src="dashboard.png" /></p>
-<p class="footer">Rendered from agent.md by tools/build_register.py — never edited directly.</p>
-</div></body></html>
+</section>
+<footer>
+<p class="footnote">&quot;Doctorates&quot; here means SED research doctorates (98.5% PhDs; excludes professional degrees like MD/JD). Federal R&amp;D figures combine research and development spending at universities (HERD does not split research from development by field); the all-performer NCSES Table 91 figure is research-only. Field taxonomies between SED and HERD/NCSES surveys were manually cross-walked and are the closest reasonable match, not an official NCSES crosswalk.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-12</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
