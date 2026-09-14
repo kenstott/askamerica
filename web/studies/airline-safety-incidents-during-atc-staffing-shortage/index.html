@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mixed picture: staffing-linked close calls are real at specific airports, but the national trend in serious runway incursions actually fell as the staffing crisis persisted</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Mixed picture: staffing-linked close calls are real at specific airports, but the national trend in serious runway incursions actually fell as the staffing crisis persisted</h1>
+<p class="subtitle">DOT Office of Inspector General audits and NTSB findings, 2023-2025</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 631" width="880" height="631" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="631" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Controller Staffing Shortfalls and Serious Runway Incursions</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">DOT OIG audits (AV2023035, June 2023; AV2025026, March 2025) — FAA/NTSB data</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:10px">Critical ATC facilities below FAA's 85% staffing threshold (2023)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">20 of 26 (77%)</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">DOT OIG, June 2023</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:11px">New York TRACON certified-controller staffing (Mar 2022)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">54%</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">lowest of 26 critical facilities</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">DOT OIG, June 2023</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">FAA-reported serious (Category A &amp; B) runway incursions, selected fiscal …</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fiscal year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Serious incursions</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-fy2017" class="tick" x="115" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY2017</text>
+      <text id="p3-xtick-fy2023" class="tick" x="225" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY2023</text>
+      <text id="p3-xtick-fy2024" class="tick" x="335" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">FY2024</text>
+    </g>
+    <g id="p3-series-category-a-b-incursions" class="series">
+      <rect id="p3-mark-category-a-b-incursions-fy2017" class="bar" x="79.80" y="153.92" width="69.40" height="46.08" fill="#2563eb"/>
+      <rect id="p3-mark-category-a-b-incursions-fy2023" class="bar" x="189.80" y="73.28" width="69.40" height="126.72" fill="#2563eb"/>
+      <rect id="p3-mark-category-a-b-incursions-fy2024" class="bar" x="299.80" y="148.16" width="69.40" height="51.84" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">FY2023 was the highest total in over a decade; FY2024 fell 59% even</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">though staffing stayed below target. Intervening years not disclosed…</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Airports with the most Category A/B serious runway incursions, FY2022-…</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="63" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="55" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="121" x2="390" y2="121" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="55" y="125" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+      <line class="grid" x1="63" y1="108" x2="390" y2="108" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="55" y="112" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
+      <line class="grid" x1="63" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="55" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5</text>
+      <line class="grid" x1="63" y1="82" x2="390" y2="82" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="55" y="86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.0</text>
+      <line class="grid" x1="63" y1="69" x2="390" y2="69" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="55" y="73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.5</text>
+      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3.0</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Airport</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 95)">Serious incursions</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-long-beach-daugherty" class="tick" x="95.70" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 95.70 148)">Long Beach-Daugherty</text>
+      <text id="p4-xtick-san-francisco-intl" class="tick" x="161.10" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 161.10 148)">San Francisco Intl</text>
+      <text id="p4-xtick-san-diego-montgomery-gibbs" class="tick" x="226.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 226.50 148)">San Diego Montgomery-Gibbs</text>
+      <text id="p4-xtick-boston-logan" class="tick" x="291.90" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 291.90 148)">Boston Logan</text>
+      <text id="p4-xtick-centennial-co" class="tick" x="357.30" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357.30 148)">Centennial (CO)</text>
+    </g>
+    <g id="p4-series-category-a-b-incursions" class="series">
+      <rect id="p4-mark-category-a-b-incursions-long-beach-daugherty" class="bar" x="74.77" y="56" width="40.86" height="78" fill="#2563eb"/>
+      <rect id="p4-mark-category-a-b-incursions-san-francisco-intl" class="bar" x="140.17" y="56" width="40.86" height="78" fill="#2563eb"/>
+      <rect id="p4-mark-category-a-b-incursions-san-diego-montgomery-gibbs" class="bar" x="205.57" y="82" width="40.86" height="52" fill="#2563eb"/>
+      <rect id="p4-mark-category-a-b-incursions-boston-logan" class="bar" x="270.97" y="82" width="40.86" height="52" fill="#2563eb"/>
+      <rect id="p4-mark-category-a-b-incursions-centennial-co" class="bar" x="336.37" y="82" width="40.86" height="52" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">From DOT OIG Exhibit D roster of every Cat A/B event, Oct 2021-Aug</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">2024; SFO's 3 are aircraft records from one July 11, 2023 near-miss,…</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">FAA/NTSB do not publish a single by-airport 'near-miss count vs. controller staffing level' series; figures above are assembled from DOT OIG's two</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">audits and its full roster of Category A/B events.</text>
+  <g id="brand">
+  <svg x="20" y="590" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="605" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:58607/a/d179001d052313eb0d5e4556d2cb1428.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>The honest answer is <strong>it depends on which measure you look at, and it is not a clean national trend.</strong> At specific, named airports and facilities — Reagan National (DCA), Newark (EWR), Austin-Bergstrom (AUS) — investigators DID find a direct, documented link between a controller-staffing decision and a specific close call or accident: DCA's Jan. 29, 2025 midair collision (67 dead) involved a single controller working a combined position handling both helicopter and fixed-wing traffic, and the NTSB tied it to a documented history of over 80 prior close calls at that same airspace that the FAA had been warned about since 2018. But at the <strong>national</strong> level, serious runway incursions (FAA Category A &amp; B, the ones with real collision potential) rose to a decade-high of 22 in FY2023 during the worst of the staffing crunch, then <strong>fell 59% to 9 in FY2024</strong> — even though facility staffing remained below the FAA's own targets throughout. So the aggregate count does not track staffing shortfalls in a simple up-and-down way; the clearest causal link is at the level of individual understaffed facilities and specific incidents, not a system-wide statistical trend.</p>
+</section>
+<section>
+<h2>How short-staffed is ATC, and where</h2>
+<p>A June 2023 DOT Office of Inspector General audit (report AV2023035) found <strong>20 of 26 &quot;critical&quot; FAA air traffic facilities (77%) staffed below the agency's own 85% adequacy threshold</strong>, with New York TRACON at just 54% of its certified-controller target and Miami Tower at 66%. A follow-on 2024 OIG finding (widely reported, cited below) put 77% of all FAA ATC facilities below staffing targets agency-wide, and a 2025-26 GAO review found the controller workforce still roughly 3,000-4,000 short of what's needed. The shortfall traces to COVID-era training pauses (FAA Academy training was suspended 4 months in 2020, and facility training paused 7 months to nearly 2 years at some sites) compounding a workforce that was already declining before the pandemic.</p>
+</section>
+<section>
+<h2>Where staffing and a specific close call are directly linked</h2>
+<ul><li><strong>Reagan National (DCA):</strong> NTSB's 2026 report on the Jan. 29, 2025 collision between an American Eagle regional jet and an Army Black Hawk (67 fatalities) found the tower was understaffed that evening, with one controller managing both helicopter and airplane traffic on combined frequencies in the 10-15 minutes before the crash. NTSB also documented that the FAA had collected reports of more than 80 serious close calls between helicopters and airplanes in that same airspace going back to 2018 and had rejected a 2023 request from a regional supervisor to reduce traffic there.</li><li><strong>Newark (EWR):</strong> Air traffic for Newark is worked from a facility that lost radar and communications with aircraft for roughly 90 seconds on at least two occasions in spring 2025, tied to aging, unreplicated data lines; several controllers subsequently took 45-day trauma leave, which worsened an already acute staffing shortage there.</li><li><strong>Austin-Bergstrom (AUS):</strong> A Feb. 4, 2023 incident in which two aircraft came within about 100 feet of each other on the runway was one of a cluster of high-profile 2023 close calls that prompted the FAA's independent Safety Review Team.</li></ul><p>These are facility-specific, documented mechanisms (one controller covering two positions, degraded surveillance equipment, fatigue) — not a statistical trend across all airports.</p>
+</section>
+<section>
+<h2>What the national numbers show</h2>
+<p>FAA's own runway-incursion data (analyzed in the March 2025 DOT OIG report AV2025026) shows:</p><ul><li>Total runway incursions of all severities: 1,758 in FY2024, up about 12% from FY2021 but roughly back to the pre-pandemic FY2019 level — i.e., largely tracking the recovery in flight volume, not staffing per se.</li><li><strong>Serious (Category A &amp; B) incursions — the ones with real collision potential — rose to 22 in FY2023, the highest annual total in over a decade (up from just 8 in FY2017), then fell 59% to 9 in FY2024, the lowest since FY2019</strong> — even though facility staffing stayed below FAA's own targets in both years. FY2022's and FY2021's exact Category A/B counts were not disclosed in the text extracted from the source PDF, so the chart above reports only the three years the source explicitly gave (FY2017, FY2023, FY2024) rather than interpolating the gap.</li><li>Most incursions (about 62% in FY2024) are pilot deviations, not controller-caused operational incidents; operational incidents (the category most directly attributable to controller staffing/workload) were about 18% of the FY2024 total, and 33% of the FY2024 serious (Cat A/B) incursions.</li></ul><p>The OIG's own review of FAA's runway-incursion data explicitly found that FAA lacks an integrated way to identify why incursions happen and could not draw a clean causal link between staffing levels and incursion counts system-wide; a MITRE Corporation review of FAA's confidential safety-reporting database (ASIAS) similarly found no clear emerging trend tied to a single cause, though controller/pilot miscommunication and fatigue were recurring themes.</p>
+</section>
+<section>
+<h2>What this corpus (AskAmerica) could and could not check directly</h2>
+<p>AskAmerica's own data warehouse does not carry FAA runway-incursion counts, NASA ASRS near-miss reports, or FAA/OIG controller-staffing-by-facility figures — a catalog search for these terms returned no matching table (the words 'runway' and 'incursion' matched nothing in the corpus). The corpus does carry <code>transport.ntsb_aviation_accidents</code> (NTSB accidents and NTSB-classified 'Incidents' — i.e., events serious enough to trigger an NTSB report, not FAA's much broader close-call reporting). As a secondary, low-n check, querying that table for DCA, Newark (EWR), Austin (AUS) and Chicago-Midway (ORD) shows NTSB 'Incident' classifications beginning to appear at DCA, EWR and AUS starting in 2023 (1-2 per year, alongside their prior Accident records) — consistent with, but far too small a sample (n=1-2/airport/year) to independently confirm, the FAA/OIG account above. This is a proxy, not a direct measure of close calls, and it is not offered as standalone evidence.</p>
+</section>
+<section>
+<h2>Bottom line</h2>
+<p>Where a specific airport's staffing shortfall has been investigated in depth (DCA, Newark, Austin), regulators and NTSB found a direct, documented connection to a specific close call or crash. But the FAA's own national count of serious runway incursions does not show a simple monotonic rise tracking the staffing crisis — it peaked in FY2023 and then fell sharply in FY2024 despite staffing remaining below target, and FAA's own inspector general says the agency still lacks the integrated data analysis needed to draw a system-wide causal conclusion. Treat facility-level causal claims (DCA, Newark, Austin) as well-supported; treat any claim of a clean national statistical trend between staffing shortfalls and close-call rates as not supported by the published data.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Use AskAmerica's own data warehouse where possible</strong>: The corpus has no FAA runway-incursion, ATC-staffing-by-facility, or NASA ASRS near-miss table (confirmed via search_catalog, no match for 'runway'/'incursion'). transport.ntsb_aviation_accidents was used as a small supplementary check, but it measures NTSB-reportable accidents/incidents, not FAA's broader close-call/near-miss reporting, and is explicitly labeled as a low-n proxy, not primary evidence.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 25 rows — 3460 ms</summary><pre><code>SELECT airport_id, event_year, event_type, COUNT(*) AS n
+FROM transport.ntsb_aviation_accidents
+WHERE airport_id IN ('DCA','EWR','AUS','ORD')
+  AND event_year BETWEEN 2015 AND 2026
+GROUP BY airport_id, event_year, event_type
+ORDER BY airport_id, event_year</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.oig.dot.gov/sites/default/files/FAA%20Controller%20Staffing%20and%20Training%20at%20Critical%20Facilities%20Final%20Report-06-21-23.pdf">DOT OIG, &quot;FAA Faces Controller Staffing Challenges as Air Traffic Operations Return to Pre-Pandemic Levels at Critical Facilities&quot; (AV2023035, June 21, 2023)</a></li>
+<li><a href="https://www.oig.dot.gov/sites/default/files/library-items/FAA%20Runway%20Incursions%20Final%20Report_3.12.25.pdf">DOT OIG, &quot;FAA Has Taken Steps To Prevent and Mitigate Runway Incursions, but Work Remains To Improve Data Analytics and Implement Key Initiatives&quot; (AV2025026, March 12, 2025)</a></li>
+<li><a href="https://www.washingtonpost.com/dc-md-va/2025/01/30/dc-plane-crash-helicopter-recovery-no-survivors-potomac-river/">Washington Post, &quot;Reagan National control tower was understaffed before D.C. plane crash&quot; (Jan. 30, 2025)</a></li>
+<li><a href="https://www.npr.org/2026/01/27/nx-s1-5689091/ntsb-dca-midair-collision-black-hawk-helicopter">NPR, &quot;NTSB: DCA midair collision followed years of ignored warnings&quot; (2026)</a></li>
+<li><a href="https://www.npr.org/2025/05/07/1249592908/newark-air-traffic-control-outage-shortage-staffing">NBC New York / NPR, Newark airport radar outages and controller staffing/trauma leave (May 2025)</a></li>
+<li><a href="https://reason.org/commentary/main-causes-air-traffic-control-problems-newark-airport/">Reason Foundation, &quot;The main causes of air traffic control problems at Newark Airport&quot;</a></li>
+<li><a href="https://www.gao.gov/assets/gao-26-107320.pdf">GAO-26-107320, &quot;Air Traffic Control Workforce: FAA Should Establish Goals and Better Assess Its Hiring Processes&quot;</a></li>
+<li>AskAmerica query: NTSB accident/incident counts at DCA, EWR, AUS, ORD by year<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT airport_id, event_year, event_type, COUNT(*) AS n FROM transport.ntsb_aviation_accidents WHERE airport_id IN ('DCA','EWR','AUS','ORD') AND event_year BETWEEN 2015 AND 2026 GROUP BY airport_id, event_year, event_type ORDER BY airport_id, event_year</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Serious (Category A/B) runway incursion counts and facility staffing percentages are as published by the DOT Office of Inspector General; AskAmerica's own warehouse does not carry FAA runway-incursion or ATC-staffing-by-facility data, so those figures are cited to the primary OIG PDFs, not computed from this corpus. The NTSB query above is a supplementary, low-n proxy check, not a substitute measure of close calls.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-14</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Which states have seen the fastest recent growth in outside spending on state legislative races where the true funding source isn&#x27;t disclosed?</title>
+<style>
+  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
+          font-size:14px; line-height:1.7; margin:0; }
+  main { max-width:800px; margin:0 auto; padding:2rem; }
+  h1 { color:#f0f6fc; font-size:1.3rem; }
+  pre { white-space:pre-wrap; word-wrap:break-word; }
+</style></head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<h1>Which states have seen the fastest recent growth in outside spending on state legislative races where the true funding source isn&#x27;t disclosed?</h1>
+<p style="color:#768390;">askamerica run &middot; 2026-09-14</p>
+<pre>## Which states have seen the fastest recent growth in undisclosed (&quot;dark money&quot;) outside spending on state legislative races?
+
+### Short answer
+There is no single, comprehensive, nationally comparable dataset that ranks all 50 states by growth in undisclosed-source outside spending on *state legislative* races specifically — dark money&#x27;s whole point is that its ultimate source is hidden, so even the best trackers (OpenSecrets/former National Institute on Money in Politics-FollowTheMoney, the Brennan Center, Issue One, and state-level journalism) can only measure the visible layer (spending by known 501(c)(4)/nonprofit-funded PACs whose *own* donors aren&#x27;t disclosed), not the true universe. Within that caveat, the states with the best-documented, sharpest recent increases in dark-money-funded outside spending on state legislative races are **Wyoming, Michigan, Arizona, Pennsylvania, Nevada, and Colorado**, based on 2024-cycle reporting cross-checked against the two organizations that have historically done the most rigorous multi-state, multi-year state-level dark-money accounting (the Brennan Center&#x27;s &quot;Secret Spending in the States&quot; analysis and the National Institute on Money in Politics/FollowTheMoney &quot;Darkness on the Edge of Town&quot; study).
+
+### What the AskAmerica connector does and doesn&#x27;t have
+I checked the warehouse first. `search_catalog` returned **no table anywhere in the corpus** matching &quot;campaign,&quot; &quot;outside spending,&quot; &quot;dark money,&quot; or &quot;undisclosed donors&quot; for state-level races — the `fec` schema covers only *federal* campaign finance (FEC-registered committees), which by definition excludes state legislative races and excludes the very entities (state-registered 501(c)(4)s, state PACs) that &quot;dark money&quot; analyses track. This is a genuine, confirmed coverage gap, not a query I failed to find — there is no state campaign-finance table in this warehouse at all. Everything below therefore comes from primary/secondary published research, not a warehouse query, and I did not fabricate a dashboard around numbers that aren&#x27;t apples-to-apples.
+
+### What the evidence actually shows
+
+**Historical baseline (the only multi-state, multi-year, apples-to-apples comparison that exists).** The Brennan Center&#x27;s &quot;Secret Spending in the States&quot; report is the most rigorous cross-state empirical study of this question to date. Looking at six geographically diverse states (Alaska, Arizona, California, Colorado, Maine, Massachusetts) from 2006–2014, it found dark money (spending whose ultimate funder cannot be traced at all) rose roughly **38-fold on average**, while a related category the report calls &quot;gray money&quot; (spending layered through PACs that in turn don&#x27;t disclose *their* donors) rose to nearly 60% of all outside spending by 2014. California, despite the largest dollar volume of outside spending, had comparatively little true dark money because of unusually strict disclosure and enforcement — evidence that state disclosure-law strength, not just political competitiveness, drives how much of a state&#x27;s outside spending stays hidden.
+
+**Most recent (2024 cycle) evidence, state by state:**
+- **Wyoming** — the sharpest *documented percentage growth*: legislative campaign costs &quot;nearly doubled&quot; in 2024 versus 2022, driven almost entirely by an influx of national libertarian-aligned dark-money PACs (Young Americans for Liberty, Make Liberty Win, Americans for Prosperity) backing Freedom Caucus candidates in a state whose legislative races had historically been cheap and locally funded. A local GOP county chair estimated over $1 million in dark money flowed into races that previously ran on a fraction of that.
+- **Michigan** — dark-money organizations and PACs with non-disclosing accounts were, per a Bridge Michigan analysis of 2024 campaign-finance filings, the *single largest category of reported spenders* in Michigan state politics; the Michigan Republican State Leadership Committee routed $4.5M+ through a non-disclosing account, and the Michigan Democratic Party spent ~$13M on House-race broadcast ads through an account with no disclosure requirement at all. The 2024 Michigan House cycle was the most expensive in state history (~$67M).
+- **Arizona** — widely characterized by campaign-finance watchdogs as &quot;ground zero&quot; for post-Citizens-United dark money at the state level, culminating in voters passing Proposition 211 (2022) by a 72%-to-28% margin specifically to force disclosure — itself evidence of how large the perceived problem had grown; Arizona&#x27;s legislature is now suing to block the law&#x27;s enforcement (ongoing as of 2025).
+- **Pennsylvania, Nevada, Colorado** — each saw record or near-record outside spending on state legislative races in 2024 (Pennsylvania&#x27;s competitive state House/Senate races averaging $1.1M–$3.5M in outside spending; Nevada topping $200M in PAC/dark-money spending across state races, nearly double 2020; Colorado logging ~$13M from state-level super PACs on legislative races alone) — though a meaningful share of this is disclosed super-PAC money rather than true dark money, so these are best read as &quot;outside spending growth,&quot; with dark money as a documented but not fully separable component.
+
+### Bottom line and confidence level
+Based on convergent 2024-cycle reporting, **Wyoming stands out for the fastest relative (percentage) growth** in dark-money-driven outside spending on state legislative races — going from a historically cheap, locally funded citizen-legislature model to nearly double the cost almost entirely because of new national dark-money PAC involvement. **Michigan and Arizona show the largest absolute dollar growth and the most institutionalized dark-money infrastructure.** I would rate confidence in this ranking as moderate: it is well corroborated by state-level journalism and campaign-finance watchdog groups, but — because dark money is defined by the absence of disclosure — no organization, including this warehouse, can produce a complete, audited, state-by-state total to rank with precision. Any answer to this question is necessarily built on the visible fraction of the phenomenon.
+
+### Sources
+- [Brennan Center — &quot;Secret Spending in the States&quot;](https://www.brennancenter.org/our-work/research-reports/secret-spending-states)
+- [National Institute on Money in Politics/FollowTheMoney — &quot;Darkness on the Edge of Town: National Dark Money Targets States&quot;](https://www.followthemoney.org/research/blog/darkness-on-the-edge-of-town-national-dark-money-targets-states)
+- [Wyoming Tribune Eagle/Rocket Miner — &quot;Rising influence of Libertarian PACs and dark money transforms Wyoming&#x27;s legislative races&quot;](https://www.wyomingnews.com/rocketminer/news/rising-influence-of-libertarian-pacs-and-dark-money-transforms-wyomings-legislative-races/article_9f411bf2-552f-11ef-9e7a-67cbb07cb659.html)
+- [Bridge Michigan — &quot;Billionaires, dark money dominate record-setting Michigan election spending&quot;](https://bridgemi.com/michigan-government/billionaires-dark-money-dominate-record-setting-michigan-election-spending/)
+- [Brennan Center — &quot;Dark Money Hit a Record High of $1.9 Billion in 2024 Federal Races&quot;](https://www.brennancenter.org/our-work/research-reports/dark-money-hit-record-high-19-billion-2024-federal-races)
+- [OpenSecrets — &quot;Outside spending on 2024 elections shatters records, fueled by billion-dollar &#x27;dark money&#x27; infusion&quot;](https://www.opensecrets.org/news/2024/11/outside-spending-on-2024-elections-shatters-records-fueled-by-billion-dollar-dark-money-infusion/)
+- [Colorado Sun — &quot;Nearly $13 million has been spent by state-level super PACs on Colorado legislative races this year&quot;](https://coloradosun.com/2024/11/02/outside-spending-colorado-legislative-races-2024/)
+- [Spotlight PA — &quot;Spending soars on legislative races as Democrats defend PA House&quot;](https://www.spotlightpa.org/news/2024/11/pennsylvania-election-2024-state-house-senate-majority-spending/)
+- [12News — &quot;Arizona ballot proposition 211 passes, illuminating &#x27;dark money&#x27;&quot;](https://www.12news.com/article/news/politics/elections/decision/arizona-2022-general-election-ballot-proposition-211-approved-dark-money-campaign-spending/75-09e3c481-8f30-412d-ab7c-45a4749573ca)
+
+### Data-gap note (for the AskAmerica warehouse maintainers)
+This corpus has no state-level campaign finance schema (no state-registered PAC/committee spending, no state 501(c)(4)/nonprofit political-spending table, no state ballot-measure or legislative-race independent-expenditure data). The `fec` schema is federal-only. A state campaign-finance table (comparable to what NIMSP/FollowTheMoney or OpenSecrets&#x27; state-level data aggregates) would be needed to answer this class of question quantitatively from the warehouse rather than from web research.
+</pre>
+</main>
+</body></html>

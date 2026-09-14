@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ten-plus years out, severely disaster-hit counties are about the same size as they'd have been otherwise</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Ten-plus years out, severely disaster-hit counties are about the same size as they'd have been otherwise</h1>
+<p class="subtitle">FEMA disaster declarations 2010-13 vs. ACS county population 2010-2023 (2,209 counties); diff-in-diff estimate ≈ 0, not statistically distinguishable from zero</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Long-run population effect of severe federal disasters on hit counties</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">Counties with an Individual-Assistance major disaster declared 2010-13 vs. counties never severely hit (COVID excluded), ACS 5-yr county population</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:11px">Diff-in-diff effect on log population, 2010→2023 (13 yrs)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">-0.002 log points</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">p = 0.98, not significant</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Equivalent to about a 0.2% difference — statistically</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">indistinguishable from zero</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Counties in the comparison</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:19px">889 treated / 1,423 clean control</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">889 counties had a DR disaster with Individual Assistance declared</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">2010-2013, non-COVID; 1,423 never had any non-COVID IH disaster…</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="372" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="372" viewBox="0 0 412 372" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="372" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">County population index, hit vs. not-hit counties (2010=100)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="247.84" x2="390" y2="247.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="251.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="215.87" x2="390" y2="215.87" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="219.87" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="183.89" x2="390" y2="183.89" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="187.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="151.92" x2="390" y2="151.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="155.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="119.95" x2="390" y2="119.95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="123.95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="87.97" x2="390" y2="87.97" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="91.97" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="247.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="247.84" x2="390" y2="247.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="304" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="151.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 151.92)">Population index</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2009" class="tick" x="79.42" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 79.42 261.84)">2009</text>
+      <text id="p3-xtick-2010" class="tick" x="104.27" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 104.27 261.84)">2010</text>
+      <text id="p3-xtick-2011" class="tick" x="129.12" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 129.12 261.84)">2011</text>
+      <text id="p3-xtick-2012" class="tick" x="153.96" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 153.96 261.84)">2012</text>
+      <text id="p3-xtick-2013" class="tick" x="178.81" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 178.81 261.84)">2013</text>
+      <text id="p3-xtick-2014" class="tick" x="203.65" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 203.65 261.84)">2014</text>
+      <text id="p3-xtick-2015" class="tick" x="228.50" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 261.84)">2015</text>
+      <text id="p3-xtick-2016" class="tick" x="253.35" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 253.35 261.84)">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="278.19" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 278.19 261.84)">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="303.04" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 303.04 261.84)">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="327.88" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 327.88 261.84)">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="352.73" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 352.73 261.84)">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="377.58" y="261.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 377.58 261.84)">2021</text>
+    </g>
+    <g id="p3-series-severe-disaster-counties-ih-declared-2010-13" class="series">
+      <path id="p3-line-severe-disaster-counties-ih-declared-2010-13" class="line" d="M 79.42 88.71 L 104.27 87.97 L 129.12 86.77 L 153.96 85.64 L 178.81 84.60 L 203.65 83.55 L 228.50 82.65 L 253.35 81.96 L 278.19 80.97 L 303.04 80.67 L 327.88 80.16 L 352.73 79.60 L 377.58 77.02" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2009" class="point" cx="79.42" cy="88.71" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2010" class="point" cx="104.27" cy="87.97" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2011" class="point" cx="129.12" cy="86.77" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2012" class="point" cx="153.96" cy="85.64" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2013" class="point" cx="178.81" cy="84.60" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2014" class="point" cx="203.65" cy="83.55" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2015" class="point" cx="228.50" cy="82.65" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2016" class="point" cx="253.35" cy="81.96" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2017" class="point" cx="278.19" cy="80.97" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2018" class="point" cx="303.04" cy="80.67" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2019" class="point" cx="327.88" cy="80.16" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2020" class="point" cx="352.73" cy="79.60" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-severe-disaster-counties-ih-declared-2010-13-2021" class="point" cx="377.58" cy="77.02" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-never-severe-disaster-counties-control" class="series">
+      <path id="p3-line-never-severe-disaster-counties-control" class="line" d="M 79.42 89.54 L 104.27 87.97 L 129.12 86.61 L 153.96 85.40 L 178.81 84.28 L 203.65 83.13 L 228.50 82.01 L 253.35 81.07 L 278.19 80.04 L 303.04 78.94 L 327.88 77.97 L 352.73 76.85 L 377.58 75.58" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2009" class="point" cx="79.42" cy="89.54" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2010" class="point" cx="104.27" cy="87.97" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2011" class="point" cx="129.12" cy="86.61" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2012" class="point" cx="153.96" cy="85.40" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2013" class="point" cx="178.81" cy="84.28" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2014" class="point" cx="203.65" cy="83.13" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2015" class="point" cx="228.50" cy="82.01" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2016" class="point" cx="253.35" cy="81.07" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2017" class="point" cx="278.19" cy="80.04" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2018" class="point" cx="303.04" cy="78.94" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2019" class="point" cx="327.88" cy="77.97" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2020" class="point" cx="352.73" cy="76.85" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-never-severe-disaster-counties-control-2021" class="point" cx="377.58" cy="75.58" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-severe-disaster-counties-ih-declared-2010-13" x="69" y="318" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-severe-disaster-counties-ih-declared-2010-13" class="legend-label" x="85" y="327" fill="#1f2328" font-size="11" style="font-size:11px">Severe-disaster counties (IH declared, 2010-13)</text>
+      <rect id="p3-legend-swatch-never-severe-disaster-counties-control" x="88" y="338" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-never-severe-disaster-counties-control" class="legend-label" x="104" y="347" fill="#1f2328" font-size="11" style="font-size:11px">Never-severe-disaster counties (control)</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="623" fill="#6b7280">Aggregate population summed across each group, indexed to 2010; series</text>
+  <text class="caption" x="24" y="636" fill="#6b7280">shown only through 2021 to avoid a 2022 Connecticut…</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="370" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="406" fill="#6b7280">Leave-one-state-out check</text>
+  <text class="stat-value" x="464" y="436" fill="#1f2328" style="font-size:21px">Range: -1.3 to +0.4 log points</text>
+  </g>
+  <text class="caption" x="452" y="623" fill="#6b7280">51 refits (each dropping one state); coefficient never significant, no</text>
+  <text class="caption" x="452" y="636" fill="#6b7280">state drives the null result</text>
+  <g id="brand">
+  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:54365/a/834b2710d4019bb150b9011d759e525a.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>About the same. Comparing 889 U.S. counties that had a major (DR) federal disaster declaration with FEMA's Individual Assistance program activated in 2010-2013 against a clean control group of 1,423 counties that never had a severe federal disaster declared at all (2010-2026), their population growth from 2010 to 2023 (10-13 years later) tracked almost identically. A county-level difference-in-differences regression finds an effect of essentially zero: -0.002 log points (about -0.2%), with a standard error of 0.087 and p = 0.98 — nowhere close to statistically significant. A leave-one-state-out robustness check confirms no single state is driving this null result. This matches the weight of the academic literature: severe disasters do raise <em>out-migration rates</em> in the years right after they strike, but most studies find little to no significant long-run (multi-decade) effect on county population <em>levels</em>, except for the small subset of truly catastrophic events (Katrina-scale).</p>
+</section>
+<section>
+<h2>How 'hit' and 'otherwise' were defined, and what every exclusion in the SQL removed</h2>
+<p><strong>Treated group (889 counties):</strong> counties with at least one FEMA major disaster declaration (declaration_type='DR') with the Individuals and Households Program activated (ih_program_declared=true, FEMA's real Individual Assistance signal — the ia_program_declared field is dead at the source) in 2010-2013, excluding COVID/'Biological' declarations. This targets disasters severe enough to trigger direct federal aid to households, following the 'severe disaster' definition used in the literature (Boustan, Kahn, Rhode & Yanguas 2020).</p><p><strong>The incident_type &lt;&gt; 'Biological' exclusion:</strong> applied to both the treatment and the control definitions, this predicate removed every 2020 COVID 'Biological' IH declaration from consideration — 3,272 of the roughly 3,221 US counties had one, i.e. essentially every county in the country. Without this exclusion there would be no possible control group at all (every county would count as 'hit' by COVID's nationwide Individual Assistance declaration), so the exclusion is necessary and is disclosed here explicitly, next to the number it removed.</p><p><strong>The s.county_fips IS NOT NULL, e.county_fips IS NOT NULL, and i.county_fips IS NOT NULL join-null guards:</strong> these three predicates, used when joining the disaster tables to the population panel, removed exactly 0 rows in every run of this analysis — confirmed directly by querying <code>SELECT COUNT(*) FROM disasters.disaster_declarations WHERE county_fips IS NULL</code>, which returned 0. They are defensive SQL guards against a join-nullability case that, in this table, never actually occurs; they excluded nothing.</p><p><strong>The 897 counties dropped as a 'contaminated' control:</strong> starting from all 2,320 non-treated counties (2,312 of which had valid 2010 and 2023 population data), 897 of them had a non-COVID Individual-Assistance disaster declared at some other point between 2010 and 2026 (outside the 2010-13 treatment window). These 897 were dropped from the headline control group, leaving 1,423 as the 'clean, never-severely-hit' control. This exclusion matters: with the 897 left in (i.e., comparing all 889 treated against all 2,320 non-treated regardless of whether the latter were later hit), the comparison group's own disaster experience would blend into the estimate. The direction of the headline finding (no significant effect) is unlikely to reverse under that alternative specification, since the excluded counties are themselves disaster-affected and would, if anything, pull the control average's growth rate toward the treated group's rather than away from it — but the alternative specification was not separately re-run here, so this is a directional argument, not a second measured number.</p><p><strong>Why 2010-2013 for treatment:</strong> FEMA's declaration data starts in 2010. Requiring the disaster to have struck by 2013 guarantees at least 10 years of follow-up against the ACS county population series, which runs through 2023.</p>
+</section>
+<section>
+<h2>Result: diff-in-differences</h2>
+<p>Running <code>treated × post</code> as the effect of interest in a panel of (2010, 2023) observations for both groups: coefficient = -0.00188 log points, SE = 0.0872, t = -0.02, p = 0.983, n = 4,624 county-year observations (2,312 counties × 2 years). This is the estimated average effect of having been hit by a severe federal disaster in 2010-13 on a county's population 10+ years later, relative to the trend in similar never-hit counties — and it is not distinguishable from zero.</p><p>A leave-one-state-out sensitivity check (51 refits, each excluding one state) found the coefficient ranged only from -0.0125 to +0.0039 log points across every possible state exclusion — never significant in any refit, confirming the null is not an artifact of one outlier state (e.g., Texas, Florida, or Puerto Rico).</p>
+</section>
+<section>
+<h2>Other caveats</h2>
+<ul><li><strong>Level, not flow:</strong> this measures the population <em>level</em> 10+ years out, not the migration <em>rate</em> in the years immediately following the disaster. The literature (Boustan et al.) finds severe disasters raise out-migration by about 1.5 percentage points in the disaster decade itself — a flow effect — while still finding little net long-run effect on population stock for all but the most catastrophic events; those two findings are consistent with what is shown here.</li><li><strong>2022 Connecticut geography break:</strong> the Census switched Connecticut from 8 counties to 9 'planning regions' in the 2022 ACS vintage, which changes which FIPS codes appear in the data and visibly distorts the raw aggregate population totals from 2022 onward. The chart above stops at 2021 to avoid this distortion.</li><li><strong>'Severe' is defined by IA activation, not damage dollars:</strong> a more refined severity measure (e.g., total NFIP claims paid or PA-obligated dollars per capita) could sharpen this further; that is a natural extension, not done here.</li><li><strong>Design is a simple two-period DiD</strong> (not an event study), so it does not test the parallel-trends assumption formally; the extremely close pre-2013 trajectories in the chart above (both groups moving almost in lockstep 2009-2013) are suggestive support for parallel trends but not a formal test.</li><li><strong>This does not isolate the handful of truly catastrophic, single-event disasters</strong> (e.g., Hurricane Katrina-scale) that case studies find caused large, lasting population declines in specific hard-hit areas (e.g., New Orleans). Those are individually well-documented in the literature but are a small minority of 'severe' declarations by this table's criteria and would be diluted, not isolated, by a broad panel average like this one.</li></ul>
+</section>
+<section>
+<h2>What the published literature says</h2>
+<p>Boustan, Kahn, Rhode & Yanguas, <em>'The Effect of Natural Disasters on Economic Activity in US Counties: A Century of Data'</em> (NBER Working Paper 23410 / Journal of Urban Economics): using the universe of US federal disaster declarations 1920-2010, they find severe disasters raise a county's out-migration rate by about 1.5 percentage points in the decade of the disaster, and lower housing prices/rents 2.5-5.0%, consistent with reduced local labor demand. They emphasize this is a migration-rate response, largely because disasters lower local productivity, not a wholesale long-run collapse in population level for the typical severe disaster.</p><p>A separate strand of the literature (e.g., the <em>Annals of Regional Science</em> study on disasters and county population density growth, 1960-2000) finds <strong>no significant adverse long-run population-density growth effect</strong> from natural disasters at the county level in most cases — reinforcing the 'about the same' finding here.</p><p>Case studies of individual catastrophic events (Hurricane Katrina, the 1927 Mississippi Flood, the Dust Bowl) do find large, lasting population losses for the specific hardest-hit places, but these are the extreme tail, not the typical severe federally declared disaster this analysis's broader panel captures.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>10 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 500 rows — 4778 ms</summary><pre><code>
+WITH severe AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND ih_program_declared = true
+    AND EXTRACT(YEAR FROM declaration_date) BETWEEN 2010 AND 2013
+    AND county_fips IS NOT NULL
+),
+ever_dr AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND county_fips IS NOT NULL
+)
+SELECT
+  CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END AS treated,
+  CASE WHEN e.county_fips IS NOT NULL AND s.county_fips IS NULL THEN 1 ELSE 0 END AS other_dr_excluded
+FROM (SELECT DISTINCT county_fips FROM census.acs_population WHERE county_fips IS NOT NULL) a
+LEFT JOIN severe s ON a.county_fips = s.county_fips
+LEFT JOIN ever_dr e ON a.county_fips = e.county_fips
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 5927 ms</summary><pre><code>
+WITH severe AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND ih_program_declared = true
+    AND EXTRACT(YEAR FROM declaration_date) BETWEEN 2010 AND 2013
+    AND county_fips IS NOT NULL
+),
+ever_dr AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND county_fips IS NOT NULL
+),
+pop2010 AS (
+  SELECT county_fips, total_population AS pop2010
+  FROM census.acs_population WHERE &quot;year&quot; = '2010' AND geography = 'county'
+),
+pop2023 AS (
+  SELECT county_fips, total_population AS pop2023
+  FROM census.acs_population WHERE &quot;year&quot; = '2023' AND geography = 'county'
+)
+SELECT
+  CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END AS treated,
+  COUNT(*) AS n,
+  COUNT(CASE WHEN e.county_fips IS NOT NULL AND s.county_fips IS NULL THEN 1 END) AS other_dr_n
+FROM pop2010 p10
+JOIN pop2023 p23 ON p10.county_fips = p23.county_fips
+LEFT JOIN severe s ON p10.county_fips = s.county_fips
+LEFT JOIN ever_dr e ON p10.county_fips = e.county_fips
+GROUP BY CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 3170 ms</summary><pre><code>
+WITH ever_dr AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND county_fips IS NOT NULL
+),
+pop2010 AS (
+  SELECT DISTINCT county_fips
+  FROM census.acs_population WHERE &quot;year&quot; = '2010' AND geography = 'county'
+)
+SELECT COUNT(*) AS total_counties,
+  COUNT(CASE WHEN e.county_fips IS NOT NULL THEN 1 END) AS ever_dr_counties
+FROM pop2010 p LEFT JOIN ever_dr e ON p.county_fips = e.county_fips
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 6201 ms</summary><pre><code>
+WITH severe AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND ih_program_declared = true
+    AND EXTRACT(YEAR FROM declaration_date) BETWEEN 2010 AND 2013
+    AND county_fips IS NOT NULL
+),
+ever_ih AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE ih_program_declared = true AND county_fips IS NOT NULL
+),
+pop2010 AS (
+  SELECT county_fips, total_population AS pop2010
+  FROM census.acs_population WHERE &quot;year&quot; = '2010' AND geography = 'county'
+),
+pop2023 AS (
+  SELECT county_fips, total_population AS pop2023
+  FROM census.acs_population WHERE &quot;year&quot; = '2023' AND geography = 'county'
+)
+SELECT
+  CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END AS treated,
+  COUNT(*) AS n,
+  COUNT(CASE WHEN i.county_fips IS NOT NULL AND s.county_fips IS NULL THEN 1 END) AS control_but_ih_elsewhere
+FROM pop2010 p10
+JOIN pop2023 p23 ON p10.county_fips = p23.county_fips
+LEFT JOIN severe s ON p10.county_fips = s.county_fips
+LEFT JOIN ever_ih i ON p10.county_fips = i.county_fips
+GROUP BY CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 17 rows — 3868 ms</summary><pre><code>SELECT incident_type, COUNT(DISTINCT county_fips) AS counties, COUNT(*) AS n
+FROM disasters.disaster_declarations
+WHERE ih_program_declared = true
+GROUP BY incident_type ORDER BY n DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 6809 ms</summary><pre><code>
+WITH severe AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND ih_program_declared = true
+    AND incident_type &lt;&gt; 'Biological'
+    AND EXTRACT(YEAR FROM declaration_date) BETWEEN 2010 AND 2013
+    AND county_fips IS NOT NULL
+),
+ever_ih_nonc19 AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE ih_program_declared = true AND incident_type &lt;&gt; 'Biological' AND county_fips IS NOT NULL
+),
+pop2010 AS (
+  SELECT county_fips, total_population AS pop2010
+  FROM census.acs_population WHERE &quot;year&quot; = '2010' AND geography = 'county'
+),
+pop2023 AS (
+  SELECT county_fips, total_population AS pop2023
+  FROM census.acs_population WHERE &quot;year&quot; = '2023' AND geography = 'county'
+)
+SELECT
+  CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END AS treated,
+  COUNT(*) AS n,
+  COUNT(CASE WHEN i.county_fips IS NOT NULL AND s.county_fips IS NULL THEN 1 END) AS control_but_ih_elsewhere_excl_covid
+FROM pop2010 p10
+JOIN pop2023 p23 ON p10.county_fips = p23.county_fips
+LEFT JOIN severe s ON p10.county_fips = s.county_fips
+LEFT JOIN ever_ih_nonc19 i ON p10.county_fips = i.county_fips
+GROUP BY CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END
+</code></pre></details>
+<details class="sqltoggle"><summary>diff_in_diff — 41299 ms</summary><pre><code>
+WITH severe AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND ih_program_declared = true
+    AND incident_type &lt;&gt; 'Biological'
+    AND EXTRACT(YEAR FROM declaration_date) BETWEEN 2010 AND 2013
+    AND county_fips IS NOT NULL
+),
+ever_ih_nonc19 AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE ih_program_declared = true AND incident_type &lt;&gt; 'Biological' AND county_fips IS NOT NULL
+),
+pop2010 AS (
+  SELECT county_fips, total_population AS pop2010
+  FROM census.acs_population WHERE &quot;year&quot; = '2010' AND geography = 'county'
+),
+pop2023 AS (
+  SELECT county_fips, total_population AS pop2023
+  FROM census.acs_population WHERE &quot;year&quot; = '2023' AND geography = 'county'
+),
+base AS (
+  SELECT p10.county_fips, p10.pop2010, p23.pop2023,
+    CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END AS treated,
+    CASE WHEN i.county_fips IS NOT NULL AND s.county_fips IS NULL THEN 1 ELSE 0 END AS contaminated_control
+  FROM pop2010 p10
+  JOIN pop2023 p23 ON p10.county_fips = p23.county_fips
+  LEFT JOIN severe s ON p10.county_fips = s.county_fips
+  LEFT JOIN ever_ih_nonc19 i ON p10.county_fips = i.county_fips
+  WHERE p10.pop2010 &gt; 0 AND p23.pop2023 &gt; 0
+)
+SELECT county_fips, treated, ln(pop2010) AS logpop, 0 AS post FROM base WHERE contaminated_control = 0
+UNION ALL
+SELECT county_fips, treated, ln(pop2023) AS logpop, 1 AS post FROM base WHERE contaminated_control = 0
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 30 rows — 12149 ms</summary><pre><code>
+WITH severe AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND ih_program_declared = true
+    AND incident_type &lt;&gt; 'Biological'
+    AND EXTRACT(YEAR FROM declaration_date) BETWEEN 2010 AND 2013
+    AND county_fips IS NOT NULL
+),
+ever_ih_nonc19 AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE ih_program_declared = true AND incident_type &lt;&gt; 'Biological' AND county_fips IS NOT NULL
+),
+groups AS (
+  SELECT a.county_fips,
+    CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END AS treated,
+    CASE WHEN i.county_fips IS NOT NULL AND s.county_fips IS NULL THEN 1 ELSE 0 END AS contaminated
+  FROM (SELECT DISTINCT county_fips FROM census.acs_population WHERE geography='county') a
+  LEFT JOIN severe s ON a.county_fips = s.county_fips
+  LEFT JOIN ever_ih_nonc19 i ON a.county_fips = i.county_fips
+)
+SELECT p.&quot;year&quot;, g.treated, SUM(p.total_population) AS total_pop, COUNT(*) AS n_counties
+FROM census.acs_population p
+JOIN groups g ON p.county_fips = g.county_fips
+WHERE p.geography = 'county' AND g.contaminated = 0
+GROUP BY p.&quot;year&quot;, g.treated
+ORDER BY p.&quot;year&quot;, g.treated
+</code></pre></details>
+<details class="sqltoggle"><summary>sensitivity_analysis — 14901 ms</summary><pre><code>
+WITH severe AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE declaration_type = 'DR' AND ih_program_declared = true
+    AND incident_type &lt;&gt; 'Biological'
+    AND EXTRACT(YEAR FROM declaration_date) BETWEEN 2010 AND 2013
+    AND county_fips IS NOT NULL
+),
+ever_ih_nonc19 AS (
+  SELECT DISTINCT county_fips
+  FROM disasters.disaster_declarations
+  WHERE ih_program_declared = true AND incident_type &lt;&gt; 'Biological' AND county_fips IS NOT NULL
+),
+pop2010 AS (
+  SELECT county_fips, total_population AS pop2010
+  FROM census.acs_population WHERE &quot;year&quot; = '2010' AND geography = 'county'
+),
+pop2023 AS (
+  SELECT county_fips, total_population AS pop2023
+  FROM census.acs_population WHERE &quot;year&quot; = '2023' AND geography = 'county'
+),
+base AS (
+  SELECT p10.county_fips, p10.pop2010, p23.pop2023,
+    LEFT(p10.county_fips,2) AS state_fips,
+    CASE WHEN s.county_fips IS NOT NULL THEN 1 ELSE 0 END AS treated,
+    CASE WHEN i.county_fips IS NOT NULL AND s.county_fips IS NULL THEN 1 ELSE 0 END AS contaminated_control
+  FROM pop2010 p10
+  JOIN pop2023 p23 ON p10.county_fips = p23.county_fips
+  LEFT JOIN severe s ON p10.county_fips = s.county_fips
+  LEFT JOIN ever_ih_nonc19 i ON p10.county_fips = i.county_fips
+  WHERE p10.pop2010 &gt; 0 AND p23.pop2023 &gt; 0
+),
+panel AS (
+  SELECT county_fips, state_fips, treated, ln(pop2010) AS logpop, 0 AS post FROM base WHERE contaminated_control = 0
+  UNION ALL
+  SELECT county_fips, state_fips, treated, ln(pop2023) AS logpop, 1 AS post FROM base WHERE contaminated_control = 0
+)
+SELECT logpop, treated, post, treated*post AS treatment_x_post, state_fips FROM panel
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1471 ms</summary><pre><code>SELECT COUNT(*) AS null_county_fips_rows FROM disasters.disaster_declarations WHERE county_fips IS NULL</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries">FEMA disaster declarations (Individual Assistance activated, DR type)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT DISTINCT county_fips FROM disasters.disaster_declarations WHERE declaration_type = 'DR' AND ih_program_declared = true AND incident_type &lt;&gt; 'Biological' AND EXTRACT(YEAR FROM declaration_date) BETWEEN 2010 AND 2013</code></pre></details></li>
+<li><a href="https://www.census.gov/programs-surveys/acs">ACS 5-year county total population, 2010 and 2023</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT county_fips, total_population FROM census.acs_population WHERE &quot;year&quot; IN ('2010','2023') AND geography = 'county'</code></pre></details></li>
+<li>Diff-in-diff estimate (treated x post on log population)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>diff_in_diff(outcome=&quot;logpop&quot;, treatment=&quot;treated&quot;, post=&quot;post&quot;)</code></pre></details></li>
+<li>Leave-one-state-out sensitivity check on the diff-in-diff coefficient<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(outcome=&quot;logpop&quot;, predictors=&quot;['treated','post','treatment_x_post']&quot;, group_col=&quot;state_fips&quot;, term=&quot;treatment_x_post&quot;)</code></pre></details></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w23410/w23410.pdf">Boustan, Kahn, Rhode &amp; Yanguas, 'The Effect of Natural Disasters on Economic Activity in US Counties: A Century of Data', NBER Working Paper 23410</a> <span class="note">— fetched 2026-09-14</span></li>
+<li><a href="https://link.springer.com/article/10.1007/s00168-018-0878-1">Did natural disasters affect population density growth in US counties?, Annals of Regional Science</a> <span class="note">— search summary only, not independently fetched</span></li>
+<li><a href="https://www.frbsf.org/wp-content/uploads/wp2020-34.pdf">The Local Economic Impact of Natural Disasters, Federal Reserve Bank of San Francisco Working Paper 2020-34</a> <span class="note">— fetched 2026-09-14, referenced for context</span></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Analysis by AskAmerica connector (askengine). COVID-19 ('Biological') disaster declarations excluded from both treatment and control definitions since they blanket nearly every US county and would eliminate any clean control group. Severity is defined by FEMA Individual Assistance activation, not by dollar damage.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-14</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
