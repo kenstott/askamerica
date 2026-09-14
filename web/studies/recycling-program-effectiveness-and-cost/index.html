@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recycling works well for paper, cardboard, metals and glass; it functionally fails for plastic — and often costs multiples of landfilling</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Recycling works well for paper, cardboard, metals and glass; it functionally fails for plastic — and often costs multiples of landfilling</h1>
+<p class="subtitle">EPA Facts &amp; Figures (2018) and EPA's 2024 recycling-infrastructure financial assessment (2019 data); city-level cost case studies, 2019-2025</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 902" width="880" height="902" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="902" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Does recycling get reused, and is it worth the cost?</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Material-specific recycling rates and the recycling-vs-landfill cost gap, US</text>
+  <rect class="panel-edge" x="20" y="82" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">US material-specific recycling rates</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="81" y1="110" x2="818" y2="110" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="73" y="114" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="81" y1="99.20" x2="818" y2="99.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="73" y="103.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="81" y1="88.40" x2="818" y2="88.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="73" y="92.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="81" y1="77.60" x2="818" y2="77.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="73" y="81.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="81" y1="66.80" x2="818" y2="66.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="73" y="70.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="81" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="73" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="81" y1="56" x2="81" y2="110" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="81" y1="110" x2="818" y2="110" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-x-axis-title" class="axis-title" x="449.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Material</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="83" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 83)">Recycling</text>
+    <text id="p1-y-axis-title-2" class="axis-title" x="28" y="83" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 28 83)">rate (%)</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-corrugated-cardboard" class="tick" x="127.06" y="124" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 127.06 124)">Corrugated cardboard</text>
+      <text id="p1-xtick-paper-all" class="tick" x="219.19" y="124" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 219.19 124)">Paper (all)</text>
+      <text id="p1-xtick-aluminum" class="tick" x="311.31" y="124" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 311.31 124)">Aluminum</text>
+      <text id="p1-xtick-glass" class="tick" x="403.44" y="124" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 403.44 124)">Glass</text>
+      <text id="p1-xtick-steel" class="tick" x="495.56" y="124" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 495.56 124)">Steel</text>
+      <text id="p1-xtick-pet-bottles" class="tick" x="587.69" y="124" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 587.69 124)">PET bottles</text>
+      <text id="p1-xtick-hdpe-bottles" class="tick" x="679.81" y="124" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 679.81 124)">HDPE bottles</text>
+      <text id="p1-xtick-plastics-all" class="tick" x="771.94" y="124" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 771.94 124)">Plastics (all)</text>
+    </g>
+    <g id="p1-series-epa-2018-facts-figures" class="series">
+      <rect id="p1-mark-epa-2018-facts-figures-corrugated-cardboard" class="bar" x="97.58" y="57.89" width="28.48" height="52.11" fill="#2563eb"/>
+      <rect id="p1-mark-epa-2018-facts-figures-paper-all" class="bar" x="189.71" y="73.17" width="28.48" height="36.83" fill="#2563eb"/>
+      <rect id="p1-mark-epa-2018-facts-figures-aluminum" class="bar" x="281.83" y="91.15" width="28.48" height="18.85" fill="#2563eb"/>
+      <rect id="p1-mark-epa-2018-facts-figures-glass" class="bar" x="373.96" y="96.50" width="28.48" height="13.50" fill="#2563eb"/>
+      <rect id="p1-mark-epa-2018-facts-figures-plastics-all" class="bar" x="742.46" y="105.14" width="28.48" height="4.86" fill="#2563eb"/>
+    </g>
+    <g id="p1-series-epa-2019-2024-report" class="series">
+      <rect id="p1-mark-epa-2019-2024-report-corrugated-cardboard" class="bar" x="127.06" y="81.11" width="28.48" height="28.89" fill="#ea580c"/>
+      <rect id="p1-mark-epa-2019-2024-report-paper-all" class="bar" x="219.19" y="94.02" width="28.48" height="15.98" fill="#ea580c"/>
+      <rect id="p1-mark-epa-2019-2024-report-aluminum" class="bar" x="311.31" y="90.07" width="28.48" height="19.93" fill="#ea580c"/>
+      <rect id="p1-mark-epa-2019-2024-report-glass" class="bar" x="403.44" y="87.64" width="28.48" height="22.36" fill="#ea580c"/>
+      <rect id="p1-mark-epa-2019-2024-report-steel" class="bar" x="495.56" y="93.15" width="28.48" height="16.85" fill="#ea580c"/>
+      <rect id="p1-mark-epa-2019-2024-report-pet-bottles" class="bar" x="587.69" y="97.47" width="28.48" height="12.53" fill="#ea580c"/>
+      <rect id="p1-mark-epa-2019-2024-report-hdpe-bottles" class="bar" x="679.81" y="97.74" width="28.48" height="12.26" fill="#ea580c"/>
+    </g>
+    <g id="p1-legend">
+      <rect id="p1-legend-swatch-epa-2018-facts-figures" x="264.50" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p1-legend-label-epa-2018-facts-figures" class="legend-label" x="280.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">EPA 2018 Facts &amp; Figures</text>
+      <rect id="p1-legend-swatch-epa-2019-2024-report" x="432.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p1-legend-label-epa-2019-2024-report" class="legend-label" x="448.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">EPA 2019 (2024 report)</text>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="363" fill="#6b7280">Cardboard and paper are reliably reused at high rates under either EPA vintage; plastics are not, under any estimate.</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="434" fill="#6b7280">National MSW recycling+composting rate</text>
+  <text class="stat-value" x="36" y="464" fill="#1f2328">32.1%</text>
+  <text class="stat-delta" x="36" y="484" fill="#dc2626">down from 34.7% in 2015</text>
+  </g>
+  <text class="caption" x="24" y="519" fill="#6b7280">EPA, 2018 data (most recent comprehensive Facts &amp; Figures)</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="448" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="434" fill="#6b7280">Plastic recycling rate</text>
+  <text class="stat-value" x="464" y="464" fill="#1f2328">5-9%</text>
+  <text class="stat-delta" x="464" y="484" fill="#dc2626">falling since 2018</text>
+  </g>
+  <text class="caption" x="452" y="519" fill="#6b7280">Beyond Plastics analysis of EPA data, 2021; EPA 2018 put it at 9%</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="20" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="590" fill="#6b7280">NYC recycling collection cost</text>
+  <text class="stat-value" x="36" y="620" fill="#1f2328">$686/ton</text>
+  <text class="stat-delta" x="36" y="640" fill="#059669">vs $126/ton to landfill both streams together</text>
+  </g>
+  <text class="caption" x="24" y="675" fill="#6b7280">NYC Dept. of Sanitation FY2019, cited in Manhattan Institute analysis</text>
+  <g id="p5-stat">
+  <rect class="panel-edge" x="448" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="590" fill="#6b7280">Boston recycling processing fee</text>
+  <text class="stat-value" x="464" y="620" fill="#1f2328">$125-160/ton</text>
+  <text class="stat-delta" x="464" y="640" fill="#059669">vs $80/ton general refuse tipping fee</text>
+  </g>
+  <text class="caption" x="452" y="675" fill="#6b7280">2019 Casella Waste Systems contract, up from $70/ton in prior contract</text>
+  <g id="p6-stat">
+  <rect class="panel-edge" x="20" y="710" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="746" fill="#6b7280">Single-stream MRF contamination rate</text>
+  <text class="stat-value" x="36" y="776" fill="#1f2328">17-27%</text>
+  </g>
+  <text class="caption" x="24" y="831" fill="#6b7280">Waste Management fleet-wide (17%) vs Boston (25%) and FL MRF study</text>
+  <text class="caption" x="24" y="844" fill="#6b7280">(25-27%)</text>
+  <g id="p7-stat">
+  <rect class="panel-edge" x="448" y="710" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="746" fill="#6b7280" style="font-size:11px">GHG avoided per ton of mixed recyclables vs landfilling</text>
+  <text class="stat-value" x="464" y="776" fill="#1f2328">2.83 t CO2e</text>
+  </g>
+  <text class="caption" x="452" y="831" fill="#6b7280">EPA WARM model; paper/metals drive nearly all of the benefit, plastics</text>
+  <text class="caption" x="452" y="844" fill="#6b7280">near zero/negative</text>
+  <g id="brand">
+  <svg x="20" y="861" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="876" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:63623/a/7766d349099b37f74545bef8933d07b0.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>It depends almost entirely on the material.</strong> For the materials that dominate curbside programs by weight — corrugated cardboard, other paper, metals and glass — recycling genuinely works: 53-97% of cardboard, 30-68% of paper, 31-37% of steel/aluminum, and 25-41% of glass put into a recycling bin is actually reprocessed into new material, and EPA's life-cycle WARM model confirms these materials produce a real net reduction in greenhouse-gas emissions versus landfilling. <strong>For plastic, the headline promise is largely false</strong>: only about 5-9% of plastic put in the bin is actually recycled, a figure that has fallen since 2018 (China's 2018 'National Sword' ban on importing contaminated foreign recyclables collapsed the market that most U.S. plastic and low-grade paper depended on). <strong>On cost, recycling is usually far more expensive than landfilling once you look at what real cities actually pay</strong>: New York City's own Department of Sanitation put FY2019 recycling collection at $686/ton versus $126/ton to landfill both streams combined; Boston pays its contractor $125-160/ton to process recyclables versus an $80/ton tipping fee for ordinary trash; small-town Franklin, NH went from earning $6/ton selling recyclables to paying $125/ton to get rid of them post-2018. That extra cost is easiest to justify for materials with high real recovery and real GHG benefit (paper, metal, cardboard, glass); it is much harder to justify for plastic, where high contamination (17-27% of single-stream loads) and a largely nonexistent post-2018 end market mean the extra money mostly buys landfill diversion theater rather than actual material reuse.</p>
+</section>
+<section>
+<h2>1. Is recycled material actually reused? Rate by material</h2>
+<p>The U.S. EPA's last full comprehensive accounting (Facts and Figures, covering 2018) put the overall municipal solid waste recycling-and-composting rate at <strong>32.1%</strong>, down from 34.7% in 2015 — the national rate has been flat-to-declining for a decade, not rising, despite decades of public 'reduce, reuse, recycle' messaging. That headline number blends materials with very different real-world outcomes:</p><ul><li><strong>Corrugated cardboard: 96.5%</strong> recycled in 2018 (industry group AF&PA separately estimated 92% for a later year) — the strongest performer in the entire waste stream, because cardboard has deep, stable domestic end markets (new boxes).</li><li><strong>Paper and paperboard overall: 68.2%</strong> (2018 EPA), though EPA's later, disputed 2019 estimate put it much lower at 29.6% — a genuine methodology dispute (net vs. gross collection rate; see caveat below), but even the low estimate still reflects a functioning recycling loop, just a smaller one. Notably, pizza-box-type food-contaminated cardboard and paper are exactly the material China's 2018 import ban targeted, which is part of why post-2018 paper prices and volumes fell.</li><li><strong>Steel: ~31%</strong>; <strong>Aluminum: 35-37%</strong> (EPA) vs 46.1% per the Aluminum Association's own industry survey — metals recycling is real and largely self-sustaining economically because scrap metal retains intrinsic commodity value even after 2018.</li><li><strong>Glass: 25-41%</strong> depending on vintage/source — genuinely recycled, but glass is heavy, breaks, and contaminates other streams in single-stream collection, which caps how much is actually reprocessed.</li><li><strong>Plastic: 5-9%</strong> — this is the material where the public's mental model of recycling most diverges from reality. EPA's 2018 figure was 9%; independent analysis of newer EPA-sourced data put 2021 plastics recycling at 5-6%, down from 8.7% in 2018. Sub-categories vary (PET bottles ~23-28%, HDPE bottles ~23-31%) but most plastic resin types (films, mixed/other plastics, most packaging beyond bottles) have essentially no functioning end market and are landfilled or incinerated even after being placed in a recycling bin. Global exports of recyclable plastic to China dropped 99% in 2018 when China's Operation National Sword took effect, and virgin plastic remains cheaper than recycled resin in most cases — there is often no buyer for sorted plastic at any price.</li></ul><p>On top of the reprocessing-rate numbers, a meaningful share of what's collected never reaches a reprocessor at all: single-stream materials-recovery-facility (MRF) <strong>contamination rates run 17-27%</strong> (17% fleet-wide per a Waste Management report; 25% of Boston's stream per its contractor Casella; 25-27% average across Florida MRFs in a multi-year academic study) — non-recyclable or wrongly-sorted material that is pulled and landfilled as residue, adding cost without producing reused material.</p>
+</section>
+<section>
+<h2>2. Is the cost reasonable given the result?</h2>
+<p>Recycling is usually the more expensive option, and city-level data (not just national averages) makes this stark. New York City's Department of Sanitation reports FY2019 recycling collection cost of <strong>$686/ton</strong>; for non-paper recyclables the city receives no revenue-sharing under current market conditions and must additionally pay $79.88/ton in tipping fees just to dispose of them — versus a combined-stream landfill tipping fee of $126.03/ton. The Manhattan Institute's analysis estimated potential city savings of over $340 million/year if NYC stopped separately collecting recyclables — comparable to the entire NYC Parks Department budget ($540M). Boston pays contractor Casella $125-160/ton to process recyclables (up from $70/ton under its prior contract) versus an $80/ton tipping fee for ordinary trash; Casella's own recyclables revenue fell from $62.3M to $42.2M between 2017 and 2018 as commodity prices collapsed. Small, cash-strapped Franklin, NH previously earned $6/ton selling its recyclables and after the market collapse had to pay $125/ton to dispose of them (versus $68/ton to incinerate) — it stopped curbside recycling collection; Waste Dive has tracked roughly 60 U.S. curbside programs cancelled since 2018 for similar reasons. National averages tell the same story in aggregate: landfill tipping fees averaged $62.28/ton in 2024 (range $34.78-$124.25/ton by state) while recycling collection alone is commonly cited at $20-70/ton before processing, and EPA itself estimates the U.S. recycling system needs <strong>$36.5-43.4 billion</strong> in new infrastructure investment just to raise the national rate from 32% to a targeted 61% by 2030 — current spending levels are not even buying adequate capacity today, let alone a bargain.</p><p>Whether that extra cost is 'reasonable' is a benefit question, not just a cost one, and the benefit differs sharply by material. EPA's WARM life-cycle model estimates recycling a ton of typical mixed recyclables avoids about <strong>2.83 metric tons of CO2-equivalent</strong> versus landfilling, and paper/paperboard recycling alone accounted for roughly 155 of the 193 million metric tons of CO2e avoided by the entire U.S. MSW system in 2018 (equivalent to removing about 33.5 million cars from the road for a year) — nearly all of the climate benefit of recycling comes from paper and metals, which are also the materials with the highest real recovery rates. Plastics recycling, by contrast, showed essentially no net GHG benefit in the WARM accounting (a slightly positive net-emissions figure, i.e. a net cost) once low recovery, high contamination, and processing/transport energy are counted. One academic analysis (Kinnaman et al., cited in the Manhattan Institute report) argued the economically and environmentally 'optimal' recycling rate may be closer to 10% of MSW, far below the roughly 32-35% U.S. municipalities have been pursuing — the implication being that at the margin, much current recycling effort spends more than the environmental benefit it buys, particularly for lower-value, harder-to-market materials like mixed plastics and glass.</p><p><strong>Net assessment:</strong> for cardboard, paper, metal and (with more qualification) glass, the added cost of recycling over landfilling is reasonably well justified by a high actual-reuse rate and a measurable GHG/resource benefit. For plastic, neither condition holds — recovery is low (5-9%), contamination is high, and the life-cycle GHG case is weak to negative — so the added expense of running plastics through municipal recycling systems is difficult to justify on either environmental or reuse-outcome grounds. Since single-stream collection mixes high-value materials (paper, metal) with low/no-value ones (most plastics, glass) in the same truck and bin, cities pay to collect and sort everything together even though only part of what's collected is actually being 'recycled' in the sense the public assumes.</p>
+</section>
+<section>
+<h2>Data and methodology notes</h2>
+<p>AskAmerica's own government-data warehouse (SEC, Census, BLS, EPA eGRID, etc.) has no recycling/solid-waste table — confirmed by both a catalog search and a find_recipe check, neither of which returned any table, column, or recipe match on "recycling." Every figure in this report therefore comes from external primary and secondary sources, not from a query against this connector's data. Two genuine data-quality caveats apply: (1) EPA has not published a full, revised comprehensive Facts and Figures report since covering 2018 data; its January 2025 infrastructure-financing report supplies newer per-material rates for 2019, but these are disputed by industry trade groups (AF&PA disputes the paper rate; NAPCOR and the Aluminum Association report higher figures using gross-collection rather than EPA's 'real'/net methodology) — where sources disagree materially, a range is reported rather than a single number. (2) Recycling cost figures vary enormously by municipality, contract structure, and commodity-market conditions at the time (recyclables revenue can swing costs up or down independent of collection/processing cost); the city case studies cited here (NYC, Boston, Westchester County, Franklin NH, San Jose) are illustrative, not a comprehensive nationwide cost census, though the direction — recycling costing more than landfilling post-2018 — is consistent across every case examined.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/national-overview-facts-and-figures-materials">EPA National Overview: Facts and Figures on Materials, Wastes and Recycling (2018 data)</a></li>
+<li><a href="https://www.epa.gov/smm/us-recycling-infrastructure-assessment-and-state-data-collection-reports">EPA — U.S. Recycling Infrastructure Assessment and State Data Collection Reports (2024, incl. $36.5-43.4B investment estimate and 32%→61% rate projection)</a></li>
+<li><a href="https://resource-recycling.com/recycling/2025/01/28/us-epa-shares-new-recycling-rate-estimates/">Resource Recycling — US EPA shares new recycling rate estimates (Jan 2025, summarizes 2019-vintage EPA rates and industry disputes)</a></li>
+<li><a href="https://www.beyondplastics.org/news-stories/us-plastics-recycling-rate-slumps-below-6-analysis-finds">Beyond Plastics — U.S. Plastics Recycling Rate Slumps Below 6%</a></li>
+<li><a href="https://manhattan.institute/article/the-declining-case-for-municipal-recycling">Manhattan Institute (Howard Husock) — The Declining Case for Municipal Recycling (NYC, Boston, Westchester, Franklin NH, San Jose cost case studies)</a></li>
+<li><a href="https://gradeall.com/the-true-cost-of-landfill-waste-why-recycling-and-responsible-waste-management-matter/">Landfill tipping fee data, 2024 national average ($62.28/ton)</a></li>
+<li><a href="https://reason.org/wp-content/uploads/files/796f26b0feb91f30abb82be965577873.pdf">Reason Foundation — Solid Waste Recycling Costs (Policy Study)</a></li>
+<li><a href="https://resource-recycling.com/recycling/wp-content/uploads/sites/3/2020/06/UF-MRF-Contamination-Report-Final.pdf">UF/Hinkley Center — Examining Contamination Rates at Florida Materials Recovery Facilities</a></li>
+<li><a href="https://www.epa.gov/waste-reduction-model">EPA WARM model documentation and GHG-benefit accounting</a></li>
+<li>AskAmerica search_catalog + find_recipe — confirms no recycling/solid-waste table or recipe exists in this warehouse<details class="sqltoggle"><summary>Show tool call</summary><pre><code>search_catalog(query=&quot;recycling rate waste municipal solid waste&quot;)</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">AskAmerica's warehouse carries no recycling/waste-management table (confirmed via search_catalog and find_recipe — no match on &quot;recycling&quot;), so every figure below is from primary published sources, not this connector's own data. EPA has not published a full comprehensive Facts and Figures update since 2018/2020; its 2024 infrastructure report supplies newer (2019-vintage) material-specific rates but industry groups (AF&amp;PA, Aluminum Association, NAPCOR) dispute several of them using different methodologies, so a range is given wherever sources disagree.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-14</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The map shifts — mobility geography was stable for decades, then moved substantially between the 1978 and 1992 birth cohorts</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>The map shifts — mobility geography was stable for decades, then moved substantially between the 1978 and 1992 birth cohorts</h1>
+<p class="subtitle">Opportunity Insights / Census Bureau Opportunity Atlas, birth cohorts 1971–1992; AskAmerica corpus has no intergenerational-mobility table</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 645" width="880" height="645" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">The geography of opportunity: mostly stable, but moving — quantified</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Opportunity Insights / Census Bureau Opportunity Atlas — birth cohorts 1971–1992, 2023 dollars</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:9px">County-level correlation, low-income child outcomes 1978 vs 1992 cohorts</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">r ≈ 0.80</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">for both white and Black children</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Strong persistence (not 1.0) — roughly 36% of county-level variance in</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">the map is NOT explained by where a county stood 14 years earlier.</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:11px">Black-white upward-mobility gap, change 1978→1992 cohorts</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">-27% to -30%</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">shrank</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Driven almost entirely by a 72% drop in the racial gap in the odds a</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">poor child stays poor.</text>
+  <rect class="panel-edge" x="20" y="238" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Change in Adult Income for Low-Income-Born Children, 1978 vs 1992 Cohorts</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="66" y1="145.36" x2="818" y2="145.36" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="58" y="149.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-15</text>
+      <line class="grid" x1="66" y1="127.49" x2="818" y2="127.49" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="58" y="131.49" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="109.62" x2="818" y2="109.62" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="58" y="113.62" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="66" y1="91.74" x2="818" y2="91.74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="58" y="95.74" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="73.87" x2="818" y2="73.87" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="58" y="77.87" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="66" y1="56.00" x2="818" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="58" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="145.36" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="145.36" x2="818" y2="145.36" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="442" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Metro area</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="100.68" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 100.68)">% change</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-brownsville-tx" class="tick" x="100.18" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 100.18 159.36)">Brownsville TX</text>
+      <text id="p3-xtick-austin-tx" class="tick" x="168.55" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 168.55 159.36)">Austin TX</text>
+      <text id="p3-xtick-charlotte-nc" class="tick" x="236.91" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 236.91 159.36)">Charlotte NC</text>
+      <text id="p3-xtick-nashville-tn" class="tick" x="305.27" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 305.27 159.36)">Nashville TN</text>
+      <text id="p3-xtick-grand-rapids-mi" class="tick" x="373.64" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.64 159.36)">Grand Rapids MI</text>
+      <text id="p3-xtick-national-avg" class="tick" x="442" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 442 159.36)">National Avg</text>
+      <text id="p3-xtick-tampa-fl" class="tick" x="510.36" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 510.36 159.36)">Tampa FL</text>
+      <text id="p3-xtick-washington-dc" class="tick" x="578.73" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 578.73 159.36)">Washington DC</text>
+      <text id="p3-xtick-san-diego-ca" class="tick" x="647.09" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 647.09 159.36)">San Diego CA</text>
+      <text id="p3-xtick-las-vegas-nv" class="tick" x="715.45" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 715.45 159.36)">Las Vegas NV</text>
+      <text id="p3-xtick-philadelphia-pa" class="tick" x="783.82" y="159.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 783.82 159.36)">Philadelphia PA</text>
+    </g>
+    <g id="p3-series-change-in-income" class="series">
+      <rect id="p3-mark-change-in-income-brownsville-tx" class="bar" x="78.31" y="67.80" width="42.75" height="23.95" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-austin-tx" class="bar" x="146.67" y="68.87" width="42.75" height="22.88" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-charlotte-nc" class="bar" x="215.03" y="73.87" width="42.75" height="17.87" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-nashville-tn" class="bar" x="283.40" y="74.94" width="42.75" height="16.80" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-grand-rapids-mi" class="bar" x="351.76" y="76.37" width="42.75" height="15.37" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-national-avg" class="bar" x="420.12" y="91.74" width="42.75" height="15.01" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-tampa-fl" class="bar" x="488.49" y="91.74" width="42.75" height="32.53" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-washington-dc" class="bar" x="556.85" y="91.74" width="42.75" height="32.53" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-san-diego-ca" class="bar" x="625.21" y="91.74" width="42.75" height="32.88" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-las-vegas-nv" class="bar" x="693.58" y="91.74" width="42.75" height="37.89" fill="#2563eb"/>
+      <rect id="p3-mark-change-in-income-philadelphia-pa" class="bar" x="761.94" y="91.74" width="42.75" height="45.39" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Same metros, 14 years apart: rankings are not fixed. Sun Belt/Southeast metros rose; Rust Belt, coastal, and Philadelphia fell furthest.</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Sources: Chetty, Dobbie, Goldman, Porter, Yang, &quot;Changing Opportunity&quot; (Opportunity Insights working paper, Nov. 2025 revision, and July 2024</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">non-technical summary); U.S. Census Bureau Opportunity Atlas Module 2 and America Counts (2024); Berger (2018), Demography. AskAmerica's own</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">tables carry no mobility/Opportunity-Atlas data — this board is built entirely from external primary research, not from a connector query.</text>
+  <g id="brand">
+  <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:63493/a/82349681325d04f3a45ea66637efe8e1.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Both things are true, at different timescales — and the newest evidence gives a precise answer to "how much" the map moves.</strong> County-level mobility outcomes are strongly persistent: the correlation between a county's outcomes for poor children born in 1978 versus 1992 — a single generation, 14 years apart — is about 0.80 for both white and Black children, per the underlying Opportunity Insights study. That is real, substantial persistence, consistent with the historical finding that today's low-mobility counties trace back to 19th-century slavery rates and 1930s redlining. But r=0.80 is not r=1.00: roughly a third of the cross-county variation in outcomes is NOT explained by where that county stood a generation earlier, and the newest county-level trend data shows exactly where the map moved — the coasts and the Great Plains, historically among the best places for a poor child to get ahead, declined sharply; the Southeast and industrial Midwest, historically the worst, improved sharply, especially for Black children. So the honest answer is: the map is a slow-moving one, stable enough to look fixed at a glance and strongly rooted in history, but it does shift meaningfully within a single generation, and the shift is large enough to be the headline finding of the field's own newest research.</p>
+</section>
+<section>
+<h2>What AskAmerica's own data can and can't say here</h2>
+<p><code>search_catalog</code> was run against terms including "intergenerational," "mobility," "Chetty," and "atlas" — zero table or column matches. This warehouse (SEC, census/ACS, BLS/BEA, FBI UCR, IRS SOI, HUD, CDC, USDA, USPTO, EIA, etc.) does not carry Opportunity Atlas, Equality of Opportunity Project, or any other child-outcomes-by-parental-income dataset. This is a genuine, confirmed corpus gap, not a table that was queried and came back empty — so this answer is built entirely from primary research (the Opportunity Insights working paper, its non-technical summary, and the U.S. Census Bureau's own Opportunity Atlas release materials), fetched and read directly.</p>
+</section>
+<section>
+<h2>The case for “the map stays the same”</h2>
+<p>Two independent bodies of evidence support persistence:</p><ul><li><strong>Short/medium-run rank stability (Chetty, Hendren, Kline, Saez, Turner, 2014, AER P&amp;P, and companion QJE papers):</strong> using the 1980–82 birth-cohort core sample and linking back to 1971 via dependent-filer tax records, upward mobility (the rank-rank slope of child income on parental income) was found to be close to constant for children born 1971–1993 — commuting zones that were good or bad for mobility in the early 1970s cohorts were still roughly good or bad two decades later. The well-known cross-sectional figure from that era: a child born to bottom-quintile parents had a 4.4% chance of reaching the top quintile in Charlotte, NC vs. 12.9% in San Jose, CA.</li><li><strong>Deep historical persistence, now quantified as county-level correlation:</strong> Berger (2018, <em>Demography</em>), "Places of Persistence," found commuting zones with higher 1860 slavery-population shares have measurably lower upward mobility today — the chance a child born in the bottom quintile reaches the top quintile averages about 4% in the highest-slavery-share zones versus over 10% in zones with no recorded slaves in 1860 — and traces the mechanism mainly to family structure (marriage rates, single-parent households) rather than income, schools, or segregation alone. Separately, Aaronson, Faber, Hartley, Mazumder, and Sharkey (2021) linked 1930s HOLC redlining maps to place-based mobility outcomes that persist to the present.</li><li><strong>The direct cohort-to-cohort correlation:</strong> the 2024/2025 Opportunity Insights study itself reports that "places that had low mobility for the 1978 cohort generally had low mobility in 1992 as well: the correlation in mean income ranks across counties between children born to low-income parents in the 1978 and 1992 cohorts is around 0.8 for both white and Black children." That is the single most direct answer to "does the map stay the same": mostly yes, but not entirely.</li></ul>
+</section>
+<section>
+<h2>The case for “the map shifts” — and the newest data quantifies how much</h2>
+<p>The same 2024/2025 Opportunity Insights study (Chetty, Dobbie, Goldman, Porter, Yang, "Changing Opportunity," with the Census Bureau releasing companion county-level trend data as "Module 2" of the Opportunity Atlas) directly compares the 1978 and 1992 birth cohorts — 57 million children — and finds real geographic re-sorting on top of that 0.8 correlation, not just level shifts:</p><ul><li><strong>Coasts and Great Plains declined, Southeast/industrial Midwest rose.</strong> For white children from low-income families, mobility fell the most in the Great Plains and parts of the coasts — areas that had enjoyed relatively high mobility in 1978. Those same areas fell to levels on par with historically low-mobility Appalachia by 1992. For Black children from low-income families, mobility rose sharply in the Southeast and industrial Midwest — historically the lowest-mobility regions in the country — with only modest change on the coasts.</li><li><strong>Race and class gaps moved in opposite directions almost everywhere.</strong> The Black-white gap in upward mobility shrank roughly 27–30% nationally (two consistent measures in the source materials), driven by a 72–75% drop in the racial gap in the chance a poor child stays poor: from 14.7 points worse for Black children than white children in 1978 to 4.1 points in 1992. At the same time, the gap between white children raised poor vs. rich grew roughly 28–30%. Chances of reaching the very top of the income distribution from a poor family barely moved for either race across the period — the whole shift is concentrated in escaping poverty, not reaching the top.</li><li><strong>Individual metros diverged sharply from otherwise-similar peers.</strong> Charlotte, NC and Atlanta, GA started 1978 alike (low mobility, especially for poor Black children); by 1992 Charlotte had risen to near the national average while Atlanta stayed low. Grand Rapids, MI and Milwaukee, WI were both low-mobility Rust Belt cities in 1978; by 1992 Grand Rapids rose above the national average while Milwaukee fell further. The dashboard chart shows the 1978→1992 % change in adult income for children born poor across the top and bottom five of the 50 largest metros: Brownsville TX (+6.7%) and Austin TX (+6.4%) at the top, Las Vegas NV (-10.6%) and Philadelphia PA (-12.7%) at the bottom, against a national average of -4.2%.</li><li><strong>The mechanism is the current local community, not fixed history.</strong> The study's central causal finding, using a quasi-experimental movers design, is that these changes track changes in <em>parental employment rates within a child's own community</em> (defined by county, race, class, and birth-cohort peer group) — not the parents' own individual circumstances, and not old structural conditions replaying themselves. Roughly 90% of the mobility gaps by race and class are explained by these shifts in "community conditions," and the effect operates mainly through social interaction with same-grade, same-race, same-class peers rather than through school funding or other economic resources. That is a mechanism that can move within a decade or two — which is exactly what the county correlation of 0.8, rather than 1.0, shows happened.</li></ul>
+</section>
+<section>
+<h2>Reconciling the two findings</h2>
+<p>These are not contradictory once the timescales and the actual quantitative claim are separated. The 2014 "close to constant" finding covered cohorts born 1971–1993 using data collected mostly through the mid-2010s and was, in practice, largely anchored to the 1980–82 core cohort against its own recent history — a single-era snapshot with limited cross-generation comparison. The 2024/2025 study is the first to directly compare a 1978 cohort against a 1992 cohort at county grain using genuinely new, independently measured outcome data, and its own reported number — a 0.8 county-level correlation, not 1.0 — is itself the quantitative version of "strong persistence, but real movement." The historical-persistence papers (slavery, redlining) explain why the starting level of opportunity in a place has deep roots; they are not incompatible with that same place's ranking moving up or down over a generation for reasons tied to present-day economic and social conditions (here, parental employment rates) rather than history mechanically repeating. In the authors' own framing, opportunity is "malleable in short time frames" even though it is also, on average, persistent. In short: the map is not the same generation after generation, but it is not reshuffled either — it moves by a magnitude between "stays put" and "random," and the newest research identifies the specific regions and the specific present-day driver of that movement.</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://opportunityinsights.org/wp-content/uploads/2024/07/ChangingOpportunity_Nontech.pdf">Changing Opportunity: Sociological Mechanisms Underlying Growing Class Gaps and Shrinking Race Gaps in Economic Mobility (Non-technical summary, July 2024)</a> <span class="note">— Chetty, Dobbie, Goldman, Porter, Yang — primary source for 1978 vs 1992 cohort figures and the metro % change table, fetched and parsed directly</span></li>
+<li><a href="https://opportunityinsights.org/wp-content/uploads/2024/07/ChangingOpportunity_Paper.pdf">Changing Opportunity (full technical working paper, Nov. 2025 revision)</a> <span class="note">— Fetched and read directly (introduction/abstract pages); source of the abstract's 30% figures and the 0.8 county-level cross-cohort correlation quote</span></li>
+<li><a href="https://www.census.gov/newsroom/press-releases/2024/opportunity-atlas.html">U.S. Census Bureau, Opportunity Atlas Update press release (July 25, 2024)</a> <span class="note">— Fetched directly; confirms Module 2 county/metro mobility trend data release, 1978-1992 birth cohorts</span></li>
+<li><a href="https://census.gov/library/stories/2024/07/race-and-class-gap.html">U.S. Census Bureau, America Counts: &quot;While Low-Income Black-White Earnings Gap Narrowed, Gap Between Low- and High-Income White Young Adults Widened&quot; (July 25, 2024)</a> <span class="note">— Fetched and read directly — co-authored by Chetty et al.; source of the region-by-region (Great Plains/coasts vs. Southeast/industrial Midwest) findings</span></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w19843/w19843.pdf">Where is the Land of Opportunity? The Geography of Intergenerational Mobility in the United States (Chetty, Hendren, Kline, Saez, NBER w19843)</a> <span class="note">— Source of the Charlotte 4.4% / San Jose 12.9% figures and the commuting-zone framework</span></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6060959/">Places of Persistence: Slavery and the Geography of Intergenerational Mobility in the United States (Berger, 2018, Demography, PMC full text)</a> <span class="note">— Fetched and read directly — source of the slavery-mobility correlation and 4% vs 10%+ top-quintile-reach figures</span></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">AskAmerica's own warehouse (SEC, census, BLS/BEA, IRS SOI, FBI UCR, HUD, health, energy, patents, etc.) carries no intergenerational-mobility / Opportunity Atlas table — search_catalog confirmed zero matches. This report is built entirely from primary Opportunity Insights / U.S. Census Bureau research fetched and read directly, not from warehouse queries. Note: the non-technical summary and the full technical paper report slightly different dollar/percent magnitudes for the same race and class gaps (e.g. 27% vs 30% shrinkage) because they use different income definitions/ages (age-27 earnings vs. a fuller household-income measure) — both are cited above with that caveat rather than silently picking one.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-14</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

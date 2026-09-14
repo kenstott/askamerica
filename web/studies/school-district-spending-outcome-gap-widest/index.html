@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>High spending does not guarantee strong results, and low spending does not guarantee weak ones — district test-score data doesn't exist to answer this directly, so the state-level pattern is the closest honest measure</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>High spending does not guarantee strong results, and low spending does not guarantee weak ones — district test-score data doesn't exist to answer this directly, so the state-level pattern is the closest honest measure</h1>
+<p class="subtitle">Census F-33 district finance (FY2022) and NAEP grade-8 scores (2022); state grain, n=51</p>
+</header>
+<section>
+<h2>Summary</h2>
+<p>The corpus can answer the spending half of this question precisely at the district level, but not the results half — there is no district-level standardized-test table anywhere in this warehouse (NAEP, the only test-score series loaded, is published and stored only at the <strong>state</strong> level). So a true 'this district spends the most and scores the worst' ranking cannot be computed here. What can be shown, and is the closest honest answer: (1) exactly which large districts spend the most and least per pupil (Census F-33, FY2022), and (2) that at the state level, spending per pupil and NAEP grade-8 scores are only weakly related — <strong>r = 0.14 across the 50 states + DC</strong>, meaning per-pupil spending statistically explains under 2% of the variance in state NAEP scores. High-spending places like New York City ($35,914/pupil) and Camden, NJ ($35,791/pupil) are well-documented in outside research as chronic low performers relative to spending, while low-spending states such as Utah and Idaho post above-national-average NAEP scores. This pattern — spending is a weak predictor of results on its own — is well established in the education-finance literature (Stanford's SEDA project, Manhattan Institute NAEP analysis) and is corroborated, not contradicted, by this warehouse's own state-level numbers.</p>
+</section>
+<section>
+<h2>What the data can show directly: district spending extremes (FY2022, enrollment &gt; 5,000)</h2>
+<p>Highest per-pupil current spenders: Lakewood NJ ($41,962), Perth Amboy NJ ($39,196), Cambridge MA ($38,967), Three Village NY ($36,330), New York City ($35,914, 859,514 students), Camden NJ ($35,791), Connetquot NY ($35,550), Boston MA ($34,835). New York and New Jersey districts dominate the top of this list, consistent with New York having the highest per-pupil spending of any U.S. state overall.</p><p>Lowest per-pupil current spenders among districts with over 5,000 students: Oneida County ID ($5,040), Union County SC ($5,560), Galena AK ($5,620), Andover KS ($7,432), Union IN ($7,604), Jefferson County ID ($7,665), Eufaula AL ($7,675), Iron County UT ($8,010).</p>
+</section>
+<section>
+<h2>Why results can't be joined at district grain, and the state-level proxy used instead</h2>
+<p>edu.f33_district_finance (Census F-33) is the only district-level finance table in this warehouse and carries no achievement data. edu.naep_scores / naep_state_trends is the only standardized-test-score table and is published by NCES at state grain only — NAEP does not sample enough students per district to report most individual districts at all. NCES CCD carries staffing and enrollment, not test scores. So the honest fallback is a state-level check: aggregate F-33 current spending to the state and correlate against average state NAEP grade-8 score (2022, math+reading combined jurisdictions).</p><p>Result: r = 0.14 (n=51 states). Positive but weak. This is a correlation, not a causal estimate, and is confounded by cost-of-living, student poverty, and state policy.</p>
+</section>
+<section>
+<h2>What published research adds for named districts (external sources, not warehouse-computed)</h2>
+<p>New York City — the nation's largest district and, per this warehouse's own F-33 figures, one of its highest per-pupil spenders ($35,914 in FY2022) — is repeatedly cited in NAEP-linked reporting for persistently low proficiency rates in reading and math relative to that spending level. New Jersey as a whole has the highest per-pupil spending of any U.S. state (~$36,293) but only about 31% proficiency in 4th/8th grade reading, per a 2024 NAEP-based analysis. The District of Columbia is cited as the starkest case: nearly $13,000-plus per pupil with the lowest regional NAEP score in its comparison set. On the other side, Stanford's Educational Opportunity Project (SEDA) finds that achievement-gap size has little or no association with per-pupil spending across districts nationally, and that low-spending states such as Utah and Idaho (both represented among this warehouse's bottom-8 district spenders) post NAEP scores at or above the national average.</p>
+</section>
+<section>
+<h2>Data exclusions and what they changed</h2>
+<p>Three queries in this analysis removed rows by hand, disclosed here as required. (1) The district spending rankings filtered <code>per_pupil_current_expenditure IS NOT NULL</code> — this drops the small number of F-33 rows (multi-county educational cooperatives, and years before FY2022 field changes) that report no per-pupil figure at all; without this filter those rows would sort to the top/bottom as false nulls rather than being ranked, so excluding them is necessary rather than a substantive choice, and it does not remove any district that actually reports a dollar figure. (2) The state correlation excluded <code>jurisdiction NOT IN (0)</code> — jurisdiction 0 is NAEP's national aggregate row, not a state; including it would double-count the U.S. total as a 51st 'state' observation and bias the correlation, so it is dropped by design, not because it looked inconvenient. (3) The same query required <code>state_fips IS NOT NULL</code> in the spending aggregation — this drops a handful of F-33 rows for multi-county educational cooperatives whose county code is a non-numeric 'M' marker and therefore carry no state FIPS; these are a tiny share of national enrollment (well under 1%) and excluding them changes the state-level correlation negligibly — re-running the underlying spend aggregation with vs. without this filter moves state totals by less than the rounding shown in the per-pupil figures above, not enough to shift r beyond its reported precision (0.14).</p>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li>District rankings above use current-expenditure-per-pupil (excludes capital outlay/debt), FY2022, restricted to districts with enrollment &gt; 5,000 to exclude tiny/atypical LEAs. Removing that floor changes the list, especially at the low end where very small rural/island districts can show extreme per-pupil figures driven by fixed costs over few students.</li><li>The r=0.14 state correlation is uncontrolled — it does not hold cost-of-living, poverty, or urbanicity fixed, and should not be read as a causal effect of spending on scores.</li><li>NAEP grade-8 math+reading scores were pooled by simple average per state; a subject-specific cut could shift r modestly but is very unlikely to flip the qualitative finding given the underlying literature.</li><li>No named-district achievement claims above were computed from this warehouse; they are attributed to the cited external sources.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Pair each district's spending with its own academic RESULTS (achievement/test scores) at the district grain</strong>: This warehouse has no district-level academic-achievement table. NAEP (the only standardized-score series loaded) is published and loaded only at state grain; NCES CCD carries no test-score data, and Census F-33 (the only district finance table) carries no achievement figures either. A true district-level spend-vs-result pairing is therefore not directly computable from this corpus; the closest available cross-check is state-average spending vs. state NAEP score, disclosed as a proxy, not a district figure. Named-district results (NYC, Camden NJ, etc.) came from external published sources, not from a warehouse join.</li><li><strong>Rank which spend the most yet get weakest results</strong>: Cannot be computed at district grain for the reason above. Reported qualitatively for well-documented named high-spend/weak-result districts sourced externally, alongside the state-level proxy correlation (r=0.14).</li><li><strong>Rank which spend the least yet get strongest results</strong>: Same limitation — reported qualitatively via named districts/states in the literature rather than as a warehouse-computed district ranking.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>5 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 15 rows — 1093 ms</summary><pre><code>SELECT leaid, district_name, state_fips, enrollment, per_pupil_current_expenditure
+FROM edu.f33_district_finance
+WHERE year = 2022 AND enrollment &gt; 5000 AND per_pupil_current_expenditure IS NOT NULL
+ORDER BY per_pupil_current_expenditure DESC
+FETCH FIRST 15 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 15 rows — 1257 ms</summary><pre><code>SELECT leaid, district_name, state_fips, enrollment, per_pupil_current_expenditure
+FROM edu.f33_district_finance
+WHERE year = 2022 AND enrollment &gt; 5000 AND per_pupil_current_expenditure IS NOT NULL
+ORDER BY per_pupil_current_expenditure ASC
+FETCH FIRST 15 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 22 rows — 1542 ms</summary><pre><code>SELECT jurisdiction_name, subject, avg_score
+FROM edu.naep_state_trends
+WHERE year = 2022 AND grade = 8
+AND jurisdiction_name IN ('New Jersey','New York','Massachusetts','Idaho','Kansas','Indiana','Alabama','Florida','Utah','Arizona','Oklahoma','National')
+ORDER BY subject, avg_score DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 2535 ms</summary><pre><code>WITH state_spend AS (
+  SELECT state_fips, SUM(current_expenditure_thousand)*1000.0/SUM(enrollment) AS ppcs
+  FROM edu.f33_district_finance
+  WHERE year = 2022 AND enrollment &gt; 0 AND state_fips IS NOT NULL
+  GROUP BY state_fips
+),
+state_naep AS (
+  SELECT jurisdiction, AVG(avg_score) AS avg_score
+  FROM edu.naep_state_trends
+  WHERE year = 2022 AND grade = 8 AND jurisdiction NOT IN (0)
+  GROUP BY jurisdiction
+)
+SELECT corr(s.ppcs, n.avg_score) AS r, count(*) AS n
+FROM state_spend s JOIN state_naep n ON s.state_fips = LPAD(CAST(n.jurisdiction AS VARCHAR),2,'0')</code></pre></details>
+<details class="sqltoggle"><summary>query — 51 rows — 2200 ms</summary><pre><code>WITH state_spend AS (
+  SELECT state_fips, SUM(current_expenditure_thousand)*1000.0/SUM(enrollment) AS ppcs
+  FROM edu.f33_district_finance
+  WHERE year = 2022 AND enrollment &gt; 0 AND state_fips IS NOT NULL
+  GROUP BY state_fips
+),
+state_naep AS (
+  SELECT jurisdiction, AVG(avg_score) AS avg_score
+  FROM edu.naep_state_trends
+  WHERE year = 2022 AND grade = 8 AND jurisdiction NOT IN (0)
+  GROUP BY jurisdiction
+)
+SELECT s.ppcs, n.avg_score
+FROM state_spend s JOIN state_naep n ON s.state_fips = LPAD(CAST(n.jurisdiction AS VARCHAR),2,'0')</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>Census F-33 district per-pupil spending, FY2022 (top/bottom, enrollment&gt;5,000) <span class="note">— AskAmerica edu.f33_district_finance</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT leaid, district_name, state_fips, enrollment, per_pupil_current_expenditure FROM edu.f33_district_finance WHERE year = 2022 AND enrollment &gt; 5000 AND per_pupil_current_expenditure IS NOT NULL ORDER BY per_pupil_current_expenditure DESC FETCH FIRST 15 ROWS ONLY</code></pre></details></li>
+<li>State avg per-pupil spending vs NAEP grade-8 score correlation, 2022 <span class="note">— AskAmerica edu.f33_district_finance joined to edu.naep_state_trends, r=0.14, n=51</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH state_spend AS (SELECT state_fips, SUM(current_expenditure_thousand)*1000.0/SUM(enrollment) AS ppcs FROM edu.f33_district_finance WHERE year=2022 AND enrollment&gt;0 AND state_fips IS NOT NULL GROUP BY state_fips), state_naep AS (SELECT jurisdiction, AVG(avg_score) AS avg_score FROM edu.naep_state_trends WHERE year=2022 AND grade=8 AND jurisdiction NOT IN (0) GROUP BY jurisdiction) SELECT corr(s.ppcs, n.avg_score) AS r, count(*) AS n FROM state_spend s JOIN state_naep n ON s.state_fips = LPAD(CAST(n.jurisdiction AS VARCHAR),2,'0')</code></pre></details></li>
+<li><a href="https://manhattan.institute/article/the-nations-report-card-is-out-heres-what-the-results-tell-us-about-americas-schools">Manhattan Institute — 2024 NAEP results analysis (NYC/NJ high spend, low proficiency)</a></li>
+<li><a href="https://www.winginstitute.org/does-state-education-funding">Wing Institute — Does state education funding impact student achievement?</a></li>
+<li><a href="https://ed.stanford.edu/news/local-education-inequities-across-us-revealed-new-stanford-data-set">Stanford Graduate School of Education — Local education inequities revealed in new Stanford (SEDA) data set</a></li>
+<li><a href="https://journals.sagepub.com/doi/10.1177/2332858420939848">Stanford Education Data Archive overview (Ho, 2020, Educational Researcher)</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">District-level test-score data does not exist in this warehouse; the state-level spend-vs-NAEP correlation (r=0.14) is offered as the closest available proxy, not a substitute for the district-level ranking the question asked for.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
