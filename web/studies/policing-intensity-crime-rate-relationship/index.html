@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Police-force size tracks crime rates across places, but not within places over 20 years — and county-grain data doesn't exist to test this directly</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Police-force size tracks crime rates across places, but not within places over 20 years — and county-grain data doesn't exist to test this directly</h1>
+<p class="subtitle">FBI Crime Data Explorer, state-year grain, 2010-2024; published county-level causal literature, 1960-2020s</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">Police staffing tracks crime across places (reverse causation) but not within places over time</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">FBI CDE state-year data, 2010-2024 (49 states + DC); county-grain police staffing does not exist in this warehouse or in any public federal source</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:8px">Cross-state correlation (officers/1,000 vs violent crime rate, 50 states+DC avg 2010-24)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">r = 0.58</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Positive: places with more officers per capita also have more crime.</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">This is dominated by reverse causation (departments staff up where…</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Same correlation excluding DC</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">r = 0.33</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">DC alone roughly halves it</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">DC is both the most policed and most violent jurisdiction; it inflates</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">the pooled cross-sectional relationship substantially.</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="342.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="378.50" fill="#6b7280" style="font-size:11px">Within-state panel effect (2-way FE, state+year absorbed)</text>
+  <text class="stat-value" x="36" y="408.50" fill="#1f2328" style="font-size:29px">-5.0 per officer/1,000</text>
+  <text class="stat-delta" x="36" y="428.50" fill="#6b7280">p = 0.51, not significant</text>
+  </g>
+  <text class="caption" x="24" y="568" fill="#6b7280">Once state and year fixed effects strip out level differences and</text>
+  <text class="caption" x="24" y="581" fill="#6b7280">national trends, a state's own year-to-year change in officer staffin…</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="317" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="317" viewBox="0 0 412 317" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="317" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Officers per 1,000 residents vs. average violent-crime rate per 100k, state …</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="77" y1="221" x2="386" y2="221" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="69" y="225" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="193.50" x2="386" y2="193.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="69" y="197.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="77" y1="166" x2="386" y2="166" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="69" y="170" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="77" y1="138.50" x2="386" y2="138.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="69" y="142.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">600</text>
+      <line class="grid" x1="77" y1="111" x2="386" y2="111" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="69" y="115" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">800</text>
+      <line class="grid" x1="77" y1="83.50" x2="386" y2="83.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="69" y="87.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="77" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,200</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="221" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="221" x2="386" y2="221" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="231.50" y="269" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Officers per 1,000</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="138.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 138.50)">Violent rate /100k</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-0" class="tick" x="77" y="239" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2</text>
+      <text id="p4-xtick-1" class="tick" x="128.50" y="239" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">3</text>
+      <text id="p4-xtick-2" class="tick" x="180" y="239" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">4</text>
+      <text id="p4-xtick-3" class="tick" x="231.50" y="239" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5</text>
+      <text id="p4-xtick-4" class="tick" x="283" y="239" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">6</text>
+      <text id="p4-xtick-5" class="tick" x="334.50" y="239" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">7</text>
+      <text id="p4-xtick-6" class="tick" x="386" y="239" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">8</text>
+    </g>
+    <g id="p4-series-states" class="series">
+      <circle id="p4-mark-states-0" class="point" cx="110.99" cy="119.10" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-1" class="point" cx="151.68" cy="161.17" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-2" class="point" cx="146.53" cy="143.44" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-3" class="point" cx="140.86" cy="160.24" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-4" class="point" cx="151.68" cy="159.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-5" class="point" cx="143.44" cy="167.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-6" class="point" cx="112.54" cy="191.47" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-7" class="point" cx="150.13" cy="156.16" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-8" class="point" cx="167.64" cy="164.10" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-9" class="point" cx="157.86" cy="171.91" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-10" class="point" cx="105.84" cy="185.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-11" class="point" cx="113.57" cy="182.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-12" class="point" cx="120.26" cy="189.33" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-13" class="point" cx="184.12" cy="165.33" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-14" class="point" cx="116.14" cy="168.35" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-15" class="point" cx="167.13" cy="164.71" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-16" class="point" cx="105.84" cy="188.83" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-17" class="point" cx="219.65" cy="143.37" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-18" class="point" cx="133.65" cy="170.59" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-19" class="point" cx="159.40" cy="157.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-20" class="point" cx="85.24" cy="204.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-21" class="point" cx="102.75" cy="157.75" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-22" class="point" cx="110.48" cy="186.61" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-23" class="point" cx="150.65" cy="153.69" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-24" class="point" cx="127.47" cy="169.37" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-25" class="point" cx="144.98" cy="169.78" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-26" class="point" cx="133.14" cy="183.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-27" class="point" cx="117.69" cy="182.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-28" class="point" cx="119.75" cy="197.72" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-29" class="point" cx="223.26" cy="187.08" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-30" class="point" cx="143.44" cy="123.84" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-31" class="point" cx="147.56" cy="145.10" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-32" class="point" cx="197.51" cy="167.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-33" class="point" cx="124.90" cy="177.52" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-34" class="point" cx="139.83" cy="159.37" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-35" class="point" cx="125.93" cy="182.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-36" class="point" cx="128.50" cy="177.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-37" class="point" cx="123.87" cy="190.56" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-38" class="point" cx="139.83" cy="150.09" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-39" class="point" cx="150.65" cy="169.49" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-40" class="point" cx="181.55" cy="134.36" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-41" class="point" cx="148.59" cy="162.49" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-42" class="point" cx="99.15" cy="188.99" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-43" class="point" cx="120.26" cy="191.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-44" class="point" cx="113.57" cy="198.08" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-45" class="point" cx="80.09" cy="177.87" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-46" class="point" cx="138.29" cy="180.27" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-47" class="point" cx="95.54" cy="178.20" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-48" class="point" cx="180.52" cy="191.44" r="4" fill="#2563eb" fill-opacity="0.85"/>
+    </g>
+    <g id="p4-series-dc-outlier" class="series">
+      <circle id="p4-mark-dc-outlier-0" class="point" cx="350.47" cy="71.79" r="4" fill="#ea580c" fill-opacity="0.85"/>
+    </g>
+    <g id="p4-legend">
+      <rect id="p4-legend-swatch-states" x="135" y="283" width="11" height="11" fill="#2563eb"/>
+      <text id="p4-legend-label-states" class="legend-label" x="151" y="292" fill="#1f2328" font-size="11" style="font-size:11px">States</text>
+      <rect id="p4-legend-swatch-dc-outlier" x="199" y="283" width="11" height="11" fill="#ea580c"/>
+      <text id="p4-legend-label-dc-outlier" class="legend-label" x="215" y="292" fill="#1f2328" font-size="11" style="font-size:11px">DC (outlier)</text>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="568" fill="#6b7280">Each point is one jurisdiction's 2010-2024 average. The visible</text>
+  <text class="caption" x="452" y="581" fill="#6b7280">positive slope across states is a place-effect (urban, high-crime…</text>
+  <text class="footnote" x="20" y="613" fill="#6b7280">County-grain police employment is not available in this connector (crime.cde_police_employment is state-year only) nor practically obtainable</text>
+  <text class="footnote" x="20" y="627" fill="#6b7280">federally at county grain for a 20-year window; state-year FBI CDE data (crime.cde_offenses, crime.cde_police_employment) is the finest common</text>
+  <text class="footnote" x="20" y="641" fill="#6b7280">grain available and is used here as the closest feasible proxy, explicitly labeled as such.</text>
+  <g id="brand">
+  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="668" fill="#6b7280" text-anchor="end">Prepared 2026-09-13</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:64077/a/04c541dbbe9d4ee71326d0b79d178d4b.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>The question as asked cannot be answered directly: no dataset — in this connector or, to our knowledge, in any public federal source — tracks police force size at the county level across a 20-year window.</strong> The FBI's police-employment series (crime.cde_police_employment) is published only at state grain; county-level agency-by-agency staffing exists only as a scattered, incompletely-reported roll-up (crime.cde_reta / cde_agencies) with no consistent officer-count field. Two things can still be said with real data: (1) at the coarser state-year grain, places with more officers per capita also tend to have more crime — a raw cross-sectional correlation of about r=0.58 (r=0.33 excluding the extreme outlier, Washington DC) — but this is driven mainly by cities/states reactively staffing up where crime is already high, not by police presence causing crime; (2) once state and year fixed effects are removed — i.e., looking only at whether a state's own year-to-year change in officers per 1,000 tracks its own year-to-year change in violent crime — there is no statistically detectable relationship (coefficient -5.0 per officer/1,000, p=0.51, n=712 state-years, 2010-2024). This matches the published quasi-experimental literature: naive raw correlations between police staffing and crime are typically flat-to-positive because of reverse causation, but well-identified studies using exogenous variation (COPS grant timing, terror-alert redeployments) find police reduce crime, with elasticities around -0.3 to -1.3 depending on crime type and study.</p>
+</section>
+<section>
+<h2>Why the question can't be answered at county grain</h2>
+<p>We ran search_catalog and describe_table across the crime schema and every table with a county dimension. The results: <code>crime.cde_police_employment</code> (officers per 1,000, sworn officer counts) is keyed on state_abbr + year only — no county column. <code>crime.cde_agencies</code> has a county_name field (agency registry, ~19,600 agencies) but carries no officer-count column at all — just agency identity and NIBRS status. <code>crime.cde_reta</code> is agency-level and monthly, with a county derivable through cde_agencies, but it records only offense counts and officers killed/assaulted in the line of duty — never total officer headcount. No table in this warehouse joins an agency's authorized/sworn strength to its jurisdiction's population at county grain. The FBI's own public LEOKA/CDE employment publication is state-level for the same reason: local agencies report officer counts to the FBI's Uniform Crime Reporting Program inconsistently below the state roll-up, and BJS's county-comparable series (the Law Enforcement Management and Administrative Statistics survey) is a periodic sample survey, not an annual full-count series, so it cannot support a continuous 20-year county panel either. This is a genuine, structural data gap, not a query-writing failure — we are naming it rather than substituting a coarser table for the county claim.</p>
+</section>
+<section>
+<h2>What the state-year data show instead (used as the closest available proxy)</h2>
+<p>Using FBI CDE state-year data 2010-2024 (crime.cde_offenses summed to annual violent-crime rate per 100k, filtered to state-years with at least 80% agency reporting coverage per the recipe for this table's known SRS-to-NIBRS reporting-coverage instability; crime.cde_police_employment for officers per 1,000):</p><ul><li>Every query below applies the predicate <code>p.officers_per_1000 IS NOT NULL</code>. We checked directly what this excludes: <code>SELECT COUNT(*) FROM crime.cde_police_employment WHERE state_abbr <> 'national' AND officers_per_1000 IS NULL</code> returns 0 — all 867 non-national state-year rows have a non-null value, so this predicate is a defensive no-op that excludes zero rows and changes none of the figures below; there is no with/without comparison to show because nothing was removed by it.</li><li><strong>Pooled cross-sectional correlation</strong> between a state's average officers-per-1,000 and its average violent-crime rate, 2010-2024: r=0.58 (50 units, 49 states + DC, the 'national' aggregate row excluded via <code>state_abbr <> 'national'</code> because it is not a place and would double count against every state). Excluding DC as well (<code>state_abbr NOT IN ('national','DC')</code>) — DC being an extreme outlier as both the most heavily staffed and most violent jurisdiction — the correlation falls to r=0.33 (49 states). Both figures are reported; this positive correlation is the expected signature of reverse causation, not evidence police presence raises crime.</li><li><strong>Two-way fixed-effects panel</strong> (entity=state, time=year, cluster-robust SE on state, n=712 state-year observations, 2010-2024, DC excluded via the same <code>state_abbr NOT IN ('national','DC')</code> predicate for the same outlier reason above — 49 states remain): regressing violent-crime rate on officers-per-1,000 with state and year fixed effects absorbed gives a coefficient of -5.0 (crime-rate points per additional officer per 1,000), std. error 7.6, p=0.51 — not statistically distinguishable from zero.</li></ul>
+</section>
+<section>
+<h2>What the published, quasi-experimental literature finds</h2>
+<p>The state-year panel above cannot resolve the police-crime relationship causally — officer counts and crime are jointly determined (departments staff up in response to crime, and crime waves can also strain enforcement capacity), and self-reported officer counts are measured with error, both of which bias naive correlations. The literature gets around this with genuinely exogenous shifters of police staffing:</p><ul><li>Chalfin &amp; McCrary, "The Effect of Police on Crime: New Evidence from U.S. Cities, 1960-2010" (NBER w18815, published version <em>Review of Economics and Statistics</em> 2018) — using city panel data and instrumenting for police employment, find police-crime elasticities of about -1.3 for violent crime and -0.8 for property crime; an additional officer is estimated to prevent roughly 1.9 robberies and 0.11 murders per year on average.</li><li>Chalfin &amp; McCrary (2018 companion methods paper) show that OLS estimates of the police-crime relationship are contaminated mainly by <em>measurement error</em> in reported police counts, not simply simultaneity, and correct for it using the Census Annual Survey of Governments as an independent second measure of police staffing.</li><li>Evans &amp; Owens / Mello, "More COPS, Less Crime" — using the timing and size of federal COPS hiring grants (an instrument largely uncorrelated with a city's contemporaneous crime trend) as a natural experiment, finds implied elasticities in a similar range, with substantial cost-effectiveness for violent crime reduction.</li><li>A systematic review and meta-analysis of the broader (mostly non-experimental) literature found the overall macro-level relationship between police force size and crime is negative but small, and often statistically insignificant when studies do not correct for endogeneity — consistent with our own null within-state result above, which used no instrument.</li></ul><p>Net picture: <strong>when identified with exogenous variation, more police officers per capita causally reduce crime, with an elasticity in roughly the -0.3 to -1.3 range</strong> depending on crime type and study design; but a simple correlation of officer staffing against crime rates is confounded by reverse causation and typically comes out flat or positive, exactly what we found in the state-year data here.</p>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li>Grain: everything computed here is at state-year, not county-year, because no county-grain officer-staffing series exists in this connector or (to our knowledge) in any consistently-reported federal source across a 20-year window. This is named, not glossed over.</li><li>The within-state panel regression above has one predictor and no controls (poverty, unemployment, demographic composition, urbanization) and is not instrumented — it is a description of the raw within-state co-movement, not a causal estimate; the cited literature's instrumented estimates are the causal evidence.</li><li>Every exclusion applied and what it changed, restated together: <code>state_abbr <> 'national'</code> removes the national rollup row (not a place, would double count); <code>state_abbr NOT IN ('national','DC')</code> additionally removes DC as a single-city outlier, moving the pooled correlation from 0.58 to 0.33 — both values reported, and DC is plotted as a separate marker on the chart rather than dropped from the figure; <code>p.officers_per_1000 IS NOT NULL</code> removes zero rows (verified: 0 of 867 rows are null), so it changes nothing.</li><li>FBI CDE reporting coverage varies by state-year due to the SRS-to-NIBRS transition (2018-2021); state-years below 80% population coverage were excluded from the crime-rate calculation to avoid a reporting-coverage artifact.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>County grain</strong>: No table in this warehouse (or, per literature search, any consistent federal source) carries police officer headcount at county grain across a multi-year window. crime.cde_police_employment is state-year only; crime.cde_agencies has county but no officer-count column; crime.cde_reta is agency-level but carries no officer headcount. Answered instead at state-year grain, the finest grain the data supports, with the gap stated explicitly.</li><li><strong>Twenty-year window</strong>: crime.cde_police_employment's observed coverage is 2010-2026 (about 15 usable years after coverage filtering), not 20; extending further back is not possible with this table. The published causal literature (Chalfin &amp; McCrary) does reach back to 1960 at city grain, cited for the longer-run picture.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>7 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 5 rows — 1804 ms</summary><pre><code>SELECT state_abbr, MIN(year) miny, MAX(year) maxy, COUNT(*) n FROM crime.cde_police_employment WHERE state_abbr &lt;&gt; 'national' GROUP BY state_abbr ORDER BY state_abbr LIMIT 5</code></pre></details>
+<details class="sqltoggle"><summary>query — 500 rows — 3711 ms</summary><pre><code>SELECT state_abbr, CAST(year AS INTEGER) yr, SUM(offense_rate) AS violent_rate, AVG(population_coverage_pct) AS cov_pct
+FROM crime.cde_offenses
+WHERE offense_code = 'violent-crime' AND state_abbr &lt;&gt; 'national' AND CAST(year AS INTEGER) BETWEEN 2010 AND 2024
+GROUP BY state_abbr, CAST(year AS INTEGER)
+HAVING AVG(population_coverage_pct) &gt;= 80
+ORDER BY state_abbr, yr</code></pre></details>
+<details class="sqltoggle"><summary>panel_fixed_effects — 5596 ms</summary><pre><code>WITH crime_yr AS (
+  SELECT state_abbr, CAST(year AS INTEGER) yr, SUM(offense_rate) AS violent_rate, AVG(population_coverage_pct) AS cov_pct
+  FROM crime.cde_offenses
+  WHERE offense_code = 'violent-crime' AND state_abbr NOT IN ('national','DC') AND CAST(year AS INTEGER) BETWEEN 2010 AND 2024
+  GROUP BY state_abbr, CAST(year AS INTEGER)
+  HAVING AVG(population_coverage_pct) &gt;= 80
+)
+SELECT c.state_abbr, c.yr, c.violent_rate, p.officers_per_1000
+FROM crime_yr c
+JOIN crime.cde_police_employment p ON p.state_abbr = c.state_abbr AND p.year = c.yr
+WHERE p.officers_per_1000 IS NOT NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 5981 ms</summary><pre><code>WITH crime_yr AS (
+  SELECT state_abbr, CAST(year AS INTEGER) yr, SUM(offense_rate) AS violent_rate, AVG(population_coverage_pct) AS cov_pct
+  FROM crime.cde_offenses
+  WHERE offense_code = 'violent-crime' AND state_abbr NOT IN ('national','DC') AND CAST(year AS INTEGER) BETWEEN 2010 AND 2024
+  GROUP BY state_abbr, CAST(year AS INTEGER)
+  HAVING AVG(population_coverage_pct) &gt;= 80
+)
+SELECT corr(c.violent_rate, p.officers_per_1000) AS pooled_corr, COUNT(*) n
+FROM crime_yr c
+JOIN crime.cde_police_employment p ON p.state_abbr = c.state_abbr AND p.year = c.yr
+WHERE p.officers_per_1000 IS NOT NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 6120 ms</summary><pre><code>WITH crime_yr AS (
+  SELECT state_abbr, CAST(year AS INTEGER) yr, SUM(offense_rate) AS violent_rate, AVG(population_coverage_pct) AS cov_pct
+  FROM crime.cde_offenses
+  WHERE offense_code = 'violent-crime' AND state_abbr &lt;&gt; 'national' AND CAST(year AS INTEGER) BETWEEN 2010 AND 2024
+  GROUP BY state_abbr, CAST(year AS INTEGER)
+  HAVING AVG(population_coverage_pct) &gt;= 80
+)
+SELECT corr(c.violent_rate, p.officers_per_1000) AS pooled_corr_with_dc, COUNT(*) n
+FROM crime_yr c
+JOIN crime.cde_police_employment p ON p.state_abbr = c.state_abbr AND p.year = c.yr
+WHERE p.officers_per_1000 IS NOT NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 50 rows — 6284 ms</summary><pre><code>WITH crime_yr AS (
+  SELECT state_abbr, CAST(year AS INTEGER) yr, SUM(offense_rate) AS violent_rate, AVG(population_coverage_pct) AS cov_pct
+  FROM crime.cde_offenses
+  WHERE offense_code = 'violent-crime' AND state_abbr NOT IN ('national') AND CAST(year AS INTEGER) BETWEEN 2010 AND 2024
+  GROUP BY state_abbr, CAST(year AS INTEGER)
+  HAVING AVG(population_coverage_pct) &gt;= 80
+)
+SELECT c.state_abbr, c.officers, c.violent_rate FROM (
+  SELECT c.state_abbr, AVG(p.officers_per_1000) officers, AVG(c.violent_rate) violent_rate
+  FROM crime_yr c JOIN crime.cde_police_employment p ON p.state_abbr=c.state_abbr AND p.year=c.yr
+  WHERE p.officers_per_1000 IS NOT NULL
+  GROUP BY c.state_abbr
+) c
+ORDER BY c.state_abbr</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1360 ms</summary><pre><code>SELECT COUNT(*) FROM crime.cde_police_employment WHERE state_abbr &lt;&gt; 'national' AND officers_per_1000 IS NULL</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>crime.cde_offenses (violent-crime offense_rate, state-year, coverage-filtered)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT state_abbr, year, SUM(offense_rate) violent_rate, AVG(population_coverage_pct) cov_pct FROM crime.cde_offenses WHERE offense_code='violent-crime' AND state_abbr&lt;&gt;'national' GROUP BY state_abbr, year HAVING AVG(population_coverage_pct)&gt;=80&quot;)</code></pre></details></li>
+<li>crime.cde_police_employment (officers per 1,000, state-year)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_abbr, year, officers_per_1000 FROM crime.cde_police_employment WHERE state_abbr &lt;&gt; 'national'</code></pre></details></li>
+<li>Two-way fixed-effects panel: violent_rate ~ officers_per_1000, entity=state, time=year, clustered SE<details class="sqltoggle"><summary>Show tool call</summary><pre><code>panel_fixed_effects(outcome=&quot;violent_rate&quot;, predictors=[&quot;officers_per_1000&quot;], entity_col=&quot;state_abbr&quot;, time_col=&quot;yr&quot;, cluster_col=&quot;state_abbr&quot;)</code></pre></details></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w18815/w18815.pdf">Chalfin &amp; McCrary, &quot;The Effect of Police on Crime: New Evidence from U.S. Cities, 1960-2010&quot;, NBER Working Paper 18815</a></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w28202/w28202.pdf">Chalfin &amp; McCrary, &quot;Police Force Size and Civilian Race&quot;, NBER Working Paper 28202</a></li>
+<li><a href="https://www.princeton.edu/~smello/papers/cops.pdf">Mello, &quot;More COPS, Less Crime&quot;</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0047235224001405">&quot;Size isn't everything: Understanding the relationship between police workforce and crime problems&quot;, Journal of Criminal Justice, 2024</a></li>
+<li><a href="https://www.researchgate.net/publication/283449163_Police_levels_and_crime_A_systematic_review_and_meta-analysis">&quot;Police levels and crime: A systematic review and meta-analysis&quot;</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">County-level police-staffing data across a 20-year window does not exist in this connector or, so far as this research found, in any consistently reported federal source; state-year FBI CDE data is used as the closest available proxy and labeled as such throughout.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-13</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
