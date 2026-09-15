@@ -1,14 +1,95 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Does weak demand at a Treasury auction in the days before a Fed meeting tend to line up with how the meeting actually goes for rates?</title>
+<title>Weak Treasury auction demand and Fed meeting outcomes mostly share a cause, rather than one predicting the other</title>
 <style>
-  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
-          font-size:14px; line-height:1.7; margin:0; }
-  main { max-width:800px; margin:0 auto; padding:2rem; }
-  h1 { color:#f0f6fc; font-size:1.3rem; }
-  pre { white-space:pre-wrap; word-wrap:break-word; }
-</style></head>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
 <body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
@@ -17,42 +98,206 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
 </div>
 <main>
-<h1>Does weak demand at a Treasury auction in the days before a Fed meeting tend to line up with how the meeting actually goes for rates?</h1>
-<p style="color:#768390;">askamerica run &middot; 2026-09-15</p>
-<pre># Does weak Treasury auction demand before a Fed meeting line up with how the meeting goes for rates?
+<header>
+<h1>Weak Treasury auction demand and Fed meeting outcomes mostly share a cause, rather than one predicting the other</h1>
+<p class="subtitle">Auction bid-to-cover/tail data is not in the AskAmerica warehouse; findings are drawn from Fed, academic and market research, cross-checked against AskAmerica's own yield series for the current episode</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
 
-## Answer
-No — not as a reliable predictor. Weak auction demand (a positive tail, low bid-to-cover) and a hawkish FOMC outcome tend to co-occur because both are downstream of the same driver — elevated inflation expectations and heavy debt supply pushing up term premia — not because the auction result causes or forecasts the Fed&#x27;s decision. Academic and market research documents that weak auctions raise Treasury yields in the following hours/days (a market-microstructure effect), but none of it establishes auction outcomes as a leading indicator of FOMC votes specifically.
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
 
-## Mechanism
-- A weak auction (positive tail vs. the when-issued yield, and/or low bid-to-cover) means the Treasury had to concede a higher yield to clear the issue — this pushes yields up on the news itself.
-- This co-occurs with hawkish/hold FOMC outcomes because strong growth or sticky inflation data simultaneously (a) raises term premia, weakening auction demand, and (b) makes the Fed less likely to ease — a shared-cause correlation, not causation running auction → Fed.
-- The reverse also holds: when the Fed is expected to ease and inflation expectations are anchored, auctions tend to clear well (strong bid-to-cover, high indirect/foreign bidder share) for the same underlying reason.
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 599" width="880" height="599" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="599" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Treasury Yields Climbed Into the September 2026 FOMC Meeting</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">10-year and 30-year constant-maturity Treasury yields, Jan-Sep 2026 (econ.interest_rate_spreads)</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">10-yr yield, Jan 2 to Sep 11, 2026</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">4.19% -&gt; 4.96%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">+77 bps</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">30-yr yield, Jan 2 to Sep 11, 2026</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">4.86% -&gt; 5.35%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">+49 bps</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="840" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="840" height="300" viewBox="0 0 840 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">10-yr and 30-yr Treasury yield, 2026 YTD</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="53" y1="208" x2="818" y2="208" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="45" y="212" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="182.67" x2="818" y2="182.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="45" y="186.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
+      <line class="grid" x1="53" y1="157.33" x2="818" y2="157.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="45" y="161.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="132" x2="818" y2="132" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="45" y="136" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
+      <line class="grid" x1="53" y1="106.67" x2="818" y2="106.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="45" y="110.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="53" y1="81.33" x2="818" y2="81.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="45" y="85.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="53" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="208" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="208" x2="818" y2="208" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="435.50" y="252" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">2026</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="132" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 132)">Yield (%)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-jan-02" class="tick" x="91.25" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Jan-02</text>
+      <text id="p3-xtick-feb-02" class="tick" x="167.75" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Feb-02</text>
+      <text id="p3-xtick-mar-02" class="tick" x="244.25" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Mar-02</text>
+      <text id="p3-xtick-apr-01" class="tick" x="320.75" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Apr-01</text>
+      <text id="p3-xtick-may-01" class="tick" x="397.25" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">May-01</text>
+      <text id="p3-xtick-jun-01" class="tick" x="473.75" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Jun-01</text>
+      <text id="p3-xtick-jul-01" class="tick" x="550.25" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Jul-01</text>
+      <text id="p3-xtick-aug-03" class="tick" x="626.75" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Aug-03</text>
+      <text id="p3-xtick-sep-01" class="tick" x="703.25" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Sep-01</text>
+      <text id="p3-xtick-sep-11" class="tick" x="779.75" y="226" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Sep-11</text>
+    </g>
+    <g id="p3-series-10-yr-yield" class="series">
+      <path id="p3-line-10-yr-yield" class="line" d="M 91.25 101.85 L 167.75 99.32 L 244.25 105.40 L 320.75 98.31 L 397.25 96.79 L 473.75 94.76 L 550.25 94.51 L 626.75 88.93 L 703.25 86.65 L 779.75 82.35" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-10-yr-yield-jan-02" class="point" cx="91.25" cy="101.85" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-10-yr-yield-feb-02" class="point" cx="167.75" cy="99.32" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-10-yr-yield-mar-02" class="point" cx="244.25" cy="105.40" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-10-yr-yield-apr-01" class="point" cx="320.75" cy="98.31" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-10-yr-yield-may-01" class="point" cx="397.25" cy="96.79" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-10-yr-yield-jun-01" class="point" cx="473.75" cy="94.76" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-10-yr-yield-jul-01" class="point" cx="550.25" cy="94.51" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-10-yr-yield-aug-03" class="point" cx="626.75" cy="88.93" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-10-yr-yield-sep-01" class="point" cx="703.25" cy="86.65" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-10-yr-yield-sep-11" class="point" cx="779.75" cy="82.35" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-30-yr-yield" class="series">
+      <path id="p3-line-30-yr-yield" class="line" d="M 91.25 84.88 L 167.75 83.87 L 244.25 88.93 L 320.75 83.61 L 397.25 82.09 L 473.75 81.59 L 550.25 82.09 L 626.75 75.51 L 703.25 74.49 L 779.75 72.47" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-30-yr-yield-jan-02" class="point" cx="91.25" cy="84.88" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-30-yr-yield-feb-02" class="point" cx="167.75" cy="83.87" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-30-yr-yield-mar-02" class="point" cx="244.25" cy="88.93" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-30-yr-yield-apr-01" class="point" cx="320.75" cy="83.61" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-30-yr-yield-may-01" class="point" cx="397.25" cy="82.09" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-30-yr-yield-jun-01" class="point" cx="473.75" cy="81.59" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-30-yr-yield-jul-01" class="point" cx="550.25" cy="82.09" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-30-yr-yield-aug-03" class="point" cx="626.75" cy="75.51" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-30-yr-yield-sep-01" class="point" cx="703.25" cy="74.49" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-30-yr-yield-sep-11" class="point" cx="779.75" cy="72.47" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-10-yr-yield" x="337" y="266" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-10-yr-yield" class="legend-label" x="353" y="275" fill="#1f2328" font-size="11" style="font-size:11px">10-yr yield</text>
+      <rect id="p3-legend-swatch-30-yr-yield" x="428" y="266" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-30-yr-yield" class="legend-label" x="444" y="275" fill="#1f2328" font-size="11" style="font-size:11px">30-yr yield</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="footnote" x="20" y="532" fill="#6b7280">econ.interest_rate_spreads' observed window covers roughly the trailing year (2026 only) — it does not carry the 2023 episode discussed in the</text>
+  <text class="footnote" x="20" y="546" fill="#6b7280">text, which is drawn from the Fed's own FEDS Notes and market reporting instead.</text>
+  <g id="brand">
+  <svg x="20" y="558" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="573" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="573" fill="#6b7280" text-anchor="end">Prepared 2026-09-15</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:57165/a/56cd95ac38201bb21fbfaa7f0268d49a.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Mostly no — not as a reliable, independent predictor.</strong> Weak demand at a Treasury auction (a low bid-to-cover ratio, an auction that 'tails', or an unusually large primary-dealer takedown) and a hawkish-leaning Fed meeting tend to show up in the news together, but the evidence says they are largely two symptoms of the same underlying forces — rising term premium, heavy issuance, and inflation/policy uncertainty — rather than the auction causing or forecasting the Fed's decision. The one well-documented episode where this chain has been traced start to finish (the 2023 'Treasury tantrum') actually ran the <em>opposite</em> of a simple 'weak auction → hawkish meeting' story: soft demand helped push yields up and tighten financial conditions ahead of the November 2023 meeting, and the FOMC's own statement cited that tightening as a reason to <em>hold</em> rates steady rather than hike further. Right now, in the days before this week's September 2026 meeting, yields have climbed sharply (10-year up 77 bps and 30-year up 49 bps since January) alongside hawkish Fed commentary — illustrating the same pattern: rate expectations are driving both the bond market and the auction backdrop, not the other way around.</p>
+</section>
+<section>
+<h2>What the AskAmerica warehouse does and doesn't carry</h2>
+<p>I checked <code>search_catalog</code> across the corpus for Treasury auction microstructure — bid-to-cover ratio, auction tails, indirect/direct bidder shares, primary-dealer takedown. Neither 'auction' nor 'bidder' matches any table or column in this warehouse, and no auction-results table exists anywhere in the catalog. This is a genuine coverage gap, not a search miss — the demand side of this question cannot be computed from AskAmerica data and is answered from published research and market reporting instead, with citations below.</p><p>What the warehouse does carry — <code>econ.interest_rate_spreads</code>, the constant-maturity Treasury yield curve plus the Fed funds rate — is queried below (SQL cited under Sources) to illustrate the 'how the meeting goes for rates' side for the current, live episode. Its observed coverage window is roughly the trailing year only (essentially 2026), so it cannot support a multi-decade backtest of auction demand against FOMC outcomes; the historical (2023) case study is drawn entirely from the Federal Reserve's own published research.</p>
+</section>
+<section>
+<h2>What the research actually shows</h2>
+<ul><li><strong>Auction outcomes mostly just reflect prevailing conditions.</strong> A Dallas Fed study building a 10-year auction 'surprise' indicator through the pandemic found that most auctions were unsurprising given financial conditions at the time — genuine demand shocks were rare and concentrated in acute stress episodes (the 2016 election, and March 2020 COVID market dysfunction), not routine occurrences ahead of ordinary FOMC meetings.</li><li><strong>A weak auction moves yields mechanically at the margin, briefly.</strong> Academic work on auction risk premia and on Treasury auctions and long-term yields finds that surprisingly strong demand tends to push yields down a few basis points around the auction itself, and a 'tail' (auction yield above the pre-auction when-issued yield) signals weaker-than-expected demand — but this is a short-lived, mechanical supply/demand effect on the specific security, not evidence the market is repricing the Fed's reaction function.</li><li><strong>Metrics like bid-to-cover and dealer share are noisy and have not shown a sustained deterioration trend</strong> even through the heaviest issuance years (per Brookings' review of auction-quality metrics) — elevated yields in this period reflect the combination of large deficits, quantitative tightening, and monetary-policy/inflation uncertainty broadly, rather than the auctions themselves signaling trouble that then shows up in FOMC decisions.</li><li><strong>The clearest traced case ran backwards from the simple story.</strong> The Federal Reserve's own FEDS Note on the 'Treasury Tantrum of 2023' (Diercks & Asnani) found the summer/fall 2023 surge in the 10-year yield (from about 3.35% to just under 5%) was driven mainly by a rise in the term premium — fueled by heavier Treasury issuance, quantitative tightening, and economic-outlook uncertainty, the same conditions that produced softer auctions in that window. Rather than that tightening confirming or foreshadowing a hawkish Fed, the FOMC's November 1, 2023 policy statement explicitly cited the resulting tightening in financial conditions as a reason to hold the federal funds rate steady. In other words: weak demand → higher term premium → tighter financial conditions → the Fed treated that tightening as a substitute for further hikes, not a cue to deliver more. That is a negative-feedback relationship between auction weakness and the meeting outcome, not a confirming one.</li></ul>
+</section>
+<section>
+<h2>The live case in front of us: September 2026</h2>
+<p>Reporting into this week's meeting describes a similar dynamic already under way: the 10-year Treasury yield touched roughly 5.0% — its highest level since October 2023 — with hawkish remarks from Fed Chair Warsh at Jackson Hole cited as a driver, and a weak 20-year bond auction contributing to the move. AskAmerica's own yield series, queried directly this session, confirms the magnitude and direction: the 10-year yield rose from 4.19% on January 2, 2026 to 4.96% by September 11, 2026 (+77 bps), and the 30-year rose from 4.86% to 5.35% (+49 bps) over the same stretch, with the steepest leg of the move concentrated in the final two weeks before the meeting (see dashboard). This is consistent with the historical pattern above: rate expectations set by Fed communication are driving both the bond market and the demand backdrop for auctions, rather than auction weakness independently forecasting the meeting's tone.</p>
+</section>
+<section>
+<h2>Bottom line</h2>
+<p>There is a real, observable overlap: periods of soft Treasury auction demand and periods where a Fed meeting reads 'hawkish for rates' do tend to cluster together, because both are downstream of the same drivers — rising deficits/issuance, term-premium pressure, and inflation or policy uncertainty. But the literature does not support treating a weak auction in the days before a meeting as an independent, reliable leading signal of how that meeting will go. If anything, the one well-documented instance where the chain was traced end to end (2023) shows the Fed responding to auction-driven tightening by holding rates steady rather than delivering the more-hawkish outcome a naive reading of 'weak demand' might predict.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 255 rows — 3502 ms</summary><pre><code>SELECT &quot;date&quot;, ten_year_yield, thirty_year_yield, fed_funds_rate FROM econ.interest_rate_spreads WHERE &quot;date&quot; &gt;= DATE '2023-06-01' ORDER BY &quot;date&quot;</code></pre></details>
 
-## Live illustration (September 2026)
-As of mid-September 2026, the 10-year Treasury yield touched nearly 5% — highest since October 2023 — heading into the Sept 15–16, 2026 FOMC meeting, amid concerns over heavy debt issuance and a hawkish tone under new Fed leadership (Kevin Warsh). `econ.fed_policy_dashboard` in the AskAmerica corpus confirms the effective funds rate has held essentially flat around 3.63% (within the 3.50–3.75% target range) through 2026 — consistent with reporting that the Fed has stayed on hold since spring 2026, the same stretch in which long-end yield pressure (and softer auction demand) has been a persistent market theme.
-
-## Data availability and limitations (stated plainly)
-- The AskAmerica corpus (`econ`, `fiscal` schemas, checked via `search_catalog`) does **not** carry Treasury auction-level results (bid-to-cover ratio, tail, indirect-bidder share) or a structured per-meeting FOMC-decision table. The closest tables are `econ.treasury_yields` (average rates by security type, not auction-level) and `econ.fed_policy_dashboard` (daily effective funds rate, not per-meeting votes).
-- I attempted to pull raw Treasury auction data (bid-to-cover, high yield) from the public Treasury Fiscal Data API via WebFetch to check the empirical pattern quantitatively. The returned figures looked internally inconsistent with the known ~monthly 10-year auction cadence, consistent with a known limitation where this fetch path summarizes content through an intermediate model rather than returning raw rows reliably. I did not build a quantitative backtest on that data for this reason, to avoid reporting numbers I could not verify.
-- What is solid: the qualitative mechanism above, drawn convergently from market commentary (CNBC, CMC Markets, Goldman Sachs) and academic research on auction demand and Treasury yields — all pointing to a shared-cause correlation, not a predictive/causal link from auction result to FOMC outcome.
-
-## Bottom line
-Treat a weak pre-FOMC Treasury auction as a coincident symptom of the same inflation/fiscal-supply pressures that also make a hawkish Fed outcome more likely, not as a signal that itself forecasts the meeting&#x27;s outcome. This corpus lacks the auction-level and per-meeting-decision data needed to quantify that correlation directly; the analysis above rests on published market and academic sources plus corroborating context from `econ.fed_policy_dashboard`.
-
-## Sources
-- [10-year Treasury yield hits 5% before reversing as traders await Fed meeting (CNBC, 2026-09-14)](https://www.cnbc.com/2026/09/14/10-year-us-treasury-is-closing-in-on-5percent.html)
-- [FOMC minutes and Treasury auctions test bond-market shorts (CMC Markets)](https://www.cmcmarkets.com/en-gb/news-and-analysis/fomc-minutes-and-treasury-auctions-test-bond-market-shorts)
-- [How Inflation and Fiscal Policy Are Driving US Treasury Markets (Goldman Sachs)](https://www.goldmansachs.com/insights/the-markets/how-inflation-and-fiscal-policy-are-driving-us-treasury-markets)
-- [The Treasury Auction Risk Premium (ScienceDirect)](https://www.sciencedirect.com/science/article/abs/pii/S0378426624002309)
-- [Intraday Price Pressure and Order Flow Around U.S. Treasury Auctions (NY Fed Staff Reports)](https://www.newyorkfed.org/research/staff_reports/sr1188.html)
-- [Treasury Auctions and Long-Term Bond Yields (SF Fed working paper)](https://www.frbsf.org/wp-content/uploads/Somogyi-paper.pdf)
-- [Federal Reserve FOMC meeting calendars](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm)
-- [Treasury Securities Auctions Data (fiscaldata.treasury.gov)](https://fiscaldata.treasury.gov/datasets/treasury-securities-auctions-data/)
-
-## AskAmerica queries run
-- `search_catalog`: &quot;Treasury auction bid to cover ratio&quot;, &quot;FOMC federal funds rate decision meeting&quot;, &quot;Treasury auction results bid cover primary dealer&quot; — confirmed no auction-level or per-meeting-decision table exists in the corpus.
-- `query`: `SELECT &quot;date&quot;, fed_funds_rate FROM econ.fed_policy_dashboard WHERE &quot;date&quot; &gt;= &#x27;2023-01-01&#x27; ORDER BY &quot;date&quot;` — confirmed the 2026 effective-funds-rate hold pattern cited above.
-</pre>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>econ.interest_rate_spreads — 10yr/30yr Treasury yields, Jan-Sep 2026<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;date&quot;, ten_year_yield, thirty_year_yield, fed_funds_rate FROM econ.interest_rate_spreads WHERE &quot;date&quot; &gt;= DATE '2023-06-01' ORDER BY &quot;date&quot;</code></pre></details></li>
+<li>Treasury auction/bidder coverage check (catalog search)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>search_catalog(query=&quot;Treasury auction bid to cover&quot;)</code></pre></details></li>
+<li><a href="https://www.dallasfed.org/research/economics/2021/0831">https://www.dallasfed.org/research/economics/2021/0831</a></li>
+<li><a href="https://www.brookings.edu/articles/how-to-tell-if-the-us-treasury-is-having-trouble-borrowing-in-the-bond-market/">https://www.brookings.edu/articles/how-to-tell-if-the-us-treasury-is-having-trouble-borrowing-in-the-bond-market/</a></li>
+<li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/the-treasury-tantrum-of-2023-20240903.html">https://www.federalreserve.gov/econres/notes/feds-notes/the-treasury-tantrum-of-2023-20240903.html</a></li>
+<li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/the-treasury-tantrum-of-2023-accessible-20240903.htm">https://www.federalreserve.gov/econres/notes/feds-notes/the-treasury-tantrum-of-2023-accessible-20240903.htm</a></li>
+<li><a href="https://www.frbsf.org/wp-content/uploads/Somogyi-paper.pdf">https://www.frbsf.org/wp-content/uploads/Somogyi-paper.pdf</a></li>
+<li><a href="https://www.hbs.edu/ris/download.aspx?name=26-033.pdf">https://www.hbs.edu/ris/download.aspx?name=26-033.pdf</a></li>
+<li><a href="https://www.cnbc.com/2026/09/14/10-year-us-treasury-is-closing-in-on-5percent.html">https://www.cnbc.com/2026/09/14/10-year-us-treasury-is-closing-in-on-5percent.html</a></li>
+<li><a href="https://www.cnbc.com/2026/09/15/10-year-treasury-yield-rises-to-highest-since-2007.html">https://www.cnbc.com/2026/09/15/10-year-treasury-yield-rises-to-highest-since-2007.html</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Treasury auction demand metrics (bid-to-cover, tail, bidder shares) are not present in the AskAmerica warehouse; that side of this answer relies on external research and reporting, cited above.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+</footer>
 </main>
-</body></html>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
