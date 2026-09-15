@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How much does pipeline capacity utilization out of a producing basin explain the local crude-oil basis spread, and does that relationship hold across different basins?</title>
+<style>
+  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
+          font-size:14px; line-height:1.7; margin:0; }
+  main { max-width:800px; margin:0 auto; padding:2rem; }
+  h1 { color:#f0f6fc; font-size:1.3rem; }
+  pre { white-space:pre-wrap; word-wrap:break-word; }
+</style></head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<h1>How much does pipeline capacity utilization out of a producing basin explain the local crude-oil basis spread, and does that relationship hold across different basins?</h1>
+<p style="color:#768390;">askamerica run &middot; 2026-09-15</p>
+<pre>## Answer
+
+Pipeline (and refinery) takeaway capacity utilization explains local crude basis spreads well, but **the relationship is threshold/nonlinear and basin-specific, not a uniform linear &quot;utilization-in, spread-out&quot; rule** — and it clearly does not hold the same way in every basin.
+
+**Data-availability note first:** the AskAmerica corpus has no table of basin-level crude pipeline capacity/utilization or basin-specific crude spot basis prices (Midland, Bakken/Clearbrook, LLS, WTI Cushing, etc.) — confirmed via `search_catalog`, which returned `unmatched_terms: [&quot;midland&quot;,&quot;cushing&quot;,&quot;differential&quot;]`. It carries only national WTI (FRED `DCOILWTICO`/`econ.global_conditions`), PADD-level refinery utilization (`energy.refinery_utilization_summary`), and basin rig-count/drilling activity (`energy.eia_drilling_activity` — Permian, Bakken, Eagle Ford, Appalachia, Haynesville) — none of which carries a basin basis-spread series. So this answer is built entirely from the primary economics literature and EIA/industry reporting, not from a warehouse regression.
+
+### The core mechanism (Permian, well identified)
+
+The best-identified estimate is Shaun McRae&#x27;s NBER working paper *&quot;Crude Oil Price Differentials and Pipeline Infrastructure&quot;* (NBER WP 24170, Dec. 2017), using Permian Basin data 2007–2016. He regresses the WTI Midland–LLS (Gulf Coast benchmark) differential on regional &quot;excess production&quot; — basin output net of available pipeline + refinery capacity — and finds:
+
+- The relationship is **discontinuous**, not linear in utilization: below capacity, an extra 100,000 b/d of production reduces the local price by about **$1.61/bbl**; once production exceeds the combined pipeline + refinery takeaway capacity, the same increment costs producers roughly **$11.15/bbl** — a discrete jump once the constraint binds, not a smooth slope.
+- Eliminating the Permian pipeline bottleneck (simulated as a new 100,000 b/d pipeline in Sept. 2014) is estimated to have raised local producer prices by **$5.72–$10.86/bbl**, of which **~90% was a transfer from existing shippers and refiners** rather than a net welfare gain — i.e., most of the basis spread when capacity is tight is midstream rent extraction, not a &quot;real&quot; transport-cost pass-through.
+- At the national level, the production-weighted discount to the world price fell from about **$28/bbl (Sept. 2011) to $5/bbl (Dec. 2016)**, and the mean state-level differential fell from **~$10/bbl (2011) to ~$1/bbl (2016)**, tracking the buildout of pipeline capacity (U.S. crude pipeline mileage grew from 54,600 to 73,200 miles 2010–2015).
+- Refinery utilization itself showed **no significant relationship** to the Permian discount (refineries there ran near capacity throughout, so the marginal barrel&#x27;s fate was determined by pipeline egress, not refinery throughput), and the higher wellhead prices did **not** pass through to Houston/Midland/El Paso retail gasoline prices — Gulf Coast refiners set the marginal gasoline price regardless of the crude basis.
+
+EIA&#x27;s own March 2019 &quot;Today in Energy&quot; note corroborates the mechanism directly: after the Sunrise Pipeline extension (+120,000 b/d) and the Seminole-Red repurposing (+200,000 b/d) relieved Permian-to-Cushing constraints in early 2019, WTI Midland converged to WTI Cushing, while the remaining Midland-to-Houston discount (still ~$7/bbl at the time) reflected the still-binding Permian-to-Gulf-Coast leg — i.e., basis narrows leg-by-leg as the specific constrained segment is relieved, not as an aggregate &quot;capacity&quot; number moves.
+
+### Does it hold across basins? No — not uniformly
+
+McRae repeats the same test for Colorado (Niobrara/DJ Basin) and North Dakota (Bakken/Williston):
+
+- **Colorado/Niobrara:** the relationship holds qualitatively the same way as Permian. Before 2015, production exceeded pipeline + refinery capacity, producing a **~$2.80/bbl discount**; the White Cliffs, Northeast Colorado Lateral, and Saddlehorn pipeline additions (adding ~495,000 b/d of egress) pushed capacity above production by end-2015, and the discount narrowed accordingly.
+- **Bakken/Williston: the relationship breaks down.** McRae finds the price differential is **uncorrelated with excess production** in North Dakota. Two reasons: (1) excess production was positive (i.e., the constraint was binding) almost continuously since 2011, leaving too little within-basin variation to identify the effect; and (2) Bakken producers had a genuinely multi-modal, flexible egress network (pipeline south to Wyoming, north to Canada, east to Minnesota, *plus* a large unit-train rail fleet that can reach refineries across North America), which decouples the &quot;how full is any one pipeline&quot; measure from the price the marginal barrel actually receives.
+
+This basin-specific breakdown is confirmed by a later, peer-reviewed follow-up — Phat V. Luong, **&quot;Crude oil pipeline constraints: A tale of two shales,&quot;** *Resources Policy* 80 (2023), art. 103203 — using cointegration tests across the same two basins. He finds Bakken sweet crude at Williston **remained cointegrated** with the national WTI benchmark and downstream gasoline prices even during pipeline bottlenecks, because rail provided a continuous arbitrage channel; Midland crude in the Permian, which relied almost exclusively on pipelines, **decoupled from WTI during the bottleneck and only re-cointegrated after new pipeline capacity came online.** In other words: pipeline-utilization is a strong predictor of basis *specifically in basins without a comparably-scaled alternative transport mode*; where rail (or another substitute) is a real option, the same utilization measure loses its explanatory power because it&#x27;s no longer the binding constraint on the marginal barrel.
+
+### Later evidence: the same mechanism, but the trigger level has shifted
+
+Post-2019 Permian pipeline buildout (several new greenfield lines to the Gulf Coast) roughly doubled available egress versus 2017–2018. Industry data (East Daley/RBN) show that even as pipeline utilization approached ~80% again in 2024 — a level that produced multi-dollar Midland discounts in 2018 — the Houston–Midland spread stayed inside a **35–90 cent/bbl** range, far narrower than the **$10–15/bbl** spreads seen at similar utilization in 2017–2018. This indicates the utilization→basis relationship is **not stationary over time**: the threshold at which utilization starts to bite depends on the level of redundant capacity and the granularity of individual pipeline segments, so &quot;utilization %&quot; alone, without knowing which specific leg is constrained, is not by itself a stable predictor across periods, let alone across basins.
+
+### Bottom line
+
+- Pipeline (+ refinery) capacity utilization explains a large, well-identified share of the Permian and Colorado/Niobrara basis spreads, but the relationship is a **threshold effect** (large discrete jump once regional production exceeds available takeaway/refining capacity), not a smooth linear one — best estimate: eliminating a binding Permian constraint raised producer prices $6–11/bbl, with ~90% of that being a transfer from shippers/refiners rather than a resource-cost saving.
+- It does **not** hold the same way in the Bakken/Williston basin, where a mature rail-egress network decouples pipeline utilization from the price the marginal barrel realizes, and where near-constant capacity bindingness left too little variation to identify an effect at all.
+- The strength of the relationship also depends on the available substitute transport mode and the specific constrained segment (Cushing leg vs. Gulf Coast leg), and the utilization level that triggers a wide spread has shifted over time as more redundant capacity was built.
+
+### Sources
+
+- [McRae, &quot;Crude Oil Price Differentials and Pipeline Infrastructure,&quot; NBER Working Paper 24170 (2017)](https://www.nber.org/system/files/working_papers/w24170/w24170.pdf) — primary quantitative source, fetched and read directly (pages 1–40 of 42).
+- [Luong, &quot;Crude oil pipeline constraints: A tale of two shales,&quot; Resources Policy 80 (2023), art. 103203 — ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S0301420722006468) (abstract/findings via search; paywalled full text) and [SSRN working-paper version](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4112017)
+- [EIA, &quot;Permian region crude oil prices have increased with additional pipeline takeaway capacity,&quot; Today in Energy, March 26, 2019](https://www.eia.gov/todayinenergy/detail.php?id=38832) — fetched directly
+- [East Daley Analytics, &quot;The Houston–Midland Spread is Ready to Blow&quot;](https://eastdaley.com/daley-note/the-houston-midland-spread-is-ready-to-blow) — recent (2023–2024) spread/utilization figures
+- [CME Group, &quot;Permian Production Growth Creeps Into the WTI Midland Forward Curve&quot;](https://www.cmegroup.com/articles/whitepapers/permian-production-growth-creeps-into-the-wti-midland-forward-curve.html)
+- [East Daley Analytics, &quot;Bakken Takeaway is Tighter Than it Appears&quot;](https://eastdaley.com/crude-oil-edge/bakken-takeaway-is-tighter-than-it-appears)
+- AskAmerica corpus tables checked and confirmed not to carry basin basis-spread or pipeline-capacity-utilization data: `energy.eia_refinery_operations`/`refinery_utilization_summary`, `energy.eia_drilling_activity`, `econ.global_conditions`, `econ.fred_indicators` (DCOILWTICO) — via `search_catalog` (query: &quot;crude oil pipeline capacity basin&quot;; &quot;crude oil spot price basis differential&quot;; &quot;Midland Cushing WTI basis differential Permian&quot;).
+
+Chart delivered alongside this report: bar comparison of estimated producer price gain from removing the binding capacity constraint, by basin (Permian ~$8.3/bbl midpoint, Colorado $2.8/bbl, Bakken ~$0 — no significant relationship found), built from the McRae (2017) point estimates above.
+</pre>
+</main>
+</body></html>
