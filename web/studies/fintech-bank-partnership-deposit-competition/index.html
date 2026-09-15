@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BaaS Deposits Are a Small Slice of the Banking System but Are Heavily Concentrated in ~10 Sponsor Banks</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>BaaS Deposits Are a Small Slice of the Banking System but Are Heavily Concentrated in ~10 Sponsor Banks</h1>
+<p class="subtitle">FDIC Q2 2026 call reports for 22 identified fintech-sponsor banks, cross-checked against industry BaaS coverage</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 746" width="880" height="746" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="746" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">Bank-Fintech &quot;Banking as a Service&quot; Deposits Are Concentrated Among a Small Set of Sponso…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">FDIC Call Report deposits (Q2 2026) at 22 identified BaaS/sponsor banks; no single official government series measures &quot;BaaS deposits&quot; directly</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Combined deposits at 22 identified sponsor banks</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">$75.7B</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">FDIC total_deposits, Q2 2026 call reports</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Share of all U.S. FDIC-insured bank deposits</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">~0.37%</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">$75.7B of $20.70T industry-wide (4,233 active institutions)</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="254" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="290" fill="#6b7280">Top-5 sponsor banks' share of the sponsor-bank total</text>
+  <text class="stat-value" x="36" y="320" fill="#1f2328">43.7%</text>
+  <text class="stat-delta" x="36" y="340" fill="#059669" style="font-size:9px">Metropolitan Commercial, Bancorp Bank, Cross River, Pathward, Choice Financial</text>
+  </g>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="274" fill="#6b7280">HHI across 22 identified sponsor banks</text>
+  <text class="stat-value" x="464" y="304" fill="#1f2328">653</text>
+  </g>
+  <text class="caption" x="452" y="359" fill="#6b7280">DOJ/FTC 'unconcentrated' threshold is &lt;1,000 — but this reflects a</text>
+  <text class="caption" x="452" y="372" fill="#6b7280">curated top tier, not the full ~156-bank population</text>
+  <rect class="panel-edge" x="20" y="394" width="840" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="394" width="840" height="300" viewBox="0 0 840 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Top 12 sponsor banks by FDIC-reported total deposits</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="53" y1="166" x2="818" y2="166" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="45" y="170" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="138.50" x2="818" y2="138.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="45" y="142.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="111" x2="818" y2="111" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="45" y="115" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="53" y1="83.50" x2="818" y2="83.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="45" y="87.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="53" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="166" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="166" x2="818" y2="166" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="435.50" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Sponsor bank</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="111" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 111)">Deposits ($B)</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-metropolitan-commercial" class="tick" x="84.88" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 84.88 180)">Metropolitan Commercial</text>
+      <text id="p5-xtick-bancorp-bank" class="tick" x="148.63" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 148.63 180)">Bancorp Bank</text>
+      <text id="p5-xtick-cross-river" class="tick" x="212.38" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 212.38 180)">Cross River</text>
+      <text id="p5-xtick-pathward" class="tick" x="276.13" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 276.13 180)">Pathward</text>
+      <text id="p5-xtick-choice-financial" class="tick" x="339.88" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 339.88 180)">Choice Financial</text>
+      <text id="p5-xtick-green-dot" class="tick" x="403.63" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 403.63 180)">Green Dot</text>
+      <text id="p5-xtick-stride" class="tick" x="467.38" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 467.38 180)">Stride</text>
+      <text id="p5-xtick-coastal-community" class="tick" x="531.13" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 531.13 180)">Coastal Community</text>
+      <text id="p5-xtick-first-internet" class="tick" x="594.88" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 594.88 180)">First Internet</text>
+      <text id="p5-xtick-celtic" class="tick" x="658.63" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 658.63 180)">Celtic</text>
+      <text id="p5-xtick-mvb-bank" class="tick" x="722.38" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 722.38 180)">MVB Bank</text>
+      <text id="p5-xtick-sunrise-banks" class="tick" x="786.13" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 786.13 180)">Sunrise Banks</text>
+    </g>
+    <g id="p5-series-deposits-b" class="series">
+      <rect id="p5-mark-deposits-b-metropolitan-commercial" class="bar" x="64.48" y="59.02" width="39.80" height="106.98" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-bancorp-bank" class="bar" x="128.23" y="63.01" width="39.80" height="102.99" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-cross-river" class="bar" x="191.98" y="74.15" width="39.80" height="91.85" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-pathward" class="bar" x="255.73" y="84.19" width="39.80" height="81.81" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-choice-financial" class="bar" x="319.48" y="95.46" width="39.80" height="70.54" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-green-dot" class="bar" x="383.23" y="96.70" width="39.80" height="69.30" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-stride" class="bar" x="446.98" y="97.80" width="39.80" height="68.20" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-coastal-community" class="bar" x="510.73" y="98.63" width="39.80" height="67.38" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-first-internet" class="bar" x="574.48" y="99.45" width="39.80" height="66.55" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-celtic" class="bar" x="638.23" y="112.38" width="39.80" height="53.63" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-mvb-bank" class="bar" x="701.98" y="123.10" width="39.80" height="42.90" fill="#2563eb"/>
+      <rect id="p5-mark-deposits-b-sunrise-banks" class="bar" x="765.73" y="131.49" width="39.80" height="34.51" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <g id="brand">
+  <svg x="20" y="705" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="720" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:64405/a/20ebd6a5523ad0b7652bb66e2f5c19d5.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>There is no single official U.S. government statistic that reports "total fintech-partner (banking-as-a-service) deposit volume" as one number — the FDIC, Federal Reserve and OCC do not tag call-report deposits by BaaS/fintech-program origin. The best available approach is to identify the roughly two dozen U.S. banks that are publicly known, BaaS-focused "sponsor banks" and sum their FDIC-reported balance-sheet deposits as a proxy. Doing that for 22 identified sponsor banks (Cross River, The Bancorp Bank, Evolve Bank & Trust, Pathward, Metropolitan Commercial, Choice Financial, Green Dot, Stride, Coastal Community, First Internet, Celtic, MVB, WebBank, Blue Ridge, Sutton, Grasshopper, Thread, FinWise, Community Federal Savings, Piermont, Sunrise Banks, and Lead Bank) yields <strong>about $75.7 billion in combined deposits</strong> as of the Q2 2026 call report — a small fraction (roughly 0.37%) of the $20.7 trillion held across all 4,233 active FDIC-insured institutions, but heavily concentrated at the top: the five largest sponsor banks hold 43.7% of that $75.7 billion, and the top ten hold about 75%. Industry trackers separately report that the number of active U.S. sponsor banks has grown to roughly 156 (Q3 2025, Financial Brand/Klaros-style tracking), up from 142 a year earlier, meaning a long tail of well over 100 smaller or newer sponsor banks likely holds only a small remaining share of fintech-linked deposits. Because sponsor banks vary in what fraction of their own balance sheet is fintech-program deposits versus ordinary retail/commercial deposits, this $75.7B and the concentration figures below should be read as a bounded, defensible proxy — not an exact, regulator-published BaaS deposit total, which does not exist in public data.</p>
+</section>
+<section>
+<h2>Why there is no single official figure</h2>
+<p>Bank call reports (FFIEC 031/041, aggregated by the FDIC into <code>banking.institutions</code>/<code>banking.financials</code> in this corpus) report total deposits at the institution level but do not break deposits out by whether they originated through a fintech/BaaS program versus a bank's own direct retail or commercial channel. Some sponsor banks (e.g., Cross River, Evolve, Piermont) are overwhelmingly fintech-deposit-funded; others (e.g., Bangor Savings, Northeast Bank) have only a partial or peripheral BaaS book and were excluded from this analysis to avoid overstating the total. A few sponsor banks are also moving deposits <em>off</em> their own balance sheets into deposit networks even while continuing to earn BaaS fees — First Internet Bancorp, for example, disclosed moving roughly $2.4 billion of FinTech deposits off its balance sheet in 2026 while growing BaaS fee revenue 172% year over year, which means a bank's own reported deposits can now understate the FinTech relationships it actually manages (PYMNTS, Aug 2026). This makes any deposit-volume figure a lower-bound proxy on the funding side, even as it may still overstate true "BaaS-sourced" dollars for banks with a mixed retail/BaaS book.</p>
+</section>
+<section>
+<h2>How the sponsor-bank set was identified</h2>
+<p>The 22 banks were identified from industry reporting (Financial Brand, PYMNTS, Sacra, Embedded Finance Index) as institutions publicly known to operate fintech sponsor-bank/BaaS programs, then matched by name to FDIC's <code>banking.institutions</code> table (active institutions, Q2 2026 call report snapshot) to pull <code>total_deposits_thousands</code>. Name collisions were checked by hand — for example, two unrelated small community banks also named "Blue Ridge Bank" (in Walhalla, SC and Independence, MO) were excluded, keeping only Blue Ridge Bank, N.A. (Martinsville, VA), the entity actually associated with fintech sponsorship (and the 2024 Solana/Rho-related consent order). This is a curated identification, not an exhaustive regulatory list — no government source publishes a canonical roster of "sponsor banks," so some smaller or newer entrants among the ~156 industry-tracked sponsor banks are almost certainly missing from this set.</p>
+</section>
+<section>
+<h2>Concentration</h2>
+<p>Among the 22 identified sponsor banks, deposits are moderately top-heavy: the Herfindahl-Hirschman Index (HHI) is 653, which sits under the DOJ/FTC "unconcentrated" merger-guideline threshold of 1,000 — but that reading is an artifact of restricting the population to a curated top tier of similarly sized specialist banks. The more informative figures are the share concentrations: <ul><li>Top 5 banks (Metropolitan Commercial, The Bancorp Bank, Cross River, Pathward, Choice Financial Group) hold <strong>43.7%</strong> of the $75.7B sponsor-bank total.</li><li>Top 10 banks hold roughly <strong>75%</strong> of that total.</li><li>The single largest bank, Metropolitan Commercial Bank, holds 10.3% on its own.</li></ul>Given that the broader industry tracks roughly 156 active sponsor banks (up from 142 a year earlier per Financial Brand's 2026 coverage), and only 22 of those appear in this $75.7B tally, the true concentration across the full sponsor-bank population is almost certainly higher than this HHI suggests — the long tail of 130+ smaller sponsor banks likely contributes a small remainder of total fintech-program deposits, meaning dollar volume is probably dominated even more heavily by the handful of largest names than the 43-75% top-5/top-10 shares already indicate. Separately, deposit concentration is also a live regulatory concern at the individual-bank level: sector commentary in 2025-2026 describes internal caps limiting sponsor-bank deposits to "not likely to ever surpass 20% of total deposits" at some institutions, and a wave of 2024 enforcement actions (Synapse's collapse, and consent orders against Blue Ridge Bank and Evolve Bank & Trust) exposed how concentrated reliance on a small number of program managers and sponsor banks creates both funding and operational risk.</p>
+</section>
+<section>
+<h2>Caveats</h2>
+<p>(1) This is a proxy built from balance-sheet deposits at publicly identified sponsor banks, not a government-published "BaaS deposit volume" series — none exists. (2) Not all deposits at each identified bank are fintech-program deposits; some banks have mixed retail/BaaS books, which likely overstates the true BaaS share at a few names (e.g., Green Dot, First Internet) and understates it at others that have moved deposits into off-balance-sheet networks (First Internet again, per its 2026 disclosure). (3) The 22-bank set is a curated identification exercise, not an exhaustive list of the ~156 sponsor banks industry trackers count — the concentration measured here is a lower bound on how top-heavy the true, full population is. (4) n=22 is a small sample; per-bank point estimates (deposit totals) are FDIC call-report facts, but the aggregate concentration statistics carry a small-n caution.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>11 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 23 rows — 7849 ms</summary><pre><code>SELECT cert, name, city, state_abbr, total_assets_thousands, total_deposits_thousands, report_date
+FROM banking.institutions
+WHERE active = true AND (
+  name ILIKE '%Cross River%' OR name ILIKE '%Evolve Bank%' OR name ILIKE '%Blue Ridge Bank%'
+  OR name ILIKE '%Piermont Bank%' OR name ILIKE '%Choice Financial%' OR name ILIKE '%Sutton Bank%'
+  OR name ILIKE '%Lineage Bank%' OR name ILIKE '%Coastal Community Bank%' OR name ILIKE '%MVB Bank%'
+  OR name ILIKE '%Metropolitan Commercial%' OR name ILIKE '%Green Dot Bank%' OR name ILIKE '%Community Federal Savings%'
+  OR name ILIKE '%First Internet Bank%' OR name ILIKE '%Thread Bank%' OR name ILIKE '%Grasshopper Bank%'
+  OR name ILIKE '%Column N.A.%' OR name ILIKE '%Column Bank%' OR name ILIKE '%FinWise Bank%'
+  OR name ILIKE '%Pathward%' OR name ILIKE '%Stride Bank%' OR name ILIKE '%Celtic Bank%'
+  OR name ILIKE '%WebBank%' OR name ILIKE '%Bangor Savings%' OR name ILIKE '%Northbound%'
+  OR name ILIKE '%Web Bank%'
+)
+ORDER BY total_deposits_thousands DESC NULLS LAST</code></pre></details>
+<details class="sqltoggle"><summary>hhi_concentration — 3585 ms</summary><pre><code>SELECT name, total_deposits_thousands AS deposits FROM banking.institutions
+WHERE active = true AND cert IN (34699,58410,30776,9423,22653,4091,34403,34607,57056,34603,34404,35274,5962,59113,9499,1299,35323,57129,59154)</code></pre></details>
+<details class="sqltoggle"><summary>gini_coefficient — 3938 ms</summary><pre><code>SELECT name, total_deposits_thousands AS deposits FROM banking.institutions
+WHERE active = true AND cert IN (34699,58410,30776,9423,22653,4091,34403,34607,57056,34603,34404,35274,5962,59113,9499,1299,35323,57129,59154)</code></pre></details>
+<details class="sqltoggle"><summary>subgroup_contribution — 4542 ms</summary><pre><code>SELECT name, total_deposits_thousands AS deposits FROM banking.institutions
+WHERE active = true AND cert IN (34699,58410,30776,9423,22653,4091,34403,34607,57056,34603,34404,35274,5962,59113,9499,1299,35323,57129,59154)</code></pre></details>
+<details class="sqltoggle"><summary>query — 2779 ms</summary><pre><code>SELECT &quot;year&quot;, num_banks, total_liabilities_thousands, total_equity_thousands FROM banking.summary WHERE &quot;year&quot; = 2025 AND state_abbr IS NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 1908 ms</summary><pre><code>SELECT &quot;year&quot;, num_banks, total_liabilities_thousands FROM banking.summary WHERE &quot;year&quot; IN (2023,2024) AND state_abbr IS NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 2107 ms</summary><pre><code>SELECT SUM(total_deposits_thousands) AS total_us_deposits, COUNT(*) AS n_banks FROM banking.institutions WHERE active = true</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 7609 ms</summary><pre><code>SELECT cert, name, city, state_abbr, total_assets_thousands, total_deposits_thousands FROM banking.institutions WHERE active=true AND name ILIKE '%Bancorp Bank%'</code></pre></details>
+<details class="sqltoggle"><summary>query — 7 rows — 10537 ms</summary><pre><code>SELECT cert, name, city, state_abbr, total_assets_thousands, total_deposits_thousands FROM banking.institutions
+WHERE active = true AND (name ILIKE '%Lead Bank%' OR name ILIKE '%Sunrise Banks%' OR name ILIKE '%Patriot Bank%' OR name ILIKE '%Northeast Bank%' OR name ILIKE '%Column N.A%' OR name ILIKE '%Column Bank%' OR name ILIKE '%Solid%' OR name ILIKE '%Recognize Bank%')
+ORDER BY total_deposits_thousands DESC NULLS LAST</code></pre></details>
+<details class="sqltoggle"><summary>hhi_concentration — 8765 ms</summary><pre><code>SELECT name, total_deposits_thousands AS deposits FROM banking.institutions
+WHERE active = true AND cert IN (34699,58410,30776,9423,22653,4091,34403,34607,57056,34603,34404,35274,5962,59113,9499,1299,35323,57129,59154,35444,8283,18561)</code></pre></details>
+<details class="sqltoggle"><summary>subgroup_contribution — 7068 ms</summary><pre><code>SELECT name, total_deposits_thousands AS deposits FROM banking.institutions
+WHERE active = true AND cert IN (34699,58410,30776,9423,22653,4091,34403,34607,57056,34603,34404,35274,5962,59113,9499,1299,35323,57129,59154,35444,8283,18561)</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://api.fdic.gov/banks/institutions">FDIC BankFind institution-level deposits (banking.institutions)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT cert, name, city, state_abbr, total_assets_thousands, total_deposits_thousands FROM banking.institutions WHERE active = true AND cert IN (34699,58410,30776,9423,22653,4091,34403,34607,57056,34603,34404,35274,5962,59113,9499,1299,35323,57129,59154,35444,8283,18561) ORDER BY total_deposits_thousands DESC</code></pre></details></li>
+<li><a href="https://api.fdic.gov/banks/institutions">Total U.S. FDIC-insured industry deposits (all active institutions)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT SUM(total_deposits_thousands) AS total_us_deposits, COUNT(*) AS n_banks FROM banking.institutions WHERE active = true</code></pre></details></li>
+<li>HHI across 22 identified sponsor banks<details class="sqltoggle"><summary>Show tool call</summary><pre><code>hhi_concentration(value_col=&quot;deposits&quot;)</code></pre></details></li>
+<li><a href="https://thefinancialbrand.com/news/banking-as-a-service/baas-is-back-what-does-a-strong-sponsor-banking-look-like-in-2026-195816">https://thefinancialbrand.com/news/banking-as-a-service/baas-is-back-what-does-a-strong-sponsor-banking-look-like-in-2026-195816</a></li>
+<li><a href="https://www.pymnts.com/news/banking/2026/sponsor-banks-discover-that-deposits-dont-have-to-sit-still/">https://www.pymnts.com/news/banking/2026/sponsor-banks-discover-that-deposits-dont-have-to-sit-still/</a></li>
+<li><a href="https://www.embeddedfinanceindex.com/categories/sponsor-banks">https://www.embeddedfinanceindex.com/categories/sponsor-banks</a></li>
+<li><a href="https://sacra.com/c/cross-river-bank/">https://sacra.com/c/cross-river-bank/</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">FDIC Call Report data via api.fdic.gov/banks/institutions, Q2 2026 snapshot. Sponsor-bank list curated from industry press, not an official regulatory roster. No government source publishes a direct BaaS deposit-volume total.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
