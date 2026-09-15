@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How much do corn and soybean futures actually move when USDA&#x27;s monthly crop report surprises the market, and does the size of the surprise predict the size of the move?</title>
+<style>
+  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
+          font-size:14px; line-height:1.7; margin:0; }
+  main { max-width:800px; margin:0 auto; padding:2rem; }
+  h1 { color:#f0f6fc; font-size:1.3rem; }
+  pre { white-space:pre-wrap; word-wrap:break-word; }
+</style></head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<h1>How much do corn and soybean futures actually move when USDA&#x27;s monthly crop report surprises the market, and does the size of the surprise predict the size of the move?</h1>
+<p style="color:#768390;">askamerica run &middot; 2026-09-15</p>
+<pre>## Answer
+
+This corpus has no corn/soybean futures price series or WASDE report-date/surprise data at all — `cftc` here covers OTC swap-data-repository transactions and weekly Commitments-of-Traders *positioning* (not price), and `sec.stock_prices` is equities/Stooq only. `search_catalog` returned zero matches for &quot;wasde&quot; and no futures settlement-price table anywhere in the catalog. So this is answered entirely from the published agricultural-economics event-study literature, not computed in the warehouse — a genuine coverage gap, not a &quot;no&quot; I&#x27;m working around.
+
+**Yes on both counts, and this is one of the most replicated findings in ag economics:**
+
+1. **Corn and soybean futures do move on WASDE/Crop Production report days**, and the move is concentrated in a narrow window right after release — Lehecka, Wang &amp; Garcia (2014, corn, 2009–2012) find the strongest reaction hits within about the first 10 minutes after the open, with no evidence of systematic under- or over-reaction (consistent with an efficient, one-shot price adjustment rather than gradual drift). Kauffman (2013) and later intraday studies confirm the elevated volatility rarely persists beyond 30–60 minutes.
+
+2. **It&#x27;s the surprise, not the headline number, that moves price** — the standard &quot;market surprise&quot; literature (Colling &amp; Irwin 1990; Garcia et al. 1997; Isengildina-Massa, Irwin, Good &amp; Gomez 2008; Adjemian 2012; Karali, Isengildina-Massa &amp; Irwin 2019; Arnade, Hoffman &amp; Effland 2021) regresses the futures price change immediately after release on the gap between the USDA&#x27;s published figure and the pre-report private-trade (Bloomberg/Reuters survey) expectation. Regressing price change on surprise size in this design, unanticipated information in USDA **Crop Production** reports explains roughly **31–45% of the variance in post-release price change** (adjusted R², Garcia et al. 1997) — i.e. surprise size is a real, sizeable predictor of move size, not just a directional signal. (For comparison, Hogs &amp; Pigs surprises explain 48–55%; Export Inspections surprises explain almost nothing, 0–3% — so this predictive power is not automatic across all USDA releases, it&#x27;s strongest for the flagship supply reports.)
+
+3. **The relationship is not flat across time or market conditions** — Adjemian (2012, AJAE) shows the WASDE announcement effect is amplified when carryover stocks are tight (low stocks-to-use), is not confined to months containing a new NASS survey, and is incorporated into futures prices essentially immediately. Karali et al. (2019) find Grain Stocks reports carry the largest average surprises, followed by the August Crop Production report, and that in recent years the strongest corn/soybean reaction has shifted toward the October/November Crop Production and the January/March Grain Stocks releases specifically.
+
+4. **Reports also reduce forward uncertainty, not just move the spot price** — Isengildina-Massa et al. (2008) find WASDE releases lower option-implied volatility in corn and soybeans in roughly 70% of releases (1985–2002), with a materially bigger volatility drop (1.1–1.5 percentage points) when a WASDE and a Crop Production report land the same day versus WASDE alone (0.3 points) — evidence the market treats these as genuine new information, not noise.
+
+5. **Illustrative recent magnitude** (a single anecdote, not a statistic): farmdoc daily reported new-crop corn and soybean futures moved as much as 6¢/bu (corn) and 13¢/bu (soybeans) in the 15 minutes right after an August/September 2025 WASDE release before partially reversing by the close — consistent with the &quot;sharp, brief, then partially mean-reverting&quot; pattern the intraday literature documents generally, though a single day&#x27;s move should not be read as the typical magnitude.
+
+**Bottom line:** yes, corn/soybean futures react sharply and quickly (within minutes) to USDA crop reports, and the size of the market&#x27;s forecast error (&quot;surprise&quot;) is a genuinely useful, moderately strong predictor of the size of the price move — on the order of a third to nearly half of the variance in post-release price changes for the Crop Production report specifically — with the relationship strengthening when carryover stocks are tight and concentrated in the reports (August/October/November Crop Production, January/March Grain Stocks) that carry the largest average surprises.
+
+### What I could not verify independently
+I have no futures tick/settlement-price table or a WASDE surprise series in this connector to recompute any of these coefficients myself, so every number above is read from the cited studies, not derived from warehouse data. The single 6¢/13¢ anecdote is descriptive market commentary, not a controlled event-study estimate, and is labeled as such.
+
+### Sources
+- [Adjemian, M.K. (2012). &quot;Quantifying the WASDE Announcement Effect.&quot; American Journal of Agricultural Economics 94(1):238-256.](https://onlinelibrary.wiley.com/doi/10.1093/ajae/aar131)
+- [Kuethe, T. et al. — &quot;What Do We Know About the Accuracy and Impact of USDA Reports?&quot; (Virginia Tech / NCGA report, literature review synthesizing Colling &amp; Irwin 1990, Garcia et al. 1997, Isengildina-Massa et al. 2008, Karali et al. 2019, Arnade Hoffman &amp; Effland 2021, and others)](https://aaec.vt.edu/content/dam/aaec_vt_edu/faculty-research/NCGA%20Report_Final.pdf)
+- [Irwin, S. — &quot;What do we know about the value and market impact of USDA reports?&quot; (2023 literature synthesis)](https://scotthirwin.com/wp-content/uploads/2023/06/USDA_Impact_06_2023.pdf)
+- [Lehecka, Wang &amp; Garcia (2014) discussion of intraday corn market reaction timing — summarized in the VT/NCGA report above]
+- [Corn and Soybean Markets Shrug Off Bearish USDA Figures — farmdoc daily (Sept 2025 WASDE anecdote)](https://farmdocdaily.illinois.edu/2025/09/corn-and-soybean-markets-shrug-off-bearish-usda-figures.html)
+- [Isengildina-Massa, O., Irwin, S., Good, D., Gomez, J. (2008). &quot;Impact of WASDE Reports on Implied Volatility in Corn and Soybean Markets.&quot; Agribusiness 24(4):473-490.](https://link.springer.com/chapter/10.1007/978-3-031-55813-9_18)
+- AskAmerica connector: confirmed via `search_catalog` (0 matches for &quot;wasde&quot;) and `describe_table` on `cftc.cot_disaggregated_futures` that no corn/soybean futures price or WASDE-surprise series exists in this corpus.
+</pre>
+</main>
+</body></html>
