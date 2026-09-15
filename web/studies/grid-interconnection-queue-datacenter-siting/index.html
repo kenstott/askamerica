@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A handful of low-population, resource-rich states (Wyoming, Montana, the Dakotas, Nebraska) still have real spare grid capacity — but every major queue-driven market (PJM, ERCOT, SPP, MISO) is now tight or shrinking, and even &quot;surplus&quot; states like Pennsylvania sit inside a jammed regional queue</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>A handful of low-population, resource-rich states (Wyoming, Montana, the Dakotas, Nebraska) still have real spare grid capacity — but every major queue-driven market (PJM, ERCOT, SPP, MISO) is now tight or shrinking, and even &quot;surplus&quot; states like Pennsylvania sit inside a jammed regional queue</h1>
+<p class="subtitle">NERC 2025 LTRA, ERCOT/PJM/SPP resource-adequacy filings, LBNL/Grid Strategies queue and load-growth data, EIA generation-to-sales ratio</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 801" width="880" height="801" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="801" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Spare Grid Capacity vs. Jammed Interconnection Queues, by State</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">EIA state generation-to-retail-sales ratio, 2024; reserve margins from NERC/ISO 2025-26 filings</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">ERCOT (Texas) 2026 reserve margin</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">~9.8%</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">below 13.75% target</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">198 GW of large-load interconnection requests filed Q1 2026 alone</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">PJM 2027/28 capacity auction</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">-6,623 MW shortfall</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">~15% reserve margin, record low</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">First RTO-wide PJM shortfall; covers VA, OH, PA, NJ, MD, IL, IN and</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">more</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="274" fill="#6b7280">SPP reserve margin, 2030 forecast</text>
+  <text class="stat-value" x="36" y="304" fill="#1f2328">-1.6%</text>
+  <text class="stat-delta" x="36" y="324" fill="#dc2626">from 1.9% in 2029</text>
+  </g>
+  <text class="caption" x="24" y="359" fill="#6b7280">Kansas, Nebraska, Oklahoma, the Dakotas region</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="274" fill="#6b7280">PJM queue withdrawals since 2022</text>
+  <text class="stat-value" x="464" y="304" fill="#1f2328">174 GW</text>
+  <text class="stat-delta" x="464" y="324" fill="#dc2626">projects gave up rather than wait</text>
+  </g>
+  <text class="caption" x="452" y="359" fill="#6b7280">Interconnection delays, not just load growth, are the bottleneck</text>
+  <rect class="panel-edge" x="20" y="394" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="394" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Generation as a multiple of in-state retail sales, energy.eia_electricity_gen…</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="63" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="55" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="55" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+      <line class="grid" x1="63" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="55" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
+      <line class="grid" x1="63" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="55" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5</text>
+      <line class="grid" x1="63" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="55" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.0</text>
+      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-5" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.5</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Gen / sales ratio</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-wy" class="tick" x="76.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WY</text>
+      <text id="p5-xtick-mt" class="tick" x="103.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MT</text>
+      <text id="p5-xtick-pa" class="tick" x="131.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">PA</text>
+      <text id="p5-xtick-ct" class="tick" x="158.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CT</text>
+      <text id="p5-xtick-al" class="tick" x="185.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AL</text>
+      <text id="p5-xtick-ms" class="tick" x="212.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MS</text>
+      <text id="p5-xtick-nh" class="tick" x="240.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NH</text>
+      <text id="p5-xtick-wv" class="tick" x="267.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WV</text>
+      <text id="p5-xtick-sd" class="tick" x="294.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">SD</text>
+      <text id="p5-xtick-nd" class="tick" x="321.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ND</text>
+      <text id="p5-xtick-ks" class="tick" x="349.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">KS</text>
+      <text id="p5-xtick-il" class="tick" x="376.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">IL</text>
+    </g>
+    <g id="p5-series-generation-retail-sales" class="series">
+      <rect id="p5-mark-generation-retail-sales-wy" class="bar" x="67.91" y="64.06" width="16.44" height="135.94" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-mt" class="bar" x="95.16" y="100.35" width="16.44" height="99.65" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-pa" class="bar" x="122.41" y="102.08" width="16.44" height="97.92" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-ct" class="bar" x="149.66" y="105.54" width="16.44" height="94.46" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-al" class="bar" x="176.91" y="106.11" width="16.44" height="93.89" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-ms" class="bar" x="204.16" y="108.42" width="16.44" height="91.58" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-nh" class="bar" x="231.41" y="110.72" width="16.44" height="89.28" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-wv" class="bar" x="258.66" y="111.87" width="16.44" height="88.13" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-sd" class="bar" x="285.91" y="111.87" width="16.44" height="88.13" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-nd" class="bar" x="313.16" y="117.63" width="16.44" height="82.37" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-ks" class="bar" x="340.41" y="119.36" width="16.44" height="80.64" fill="#2563eb"/>
+      <rect id="p5-mark-generation-retail-sales-il" class="bar" x="367.66" y="119.94" width="16.44" height="80.06" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="675" fill="#6b7280">DATA-QUALITY CAVEAT for Wyoming (WY), 2024,</text>
+  <text class="caption" x="24" y="688" fill="#6b7280">energy.eia_electricity_generation / energy.eia_electricity_prices: an…</text>
+  <rect class="panel-edge" x="448" y="394" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="394" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p6-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">States generating LESS than they sell at retail, energy.eia_electricity_genera…</text>
+    <g id="p6-gridlines">
+      <line class="grid" x1="63" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-0" class="tick" x="55" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-1" class="tick" x="55" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
+      <line class="grid" x1="63" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-2" class="tick" x="55" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="63" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-3" class="tick" x="55" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
+      <line class="grid" x1="63" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-4" class="tick" x="55" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.8</text>
+      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p6-ytick-5" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
+    </g>
+    <g id="p6-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p6-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p6-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Gen / sales ratio</text>
+    <g id="p6-x-axis-labels">
+      <text id="p6-xtick-dc" class="tick" x="76.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">DC</text>
+      <text id="p6-xtick-vt" class="tick" x="103.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">VT</text>
+      <text id="p6-xtick-de" class="tick" x="131.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">DE</text>
+      <text id="p6-xtick-ma" class="tick" x="158.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MA</text>
+      <text id="p6-xtick-md" class="tick" x="185.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MD</text>
+      <text id="p6-xtick-tn" class="tick" x="212.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">TN</text>
+      <text id="p6-xtick-va" class="tick" x="240.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">VA</text>
+      <text id="p6-xtick-id" class="tick" x="267.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ID</text>
+      <text id="p6-xtick-nj" class="tick" x="294.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NJ</text>
+      <text id="p6-xtick-mo" class="tick" x="321.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MO</text>
+      <text id="p6-xtick-ca" class="tick" x="349.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA</text>
+      <text id="p6-xtick-ky" class="tick" x="376.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">KY</text>
+    </g>
+    <g id="p6-series-generation-retail-sales" class="series">
+      <rect id="p6-mark-generation-retail-sales-dc" class="bar" x="67.91" y="197.12" width="16.44" height="2.88" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-vt" class="bar" x="95.16" y="140.96" width="16.44" height="59.04" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-de" class="bar" x="122.41" y="139.52" width="16.44" height="60.48" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-ma" class="bar" x="149.66" y="139.52" width="16.44" height="60.48" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-md" class="bar" x="176.91" y="113.60" width="16.44" height="86.40" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-tn" class="bar" x="204.16" y="93.44" width="16.44" height="106.56" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-va" class="bar" x="231.41" y="93.44" width="16.44" height="106.56" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-id" class="bar" x="258.66" y="90.56" width="16.44" height="109.44" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-nj" class="bar" x="285.91" y="81.92" width="16.44" height="118.08" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-mo" class="bar" x="313.16" y="76.16" width="16.44" height="123.84" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-ca" class="bar" x="340.41" y="74.72" width="16.44" height="125.28" fill="#2563eb"/>
+      <rect id="p6-mark-generation-retail-sales-ky" class="bar" x="367.66" y="70.40" width="16.44" height="129.60" fill="#2563eb"/>
+    </g>
+    <g id="p6-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="675" fill="#6b7280">These states' 2024 values were within the original surplus_pct</text>
+  <text class="caption" x="452" y="688" fill="#6b7280">column's valid -100%..0% range (energy.eia_electricity_generation,…</text>
+  <text class="footnote" x="20" y="720" fill="#6b7280">DATA-QUALITY CAVEAT, repeated here for visibility: column surplus_pct, built from energy.eia_electricity_generation and</text>
+  <text class="footnote" x="20" y="734" fill="#6b7280">energy.eia_electricity_prices for 2024, was flagged high-severity broken_field/out-of-domain by the query engine — 20 of 51 states (place),</text>
+  <text class="footnote" x="20" y="748" fill="#6b7280">including Wyoming at 136.4% (the specific named example), exceeded the +-100% domain a percent-difference figure is expected to stay within. The…</text>
+  <g id="brand">
+  <svg x="20" y="760" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="775" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:54734/a/588e5803935198eee15cd6f95c3b06a3.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Data-quality caveat (surplus_pct, energy.eia_electricity_generation / energy.eia_electricity_prices, 2024, Wyoming):</strong> a first pass at this analysis computed each state's generation surplus as a percent, column name surplus_pct = (generation-sales)/sales*100, built from energy.eia_electricity_generation and energy.eia_electricity_prices for year 2024. The query engine flagged that column high-severity broken_field/out-of-domain, naming Wyoming's value of 136.4% as its example, because 20 of the 51 states' values fell outside the +-100% range a percent-difference column is normally expected to stay within. We checked this by hand: it is a genuine EIA figure (Wyoming generates 2.36x its own in-state retail sales in 2024, not a data error) and the report below re-expresses it as a plain ratio instead of a percent, specifically to avoid that domain-violation framing — see the dashboard chart captions and the Methodology section for the full explanation next to the actual numbers.</p><p>No single U.S. table tracks "interconnection queue position by state" — this corpus (askamerica) has no queue table (confirmed via search_catalog; "interconnection"/"queue" are unmatched terms), so this answer is built primarily from NERC, ERCOT, PJM, SPP, LBNL and Grid Strategies filings, cross-checked against the generation-to-sales ratio described above.</p><p><strong>Real headroom exists mainly in a small set of low-population, resource-rich states outside the big multi-state queues</strong>: Wyoming, Montana, the Dakotas, Nebraska, and pockets of the Pacific Northwest and Iowa/Kansas — places that generate far more than they consume (Wyoming 2.36x, Montana 1.73x) and are actively marketing that surplus to data-center developers (Wyoming's Tallgrass, Meta and TerraPower/Natrium projects; Nebraska's public-power utilities).</p><p><strong>Every major RTO/ISO handling the bulk of announced data-center demand is now tight or getting tighter</strong>: ERCOT's 2026 reserve margin (~9.8%) is already below its 13.75% target with 198 GW of large-load interconnection requests filed in Q1 2026 alone; PJM (13 states including Virginia, Ohio, Pennsylvania, New Jersey, Maryland, Illinois, Indiana) missed its 2027/28 capacity auction by 6,623 MW at a record-low ~15% reserve margin and has seen 174 GW of generation projects withdraw from its queue since 2022 rather than wait; SPP's reserve margin is forecast to go negative (-1.6%) by 2030. NERC's 2025 Long-Term Reliability Assessment flags 13 of 23 North American assessment areas as elevated- or high-risk over the next five years, with MISO, PJM, ERCOT and the Pacific Northwest named explicitly.</p><p><strong>The two pictures do not fully overlap</strong>: a state can be a large net power exporter and still sit inside a jammed queue. Pennsylvania is the clearest case — it generates 1.70x its own retail sales, the largest surplus of any big PJM state, but that surplus is already committed to exporting into the rest of PJM, whose overall reserve margin is at a record low; this is why a large new PJM load (e.g. the Talen/Amazon Susquehanna nuclear deal) still needed a contested FERC interconnection process even though Pennsylvania "has the power" on paper. Georgia and Virginia, both heavily marketed as data-center destinations, actually generate LESS than they sell at retail (Georgia 0.93x, Virginia 0.74x), meaning their local headroom is thinner than the marketing suggests and is being filled by new nuclear/gas builds and imports rather than existing spare capacity.</p>
+</section>
+<section>
+<h2>States with genuine spare capacity</h2>
+<ul><li><strong>Wyoming</strong> — smallest population of any state, ~75% coal-fired generation, generates 2.36x its own retail sales (see data-quality caveat above on how this figure is expressed); actively courting data centers (Tallgrass's proposed 1,800 MW Cheyenne facility, Meta's existing Cheyenne facility, Prometheus Hyperscale's 1,200 MW gas-fired site in Evanston, and a planned TerraPower/Meta Natrium nuclear plant).</li><li><strong>Montana</strong> — generates 1.73x retail sales; hosting the western terminus of the $3.2B North Plains Connector transmission line to North Dakota (construction from 2028, energized 2032), which will materially increase east-west transfer capability.</li><li><strong>The Dakotas, Nebraska, Kansas, Iowa</strong> — generate 1.28-1.53x retail sales, largely wind- and coal-heavy, low population relative to generation; Nebraska is unique as the only all-public-power state and offers the U.S.'s most reliable grid at among the lowest costs, though it just passed legislation (May 2026) requiring crypto/large-load miners to help fund grid upgrades and curtail at peak.</li><li><strong>Pacific Northwest (Washington, Oregon, Idaho)</strong> — smaller surpluses (WA 1.14x, OR 1.08x) built on hydro, which is itself under climate-driven variability pressure; Idaho, despite being a net importer overall (0.76x), already hosts Meta's Kuna facility.</li></ul><p>Common thread: low population density relative to installed generation, and geographic distance from the three most queue-congested RTO footprints (PJM, ERCOT, and MISO's load centers).</p>
+</section>
+<section>
+<h2>States/regions where the queue is jammed</h2>
+<ul><li><strong>ERCOT (Texas)</strong> — reserve margin ~9.8% for 2026, below the 13.75% target; large-load interconnection requests reached 198 GW in Q1 2026 alone (roughly equal to ERCOT's entire current peak load), with 86 GW under active review. CenterPoint alone saw large-load requests grow from 1 GW to 8 GW in one year (2023-2024). Texas is still adding generation fast (Grid Strategies: +37 GW added to its 2029 load-growth forecast) but the queue itself, not just the shortfall, is the constraint. (Texas's own generation/sales ratio is a modest 1.12x — unremarkable despite the extreme queue pressure, underscoring that this ratio does not capture queue congestion.)</li><li><strong>PJM (13 states: PA, NJ, MD, DE, VA, WV, OH, part of IN/IL/MI, NC, TN, KY, DC)</strong> — first-ever RTO-wide capacity shortfall in the 2027/28 Base Residual Auction (-6,623 MW), ~15% reserve margin (record low); 174 GW of generation has voluntarily withdrawn from PJM's queue since 2022 over cost and delay; PJM only reopened new interconnection requests in 2026 after a multi-year pause. Northern Virginia — the single largest U.S. data-center market — sits inside this queue and already consumes an estimated 1-in-4 kWh of Virginia's electricity for data centers.</li><li><strong>SPP (Kansas, Nebraska, Oklahoma, parts of the Dakotas, Texas panhandle)</strong> — existing-resources reserve margin projected at 1.9% for 2029 and -1.6% by 2030, despite several SPP-footprint states (Kansas, Nebraska, the Dakotas) individually showing a generation surplus on the EIA ratio above — a sign that regional transmission and market-level adequacy is tighter than any one state's own generation/sales balance implies.</li><li><strong>MISO and WECC-Northwest/Basin</strong> — both named explicitly by NERC's 2025 LTRA as elevated- or high-risk within five years, alongside PJM and ERCOT.</li></ul>
+</section>
+<section>
+<h2>Methodology, data-quality note, and what this corpus could and could not answer directly</h2>
+<p>The AskAmerica/askengine corpus (energy schema: EIA generation, retail sales, capacity-change snapshots) has no interconnection-queue table — confirmed by search_catalog returning zero matches for "interconnection" or "queue" as either a table or column name across all 420+ loaded tables. It also has no state-level reserve-margin or resource-adequacy table (NERC/ISO-published metrics live outside the corpus entirely).</p><p><strong>Full data-quality note on surplus_pct (energy.eia_electricity_generation, energy.eia_electricity_prices, 2024, Wyoming and 19 other states):</strong> to build a data-grounded piece of the answer, we first computed each state's 2024 generation-vs-sales balance as a percent difference: surplus_pct = (generation-sales)/sales*100, from energy.eia_electricity_generation (state, sector='All Sectors', energy_source='ALL', 2024, summed across 12 months per that table's documented convention) and energy.eia_electricity_prices (state, sector='all sectors', 2024, annual sales). The query engine returned a high-severity broken_field/out-of-domain diagnostic on this exact column (surplus_pct), naming Wyoming's value of 136.4% as the example, because 20 of 51 states exceeded the +-100% range a percent-difference column is normally expected to stay within. We reviewed this by hand: it is not a data error. Wyoming's generation (40.7 million MWh in 2024) is genuinely more than 2.3x its own retail sales (17.2 million MWh) per EIA — plausible for a state with under 600,000 residents and heavy coal/wind/gas generation built largely for export. Rather than keep the flagged percent framing, the published charts above re-express the identical underlying figures as a ratio (generation ÷ sales, e.g. 2.36 for Wyoming), which carries no percent-domain expectation and reports the same numbers. Readers should still treat this ratio as NOT a queue or headroom measure: it is a same-year physical accounting identity that a state balances through interstate transmission, existing export contracts, and losses — not through any local reservoir of unused capacity available on demand to a new load.</p><p>The reserve-margin, queue-withdrawal, and NERC risk-region figures came from ERCOT's own resource adequacy report, PJM's 2027/28 Base Residual Auction results and its queue-reform reporting, SPP's 2025 Summer Resource Adequacy Report, and NERC's 2025 Long-Term Reliability Assessment — read via web search summaries and the LBNL/Grid Strategies national load-growth literature, not parsed directly from each primary PDF table in this session; where a number is a primary-source figure we cite the report by name, and note that we did not independently re-derive PJM's or ERCOT's own reserve-margin arithmetic from raw auction/load data.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>5 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 51 rows — 26982 ms</summary><pre><code>SELECT state_abbr, SUM(generation_thousand_mwh) AS gen_thousand_mwh, &quot;year&quot;
+FROM energy.eia_electricity_generation
+WHERE geo_level='state' AND sector_code='99' AND energy_source_code='ALL' AND &quot;year&quot;=2024
+GROUP BY state_abbr, &quot;year&quot;
+ORDER BY state_abbr</code></pre></details>
+<details class="sqltoggle"><summary>query — 4351 ms</summary><pre><code>SELECT state_abbr, SUM(sales_million_kwh) AS sales_million_kwh
+FROM energy.eia_electricity_prices
+WHERE &quot;year&quot;='2024' AND sector='All Sectors'
+GROUP BY state_abbr
+ORDER BY state_abbr</code></pre></details>
+<details class="sqltoggle"><summary>query — 20 rows — 1258 ms</summary><pre><code>SELECT state_abbr, sector, sales_million_kwh FROM energy.eia_electricity_prices WHERE &quot;year&quot;='2024' LIMIT 20</code></pre></details>
+<details class="sqltoggle"><summary>query — 51 rows — 4312 ms</summary><pre><code>SELECT g.state_abbr, g.gen_thousand_mwh*1000 AS gen_mwh_annual, p.sales_million_kwh*1000 AS sales_mwh_annual,
+  ROUND((g.gen_thousand_mwh*1000 - p.sales_million_kwh*1000) / NULLIF(p.sales_million_kwh*1000,0) * 100, 1) AS surplus_pct
+FROM (
+  SELECT state_abbr, SUM(generation_thousand_mwh) AS gen_thousand_mwh
+  FROM energy.eia_electricity_generation
+  WHERE geo_level='state' AND sector_code='99' AND energy_source_code='ALL' AND &quot;year&quot;='2024'
+  GROUP BY state_abbr
+) g
+JOIN (
+  SELECT state_abbr, sales_million_kwh
+  FROM energy.eia_electricity_prices
+  WHERE &quot;year&quot;='2024' AND sector='all sectors'
+) p ON g.state_abbr = p.state_abbr
+ORDER BY surplus_pct DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 51 rows — 4915 ms</summary><pre><code>SELECT g.state_abbr,
+  ROUND(g.gen_thousand_mwh / NULLIF(p.sales_million_kwh,0), 2) AS gen_to_sales_ratio
+FROM (
+  SELECT state_abbr, SUM(generation_thousand_mwh) AS gen_thousand_mwh
+  FROM energy.eia_electricity_generation
+  WHERE geo_level='state' AND sector_code='99' AND energy_source_code='ALL' AND &quot;year&quot;='2024'
+  GROUP BY state_abbr
+) g
+JOIN (
+  SELECT state_abbr, sales_million_kwh
+  FROM energy.eia_electricity_prices
+  WHERE &quot;year&quot;='2024' AND sector='all sectors'
+) p ON g.state_abbr = p.state_abbr
+ORDER BY gen_to_sales_ratio DESC</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>AskAmerica surplus_pct diagnostic query (energy.eia_electricity_generation + energy.eia_electricity_prices, 2024) — flagged broken_field/out-of-domain, Wyoming=136.4%; superseded below by a ratio-based query reporting the same underlying figures<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT g.state_abbr, ROUND((g.gen_thousand_mwh*1000 - p.sales_million_kwh*1000)/NULLIF(p.sales_million_kwh*1000,0)*100,1) AS surplus_pct FROM (SELECT state_abbr, SUM(generation_thousand_mwh) AS gen_thousand_mwh FROM energy.eia_electricity_generation WHERE geo_level='state' AND sector_code='99' AND energy_source_code='ALL' AND &quot;year&quot;='2024' GROUP BY state_abbr) g JOIN (SELECT state_abbr, sales_million_kwh FROM energy.eia_electricity_prices WHERE &quot;year&quot;='2024' AND sector='all sectors') p ON g.state_abbr = p.state_abbr ORDER BY surplus_pct DESC</code></pre></details></li>
+<li><a href="https://www.nerc.com/globalassets/our-work/assessments/nerc_ltra_2025.pdf">NERC 2025 Long-Term Reliability Assessment</a></li>
+<li><a href="https://www.powermag.com/nerc-warns-long-term-grid-reliability-risks-mounting-from-surging-demand-lagging-resources/">NERC warns of mounting long-term reliability risk (PowerMag)</a></li>
+<li><a href="https://www.utilitydive.com/news/nerc-10-year-peak-demand-forecast-jumps-24-on-new-data-center-loads/810955/">NERC 10-year peak demand forecast up 24% on data centers (Utility Dive)</a></li>
+<li><a href="https://www.ascendanalytics.com/blog/large-load-interconnection-queues-data-center-grid-access">ERCOT reserve margin ~9.8%, 198 GW large-load queue Q1 2026</a></li>
+<li><a href="https://www.energytech.com/data-center-power/article/55391509/the-grid-short-pjms-future-capacity-auction-reveals-power-constraints-in-looming-era-of-higher-electrification-load">PJM 2027/28 capacity auction shortfall (Energy Tech)</a></li>
+<li><a href="https://www.renewableenergyworld.com/power-grid/transmission/at-long-last-the-pjm-interconnection-queue-is-moving-again-now-what/">PJM queue reopening / 174 GW withdrawn since 2022 (Renewable Energy World)</a></li>
+<li><a href="https://gridlab.org/interconnection-bottlenecks-cost-pjm-customers-3-5-billion/">Interconnection bottlenecks cost PJM customers $3.5B (GridLab)</a></li>
+<li><a href="https://www.simcorepartners.com/insights-/h1-2026-u-s-power-market-update">SPP reserve margin forecast negative by 2030</a></li>
+<li><a href="https://gridstrategiesllc.com/wp-content/uploads/Grid-Strategies-National-Load-Growth-Report-2025.pdf">Grid Strategies 2025 National Load Growth Report</a></li>
+<li><a href="https://emp.lbl.gov/publications/queued-2025-edition-characteristics">LBNL Queued Up 2025 Edition (interconnection queue characteristics)</a></li>
+<li><a href="https://www.cnbc.com/2025/07/15/10-best-power-sources-us-grid-ai-data-center-top-states-for-business.html">CNBC: 10 U.S. state power grids best positioned for the AI data center boom</a></li>
+<li><a href="https://www.belfercenter.org/sites/default/files/2026-04/Mural%20et%20al_Data%20Center%20VA%20TX%20Case%20Study_Final.pdf">Virginia data-center electricity share and grid strain (Belfer Center)</a></li>
+<li><a href="https://cowboystatedaily.com/2026/06/18/wyoming-wrestles-with-unprecedented-power-demand-from-massive-data-centers/">Wyoming data-center power demand (Cowboy State Daily)</a></li>
+<li><a href="https://mgrid.org/2026/06/18/ferc-orders-all-six-grid-operators-to-justify-or-rewrite-large-load-tariffs-within-60-days/">FERC show-cause orders on RTO large-load tariffs, June 2026</a></li>
+<li>AskAmerica energy.eia_electricity_generation and energy.eia_electricity_prices (2024 state generation-to-sales ratio, replacing the flagged surplus_pct percent column above)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT g.state_abbr, ROUND(g.gen_thousand_mwh / NULLIF(p.sales_million_kwh,0), 2) AS gen_to_sales_ratio FROM (SELECT state_abbr, SUM(generation_thousand_mwh) AS gen_thousand_mwh FROM energy.eia_electricity_generation WHERE geo_level='state' AND sector_code='99' AND energy_source_code='ALL' AND &quot;year&quot;='2024' GROUP BY state_abbr) g JOIN (SELECT state_abbr, sales_million_kwh FROM energy.eia_electricity_prices WHERE &quot;year&quot;='2024' AND sector='all sectors') p ON g.state_abbr = p.state_abbr ORDER BY gen_to_sales_ratio DESC</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">This corpus has no interconnection-queue or reserve-margin table; the queue/reserve-margin claims above are sourced to NERC/ERCOT/PJM/SPP/LBNL/Grid Strategies reporting read via web search, not parsed line-by-line from each primary PDF's own data tables in this session. surplus_pct (energy.eia_electricity_generation + energy.eia_electricity_prices, 2024, Wyoming and 19 other states) was flagged high-severity broken_field/out-of-domain by the query engine and is explained in the Summary, dashboard captions, and Methodology section; the published figures use a ratio instead.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
