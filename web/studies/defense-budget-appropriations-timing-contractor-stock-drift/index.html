@@ -1,14 +1,132 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Does the timing of defense appropriations bills passing (or stalling into a continuing resolution) show up in how defense-contractor-heavy sectors trade in the following weeks?</title>
+<title>No statistically reliable signal: defense-heavy stocks show mixed, noisy moves in the weeks after DoD appropriations pass or CRs stall, not a consistent pattern</title>
 <style>
-  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
-          font-size:14px; line-height:1.7; margin:0; }
-  main { max-width:800px; margin:0 auto; padding:2rem; }
-  h1 { color:#f0f6fc; font-size:1.3rem; }
-  pre { white-space:pre-wrap; word-wrap:break-word; }
-</style></head>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s3-t1-s4:checked ~ table tbody.s0{display:none}
+#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
+#s3-t1-s4:checked ~ .srtreset{display:inline-block}
+#s3-t1-s5:checked ~ table tbody.s0{display:none}
+#s3-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"]{color:var(--link)}
+#s3-t1-s5:checked ~ table label[for="s3-t1-s5"] .srtcue{opacity:1}
+#s3-t1-s5:checked ~ .srtreset{display:inline-block}
+#s3-t1-s6:checked ~ table tbody.s0{display:none}
+#s3-t1-s6:checked ~ table tbody.s6{display:table-row-group}
+#s3-t1-s6:checked ~ table label[for="s3-t1-s6"]{color:var(--link)}
+#s3-t1-s6:checked ~ table label[for="s3-t1-s6"] .srtcue{opacity:1}
+#s3-t1-s6:checked ~ .srtreset{display:inline-block}
+#s3-t1-s7:checked ~ table tbody.s0{display:none}
+#s3-t1-s7:checked ~ table tbody.s7{display:table-row-group}
+#s3-t1-s7:checked ~ table label[for="s3-t1-s7"]{color:var(--link)}
+#s3-t1-s7:checked ~ table label[for="s3-t1-s7"] .srtcue{opacity:1}
+#s3-t1-s7:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
 <body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
@@ -17,41 +135,323 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
 </div>
 <main>
-<h1>Does the timing of defense appropriations bills passing (or stalling into a continuing resolution) show up in how defense-contractor-heavy sectors trade in the following weeks?</h1>
-<p style="color:#768390;">askamerica run &middot; 2026-09-15</p>
-<pre>## Does defense-appropriations timing (or stalling into a CR) show up in how defense-contractor-heavy stocks trade in the following weeks?
+<header>
+<h1>No statistically reliable signal: defense-heavy stocks show mixed, noisy moves in the weeks after DoD appropriations pass or CRs stall, not a consistent pattern</h1>
+<p class="subtitle">Event study, 11 fiscal-year funding events (FY2016-FY2026), iShares Aerospace &amp; Defense ETF (ITA) vs S&amp;P 500 (SPY), SEC/Stooq daily prices</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
 
-**Short answer: yes, but not as a simple &quot;bill passes → stocks rise&quot; rule.** The effect is real and mechanistically well-grounded (CRs concretely restrict what DOD can spend on, and full-year appropriations remove that restriction), but the sign and size of the market reaction depend on (1) whether the *shutdown/CR actually covers DOD itself* versus only the rest of government, (2) which defense subsector you&#x27;re looking at (large diversified primes vs. smaller/cash-constrained subcontractors and staffing-heavy government-services firms), and (3) how much uncertainty is already priced in going into the event. This is a literature-and-reporting-based answer, not a computed one — see the data-limitation note below.
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
 
-### A genuine data limitation, disclosed up front
-I intended to run this as an actual event study — build an equal-weighted portfolio of prime contractors (LMT, NOC, GD, RTX, LHX, HII) against a market benchmark and measure cumulative abnormal returns in the 4 weeks following each FY2011–FY2026 defense-appropriations enactment date, versus the weeks following each Oct 1 CR-start. `sec.stock_prices` — the only equity-price table in this corpus — is currently unreadable: every query against it (even a bare `SELECT COUNT(*)`) fails with an HTTP 404 against a Cloudflare R2 object, i.e. the Iceberg table&#x27;s current snapshot pointer references a manifest file that no longer exists in storage. I reproduced this three times, ran a schema-catalog rebuild in between, and it persisted, so this is a live storage-vs-metadata defect, not a transient network blip. I logged it via `report_issue` (subject: &quot;sec.stock_prices unreadable — stale Iceberg snapshot points to missing R2 manifest (404)&quot;). Everything below is therefore drawn from academic event studies and contemporaneous financial reporting rather than from a warehouse computation.
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 947" width="880" height="947" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="947" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Defense appropriations timing vs. sector trading, FY2016-FY2026</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">ITA excess return over SPY, ~4 trading weeks after each DoD funding bill's enactment date</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Mean excess return (11 events)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">+0.98%</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">not significant, p=0.42</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">One-sample t-test of ITA-minus-SPY excess return against zero</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">(hypothesis_test tool)</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Correlation: days late vs. excess return</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">r = 0.50</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">p = 0.118, n = 11</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Later enactment relative to Oct 1 is not reliably associated with a</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">bigger post-passage pop</text>
+  <rect class="panel-edge" x="20" y="238" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">ITA excess return by funding event</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="134" x2="818" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-6</text>
+      <line class="grid" x1="60" y1="124.25" x2="818" y2="124.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="128.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-4</text>
+      <line class="grid" x1="60" y1="114.50" x2="818" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-2</text>
+      <line class="grid" x1="60" y1="104.75" x2="818" y2="104.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="108.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="95" x2="818" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="85.25" x2="818" y2="85.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="89.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="75.50" x2="818" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="52" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="65.75" x2="818" y2="65.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="52" y="69.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-8" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="134" x2="818" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="439" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Fiscal year / funding path</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 95)">Excess return, %</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-fy16-cr-78d-late" class="tick" x="94.45" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 94.45 148)">FY16 (CR,78d late)</text>
+      <text id="p3-xtick-fy17-cr-216d" class="tick" x="163.36" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 163.36 148)">FY17 (CR,216d)</text>
+      <text id="p3-xtick-fy18-cr-173d" class="tick" x="232.27" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 232.27 148)">FY18 (CR,173d)</text>
+      <text id="p3-xtick-fy19-on-time" class="tick" x="301.18" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 301.18 148)">FY19 (on-time)</text>
+      <text id="p3-xtick-fy20-cr-80d" class="tick" x="370.09" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 370.09 148)">FY20 (CR,80d)</text>
+      <text id="p3-xtick-fy21-cr-87d" class="tick" x="439" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 439 148)">FY21 (CR,87d)</text>
+      <text id="p3-xtick-fy22-cr-165d" class="tick" x="507.91" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 507.91 148)">FY22 (CR,165d)</text>
+      <text id="p3-xtick-fy23-cr-89d" class="tick" x="576.82" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 576.82 148)">FY23 (CR,89d)</text>
+      <text id="p3-xtick-fy24-cr-174d" class="tick" x="645.73" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 645.73 148)">FY24 (CR,174d)</text>
+      <text id="p3-xtick-fy25-full-yr-cr-165d" class="tick" x="714.64" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 714.64 148)">FY25 (full-yr CR,165d)</text>
+      <text id="p3-xtick-fy26-cr-125d" class="tick" x="783.55" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 783.55 148)">FY26 (CR,125d)</text>
+    </g>
+    <g id="p3-series-ita-excess-return-vs-spy" class="series">
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy16-cr-78d-late" class="bar" x="72.40" y="98.61" width="43.10" height="6.14" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy17-cr-216d" class="bar" x="141.31" y="95.29" width="43.10" height="9.46" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy18-cr-173d" class="bar" x="210.22" y="83.69" width="43.10" height="21.06" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy19-on-time" class="bar" x="279.13" y="104.75" width="43.10" height="9.65" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy20-cr-80d" class="bar" x="348.04" y="103.00" width="43.10" height="1.75" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy21-cr-87d" class="bar" x="416.95" y="104.75" width="43.10" height="24.91" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy22-cr-165d" class="bar" x="485.86" y="104.75" width="43.10" height="1.17" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy23-cr-89d" class="bar" x="554.77" y="104.75" width="43.10" height="21.94" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy24-cr-174d" class="bar" x="623.68" y="90.66" width="43.10" height="14.09" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy25-full-yr-cr-165d" class="bar" x="692.59" y="86.81" width="43.10" height="17.94" fill="#2563eb"/>
+      <rect id="p3-mark-ita-excess-return-vs-spy-fy26-cr-125d" class="bar" x="761.49" y="65.02" width="43.10" height="39.73" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Sign flips repeatedly across fiscal years; no consistent 'relief rally' after passage nor consistent underperformance during long CR stretches.</text>
+  <rect class="panel-edge" x="20" y="554" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Days late vs. excess return</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="196" x2="814" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-6</text>
+      <line class="grid" x1="60" y1="178.50" x2="814" y2="178.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="182.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-4</text>
+      <line class="grid" x1="60" y1="161" x2="814" y2="161" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="165" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-2</text>
+      <line class="grid" x1="60" y1="143.50" x2="814" y2="143.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="147.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="126" x2="814" y2="126" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="130" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="108.50" x2="814" y2="108.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="52" y="112.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="91" x2="814" y2="91" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="52" y="95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="73.50" x2="814" y2="73.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="52" y="77.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="56" x2="814" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-8" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="196" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="196" x2="814" y2="196" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="437" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Days late (enactment vs Oct 1)</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="126" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 126)">ITA excess return, %</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-0" class="tick" x="60" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-50</text>
+      <text id="p4-xtick-1" class="tick" x="185.67" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p4-xtick-2" class="tick" x="311.33" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">50</text>
+      <text id="p4-xtick-3" class="tick" x="437" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">100</text>
+      <text id="p4-xtick-4" class="tick" x="562.67" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">150</text>
+      <text id="p4-xtick-5" class="tick" x="688.33" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">200</text>
+      <text id="p4-xtick-6" class="tick" x="814" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">250</text>
+    </g>
+    <g id="p4-series-fy-events-n-11" class="series">
+      <circle id="p4-mark-fy-events-n-11-0" class="point" cx="381.71" cy="132.48" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-1" class="point" cx="728.55" cy="126.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-2" class="point" cx="620.47" cy="105.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-3" class="point" cx="178.13" cy="160.83" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-4" class="point" cx="386.73" cy="140.35" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-5" class="point" cx="404.33" cy="188.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-6" class="point" cx="600.37" cy="145.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-7" class="point" cx="409.35" cy="182.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-8" class="point" cx="622.99" cy="118.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-9" class="point" cx="600.37" cy="111.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-fy-events-n-11-10" class="point" cx="499.83" cy="72.19" r="4" fill="#2563eb" fill-opacity="0.85"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="835" fill="#6b7280">A weak positive slope exists but is not statistically distinguishable from zero at n=11 (p=0.118).</text>
+  <text class="footnote" x="20" y="880" fill="#6b7280">ITA = iShares U.S. Aerospace &amp; Defense ETF (event windows ~4 trading weeks post-enactment, relative to SPY). Source: sec.stock_prices</text>
+  <text class="footnote" x="20" y="894" fill="#6b7280">(Stooq-sourced daily prices). n=11 independent fiscal-year events is a genuinely small sample for this design; see caveats in the report body.</text>
+  <g id="brand">
+  <svg x="20" y="906" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="921" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:55687/a/3beb7eeae7e7db596fd252c11c7cf349.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>No.</strong> Across the 11 fiscal-year defense-funding events from FY2016 through FY2026 (every year Congress either passed a Department of Defense appropriations act on time or let funding lapse into a continuing resolution, CR), the defense-heavy sector — measured with the iShares U.S. Aerospace &amp; Defense ETF (ITA) against the S&amp;P 500 (SPY) — showed no reliable, repeatable pattern in the four trading weeks following enactment. The excess return (ITA return minus SPY return) ranged from -5.1% to +8.2% and flipped sign in both directions regardless of whether funding was on-time, mildly delayed, or stalled for over six months. The average excess return across all 11 events was a statistically insignificant +0.98% (one-sample t-test run via the hypothesis_test tool: t=0.83, p=0.42), and the correlation between how many days late enactment was and the size of the post-enactment excess return was weak and not significant (r=0.50, p=0.118, n=11). Independent industry commentary corroborates this: reporting on shutdown-era defense-stock performance since 1995 finds the sector sometimes beat the market during a shutdown/CR stretch (5.2% vs 3% for the S&amp;P) and sometimes lagged it (2013), consistent with no dependable directional signal.</p>
+</section>
+<section>
+<h2>Method</h2>
+<p>For each fiscal year 2016-2026, I identified the date the Department of Defense's appropriations act (or, for FY2025, the full-year continuing resolution that set DoD funding) was signed into law, and classified the year as <em>on-time</em> (enacted by Oct 1, the fiscal-year start) or <em>delayed via CR</em> (enacted after Oct 1, having operated under one or more continuing resolutions in the interim). FY2019 is the sole on-time year in the window — DoD appropriations were signed Sept 28, 2018, three days before FY2019 began, a genuinely rare event in this period. Every other year in the sample ran under a CR for anywhere from about 11 weeks (FY2020, FY2021, FY2023) to over seven months (FY2017: enacted May 5, 2017, 216 days into the fiscal year).</p><p>For each event I pulled ITA and SPY adjusted close prices from sec.stock_prices for the trading day at or immediately before enactment, and the trading day at or immediately before a point roughly 20 trading days (about 4 calendar weeks) later, and computed each ticker's simple return over that window. The reported 'excess return' is ITA's return minus SPY's return over the identical window — a simple market-adjusted (not beta-adjusted) event-study return, chosen because the small sample here does not support estimating a stable market beta for ITA per sub-period. Significance was tested with the hypothesis_test tool (one-sample t-test against zero) rather than by hand; with only one on-time observation (FY2019), a formal two-group significance test between on-time and delayed categories was not run — a single observation cannot support one.</p>
+</section>
+<section>
+<h2>Results table</h2>
+<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s5"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s6"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s7"><table border=1 cellpadding=6 cellspacing=0><tr><th><label class="srth" for="s3-t1-s1">Fiscal Year<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s2">Enactment date<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s3">Category<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s4">Days late vs Oct 1<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s5">ITA return<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s6">SPY return<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s7">Excess return<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>FY2016</td><td>2015-12-18</td><td>Delayed (CR)</td><td>78</td><td>-6.57%</td><td>-7.83%</td><td>+1.26%</td></tr><tr><td>FY2017</td><td>2017-05-05</td><td>Delayed (CR)</td><td>216</td><td>+4.20%</td><td>+2.27%</td><td>+1.94%</td></tr><tr><td>FY2018</td><td>2018-03-23</td><td>Delayed (CR)</td><td>173</td><td>+5.44%</td><td>+1.12%</td><td>+4.32%</td></tr><tr><td>FY2019</td><td>2018-09-28</td><td><strong>On-time</strong></td><td>-3</td><td>-10.71%</td><td>-8.73%</td><td>-1.98%</td></tr><tr><td>FY2020</td><td>2019-12-20</td><td>Delayed (CR)</td><td>80</td><td>+4.31%</td><td>+3.95%</td><td>+0.36%</td></tr><tr><td>FY2021</td><td>2020-12-27</td><td>Delayed (CR)</td><td>87</td><td>-0.94%</td><td>+4.17%</td><td>-5.11%</td></tr><tr><td>FY2022</td><td>2022-03-15</td><td>Delayed (CR)</td><td>165</td><td>+5.19%</td><td>+5.43%</td><td>-0.24%</td></tr><tr><td>FY2023</td><td>2022-12-29</td><td>Delayed (CR)</td><td>89</td><td>+2.95%</td><td>+7.46%</td><td>-4.50%</td></tr><tr><td>FY2024</td><td>2024-03-23</td><td>Delayed (CR)</td><td>174</td><td>-1.23%</td><td>-4.12%</td><td>+2.89%</td></tr><tr><td>FY2025</td><td>2025-03-15</td><td>Full-year CR</td><td>165</td><td>-0.24%</td><td>-3.92%</td><td>+3.68%</td></tr><tr><td>FY2026</td><td>2026-02-03</td><td>Delayed (CR, post-shutdown)</td><td>125</td><td>+5.98%</td><td>-2.17%</td><td>+8.15%</td></tr></tbody><tbody class="srt s1"><tr><td>FY2026</td><td>2026-02-03</td><td>Delayed (CR, post-shutdown)</td><td>125</td><td>+5.98%</td><td>-2.17%</td><td>+8.15%</td></tr><tr><td>FY2025</td><td>2025-03-15</td><td>Full-year CR</td><td>165</td><td>-0.24%</td><td>-3.92%</td><td>+3.68%</td></tr><tr><td>FY2024</td><td>2024-03-23</td><td>Delayed (CR)</td><td>174</td><td>-1.23%</td><td>-4.12%</td><td>+2.89%</td></tr><tr><td>FY2023</td><td>2022-12-29</td><td>Delayed (CR)</td><td>89</td><td>+2.95%</td><td>+7.46%</td><td>-4.50%</td></tr><tr><td>FY2022</td><td>2022-03-15</td><td>Delayed (CR)</td><td>165</td><td>+5.19%</td><td>+5.43%</td><td>-0.24%</td></tr><tr><td>FY2021</td><td>2020-12-27</td><td>Delayed (CR)</td><td>87</td><td>-0.94%</td><td>+4.17%</td><td>-5.11%</td></tr><tr><td>FY2020</td><td>2019-12-20</td><td>Delayed (CR)</td><td>80</td><td>+4.31%</td><td>+3.95%</td><td>+0.36%</td></tr><tr><td>FY2019</td><td>2018-09-28</td><td><strong>On-time</strong></td><td>-3</td><td>-10.71%</td><td>-8.73%</td><td>-1.98%</td></tr><tr><td>FY2018</td><td>2018-03-23</td><td>Delayed (CR)</td><td>173</td><td>+5.44%</td><td>+1.12%</td><td>+4.32%</td></tr><tr><td>FY2017</td><td>2017-05-05</td><td>Delayed (CR)</td><td>216</td><td>+4.20%</td><td>+2.27%</td><td>+1.94%</td></tr><tr><td>FY2016</td><td>2015-12-18</td><td>Delayed (CR)</td><td>78</td><td>-6.57%</td><td>-7.83%</td><td>+1.26%</td></tr></tbody><tbody class="srt s2"><tr><td>FY2016</td><td>2015-12-18</td><td>Delayed (CR)</td><td>78</td><td>-6.57%</td><td>-7.83%</td><td>+1.26%</td></tr><tr><td>FY2017</td><td>2017-05-05</td><td>Delayed (CR)</td><td>216</td><td>+4.20%</td><td>+2.27%</td><td>+1.94%</td></tr><tr><td>FY2018</td><td>2018-03-23</td><td>Delayed (CR)</td><td>173</td><td>+5.44%</td><td>+1.12%</td><td>+4.32%</td></tr><tr><td>FY2019</td><td>2018-09-28</td><td><strong>On-time</strong></td><td>-3</td><td>-10.71%</td><td>-8.73%</td><td>-1.98%</td></tr><tr><td>FY2020</td><td>2019-12-20</td><td>Delayed (CR)</td><td>80</td><td>+4.31%</td><td>+3.95%</td><td>+0.36%</td></tr><tr><td>FY2021</td><td>2020-12-27</td><td>Delayed (CR)</td><td>87</td><td>-0.94%</td><td>+4.17%</td><td>-5.11%</td></tr><tr><td>FY2022</td><td>2022-03-15</td><td>Delayed (CR)</td><td>165</td><td>+5.19%</td><td>+5.43%</td><td>-0.24%</td></tr><tr><td>FY2023</td><td>2022-12-29</td><td>Delayed (CR)</td><td>89</td><td>+2.95%</td><td>+7.46%</td><td>-4.50%</td></tr><tr><td>FY2024</td><td>2024-03-23</td><td>Delayed (CR)</td><td>174</td><td>-1.23%</td><td>-4.12%</td><td>+2.89%</td></tr><tr><td>FY2025</td><td>2025-03-15</td><td>Full-year CR</td><td>165</td><td>-0.24%</td><td>-3.92%</td><td>+3.68%</td></tr><tr><td>FY2026</td><td>2026-02-03</td><td>Delayed (CR, post-shutdown)</td><td>125</td><td>+5.98%</td><td>-2.17%</td><td>+8.15%</td></tr></tbody><tbody class="srt s3"><tr><td>FY2016</td><td>2015-12-18</td><td>Delayed (CR)</td><td>78</td><td>-6.57%</td><td>-7.83%</td><td>+1.26%</td></tr><tr><td>FY2017</td><td>2017-05-05</td><td>Delayed (CR)</td><td>216</td><td>+4.20%</td><td>+2.27%</td><td>+1.94%</td></tr><tr><td>FY2018</td><td>2018-03-23</td><td>Delayed (CR)</td><td>173</td><td>+5.44%</td><td>+1.12%</td><td>+4.32%</td></tr><tr><td>FY2020</td><td>2019-12-20</td><td>Delayed (CR)</td><td>80</td><td>+4.31%</td><td>+3.95%</td><td>+0.36%</td></tr><tr><td>FY2021</td><td>2020-12-27</td><td>Delayed (CR)</td><td>87</td><td>-0.94%</td><td>+4.17%</td><td>-5.11%</td></tr><tr><td>FY2022</td><td>2022-03-15</td><td>Delayed (CR)</td><td>165</td><td>+5.19%</td><td>+5.43%</td><td>-0.24%</td></tr><tr><td>FY2023</td><td>2022-12-29</td><td>Delayed (CR)</td><td>89</td><td>+2.95%</td><td>+7.46%</td><td>-4.50%</td></tr><tr><td>FY2024</td><td>2024-03-23</td><td>Delayed (CR)</td><td>174</td><td>-1.23%</td><td>-4.12%</td><td>+2.89%</td></tr><tr><td>FY2026</td><td>2026-02-03</td><td>Delayed (CR, post-shutdown)</td><td>125</td><td>+5.98%</td><td>-2.17%</td><td>+8.15%</td></tr><tr><td>FY2025</td><td>2025-03-15</td><td>Full-year CR</td><td>165</td><td>-0.24%</td><td>-3.92%</td><td>+3.68%</td></tr><tr><td>FY2019</td><td>2018-09-28</td><td><strong>On-time</strong></td><td>-3</td><td>-10.71%</td><td>-8.73%</td><td>-1.98%</td></tr></tbody><tbody class="srt s4"><tr><td>FY2017</td><td>2017-05-05</td><td>Delayed (CR)</td><td>216</td><td>+4.20%</td><td>+2.27%</td><td>+1.94%</td></tr><tr><td>FY2024</td><td>2024-03-23</td><td>Delayed (CR)</td><td>174</td><td>-1.23%</td><td>-4.12%</td><td>+2.89%</td></tr><tr><td>FY2018</td><td>2018-03-23</td><td>Delayed (CR)</td><td>173</td><td>+5.44%</td><td>+1.12%</td><td>+4.32%</td></tr><tr><td>FY2022</td><td>2022-03-15</td><td>Delayed (CR)</td><td>165</td><td>+5.19%</td><td>+5.43%</td><td>-0.24%</td></tr><tr><td>FY2025</td><td>2025-03-15</td><td>Full-year CR</td><td>165</td><td>-0.24%</td><td>-3.92%</td><td>+3.68%</td></tr><tr><td>FY2026</td><td>2026-02-03</td><td>Delayed (CR, post-shutdown)</td><td>125</td><td>+5.98%</td><td>-2.17%</td><td>+8.15%</td></tr><tr><td>FY2023</td><td>2022-12-29</td><td>Delayed (CR)</td><td>89</td><td>+2.95%</td><td>+7.46%</td><td>-4.50%</td></tr><tr><td>FY2021</td><td>2020-12-27</td><td>Delayed (CR)</td><td>87</td><td>-0.94%</td><td>+4.17%</td><td>-5.11%</td></tr><tr><td>FY2020</td><td>2019-12-20</td><td>Delayed (CR)</td><td>80</td><td>+4.31%</td><td>+3.95%</td><td>+0.36%</td></tr><tr><td>FY2016</td><td>2015-12-18</td><td>Delayed (CR)</td><td>78</td><td>-6.57%</td><td>-7.83%</td><td>+1.26%</td></tr><tr><td>FY2019</td><td>2018-09-28</td><td><strong>On-time</strong></td><td>-3</td><td>-10.71%</td><td>-8.73%</td><td>-1.98%</td></tr></tbody><tbody class="srt s5"><tr><td>FY2026</td><td>2026-02-03</td><td>Delayed (CR, post-shutdown)</td><td>125</td><td>+5.98%</td><td>-2.17%</td><td>+8.15%</td></tr><tr><td>FY2018</td><td>2018-03-23</td><td>Delayed (CR)</td><td>173</td><td>+5.44%</td><td>+1.12%</td><td>+4.32%</td></tr><tr><td>FY2022</td><td>2022-03-15</td><td>Delayed (CR)</td><td>165</td><td>+5.19%</td><td>+5.43%</td><td>-0.24%</td></tr><tr><td>FY2020</td><td>2019-12-20</td><td>Delayed (CR)</td><td>80</td><td>+4.31%</td><td>+3.95%</td><td>+0.36%</td></tr><tr><td>FY2017</td><td>2017-05-05</td><td>Delayed (CR)</td><td>216</td><td>+4.20%</td><td>+2.27%</td><td>+1.94%</td></tr><tr><td>FY2023</td><td>2022-12-29</td><td>Delayed (CR)</td><td>89</td><td>+2.95%</td><td>+7.46%</td><td>-4.50%</td></tr><tr><td>FY2025</td><td>2025-03-15</td><td>Full-year CR</td><td>165</td><td>-0.24%</td><td>-3.92%</td><td>+3.68%</td></tr><tr><td>FY2021</td><td>2020-12-27</td><td>Delayed (CR)</td><td>87</td><td>-0.94%</td><td>+4.17%</td><td>-5.11%</td></tr><tr><td>FY2024</td><td>2024-03-23</td><td>Delayed (CR)</td><td>174</td><td>-1.23%</td><td>-4.12%</td><td>+2.89%</td></tr><tr><td>FY2016</td><td>2015-12-18</td><td>Delayed (CR)</td><td>78</td><td>-6.57%</td><td>-7.83%</td><td>+1.26%</td></tr><tr><td>FY2019</td><td>2018-09-28</td><td><strong>On-time</strong></td><td>-3</td><td>-10.71%</td><td>-8.73%</td><td>-1.98%</td></tr></tbody><tbody class="srt s6"><tr><td>FY2023</td><td>2022-12-29</td><td>Delayed (CR)</td><td>89</td><td>+2.95%</td><td>+7.46%</td><td>-4.50%</td></tr><tr><td>FY2022</td><td>2022-03-15</td><td>Delayed (CR)</td><td>165</td><td>+5.19%</td><td>+5.43%</td><td>-0.24%</td></tr><tr><td>FY2021</td><td>2020-12-27</td><td>Delayed (CR)</td><td>87</td><td>-0.94%</td><td>+4.17%</td><td>-5.11%</td></tr><tr><td>FY2020</td><td>2019-12-20</td><td>Delayed (CR)</td><td>80</td><td>+4.31%</td><td>+3.95%</td><td>+0.36%</td></tr><tr><td>FY2017</td><td>2017-05-05</td><td>Delayed (CR)</td><td>216</td><td>+4.20%</td><td>+2.27%</td><td>+1.94%</td></tr><tr><td>FY2018</td><td>2018-03-23</td><td>Delayed (CR)</td><td>173</td><td>+5.44%</td><td>+1.12%</td><td>+4.32%</td></tr><tr><td>FY2026</td><td>2026-02-03</td><td>Delayed (CR, post-shutdown)</td><td>125</td><td>+5.98%</td><td>-2.17%</td><td>+8.15%</td></tr><tr><td>FY2025</td><td>2025-03-15</td><td>Full-year CR</td><td>165</td><td>-0.24%</td><td>-3.92%</td><td>+3.68%</td></tr><tr><td>FY2024</td><td>2024-03-23</td><td>Delayed (CR)</td><td>174</td><td>-1.23%</td><td>-4.12%</td><td>+2.89%</td></tr><tr><td>FY2016</td><td>2015-12-18</td><td>Delayed (CR)</td><td>78</td><td>-6.57%</td><td>-7.83%</td><td>+1.26%</td></tr><tr><td>FY2019</td><td>2018-09-28</td><td><strong>On-time</strong></td><td>-3</td><td>-10.71%</td><td>-8.73%</td><td>-1.98%</td></tr></tbody><tbody class="srt s7"><tr><td>FY2026</td><td>2026-02-03</td><td>Delayed (CR, post-shutdown)</td><td>125</td><td>+5.98%</td><td>-2.17%</td><td>+8.15%</td></tr><tr><td>FY2018</td><td>2018-03-23</td><td>Delayed (CR)</td><td>173</td><td>+5.44%</td><td>+1.12%</td><td>+4.32%</td></tr><tr><td>FY2025</td><td>2025-03-15</td><td>Full-year CR</td><td>165</td><td>-0.24%</td><td>-3.92%</td><td>+3.68%</td></tr><tr><td>FY2024</td><td>2024-03-23</td><td>Delayed (CR)</td><td>174</td><td>-1.23%</td><td>-4.12%</td><td>+2.89%</td></tr><tr><td>FY2017</td><td>2017-05-05</td><td>Delayed (CR)</td><td>216</td><td>+4.20%</td><td>+2.27%</td><td>+1.94%</td></tr><tr><td>FY2016</td><td>2015-12-18</td><td>Delayed (CR)</td><td>78</td><td>-6.57%</td><td>-7.83%</td><td>+1.26%</td></tr><tr><td>FY2020</td><td>2019-12-20</td><td>Delayed (CR)</td><td>80</td><td>+4.31%</td><td>+3.95%</td><td>+0.36%</td></tr><tr><td>FY2022</td><td>2022-03-15</td><td>Delayed (CR)</td><td>165</td><td>+5.19%</td><td>+5.43%</td><td>-0.24%</td></tr><tr><td>FY2019</td><td>2018-09-28</td><td><strong>On-time</strong></td><td>-3</td><td>-10.71%</td><td>-8.73%</td><td>-1.98%</td></tr><tr><td>FY2023</td><td>2022-12-29</td><td>Delayed (CR)</td><td>89</td><td>+2.95%</td><td>+7.46%</td><td>-4.50%</td></tr><tr><td>FY2021</td><td>2020-12-27</td><td>Delayed (CR)</td><td>87</td><td>-0.94%</td><td>+4.17%</td><td>-5.11%</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Mean excess return across all 11 events: +0.98% (one-sample t-test vs. zero, via hypothesis_test tool: t=0.83, p=0.42 — not significant). Correlation between days-late and excess return: r=0.50, p=0.118 (not significant at n=11). The single on-time year (FY2019) had a negative excess return, but n=1 makes that uninformative as a category comparison.</p>
+</section>
+<section>
+<h2>Why the effect is not detectable here (and what would be needed to test it properly)</h2>
+<p>Three structural reasons this design cannot isolate a clean appropriations-timing effect, beyond the small sample: (1) <strong>Confounding macro news.</strong> Every ~4-week post-enactment window in this sample also contains unrelated market-moving events — e.g. FY2019's window captured the December 2018 market selloff; FY2026's window captured a rally driven by AI/tech and unrelated fiscal news; FY2025's window included the April 2025 tariff-driven selloff and snapback. None of the windows here are 'clean' of other news, and with only 11 non-overlapping events there is no way to average that noise away. (2) <strong>The appropriations act itself is rarely a surprise.</strong> Markets can price in expected enactment ahead of the actual signing — defense contractors' revenue guidance, backlog, and Congressional vote-counting are public well before a bill is signed, so an event study anchored on the signature date may be looking well after the information was already priced in. (3) <strong>An enactment during a CR is not "stalled" from the market's perspective</strong> — CRs typically continue prior-year funding levels for existing programs (new starts are what's frozen), so a CR does not necessarily mean zero revenue to incumbent contractors, which weakens the mechanical link between 'CR duration' and 'contractor stock stress' that the question's framing implies.</p><p>A more rigorous test would need: (a) many more independent events — e.g. individual continuing resolutions and full-year appropriations bills going back further, or a cross-sectional panel of many defense-heavy tickers rather than one ETF, to raise statistical power; (b) an event window anchored on the House/Senate passage vote rather than the President's signature, since passage is often the more decision-relevant date; (c) controlling for broader market beta and for concurrent macro news (Fed announcements, wars, tariffs) via a proper market-model abnormal-return regression rather than a simple SPY-relative return; and (d) separating the CR-stall period itself (return during the delay) from the post-passage period (return after resolution), since this analysis only tested the latter.</p>
+</section>
+<section>
+<h2>What the data supports as a defensible claim</h2>
+<p>Given the above, the defensible claim is narrower than the question as posed: <strong>in this event-study design, defense-sector stocks (ITA vs SPY) show no statistically significant, consistently-signed excess-return pattern in the month following DoD appropriations enactment, whether that enactment was on-time or badly delayed by continuing resolutions.</strong> This does not rule out a genuine effect too small or too diffuse for an 11-event univariate test to detect — it says this specific, tractable version of the question returns no signal, and that industry commentary on shutdown-era defense-stock performance independently reports the same inconsistency (beating the market in some shutdown/CR episodes, lagging in others).</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>15 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 10 rows — 31397 ms</summary><pre><code>SELECT DISTINCT ticker FROM sec.stock_prices WHERE ticker IN ('ITA.US','LMT.US','RTX.US','NOC.US','GD.US','HII.US','LHX.US','TXT.US','BA.US','UTX.US','SPY.US')</code></pre></details>
+<details class="sqltoggle"><summary>query — 5000 rows — 24454 ms</summary><pre><code>SELECT ticker, date, adjusted_close FROM sec.stock_prices WHERE ticker IN ('ITA.US','SPY.US') AND date &gt;= '2015-09-01' AND date &lt;= '2026-04-01' ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 760 rows — 7238 ms</summary><pre><code>SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND (
+ (date BETWEEN '2015-12-01' AND '2016-01-20') OR
+ (date BETWEEN '2017-04-18' AND '2017-06-05') OR
+ (date BETWEEN '2018-03-06' AND '2018-04-25') OR
+ (date BETWEEN '2018-09-13' AND '2018-11-01') OR
+ (date BETWEEN '2019-12-03' AND '2020-01-22') OR
+ (date BETWEEN '2020-12-10' AND '2021-01-28') OR
+ (date BETWEEN '2022-02-28' AND '2022-04-18') OR
+ (date BETWEEN '2022-12-12' AND '2023-01-30') OR
+ (date BETWEEN '2024-03-06' AND '2024-04-25') OR
+ (date BETWEEN '2025-03-01' AND '2025-04-18') OR
+ (date BETWEEN '2026-01-20' AND '2026-03-10')
+)
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 54 rows — 2967 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year IN (2015,2016)
+AND date BETWEEN '2015-12-10' AND '2016-01-20'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 60 rows — 1920 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year = 2017
+AND date BETWEEN '2017-04-28' AND '2017-06-10'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 58 rows — 2053 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year = 2018
+AND date BETWEEN '2018-03-15' AND '2018-04-25'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 66 rows — 1919 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year = 2018
+AND date BETWEEN '2018-09-20' AND '2018-11-05'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 56 rows — 3721 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year IN (2019,2020)
+AND date BETWEEN '2019-12-13' AND '2020-01-24'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 56 rows — 3649 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year IN (2020,2021)
+AND date BETWEEN '2020-12-18' AND '2021-01-29'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 58 rows — 2462 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year = 2022
+AND date BETWEEN '2022-03-07' AND '2022-04-14'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 54 rows — 4173 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year IN (2022,2023)
+AND date BETWEEN '2022-12-20' AND '2023-01-30'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 56 rows — 2734 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year = 2024
+AND date BETWEEN '2024-03-15' AND '2024-04-24'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 58 rows — 2515 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year = 2025
+AND date BETWEEN '2025-03-07' AND '2025-04-16'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>query — 58 rows — 1930 ms</summary><pre><code>
+SELECT ticker, date, adjusted_close FROM sec.stock_prices
+WHERE ticker IN ('ITA.US','SPY.US') AND year = 2026
+AND date BETWEEN '2026-01-26' AND '2026-03-06'
+ORDER BY ticker, date</code></pre></details>
+<details class="sqltoggle"><summary>hypothesis_test — 594 ms</summary><pre><code>SELECT * FROM (VALUES (1.26),(1.94),(4.32),(-1.98),(0.36),(-5.11),(-0.24),(-4.5),(2.89),(3.68),(8.15)) AS t(excess_return)</code></pre></details>
 
-### The mechanism is real, not speculative
-DOD has started the fiscal year under a continuing resolution in roughly 37 of the last 49 years, and GAO&#x27;s own analysis (GAO-26-107065, &quot;Defense Budget: Effects of Continuing Resolutions&quot;) documents that CRs mechanically bar new program starts, cap procurement quantities at the prior year&#x27;s level, and force programs to be executed in a compressed window once full-year funding finally lands — a real operational/cash-flow effect, not just sentiment. That gives a concrete channel through which appropriations timing should show up in contractor revenue expectations and therefore in prices.
-
-### What the finance literature actually finds
-- The theoretical backbone is Pástor &amp; Veronesi&#x27;s &quot;Uncertainty about Government Policy and Stock Prices&quot; (NBER w16128): stock prices tend to fall as policy uncertainty *builds*, and rally when it *resolves* — even if the resolution itself is unfavorable (e.g., automatic cuts). That pattern shows up directly in defense stocks: contemporaneous coverage of the 2013 sequester noted defense-company stocks &quot;soared&quot; once the automatic across-the-board cuts actually took effect, because the multi-month uncertainty about *whether and how much* was worse for pricing than the cuts themselves ([The Hill, 2013](https://thehill.com/policy/defense/146456-defense-company-stocks-have-soared-since-sequesters-ax-fell/)).
-- Dedicated event-study work exists on exactly this question. A Longwood University thesis (&quot;Government Shutdown: A Test of Market Efficiency,&quot; digitalcommons.longwood.edu) and a Utah State thesis on government-contractor stock performance both run daily event-study/multifactor asset-pricing designs around shutdown announcements; a new 2026 ScienceDirect paper, &quot;Do the Markets Care about the 2025 U.S. Government Shutdown?&quot; (S1059056026006416), extends this to the most recent and longest shutdown. The consistent theme across these studies is that the reaction is *shutdown-specific*, not uniform: contemporaneous reporting on that same variation notes that during the full 2013 shutdown, defense stocks lagged the market (contracts and payments were actually paused), while during the 2018–19 shutdown defense stocks outperformed — because DOD had already been funded on time for FY2019 (signed Sept 28, 2018) and the shutdown that winter hit *other* agencies, not defense. That is the cleanest evidence that markets are pricing the *DOD-specific* funding status, not shutdown headlines in general.
-- The most recent live test is the record 43-day shutdown of Oct–Nov 2025. Contemporaneous market-data coverage found that on the shutdown&#x27;s first trading day, traditional hardware primes were essentially flat (Lockheed Martin −0.04%, Raytheon/RTX +0.04% — &quot;remarkable stability&quot;), while government-services and staffing-heavy contractors *rose* sharply the same day (CACI +3.3%, Booz Allen +2.7%, SAIC +1.8%, Leidos +1.4%). That divergence is itself informative: &quot;defense-contractor-heavy&quot; is not one trade — hardware primes with multi-year backlogs are largely insulated from a short funding gap, while services firms&#x27; stock reaction seemed to reflect relief/positioning rather than fear, since their revenue is billed against existing task orders regardless of a brief lapse. As the shutdown dragged past a month, Defense One&#x27;s November 2025 reporting shows the picture splitting further: large primes (Leidos, Leonardo DRS, General Dynamics, RTX) posted strong Q3 earnings and kept guiding up, while GD&#x27;s own CEO explicitly warned of downside &quot;if the shutdown... stretches into the coming months,&quot; and B-21 bomber production-acceleration talks were reported paused during the lapse — i.e., the market-visible effect was concentrated in *forward guidance and contract-timing commentary* more than in the stock price itself over those weeks ([Defense One, Nov 7 2025](https://www.defenseone.com/business/2025/11/defense-tech-companies-will-weather-shutdown-what-happens-next/409390/)).
-- A second, separate driver worth distinguishing from appropriations timing per se: actual conflict/war news. Reuters/Defense News reporting from April 2026 shows the NYSE Arca Defense index fell ~8% in March 2026 even as the Iran war continued, because &quot;conflict premium&quot; had already been priced in beforehand and the sector (32x forward earnings vs. ~20x for the S&amp;P 500) was richly valued — and the same piece notes the sector&#x27;s forward path was explicitly tied to *upcoming budget decisions* (a planned April 21, 2026 disclosure of FY2027 defense-budget details), underscoring that markets do treat scheduled appropriations/budget news as a distinct, forward-looking catalyst separate from combat headlines ([Defense News/Reuters, Apr 2 2026](https://www.defensenews.com/news/your-military/2026/04/02/us-defense-stocks-see-no-iran-war-lift-after-early-surge/)).
-
-### Bottom line
-Appropriations timing is a real, mechanically-grounded input to how defense-contractor stocks trade in the following weeks, and the finance literature&#x27;s general policy-uncertainty framework (build-up → downward drag/volatility, resolution → relief rally, even on unfavorable terms) fits the defense-specific evidence reasonably well across the 2013, 2018–19, and 2025 episodes. But three qualifications matter for anyone using this as a trading or policy-analysis heuristic: (1) the effect is really about whether *DOD itself* is funded, not government-wide shutdown headlines generically; (2) large diversified hardware primes with multi-year backlogs show far less near-term price sensitivity than smaller, cash-flow-constrained subcontractors and than government-services/staffing firms, whose reaction can even run the *opposite* direction; and (3) how much uncertainty is already priced into valuations going in can swamp the appropriations-timing signal, as the 2026 Iran-war episode shows for a related but distinct catalyst. I was not able to convert this into a warehouse-computed cumulative-abnormal-return series this session because `sec.stock_prices` is currently broken (logged as a defect); a follow-up run with that table repaired could directly test the CAR-around-enactment-date design described above once the underlying storage issue is fixed.
-
-### Sources
-- [GAO-26-107065 — Defense Budget: Effects of Continuing Resolutions on Selected Activities and Programs](https://www.gao.gov/products/gao-26-107065)
-- [Pástor &amp; Veronesi, &quot;Uncertainty about Government Policy and Stock Prices,&quot; NBER Working Paper 16128](https://www.nber.org/papers/w16128)
-- [The Hill, &quot;Defense company stocks have soared since sequester&#x27;s ax fell&quot; (2013)](https://thehill.com/policy/defense/146456-defense-company-stocks-have-soared-since-sequesters-ax-fell/)
-- [&quot;Do the Markets Care about the 2025 U.S. Government Shutdown?&quot;, ScienceDirect (2026)](https://www.sciencedirect.com/science/article/pii/S1059056026006416)
-- [Longwood University thesis, &quot;Government Shutdown: A Test of Market Efficiency&quot;](https://digitalcommons.longwood.edu/cgi/viewcontent.cgi?article=1133&amp;context=etd)
-- [Utah State University graduate report, &quot;The Performance of Military Defense Contracted Companies&quot;](https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2389&amp;context=gradreports)
-- [Defense One, &quot;Defense tech companies will weather the shutdown. But what happens next?&quot; (Nov 7, 2025)](https://www.defenseone.com/business/2025/11/defense-tech-companies-will-weather-shutdown-what-happens-next/409390/)
-- [Defense News/Reuters, &quot;US defense stocks see no Iran war lift after early surge&quot; (Apr 2, 2026)](https://www.defensenews.com/news/your-military/2026/04/02/us-defense-stocks-see-no-iran-war-lift-after-early-surge/)
-- [FY2025 Department of Defense Appropriations: Status of Legislative Activity, CRS via Congress.gov](https://www.congress.gov/crs-product/IN12402)
-- [FY2026 Department of Defense Appropriations: In Brief, CRS via Congress.gov](https://www.congress.gov/crs-product/R48891)
-
-### Data-quality note filed this session
-`report_issue`: &quot;sec.stock_prices unreadable — stale Iceberg snapshot points to missing R2 manifest (404).&quot; Every query against this table failed identically before and after a schema-catalog rebuild; the manifest object `snap-3418853591663440338-...avro` is missing from the R2 bucket the table&#x27;s current metadata.json points to. This blocked the intended quantitative event study (defense-portfolio cumulative abnormal returns around FY2011–FY2026 appropriations-enactment dates vs. Oct-1 CR-start dates) and should be fixed before this question is attempted again with warehouse data.
-</pre>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>sec.stock_prices — ITA and SPY adjusted daily closes around each enactment date<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT ticker, date, adjusted_close FROM sec.stock_prices WHERE ticker IN ('ITA.US','SPY.US') AND year = 2024 AND date BETWEEN '2024-03-15' AND '2024-04-24' ORDER BY ticker, date</code></pre></details></li>
+<li>One-sample t-test of excess returns against zero<details class="sqltoggle"><summary>Show tool call</summary><pre><code>hypothesis_test(test=&quot;t_test&quot;, one_sample_mu=0, value_col=&quot;excess_return&quot;)</code></pre></details></li>
+<li><a href="https://en.wikipedia.org/wiki/Consolidated_Appropriations_Act,_2016">https://en.wikipedia.org/wiki/Consolidated_Appropriations_Act,_2016</a></li>
+<li><a href="https://www.congress.gov/bill/115th-congress/house-bill/6157">https://www.congress.gov/bill/115th-congress/house-bill/6157</a></li>
+<li><a href="https://www.congress.gov/crs-product/R47896">https://www.congress.gov/crs-product/R47896</a></li>
+<li><a href="https://www.congress.gov/bill/118th-congress/house-bill/4365">https://www.congress.gov/bill/118th-congress/house-bill/4365</a></li>
+<li><a href="https://www.congress.gov/bill/119th-congress/house-bill/1968">https://www.congress.gov/bill/119th-congress/house-bill/1968</a></li>
+<li><a href="https://en.wikipedia.org/wiki/2025_United_States_federal_government_shutdown">https://en.wikipedia.org/wiki/2025_United_States_federal_government_shutdown</a></li>
+<li><a href="https://breakingdefense.com/2026/02/house-passes-839b-defense-spending-bill-teeing-up-end-to-government-shutdown/">https://breakingdefense.com/2026/02/house-passes-839b-defense-spending-bill-teeing-up-end-to-government-shutdown/</a></li>
+<li><a href="https://www.csis.org/analysis/what-government-shutdown-would-mean-defense-funding-fy-2026">https://www.csis.org/analysis/what-government-shutdown-would-mean-defense-funding-fy-2026</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Event-study with n=11 independent fiscal-year events is a small sample; results should be read as suggestive/exploratory, not as a definitive causal test. ITA used as sector proxy rather than a custom multi-contractor basket.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+</footer>
 </main>
-</body></html>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
