@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roughly 43% of the U.S. banking system's deposits are uninsured — but the typical small bank is nowhere near that exposed</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Roughly 43% of the U.S. banking system's deposits are uninsured — but the typical small bank is nowhere near that exposed</h1>
+<p class="subtitle">FDIC/Federal Reserve Call Report data, 2019-2025 · $250,000 per-depositor, per-bank insurance limit</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Uninsured deposits: industry aggregate vs. the typical small bank</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">FDIC Quarterly Banking Profile / Cleveland Fed EC 2024-14, using Call Report 'estimated uninsured deposits'</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Industry-wide uninsured deposit share, Q4 2025</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">43.3%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">+2.6 pts vs mid-2024 low</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Dollar-weighted across all FDIC-insured commercial banks</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Real value lost by the fixed $250k cap since 2010</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">-32%</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">$250k in 2010 = $369k in 2025 dollars</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">CPI-U, askengine adjust_inflation</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Industry-wide uninsured deposit share of total deposits</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Period</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">% of deposits uninsured</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2019-q4" class="tick" x="101.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019 Q4</text>
+      <text id="p3-xtick-2021-q4" class="tick" x="183.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021 Q4</text>
+      <text id="p3-xtick-2024-q2" class="tick" x="266.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024 Q2</text>
+      <text id="p3-xtick-2025-q4" class="tick" x="348.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025 Q4</text>
+    </g>
+    <g id="p3-series-uninsured-share-dollar-weighted-all-banks" class="series">
+      <path id="p3-line-uninsured-share-dollar-weighted-all-banks" class="line" d="M 101.25 75.30 L 183.75 63.49 L 266.25 82.78 L 348.75 75.30" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-uninsured-share-dollar-weighted-all-banks-2019-q4" class="point" cx="101.25" cy="75.30" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-uninsured-share-dollar-weighted-all-banks-2021-q4" class="point" cx="183.75" cy="63.49" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-uninsured-share-dollar-weighted-all-banks-2024-q2" class="point" cx="266.25" cy="82.78" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-uninsured-share-dollar-weighted-all-banks-2025-q4" class="point" cx="348.75" cy="75.30" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">20-year peak in late 2021; fell after SVB/2023 turmoil; rising again</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">since mid-2024. Source: St. Louis Fed / FDIC QBP.</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Median uninsured share by bank size class (2023-24)</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="102.80" x2="390" y2="102.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="106.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="71.60" x2="390" y2="71.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="75.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Bank size (total assets)</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 95)">Median % uninsured</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-100m-smallest-banks-median" class="tick" x="142.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.50 148)">&lt;$100M (smallest banks, median)</text>
+      <text id="p4-xtick-industry-aggregate-all-deposits" class="tick" x="307.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.50 148)">Industry aggregate (all deposits)</text>
+    </g>
+    <g id="p4-series-uninsured-deposit-share" class="series">
+      <rect id="p4-mark-uninsured-deposit-share-100m-smallest-banks-median" class="bar" x="89.70" y="109.04" width="104.60" height="24.96" fill="#2563eb"/>
+      <rect id="p4-mark-uninsured-deposit-share-industry-aggregate-all-deposits" class="bar" x="254.70" y="66.45" width="104.60" height="67.55" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">The median small bank (most of the ~4,400 FDIC-insured institutions by</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">count) is far below the deposit-weighted industry number, which is…</text>
+  <g id="brand">
+  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:51296/a/2f64e61e479eb490661b6d94031450d8.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Nationwide, about <strong>43% of all deposits</strong> held at FDIC-insured commercial banks exceed the $250,000 per-depositor, per-bank insurance limit as of Q4 2025 — back near the pre-pandemic level (43.3% in Q4 2019) after falling to a low of 40.7% in mid-2024 and spiking to a 20-year peak of 47.4% in late 2021. <strong>That share has been rising again over roughly the last year and a half</strong>, though it remains well below the 2021 peak.</p><p>But that 43% figure is dollar-weighted across the whole banking system, so it is dominated by a handful of very large banks with enormous uninsured balances. It is NOT what the <em>typical</em> bank, by headcount, looks like. At the median bank in the smallest size class (under $100 million in assets) — which is most of the roughly 4,400 FDIC-insured institutions in the country — only about <strong>16% of deposits are uninsured</strong>. The uninsured share rises steadily with bank size, so 'the average bank' gives a very different answer depending on whether 'average' means 'average dollar of deposits' (~43%, rising) or 'the bank a randomly picked institution resembles' (much lower, well under half of the industry figure, for the numerically dominant population of small community banks).</p>
+</section>
+<section>
+<h2>Why the aggregate share moves the way it does</h2>
+<p>The $250,000 insurance limit has been fixed in nominal dollars since 2010 (Dodd-Frank). Inflation since then has eroded its real value by roughly <strong>32%</strong> — $250,000 set in 2010 would need to be about $369,000 today to buy the same protection (askengine <code>adjust_inflation</code>, CPI-U). With the cap fixed in nominal terms while nominal deposit balances and wealth grow, a larger share of any given depositor's balance drifts above the line over time — a structural upward pull on the uninsured share, independent of any single bank's behavior.</p><p>Layered on top of that structural drift are cyclical swings: the uninsured share spiked to a 20-year high (47.4%) in late 2021 amid pandemic-era stimulus and cash buildup, fell sharply after the March 2023 failures of Silicon Valley Bank and Signature Bank (both of which were 90%+ uninsured) as depositors and banks reacted — partly by banks pushing large depositors into <strong>reciprocal deposit networks</strong>, which split large balances across many banks to make them fully insured while the depositor still deals with one institution — and has been drifting back up since mid-2024, reaching 43.3% again in Q4 2025, per the FDIC's Q4 2024 and subsequent Quarterly Banking Profiles.</p>
+</section>
+<section>
+<h2>Why 'the average bank' is a genuinely different number from the industry aggregate</h2>
+<p>The Federal Reserve Bank of Cleveland's Call Report analysis (Prescott and Rosenberger, 2024) breaks the uninsured-deposit line item down by bank size class and reports each class's <em>median</em> institution. The pattern is stark: median uninsured share rises steadily with bank size. The median bank under $100 million in assets — a large fraction of all FDIC-insured institutions by count — has only about 16% of its deposits uninsured, roughly a third of the 43% industry-wide figure. A separate bank-level analysis of the 34 largest banks (over $65 billion in deposits) found their average and median uninsured concentrations both around 39-40% as of early 2024, and some custodial/wholesale banks (BNY Mellon, State Street, large card issuers) run at 50-100% uninsured because their customer base is institutional, not retail.</p><p>The reason: large, sophisticated depositors (corporations, institutional investors, wealthy individuals) routinely hold balances well above $250,000 and gravitate toward larger banks; small community banks serve mostly households and small businesses whose balances rarely clear the cap. So the deposit base of a typical, numerically-representative small bank is much more fully insured than the deposit-weighted national number suggests — a distinction the FDIC's own asset-size-group tables in the Quarterly Banking Profile are structured to surface, but that a single industry-wide ratio erases.</p>
+</section>
+<section>
+<h2>Data and methodology notes</h2>
+<ul><li>AskAmerica's own <code>banking.institutions</code>, <code>banking.financials</code>, and <code>banking.sod</code> tables (FDIC BankFind/Call Report mirrors) carry total assets and total deposits per institution but do not carry the Call Report's 'estimated amount of uninsured deposits in domestic offices' line item, so the uninsured share could not be computed directly inside the warehouse. This is a genuine coverage gap in the connector, not a missing analysis step — confirmed by inspecting both tables' full column lists.</li><li>All uninsured-share figures above are drawn from primary sources fetched directly: the FDIC's own Quarterly Banking Profile press release (Q4 2024, covering the domestic-deposit growth driven by uninsured deposits) and the Federal Reserve Bank of Cleveland's Economic Commentary 2024-14, which analyzes the Call Report's uninsured-deposit line item directly, plus a St. Louis Fed banking-analytics note for the most recent (Q4 2025) aggregate ratio and its 2019-2025 path.</li><li>The 'industry aggregate' and 'median small bank' figures are not perfectly time-aligned (the aggregate series runs through Q4 2025; the median-by-size-class figures are as of 2023-24, the most recent published breakdown found) — the qualitative gap between the two (aggregate roughly 2.5-3x the smallest-bank median) is the durable finding, not a claim that both numbers are contemporaneous to the day.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.stlouisfed.org/on-the-economy/2026/apr/banking-analytics-uninsured-deposit-ratio-back-prepandemic-level">St. Louis Fed — Banking Analytics: Uninsured Deposit Ratio Back to Prepandemic Level (Apr 2026)</a></li>
+<li><a href="https://www.fdic.gov/news/press-releases/2025/fdic-insured-institutions-reported-return-assets-111-percent-and-net">FDIC — Q4 2024 Quarterly Banking Profile press release</a></li>
+<li><a href="https://www.fdic.gov/quarterly-banking-profile/fdic-quarterly-banking-profile-fourth-quarter-2024">FDIC — Quarterly Banking Profile Q4 2024 data hub</a></li>
+<li><a href="https://www.clevelandfed.org/publications/economic-commentary/2024/ec-202414-reciprocal-deposits-and-banking-turmoil-2023">Federal Reserve Bank of Cleveland — Reciprocal Deposits and the Banking Turmoil of 2023 (EC 2024-14, Prescott &amp; Rosenberger, Aug 2024)</a></li>
+<li><a href="https://uponfurtheranalysis.com/a-deeper-dive-into-uninsured-deposits/">Upon Further Analysis — A Deeper Dive into Uninsured Deposits (May 2024, large-bank average/median concentrations)</a></li>
+<li>AskAmerica — real value of $250,000 FDIC cap, 2010 to 2025 (CPI-U)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>adjust_inflation(amount=250000, from_year=2010, base_year=2025)</code></pre></details></li>
+<li>AskAmerica — banking schema coverage check (no insured-deposit line item)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>DESCRIBE banking.financials; DESCRIBE banking.institutions;</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Uninsured-deposit figures are FDIC/Fed estimates based on the Call Report's 'estimated uninsured deposits' line item, not a precise depositor-level tally. AskAmerica's own banking tables do not carry this field; all uninsured-share numbers above come from FDIC and Federal Reserve primary sources, fetched directly.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
