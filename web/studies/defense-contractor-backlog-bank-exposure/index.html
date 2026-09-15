@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bank lending to defense contractors is concentrated at the diversified primes, not the single-program-dependent firms — and that inverts the intuitive risk story</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s4-t1-s1:checked ~ table tbody.s0{display:none}
+#s4-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"]{color:var(--link)}
+#s4-t1-s1:checked ~ table label[for="s4-t1-s1"] .srtcue{opacity:1}
+#s4-t1-s1:checked ~ .srtreset{display:inline-block}
+#s4-t1-s2:checked ~ table tbody.s0{display:none}
+#s4-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"]{color:var(--link)}
+#s4-t1-s2:checked ~ table label[for="s4-t1-s2"] .srtcue{opacity:1}
+#s4-t1-s2:checked ~ .srtreset{display:inline-block}
+#s4-t1-s3:checked ~ table tbody.s0{display:none}
+#s4-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"]{color:var(--link)}
+#s4-t1-s3:checked ~ table label[for="s4-t1-s3"] .srtcue{opacity:1}
+#s4-t1-s3:checked ~ .srtreset{display:inline-block}
+#s4-t1-s4:checked ~ table tbody.s0{display:none}
+#s4-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"]{color:var(--link)}
+#s4-t1-s4:checked ~ table label[for="s4-t1-s4"] .srtcue{opacity:1}
+#s4-t1-s4:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Bank lending to defense contractors is concentrated at the diversified primes, not the single-program-dependent firms — and that inverts the intuitive risk story</h1>
+<p class="subtitle">No public source ties bank loan balances directly to defense-contractor program concentration; this report reconstructs the exposure from bank regulatory data, prime-contractor credit filings, and industry-financing research</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 750" width="880" height="750" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="750" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Bank Credit Facilities vs. Program Concentration — Major Defense Pri…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">Committed bank revolving credit facilities (mostly undrawn commercial-paper backstops) vs. largest disclosed single-program revenue share, most recent public data</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="178" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="214" fill="#6b7280" style="font-size:11px">Combined bank revolver capacity, 6 largest public primes</text>
+  <text class="stat-value" x="36" y="244" fill="#1f2328">~$21.5B</text>
+  <text class="stat-delta" x="36" y="264" fill="#6b7280">almost entirely undrawn</text>
+  </g>
+  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Committed bank revolving credit facility size</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="53" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="45" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="121" x2="390" y2="121" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="45" y="125" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
+      <line class="grid" x1="53" y1="108" x2="390" y2="108" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="45" y="112" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="45" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
+      <line class="grid" x1="53" y1="82" x2="390" y2="82" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="45" y="86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="53" y1="69" x2="390" y2="69" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="45" y="73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-6" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-x-axis-title" class="axis-title" x="221.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Company</text>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">$ Billions</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-lockheed-martin" class="tick" x="81.08" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 81.08 148)">Lockheed Martin</text>
+      <text id="p2-xtick-rtx" class="tick" x="137.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 137.25 148)">RTX</text>
+      <text id="p2-xtick-general-dynamics" class="tick" x="193.42" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 193.42 148)">General Dynamics</text>
+      <text id="p2-xtick-northrop-grumman" class="tick" x="249.58" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 249.58 148)">Northrop Grumman</text>
+      <text id="p2-xtick-huntington-ingalls" class="tick" x="305.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 305.75 148)">Huntington Ingalls</text>
+      <text id="p2-xtick-l3harris" class="tick" x="361.92" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 361.92 148)">L3Harris</text>
+    </g>
+    <g id="p2-series-revolver-capacity-b" class="series">
+      <rect id="p2-mark-revolver-capacity-b-lockheed-martin" class="bar" x="63.11" y="65.75" width="34.95" height="68.25" fill="#2563eb"/>
+      <rect id="p2-mark-revolver-capacity-b-rtx" class="bar" x="119.28" y="69" width="34.95" height="65" fill="#2563eb"/>
+      <rect id="p2-mark-revolver-capacity-b-general-dynamics" class="bar" x="175.44" y="69" width="34.95" height="65" fill="#2563eb"/>
+      <rect id="p2-mark-revolver-capacity-b-northrop-grumman" class="bar" x="231.61" y="95" width="34.95" height="39" fill="#2563eb"/>
+      <rect id="p2-mark-revolver-capacity-b-huntington-ingalls" class="bar" x="287.78" y="111.90" width="34.95" height="22.10" fill="#2563eb"/>
+      <rect id="p2-mark-revolver-capacity-b-l3harris" class="bar" x="343.94" y="114.50" width="34.95" height="19.50" fill="#2563eb"/>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="363" fill="#6b7280">Syndicated, largely unfunded backstop lines for commercial paper;</text>
+  <text class="caption" x="452" y="376" fill="#6b7280">drawn balances are typically near zero. Company filings, 2024-2025.</text>
+  <rect class="panel-edge" x="20" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Largest single disclosed program as % of revenue</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Company / program</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">% of revenue</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-lockheed-f-35" class="tick" x="115" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Lockheed F-35</text>
+      <text id="p3-xtick-northrop-b-21" class="tick" x="225" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Northrop B-21</text>
+      <text id="p3-xtick-northrop-sentinel" class="tick" x="335" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Northrop Sentinel</text>
+    </g>
+    <g id="p3-series-of-company-revenue" class="series">
+      <rect id="p3-mark-of-company-revenue-lockheed-f-35" class="bar" x="79.80" y="70.40" width="69.40" height="129.60" fill="#2563eb"/>
+      <rect id="p3-mark-of-company-revenue-northrop-b-21" class="bar" x="189.80" y="152" width="69.40" height="48" fill="#2563eb"/>
+      <rect id="p3-mark-of-company-revenue-northrop-sentinel" class="bar" x="299.80" y="168.80" width="69.40" height="31.20" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="679" fill="#6b7280">Only these figures are publicly disclosed with enough precision to</text>
+  <text class="caption" x="24" y="692" fill="#6b7280">cite; most primes do not break out single-program revenue share.</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="494" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="530" fill="#6b7280">DoD direct-lending program launched to fill the gap</text>
+  <text class="stat-value" x="464" y="560" fill="#1f2328">$984M</text>
+  <text class="stat-delta" x="464" y="580" fill="#6b7280">Office of Strategic Capital initial loan authority</text>
+  </g>
+  <g id="brand">
+  <svg x="20" y="709" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="724" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:63299/a/9a7873582a675f93b85e6b1fcd7be110.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>No public dataset — including the AskAmerica warehouse — reports bank loan balances broken out by borrower industry at defense-contractor granularity, so the question cannot be answered as a precise dollar figure. What the evidence supports is a more specific and somewhat counter-intuitive finding: <strong>the defense contractors most exposed to single-program cancellation risk (small and mid-tier subcontractors) are largely absent from bank balance sheets</strong>, because their revenue unpredictability is exactly what conventional underwriting screens out. The bank credit that <em>does</em> flow to the sector is concentrated in ~$21.5 billion of committed revolving credit facilities at six large, publicly traded primes (Lockheed Martin, RTX, General Dynamics, Northrop Grumman, Huntington Ingalls, L3Harris) — firms whose revenue is diversified across dozens of programs. The single most concentrated program among them, Lockheed's F-35, is about 27% of that company's revenue; every other prime's largest named program is under 10%. So the segment carrying most of the identifiable bank credit has comparatively low program-cancellation exposure, while the segment with genuine single-program exposure has comparatively little bank credit to lose — a structural mismatch, not an oversight of this analysis.</p>
+</section>
+<section>
+<h2>What data exists, and what does not</h2>
+<p>Three searches of the AskAmerica catalog (banking call-report data, SEC XBRL filings, USAspending contract data) returned no table that carries 'defense' as a borrower-industry code alongside loan balances — confirmed by the catalog's own unmatched-terms flag on repeated searches. The Federal Reserve/OCC/FDIC's <a href="https://www.occ.gov/publications-and-resources/publications/shared-national-credit-report/files/shared-national-credit-report-2025.pdf">2025 Shared National Credit (SNC) Review</a> — the one federal data source that aggregates large syndicated bank loan commitments by industry — was fetched and read directly and does not break out an 'Aerospace & Defense' sector even in its newly expanded 21-subsector breakdown; defense manufacturers are folded into 'Equipment, Machinery, Parts Manufacturing Excluding Auto' ($395.6B in commitments, 4.4% special mention, 4.0% classified as of the 2025 review), a category dominated by non-defense manufacturers and therefore not usable as a defense-specific exposure figure.</p><p>The OCC's own <a href="https://www.occ.gov/publications-and-resources/publications/comptrollers-handbook/files/concentrations-of-credit/pub-ch-concentrations.pdf">Comptroller's Handbook on Concentrations of Credit</a> (fetched and read in full) confirms the structural reason no such breakout exists: bank examiners assess concentration risk at the level of an individual bank's own portfolio (name concentration to a single borrower, or sector concentration within one bank's book), not as a national industry-by-industry public statistic — that kind of disclosure is inherently bank-specific and supervisory, not published in aggregate by borrower industry the way FDIC call-report data is for, say, commercial real estate.</p><p>SEC 10-K risk-factor language from defense contractors is the closest thing to a structured concentration measure, but it is narrative, not machine-readable at scale, and (per the SEC filings reviewed) reports customer/contract concentration, not bank-loan-specific exposure. The AskAmerica semantic-search tool over SEC filing text returned an infrastructure error mid-session (missing vectorized-chunk parquet files) and could not be used to scan risk-factor language systematically; this is reported as a data-access gap, not folded into the finding.</p>
+</section>
+<section>
+<h2>The structural finding: banks are largely absent from the truly single-program-dependent tier</h2>
+<p>A 2026 <a href="https://thebenslens.substack.com/p/americas-banks-and-the-modern-arsenal">Business Executives for National Security (BENS) analysis</a> (fetched and read in full), part of its 'Credit as Strategy' campaign, states directly that conventional bank lending to small and mid-tier defense suppliers 'has limits,' and that these firms are effectively invisible to private lenders — not from investor indifference, but because DoD's own contracting structure (long procurement cycles, milestone-based payments, unpredictable cash flow) fails to generate the recurring-revenue signal banks underwrite against. Many of these firms carry no public debt at all. This is precisely the population that would carry the sharpest program-cancellation risk (a firm building one component for one missile program, for example) — and it is the population banks have structurally avoided. Notably, the same piece frames the fix as banks investing through CRA-qualifying private equity/venture funds, not direct lending — itself evidence that direct bank credit is not the current channel reaching this tier.</p><p>Corroborating evidence, read directly from DefenseScoop's reporting on the program: the Department of Defense stood up its own Office of Strategic Capital (OSC), formally authorized by the FY2024 NDAA, specifically because private credit — including banks — was not reaching these firms. OSC's FY2025 credit program opened applications for up to $984 million in direct loans ($10M-$150M per loan) for 31 covered critical-technology categories, explicitly targeting "potentially overlooked segments of the market" where "private capital alone may require higher interest rates or comparably rapid repayment." A federal agency building its own lending arm to fill a gap is itself evidence the gap exists; it would not be necessary if banks already carried material single-program-contractor risk on their books. U.S. Bank's own aerospace/defense banking page (fetched directly) confirms the commercial-bank product set for this sector is weighted toward working capital, payments, and capital-markets/trust services for established primes and mid-size firms — not concentrated program-specific term lending to small single-program subcontractors.</p>
+</section>
+<section>
+<h2>Where the identifiable bank exposure actually sits</h2>
+<p>The bank credit that is publicly disclosed and quantifiable sits almost entirely at the large, investment-grade primes, in the form of committed-but-largely-undrawn revolving credit facilities that back commercial paper programs — not term loans funding specific programs. From company SEC filings (accessed via search-result summaries after direct EDGAR fetches were blocked by HTTP 403s on two attempts):</p><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s0" checked><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s1"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s2"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s3"><input type="radio" name="s4-t1" class="srtbox" id="s4-t1-s4"><table><tr><th><label class="srth" for="s4-t1-s1">Company<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s2">Bank revolver capacity<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s3">Largest disclosed single program<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s4-t1-s4">Program share of revenue<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>Lockheed Martin</td><td>$5.25B (two facilities)</td><td>F-35</td><td>~27%</td></tr><tr><td>RTX</td><td>$5.0B, expires Aug 2028, undrawn at YE2025</td><td>Not disclosed at program level</td><td>n/a (highly diversified: Collins, Pratt & Whitney, Raytheon)</td></tr><tr><td>General Dynamics</td><td>~$5.0B across multiple facilities (2020 filing; may have been renewed/resized since)</td><td>Not disclosed at program level</td><td>n/a (diversified across Aerospace/Gulfstream, Marine, Combat Systems, Technologies)</td></tr><tr><td>Northrop Grumman</td><td>$3.0B (2024, replacing a $2.5B facility)</td><td>B-21 Raider / Sentinel ICBM</td><td>~10% / ~6.5%</td></tr><tr><td>Huntington Ingalls</td><td>$1.7B (expanded from $1.5B)</td><td>Navy shipbuilding (Ingalls/Newport News segments)</td><td>Not disclosed as a single 'program' figure, but revenue is concentrated in a single customer (U.S. Navy) across a small number of ship classes — a customer-concentration risk distinct from the single-program risk this question asks about</td></tr><tr><td>L3Harris</td><td>$1.5B (Jan 2024, replacing $2.4B facility)</td><td>Not disclosed at program level</td><td>n/a (diversified across space, communications, aviation systems)</td></tr></tbody><tbody class="srt s1"><tr><td>General Dynamics</td><td>~$5.0B across multiple facilities (2020 filing; may have been renewed/resized since)</td><td>Not disclosed at program level</td><td>n/a (diversified across Aerospace/Gulfstream, Marine, Combat Systems, Technologies)</td></tr><tr><td>Huntington Ingalls</td><td>$1.7B (expanded from $1.5B)</td><td>Navy shipbuilding (Ingalls/Newport News segments)</td><td>Not disclosed as a single 'program' figure, but revenue is concentrated in a single customer (U.S. Navy) across a small number of ship classes — a customer-concentration risk distinct from the single-program risk this question asks about</td></tr><tr><td>L3Harris</td><td>$1.5B (Jan 2024, replacing $2.4B facility)</td><td>Not disclosed at program level</td><td>n/a (diversified across space, communications, aviation systems)</td></tr><tr><td>Lockheed Martin</td><td>$5.25B (two facilities)</td><td>F-35</td><td>~27%</td></tr><tr><td>Northrop Grumman</td><td>$3.0B (2024, replacing a $2.5B facility)</td><td>B-21 Raider / Sentinel ICBM</td><td>~10% / ~6.5%</td></tr><tr><td>RTX</td><td>$5.0B, expires Aug 2028, undrawn at YE2025</td><td>Not disclosed at program level</td><td>n/a (highly diversified: Collins, Pratt & Whitney, Raytheon)</td></tr></tbody><tbody class="srt s2"><tr><td>L3Harris</td><td>$1.5B (Jan 2024, replacing $2.4B facility)</td><td>Not disclosed at program level</td><td>n/a (diversified across space, communications, aviation systems)</td></tr><tr><td>Huntington Ingalls</td><td>$1.7B (expanded from $1.5B)</td><td>Navy shipbuilding (Ingalls/Newport News segments)</td><td>Not disclosed as a single 'program' figure, but revenue is concentrated in a single customer (U.S. Navy) across a small number of ship classes — a customer-concentration risk distinct from the single-program risk this question asks about</td></tr><tr><td>Northrop Grumman</td><td>$3.0B (2024, replacing a $2.5B facility)</td><td>B-21 Raider / Sentinel ICBM</td><td>~10% / ~6.5%</td></tr><tr><td>RTX</td><td>$5.0B, expires Aug 2028, undrawn at YE2025</td><td>Not disclosed at program level</td><td>n/a (highly diversified: Collins, Pratt & Whitney, Raytheon)</td></tr><tr><td>Lockheed Martin</td><td>$5.25B (two facilities)</td><td>F-35</td><td>~27%</td></tr><tr><td>General Dynamics</td><td>~$5.0B across multiple facilities (2020 filing; may have been renewed/resized since)</td><td>Not disclosed at program level</td><td>n/a (diversified across Aerospace/Gulfstream, Marine, Combat Systems, Technologies)</td></tr></tbody><tbody class="srt s3"><tr><td>Northrop Grumman</td><td>$3.0B (2024, replacing a $2.5B facility)</td><td>B-21 Raider / Sentinel ICBM</td><td>~10% / ~6.5%</td></tr><tr><td>Lockheed Martin</td><td>$5.25B (two facilities)</td><td>F-35</td><td>~27%</td></tr><tr><td>Huntington Ingalls</td><td>$1.7B (expanded from $1.5B)</td><td>Navy shipbuilding (Ingalls/Newport News segments)</td><td>Not disclosed as a single 'program' figure, but revenue is concentrated in a single customer (U.S. Navy) across a small number of ship classes — a customer-concentration risk distinct from the single-program risk this question asks about</td></tr><tr><td>RTX</td><td>$5.0B, expires Aug 2028, undrawn at YE2025</td><td>Not disclosed at program level</td><td>n/a (highly diversified: Collins, Pratt & Whitney, Raytheon)</td></tr><tr><td>General Dynamics</td><td>~$5.0B across multiple facilities (2020 filing; may have been renewed/resized since)</td><td>Not disclosed at program level</td><td>n/a (diversified across Aerospace/Gulfstream, Marine, Combat Systems, Technologies)</td></tr><tr><td>L3Harris</td><td>$1.5B (Jan 2024, replacing $2.4B facility)</td><td>Not disclosed at program level</td><td>n/a (diversified across space, communications, aviation systems)</td></tr></tbody><tbody class="srt s4"><tr><td>General Dynamics</td><td>~$5.0B across multiple facilities (2020 filing; may have been renewed/resized since)</td><td>Not disclosed at program level</td><td>n/a (diversified across Aerospace/Gulfstream, Marine, Combat Systems, Technologies)</td></tr><tr><td>L3Harris</td><td>$1.5B (Jan 2024, replacing $2.4B facility)</td><td>Not disclosed at program level</td><td>n/a (diversified across space, communications, aviation systems)</td></tr><tr><td>RTX</td><td>$5.0B, expires Aug 2028, undrawn at YE2025</td><td>Not disclosed at program level</td><td>n/a (highly diversified: Collins, Pratt & Whitney, Raytheon)</td></tr><tr><td>Huntington Ingalls</td><td>$1.7B (expanded from $1.5B)</td><td>Navy shipbuilding (Ingalls/Newport News segments)</td><td>Not disclosed as a single 'program' figure, but revenue is concentrated in a single customer (U.S. Navy) across a small number of ship classes — a customer-concentration risk distinct from the single-program risk this question asks about</td></tr><tr><td>Northrop Grumman</td><td>$3.0B (2024, replacing a $2.5B facility)</td><td>B-21 Raider / Sentinel ICBM</td><td>~10% / ~6.5%</td></tr><tr><td>Lockheed Martin</td><td>$5.25B (two facilities)</td><td>F-35</td><td>~27%</td></tr></tbody></table><label class="srtreset" for="s4-t1-s0">reset order</label><p>Summed, these six facilities total roughly $21.5 billion in committed bank capacity, essentially all of it investment-grade, syndicated across many banks (no single lender holds a concentrated position), and drawn close to zero in normal conditions — these are liquidity backstops, not program financing. Per the OCC Comptroller's Handbook on Concentrations of Credit, this is exactly the profile examiners treat as low-risk: diversified, high-grade, syndicated exposure rather than concentrated name or sector risk. Industry practice separately treats a single program under 30% of revenue as a 'clean' concentration profile for valuation/credit purposes; Lockheed's F-35 exposure, the single largest publicly disclosed figure among the primes, sits just under that threshold. No other prime's disclosed single-program share approaches it.</p>
+</section>
+<section>
+<h2>What this means for cancellation/delay exposure</h2>
+<p>Given the structure above, a Pentagon program cancellation or major delay would transmit into bank credit risk through two channels, neither of which resembles a concentrated single-borrower loss: (1) a large prime's revolver utilization rising if a program cancellation stressed its liquidity broadly — but because these firms run diversified program portfolios, one cancellation is a revenue-mix shock, not typically a going-concern event, and the revolvers exist precisely as a shock absorber; and (2) knock-on stress to the unbanked or thinly-banked small-supplier tier, which would show up as business failures and supply-chain disruption rather than bank loan losses, because banks were not carrying that risk on their books in the first place. The genuinely concentrated risk in the system — a subcontractor whose whole business depends on one missile or one shipbuilding program — is real, but it is a risk to that firm's survival and to DoD's supply chain, not, on the evidence gathered here, a risk concentrated on bank balance sheets.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Quantify total bank lending concentrated in program-dependent defense contractors</strong>: No public dataset (including AskAmerica) reports bank loan balances by defense-contractor identity or program concentration -- confirmed both by catalog search and by the OCC Comptroller's Handbook, which explains concentration-of-credit data is bank-specific/supervisory, not a published national industry statistic. The report substitutes the best available proxy (disclosed committed revolving credit facilities at major primes, ~$21.5B) and explains why the true single-program-dependent tier is largely unbanked rather than estimating a figure that cannot be sourced.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.occ.gov/publications-and-resources/publications/shared-national-credit-report/files/shared-national-credit-report-2025.pdf">2025 Shared National Credit (SNC) Program Report</a> <span class="note">— Fed/OCC/FDIC joint report, fetched and read in full; no defense/aerospace-specific sector breakout exists even in the 21-subsector 2025 detail</span></li>
+<li><a href="https://www.occ.gov/publications-and-resources/publications/comptrollers-handbook/files/concentrations-of-credit/pub-ch-concentrations.pdf">OCC Comptroller's Handbook: Concentrations of Credit</a> <span class="note">— Fetched and read in full; explains why concentration-of-credit data is bank-specific/supervisory rather than published as a national industry statistic</span></li>
+<li><a href="https://thebenslens.substack.com/p/americas-banks-and-the-modern-arsenal">America's Banks and the Modern Arsenal of Democracy (BENS)</a> <span class="note">— Fetched and read in full, May 2026; states conventional bank lending to small/mid-tier defense suppliers 'has limits'</span></li>
+<li><a href="https://defensescoop.com/2025/01/02/dod-office-of-strategic-capital-osc-loan-applications-credit-program-984m/">DOD Office of Strategic Capital loan program, $984M</a> <span class="note">— Fetched and read in full; corroborates the private/bank credit gap for defense-industrial-base SMEs</span></li>
+<li><a href="https://www.usbank.com/corporate-and-commercial-banking/industry-expertise/aerospace-defense.html">Aerospace and Defense Industry Financing | U.S. Bank</a> <span class="note">— Fetched and read in full; shows commercial-bank product mix for the sector (working capital, payments, capital markets/trust) rather than concentrated program lending</span></li>
+<li><a href="https://bens.org/credit-as-strategy-mobilizing-private-capital-for-americas-defense-industrial-base/">Credit as Strategy: Mobilizing Private Capital for America's Defense Industrial Base (BENS)</a> <span class="note">— Landing page could not be fetched directly (HTTP 403); cited via search-result summary only, not a full read</span></li>
+<li><a href="https://pulse2.com/lockheed-martin-secures-2-25-billion-revolver-led-by-bank-of-america-and-extends-3-billion-facility-to-2031/">Lockheed Martin F-35 ~27% of revenue and $5.25B revolving credit facilities</a> <span class="note">— Via search-result summary of company filings/reporting; direct SEC EDGAR fetch returned HTTP 403</span></li>
+<li><a href="https://breakingdefense.com/2026/04/northrop-to-invest-2-5b-to-hasten-b-21-production/">Northrop Grumman B-21 (~10%) and Sentinel (~6.5%) revenue share; $3B revolver</a> <span class="note">— Via search-result summary</span></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/101829/000010182926000006/rtx-20251231.htm">RTX $5.0B revolving credit facility, undrawn at YE2025</a> <span class="note">— RTX FY2025 10-K; direct fetch returned HTTP 403, figure via search-result summary</span></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/40533/000004053321000010/gd-20201231.htm">General Dynamics $5B committed bank facilities</a> <span class="note">— GD FY2020 10-K, cited via search-result summary; may be stale</span></li>
+<li><a href="https://www.investing.com/news/company-news/huntington-ingalls-secures-expanded-17-billion-credit-facility-93CH-3620291">Huntington Ingalls $1.7B revolving credit facility</a> <span class="note">— Via search-result summary</span></li>
+<li><a href="https://www.tipranks.com/news/company-announcements/l3harris-secures-1-5-billion-revolving-credit-facility">L3Harris $1.5B revolving credit facility (Jan 2024)</a> <span class="note">— Via search-result summary</span></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">This corpus (AskAmerica) has no table linking bank loan balances to defense-contractor identity or program concentration; this report is built from the Federal Reserve/OCC/FDIC's 2025 Shared National Credit Review, the OCC's Comptroller's Handbook on Concentrations of Credit, U.S. Bank's own aerospace/defense industry page, DefenseScoop's reporting on the DoD Office of Strategic Capital, and one industry-financing research piece (BENS) -- all five fetched and read in full via web_fetch. Prime-contractor credit-facility and program-revenue figures (Lockheed, RTX, GD, Northrop, HII, L3Harris) came from WebSearch result summaries after direct SEC EDGAR fetches returned HTTP 403 twice; these are company-disclosed figures relayed via secondary reporting, not verified against the primary 10-K text in this session, and are flagged as such. AskAmerica's semantic_search tool over SEC filing text failed with an infrastructure error mid-session and could not be used to systematically scan risk-factor concentration language; this is a reported tool defect, not a finding folded into the analysis. General Dynamics' facility figure is from a 2020 10-K and may be stale relative to the 2024-2025 figures used for the other five primes.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">AskAmerica · Prepared 2026-09-15</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
