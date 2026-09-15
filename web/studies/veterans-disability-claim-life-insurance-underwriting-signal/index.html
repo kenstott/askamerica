@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mortality Rises Sharply with Disability Rating Severity; Commercial Underwriting, Not VA's Own Insurance, Is Where Condition Type Matters</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Mortality Rises Sharply with Disability Rating Severity; Commercial Underwriting, Not VA's Own Insurance, Is Where Condition Type Matters</h1>
+<p class="subtitle">VA/UW/Stanford cohort studies (2004-2014 deaths) vs. VA VALife/S-DVI vs. commercial life-insurance underwriting practice</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Veteran Disability Rating, Mortality, and Insurance Underwriting</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Sources: Maynard, Nelson, Trivedi &amp; Fihn (AJPH 2018; Military Medicine 2018); VA.gov VALife</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="317" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="317" viewBox="0 0 412 317" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="317" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">1-Year Mortality by Combined VA Disability Rating</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="53" y1="249" x2="390" y2="249" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="45" y="253" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="210.40" x2="390" y2="210.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="45" y="214.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
+      <line class="grid" x1="53" y1="171.80" x2="390" y2="171.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="45" y="175.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="133.20" x2="390" y2="133.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="45" y="137.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
+      <line class="grid" x1="53" y1="94.60" x2="390" y2="94.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="45" y="98.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="249" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="249" x2="390" y2="249" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-x-axis-title" class="axis-title" x="221.50" y="293" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Rating group</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="152.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 152.50)">1-yr mortality %</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-low-10-40" class="tick" x="109.17" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Low (10-40%)</text>
+      <text id="p1-xtick-medium-50-90" class="tick" x="221.50" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Medium (50-90%)</text>
+      <text id="p1-xtick-high-100" class="tick" x="333.83" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">High (100%)</text>
+    </g>
+    <g id="p1-series-1-year-mortality-rate" class="series">
+      <rect id="p1-mark-1-year-mortality-rate-low-10-40" class="bar" x="73.22" y="175.66" width="70.89" height="73.34" fill="#2563eb"/>
+      <rect id="p1-mark-1-year-mortality-rate-medium-50-90" class="bar" x="185.55" y="175.66" width="70.89" height="73.34" fill="#2563eb"/>
+      <rect id="p1-mark-1-year-mortality-rate-high-100" class="bar" x="297.89" y="75.30" width="70.89" height="173.70" fill="#2563eb"/>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="412" fill="#6b7280">n=758,324 veterans w/ service-connected conditions who died 2004-2014</text>
+  <text class="caption" x="24" y="425" fill="#6b7280">(605,493 linked). 100% rating = ~2.45x odds of 1-yr death vs. low…</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="186.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="222.50" fill="#6b7280">Odds ratio, high vs. low disability rating</text>
+  <text class="stat-value" x="464" y="252.50" fill="#1f2328">2.45x</text>
+  <text class="stat-delta" x="464" y="272.50" fill="#059669">1-year mortality odds</text>
+  </g>
+  <text class="caption" x="452" y="412" fill="#6b7280">Maynard et al. 2018, American Journal of Public Health</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="447" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="483" fill="#6b7280">VALife underwriting requirement</text>
+  <text class="stat-value" x="36" y="513" fill="#1f2328">None</text>
+  <text class="stat-delta" x="36" y="533" fill="#6b7280">Guaranteed acceptance, any rating incl. 0%</text>
+  </g>
+  <text class="caption" x="24" y="568" fill="#6b7280">VA.gov: no medical exam, no condition-type or severity distinction, up</text>
+  <text class="caption" x="24" y="581" fill="#6b7280">to age 80</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="447" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="483" fill="#6b7280">Deaths, youngest post-1958 cohort</text>
+  <text class="stat-value" x="464" y="513" fill="#1f2328">~33%</text>
+  <text class="stat-delta" x="464" y="533" fill="#059669">external causes (suicide/assault/accident)</text>
+  </g>
+  <text class="caption" x="452" y="568" fill="#6b7280">Maynard et al., Military Medicine 2018 / UW School of Public Health</text>
+  <text class="caption" x="452" y="581" fill="#6b7280">summary</text>
+  <text class="footnote" x="20" y="613" fill="#6b7280">Mortality figures from peer-reviewed VA/UW/Stanford cohort studies of Veterans Benefits Administration + National Death Index linkage, 2004-2014</text>
+  <text class="footnote" x="20" y="627" fill="#6b7280">deaths. Underwriting practice from VA.gov program pages and industry broker guidance (AccuQuote); commercial insurer-specific rate tables are</text>
+  <text class="footnote" x="20" y="641" fill="#6b7280">proprietary and not published.</text>
+  <g id="brand">
+  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:52845/a/a91966e3a740453cf7a555b77f3e5a29.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Mortality among veterans with service-connected disability ratings rises sharply with the <strong>severity</strong> of the combined rating, and the <strong>type</strong> of condition rated strongly shapes cause of death, but the two dimensions cut differently. A VA/University of Washington/Stanford cohort study (Maynard, Nelson &amp; Fihn, <em>American Journal of Public Health</em>, 2018) of 758,324 veterans with service-connected conditions who died between 2004 and 2014 found 1-year mortality of 4.5% among veterans with a 100% combined disability rating versus 1.9% for veterans with low (10-40%) or medium (50-90%) ratings &mdash; roughly 2.45x higher odds of dying within a year at the highest rating tier. A companion analysis (Maynard et al., <em>Military Medicine</em>, 2018) shows cause of death diverges by condition and by era of service: veterans with PTSD or major depression died disproportionately of alcoholic liver disease, intentional injury, and suicide (6.5% of deaths in this group were intentional/accidental, roughly double the rate for veterans without these conditions); the oldest cohort (WWII/Korea era, lower average disability ratings) died mostly of cancer and cardiovascular disease; and the youngest post-1958 cohort died disproportionately of external causes (suicide, assault, accidents accounted for nearly a third of deaths), at an average age of just 43.</p><p><strong>Is this reflected in life-insurance underwriting? Only partly, and in an uneven way.</strong> Commercial (civilian) life insurers do underwrite by condition type and severity &mdash; PTSD, TBI, and other mental-health or high-external-cause-risk diagnoses receive individualized underwriting based on symptom severity, treatment compliance, and time since diagnosis, not on the veteran's VA disability percentage itself; carriers explicitly do not treat the VA rating as their risk metric. VA's own life insurance, by contrast, has moved in the opposite direction: VALife, VA's current flagship program launched in January 2023, is <strong>guaranteed-acceptance</strong> whole life insurance available to any veteran with any service-connected disability rating, including 0%, with premiums set purely by age and coverage amount &mdash; no medical exam, no condition-type distinction, and no reflection at all of the mortality gradient the research literature documents. That is a deliberate policy design, not an oversight: it substitutes actuarial risk-pooling by age for individual medical/condition underwriting, precisely because commercial underwriting was pricing many disabled veterans out of affordable coverage.</p>
+</section>
+<section>
+<h2>1. Mortality by disability rating severity</h2>
+<p>Maynard, Nelson &amp; Fihn (2018, <em>AJPH</em>) linked Veterans Benefits Administration disability compensation records to the National Death Index for veterans receiving compensation for a service-connected condition. Comparing combined disability rating tiers:</p><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th>Combined rating group</th><th>1-year mortality</th></tr><tr><td>Low (10-40%)</td><td>1.9%</td></tr><tr><td>Medium (50-90%)</td><td>1.9%</td></tr><tr><td>High (100%)</td><td>4.5%</td></tr></table><p>Veterans at the 100% combined rating had roughly 2.45x the odds of dying within one year compared with veterans at a low rating, after the study's adjustments. The authors describe the 100%-rated group as "a highly select group with increased short-term risk of death due at least in part to their military service" &mdash; i.e., the rating level itself is a meaningful, independent mortality signal, largely because it correlates with more severe or more numerous conditions and with poorer overall functional status, not because a high percentage causes death mechanically.</p>
+</section>
+<section>
+<h2>2. Mortality experience by TYPE of condition rated</h2>
+<p>The companion cause-of-death study (Maynard et al., <em>Military Medicine</em>, 2018, and the 2018 UW School of Public Health summary of the same project) examined 605,344 deceased veterans with service-connected conditions (2004-2014) and found the condition type driving the rating strongly predicts cause of death:</p><ul><li><strong>PTSD / major depression / anxiety</strong> (28% of deceased veterans in the study had a service-connected mental-health condition): elevated deaths from alcoholic liver disease and from intentional/accidental causes &mdash; 6.5% of deaths in this group were suicide, assault, or accident, about double the rate among veterans without these conditions. Significant numbers of deaths among both men and women with major depression were suicides.</li><li><strong>Cardiovascular and cerebrovascular disease, cancer</strong> &mdash; dominant causes of death among the oldest cohort (WWII/Korea era, born pre-1939, 62% of the study population), who carried lower average disability ratings, had a higher share of officers, and died mostly (nearly half of deaths) of cancer or cardiovascular disease with under 2% external-cause deaths.</li><li><strong>Diabetes and ischemic heart disease linked to Agent Orange exposure</strong> &mdash; more than 54,000 Vietnam-era veterans (born 1939-1958, 34% of the study population) had these conditions, a signature of that era's service-connected disability profile.</li><li><strong>Musculoskeletal conditions</strong> &mdash; the single most common category of VA-rated disability today (affecting an estimated ~60% of veterans receiving compensation, per current VA claims-guide summaries), but not itself a major direct cause of death in the mortality literature; its mortality relevance is indirect, via reduced mobility/activity and secondary cardiovascular risk documented in VA rehabilitation research.</li><li><strong>Youngest cohort</strong> (post-1958, Gulf War/Iraq/Afghanistan era, 4% of the study population): died at an average age of 43, with cardiovascular disease and cancer responsible for about a third of deaths and suicide, assault, and accidents responsible for nearly another third &mdash; a markedly different, and far more premature, mortality profile than the WWII/Korea cohort despite lower absolute disability ratings on average.</li></ul><p>The pattern that emerges: rating <em>level</em> tracks overall mortality risk, while condition <em>type</em> determines <em>which</em> cause of death dominates and how premature the death tends to be &mdash; mental-health and PTSD-rated veterans skew toward early, external-cause and substance-related death; cardiovascular/cancer-rated veterans (more common among older service eras) skew toward later, disease-related death.</p>
+</section>
+<section>
+<h2>3. Commercial life-insurance underwriting practice</h2>
+<p>Civilian life insurers do differentiate risk by condition type when a veteran applicant discloses a PTSD, TBI, or other diagnosis during underwriting &mdash; but the evidence gathered here (industry broker guidance, e.g. AccuQuote's veteran underwriting guide) indicates underwriters key off clinical severity, treatment compliance, symptom stability, time since diagnosis, and functional status, not off the VA's percentage rating itself. A veteran industry source states plainly: "a veteran with a 70% PTSD rating who maintains stability and function may receive better rates than someone with lower disability ratings but poor treatment compliance. Carriers focus primarily on severity, treatment, and stability rather than the service connection or VA rating level." Underwriting standards also vary materially carrier to carrier for the same diagnosis, which is why veteran-focused brokers exist specifically to shop PTSD/TBI applicants across multiple insurers. This is consistent with the mortality research in the sense that carriers are (correctly, per the literature) treating mental-health conditions as carrying elevated risk tied to instability/substance use/suicide rather than to the disability rating per se &mdash; but no publicly available evidence found here shows carriers using VA rating percentage as a pricing input at all.</p>
+</section>
+<section>
+<h2>4. VA's own life insurance: the opposite design choice</h2>
+<p>VA operates two life-insurance products specifically for veterans with service-connected ratings, and they diverge sharply from commercial practice:</p><ul><li><strong>S-DVI (Service-Disabled Veterans Insurance)</strong> &mdash; VA's older program (closed to new applicants since December 2022), capped at $10,000 face value, available to veterans with a service-connected disability rating, with underwriting that could still require evidence of insurability for face amounts above the guaranteed level.</li><li><strong>VALife (Veterans Affairs Life Insurance)</strong> &mdash; VA's current flagship program, launched January 2023. Per VA.gov: any veteran age 80 or younger with a VA service-connected disability rating <strong>&mdash; even a 0% rating &mdash;</strong> is automatically approved for up to $40,000 of guaranteed-acceptance whole life coverage. "You won't need to prove you're in good health." Premiums are set purely by the applicant's age and coverage amount (e.g., $10.90/month at age 18 for $10,000 of coverage, rising to $127.50/month at age 80), with no distinction whatsoever by condition type, cause of the rating, or rating percentage beyond the binary fact of having one. There is a 2-year waiting period for full coverage (return-of-premium-plus-interest if death occurs during that window), which is VALife's only underwriting-like risk control, and it applies identically to every condition type.</li></ul><p>This is the clearest answer to the second half of the question: VA's own insurance <strong>does not</strong> reflect the condition-type mortality differential documented in the research &mdash; it is explicitly designed not to. That is a policy choice to guarantee affordable coverage precisely because commercial underwriting (even though it doesn't key off VA rating directly) can still price or decline veterans with severe PTSD, TBI, or other conditions out of standard commercial coverage. VALife's age-only, condition-blind pricing effectively cross-subsidizes higher-mortality-risk veterans (e.g., PTSD-rated veterans in the youngest cohort, with a documented ~2x rate of external-cause death) using premiums from lower-risk veterans within the same age band.</p>
+</section>
+<section>
+<h2>Method and sourcing notes</h2>
+<p>Mortality figures are drawn directly from two peer-reviewed VA/UW/Stanford cohort studies using Veterans Benefits Administration disability records linked to the National Death Index (2004-2014 deaths): Maynard, Nelson &amp; Fihn, "Disability Rating and 1-Year Mortality Among Veterans With Service-Connected Health Conditions," <em>American Journal of Public Health</em> (2018), and Maynard, Trivedi, Nelson &amp; Fihn, "Disability Rating, Age at Death, and Cause of Death in U.S. Veterans with Service-Connected Conditions," <em>Military Medicine</em> (2018) &mdash; the latter summarized via the University of Washington School of Public Health's own research-news writeup of the same study (the Oxford Academic full text returned HTTP 403 and PubMed abstracts returned a cookie-gate page, so the UW press summary of the study's own authors was used as the next-best-available primary-adjacent source for that paper's findings; the AJPH paper's 1-year mortality/odds-ratio figures came through independently via search-result abstracts, not a full-text read). No AskAmerica warehouse table carries VA disability-rating microdata or life-insurance underwriting data, so this report relies entirely on the published literature and VA/industry web sources rather than on this session's SQL connector — confirmed via search_catalog, which surfaced only general veteran population (ACS) and CDC mortality tables with no VA disability-rating or cause-of-death-by-condition linkage. Commercial underwriting detail comes from industry broker guidance (AccuQuote), which is representative but not a substitute for a specific carrier's own underwriting manual (proprietary, not publicly published).</p>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://doi.org/10.1177/0033354918794929">Maynard, Nelson, Fihn (2018), Disability Rating and 1-Year Mortality Among Veterans With Service-Connected Health Conditions, American Journal of Public Health</a></li>
+<li><a href="https://academic.oup.com/milmed/article-abstract/183/11-12/e371/4954108">Maynard, Trivedi, Nelson, Fihn (2018), Disability Rating, Age at Death, and Cause of Death in U.S. Veterans with Service-Connected Conditions, Military Medicine</a></li>
+<li><a href="https://sph.washington.edu/news-events/news/finding-links-between-disability-and-death-among-us-vets">UW School of Public Health: Finding links between disability and death among U.S. vets (summary of Military Medicine 2018 study)</a></li>
+<li><a href="https://www.va.gov/life-insurance/options-eligibility/valife/">VA.gov: Veterans Affairs Life Insurance (VALife) eligibility, underwriting, and premium tables</a></li>
+<li><a href="https://www.military.com/benefits/veterans-health-care/service-disabled-veterans-insurance.html">Military.com: Service-Disabled Veterans Life Insurance (S-DVI) program overview</a></li>
+<li><a href="https://accuquote.com/life-insurance-for-veterans-with-ptsd-or-tbi-a-brokers-underwriting-guide/">AccuQuote: Life Insurance for Veterans with PTSD or TBI — A Broker's Underwriting Guide</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Mortality data: VA/UW/Stanford cohort studies of 2004-2014 deaths (Veterans Benefits Administration + National Death Index linkage). Underwriting data: VA.gov program pages and industry broker guidance; individual commercial carriers' underwriting manuals are proprietary and not independently verified here.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
