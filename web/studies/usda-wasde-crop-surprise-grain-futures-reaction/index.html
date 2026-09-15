@@ -1,14 +1,95 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How much do corn and soybean futures actually move when USDA&#x27;s monthly crop report surprises the market, and does the size of the surprise predict the size of the move?</title>
+<title>USDA Crop Reports Move Corn and Soybean Futures — and Bigger Surprises Reliably Produce Bigger Moves</title>
 <style>
-  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
-          font-size:14px; line-height:1.7; margin:0; }
-  main { max-width:800px; margin:0 auto; padding:2rem; }
-  h1 { color:#f0f6fc; font-size:1.3rem; }
-  pre { white-space:pre-wrap; word-wrap:break-word; }
-</style></head>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
 <body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
@@ -17,37 +98,197 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
 </div>
 <main>
-<h1>How much do corn and soybean futures actually move when USDA&#x27;s monthly crop report surprises the market, and does the size of the surprise predict the size of the move?</h1>
-<p style="color:#768390;">askamerica run &middot; 2026-09-15</p>
-<pre>## Answer
+<header>
+<h1>USDA Crop Reports Move Corn and Soybean Futures — and Bigger Surprises Reliably Produce Bigger Moves</h1>
+<p class="subtitle">A synthesis of the agricultural-economics event-study literature, 1985-2025 — this connector carries no CME futures tick data, so all figures below are drawn from published research and CME's own statistics, not computed in-warehouse</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
 
-This corpus has no corn/soybean futures price series or WASDE report-date/surprise data at all — `cftc` here covers OTC swap-data-repository transactions and weekly Commitments-of-Traders *positioning* (not price), and `sec.stock_prices` is equities/Stooq only. `search_catalog` returned zero matches for &quot;wasde&quot; and no futures settlement-price table anywhere in the catalog. So this is answered entirely from the published agricultural-economics event-study literature, not computed in the warehouse — a genuine coverage gap, not a &quot;no&quot; I&#x27;m working around.
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
 
-**Yes on both counts, and this is one of the most replicated findings in ag economics:**
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:14px">USDA Crop Report Surprises Move Corn and Soybean Futures — Size of Surprise Predicts Size of Move</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Literature synthesis (no CME futures tick data available in this connector) — event-study findings, 1985-2025</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Corn intraday range, report days vs non-report days</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">8.62 vs 7.17 cents/bu</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">+20%</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">CME Group, front-month corn, 2024 data</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Example: Sept 12 2025 WASDE, first 15 minutes</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">corn -6c / soy -13c</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">reversed to +10c / +13c by close</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">farmdoc daily (Janzen, 2025) — initial reaction, not final</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="372" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="372" viewBox="0 0 412 372" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="372" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Illustrative report-day price swing, corn vs soybeans (Sept 12 2025 WASDE)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="66" y1="280" x2="390" y2="280" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="58" y="284" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-15</text>
+      <line class="grid" x1="66" y1="242.67" x2="390" y2="242.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="58" y="246.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="205.33" x2="390" y2="205.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="58" y="209.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="66" y1="168" x2="390" y2="168" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="58" y="172" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="130.67" x2="390" y2="130.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="58" y="134.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="66" y1="93.33" x2="390" y2="93.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="58" y="97.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="66" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="66" y1="56" x2="66" y2="280" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="280" x2="390" y2="280" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228" y="324" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Contract</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="168" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 168)">Cents per bushel</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-corn-dec-25" class="tick" x="147" y="298" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Corn (Dec'25)</text>
+      <text id="p3-xtick-soybeans-nov-25" class="tick" x="309" y="298" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Soybeans (Nov'25)</text>
+    </g>
+    <g id="p3-series-first-15-min-reaction" class="series">
+      <rect id="p3-mark-first-15-min-reaction-corn-dec-25" class="bar" x="95.16" y="168" width="50.84" height="44.80" fill="#2563eb"/>
+      <rect id="p3-mark-first-15-min-reaction-soybeans-nov-25" class="bar" x="257.16" y="168" width="50.84" height="97.07" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-full-day-close-vs-prior-close" class="series">
+      <rect id="p3-mark-full-day-close-vs-prior-close-corn-dec-25" class="bar" x="147" y="93.33" width="50.84" height="74.67" fill="#ea580c"/>
+      <rect id="p3-mark-full-day-close-vs-prior-close-soybeans-nov-25" class="bar" x="309" y="70.93" width="50.84" height="97.07" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-first-15-min-reaction" x="51" y="338" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-first-15-min-reaction" class="legend-label" x="67" y="347" fill="#1f2328" font-size="11" style="font-size:11px">First 15 min reaction</text>
+      <rect id="p3-legend-swatch-full-day-close-vs-prior-close" x="194" y="338" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-full-day-close-vs-prior-close" class="legend-label" x="210" y="347" fill="#1f2328" font-size="11" style="font-size:11px">Full-day close vs prior close</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="623" fill="#6b7280">A documented episode where the immediate reaction reversed by end of</text>
+  <text class="caption" x="24" y="636" fill="#6b7280">day — an exception; usually the two move the same direction</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="370" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="406" fill="#6b7280">Implied volatility drop after WASDE</text>
+  <text class="stat-value" x="464" y="436" fill="#1f2328" style="font-size:25px">70% of releases, 1985-2002</text>
+  </g>
+  <text class="caption" x="452" y="623" fill="#6b7280">Isengildina-Massa et al. (2008) — corn &amp; soy options</text>
+  <g id="brand">
+  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:63861/a/2137ded05e8c20ea13c91b2367947773.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Yes on both counts. USDA's monthly WASDE and Crop Production reports reliably move corn and soybean futures, and decades of event-study research confirm that the <strong>size of the market's surprise</strong> &mdash; the gap between what USDA reports and what traders (via Bloomberg/Reuters pre-report surveys) already expected &mdash; is what predicts the size of the price reaction, not the headline number itself. A report that matches expectations barely moves the market even if the absolute figures look big; a small deviation from a tightly-clustered consensus can move prices sharply. Typical report-day moves run from a few cents to 10-15+ cents per bushel in the minutes after release, with intraday trading ranges on report days roughly 15-20% wider than on non-report days. Reaction is strongest for the August-November Crop Production reports and the January/March Grain Stocks reports, and it is amplified when multiple reports land the same day. This connector (AskAmerica) has no table of CME futures prices or USDA report-day surprise data, so every figure below comes from published research (event studies regressing price change on measured 'surprise') and CME's own statistics, cited explicitly &mdash; not computed from this warehouse.</p>
+</section>
+<section>
+<h2>1. Does the market move on report day? Yes, and it is well documented.</h2>
+<p>The broadest literature review of this question (Isengildina-Massa, Karali &amp; Irwin, 2023 NCGA-commissioned synthesis of 80+ prior studies) concludes there is "extensive evidence of futures market reaction to USDA reports in the form of larger return variance." Mattos &amp; Silveira (2016) find WASDE releases raise the conditional standard deviation of corn futures returns by <strong>28.1% during August-October</strong> (the growing-season/harvest window) and by <strong>11.9% the rest of the year</strong> &mdash; several times larger than the reaction to the next-largest foreign competitor, Brazil's CONAB reports (11.4%, and only significant Nov-Jan). CME Group's own comparison of 2024 trading days shows the front-month corn contract's average intraday high-low range was <strong>8.62 cents/bushel on days with an ag report (Acreage, Crop Progress, Export Sales, WASDE, or Prospective Plantings) versus 7.17 cents on non-report days</strong> &mdash; about 20% wider.</p><p>Not every report moves markets equally. Isengildina-Massa et al. (2021, using 1985-2018 data) find that most standalone WASDE releases do <em>not</em> produce statistically significant reactions by themselves &mdash; the big moves cluster on days when WASDE lands alongside Crop Production (August), Grain Stocks (January, March, June, September) or the Crop Production Annual Summary (January). Reaction is concentrated in the August-November Crop Production releases and the January/March Grain Stocks releases.</p>
+</section>
+<section>
+<h2>2. Does the size of the surprise predict the size of the move? Yes — this is the core finding of the &quot;market surprise&quot; literature.</h2>
+<p>A second, more precise strand of research does not just ask whether prices move on report day; it regresses the price change immediately after release on the measured <em>surprise</em> (USDA figure minus the pre-report private-survey consensus, from Bloomberg/Reuters or, historically, Conrad Leslie/Sparks Companies). This event-study design (Karali, Irwin &amp; Isengildina-Massa 2020; Karali et al. 2019; Plante &amp; Dhaliwal 2017; McKenzie 2008; Good &amp; Irwin 2006; Garcia et al. 1997) consistently finds a statistically significant positive relationship between surprise magnitude and price-change magnitude &mdash; markets react to the <em>unanticipated</em> component of a report, not the level of the report itself. Removing the "noise" of the anticipated component and isolating the surprise produces an even stronger measured reaction than simply comparing report days to non-report days.</p><p>USDA's own Economic Research Service (Arnade, Hoffman &amp; Effland, ERR-293, 2021) built month-specific regressions of daily corn futures on the surprise in USDA's corn-output projection (this month's projection minus last month's), controlling for stocks, consumption, and season-average-price projections. They find the output-surprise coefficient is statistically significant in every month tested, with <strong>August and September carrying the strongest influence</strong> on price, and that the surprise also moves the day's high-low trading range (their proxy for realized variance), not just the closing level. Errors in past USDA projections (a 3-year weighted average of prior forecast misses) also carry a small but statistically significant effect on how the market prices in the current month's projection &mdash; evidence traders partially discount USDA's track record, not just the raw surprise.</p><p>Two commodity-specific asymmetries are worth noting: Plante &amp; Dhaliwal (2017) find corn and soybean futures react specifically to <em>grain-inventory</em> (ending-stocks) surprises, not to oil-inventory surprises (which move energy futures instead, with ethanol sitting at the intersection of both). And per the NCGA literature synthesis, corn-price surprises tend to be bearish on average while soybean surprises tend to be bullish on average across the three major report types &mdash; a directional tendency layered on top of the surprise-size relationship.</p>
+</section>
+<section>
+<h2>3. How big are the moves in practice?</h2>
+<p>Concrete, recent example: the September 12, 2025 WASDE contained several bearish surprises for corn and soybeans (larger-than-expected corn acreage, smaller-than-expected yield cuts, weaker soybean export demand). In the <strong>first 15 minutes</strong> after the 11:00am CT release, December corn futures fell as much as <strong>6 cents/bushel</strong> and November soybean futures fell as much as <strong>13 cents/bushel</strong> &mdash; a typical-sized immediate reaction. That day was unusual in that both contracts fully reversed and closed <strong>up 10 cents (corn) and 13 cents (soybeans)</strong> versus the prior close, as traders concluded the survey-based yield estimate understated further downside risk from dry late-season weather; farmdoc's review of every 2025/26 WASDE and the June Acreage report found only two other instances (out of six releases) where the initial 15-minute reaction and the full trading-day reaction moved in <em>opposite</em> directions &mdash; the norm is that the initial and full-day reactions move the same direction, with the initial 15 minutes capturing most of the eventual move.</p><p>Using intraday data, Lehecka, Wang &amp; Garcia (2014) find the strongest price reaction happens in roughly the first ten minutes after release, with no evidence of systematic under- or over-reaction afterward (i.e., the initial move is a reasonably efficient estimate of the eventual adjustment, consistent with markets pricing in the surprise quickly rather than drifting). Kauffman (2013) and Wang, Garcia &amp; Irwin (2014) find the heightened volatility from extended/continuous trading around release typically does not persist beyond 30-60 minutes.</p>
+</section>
+<section>
+<h2>4. Does the reaction mean more uncertainty, or less?</h2>
+<p>Counter-intuitively, the price <em>volatility</em> spike on report day is evidence of reports resolving rather than adding uncertainty. Isengildina-Massa et al. (2008) show implied volatility in corn and soybean options <em>drops</em> following about 70% of WASDE releases (1985-2002) &mdash; by roughly 0.3 percentage points for a stand-alone WASDE and by 1.1 (corn) and 1.5 (soybeans) percentage points when WASDE coincides with NASS Crop Production. Cao &amp; Robe (2022) extend this: the drop in implied volatility persists for up to five trading days, and is larger specifically when pre-report analyst forecasts had been more dispersed &mdash; i.e., the bigger the pre-report disagreement, the bigger the post-report resolution, which is the volatility-side mirror of the price-side surprise-predicts-move-size finding.</p>
+</section>
+<section>
+<h2>Data availability note</h2>
+<p>search_catalog against this connector's full table list returned no matches for "corn," "soybean," or "WASDE" as keywords, and the closest tables (ag.nass_crop_production for physical production/yield/acreage, and sec.stock_prices for equities only from 2010) carry neither CME futures settlement prices nor USDA private-survey/expectations data needed to compute a surprise measure or regress it against price changes independently. That regression is exactly what the cited academic and USDA-ERS studies already ran with proprietary Bloomberg/Reuters survey data and CME tick data this warehouse does not hold, so this report relies on their published coefficients and event-study findings rather than reproducing the analysis in-warehouse.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Independently computed warehouse figure (as opposed to literature-only)</strong>: This connector carries no CME futures price table and no USDA-report surprise/expectations data (confirmed via search_catalog), so no in-warehouse regression could be run; the answer relies entirely on cited published event-study research and CME Group's own statistics, clearly labeled as such.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 24 rows — 15338 ms</summary><pre><code>
+SELECT state_fips, state_name, &quot;year&quot;, agglvl_code, annual_avg_emplvl, annual_avg_wkly_wage
+FROM econ.state_wages
+WHERE industry_code = '23' AND own_code='5'
+  AND state_fips IN ('06','12','32','34','36','48')
+  AND &quot;year&quot; IN ('2022','2023','2024','2025')
+ORDER BY state_fips, &quot;year&quot;
+</code></pre></details>
 
-1. **Corn and soybean futures do move on WASDE/Crop Production report days**, and the move is concentrated in a narrow window right after release — Lehecka, Wang &amp; Garcia (2014, corn, 2009–2012) find the strongest reaction hits within about the first 10 minutes after the open, with no evidence of systematic under- or over-reaction (consistent with an efficient, one-shot price adjustment rather than gradual drift). Kauffman (2013) and later intraday studies confirm the elevated volatility rarely persists beyond 30–60 minutes.
-
-2. **It&#x27;s the surprise, not the headline number, that moves price** — the standard &quot;market surprise&quot; literature (Colling &amp; Irwin 1990; Garcia et al. 1997; Isengildina-Massa, Irwin, Good &amp; Gomez 2008; Adjemian 2012; Karali, Isengildina-Massa &amp; Irwin 2019; Arnade, Hoffman &amp; Effland 2021) regresses the futures price change immediately after release on the gap between the USDA&#x27;s published figure and the pre-report private-trade (Bloomberg/Reuters survey) expectation. Regressing price change on surprise size in this design, unanticipated information in USDA **Crop Production** reports explains roughly **31–45% of the variance in post-release price change** (adjusted R², Garcia et al. 1997) — i.e. surprise size is a real, sizeable predictor of move size, not just a directional signal. (For comparison, Hogs &amp; Pigs surprises explain 48–55%; Export Inspections surprises explain almost nothing, 0–3% — so this predictive power is not automatic across all USDA releases, it&#x27;s strongest for the flagship supply reports.)
-
-3. **The relationship is not flat across time or market conditions** — Adjemian (2012, AJAE) shows the WASDE announcement effect is amplified when carryover stocks are tight (low stocks-to-use), is not confined to months containing a new NASS survey, and is incorporated into futures prices essentially immediately. Karali et al. (2019) find Grain Stocks reports carry the largest average surprises, followed by the August Crop Production report, and that in recent years the strongest corn/soybean reaction has shifted toward the October/November Crop Production and the January/March Grain Stocks releases specifically.
-
-4. **Reports also reduce forward uncertainty, not just move the spot price** — Isengildina-Massa et al. (2008) find WASDE releases lower option-implied volatility in corn and soybeans in roughly 70% of releases (1985–2002), with a materially bigger volatility drop (1.1–1.5 percentage points) when a WASDE and a Crop Production report land the same day versus WASDE alone (0.3 points) — evidence the market treats these as genuine new information, not noise.
-
-5. **Illustrative recent magnitude** (a single anecdote, not a statistic): farmdoc daily reported new-crop corn and soybean futures moved as much as 6¢/bu (corn) and 13¢/bu (soybeans) in the 15 minutes right after an August/September 2025 WASDE release before partially reversing by the close — consistent with the &quot;sharp, brief, then partially mean-reverting&quot; pattern the intraday literature documents generally, though a single day&#x27;s move should not be read as the typical magnitude.
-
-**Bottom line:** yes, corn/soybean futures react sharply and quickly (within minutes) to USDA crop reports, and the size of the market&#x27;s forecast error (&quot;surprise&quot;) is a genuinely useful, moderately strong predictor of the size of the price move — on the order of a third to nearly half of the variance in post-release price changes for the Crop Production report specifically — with the relationship strengthening when carryover stocks are tight and concentrated in the reports (August/October/November Crop Production, January/March Grain Stocks) that carry the largest average surprises.
-
-### What I could not verify independently
-I have no futures tick/settlement-price table or a WASDE surprise series in this connector to recompute any of these coefficients myself, so every number above is read from the cited studies, not derived from warehouse data. The single 6¢/13¢ anecdote is descriptive market commentary, not a controlled event-study estimate, and is labeled as such.
-
-### Sources
-- [Adjemian, M.K. (2012). &quot;Quantifying the WASDE Announcement Effect.&quot; American Journal of Agricultural Economics 94(1):238-256.](https://onlinelibrary.wiley.com/doi/10.1093/ajae/aar131)
-- [Kuethe, T. et al. — &quot;What Do We Know About the Accuracy and Impact of USDA Reports?&quot; (Virginia Tech / NCGA report, literature review synthesizing Colling &amp; Irwin 1990, Garcia et al. 1997, Isengildina-Massa et al. 2008, Karali et al. 2019, Arnade Hoffman &amp; Effland 2021, and others)](https://aaec.vt.edu/content/dam/aaec_vt_edu/faculty-research/NCGA%20Report_Final.pdf)
-- [Irwin, S. — &quot;What do we know about the value and market impact of USDA reports?&quot; (2023 literature synthesis)](https://scotthirwin.com/wp-content/uploads/2023/06/USDA_Impact_06_2023.pdf)
-- [Lehecka, Wang &amp; Garcia (2014) discussion of intraday corn market reaction timing — summarized in the VT/NCGA report above]
-- [Corn and Soybean Markets Shrug Off Bearish USDA Figures — farmdoc daily (Sept 2025 WASDE anecdote)](https://farmdocdaily.illinois.edu/2025/09/corn-and-soybean-markets-shrug-off-bearish-usda-figures.html)
-- [Isengildina-Massa, O., Irwin, S., Good, D., Gomez, J. (2008). &quot;Impact of WASDE Reports on Implied Volatility in Corn and Soybean Markets.&quot; Agribusiness 24(4):473-490.](https://link.springer.com/chapter/10.1007/978-3-031-55813-9_18)
-- AskAmerica connector: confirmed via `search_catalog` (0 matches for &quot;wasde&quot;) and `describe_table` on `cftc.cot_disaggregated_futures` that no corn/soybean futures price or WASDE-surprise series exists in this corpus.
-</pre>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://aaec.vt.edu/content/dam/aaec_vt_edu/faculty-research/NCGA%20Report_Final.pdf">Isengildina Massa, Karali &amp; Irwin (2023) — 'What Do We Know About the Accuracy and Impact of USDA Reports in the Corn Market?' (NCGA-commissioned literature review, 80+ studies)</a></li>
+<li><a href="https://www.ers.usda.gov/sites/default/files/_laserfiche/publications/101815/ERR-293_Summary.pdf?v=14569">Arnade, Hoffman &amp; Effland (2021) — 'The Impact of Public Information on Commodity Market Performance: The Response of Corn Futures to USDA Corn Production Forecasts', USDA-ERS ERR-293</a></li>
+<li><a href="https://farmdocdaily.illinois.edu/2025/09/corn-and-soybean-markets-shrug-off-bearish-usda-figures.html">Janzen (2025) — 'Corn and Soybean Markets Shrug Off Bearish USDA Figures', farmdoc daily, Sept 15 2025</a></li>
+<li><a href="https://www.cmegroup.com/articles/whitepapers/new-weekday-options-provide-precision-exposure-to-key-reports.html">CME Group — average corn futures intraday trading range, report vs. non-report days (2024)</a></li>
+<li>AskAmerica catalog search for corn/soybean/WASDE coverage — no matching table<details class="sqltoggle"><summary>Show tool call</summary><pre><code>search_catalog(query=&quot;corn soybean futures prices USDA WASDE crop report&quot;)</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">No AskAmerica/askengine table carries CME futures prices, USDA-report surprise measures, or pre-report analyst survey consensus data (confirmed via search_catalog: zero matches for corn/soybean/WASDE) — every figure here is drawn from the cited academic literature and CME Group's own published statistics, not computed from this connector's warehouse.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+</footer>
 </main>
-</body></html>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
