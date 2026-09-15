@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Virginia's Data-Center Demand Grew ~46% in Five Years — Utility Capex Is Rising Faster, but the Constraint Is Grid Build Time, Not Money</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s2-t1-s1:checked ~ table tbody.s0{display:none}
+#s2-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"]{color:var(--link)}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"] .srtcue{opacity:1}
+#s2-t1-s1:checked ~ .srtreset{display:inline-block}
+#s2-t1-s2:checked ~ table tbody.s0{display:none}
+#s2-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"]{color:var(--link)}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"] .srtcue{opacity:1}
+#s2-t1-s2:checked ~ .srtreset{display:inline-block}
+#s2-t1-s3:checked ~ table tbody.s0{display:none}
+#s2-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"]{color:var(--link)}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"] .srtcue{opacity:1}
+#s2-t1-s3:checked ~ .srtreset{display:inline-block}
+#s2-t1-s4:checked ~ table tbody.s0{display:none}
+#s2-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s2-t1-s4:checked ~ table label[for="s2-t1-s4"]{color:var(--link)}
+#s2-t1-s4:checked ~ table label[for="s2-t1-s4"] .srtcue{opacity:1}
+#s2-t1-s4:checked ~ .srtreset{display:inline-block}
+#s2-t1-s5:checked ~ table tbody.s0{display:none}
+#s2-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s2-t1-s5:checked ~ table label[for="s2-t1-s5"]{color:var(--link)}
+#s2-t1-s5:checked ~ table label[for="s2-t1-s5"] .srtcue{opacity:1}
+#s2-t1-s5:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Virginia's Data-Center Demand Grew ~46% in Five Years — Utility Capex Is Rising Faster, but the Constraint Is Grid Build Time, Not Money</h1>
+<p class="subtitle">EIA-861 commercial electricity sales by state (askamerica energy.eia_electricity_prices), 2019-2024, cross-checked against EIA Today in Energy, Belfer Center, S&amp;P Global, and Dominion Energy disclosures.</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 818" width="880" height="818" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="818" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">Virginia's Data-Center-Driven Demand Growth Outpaces Peers — Utility Capex Is Scaling Up but Racing a Ph…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">EIA-861 commercial electricity sales, state totals, 2019=100; company/analyst capex figures from public disclosures. Fetched 2026-09-15.</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Virginia commercial electricity sales, 2019-2024</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">+45.8%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">7.8%/yr CAGR</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">EIA-861, energy.eia_electricity_prices</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Dominion Energy 5-yr capex plan (2026-2030)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">$64.7B</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">+29% vs prior $50.1B plan</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Dominion Energy investor disclosures, Sept 2026</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="285" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="285" viewBox="0 0 412 285" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="285" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Commercial electricity sales index (2019=100)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="67" y1="193" x2="390" y2="193" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="59" y="197" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="175.88" x2="390" y2="175.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="59" y="179.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="67" y1="158.75" x2="390" y2="158.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="59" y="162.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="67" y1="141.63" x2="390" y2="141.63" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="59" y="145.63" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <line class="grid" x1="67" y1="124.50" x2="390" y2="124.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="59" y="128.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
+      <line class="grid" x1="67" y1="107.38" x2="390" y2="107.38" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="59" y="111.38" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="90.25" x2="390" y2="90.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="59" y="94.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
+      <line class="grid" x1="67" y1="73.13" x2="390" y2="73.13" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="59" y="77.13" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">140</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-8" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">160</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="193" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="193" x2="390" y2="193" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="228.50" y="237" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="124.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 124.50)">Index (2019=100)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2019" class="tick" x="93.92" y="211" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="147.75" y="211" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="201.58" y="211" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="255.42" y="211" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="309.25" y="211" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="363.08" y="211" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+    </g>
+    <g id="p3-series-virginia" class="series">
+      <path id="p3-line-virginia" class="line" d="M 93.92 107.38 L 147.75 108.06 L 201.58 99.84 L 255.42 84.26 L 309.25 75.95 L 363.08 68.16" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-virginia-2019" class="point" cx="93.92" cy="107.38" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-virginia-2020" class="point" cx="147.75" cy="108.06" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-virginia-2021" class="point" cx="201.58" cy="99.84" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-virginia-2022" class="point" cx="255.42" cy="84.26" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-virginia-2023" class="point" cx="309.25" cy="75.95" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-virginia-2024" class="point" cx="363.08" cy="68.16" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-texas" class="series">
+      <path id="p3-line-texas" class="line" d="M 93.92 107.38 L 147.75 105.49 L 201.58 103.86 L 255.42 96.07 L 309.25 92.99 L 363.08 93.93" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-texas-2019" class="point" cx="93.92" cy="107.38" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-texas-2020" class="point" cx="147.75" cy="105.49" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-texas-2021" class="point" cx="201.58" cy="103.86" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-texas-2022" class="point" cx="255.42" cy="96.07" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-texas-2023" class="point" cx="309.25" cy="92.99" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-texas-2024" class="point" cx="363.08" cy="93.93" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-series-georgia" class="series">
+      <path id="p3-line-georgia" class="line" d="M 93.92 107.38 L 147.75 113.03 L 201.58 110.29 L 255.42 103.52 L 309.25 100.18 L 363.08 93.33" fill="none" stroke="#059669" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-georgia-2019" class="point" cx="93.92" cy="107.38" r="3" fill="#059669"/>
+      <circle id="p3-mark-georgia-2020" class="point" cx="147.75" cy="113.03" r="3" fill="#059669"/>
+      <circle id="p3-mark-georgia-2021" class="point" cx="201.58" cy="110.29" r="3" fill="#059669"/>
+      <circle id="p3-mark-georgia-2022" class="point" cx="255.42" cy="103.52" r="3" fill="#059669"/>
+      <circle id="p3-mark-georgia-2023" class="point" cx="309.25" cy="100.18" r="3" fill="#059669"/>
+      <circle id="p3-mark-georgia-2024" class="point" cx="363.08" cy="93.33" r="3" fill="#059669"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-virginia" x="108.50" y="251" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-virginia" class="legend-label" x="124.50" y="260" fill="#1f2328" font-size="11" style="font-size:11px">Virginia</text>
+      <rect id="p3-legend-swatch-texas" x="181.50" y="251" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-texas" class="legend-label" x="197.50" y="260" fill="#1f2328" font-size="11" style="font-size:11px">Texas</text>
+      <rect id="p3-legend-swatch-georgia" x="245.50" y="251" width="11" height="11" fill="#059669"/>
+      <text id="p3-legend-label-georgia" class="legend-label" x="261.50" y="260" fill="#1f2328" font-size="11" style="font-size:11px">Georgia</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="536" fill="#6b7280">Source: EIA-861 via energy.eia_electricity_prices</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="326.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="362.50" fill="#6b7280">US data center power demand, 2025 to 2027 (forecast)</text>
+  <text class="stat-value" x="464" y="392.50" fill="#1f2328">31 GW to 66 GW</text>
+  <text class="stat-delta" x="464" y="412.50" fill="#059669">~2x in 2 years</text>
+  </g>
+  <text class="caption" x="452" y="536" fill="#6b7280">Goldman Sachs / grid operator forecasts</text>
+  <g id="p5-stat">
+  <rect class="panel-edge" x="20" y="571" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="607" fill="#6b7280">Dominion Virginia peak load growth, 2019-2025</text>
+  <text class="stat-value" x="36" y="637" fill="#1f2328" style="font-size:27px">Summer +23%, Winter +45%</text>
+  </g>
+  <text class="caption" x="24" y="692" fill="#6b7280">EIA Today in Energy, Sept 2026</text>
+  <g id="p6-stat">
+  <rect class="panel-edge" x="448" y="571" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="607" fill="#6b7280">US utility capex, 2026-2030 (industry-wide)</text>
+  <text class="stat-value" x="464" y="637" fill="#1f2328">~$1.3 trillion</text>
+  <text class="stat-delta" x="464" y="657" fill="#059669">vs ~$240B in 2026 alone</text>
+  </g>
+  <text class="caption" x="452" y="692" fill="#6b7280">S&amp;P Global Market Intelligence, Apr 2026</text>
+  <text class="footnote" x="20" y="737" fill="#6b7280">Data-center share of electricity growth is a national estimate combining multiple sources; capex figures are as publicly disclosed and are not</text>
+  <text class="footnote" x="20" y="751" fill="#6b7280">independently audited by this analysis. Grid connection delays (PJM/Dominion queue) reflect physical build-time constraints, not capital</text>
+  <text class="footnote" x="20" y="765" fill="#6b7280">availability.</text>
+  <g id="brand">
+  <svg x="20" y="777" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="792" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:54550/a/2a088ab159d159dc93dffbf4764fe537.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>In Northern Virginia — home to the world's largest concentration of data centers — commercial electricity sales grew <strong>45.8%</strong> from 2019 to 2024 (a 7.8%/yr compound rate), roughly 3x the growth rate of Texas (+15.7%) and Georgia (+16.4%) over the same window, and far above the low single digits typical of states with little AI-infrastructure buildout. PJM/Dominion's own peak-load data confirms this is real physical load, not just billed revenue: Dominion's Virginia zone summer peak rose 23% and winter peak rose 45% between 2019 and 2025. Utility capital spending IS scaling to match — Dominion Energy raised its 2026-2030 capital plan to $64.7 billion (up 29% from its prior $50.1B plan), and utilities nationwide are on pace for roughly $1.3 trillion in capex from 2026-2030 (about $240B in 2026 alone) — but multiple independent analyses agree the binding constraint is no longer capital, it is physical grid build time: new large loads in Northern Virginia can face multi-year queues for transmission upgrades regardless of how much money is committed, because interconnection studies, permitting, and construction of new lines and substations run on a multi-year clock that capital spending cannot compress.</p>
+</section>
+<section>
+<h2>How much has demand actually grown, and where</h2>
+<p>Using EIA Form 861 state-level commercial electricity sales (askamerica <code>energy.eia_electricity_prices</code>, filtered to sector='commercial') as the measurable proxy for data-center-heavy demand — commercial sales are the sector data centers are billed under, and are far more sensitive to hyperscale buildout than the residential/industrial totals:</p><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s5"><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th><label class="srth" for="s2-t1-s1">State<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">2019 commercial sales (million kWh)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">2024 commercial sales (million kWh)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">2019-2024 growth<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s5">CAGR<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Virginia</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>7.8%/yr</td></tr><tr><td>Texas</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>3.0%/yr</td></tr><tr><td>Georgia</td><td>47,412</td><td>55,173</td><td>+16.4%</td><td>3.1%/yr</td></tr><tr><td>Arizona</td><td>29,415</td><td>36,100</td><td>+22.7%</td><td>4.2%/yr</td></tr><tr><td>Ohio</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>2.0%/yr</td></tr></tbody><tbody class="srt s1"><tr><td>Arizona</td><td>29,415</td><td>36,100</td><td>+22.7%</td><td>4.2%/yr</td></tr><tr><td>Georgia</td><td>47,412</td><td>55,173</td><td>+16.4%</td><td>3.1%/yr</td></tr><tr><td>Ohio</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>2.0%/yr</td></tr><tr><td>Texas</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>3.0%/yr</td></tr><tr><td>Virginia</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>7.8%/yr</td></tr></tbody><tbody class="srt s2"><tr><td>Texas</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>3.0%/yr</td></tr><tr><td>Virginia</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>7.8%/yr</td></tr><tr><td>Georgia</td><td>47,412</td><td>55,173</td><td>+16.4%</td><td>3.1%/yr</td></tr><tr><td>Ohio</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>2.0%/yr</td></tr><tr><td>Arizona</td><td>29,415</td><td>36,100</td><td>+22.7%</td><td>4.2%/yr</td></tr></tbody><tbody class="srt s3"><tr><td>Texas</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>3.0%/yr</td></tr><tr><td>Virginia</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>7.8%/yr</td></tr><tr><td>Georgia</td><td>47,412</td><td>55,173</td><td>+16.4%</td><td>3.1%/yr</td></tr><tr><td>Ohio</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>2.0%/yr</td></tr><tr><td>Arizona</td><td>29,415</td><td>36,100</td><td>+22.7%</td><td>4.2%/yr</td></tr></tbody><tbody class="srt s4"><tr><td>Virginia</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>7.8%/yr</td></tr><tr><td>Arizona</td><td>29,415</td><td>36,100</td><td>+22.7%</td><td>4.2%/yr</td></tr><tr><td>Georgia</td><td>47,412</td><td>55,173</td><td>+16.4%</td><td>3.1%/yr</td></tr><tr><td>Texas</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>3.0%/yr</td></tr><tr><td>Ohio</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>2.0%/yr</td></tr></tbody><tbody class="srt s5"><tr><td>Virginia</td><td>53,981</td><td>78,711</td><td>+45.8%</td><td>7.8%/yr</td></tr><tr><td>Arizona</td><td>29,415</td><td>36,100</td><td>+22.7%</td><td>4.2%/yr</td></tr><tr><td>Georgia</td><td>47,412</td><td>55,173</td><td>+16.4%</td><td>3.1%/yr</td></tr><tr><td>Texas</td><td>142,002</td><td>164,233</td><td>+15.7%</td><td>3.0%/yr</td></tr><tr><td>Ohio</td><td>46,009</td><td>50,814</td><td>+10.4%</td><td>2.0%/yr</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>Virginia's growth accelerates sharply after 2021 (2022-2024 alone: +14.8%), consistent with the AI-driven hyperscale buildout timeline. EIA's own Today in Energy analysis (Sept 2026) independently confirms this using PJM peak-demand data: Dominion's Virginia zone posted a 23% rise in summer peak load and a 45% rise in winter peak load between the 2019 and 2025/26 seasons, and PJM projects the Dominion zone will see the largest absolute peak-demand increase of any PJM zone through 2030, expanding at an average 5.4%/year, 'largely driven by a concentration of data centers.' The Belfer Center's April 2026 case study on Virginia and Texas similarly identifies these two states as the two leading data-center demand markets nationally, with Virginia's data-center share of total state electricity consumption estimated at 26% in 2023 and projected by EPRI to reach 41-59% by 2030. Nationally, US data center power demand is forecast to roughly double, from about 31 GW in 2025 to 66 GW by 2027 (Goldman Sachs), and Lawrence Berkeley National Laboratory projects data centers could reach 6.7-12.0% of total US electricity consumption by 2028, up from 4.4% in 2023.</p>
+</section>
+<section>
+<h2>Is utility capital spending keeping pace?</h2>
+<p>On dollars committed, spending is scaling up sharply and arguably ahead of demand growth in percentage terms. Dominion Energy — the utility serving Northern Virginia's data-center corridor — raised its 5-year (2026-2030) capital plan to $64.7 billion, a 29% increase over its prior $50.1B five-year plan, with $54.8B of that allocated to its Virginia utility and roughly $17B earmarked specifically for data-center-driven and clean-energy-transition grid work. Dominion reports having contracted nearly 48.5 GW of data-center capacity as of December 2025, with a further ~70 GW in new demand requests in its interconnection queue. Industry-wide, US utilities are projected to spend approximately $1.3 trillion in aggregate capex from 2026-2030 (S&P Global Market Intelligence, April 2026), including roughly $240 billion in 2026 alone, and utilities collectively planned $208 billion in grid capex for 2025 — spending levels multiple independent trade analyses describe as historically unprecedented and directly attributable to data-center/AI load.</p><p>However, capital committed and capacity actually delivered are two different things. The consistent finding across independent sources (Belfer Center, utility-sector trade press, Fitch Ratings) is that the bottleneck has shifted from money to physical build time: new large loads seeking interconnection in Northern Virginia can face waits measured in years even after a project clears queue review, because new transmission lines, substations, and generation additions take years to permit and construct regardless of capital availability — 'data centers demand power in months; grid upgrades take years.' PJM's own 2026 forecast work shows roughly 11 GW of expected 2026 Virginia-area data-center capacity at risk of delay from grid bottlenecks even with committed capital. Separately, the 'who pays' question is becoming its own constraint: Fitch Ratings shifted its North American utility-sector outlook from neutral to deteriorating in June 2026, citing political and regulatory resistance to the rate increases utilities need to recover this capex from ratepayers, and PJM's own congestion costs rose 64% in 2024. Virginia's regulators have responded with a new 'GS-5' large-load tariff requiring big data-center customers to prepay 85% of transmission capacity costs during ramp-up, shifting cost-recovery risk away from residential ratepayers — a sign that the capital IS being raised, but increasingly through customer-specific contracts rather than traditional socialized rate-basing.</p><p><strong>Bottom line:</strong> in the leading AI-infrastructure region (Northern Virginia/Dominion), demand growth (~46% over five years, accelerating to ~15% in the last two alone) and utility capex growth (a 29% jump in a single five-year plan revision, to $64.7B) are both real and both large — capital is not obviously lagging demand in dollar terms. What is lagging is physical delivery: interconnection queues, transmission build time, and now political tolerance for the rate increases that pay for it all, are the actual constraints slowing how fast that capital turns into usable grid capacity.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 95 rows — 14340 ms</summary><pre><code>SELECT state_abbr, &quot;year&quot;, sector, SUM(sales_million_kwh) AS sales_mkwh
+FROM energy.eia_electricity_prices
+WHERE state_abbr IN ('VA','TX','GA','OH','AZ') AND sector = 'commercial'
+GROUP BY state_abbr, &quot;year&quot;, sector
+ORDER BY state_abbr, &quot;year&quot;</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.eia.gov/electricity/data.php">EIA-861 commercial electricity sales by state, 2006-2024</a> <span class="note">— energy.eia_electricity_prices</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_abbr, &quot;year&quot;, sector, SUM(sales_million_kwh) AS sales_mkwh FROM energy.eia_electricity_prices WHERE state_abbr IN ('VA','TX','GA','OH','AZ') AND sector = 'commercial' GROUP BY state_abbr, &quot;year&quot;, sector ORDER BY state_abbr, &quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=67664">EIA Today in Energy — Commercial electricity sales have soared in Virginia, driven by data centers</a></li>
+<li><a href="https://www.belfercenter.org/sites/default/files/2026-04/Mural%20et%20al_Data%20Center%20VA%20TX%20Case%20Study_Final.pdf">Belfer Center — Data Centers and Large-Scale Electric Growth: The Virginia and Texas Experiences (April 2026)</a></li>
+<li><a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/04/surging-energy-demand-puts-us-utility-capex-forecast-near-1-3t-in-2026-30">S&amp;P Global Market Intelligence — Surging energy demand puts US utility capex forecast near $1.3T in 2026-30</a></li>
+<li><a href="https://www.goldmansachs.com/insights/articles/us-data-center-power-demand-projected-to-double-by-2027">Goldman Sachs — US Data Center Power Demand Projected to Double by 2027</a></li>
+<li><a href="https://greentechlead.com/power/dominion-energy-unveils-65-bn-capital-plan-for-2026-2030-to-power-data-center-boom-and-grid-transformation-52396">Dominion Energy 2026-2030 capital plan coverage</a></li>
+<li><a href="https://www.utilitydive.com/news/pjm-interconnection-load-forecast-data-centers/809717/">PJM/Dominion interconnection queue and grid bottleneck coverage</a></li>
+</ol>
+</section>
+<footer>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
