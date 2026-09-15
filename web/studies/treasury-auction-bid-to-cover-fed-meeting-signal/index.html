@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Does weak demand at a Treasury auction in the days before a Fed meeting tend to line up with how the meeting actually goes for rates?</title>
+<style>
+  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
+          font-size:14px; line-height:1.7; margin:0; }
+  main { max-width:800px; margin:0 auto; padding:2rem; }
+  h1 { color:#f0f6fc; font-size:1.3rem; }
+  pre { white-space:pre-wrap; word-wrap:break-word; }
+</style></head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<h1>Does weak demand at a Treasury auction in the days before a Fed meeting tend to line up with how the meeting actually goes for rates?</h1>
+<p style="color:#768390;">askamerica run &middot; 2026-09-15</p>
+<pre># Does weak Treasury auction demand before a Fed meeting line up with how the meeting goes for rates?
+
+## Answer
+No — not as a reliable predictor. Weak auction demand (a positive tail, low bid-to-cover) and a hawkish FOMC outcome tend to co-occur because both are downstream of the same driver — elevated inflation expectations and heavy debt supply pushing up term premia — not because the auction result causes or forecasts the Fed&#x27;s decision. Academic and market research documents that weak auctions raise Treasury yields in the following hours/days (a market-microstructure effect), but none of it establishes auction outcomes as a leading indicator of FOMC votes specifically.
+
+## Mechanism
+- A weak auction (positive tail vs. the when-issued yield, and/or low bid-to-cover) means the Treasury had to concede a higher yield to clear the issue — this pushes yields up on the news itself.
+- This co-occurs with hawkish/hold FOMC outcomes because strong growth or sticky inflation data simultaneously (a) raises term premia, weakening auction demand, and (b) makes the Fed less likely to ease — a shared-cause correlation, not causation running auction → Fed.
+- The reverse also holds: when the Fed is expected to ease and inflation expectations are anchored, auctions tend to clear well (strong bid-to-cover, high indirect/foreign bidder share) for the same underlying reason.
+
+## Live illustration (September 2026)
+As of mid-September 2026, the 10-year Treasury yield touched nearly 5% — highest since October 2023 — heading into the Sept 15–16, 2026 FOMC meeting, amid concerns over heavy debt issuance and a hawkish tone under new Fed leadership (Kevin Warsh). `econ.fed_policy_dashboard` in the AskAmerica corpus confirms the effective funds rate has held essentially flat around 3.63% (within the 3.50–3.75% target range) through 2026 — consistent with reporting that the Fed has stayed on hold since spring 2026, the same stretch in which long-end yield pressure (and softer auction demand) has been a persistent market theme.
+
+## Data availability and limitations (stated plainly)
+- The AskAmerica corpus (`econ`, `fiscal` schemas, checked via `search_catalog`) does **not** carry Treasury auction-level results (bid-to-cover ratio, tail, indirect-bidder share) or a structured per-meeting FOMC-decision table. The closest tables are `econ.treasury_yields` (average rates by security type, not auction-level) and `econ.fed_policy_dashboard` (daily effective funds rate, not per-meeting votes).
+- I attempted to pull raw Treasury auction data (bid-to-cover, high yield) from the public Treasury Fiscal Data API via WebFetch to check the empirical pattern quantitatively. The returned figures looked internally inconsistent with the known ~monthly 10-year auction cadence, consistent with a known limitation where this fetch path summarizes content through an intermediate model rather than returning raw rows reliably. I did not build a quantitative backtest on that data for this reason, to avoid reporting numbers I could not verify.
+- What is solid: the qualitative mechanism above, drawn convergently from market commentary (CNBC, CMC Markets, Goldman Sachs) and academic research on auction demand and Treasury yields — all pointing to a shared-cause correlation, not a predictive/causal link from auction result to FOMC outcome.
+
+## Bottom line
+Treat a weak pre-FOMC Treasury auction as a coincident symptom of the same inflation/fiscal-supply pressures that also make a hawkish Fed outcome more likely, not as a signal that itself forecasts the meeting&#x27;s outcome. This corpus lacks the auction-level and per-meeting-decision data needed to quantify that correlation directly; the analysis above rests on published market and academic sources plus corroborating context from `econ.fed_policy_dashboard`.
+
+## Sources
+- [10-year Treasury yield hits 5% before reversing as traders await Fed meeting (CNBC, 2026-09-14)](https://www.cnbc.com/2026/09/14/10-year-us-treasury-is-closing-in-on-5percent.html)
+- [FOMC minutes and Treasury auctions test bond-market shorts (CMC Markets)](https://www.cmcmarkets.com/en-gb/news-and-analysis/fomc-minutes-and-treasury-auctions-test-bond-market-shorts)
+- [How Inflation and Fiscal Policy Are Driving US Treasury Markets (Goldman Sachs)](https://www.goldmansachs.com/insights/the-markets/how-inflation-and-fiscal-policy-are-driving-us-treasury-markets)
+- [The Treasury Auction Risk Premium (ScienceDirect)](https://www.sciencedirect.com/science/article/abs/pii/S0378426624002309)
+- [Intraday Price Pressure and Order Flow Around U.S. Treasury Auctions (NY Fed Staff Reports)](https://www.newyorkfed.org/research/staff_reports/sr1188.html)
+- [Treasury Auctions and Long-Term Bond Yields (SF Fed working paper)](https://www.frbsf.org/wp-content/uploads/Somogyi-paper.pdf)
+- [Federal Reserve FOMC meeting calendars](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm)
+- [Treasury Securities Auctions Data (fiscaldata.treasury.gov)](https://fiscaldata.treasury.gov/datasets/treasury-securities-auctions-data/)
+
+## AskAmerica queries run
+- `search_catalog`: &quot;Treasury auction bid to cover ratio&quot;, &quot;FOMC federal funds rate decision meeting&quot;, &quot;Treasury auction results bid cover primary dealer&quot; — confirmed no auction-level or per-meeting-decision table exists in the corpus.
+- `query`: `SELECT &quot;date&quot;, fed_funds_rate FROM econ.fed_policy_dashboard WHERE &quot;date&quot; &gt;= &#x27;2023-01-01&#x27; ORDER BY &quot;date&quot;` — confirmed the 2026 effective-funds-rate hold pattern cited above.
+</pre>
+</main>
+</body></html>
