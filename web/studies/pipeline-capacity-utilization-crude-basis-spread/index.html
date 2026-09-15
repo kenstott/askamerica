@@ -1,14 +1,95 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How much does pipeline capacity utilization out of a producing basin explain the local crude-oil basis spread, and does that relationship hold across different basins?</title>
+<title>Pipeline capacity utilization explains 45-76% of the mid-continent crude basis spread — but the effect fades toward the coast and evaporates in rail-flexible basins like the Bakken</title>
 <style>
-  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
-          font-size:14px; line-height:1.7; margin:0; }
-  main { max-width:800px; margin:0 auto; padding:2rem; }
-  h1 { color:#f0f6fc; font-size:1.3rem; }
-  pre { white-space:pre-wrap; word-wrap:break-word; }
-</style></head>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
 <body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
@@ -17,55 +98,211 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
 </div>
 <main>
-<h1>How much does pipeline capacity utilization out of a producing basin explain the local crude-oil basis spread, and does that relationship hold across different basins?</h1>
-<p style="color:#768390;">askamerica run &middot; 2026-09-15</p>
-<pre>## Answer
+<header>
+<h1>Pipeline capacity utilization explains 45-76% of the mid-continent crude basis spread — but the effect fades toward the coast and evaporates in rail-flexible basins like the Bakken</h1>
+<p class="subtitle">Evidence from Agerton &amp; Upton (2019, Energy Journal), McRae (NBER WP 24170, 2017), Büyükşahin et al. (2013), and EIA/market data; askamerica's own corpus has no basin-level basis-spread or pipeline-capacity series</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
 
-Pipeline (and refinery) takeaway capacity utilization explains local crude basis spreads well, but **the relationship is threshold/nonlinear and basin-specific, not a uniform linear &quot;utilization-in, spread-out&quot; rule** — and it clearly does not hold the same way in every basin.
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
 
-**Data-availability note first:** the AskAmerica corpus has no table of basin-level crude pipeline capacity/utilization or basin-specific crude spot basis prices (Midland, Bakken/Clearbrook, LLS, WTI Cushing, etc.) — confirmed via `search_catalog`, which returned `unmatched_terms: [&quot;midland&quot;,&quot;cushing&quot;,&quot;differential&quot;]`. It carries only national WTI (FRED `DCOILWTICO`/`econ.global_conditions`), PADD-level refinery utilization (`energy.refinery_utilization_summary`), and basin rig-count/drilling activity (`energy.eia_drilling_activity` — Permian, Bakken, Eagle Ford, Appalachia, Haynesville) — none of which carries a basin basis-spread series. So this answer is built entirely from the primary economics literature and EIA/industry reporting, not from a warehouse regression.
-
-### The core mechanism (Permian, well identified)
-
-The best-identified estimate is Shaun McRae&#x27;s NBER working paper *&quot;Crude Oil Price Differentials and Pipeline Infrastructure&quot;* (NBER WP 24170, Dec. 2017), using Permian Basin data 2007–2016. He regresses the WTI Midland–LLS (Gulf Coast benchmark) differential on regional &quot;excess production&quot; — basin output net of available pipeline + refinery capacity — and finds:
-
-- The relationship is **discontinuous**, not linear in utilization: below capacity, an extra 100,000 b/d of production reduces the local price by about **$1.61/bbl**; once production exceeds the combined pipeline + refinery takeaway capacity, the same increment costs producers roughly **$11.15/bbl** — a discrete jump once the constraint binds, not a smooth slope.
-- Eliminating the Permian pipeline bottleneck (simulated as a new 100,000 b/d pipeline in Sept. 2014) is estimated to have raised local producer prices by **$5.72–$10.86/bbl**, of which **~90% was a transfer from existing shippers and refiners** rather than a net welfare gain — i.e., most of the basis spread when capacity is tight is midstream rent extraction, not a &quot;real&quot; transport-cost pass-through.
-- At the national level, the production-weighted discount to the world price fell from about **$28/bbl (Sept. 2011) to $5/bbl (Dec. 2016)**, and the mean state-level differential fell from **~$10/bbl (2011) to ~$1/bbl (2016)**, tracking the buildout of pipeline capacity (U.S. crude pipeline mileage grew from 54,600 to 73,200 miles 2010–2015).
-- Refinery utilization itself showed **no significant relationship** to the Permian discount (refineries there ran near capacity throughout, so the marginal barrel&#x27;s fate was determined by pipeline egress, not refinery throughput), and the higher wellhead prices did **not** pass through to Houston/Midland/El Paso retail gasoline prices — Gulf Coast refiners set the marginal gasoline price regardless of the crude basis.
-
-EIA&#x27;s own March 2019 &quot;Today in Energy&quot; note corroborates the mechanism directly: after the Sunrise Pipeline extension (+120,000 b/d) and the Seminole-Red repurposing (+200,000 b/d) relieved Permian-to-Cushing constraints in early 2019, WTI Midland converged to WTI Cushing, while the remaining Midland-to-Houston discount (still ~$7/bbl at the time) reflected the still-binding Permian-to-Gulf-Coast leg — i.e., basis narrows leg-by-leg as the specific constrained segment is relieved, not as an aggregate &quot;capacity&quot; number moves.
-
-### Does it hold across basins? No — not uniformly
-
-McRae repeats the same test for Colorado (Niobrara/DJ Basin) and North Dakota (Bakken/Williston):
-
-- **Colorado/Niobrara:** the relationship holds qualitatively the same way as Permian. Before 2015, production exceeded pipeline + refinery capacity, producing a **~$2.80/bbl discount**; the White Cliffs, Northeast Colorado Lateral, and Saddlehorn pipeline additions (adding ~495,000 b/d of egress) pushed capacity above production by end-2015, and the discount narrowed accordingly.
-- **Bakken/Williston: the relationship breaks down.** McRae finds the price differential is **uncorrelated with excess production** in North Dakota. Two reasons: (1) excess production was positive (i.e., the constraint was binding) almost continuously since 2011, leaving too little within-basin variation to identify the effect; and (2) Bakken producers had a genuinely multi-modal, flexible egress network (pipeline south to Wyoming, north to Canada, east to Minnesota, *plus* a large unit-train rail fleet that can reach refineries across North America), which decouples the &quot;how full is any one pipeline&quot; measure from the price the marginal barrel actually receives.
-
-This basin-specific breakdown is confirmed by a later, peer-reviewed follow-up — Phat V. Luong, **&quot;Crude oil pipeline constraints: A tale of two shales,&quot;** *Resources Policy* 80 (2023), art. 103203 — using cointegration tests across the same two basins. He finds Bakken sweet crude at Williston **remained cointegrated** with the national WTI benchmark and downstream gasoline prices even during pipeline bottlenecks, because rail provided a continuous arbitrage channel; Midland crude in the Permian, which relied almost exclusively on pipelines, **decoupled from WTI during the bottleneck and only re-cointegrated after new pipeline capacity came online.** In other words: pipeline-utilization is a strong predictor of basis *specifically in basins without a comparably-scaled alternative transport mode*; where rail (or another substitute) is a real option, the same utilization measure loses its explanatory power because it&#x27;s no longer the binding constraint on the marginal barrel.
-
-### Later evidence: the same mechanism, but the trigger level has shifted
-
-Post-2019 Permian pipeline buildout (several new greenfield lines to the Gulf Coast) roughly doubled available egress versus 2017–2018. Industry data (East Daley/RBN) show that even as pipeline utilization approached ~80% again in 2024 — a level that produced multi-dollar Midland discounts in 2018 — the Houston–Midland spread stayed inside a **35–90 cent/bbl** range, far narrower than the **$10–15/bbl** spreads seen at similar utilization in 2017–2018. This indicates the utilization→basis relationship is **not stationary over time**: the threshold at which utilization starts to bite depends on the level of redundant capacity and the granularity of individual pipeline segments, so &quot;utilization %&quot; alone, without knowing which specific leg is constrained, is not by itself a stable predictor across periods, let alone across basins.
-
-### Bottom line
-
-- Pipeline (+ refinery) capacity utilization explains a large, well-identified share of the Permian and Colorado/Niobrara basis spreads, but the relationship is a **threshold effect** (large discrete jump once regional production exceeds available takeaway/refining capacity), not a smooth linear one — best estimate: eliminating a binding Permian constraint raised producer prices $6–11/bbl, with ~90% of that being a transfer from shippers/refiners rather than a resource-cost saving.
-- It does **not** hold the same way in the Bakken/Williston basin, where a mature rail-egress network decouples pipeline utilization from the price the marginal barrel realizes, and where near-constant capacity bindingness left too little variation to identify an effect at all.
-- The strength of the relationship also depends on the available substitute transport mode and the specific constrained segment (Cushing leg vs. Gulf Coast leg), and the utilization level that triggers a wide spread has shifted over time as more redundant capacity was built.
-
-### Sources
-
-- [McRae, &quot;Crude Oil Price Differentials and Pipeline Infrastructure,&quot; NBER Working Paper 24170 (2017)](https://www.nber.org/system/files/working_papers/w24170/w24170.pdf) — primary quantitative source, fetched and read directly (pages 1–40 of 42).
-- [Luong, &quot;Crude oil pipeline constraints: A tale of two shales,&quot; Resources Policy 80 (2023), art. 103203 — ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S0301420722006468) (abstract/findings via search; paywalled full text) and [SSRN working-paper version](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4112017)
-- [EIA, &quot;Permian region crude oil prices have increased with additional pipeline takeaway capacity,&quot; Today in Energy, March 26, 2019](https://www.eia.gov/todayinenergy/detail.php?id=38832) — fetched directly
-- [East Daley Analytics, &quot;The Houston–Midland Spread is Ready to Blow&quot;](https://eastdaley.com/daley-note/the-houston-midland-spread-is-ready-to-blow) — recent (2023–2024) spread/utilization figures
-- [CME Group, &quot;Permian Production Growth Creeps Into the WTI Midland Forward Curve&quot;](https://www.cmegroup.com/articles/whitepapers/permian-production-growth-creeps-into-the-wti-midland-forward-curve.html)
-- [East Daley Analytics, &quot;Bakken Takeaway is Tighter Than it Appears&quot;](https://eastdaley.com/crude-oil-edge/bakken-takeaway-is-tighter-than-it-appears)
-- AskAmerica corpus tables checked and confirmed not to carry basin basis-spread or pipeline-capacity-utilization data: `energy.eia_refinery_operations`/`refinery_utilization_summary`, `energy.eia_drilling_activity`, `econ.global_conditions`, `econ.fred_indicators` (DCOILWTICO) — via `search_catalog` (query: &quot;crude oil pipeline capacity basin&quot;; &quot;crude oil spot price basis differential&quot;; &quot;Midland Cushing WTI basis differential Permian&quot;).
-
-Chart delivered alongside this report: bar comparison of estimated producer price gain from removing the binding capacity constraint, by basin (Permian ~$8.3/bbl midpoint, Colorado $2.8/bbl, Bakken ~$0 — no significant relationship found), built from the McRae (2017) point estimates above.
-</pre>
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">Pipeline Capacity Utilization and Local Crude Basis Spreads: Cross-Basin Evidence</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">Sources: Agerton &amp; Upton (2019, Energy Journal); McRae (NBER WP 24170, 2017); EIA. askamerica warehouse has no basin-level basis-spread or pipeline-capacity table.</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:8px">Share of mid-continent (WTI Cushing/Midland) discount explained by pipeline/rail-share model</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">R² = 0.72–0.76</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Agerton &amp; Upton (2019): shipping-constraint variable alone;</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">refining-constraint variable explains &lt;1% (R²≈0.006-0.007)</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:8px">Permian: price effect of a hypothetical pipeline eliminating excess production</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">+$5.72 to +$10.86/bbl</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">McRae (2017) simulated producer price gain from relieving a binding</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">capacity constraint</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Explanatory power (pseudo-R²) of pipeline/rail-share model, by crude ben…</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="63" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="55" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="63" y1="124.25" x2="390" y2="124.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="55" y="128.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.1</text>
+      <line class="grid" x1="63" y1="114.50" x2="390" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="55" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
+      <line class="grid" x1="63" y1="104.75" x2="390" y2="104.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="55" y="108.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.3</text>
+      <line class="grid" x1="63" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="55" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="63" y1="85.25" x2="390" y2="85.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="55" y="89.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+      <line class="grid" x1="63" y1="75.50" x2="390" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="55" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
+      <line class="grid" x1="63" y1="65.75" x2="390" y2="65.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="55" y="69.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.7</text>
+      <line class="grid" x1="63" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-8" class="tick" x="55" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.8</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="63" y1="56" x2="63" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="63" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Crude benchmark (region)</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 95)">R² (shipping-cons…</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-wti-cushing-mid-continent" class="tick" x="90.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 90.25 148)">WTI Cushing (mid-continent)</text>
+      <text id="p3-xtick-wti-midland-permian" class="tick" x="144.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 144.75 148)">WTI Midland (Permian)</text>
+      <text id="p3-xtick-wts-mid-continent-sour" class="tick" x="199.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 199.25 148)">WTS (mid-continent, sour)</text>
+      <text id="p3-xtick-lls-gulf-coast" class="tick" x="253.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 253.75 148)">LLS (Gulf Coast)</text>
+      <text id="p3-xtick-hls-gulf-coast" class="tick" x="308.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 308.25 148)">HLS (Gulf Coast)</text>
+      <text id="p3-xtick-fuel-oil-usgc-coastal" class="tick" x="362.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 362.75 148)">Fuel Oil, USGC (coastal)</text>
+    </g>
+    <g id="p3-series-r-explained-by-rail-barge-share-pipeline-constraint-proxy" class="series">
+      <rect id="p3-mark-r-explained-by-rail-barge-share-pipeline-constraint-proxy-wti-cushing-mid-continent" class="bar" x="72.81" y="63.80" width="33.88" height="70.20" fill="#2563eb"/>
+      <rect id="p3-mark-r-explained-by-rail-barge-share-pipeline-constraint-proxy-wti-midland-permian" class="bar" x="127.31" y="61.85" width="33.88" height="72.15" fill="#2563eb"/>
+      <rect id="p3-mark-r-explained-by-rail-barge-share-pipeline-constraint-proxy-wts-mid-continent-sour" class="bar" x="181.81" y="90.13" width="33.88" height="43.88" fill="#2563eb"/>
+      <rect id="p3-mark-r-explained-by-rail-barge-share-pipeline-constraint-proxy-lls-gulf-coast" class="bar" x="236.31" y="87.20" width="33.88" height="46.80" fill="#2563eb"/>
+      <rect id="p3-mark-r-explained-by-rail-barge-share-pipeline-constraint-proxy-hls-gulf-coast" class="bar" x="290.81" y="116.45" width="33.88" height="17.55" fill="#2563eb"/>
+      <rect id="p3-mark-r-explained-by-rail-barge-share-pipeline-constraint-proxy-fuel-oil-usgc-coastal" class="bar" x="345.31" y="120.35" width="33.88" height="13.65" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Agerton &amp; Upton (2019). Explanatory power is highest for landlocked,</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">pipeline-dependent basins and falls sharply for already-coastal…</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Midland–Cushing spread around the 2018 Permian takeaway bottleneck</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="114.50" x2="390" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="75.50" x2="390" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Period</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle" transform="rotate(-90 14 95)">Spread ($/bbl)</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-sep-2018-bottleneck-peak" class="tick" x="115" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115 148)">Sep 2018 (bottleneck peak)</text>
+      <text id="p4-xtick-3-weeks-later-sunrise-expansion" class="tick" x="225" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 148)">3 weeks later (Sunrise expansion)</text>
+      <text id="p4-xtick-mar-2019-post-expansion" class="tick" x="335" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 335 148)">Mar 2019 (post-expansion)</text>
+    </g>
+    <g id="p4-series-wti-midland-discount-to-wti-cushing" class="series">
+      <rect id="p4-mark-wti-midland-discount-to-wti-cushing-sep-2018-bottleneck-peak" class="bar" x="79.80" y="63.80" width="69.40" height="70.20" fill="#2563eb"/>
+      <rect id="p4-mark-wti-midland-discount-to-wti-cushing-3-weeks-later-sunrise-expansion" class="bar" x="189.80" y="110.60" width="69.40" height="23.40" fill="#2563eb"/>
+      <rect id="p4-mark-wti-midland-discount-to-wti-cushing-mar-2019-post-expansion" class="bar" x="299.80" y="133.03" width="69.40" height="0.97" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">EIA/RBN Energy: spread compressed as ~350 Mb/d of new pipeline</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">capacity came online.</text>
+  <g id="brand">
+  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:63517/a/e07343814e656976ec3fb4020769a1d7.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>Pipeline capacity utilization out of a producing basin is a <strong>large and statistically powerful</strong> explanation for local crude basis spreads — but only in basins where pipeline is effectively the sole outbound mode, and the relationship is <strong>strongly nonlinear and region-dependent</strong>, not a single universal coefficient. The most direct quantitative answer comes from Agerton & Upton (Energy Journal, 2019): a regression of each U.S. crude benchmark's discount to Brent on the share of mid-continent-to-Gulf-Coast shipments moving by rail/barge (the inverse of pipeline utilization) explains <strong>72-76% of the variance</strong> (pseudo-R²) in the WTI Cushing and WTI Midland discounts, versus under 1% explained by a refining-capacity-mismatch variable — pipeline/shipping constraints dominate refining constraints by roughly two orders of magnitude for these benchmarks. But that explanatory power <strong>falls off toward the coast</strong>: it drops to ~45-48% for WTS and LLS and to under 20% for the already-coastal HLS and Gulf Coast fuel oil, which are much less dependent on inland pipeline capacity in the first place. McRae (NBER WP 24170, 2017) confirms the mechanism is <strong>threshold/nonlinear</strong>: within available capacity, added Permian production reduces producer price only mildly (~$1.61/bbl per 100,000 b/d), but once production exceeds combined refinery-plus-pipeline capacity, price falls sharply further (~$11.15/bbl per additional 50,000 b/d) — and a hypothetical pipeline eliminating a real 2014 bottleneck was estimated to raise producer prices by $5.72-$10.86/bbl. <strong>Does it hold across basins?</strong> Yes for the Permian and for Colorado's DJ/Niobrara Basin, where pipeline is the binding transport mode. <strong>No for the Bakken</strong>: McRae finds the North Dakota price differential statistically uncorrelated with pipeline-capacity utilization, and Luong (2023, Resources Policy) independently confirms via cointegration analysis that Bakken sweet crude stays linked to national WTI even during pipeline congestion — because the region's large, flexible rail network lets shippers route around a congested pipeline in a way the Permian cannot.</p><p><strong>Data note:</strong> askamerica's own warehouse (energy, econ, cftc schemas) carries national/state crude production and refinery utilization and the national WTI Cushing benchmark, but has no basin-specific basis-spread series (WTI Midland, Bakken sweet at Williston) and no pipeline-capacity-by-basin table — both "cushing" and "midland" returned zero catalog matches. This is a confirmed coverage gap; every quantitative figure below is drawn from primary academic research (read directly from the source PDFs) and EIA/market reporting instead.</p>
+</section>
+<section>
+<h2>How much does capacity utilization explain? Two independent, converging estimates</h2>
+<p><strong>Agerton & Upton (2019, published in The Energy Journal; working paper dated Sept. 2017)</strong> regress each crude benchmark's monthly discount to Brent on (a) the share of PADD 2/4-to-PADD 3 crude movements by rail and barge — a direct inverse proxy for pipeline capacity utilization — and (b) the average API gravity of PADD 3 refinery inputs, a proxy for refining-constraint mismatch. Results (their Table 3, read directly from the paper):</p><ul><li>WTI Cushing: shipping-constraint R² = <strong>0.720</strong> (total model R² = 0.724); refining-constraint R² = 0.007</li><li>WTI Midland: shipping-constraint R² = <strong>0.742</strong> (total R² = 0.755); refining-constraint R² = 0.006</li><li>WTS (mid-continent sour): shipping R² = 0.448 (total 0.480)</li><li>LLS (Gulf Coast light sweet): shipping R² = 0.480 (total 0.517)</li><li>HLS (Gulf Coast heavy sour): shipping R² = 0.181 (total 0.221)</li><li>Fuel oil, U.S. Gulf Coast: shipping R² = 0.145 (total 0.158)</li></ul><p>In dollar terms, they estimate a 10-percentage-point increase in the rail/barge share of mid-continent-to-Gulf-Coast shipments is associated with a <strong>$2.01-$3.79/bbl</strong> discount for the three mid-continent crudes; at the point where rail/barge carried 60% of volumes (near the peak of the 2012-2014 bottleneck), this implies a discount of roughly <strong>$12.58-$22.72/bbl</strong> attributable to shipping constraints alone. Their headline conclusion, stated directly in the paper: <strong>"scarce pipeline capacity explains half to three quarters of the deviation of mid-continent crude oil prices from their long-run relationship with Brent crude"</strong> — and they find no significant contribution from refining constraints, which some contemporaneous commentary (around the 2015 crude-export-ban debate) had blamed instead.</p><p><strong>McRae (2017, NBER WP 24170)</strong> takes a threshold-regression approach using "excess production" (output minus local refinery input capacity minus pipeline export capacity) for the Permian specifically. All specifications find a positive, statistically significant coefficient on excess production, with a much steeper slope once production exceeds capacity — evidence the relationship is a nonlinear threshold effect, not a smooth linear one. This matches the 2018-19 real-world Permian episode: the WTI Midland-Cushing spread widened to nearly $18/bbl in September 2018 when Permian pipelines saturated, narrowed to under $6/bbl within three weeks of the 350,000 b/d Sunrise Pipeline expansion starting up, and fell to $0.25/bbl by March 2019 after the Seminole-Red repurposing added a further 200,000 b/d (EIA, March 2019).</p>
+</section>
+<section>
+<h2>Does the relationship hold across basins?</h2>
+<p><strong>Permian Basin — holds strongly.</strong> Pipeline is nearly the only outbound mode; both studies above find large, statistically robust relationships between capacity utilization and basis spread, and the mechanism is directly observable in real episodes (2012-2015 and 2018-2019 Permian bottlenecks and their resolutions).</p><p><strong>Colorado (DJ/Niobrara Basin) — holds.</strong> McRae finds the same qualitative pattern: production exceeded refinery+pipeline capacity from 2013-2015, producing roughly a $2.80/bbl discount to WTI Cushing; three new pipelines (White Cliffs expansion, Northeast Colorado Lateral, Saddlehorn) pushed capacity above production by late 2015-2016 and the discount closed.</p><p><strong>Bakken (Williston Basin, North Dakota) — does NOT hold.</strong> McRae reports the North Dakota price differential is statistically uncorrelated with excess production. Two reasons converge: (1) Bakken excess production has been persistently positive since roughly 2010-2011 despite pipeline capacity nearly quadrupling (232,000 b/d in 2007 to 833,600 b/d in 2016), leaving too little within-basin variation between "constrained" and "unconstrained" regimes to identify a threshold effect the way Permian/Colorado data allow; and (2) the Bakken developed an unusually large, flexible rail network early — EIA (2013) reports Williston Basin rail takeaway capacity grew from 265,000 b/d in 2011 to roughly 660,000 b/d by December 2012, allowing Bakken crude to bypass a congested Cushing gateway entirely and reach East, West, and Gulf Coast refineries. This is independently corroborated by Luong (2023, Resources Policy, "Crude oil pipeline constraints: A tale of two shales"): using a cointegration framework, Bakken sweet crude at Williston remains cointegrated with national WTI essentially throughout the sample even during pipeline congestion, while WTI Midland only re-cointegrates with WTI after a Permian bottleneck clears. Two independent studies, different methods and periods, same conclusion: the relationship between pipeline utilization and local basis spread is powerful specifically where pipeline is the only real transport option, and it disappears where a flexible substitute (rail) exists.</p><p><strong>Current relevance (2026):</strong> East Daley Analytics' March 2026 note on a sustained-$100/bbl WTI scenario finds the same dynamic still governs Permian pricing today: with corridors like Cactus II already operating above nameplate capacity and Gray Oak/Cactus III near full utilization, an incremental ~500,000 b/d of 2027 Permian supply is expected to widen the Midland-to-Houston (MEH) differential further — the identical utilization-to-basis-spread mechanism documented in the 2012-2019 academic literature, still operative fourteen years into the shale boom.</p>
+</section>
+<section>
+<h2>Caveats and confounds</h2>
+<p>Neither study isolates capacity utilization from every other driver of basis spreads. Agerton & Upton's shipping-share variable is itself an outcome of the capacity/demand balance rather than a pure exogenous "capacity utilization" measure, and both studies' sample periods (roughly 2006-2016 for McRae, 1990-2015 for Agerton & Upton) predate the 2015 crude-export-ban repeal and the more recent 2018-19 and 2026 episodes cited qualitatively above from EIA and market sources. McRae explicitly controls for the WTI Cushing-LLS differential and storage dynamics at Cushing (also documented by Büyükkahin, Lee, Moser & Robe 2013, whose paper shows Cushing storage conditions independently move the WTI-Brent spread in a nonlinear fashion) and finds the capacity-utilization terms remain large and significant net of those controls. Agerton & Upton similarly control for refinery-input API gravity and find it explains far less than shipping constraints. Both papers' R²/coefficient estimates should be read as historical, sample-specific magnitudes (particularly strong during the 2011-2015 and 2018-19 constrained episodes) rather than a fixed universal elasticity that applies unchanged in every period or price environment.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Use askamerica's own data where possible</strong>: search_catalog confirmed no basin-level basis-spread (Midland/Cushing/Bakken-specific) or pipeline-capacity-by-basin table exists in the corpus; the energy schema has only national/state crude production and refinery utilization, so the quantitative answer relies entirely on primary academic literature (read directly) and EIA/market sources, as disclosed in the Summary and sources list.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://markagerton.com/files/AgertonUpton_DecomposingCrudePriceDifferentials.pdf">Agerton, M. &amp; Upton, G.B. Jr. (2019). &quot;Decomposing Crude Price Differentials: Domestic Shipping Constraints or the Crude Oil Export Ban?&quot; The Energy Journal (working paper version dated Sept. 2017).</a> <span class="note">— Read directly, pages 1-4 and 15-20 (Tables 2-3, decomposition results, conclusion). Source of the R² = 0.72-0.76 shipping-constraint explanatory power figures.</span></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w24170/w24170.pdf">McRae, S. (2017). &quot;Crude Oil Price Differentials and Pipeline Infrastructure.&quot; NBER Working Paper 24170.</a> <span class="note">— Read directly, pages 1-24. Source for all Permian threshold-regression coefficients and the Colorado/Bakken cross-basin comparison.</span></li>
+<li><a href="https://www.eia.gov/finance/markets/reports_presentations/2012paperbrentwti.pdf">Büyükkahin, B., Lee, T.K., Moser, J.T. &amp; Robe, M.A. (2012/2013). &quot;Physical Market Conditions, Paper Market Activity, and the WTI-Brent Spread.&quot; EIA/Energy Journal.</a> <span class="note">— Read directly, pages 1-5. Used for the Cushing-storage-conditions confound discussed in the caveats section.</span></li>
+<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=38832">EIA, &quot;Permian region crude oil prices have increased with additional pipeline takeaway capacity,&quot; Today in Energy, March 26, 2019.</a> <span class="note">— Read directly. Source for the 2018-19 Midland-Cushing spread compression figures ($18 to $0.25/bbl).</span></li>
+<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=10431">EIA, &quot;Bakken crude oil price differential to WTI narrows over last 14 months,&quot; Today in Energy, March 19, 2013.</a> <span class="note">— Read directly. Source for Williston Basin rail-capacity growth (265,000 to 660,000 b/d, 2011-2012) explaining why Bakken decouples from pipeline utilization.</span></li>
+<li><a href="https://eastdaley.com/daley-note/at-100-crude-permian-pipes-fill-faster-than-you-think">East Daley Analytics, &quot;At $100 Crude, Permian Pipes Fill Faster Than You Think,&quot; The Daley Note, March 31, 2026.</a> <span class="note">— Read directly. Current (2026) market evidence that Permian pipeline-utilization-to-basis-spread dynamics remain active today.</span></li>
+<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S0301420722006468">Luong, P.V. (2023). &quot;Crude oil pipeline constraints: A tale of two shales.&quot; Resources Policy, 80.</a> <span class="note">— ScienceDirect full text blocked (HTTP 403); findings taken from the paper's published abstract/conclusions as summarized in secondary academic listings (SSRN, RePEc) rather than the full regression tables.</span></li>
+<li>askamerica energy schema catalog search <span class="note">— search_catalog for 'cushing' and 'midland' returned zero table/column matches as of 2026-09-15, confirming no basin-level basis-spread or pipeline-capacity-by-basin table exists in the corpus.</span></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">R-squared and coefficient magnitudes are historical, sample-period-specific estimates (Agerton &amp; Upton ~1990-2015; McRae ~2006-2016) rather than a fixed universal elasticity; askamerica's own warehouse has no basin-level crude basis-spread or pipeline-capacity series to independently reproduce or extend these estimates.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+</footer>
 </main>
-</body></html>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
