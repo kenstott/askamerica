@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>No U.S. dataset currently reports small-business loan approval rates by census-tract racial composition — the honest answer is a confirmed data gap, bounded by the closest available proxies</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>No U.S. dataset currently reports small-business loan approval rates by census-tract racial composition — the honest answer is a confirmed data gap, bounded by the closest available proxies</h1>
+<p class="subtitle">CRA small-business data (FFIEC) records only loan originations, never applications or denials; Section 1071, the rule that would add this, does not begin reporting until 2029.</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">No Direct Small-Business Approval-Rate Data by Census-Tract Race Exists Yet — Here Is the Best Available E…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">CRA small-business data reports only loan originations, not applications/denials; Section 1071 tract-level data begins 2029. Figures below are the closest published proxies.</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Black-owned firms, loan/credit denial rate (2024)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">39%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">vs 18% white-owned</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Owner race, not tract geography — Fed 2025 Small Business Credit</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">Survey</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:9px">People-of-color-owned firms vs. white-owned, full-approval likelihood</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">&lt;0.5x</text>
+  <text class="stat-delta" x="464" y="168" fill="#dc2626">at comparable credit profiles</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Fed 2025 Small Business Credit Survey</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="331" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="331" viewBox="0 0 412 331" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="331" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Mortgage-market analog: denial rate by neighborhood racial composition …</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="263" x2="390" y2="263" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="237.13" x2="390" y2="237.13" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="241.13" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="211.25" x2="390" y2="211.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="215.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="185.38" x2="390" y2="185.38" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="189.38" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="159.50" x2="390" y2="159.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="163.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="133.63" x2="390" y2="133.63" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="137.63" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="107.75" x2="390" y2="107.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="52" y="111.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">12</text>
+      <line class="grid" x1="60" y1="81.88" x2="390" y2="81.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="52" y="85.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">14</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-8" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">16</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="263" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="263" x2="390" y2="263" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="307" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Neighborhood type</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="159.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 159.50)">Denial rate (%)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-majority-white-tracts" class="tick" x="142.50" y="281" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Majority-white tracts</text>
+      <text id="p3-xtick-neighborhoods-of-color" class="tick" x="307.50" y="281" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Neighborhoods of color</text>
+    </g>
+    <g id="p3-series-denial-rate" class="series">
+      <rect id="p3-mark-denial-rate-majority-white-tracts" class="bar" x="89.70" y="141.39" width="104.60" height="121.61" fill="#2563eb"/>
+      <rect id="p3-mark-denial-rate-neighborhoods-of-color" class="bar" x="254.70" y="79.29" width="104.60" height="183.71" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="582" fill="#6b7280">HMDA 2021 first-lien home purchase applications, not small-business —</text>
+  <text class="caption" x="24" y="595" fill="#6b7280">Urban Institute; gap persists after controlling for DTI, LTV, income,…</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="349.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="385.50" fill="#6b7280" style="font-size:11px">Underserved (bottom-quintile) small-business-lending tracts</text>
+  <text class="stat-value" x="464" y="415.50" fill="#1f2328">56.8% people of color</text>
+  <text class="stat-delta" x="464" y="435.50" fill="#059669">share of residents</text>
+  </g>
+  <text class="caption" x="452" y="582" fill="#6b7280">NCRC analysis of CRA small-business + home loan volume per capita — a</text>
+  <text class="caption" x="452" y="595" fill="#6b7280">lending-VOLUME proxy, not an approval rate</text>
+  <text class="footnote" x="20" y="627" fill="#6b7280">None of these figures is a direct measurement of 'small-business loan approval rate, majority-minority tract vs. other tracts, same metro' — that</text>
+  <text class="footnote" x="20" y="641" fill="#6b7280">measurement does not exist in any public dataset as of September 2026.</text>
+  <g id="brand">
+  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:59208/a/6a0a7cd2268f0106c1675cfd46b8d71d.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>This cannot be answered with a real number, because the underlying data does not exist yet.</strong> No U.S. government or industry dataset currently reports small-business loan <em>applications</em> or <em>denials</em> at the census-tract level broken out by tract racial composition — which is what an "approval-rate gap between majority-minority and other tracts in the same metro" requires. The Community Reinvestment Act (CRA) small-business data that FFIEC and banks publish records only loan <em>originations</em> — never applications — so there is no denominator from which to compute an approval rate. The rule that will finally require this data, Section 1071 of Dodd-Frank, was only finalized May 1, 2026 after roughly 14 years of delay and litigation; mandatory collection starts January 1, 2028, and the first public small-business lending register is not due until June 1, 2029.</p><p>What follows are the closest available proxies, each clearly labeled for what it actually measures rather than presented as an answer to the question asked.</p>
+</section>
+<section>
+<h2>Why the exact question cannot be answered today</h2>
+<p>Two things would need to exist simultaneously for this question to have a real answer: (1) small-business loan <em>application</em> and <em>denial</em> counts, not just originations, and (2) those counts broken out by census-tract racial composition, so majority-minority tracts can be compared against other tracts inside the same metro area (MSA).</p><ul><li><strong>CRA small-business data</strong> (the only annual, mandatory, geography-coded small-business lending dataset in the U.S.) collects loan originations only. It was designed in 1977 to monitor lending to low- and moderate-<em>income</em> neighborhoods, not to applicant or neighborhood race, and it has never required denial reporting at all. This was checked directly against AskAmerica's own <code>banking.cra_small_business_lending</code> table, built from this FFIEC source: <code>describe_table</code> shows its columns are originated-loan counts and dollar amounts by loan-size bucket and income tier at tract/county/MSA grain — no application or denial column exists for any tract in any year.</li><li><strong>Section 1071</strong> of Dodd-Frank — which will require lenders to report small-business credit applications, denials, and applicant/tract demographics — was proposed in 2021, finalized in 2023, litigated, and finalized again May 1, 2026 with a narrowed scope (coverage now limited to lenders originating ≥1,000 covered loans/year, small-business definition tightened to ≤$1M revenue). Data collection begins January 1, 2028; the first public register of this data is due June 1, 2029. Until then, no comprehensive small-business approval/denial-by-tract dataset exists publicly, for anyone.</li></ul>
+</section>
+<section>
+<h2>Closest available evidence (proxies, not the requested figure)</h2>
+<p><strong>1. Owner race, not tract geography — small-business lending itself.</strong> The Federal Reserve's 2025 Small Business Credit Survey (fielded Sept–Nov 2025, ~6,500 employer firms, published as the 2026 Report on Employer Firms) found firms owned by people of color are less than half as likely as white-owned firms with comparable credit profiles to receive full financing approval. In 2024, Black-owned businesses faced a 39% denial rate on loan/credit-line/merchant-cash-advance applications versus 18% for white-owned firms — a 21-percentage-point gap. This measures the <em>owner's</em> race, not the census tract the business sits in, so it does not answer the geographic question, but it is the most direct small-business-lending racial-disparity figure that currently exists.</p><p><strong>2. Nearest tract-level, within-MSA analog — mortgage lending, a different credit market.</strong> A different U.S. credit market — mortgage lending under HMDA — does require both denial reporting and tract-level racial composition, making it the closest structural analog to what the question asks for. In a 2021 first-lien home-purchase-application analysis, the Urban Institute found a denial rate of 14.2% in tracts where white residents are under 50% of the population ("neighborhoods of color") versus 9.4% in majority-white tracts — a 4.8-percentage-point (roughly 50% relative) gap. This gap persisted after controlling for debt-to-income ratio, loan-to-value ratio, income, and tract-to-MSA income ratio: Black applicants were 1.8–2.5 times as likely to be denied as white applicants with similar observable characteristics <em>in all neighborhood types</em>, and Latino applicants roughly 1.5 times as likely. Notably, Urban Institute's own finding complicates a purely place-based framing: among Black and Latino applicants specifically, denial rates differed by less than 2.2 percentage points between majority-white tracts and neighborhoods of color — meaning most of the racial gap in mortgage denials tracks the <em>applicant's</em> race, not the <em>tract's</em> racial composition, once you're comparing within the same racial group of applicant. This is mortgage credit, not small-business credit, and should not be quoted as a small-business figure, but it is the best evidence available anywhere in the U.S. credit system for what a genuine within-MSA, tract-racial-composition-based denial-rate gap looks like when application-level data exists.</p><p><strong>3. A lending-volume proxy for small business specifically.</strong> NCRC's tract-level analysis (dividing tracts into quintiles by retail loans — including small-business loans — per housing unit and per business) found the average share of people of color in "Quintile 1" (lowest-lending) tracts was 56.8%, and identified 1,265 predominantly-minority (>50% people of color), non-low/moderate-income census tracts across 344 counties that were systematically underserved by lending volume. This shows majority-minority tracts are disproportionately concentrated among tracts that receive the least small-business (and mortgage) lending volume — consistent with, but not a measurement of, an approval-rate gap, since it says nothing about how many businesses in those tracts applied or were denied versus simply not applying ("discouraged borrowers").</p>
+</section>
+<section>
+<h2>What was checked in AskAmerica's own data</h2>
+<p><code>banking.cra_small_business_lending</code>'s schema was inspected directly this session via <code>describe_table</code>: its full column list is loan counts and dollar amounts by loan-size bucket and income-group tier, at tract/county/MSA grain for 2019–2020 — no application, denial, or minority-population-share column exists in this table, which structurally confirms an approval rate cannot be computed from AskAmerica's small-business data even in principle, independent of the broader national data gap described above.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>A quantified 'approval rate' gap for small-business loans specifically</strong>: No public U.S. dataset currently publishes small-business loan APPLICATION or DENIAL counts at census-tract grain. FFIEC's CRA small-business aggregate data reports only loan ORIGINATIONS by tract and income bucket (confirmed via describe_table on banking.cra_small_business_lending) — there is no application denominator anywhere in the source, so no approval rate can be computed from it by anyone, not just this corpus. The Dodd-Frank Section 1071 rule, which will require lenders to report small-business applications/denials by applicant race and census-tract demographics, was finalized May 1, 2026, with mandatory data collection starting January 1, 2028 and the first public Small Business Lending Application Register not due until June 1, 2029. This is a genuine, confirmed, dataset-wide gap, not a limitation specific to askamerica's corpus.</li><li><strong>Comparison must hold metro area (MSA) constant, i.e. majority-minority vs other tracts WITHIN the same metro</strong>: Because no small-business approval-rate-by-tract dataset exists at all, no within-MSA comparison could be computed for small-business loans. The one figure below that is genuinely at tract grain with an MSA-holding-constant design is from the MORTGAGE market (HMDA/Urban Institute), a different lending market, offered only as the closest structural analog and labeled as such throughout.</li></ul>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://ncrc.org/disinvestment/">NCRC — Disinvestment, Discouragement and Inequity in Small Business Lending</a> <span class="note">— Confirms CRA small-business data lacks applicant/tract demographic and denial data; literature review on owner-race denial disparities</span></li>
+<li><a href="https://fedcommunities.org/2025-small-business-credit-survey-key-insights/">Fed Communities — Key insights from the 2025 Small Business Credit Survey</a> <span class="note">— Confirms survey vintage (fielded Sept-Nov 2025, ~6,500 employer firms) underlying the owner-race denial/approval figures</span></li>
+<li><a href="https://wordinblack.com/2025/09/capital-denied-minority-businesses-struggle-for-loans/">Word In Black — Capital Denied: Minority Businesses Struggle for Loans</a> <span class="note">— 39% Black-owned / 18% white-owned denial-rate figures for 2024, citing the Fed SBCS</span></li>
+<li><a href="https://www.urban.org/urban-wire/how-local-differences-race-and-place-affect-mortgage-lending">Urban Institute — How Local Differences in Race and Place Affect Mortgage Lending</a> <span class="note">— Primary source, fully read: within-MSA, underwriting-controlled mortgage denial-rate comparison by tract racial composition (14.2% vs 9.4%; 1.8-2.5x odds for Black applicants)</span></li>
+<li><a href="https://ncrc.org/ncrc-proposal-for-underserved-tracts-would-increase-lending-in-communities-of-color-by-billions-of-dollars/">NCRC — Proposal for Underserved Tracts Would Increase Lending in Communities of Color by Billions of Dollars</a> <span class="note">— Primary source, fully read: 56.8% people-of-color share in bottom-quintile (lowest small-business+home lending volume) census tracts; 1,265 predominantly-minority underserved tracts identified</span></li>
+<li><a href="https://schneiderdowns.com/our-thoughts-on/section-1071-small-business-lending-rule-cfpb-2026-revisions/">Schneider Downs — Section 1071 Small Business Lending Rule: CFPB's 2026 Revisions</a> <span class="note">— Primary source, fully read: confirms Section 1071 final rule issued May 1, 2026; compliance date Jan 1, 2028; first SBLAR report due June 1, 2029</span></li>
+<li>AskAmerica — banking.cra_small_business_lending schema <span class="note">— Schema inspected via describe_table; confirmed the table carries only origination counts/amounts by tract, no application or denial data.</span><details class="sqltoggle"><summary>Show tool call</summary><pre><code>describe_table(schema=&quot;banking&quot;, table=&quot;cra_small_business_lending&quot;)</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">All small-business-specific denial-rate figures above are by OWNER race, not census-tract racial composition. The only figure that holds metro area constant and uses actual applications/denials is from the mortgage market, a different credit product, offered as the closest structural analog available. No public dataset currently supports the exact comparison asked for; the earliest one that will (CFPB Section 1071) does not publish data until June 2029. A catalog-listed but currently unreachable AskAmerica table (S3 404, logged as a data-quality issue) would have let this mortgage-market comparison be computed live rather than cited from the Urban Institute.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-14</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

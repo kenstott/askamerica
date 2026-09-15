@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Medicaid expansion states have far lower uninsured rates than non-expansion states, but the mortality gap between the two groups mostly disappears once you control for region</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Medicaid expansion states have far lower uninsured rates than non-expansion states, but the mortality gap between the two groups mostly disappears once you control for region</h1>
+<p class="subtitle">41 expansion states + DC vs. 10 non-expansion states — ACS 2023 coverage; CHR 2025 premature death rate</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 645" width="880" height="645" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">Medicaid Expansion States vs. Non-Expansion States: Coverage Gap Is Real, Mortality Gap Is Not (Once Regio…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">41 expansion states + DC vs. 10 non-expansion states (KFF, 2026) — ACS 2023 insurance coverage; CHR 2025 premature death rate, state-level rows only</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Uninsured rate, non-expansion vs expansion</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">12.8% vs 6.9%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">+5.9 pts</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Population-weighted, ACS 2023. Welch t-test p=0.0035; survives</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">South-region control (p=0.001).</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Premature death rate gap (raw)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:27px">9,885 vs 8,466 YPLL/100k</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">+1,419 (South-unadjusted)</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">CHR 2025, geo_level='state' rows only (excludes the county rows and</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">the single national rollup row that share this column). Raw t-test…</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Uninsured rate by state, grouped</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="179.43" x2="390" y2="179.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="183.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="158.86" x2="390" y2="158.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="162.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="138.29" x2="390" y2="138.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="142.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="117.71" x2="390" y2="117.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="121.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="97.14" x2="390" y2="97.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="101.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="76.57" x2="390" y2="76.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="52" y="80.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">12</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">14</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Group</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Uninsured %</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-expansion-n-41" class="tick" x="142.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Expansion (n=41)</text>
+      <text id="p3-xtick-non-expansion-n-10" class="tick" x="307.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Non-expansion (n=10)</text>
+    </g>
+    <g id="p3-series-uninsured" class="series">
+      <rect id="p3-mark-uninsured-expansion-n-41" class="bar" x="89.70" y="128.82" width="104.60" height="71.18" fill="#2563eb"/>
+      <rect id="p3-mark-uninsured-non-expansion-n-10" class="bar" x="254.70" y="68.03" width="104.60" height="131.97" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">Population-weighted ACS 2023 uninsured rate.</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Premature death rate by state, grouped (state rows only, county/national r…</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="84" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="76" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="76" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="84" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="76" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+      <line class="grid" x1="84" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="76" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6,000</text>
+      <line class="grid" x1="84" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="76" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="84" y1="56" x2="84" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="237" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Group</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">YPLL / 100k</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-expansion-n-41" class="tick" x="160.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Expansion (n=41)</text>
+      <text id="p4-xtick-non-expansion-n-10" class="tick" x="313.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Non-expansion (n=10)</text>
+    </g>
+    <g id="p4-series-premature-death-rate" class="series">
+      <rect id="p4-mark-premature-death-rate-expansion-n-41" class="bar" x="111.54" y="78.09" width="96.92" height="121.91" fill="#2563eb"/>
+      <rect id="p4-mark-premature-death-rate-non-expansion-n-10" class="bar" x="264.54" y="57.66" width="96.92" height="142.34" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">CHR 2025, simple state average (not population-weighted),</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">geo_level='state' filter applied to avoid double-counting against the…</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">Expansion classification: KFF's Status of State Medicaid Expansion Decisions, current as of 2026 (10 non-expansion: AL, FL, GA, KS, MS, SC, TN,</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">TX, WI, WY). Insurance coverage: census.acs_health_insurance, 2023 (latest ACS 5-yr vintage in this corpus). Mortality proxy:</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">health.chr_premature_death (County Health Rankings YPLL before age 75 per 100k, 2025 release), filtered to geo_level='state' -- that column also…</text>
+  <g id="brand">
+  <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="619" fill="#6b7280" text-anchor="end">Prepared 2026-09-14</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:58663/a/dd062a735f8271c588464bb9215d6465.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>Yes, but only on one of the two outcomes that matter, and the size of the gap depends on what you hold fixed.</strong> The 41 states (plus DC) that adopted the ACA's Medicaid expansion have a materially lower uninsured rate than the 10 states that have not -- 6.9% vs 12.8% of the population, a gap that is statistically strong (p=0.0035) and <em>survives</em> controlling for region. On premature death (years of life lost before age 75, a proxy for overall mortality; figures below use only the state-level rows of health.chr_premature_death, excluding that table's county rows and its one national rollup row which share the same geo_level column), the raw gap is smaller and only marginally significant (p=0.054), and it is <strong>not robust</strong>: dropping any one of four Southern non-expansion states (Alabama, Mississippi, South Carolina, or Tennessee) from the comparison pushes it back above the conventional significance threshold. When region (the Census-defined South, 16 states) is added as a control, the non-expansion coefficient on premature death collapses from a nominal +1,419 years-lost/100k to a statistically insignificant +336 (p=0.58), while the South-region coefficient itself is large and highly significant (+2,375, p&lt;0.0001). In plain terms: non-expansion states clearly look different on insurance coverage -- that gap is expansion's own footprint, not a Southern-states artifact. They do not look meaningfully different on premature mortality once you account for the fact that most non-expansion states are also Southern states with a long-standing regional mortality disadvantage that predates the ACA.</p>
+</section>
+<section>
+<h2>Method</h2>
+<p><strong>Classification.</strong> Non-expansion states (per KFF's tracker, current status as of 2026): Alabama, Florida, Georgia, Kansas, Mississippi, South Carolina, Tennessee, Texas, Wisconsin, Wyoming (10 states). All other states plus DC (41 units) are classified as expansion. This corpus has no Medicaid-expansion-status column of its own (search_catalog returned no match for 'expansion'), so the classification was built from KFF's published list rather than an AskAmerica table -- flagged here as an external input, not a warehouse-derived fact.</p><p><strong>Outcomes tested.</strong> (1) Uninsured rate: census.acs_health_insurance, 2023 ACS 5-year estimates (the latest year loaded; the source publishes roughly 2 years behind, so 2024-2026 are not available yet), population-weighted across each group's states. (2) Premature death rate (years of potential life lost before age 75, per 100,000, age-adjusted): health.chr_premature_death, 2025 County Health Rankings release. IMPORTANT DATA-QUALITY NOTE: this table's geo_level column mixes 'state', 'county', and a single 'nation' rollup row in one field -- an unfiltered aggregate over it silently double-counts (a rollup_contamination diagnostic fired on an exploratory count query earlier in this session that summed all three levels together without a filter). Every figure in this report uses an explicit WHERE geo_level='state' filter, so the 9,885 / 8,466 YPLL figures and everything derived from them are unaffected by that contamination risk -- flagging it here because the same table could easily be mis-aggregated by a future query that omits the filter.</p><p><strong>Tests run.</strong> Welch's two-sample t-test for each outcome by group; a sensitivity_analysis (leave-one-state-out refit) on the premature-death gap to check whether any single state was carrying the result; and an OLS regression of each outcome on non-expansion status plus a South-census-region indicator (16 states: DE, DC, FL, GA, MD, NC, SC, VA, WV, AL, KY, MS, TN, AR, LA, OK, TX) to test whether the raw group gap survives once region is held fixed -- region is a plausible confound because 7 of the 10 non-expansion states (AL, FL, GA, MS, SC, TN, TX) are Southern states with a long, well-documented regional mortality disadvantage independent of Medicaid policy. This is a single cross-sectional snapshot of the current year's data only; no other analytical method was run in this session.</p>
+</section>
+<section>
+<h2>Finding 1 — Insurance coverage: the gap is large and holds up</h2>
+<p>Non-expansion states have a population-weighted uninsured rate of 12.8% versus 6.9% in expansion states -- roughly 5.9 percentage points, or about 85% relatively higher. A Welch t-test across the 51 units gives t=3.64, p=0.0035. Controlling for South-region membership in an OLS regression, the non-expansion coefficient stays large and significant: +3.23 percentage points (p=0.0013), while the South coefficient itself is not significant (p=0.13) once expansion status is in the model. This is directionally consistent with published tracking (KFF; Commonwealth Fund) showing expansion states cut their uninsured rate roughly twice as much as non-expansion states between 2013 and 2022 (30% to 15% vs 30% to 24%), though that is a separate figure from a different source, not one recomputed here.</p>
+</section>
+<section>
+<h2>Finding 2 — Premature mortality: the gap is fragile and is mostly a regional artifact</h2>
+<p>The raw group means (state-level rows only, per the geo_level filter described above) are 9,885 years-of-life-lost/100k in non-expansion states vs 8,466 in expansion states (+1,419, or about 17% relatively higher), with a Welch t-test p=0.054 -- borderline. A leave-one-out sensitivity check (refitting a bivariate regression of premature death on non-expansion status, dropping one state at a time) shows the result is not robust: the coefficient's significance flips above p=0.05 when Alabama, Mississippi, South Carolina, or Tennessee is individually removed, and the coefficient itself ranges from 1,036 to 1,690 across the 51 leave-one-out refits -- a wide range for a result this close to the threshold. Once a South-census-region indicator is added to the regression, the picture changes further: the non-expansion coefficient falls to +336 years-lost/100k and becomes statistically insignificant (p=0.58), while the South coefficient is +2,375 and highly significant (p&lt;0.0001, overall model R²=0.37). In other words, the apparent mortality difference between expansion and non-expansion states in this cross-section is much better explained by which states are in the South than by which states expanded Medicaid -- an important distinction the raw two-group comparison alone would miss.</p><p>This finding is narrow and purely descriptive, and it is not a challenge to separately published peer-reviewed research (a 2012 NEJM study and a 2021 Lancet Public Health national cohort study, both linked below) that finds real mortality reductions attributable to Medicaid expansion using each study's own longitudinal data over time and its own statistical design -- neither of those designs was run in this session; only the cross-sectional regressions described above were run here. In a same-year cross-section, non-expansion status and Southern region are correlated enough (7 of 10 non-expansion states are Southern) that the raw mortality gap computed here cannot be attributed to expansion status without controlling for region -- and once region is controlled in the regression actually run above, the expansion-status effect is not distinguishable from zero.</p>
+</section>
+<section>
+<h2>Bottom line</h2>
+<p>Medicaid expansion states look meaningfully, robustly different from non-expansion states on insurance coverage today -- that gap is real and not explained away by region. They do not look meaningfully different on premature mortality once region is accounted for in this cross-section; the modest raw mortality gap that exists is fragile (sensitive to a handful of Southern non-expansion states) and is better explained by the South's long-standing regional health disadvantage than by Medicaid expansion status alone. Separately published research using each study's own longitudinal data over time (cited above, not run here) has found real mortality effects from expansion that a single-year snapshot like this one cannot capture.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>10 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 3 rows — 1821 ms</summary><pre><code>SELECT geo_level, MAX(release_year) as max_year, COUNT(*) FROM health.chr_premature_death GROUP BY geo_level</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 5255 ms</summary><pre><code>
+WITH exp AS (
+  SELECT state_abbr,
+    CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 'non_expansion' ELSE 'expansion' END AS status
+  FROM geo.state_ref
+)
+SELECT e.status,
+  COUNT(*) AS n_states,
+  SUM(a.no_health_insurance) AS total_uninsured,
+  SUM(a.total_population) AS total_pop,
+  100.0*SUM(a.no_health_insurance)/SUM(a.total_population) AS uninsured_pct
+FROM census.acs_health_insurance a
+JOIN geo.state_ref g ON g.state_fips = a.state
+JOIN exp e ON e.state_abbr = g.state_abbr
+WHERE a.year = '2023' AND a.geography = 'state'
+GROUP BY e.status
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 51 rows — 2268 ms</summary><pre><code>
+WITH exp AS (
+  SELECT state_abbr,
+    CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 'non_expansion' ELSE 'expansion' END AS status
+  FROM geo.state_ref
+)
+SELECT e.status, c.state_abbr, c.premature_death_rate
+FROM health.chr_premature_death c
+JOIN exp e ON e.state_abbr = c.state_abbr
+WHERE c.geo_level = 'state' AND c.release_year = 2025
+ORDER BY e.status, c.state_abbr
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 51 rows — 2573 ms</summary><pre><code>
+WITH exp AS (
+  SELECT state_abbr,
+    CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 'non_expansion' ELSE 'expansion' END AS status
+  FROM geo.state_ref
+)
+SELECT e.status, g.state_abbr, 100.0*a.no_health_insurance/a.total_population AS uninsured_pct
+FROM census.acs_health_insurance a
+JOIN geo.state_ref g ON g.state_fips = a.state
+JOIN exp e ON e.state_abbr = g.state_abbr
+WHERE a.year = '2023' AND a.geography = 'state'
+ORDER BY e.status, g.state_abbr
+</code></pre></details>
+<details class="sqltoggle"><summary>hypothesis_test — 2330 ms</summary><pre><code>
+WITH exp AS (
+  SELECT state_abbr,
+    CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 'non_expansion' ELSE 'expansion' END AS status
+  FROM geo.state_ref
+)
+SELECT e.status, 100.0*a.no_health_insurance/a.total_population AS uninsured_pct
+FROM census.acs_health_insurance a
+JOIN geo.state_ref g ON g.state_fips = a.state
+JOIN exp e ON e.state_abbr = g.state_abbr
+WHERE a.year = '2023' AND a.geography = 'state'
+</code></pre></details>
+<details class="sqltoggle"><summary>hypothesis_test — 1927 ms</summary><pre><code>
+WITH exp AS (
+  SELECT state_abbr,
+    CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 'non_expansion' ELSE 'expansion' END AS status
+  FROM geo.state_ref
+)
+SELECT e.status, c.premature_death_rate
+FROM health.chr_premature_death c
+JOIN exp e ON e.state_abbr = c.state_abbr
+WHERE c.geo_level = 'state' AND c.release_year = 2025
+</code></pre></details>
+<details class="sqltoggle"><summary>sensitivity_analysis — 2487 ms</summary><pre><code>
+WITH exp AS (
+  SELECT state_abbr,
+    CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 1 ELSE 0 END AS non_expansion
+  FROM geo.state_ref
+)
+SELECT e.state_abbr, e.non_expansion, c.premature_death_rate
+FROM health.chr_premature_death c
+JOIN exp e ON e.state_abbr = c.state_abbr
+WHERE c.geo_level = 'state' AND c.release_year = 2025
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 51 rows — 2090 ms</summary><pre><code>
+WITH exp AS (
+  SELECT state_abbr,
+    CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 1 ELSE 0 END AS non_expansion,
+    CASE WHEN state_abbr IN ('DE','DC','FL','GA','MD','NC','SC','VA','WV','AL','KY','MS','TN','AR','LA','OK','TX') THEN 1 ELSE 0 END AS south
+  FROM geo.state_ref
+)
+SELECT e.non_expansion, e.south, c.premature_death_rate
+FROM health.chr_premature_death c
+JOIN exp e ON e.state_abbr = c.state_abbr
+WHERE c.geo_level='state' AND c.release_year=2025
+</code></pre></details>
+<details class="sqltoggle"><summary>ols_regression — 2114 ms</summary><pre><code>
+WITH exp AS (
+  SELECT state_abbr,
+    CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 1 ELSE 0 END AS non_expansion,
+    CASE WHEN state_abbr IN ('DE','DC','FL','GA','MD','NC','SC','VA','WV','AL','KY','MS','TN','AR','LA','OK','TX') THEN 1 ELSE 0 END AS south
+  FROM geo.state_ref
+)
+SELECT e.non_expansion, e.south, c.premature_death_rate
+FROM health.chr_premature_death c
+JOIN exp e ON e.state_abbr = c.state_abbr
+WHERE c.geo_level='state' AND c.release_year=2025
+</code></pre></details>
+<details class="sqltoggle"><summary>ols_regression — 2942 ms</summary><pre><code>
+WITH exp AS (
+  SELECT state_abbr,
+    CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 1 ELSE 0 END AS non_expansion,
+    CASE WHEN state_abbr IN ('DE','DC','FL','GA','MD','NC','SC','VA','WV','AL','KY','MS','TN','AR','LA','OK','TX') THEN 1 ELSE 0 END AS south
+  FROM geo.state_ref
+)
+SELECT e.non_expansion, e.south, 100.0*a.no_health_insurance/a.total_population AS uninsured_pct
+FROM census.acs_health_insurance a
+JOIN geo.state_ref g ON g.state_fips=a.state
+JOIN exp e ON e.state_abbr=g.state_abbr
+WHERE a.year='2023' AND a.geography='state'
+</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li>census.acs_health_insurance, 2023, population-weighted uninsured rate by expansion status<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH exp AS (SELECT state_abbr, CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 'non_expansion' ELSE 'expansion' END AS status FROM geo.state_ref) SELECT e.status, 100.0*SUM(a.no_health_insurance)/SUM(a.total_population) AS uninsured_pct FROM census.acs_health_insurance a JOIN geo.state_ref g ON g.state_fips = a.state JOIN exp e ON e.state_abbr = g.state_abbr WHERE a.year = '2023' AND a.geography = 'state' GROUP BY e.status</code></pre></details></li>
+<li>health.chr_premature_death, 2025 release, by expansion status (geo_level='state' filter applied)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH exp AS (SELECT state_abbr, CASE WHEN state_abbr IN ('AL','FL','GA','KS','MS','SC','TN','TX','WI','WY') THEN 'non_expansion' ELSE 'expansion' END AS status FROM geo.state_ref) SELECT e.status, c.state_abbr, c.premature_death_rate FROM health.chr_premature_death c JOIN exp e ON e.state_abbr = c.state_abbr WHERE c.geo_level = 'state' AND c.release_year = 2025</code></pre></details></li>
+<li>Welch t-test, uninsured rate by expansion status<details class="sqltoggle"><summary>Show tool call</summary><pre><code>hypothesis_test(test=&quot;t_test&quot;, group_col=&quot;status&quot;, value_col=&quot;uninsured_pct&quot;)</code></pre></details></li>
+<li>Welch t-test, premature death rate by expansion status<details class="sqltoggle"><summary>Show tool call</summary><pre><code>hypothesis_test(test=&quot;t_test&quot;, group_col=&quot;status&quot;, value_col=&quot;premature_death_rate&quot;)</code></pre></details></li>
+<li>Leave-one-out sensitivity, premature death ~ non_expansion<details class="sqltoggle"><summary>Show tool call</summary><pre><code>sensitivity_analysis(outcome=&quot;premature_death_rate&quot;, predictors=[&quot;non_expansion&quot;], group_col=&quot;state_abbr&quot;)</code></pre></details></li>
+<li>OLS: premature death ~ non_expansion + south<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;premature_death_rate&quot;, predictors=[&quot;non_expansion&quot;,&quot;south&quot;])</code></pre></details></li>
+<li>OLS: uninsured_pct ~ non_expansion + south<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;uninsured_pct&quot;, predictors=[&quot;non_expansion&quot;,&quot;south&quot;])</code></pre></details></li>
+<li><a href="https://www.kff.org/medicaid/status-of-state-medicaid-expansion-decisions/">KFF: Status of State Medicaid Expansion Decisions</a> <span class="note">— Source for the 10-state non-expansion classification, current status as of 2026</span></li>
+<li><a href="https://www.nejm.org/doi/full/10.1056/NEJMsa1202099">Mortality and Access to Care after State Medicaid Expansions (NEJM 2012)</a></li>
+<li><a href="https://www.thelancet.com/journals/lanpub/article/PIIS2468-2667(21)00252-8/fulltext">Medicaid expansion and variability in mortality in the USA (Lancet Public Health, 2021)</a></li>
+<li><a href="https://www.commonwealthfund.org/publications/issue-briefs/2026/may/us-health-care-global-perspective-2026">Commonwealth Fund: U.S. Health Care from a Global Perspective 2026</a></li>
+</ol>
+</section>
+<footer>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-14</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
