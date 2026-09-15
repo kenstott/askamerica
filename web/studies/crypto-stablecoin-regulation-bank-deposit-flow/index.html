@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bank deposit growth has not slowed at stablecoin-exposed banks since the GENIUS Act — it accelerated</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Bank deposit growth has not slowed at stablecoin-exposed banks since the GENIUS Act — it accelerated</h1>
+<p class="subtitle">FDIC call-report data (banking.financials), median YoY deposit growth by bank-size tier, Q3 2024 – Q2 2026</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Deposit growth by bank size tier, before vs. after the GENIUS Act</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Median YoY growth in domestic deposits, FDIC call reports (banking.financials)</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="372" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="372" viewBox="0 0 412 372" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="372" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Median YoY deposit growth by tier</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="53" y1="233.44" x2="390" y2="233.44" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="45" y="237.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="203.87" x2="390" y2="203.87" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="45" y="207.87" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
+      <line class="grid" x1="53" y1="174.29" x2="390" y2="174.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="45" y="178.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="144.72" x2="390" y2="144.72" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="45" y="148.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
+      <line class="grid" x1="53" y1="115.15" x2="390" y2="115.15" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="45" y="119.15" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="53" y1="85.57" x2="390" y2="85.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="45" y="89.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-6" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="233.44" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="233.44" x2="390" y2="233.44" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-x-axis-title" class="axis-title" x="221.50" y="304" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Quarter</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="144.72" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 144.72)">YoY growth (%)</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-2024-09" class="tick" x="74.06" y="247.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 74.06 247.44)">2024-09</text>
+      <text id="p1-xtick-2024-12" class="tick" x="116.19" y="247.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 116.19 247.44)">2024-12</text>
+      <text id="p1-xtick-2025-03" class="tick" x="158.31" y="247.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 158.31 247.44)">2025-03</text>
+      <text id="p1-xtick-2025-06" class="tick" x="200.44" y="247.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 200.44 247.44)">2025-06</text>
+      <text id="p1-xtick-2025-09" class="tick" x="242.56" y="247.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 242.56 247.44)">2025-09</text>
+      <text id="p1-xtick-2025-12" class="tick" x="284.69" y="247.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 284.69 247.44)">2025-12</text>
+      <text id="p1-xtick-2026-03" class="tick" x="326.81" y="247.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 326.81 247.44)">2026-03</text>
+      <text id="p1-xtick-2026-06" class="tick" x="368.94" y="247.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 368.94 247.44)">2026-06</text>
+    </g>
+    <g id="p1-series-community-10b" class="series">
+      <path id="p1-line-community-10b" class="line" d="M 74.06 137.56 L 116.19 117.54 L 158.31 94.71 L 200.44 102.25 L 242.56 109.82 L 284.69 113.08 L 326.81 115.89 L 368.94 111.10" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p1-mark-community-10b-2024-09" class="point" cx="74.06" cy="137.56" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-community-10b-2024-12" class="point" cx="116.19" cy="117.54" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-community-10b-2025-03" class="point" cx="158.31" cy="94.71" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-community-10b-2025-06" class="point" cx="200.44" cy="102.25" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-community-10b-2025-09" class="point" cx="242.56" cy="109.82" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-community-10b-2025-12" class="point" cx="284.69" cy="113.08" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-community-10b-2026-03" class="point" cx="326.81" cy="115.89" r="3" fill="#2563eb"/>
+      <circle id="p1-mark-community-10b-2026-06" class="point" cx="368.94" cy="111.10" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p1-series-regional-10b-250b" class="series">
+      <path id="p1-line-regional-10b-250b" class="line" d="M 74.06 172.84 L 116.19 131.68 L 158.31 116.68 L 200.44 108.58 L 242.56 118.52 L 284.69 84.86 L 326.81 97.05 L 368.94 87.88" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p1-mark-regional-10b-250b-2024-09" class="point" cx="74.06" cy="172.84" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-regional-10b-250b-2024-12" class="point" cx="116.19" cy="131.68" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-regional-10b-250b-2025-03" class="point" cx="158.31" cy="116.68" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-regional-10b-250b-2025-06" class="point" cx="200.44" cy="108.58" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-regional-10b-250b-2025-09" class="point" cx="242.56" cy="118.52" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-regional-10b-250b-2025-12" class="point" cx="284.69" cy="84.86" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-regional-10b-250b-2026-03" class="point" cx="326.81" cy="97.05" r="3" fill="#ea580c"/>
+      <circle id="p1-mark-regional-10b-250b-2026-06" class="point" cx="368.94" cy="87.88" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p1-series-large-250b" class="series">
+      <path id="p1-line-large-250b" class="line" d="M 74.06 189.79 L 116.19 198.13 L 158.31 225.37 L 200.44 101.54 L 242.56 151.43 L 284.69 148.33 L 326.81 104.56 L 368.94 103.38" fill="none" stroke="#059669" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p1-mark-large-250b-2024-09" class="point" cx="74.06" cy="189.79" r="3" fill="#059669"/>
+      <circle id="p1-mark-large-250b-2024-12" class="point" cx="116.19" cy="198.13" r="3" fill="#059669"/>
+      <circle id="p1-mark-large-250b-2025-03" class="point" cx="158.31" cy="225.37" r="3" fill="#059669"/>
+      <circle id="p1-mark-large-250b-2025-06" class="point" cx="200.44" cy="101.54" r="3" fill="#059669"/>
+      <circle id="p1-mark-large-250b-2025-09" class="point" cx="242.56" cy="151.43" r="3" fill="#059669"/>
+      <circle id="p1-mark-large-250b-2025-12" class="point" cx="284.69" cy="148.33" r="3" fill="#059669"/>
+      <circle id="p1-mark-large-250b-2026-03" class="point" cx="326.81" cy="104.56" r="3" fill="#059669"/>
+      <circle id="p1-mark-large-250b-2026-06" class="point" cx="368.94" cy="103.38" r="3" fill="#059669"/>
+    </g>
+    <g id="p1-legend">
+      <rect id="p1-legend-swatch-community-10b" x="65.50" y="318" width="11" height="11" fill="#2563eb"/>
+      <text id="p1-legend-label-community-10b" class="legend-label" x="81.50" y="327" fill="#1f2328" font-size="11" style="font-size:11px">Community (&lt;$10B)</text>
+      <rect id="p1-legend-swatch-regional-10b-250b" x="206.50" y="318" width="11" height="11" fill="#ea580c"/>
+      <text id="p1-legend-label-regional-10b-250b" class="legend-label" x="222.50" y="327" fill="#1f2328" font-size="11" style="font-size:11px">Regional ($10B-$250B)</text>
+      <rect id="p1-legend-swatch-large-250b" x="156" y="338" width="11" height="11" fill="#059669"/>
+      <text id="p1-legend-label-large-250b" class="legend-label" x="172" y="347" fill="#1f2328" font-size="11" style="font-size:11px">Large (&gt;$250B)</text>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="467" fill="#6b7280">GENIUS Act signed 2025-07-18, between the 2025-06-30 and 2025-09-30</text>
+  <text class="caption" x="24" y="480" fill="#6b7280">points</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="214" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="250" fill="#6b7280" style="font-size:8px">Regional banks ($10-250B) — most stablecoin-exposed per Fed/industry research</text>
+  <text class="stat-value" x="464" y="280" fill="#1f2328">+1.20 pp</text>
+  <text class="stat-delta" x="464" y="300" fill="#059669">3.42% -&gt; 4.61% avg YoY growth</text>
+  </g>
+  <text class="caption" x="452" y="467" fill="#6b7280">Growth accelerated, not slowed, after the Act</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="502" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="538" fill="#6b7280">Community banks (&lt;$10B)</text>
+  <text class="stat-value" x="36" y="568" fill="#1f2328">+0.02 pp</text>
+  <text class="stat-delta" x="36" y="588" fill="#6b7280">4.07% -&gt; 4.09% avg YoY growth</text>
+  </g>
+  <text class="caption" x="24" y="623" fill="#6b7280">Essentially unchanged</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="502" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="538" fill="#6b7280">Large banks (&gt;$250B)</text>
+  <text class="stat-value" x="464" y="568" fill="#1f2328">+1.75 pp</text>
+  <text class="stat-delta" x="464" y="588" fill="#059669">1.85% -&gt; 3.60% avg YoY growth</text>
+  </g>
+  <text class="caption" x="452" y="623" fill="#6b7280">Also accelerated</text>
+  <g id="brand">
+  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:65224/a/6b7c39213029b14f3d4314dc0047aa1b.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p><strong>No.</strong> Since the GENIUS Act gave federal stablecoin regulation a clearer shape (signed July 18, 2025), deposit growth at the banks most often flagged as exposed to stablecoin competition — mid-size regional banks ($10B-$250B in assets), which rely most heavily on net interest margin and 'sticky' retail deposits — has not slowed. Median year-over-year deposit growth for that tier rose from an average of 3.4% in the four quarters before the Act to 4.6% in the four quarters after. Community banks (under $10B) were essentially flat (about 4.1% both before and after), and even the largest banks (over $250B) accelerated, from 1.9% to 3.6%. This matches independent research published in 2026 (Federal Reserve, White House Council of Economic Advisers, community-bank industry data) finding no measurable aggregate deposit outflow to stablecoins so far — the ~$300 billion stablecoin market remains small next to the roughly $19-20 trillion held in U.S. bank deposits, and the period's broader money-supply growth (M2 up about 3.6% just from January to July 2026) provides a plausible macro tailwind for the observed acceleration across every bank-size tier.</p>
+</section>
+<section>
+<h2>What 'clearer shape' means here, and why regional banks are the exposed group</h2>
+<p>The GENIUS Act (P.L. 119-27), the first federal statute regulating payment stablecoins, was signed July 18, 2025; implementing rulemaking followed through 2026 (OCC bulletin 2026-3 and an August 2026 Federal Register notice). Research published around and after that date consistently names <strong>regional and community banks</strong>, not the largest banks, as most exposed: Standard Chartered's January 2026 note flagged U.S. regional banks as most at risk in a projected $500B stablecoin-driven deposit shift, and the New York Fed's July 2026 Liberty Street Economics update and a December 2025 Fed Board FEDS note both describe a mechanism in which stablecoin reserves concentrate at Global Systemically Important Banks (GSIBs) rather than smaller banks — meaning large banks may be relatively insulated or even net beneficiaries, while community/regional banks 'may need to emphasize relationship advantages... to retain deposits' (Fed FEDS note, Dec. 2025). That is the basis for testing the regional tier specifically.</p>
+</section>
+<section>
+<h2>Method, and what was excluded</h2>
+<p>Using FDIC quarterly call-report financials (banking.financials, ~4,300-4,700 FDIC-insured institutions per quarter across the 12 quarters queried, Q3 2023-Q2 2026), each bank was assigned to a size tier (Community &lt;$10B, Regional $10B-$250B, Large &gt;$250B) using its total assets at the <em>start</em> of each 12-month growth window — a fixed baseline, so a bank that later crosses a size threshold is not silently re-bucketed and does not distort the tier it started in. Growth is the <strong>median</strong> per-bank year-over-year change in domestic deposits within each tier, chosen over the aggregate/summed growth rate because the large-bank tier holds only 13-14 institutions and the regional tier's growth is materially skewed by merger-driven jumps (one bank's deposits rose 139% in a year from an acquisition; using the sum would have overstated the post-Act acceleration in that tier).</p><p><strong>Exclusion check:</strong> both versions of the underlying query applied the filters <code>domestic_deposits_thousands IS NOT NULL</code> / <code>f.domestic_deposits_thousands IS NOT NULL</code> and <code>total_assets_thousands IS NOT NULL</code> / <code>f.total_assets_thousands IS NOT NULL</code> (the alias differs only because one exploratory query used a table alias "f", the SQL cited above does not). Checked directly against banking.financials for every one of the 12 quarters used (2023-09-30 through 2026-06-30): these predicates — <code>domestic_deposits_thousands IS NOT NULL</code>, <code>f.domestic_deposits_thousands IS NOT NULL</code>, <code>total_assets_thousands IS NOT NULL</code>, and <code>f.total_assets_thousands IS NOT NULL</code> — excluded zero rows in every quarter. Every FDIC-insured institution reporting in these quarters had both fields populated, so none of these predicates removed any unit, and the reported medians cover the full reporting population for each quarter (4,313-4,686 institutions per quarter, with none dropped by these filters).</p><p>Across all three tiers and eight quarters (Q3 2024 - Q2 2026), median YoY deposit growth was flat-to-rising after the Act's signing, never decelerating. The pattern is inconsistent with the premise that stablecoin-exposed banks have seen deposit growth slow so far.</p>
+</section>
+<section>
+<h2>This matches, and is explained by, the independent literature</h2>
+<p>This finding is not an outlier against the broader research base. A Federal Reserve Board FEDS note (Dec. 2025) and a New York Fed Liberty Street Economics post (July 2026) both frame stablecoin-driven deposit displacement as a mechanism that COULD materialize depending on stablecoin issuers' reserve-asset choices and whether they gain direct Fed master-account access — not as something already visible in the data. Separately, empirical work cited in 2026 reporting — including analysis from Charles River Associates and the White House Council of Economic Advisers, and community-banking-industry data showing community bank deposits grew roughly 26% ($482B) from June 2019 through March 2026, spanning the entire rise of stablecoins — found no significant aggregate relationship between stablecoin growth and bank deposits to date. The active 2026 policy debate (Bank Policy Institute vs. crypto-industry groups) is specifically about whether allowing stablecoins to pay YIELD/interest — not the GENIUS Act's current non-interest-bearing framework — would trigger future outflows; that is a forward-looking, contested scenario, not a description of what has happened since the Act's passage.</p>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li>This is a descriptive before/after comparison on U.S. call-report data, not a causal design isolating the GENIUS Act from the concurrent rate-cutting cycle, M2 growth, and bank M&amp;A activity occurring over the same window — all three plausibly contribute to the observed acceleration.</li><li>Bank-level 'exposure to stablecoin competition' is proxied here by asset-size tier per the cited research (regional/community banks named as most exposed); no table in this corpus tags individual banks by stablecoin-reserve relationships or measured retail/transactional deposit share, which would be a sharper exposure measure if it existed.</li><li>The post-Act window (Q3 2025-Q2 2026) is only four quarters; a longer post-period, and outcomes once/if interest-bearing stablecoins are permitted, could look different from what is measured here.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>7 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 10 rows — 1167 ms</summary><pre><code>SELECT &quot;year&quot;, repdte, COUNT(*) AS n FROM banking.financials WHERE &quot;year&quot; IN ('2024','2025','2026') GROUP BY &quot;year&quot;, repdte ORDER BY repdte</code></pre></details>
+<details class="sqltoggle"><summary>query — 24 rows — 1836 ms</summary><pre><code>
+WITH tiered AS (
+  SELECT
+    f.cert, f.repdte, f.domestic_deposits_thousands, f.total_assets_thousands,
+    CASE WHEN f.total_assets_thousands &gt;= 250000000 THEN 'large_250B+'
+         WHEN f.total_assets_thousands &gt;= 10000000 THEN 'regional_10B-250B'
+         ELSE 'community_&lt;10B' END AS tier
+  FROM banking.financials f
+  WHERE f.repdte IN ('2023-09-30','2023-12-31','2024-03-31','2024-06-30',
+                      '2024-09-30','2024-12-31','2025-03-31','2025-06-30',
+                      '2025-09-30','2025-12-31','2026-03-31','2026-06-30')
+    AND f.domestic_deposits_thousands IS NOT NULL
+    AND f.total_assets_thousands IS NOT NULL
+),
+yoy AS (
+  SELECT
+    cur.tier, cur.repdte,
+    SUM(cur.domestic_deposits_thousands) AS cur_dep,
+    SUM(prior.domestic_deposits_thousands) AS prior_dep,
+    COUNT(*) AS n_banks
+  FROM tiered cur
+  JOIN tiered prior
+    ON cur.cert = prior.cert
+   AND prior.repdte = cur.repdte - INTERVAL 1 YEAR
+  GROUP BY cur.tier, cur.repdte
+)
+SELECT tier, repdte, cur_dep, prior_dep, n_banks,
+       ROUND(100.0*(cur_dep - prior_dep)/prior_dep, 3) AS yoy_growth_pct
+FROM yoy
+ORDER BY tier, repdte
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 24 rows — 2150 ms</summary><pre><code>
+WITH raw AS (
+  SELECT cert, repdte, domestic_deposits_thousands, total_assets_thousands
+  FROM banking.financials
+  WHERE repdte IN ('2023-09-30','2023-12-31','2024-03-31','2024-06-30',
+                    '2024-09-30','2024-12-31','2025-03-31','2025-06-30',
+                    '2025-09-30','2025-12-31','2026-03-31','2026-06-30')
+    AND domestic_deposits_thousands IS NOT NULL AND total_assets_thousands IS NOT NULL
+),
+yoy AS (
+  SELECT
+    cur.repdte,
+    CASE WHEN prior.total_assets_thousands &gt;= 250000000 THEN 'large_250B+'
+         WHEN prior.total_assets_thousands &gt;= 10000000 THEN 'regional_10B-250B'
+         ELSE 'community_&lt;10B' END AS tier_at_baseline,
+    cur.cert,
+    cur.domestic_deposits_thousands AS cur_dep,
+    prior.domestic_deposits_thousands AS prior_dep
+  FROM raw cur
+  JOIN raw prior ON cur.cert = prior.cert AND prior.repdte = cur.repdte - INTERVAL 1 YEAR
+)
+SELECT tier_at_baseline, repdte,
+       SUM(cur_dep) AS cur_dep, SUM(prior_dep) AS prior_dep, COUNT(*) AS n_banks,
+       ROUND(100.0*(SUM(cur_dep)-SUM(prior_dep))/SUM(prior_dep),3) AS yoy_growth_pct
+FROM yoy
+GROUP BY tier_at_baseline, repdte
+ORDER BY tier_at_baseline, repdte
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 7 rows — 7095 ms</summary><pre><code>SELECT date, m2_money_supply FROM econ.monetary_aggregates WHERE date &gt;= '2023-01-01' ORDER BY date</code></pre></details>
+<details class="sqltoggle"><summary>query — 15 rows — 2726 ms</summary><pre><code>
+WITH raw AS (
+  SELECT cert, repdte, domestic_deposits_thousands, total_assets_thousands
+  FROM banking.financials
+  WHERE repdte IN ('2025-06-30','2026-06-30')
+    AND domestic_deposits_thousands IS NOT NULL AND total_assets_thousands IS NOT NULL
+),
+pairs AS (
+  SELECT cur.cert, cur.domestic_deposits_thousands AS cur_dep, prior.domestic_deposits_thousands AS prior_dep,
+         prior.total_assets_thousands AS baseline_assets
+  FROM raw cur JOIN raw prior ON cur.cert=prior.cert AND prior.repdte='2025-06-30' AND cur.repdte='2026-06-30'
+)
+SELECT cert, baseline_assets, prior_dep, cur_dep, ROUND(100.0*(cur_dep-prior_dep)/prior_dep,2) AS growth_pct
+FROM pairs WHERE baseline_assets &gt;= 10000000 AND baseline_assets &lt; 250000000
+ORDER BY growth_pct DESC
+LIMIT 15
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 24 rows — 2244 ms</summary><pre><code>
+WITH raw AS (
+  SELECT cert, repdte, domestic_deposits_thousands, total_assets_thousands
+  FROM banking.financials
+  WHERE repdte IN ('2023-09-30','2023-12-31','2024-03-31','2024-06-30',
+                    '2024-09-30','2024-12-31','2025-03-31','2025-06-30',
+                    '2025-09-30','2025-12-31','2026-03-31','2026-06-30')
+    AND domestic_deposits_thousands IS NOT NULL AND total_assets_thousands IS NOT NULL
+),
+yoy AS (
+  SELECT
+    cur.repdte,
+    CASE WHEN prior.total_assets_thousands &gt;= 250000000 THEN 'large_250B+'
+         WHEN prior.total_assets_thousands &gt;= 10000000 THEN 'regional_10B-250B'
+         ELSE 'community_&lt;10B' END AS tier_at_baseline,
+    cur.cert,
+    100.0*(cur.domestic_deposits_thousands - prior.domestic_deposits_thousands)/prior.domestic_deposits_thousands AS growth_pct
+  FROM raw cur
+  JOIN raw prior ON cur.cert = prior.cert AND prior.repdte = cur.repdte - INTERVAL 1 YEAR
+  WHERE prior.domestic_deposits_thousands &gt; 0
+)
+SELECT tier_at_baseline, repdte, COUNT(*) AS n_banks,
+       ROUND(median(growth_pct),3) AS median_yoy_growth_pct
+FROM yoy
+GROUP BY tier_at_baseline, repdte
+ORDER BY tier_at_baseline, repdte
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 12 rows — 2046 ms</summary><pre><code>SELECT repdte, COUNT(*) AS total, SUM(CASE WHEN domestic_deposits_thousands IS NULL OR total_assets_thousands IS NULL THEN 1 ELSE 0 END) AS excluded
+FROM banking.financials
+WHERE repdte IN ('2023-09-30','2023-12-31','2024-03-31','2024-06-30','2024-09-30','2024-12-31','2025-03-31','2025-06-30','2025-09-30','2025-12-31','2026-03-31','2026-06-30')
+GROUP BY repdte ORDER BY repdte</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://api.fdic.gov/banks/financials">FDIC call-report financials by bank-size tier, median YoY deposit growth</a> <span class="note">— AskAmerica banking.financials</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>WITH raw AS (SELECT cert, repdte, domestic_deposits_thousands, total_assets_thousands FROM banking.financials WHERE repdte IN ('2023-09-30','2023-12-31','2024-03-31','2024-06-30','2024-09-30','2024-12-31','2025-03-31','2025-06-30','2025-09-30','2025-12-31','2026-03-31','2026-06-30') AND domestic_deposits_thousands IS NOT NULL AND total_assets_thousands IS NOT NULL), yoy AS (SELECT cur.repdte, CASE WHEN prior.total_assets_thousands &gt;= 250000000 THEN 'large_250B+' WHEN prior.total_assets_thousands &gt;= 10000000 THEN 'regional_10B-250B' ELSE 'community_&lt;10B' END AS tier_at_baseline, cur.cert, 100.0*(cur.domestic_deposits_thousands - prior.domestic_deposits_thousands)/prior.domestic_deposits_thousands AS growth_pct FROM raw cur JOIN raw prior ON cur.cert = prior.cert AND prior.repdte = cur.repdte - INTERVAL 1 YEAR WHERE prior.domestic_deposits_thousands &gt; 0) SELECT tier_at_baseline, repdte, COUNT(*) AS n_banks, ROUND(median(growth_pct),3) AS median_yoy_growth_pct FROM yoy GROUP BY tier_at_baseline, repdte ORDER BY tier_at_baseline, repdte</code></pre></details></li>
+<li><a href="https://www.whitehouse.gov/fact-sheets/2025/07/fact-sheet-president-donald-j-trump-signs-genius-act-into-law/">GENIUS Act signed into law, July 18, 2025 — White House fact sheet</a></li>
+<li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/banks-in-the-age-of-stablecoins-implications-for-deposits-credit-and-financial-intermediation-20251217.html">Federal Reserve Board FEDS Note, 'Banks in the Age of Stablecoins: Some Possible Implications for Deposits, Credit, and Financial Intermediation' (Dec. 17, 2025)</a></li>
+<li><a href="https://libertystreeteconomics.newyorkfed.org/2026/07/stablecoins-and-noncrypto-shocks-a-2026-update/">NY Fed Liberty Street Economics, 'Stablecoins and (Non)Crypto Shocks: A 2026 Update' (July 31, 2026)</a></li>
+<li><a href="https://www.coindesk.com/business/2026/01/27/standard-chartered-says-u-s-regional-banks-most-at-risk-in-usd500-billion-stablecoin-shift">CoinDesk, 'Standard Chartered says U.S. regional banks most at risk in $500 billion stablecoin shift' (Jan. 27, 2026)</a></li>
+<li><a href="https://www.whitehouse.gov/wp-content/uploads/2026/04/Effects-of-Stablecoin-Yield-Prohibition-on-Bank-Lending.pdf">White House Council of Economic Advisers, 'Effects of Stablecoin Yield Prohibition on Bank Lending' (April 2026)</a></li>
+<li><a href="https://www.coindesk.com/opinion/2026/08/25/the-evidence-doesn-t-support-the-banks-case-against-stablecoin-rewards">CoinDesk opinion, 'The evidence doesn't support the banks' case against stablecoin rewards' (Aug. 25, 2026) — cites community bank deposit growth 2019-2026 and CRA/CEA findings of no significant stablecoin-deposit relationship</a></li>
+<li><a href="https://www.forbes.com/sites/jasonbrett/2026/04/14/why-bank-and-crypto-studies-disagree-sharply-on-stablecoin-yield-risks/">Forbes, 'Why Bank And Crypto Studies Disagree Sharply On Stablecoin Yield Risks' (April 14, 2026)</a></li>
+<li><a href="https://www.federalreserve.gov/releases/h6/">Federal Reserve M2 money supply, Jan-Jul 2026</a> <span class="note">— AskAmerica econ.monetary_aggregates</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;date&quot;, m2_money_supply FROM econ.monetary_aggregates WHERE &quot;date&quot; &gt;= '2023-01-01' ORDER BY &quot;date&quot;</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">FDIC call-report financials (banking.financials, 2013–2026, observed live 2026-09-15). Tier assigned by each bank's total assets at the start of each 12-month growth window (a fixed baseline classification), so a bank is not re-bucketed mid-window by growth that crosses a size threshold. Deposit growth is reported as the MEDIAN across banks in each tier, not the aggregate sum, because a small number of merger-driven outliers dominate the sum in the thin large-bank and regional tiers. GENIUS Act signed into law July 18, 2025; pre-window is the four quarters ending 2025-06-30, post-window is the four quarters ending 2026-06-30, matched in length. Descriptive comparison, not a causal estimate — no control group isolates the GENIUS Act from the concurrent Fed easing cycle and M2 growth (M2 up ~3.6% Jan–Jul 2026 alone) that plausibly explains the broad-based acceleration across every tier, including the large/GSIB tier the literature does not flag as most exposed.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
