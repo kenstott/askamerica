@@ -31,30 +31,50 @@ export async function onRequest(context) {
     return new Response("Unknown platform", { status: 404 });
   }
 
-  let release;
-  try {
+  const findAsset = (release) =>
+    (release.assets || []).find((a) =>
+      exactName
+        ? a.name.toLowerCase() === exactName.toLowerCase()
+        : a.name.toLowerCase().endsWith(ext)
+    );
+
+  // A release's assets go from "none of them present" to "all of them present" over the
+  // several minutes its build workflow takes -- the .msi in particular lands last, after
+  // notarization. Caching the GitHub response for 5 minutes (to stay under the
+  // unauthenticated 60/hr rate limit) means a request that lands during that window can get
+  // a "not there yet" snapshot cached and then keep serving that same stale miss for up to 5
+  // more minutes after the asset actually showed up -- exactly what got reported live,
+  // 2026-09-15: the .msi had finished uploading, but /dl/windows kept 404ing well after.
+  // A "found it" result is safe to cache hard (assets don't disappear once published), so
+  // only the miss path needs to distrust the cache -- fetch once more bypassing it entirely
+  // before actually declaring the asset absent.
+  async function fetchRelease(bypassCache) {
     const res = await fetch(RELEASES_API, {
       headers: {
         "User-Agent": "askamerica-site",
         Accept: "application/vnd.github+json",
       },
-      // Cache the release metadata at the edge to stay well under GitHub's
-      // unauthenticated API rate limit (60/hr/IP).
-      cf: { cacheTtl: 300, cacheEverything: true },
+      cf: bypassCache
+        ? { cacheTtl: 0, cacheEverything: false }
+        : { cacheTtl: 300, cacheEverything: true },
     });
     if (!res.ok) {
-      return new Response("Could not reach GitHub releases", { status: 502 });
+      throw new Error("Could not reach GitHub releases");
     }
-    release = await res.json();
+    return res.json();
+  }
+
+  let release;
+  try {
+    release = await fetchRelease(false);
+    if (!findAsset(release)) {
+      release = await fetchRelease(true);
+    }
   } catch (e) {
     return new Response("Could not reach GitHub releases", { status: 502 });
   }
 
-  const asset = (release.assets || []).find((a) =>
-    exactName
-      ? a.name.toLowerCase() === exactName.toLowerCase()
-      : a.name.toLowerCase().endsWith(ext)
-  );
+  const asset = findAsset(release);
   if (!asset) {
     const label = exactName || ext;
     return new Response(`No ${label} asset in the latest release`, { status: 404 });
