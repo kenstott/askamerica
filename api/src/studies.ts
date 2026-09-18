@@ -320,6 +320,8 @@ function renderIndexPage(
             }).then(function (r) {
               if (r.ok) row.remove();
               else status.textContent = 'delete failed';
+            }).catch(function () {
+              status.textContent = 'delete failed (network error)';
             });
           });
         });
