@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>US containerized imports funnel through a strikingly small number of gateways: ~85% via the top 10 ports, ~31-33% through LA/Long Beach alone, and roughly half of all intermodal rail trains through metro Chicago</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s2-t1-s1:checked ~ table tbody.s0{display:none}
+#s2-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"]{color:var(--link)}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"] .srtcue{opacity:1}
+#s2-t1-s1:checked ~ .srtreset{display:inline-block}
+#s2-t1-s2:checked ~ table tbody.s0{display:none}
+#s2-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"]{color:var(--link)}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"] .srtcue{opacity:1}
+#s2-t1-s2:checked ~ .srtreset{display:inline-block}
+#s2-t1-s3:checked ~ table tbody.s0{display:none}
+#s2-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"]{color:var(--link)}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"] .srtcue{opacity:1}
+#s2-t1-s3:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>US containerized imports funnel through a strikingly small number of gateways: ~85% via the top 10 ports, ~31-33% through LA/Long Beach alone, and roughly half of all intermodal rail trains through metro Chicago</h1>
+<p class="subtitle">BTS Port Performance Freight Statistics (2019-2022) plus 2024-2025 industry benchmarks; AAR/CMAP rail-hub figures</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 746" width="880" height="746" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="746" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">US Containerized Imports Are Highly Concentrated in a Few Ports and Rail Gatewa…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">BTS Port Performance Freight Statistics (Jan 2019-Oct 2022, top 9 gateway ports) plus published 2024-2025 industry figures</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:10px">Top 10 US ports' share of national container import volume (2024)</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">~85%</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Descartes Global Shipping Reports, Aug-Sep 2024</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:9px">LA + Long Beach combined share of all US containerized imports (2024-25)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">~31-33%</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Port of LA, PMSA, trade press</text>
+  <rect class="panel-edge" x="20" y="238" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Cumulative TEU handled by BTS's 9 tracked gateway ports, Jan 2019-Oct 2022</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="148.24" x2="818" y2="148.24" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="152.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="125.18" x2="818" y2="125.18" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="129.18" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="102.12" x2="818" y2="102.12" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="106.12" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="79.06" x2="818" y2="79.06" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="83.06" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="148.24" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="148.24" x2="818" y2="148.24" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="439" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Port</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="102.12" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 102.12)">Million TEU</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-los-angeles" class="tick" x="102.11" y="162.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 102.11 162.24)">Los Angeles</text>
+      <text id="p3-xtick-long-beach" class="tick" x="186.33" y="162.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 186.33 162.24)">Long Beach</text>
+      <text id="p3-xtick-ny-nj" class="tick" x="270.56" y="162.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 270.56 162.24)">NY/NJ</text>
+      <text id="p3-xtick-savannah" class="tick" x="354.78" y="162.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 354.78 162.24)">Savannah</text>
+      <text id="p3-xtick-seattle-tacoma" class="tick" x="439" y="162.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 439 162.24)">Seattle-Tacoma</text>
+      <text id="p3-xtick-houston" class="tick" x="523.22" y="162.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 523.22 162.24)">Houston</text>
+      <text id="p3-xtick-virginia" class="tick" x="607.44" y="162.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 607.44 162.24)">Virginia</text>
+      <text id="p3-xtick-charleston" class="tick" x="691.67" y="162.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 691.67 162.24)">Charleston</text>
+      <text id="p3-xtick-oakland" class="tick" x="775.89" y="162.24" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 775.89 162.24)">Oakland</text>
+    </g>
+    <g id="p3-series-total-teu-millions" class="series">
+      <rect id="p3-mark-total-teu-millions-los-angeles" class="bar" x="75.16" y="61.07" width="52.90" height="87.17" fill="#2563eb"/>
+      <rect id="p3-mark-total-teu-millions-long-beach" class="bar" x="159.38" y="71.91" width="52.90" height="76.33" fill="#2563eb"/>
+      <rect id="p3-mark-total-teu-millions-ny-nj" class="bar" x="243.60" y="73.99" width="52.90" height="74.25" fill="#2563eb"/>
+      <rect id="p3-mark-total-teu-millions-savannah" class="bar" x="327.83" y="102.35" width="52.90" height="45.89" fill="#2563eb"/>
+      <rect id="p3-mark-total-teu-millions-seattle-tacoma" class="bar" x="412.05" y="116.65" width="52.90" height="31.59" fill="#2563eb"/>
+      <rect id="p3-mark-total-teu-millions-houston" class="bar" x="496.27" y="118.72" width="52.90" height="29.52" fill="#2563eb"/>
+      <rect id="p3-mark-total-teu-millions-virginia" class="bar" x="580.49" y="119.65" width="52.90" height="28.59" fill="#2563eb"/>
+      <rect id="p3-mark-total-teu-millions-charleston" class="bar" x="664.72" y="125.41" width="52.90" height="22.83" fill="#2563eb"/>
+      <rect id="p3-mark-total-teu-millions-oakland" class="bar" x="748.94" y="126.56" width="52.90" height="21.68" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">transport.bts_port_teu; LA+LB alone = 39% of just these 9 ports' combined volume, top 3 (LA/LB/NY-NJ) = 57%, top 5 = 75%</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="20" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="590" fill="#6b7280" style="font-size:10px">Share of all US intermodal trains passing through metro Chicago</text>
+  <text class="stat-value" x="36" y="620" fill="#1f2328">~50%</text>
+  </g>
+  <text class="caption" x="24" y="675" fill="#6b7280">Association of American Railroads / CMAP</text>
+  <g id="p5-stat">
+  <rect class="panel-edge" x="448" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="590" fill="#6b7280" style="font-size:11px">Share of all US intermodal freight UNITS touching Chicago</text>
+  <text class="stat-value" x="464" y="620" fill="#1f2328">~46%</text>
+  </g>
+  <text class="caption" x="452" y="675" fill="#6b7280">AAR / Chicago rail-congestion studies</text>
+  <g id="brand">
+  <svg x="20" y="705" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="720" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="720" fill="#6b7280" text-anchor="end">Prepared 2026-09-17</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:56692/a/df88e13a449043bf1442beebf31d5e4b.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>US containerized import flows are highly concentrated at both ends of the supply chain. At the <strong>seaport</strong> level, the top 10 US container ports handle roughly <strong>85% of all containerized import volume</strong> (Descartes Global Shipping Report, 2024), and just two adjacent ports &mdash; Los Angeles and Long Beach &mdash; account for roughly <strong>31-33% of the entire national total</strong> by themselves. At the <strong>inland rail</strong> level, the concentration is just as stark in a different way: about <strong>half of all US intermodal trains</strong> (and roughly 46% of all intermodal freight units) pass through the single metro Chicago interchange, where all seven Class I railroads converge. In short: a handful of coastal gateways receive the great majority of containerized imports, and a single inland rail chokepoint touches close to half of everything that moves onward by intermodal rail.</p>
+</section>
+<section>
+<h2>Port-side concentration: the data</h2>
+<p>This corpus's own BTS Port Performance Freight Statistics table (<code>transport.bts_port_teu</code>) carries monthly TEU throughput for BTS's 9 tracked top gateway ports, January 2019 through October 2022 (the source dataset has not been updated since; confirmed live). This is the only table queried in this session. Summed over that window:</p><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><table border='1' cellpadding='4' cellspacing='0'><tr><th><label class="srth" for="s2-t1-s1">Port<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">Total TEU, 2019-Oct 2022<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">Share of these 9 ports' combined total<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Los Angeles, CA</td><td>37.8M</td><td>20.9%</td></tr><tr><td>Long Beach, CA</td><td>33.1M</td><td>18.3%</td></tr><tr><td>Port of NY/NJ</td><td>32.2M</td><td>17.8%</td></tr><tr><td>Savannah, GA</td><td>19.9M</td><td>11.0%</td></tr><tr><td>NWSA Seattle-Tacoma, WA</td><td>13.7M</td><td>7.5%</td></tr><tr><td>Houston, TX</td><td>12.8M</td><td>7.0%</td></tr><tr><td>Port of Virginia, VA</td><td>12.4M</td><td>6.9%</td></tr><tr><td>Charleston, SC</td><td>9.9M</td><td>5.4%</td></tr><tr><td>Oakland, CA</td><td>9.4M</td><td>5.2%</td></tr></tbody><tbody class="srt s1"><tr><td>Charleston, SC</td><td>9.9M</td><td>5.4%</td></tr><tr><td>Houston, TX</td><td>12.8M</td><td>7.0%</td></tr><tr><td>Long Beach, CA</td><td>33.1M</td><td>18.3%</td></tr><tr><td>Los Angeles, CA</td><td>37.8M</td><td>20.9%</td></tr><tr><td>NWSA Seattle-Tacoma, WA</td><td>13.7M</td><td>7.5%</td></tr><tr><td>Oakland, CA</td><td>9.4M</td><td>5.2%</td></tr><tr><td>Port of NY/NJ</td><td>32.2M</td><td>17.8%</td></tr><tr><td>Port of Virginia, VA</td><td>12.4M</td><td>6.9%</td></tr><tr><td>Savannah, GA</td><td>19.9M</td><td>11.0%</td></tr></tbody><tbody class="srt s2"><tr><td>Los Angeles, CA</td><td>37.8M</td><td>20.9%</td></tr><tr><td>Long Beach, CA</td><td>33.1M</td><td>18.3%</td></tr><tr><td>Port of NY/NJ</td><td>32.2M</td><td>17.8%</td></tr><tr><td>Savannah, GA</td><td>19.9M</td><td>11.0%</td></tr><tr><td>NWSA Seattle-Tacoma, WA</td><td>13.7M</td><td>7.5%</td></tr><tr><td>Houston, TX</td><td>12.8M</td><td>7.0%</td></tr><tr><td>Port of Virginia, VA</td><td>12.4M</td><td>6.9%</td></tr><tr><td>Charleston, SC</td><td>9.9M</td><td>5.4%</td></tr><tr><td>Oakland, CA</td><td>9.4M</td><td>5.2%</td></tr></tbody><tbody class="srt s3"><tr><td>Los Angeles, CA</td><td>37.8M</td><td>20.9%</td></tr><tr><td>Long Beach, CA</td><td>33.1M</td><td>18.3%</td></tr><tr><td>Port of NY/NJ</td><td>32.2M</td><td>17.8%</td></tr><tr><td>Savannah, GA</td><td>19.9M</td><td>11.0%</td></tr><tr><td>NWSA Seattle-Tacoma, WA</td><td>13.7M</td><td>7.5%</td></tr><tr><td>Houston, TX</td><td>12.8M</td><td>7.0%</td></tr><tr><td>Port of Virginia, VA</td><td>12.4M</td><td>6.9%</td></tr><tr><td>Charleston, SC</td><td>9.9M</td><td>5.4%</td></tr><tr><td>Oakland, CA</td><td>9.4M</td><td>5.2%</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>Among just these 9 gateway ports, LA+Long Beach alone account for 39% of the combined volume, the top 3 (LA/LB/NY-NJ) for 57%, and the top 5 for 75%. <strong>This denominator is only the top 9 ports BTS tracks, not the full universe of US ports</strong> &mdash; so it overstates LA/LB's share of the true national total, which is why the externally sourced 31-33% figure (below) is the one to use for &quot;share of all US containerized imports.&quot;</p>
+</section>
+<section>
+<h2>Cross-checking against current published industry figures</h2>
+<p>Because the BTS series stopped updating after October 2022, current-era concentration figures come from industry trade-data publishers who track all US ports, not just the top 9-10. Descartes' 2024 Global Shipping Reports put the <strong>top 10 US ports' combined share of national container import volume at roughly 85%</strong> (85.5% in August 2024, 85.3% in September 2024) &mdash; down modestly from over 90% a year earlier as some volume shifted to secondary gateways (e.g. Gulf and Southeast ports) amid West Coast labor-contract uncertainty and Red Sea/Panama Canal disruptions. Port of Los Angeles and PMSA reporting for 2024-2025 puts the <strong>Los Angeles + Long Beach combined share at roughly 31-33% of all US containerized imports</strong> &mdash; LA alone handled about 17-21% depending on the year, with Long Beach adding another 13-15 points. Both figures triangulate consistently with the BTS-measured relative ordering above (LA and Long Beach are consistently the two largest gateways, followed by NY/NJ), even though the absolute share-of-national-total number has to come from the external, currently-updated sources since the BTS series itself does not cover the full port universe or the current period.</p>
+</section>
+<section>
+<h2>Rail-side concentration: the Chicago chokepoint</h2>
+<p>Once containers leave the ports, inland movement concentrates just as sharply at a single interchange. The Association of American Railroads and the Chicago Metropolitan Agency for Planning report that <strong>roughly 50% of all intermodal trains in the US pass through metropolitan Chicago</strong>, and about <strong>46% of all intermodal freight units nationally touch Chicago</strong> at some point in their journey. More broadly, roughly one in four of ALL US freight trains (not just intermodal) passes through or near Chicago, which is where all seven Class I railroads interchange traffic between the western and eastern rail networks. These rail-hub figures are drawn entirely from AAR and CMAP publications, not computed from any warehouse table &mdash; no rail-corridor table was queried in this session.</p>
+</section>
+<section>
+<h2>Data provenance and limits</h2>
+<ul><li><strong>Warehouse table used:</strong> <code>transport.bts_port_teu</code> (BTS Port Performance Freight Statistics Program, Socrata rd72-aq8r) &mdash; the only table actually queried for this report. Covers only the 9 ports BTS itself tracks as the top gateways, monthly Jan 2019-Oct 2022; the source has not published since and this corpus has confirmed that live. It is real historical government data, not a proxy, but it is not a current-era series and not a full census of all US ports.</li><li><strong>External figures</strong> (top-10 national import share, LA+LB national share, Chicago rail-hub shares) come from Descartes Global Shipping Reports, Port of Los Angeles / PMSA public statistics, and AAR/CMAP rail-hub publications &mdash; cited individually above and in Sources below &mdash; because no freely bulk-downloadable current-era government series covers full national port-volume totals (the industry-standard NRF/Hackett Global Port Tracker publishes only point press-release figures, not a downloadable time series; this gap is confirmed in this corpus's own defect register, D-109). None of these external figures were computed from a warehouse table.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>3 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 4711 ms</summary><pre><code>SELECT port_name, SUM(teu) AS total_teu FROM transport.bts_port_teu WHERE type = 'Loaded' OR type IS NULL GROUP BY port_name ORDER BY total_teu DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 2356 ms</summary><pre><code>SELECT DISTINCT type FROM transport.bts_port_teu</code></pre></details>
+<details class="sqltoggle"><summary>query — 9 rows — 1340 ms</summary><pre><code>SELECT port_name, SUM(teu) AS total_teu, MIN(report_date) AS min_d, MAX(report_date) AS max_d, COUNT(*) AS n FROM transport.bts_port_teu GROUP BY port_name ORDER BY total_teu DESC</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.bts.gov/ports">BTS Port Performance Freight Statistics Program (Monthly TEU Data)</a> <span class="note">— transport.bts_port_teu, Jan 2019-Oct 2022, verified live 2026</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT port_name, SUM(teu) AS total_teu FROM transport.bts_port_teu GROUP BY port_name ORDER BY total_teu DESC</code></pre></details></li>
+<li><a href="https://www.supplychain247.com/article/top-30-us-ports-import-volume-2025">https://www.supplychain247.com/article/top-30-us-ports-import-volume-2025</a></li>
+<li><a href="https://portoflosangeles.org/business/statistics/facts-and-figures">https://portoflosangeles.org/business/statistics/facts-and-figures</a></li>
+<li><a href="https://www.ttnews.com/articles/port-la-2024-containers">https://www.ttnews.com/articles/port-la-2024-containers</a></li>
+<li><a href="https://www.globaltrademag.com/september-2024-u-s-container-imports-mark-third-consecutive-month-of-elevated-volumes/">https://www.globaltrademag.com/september-2024-u-s-container-imports-mark-third-consecutive-month-of-elevated-volumes/</a></li>
+<li><a href="https://www.globaltrademag.com/october-monthly-container-import-volumes-remain-above-2-4m-teus-straining-u-s-maritime-logistics/">https://www.globaltrademag.com/october-monthly-container-import-volumes-remain-above-2-4m-teus-straining-u-s-maritime-logistics/</a></li>
+<li><a href="https://www.aar.org/wp-content/uploads/2020/07/AAR-Intermodal-Fact-Sheet.pdf">https://www.aar.org/wp-content/uploads/2020/07/AAR-Intermodal-Fact-Sheet.pdf</a></li>
+<li><a href="https://news.medill.northwestern.edu/chicago/working-on-the-railroad-chicago-copes-with-worst-rail-congestion-in-years/">https://news.medill.northwestern.edu/chicago/working-on-the-railroad-chicago-copes-with-worst-rail-congestion-in-years/</a></li>
+<li><a href="https://cmap.illinois.gov/regional-plan/goals/recommendation/maintain-the-regions-status-as-north-americas-freight-hub/">https://cmap.illinois.gov/regional-plan/goals/recommendation/maintain-the-regions-status-as-north-americas-freight-hub/</a></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Port-share figures for the current era (2024-2025) are drawn from Descartes, Port of LA, and PMSA published reporting, not computed directly from this corpus's warehouse tables, because the BTS TEU series (the only bulk-downloadable government port-volume series found) stopped updating after October 2022 and covers only its own top-9 tracked ports, not the full US port universe. Chicago rail-hub shares are similarly external (AAR/CMAP) and were not computed from any warehouse table.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-17</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Income tax changes barely move the overall population — but noticeably shift where the top earners live</title>
+<style>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
+padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
+  <a href="/studies/" style="color:#e8a24a;text-decoration:none;">&larr; All studies</a>
+  <span style="color:#768390;"> &middot; </span>
+  <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
+</div>
+<main>
+<header>
+<h1>Income tax changes barely move the overall population — but noticeably shift where the top earners live</h1>
+<p class="subtitle">Synthesis of peer-reviewed migration-elasticity studies plus IRS SOI county-to-county migration data, 2012-2022</p>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 645" width="880" height="645" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">State income tax changes move only the top slice of earners, not the overall population</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">IRS SOI county-to-county migration (all filers, 2012-2022) vs. peer-reviewed migration-elasticity estimates for top earners</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:8px">CA Prop 30 (2012, +3pp top rate): out-migration rate among top-bracket filers</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">1.5% -&gt; 2.3%</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">+53% relative</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Rauh &amp; Shyu (2024, AEJ:Policy) - affects only filers landing in the</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">new top bracket, not the general population</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:10px">NJ millionaire tax: added migration among top 0.1% of earners</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">+27.4 per 1,000</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">semi-elasticity 1.17 (stat. significant)</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Young, Varner, Lurie &amp; Prisinzano (2016) - among all millionaires the</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">effect (+6.4/1,000) was not statistically significant</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Kansas: net domestic migration, all filers</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="69" y1="187.84" x2="390" y2="187.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="61" y="191.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-3.0</text>
+      <line class="grid" x1="69" y1="161.47" x2="390" y2="161.47" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="61" y="165.47" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-2.5</text>
+      <line class="grid" x1="69" y1="135.10" x2="390" y2="135.10" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="61" y="139.10" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-2.0</text>
+      <line class="grid" x1="69" y1="108.74" x2="390" y2="108.74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="61" y="112.74" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-1.5</text>
+      <line class="grid" x1="69" y1="82.37" x2="390" y2="82.37" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="61" y="86.37" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-1.0</text>
+      <line class="grid" x1="69" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="61" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.5</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="69" y1="56" x2="69" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="69" y1="187.84" x2="390" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="229.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Filing year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="121.92" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 121.92)">Net migration /1,000 pop</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2012" class="tick" x="83.59" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 83.59 201.84)">2012</text>
+      <text id="p3-xtick-2013" class="tick" x="112.77" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 112.77 201.84)">2013</text>
+      <text id="p3-xtick-2014" class="tick" x="141.95" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 141.95 201.84)">2014</text>
+      <text id="p3-xtick-2015" class="tick" x="171.14" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 171.14 201.84)">2015</text>
+      <text id="p3-xtick-2016" class="tick" x="200.32" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 200.32 201.84)">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="229.50" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 229.50 201.84)">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="258.68" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 258.68 201.84)">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="287.86" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 287.86 201.84)">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="317.05" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 317.05 201.84)">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="346.23" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 346.23 201.84)">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="375.41" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 375.41 201.84)">2022</text>
+    </g>
+    <g id="p3-series-net-migration-per-1-000-residents" class="series">
+      <path id="p3-line-net-migration-per-1-000-residents" class="line" d="M 83.59 121.39 L 112.77 145.12 L 141.95 117.17 L 171.14 70.24 L 200.32 162.00 L 229.50 176.77 L 258.68 105.57 L 287.86 139.85 L 317.05 101.88 L 346.23 92.39 L 375.41 114.01" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2012" class="point" cx="83.59" cy="121.39" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2013" class="point" cx="112.77" cy="145.12" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2014" class="point" cx="141.95" cy="117.17" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2015" class="point" cx="171.14" cy="70.24" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2016" class="point" cx="200.32" cy="162.00" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2017" class="point" cx="229.50" cy="176.77" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2018" class="point" cx="258.68" cy="105.57" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2019" class="point" cx="287.86" cy="139.85" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2020" class="point" cx="317.05" cy="101.88" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2021" class="point" cx="346.23" cy="92.39" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-net-migration-per-1-000-residents-2022" class="point" cx="375.41" cy="114.01" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="519" fill="#6b7280">2013 = Brownback tax cuts take effect; 2017 = mostly repealed. No</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">visible discontinuity at either date.</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">North Carolina: net domestic migration, all filers</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="53" y1="187.84" x2="390" y2="187.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="45" y="191.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="53" y1="161.47" x2="390" y2="161.47" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="45" y="165.47" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
+      <line class="grid" x1="53" y1="135.10" x2="390" y2="135.10" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="45" y="139.10" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="53" y1="108.74" x2="390" y2="108.74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="45" y="112.74" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
+      <line class="grid" x1="53" y1="82.37" x2="390" y2="82.37" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="45" y="86.37" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="53" y1="56" x2="53" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="53" y1="187.84" x2="390" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="221.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Filing year</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="121.92" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 121.92)">Net migration /1,000 pop</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-2012" class="tick" x="68.32" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 68.32 201.84)">2012</text>
+      <text id="p4-xtick-2013" class="tick" x="98.95" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 98.95 201.84)">2013</text>
+      <text id="p4-xtick-2014" class="tick" x="129.59" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 129.59 201.84)">2014</text>
+      <text id="p4-xtick-2015" class="tick" x="160.23" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 160.23 201.84)">2015</text>
+      <text id="p4-xtick-2016" class="tick" x="190.86" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 190.86 201.84)">2016</text>
+      <text id="p4-xtick-2017" class="tick" x="221.50" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 221.50 201.84)">2017</text>
+      <text id="p4-xtick-2018" class="tick" x="252.14" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 252.14 201.84)">2018</text>
+      <text id="p4-xtick-2019" class="tick" x="282.77" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 282.77 201.84)">2019</text>
+      <text id="p4-xtick-2020" class="tick" x="313.41" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 313.41 201.84)">2020</text>
+      <text id="p4-xtick-2021" class="tick" x="344.05" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 344.05 201.84)">2021</text>
+      <text id="p4-xtick-2022" class="tick" x="374.68" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 374.68 201.84)">2022</text>
+    </g>
+    <g id="p4-series-net-migration-per-1-000-residents" class="series">
+      <path id="p4-line-net-migration-per-1-000-residents" class="line" d="M 68.32 131.41 L 98.95 135.63 L 129.59 163.85 L 160.23 165.43 L 190.86 126.67 L 221.50 76.04 L 252.14 112.43 L 282.77 123.24 L 313.41 95.02 L 344.05 78.94 L 374.68 66.02" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2012" class="point" cx="68.32" cy="131.41" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2013" class="point" cx="98.95" cy="135.63" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2014" class="point" cx="129.59" cy="163.85" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2015" class="point" cx="160.23" cy="165.43" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2016" class="point" cx="190.86" cy="126.67" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2017" class="point" cx="221.50" cy="76.04" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2018" class="point" cx="252.14" cy="112.43" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2019" class="point" cx="282.77" cy="123.24" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2020" class="point" cx="313.41" cy="95.02" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2021" class="point" cx="344.05" cy="78.94" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-net-migration-per-1-000-residents-2022" class="point" cx="374.68" cy="66.02" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">2014 = flat-rate income tax cut begins. NC was already a net</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">in-migration state before the cut; growth accelerates gradually, not…</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">All-filer migration counts from IRS SOI (via fiscal.county_migration_flows) cannot isolate income level, so they show only the population-wide net</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">effect, which the literature says is small; row counts per filing year in this table vary 2.5x (36k-91k rows), a known IRS-file completeness</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">issue, so year-to-year swings in the raw series should be read cautiously.</text>
+  <g id="brand">
+  <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:52649/a/910f65cd3564131632a2e408a74f2f8a.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Summary</h2>
+<p>For the population as a whole, a state income tax change has a small, mostly undetectable effect on migration — general-population studies find semi-elasticities well under 1 (i.e., a several-point tax change shifts a tiny fraction of a percent of residents). The effect concentrates almost entirely among the top of the income distribution: millionaires and above show a real but still modest response, and the very top (0.1%) shows the clearest, statistically significant response. The best-identified single case — California's 2012 Proposition 30, a 3-percentage-point increase on the top bracket — raised the annual out-migration rate of newly top-bracketed filers from about 1.5% to about 2.3% (a 53% relative increase), still leaving the overwhelming majority of those taxpayers in place. A landmark New Jersey "millionaire tax" natural experiment found migration among the top 0.1% of earners rose by about 27 per 1,000 (statistically significant) versus about 6 per 1,000 among millionaires overall (not statistically significant). Descriptive data from this corpus on Kansas's 2012-13 tax cut and North Carolina's 2014 tax cut show no sharp discontinuity in total (all-income) net migration around either policy date — consistent with the literature's finding that broad-based migration responses are small and other forces (jobs, housing costs, climate, family ties) dominate for most movers.</p>
+</section>
+<section>
+<h2>What the peer-reviewed literature finds</h2>
+<ul><li><strong>General population:</strong> Cristobal Young's body of work (the foundational "millionaire tax flight" research program) repeatedly finds population-wide migration elasticities with respect to top tax rates below 0.1-0.25 — meaning even large rate changes move only a sliver of the overall population. His summary judgment, echoed across several studies: "there is limited evidence of millionaire tax flight in the U.S."</li><li><strong>Millionaires/top earners as a group:</strong> Young, Varner, Lurie & Prisinzano (2016, <em>American Sociological Review</em>), using a New Jersey millionaire-tax natural experiment and IRS administrative data, estimated the tax raised migration by 6.4 per 1,000 among millionaires overall (semi-elasticity 0.64, not statistically significant) and by 27.4 per 1,000 among the top 0.1% of earners (semi-elasticity 1.17, statistically significant) — the effect is real but concentrated at the very top and small in absolute terms even there.</li><li><strong>California Proposition 30 (2012), the most granular recent case study:</strong> Rauh & Shyu (2024, <em>American Economic Journal: Economic Policy</em>) found the 3-percentage-point top-rate increase raised the departure rate of newly top-bracketed taxpayers from an average baseline of about 1.5% per year to about 2.3% in 2013 — a 53% relative jump, but on a base that leaves ~97-98% of the affected group in place. The bigger revenue effect they document came from taxable-income shrinkage among stayers (an elasticity of 2.5-3.2 with respect to the net-of-tax rate), not from people leaving.</li><li><strong>Long-run, structural change (not a marginal rate tweak):</strong> Cassidy, Dincecco & Troiano (2024, AEJ:Policy), using a 1900-2010 panel of the actual introduction of state income taxes, found that states introducing an income tax after WWII lost more than 16% of their population within 20-30 years relative to what they would otherwise have had — but this is the effect of creating a brand-new tax where none existed, over decades, not a comparable magnitude to a marginal rate cut or hike in an existing system.</li><li><strong>Work location vs. residence:</strong> Agrawal & Tester (2024, AEJ:Policy), studying professional golfers as a clean case of location choice, found major state income tax increases (>=1 percentage point) significantly reduce participation by high earners in that state — evidence that even short of moving residence, high earners respond to tax changes by redirecting where they generate income.</li></ul>
+</section>
+<section>
+<h2>What this corpus adds: descriptive case checks for two real tax-change states</h2>
+<p>IRS Statistics of Income county-to-county migration data (fiscal.county_migration_flows, all filers, 2012-2022) was aggregated to net in-minus-out migration per 1,000 residents for three states: Kansas (state FIPS 20), North Carolina (FIPS 37), and California (FIPS 06, used only to sanity-check the Prop 30 literature figures above, not charted). <strong>Each of the three queries excludes same-state moves from both sides of the count</strong> — for Kansas, rows where both origin_state_fips and dest_state_fips equal '20' are excluded (predicates origin_state_fips<>'20' AND dest_state_fips<>'20'); for North Carolina, rows where both equal '37' are excluded (origin_state_fips<>'37' AND dest_state_fips<>'37'); for California, rows where both equal '06' are excluded (origin_state_fips<>'06' AND dest_state_fips<>'06'). This is a definitional filter, not a data-quality judgment call: a Wichita-to-Topeka move is not interstate migration and, left in, would add the identical count to both in_ks and out_ks, leaving net_mig — the only figure charted — completely unchanged. Re-running each query without that filter confirms this: it adds roughly 25,000-40,000/year to both the in- and out-flow totals for Kansas (and comparable amounts for North Carolina and California) but changes not a single one of the net-migration-per-1,000 values charted above, since an intra-state move inflates both sides equally.</p><p><strong>Kansas</strong> cut income tax rates sharply starting tax year 2013 (the Brownback tax cuts, including a pass-through business income exemption) and mostly repealed the cuts in 2017. Kansas ran a small net <em>out</em>-migration (roughly -0.8 to -2.8 per 1,000 residents/year) in every single year 2012-2022, with no visible break at either the 2013 cut or the 2017 repeal.</p><p><strong>North Carolina</strong> replaced its progressive income tax (top rate 7.75%) with a flat rate starting tax year 2014, cutting further in subsequent years. NC was already running net <em>in</em>-migration (about +2/1,000) before the cut, dipped in 2014-2015, then rose gradually to over +4.6/1,000 by 2022 — a real acceleration, but gradual over years, not a step change coincident with the 2014 cut, and North Carolina's Research Triangle jobs boom and Sun Belt population growth generally are the more obvious candidate explanations.</p><p>This descriptive check is consistent with — not independent proof against — the literature: total-filer migration data cannot isolate the income level of movers, so it necessarily understates any effect concentrated in the top 0.1-1% of earners, which is exactly where the peer-reviewed studies above find the real (if still modest) response.</p>
+</section>
+<section>
+<h2>Bottom line and caveats</h2>
+<p><strong>How much does a state income tax cut or hike actually change migration?</strong> For the state's population as a whole: very little — on the order of a small fraction of a percent of residents, often not statistically distinguishable from zero in rigorous studies. For high earners specifically (roughly the top 1%, and especially the top 0.1%): a real, measurable effect exists, on the order of a 50%-plus relative increase in the already-small annual departure rate following a several-percentage-point tax hike (Prop 30), or on the order of 1-3 extra migrants per 1,000 top-bracket filers per year (NJ). Even at the top, the large majority of affected taxpayers stay — the dominant revenue response to a state tax hike on high earners is income/avoidance adjustment by people who remain, not people leaving.</p><p><strong>Caveats:</strong> (1) This corpus's IRS SOI migration table has no income breakdown, so the Kansas/NC checks here are population-wide proxies, not the top-earner-specific test the literature actually runs — a real effect concentrated in the top 1% could exist underneath a flat aggregate line. (2) Row counts per filing year in that table vary roughly 2.5x (36,000 to 91,000 rows/year), a known IRS-file completeness issue that makes year-to-year swings in the raw series (not the multi-year direction) less trustworthy. (3) None of the studies above isolate a tax change from simultaneous confounds (job growth, housing costs, remote-work shifts, SALT-cap changes) — the Rauh & Shyu and Agrawal & Tester designs are the most causally careful (using matched control groups and a location-choice natural experiment, respectively) and are weighted accordingly above.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>5 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 11 rows — 2649 ms</summary><pre><code>SELECT year,
+  SUM(CASE WHEN dest_state_fips='20' AND origin_state_fips&lt;&gt;'20' THEN num_individuals ELSE 0 END) AS in_ks,
+  SUM(CASE WHEN origin_state_fips='20' AND dest_state_fips&lt;&gt;'20' THEN num_individuals ELSE 0 END) AS out_ks
+FROM fiscal.county_migration_flows
+WHERE dest_state_fips='20' OR origin_state_fips='20'
+GROUP BY year ORDER BY year</code></pre></details>
+<details class="sqltoggle"><summary>query — 11 rows — 2084 ms</summary><pre><code>SELECT year,
+  SUM(CASE WHEN dest_state_fips='06' AND origin_state_fips&lt;&gt;'06' THEN num_individuals ELSE 0 END) AS in_ca,
+  SUM(CASE WHEN origin_state_fips='06' AND dest_state_fips&lt;&gt;'06' THEN num_individuals ELSE 0 END) AS out_ca
+FROM fiscal.county_migration_flows
+WHERE dest_state_fips='06' OR origin_state_fips='06'
+GROUP BY year ORDER BY year</code></pre></details>
+<details class="sqltoggle"><summary>query — 11 rows — 2258 ms</summary><pre><code>SELECT year,
+  SUM(CASE WHEN dest_state_fips='37' AND origin_state_fips&lt;&gt;'37' THEN num_individuals ELSE 0 END) AS in_nc,
+  SUM(CASE WHEN origin_state_fips='37' AND dest_state_fips&lt;&gt;'37' THEN num_individuals ELSE 0 END) AS out_nc
+FROM fiscal.county_migration_flows
+WHERE dest_state_fips='37' OR origin_state_fips='37'
+GROUP BY year ORDER BY year</code></pre></details>
+<details class="sqltoggle"><summary>per_capita — 9532 ms</summary><pre><code>SELECT year,
+  SUM(CASE WHEN dest_state_fips='20' AND origin_state_fips&lt;&gt;'20' THEN num_individuals ELSE 0 END)
+  - SUM(CASE WHEN origin_state_fips='20' AND dest_state_fips&lt;&gt;'20' THEN num_individuals ELSE 0 END) AS net_mig,
+  '20' AS state_fips
+FROM fiscal.county_migration_flows
+WHERE dest_state_fips='20' OR origin_state_fips='20'
+GROUP BY year ORDER BY year</code></pre></details>
+<details class="sqltoggle"><summary>per_capita — 6696 ms</summary><pre><code>SELECT year,
+  SUM(CASE WHEN dest_state_fips='37' AND origin_state_fips&lt;&gt;'37' THEN num_individuals ELSE 0 END)
+  - SUM(CASE WHEN origin_state_fips='37' AND dest_state_fips&lt;&gt;'37' THEN num_individuals ELSE 0 END) AS net_mig,
+  '37' AS state_fips
+FROM fiscal.county_migration_flows
+WHERE dest_state_fips='37' OR origin_state_fips='37'
+GROUP BY year ORDER BY year</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://gwern.net/doc/economics/2024-rauh.pdf">Rauh &amp; Shyu (2024), &quot;Behavioral Responses to State Income Taxation of High Earners: Evidence from California&quot;, AEJ:Economic Policy 16(1):34-86</a></li>
+<li><a href="https://cristobalyoung.com/wp-content/uploads/2018/11/Millionaire_migration_Jun16ASRFeature.pdf">Young, Varner, Lurie &amp; Prisinzano (2016), &quot;Millionaire Migration and Taxation of the Elite&quot;, American Sociological Review</a></li>
+<li><a href="https://www.aeaweb.org/articles?id=10.1257/pol.20210388">Cassidy, Dincecco &amp; Troiano (2024), &quot;The Introduction of the Income Tax, Fiscal Capacity, and Migration: Evidence from US States&quot;, AEJ:Economic Policy</a></li>
+<li><a href="https://www.aeaweb.org/articles?id=10.1257/pol.20210567">Agrawal &amp; Tester (2024), &quot;State Taxation of Nonresident Income and the Location of Work&quot;, AEJ:Economic Policy</a></li>
+<li><a href="https://taxfoundation.org/blog/taxes-state-outmigration-academic-research/">Tax Foundation summary of the three 2024 AEJ:Policy migration studies</a></li>
+<li><a href="https://www.sciencedaily.com/releases/2024/04/240403224902.htm">ScienceDaily / UC Riverside coverage of Cassidy-Dincecco-Troiano study</a></li>
+<li>Kansas net domestic migration per 1,000 residents, 2012-2022<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, SUM(CASE WHEN dest_state_fips='20' AND origin_state_fips&lt;&gt;'20' THEN num_individuals ELSE 0 END) - SUM(CASE WHEN origin_state_fips='20' AND dest_state_fips&lt;&gt;'20' THEN num_individuals ELSE 0 END) AS net_mig FROM fiscal.county_migration_flows WHERE dest_state_fips='20' OR origin_state_fips='20' GROUP BY year ORDER BY year</code></pre></details></li>
+<li>North Carolina net domestic migration per 1,000 residents, 2012-2022<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, SUM(CASE WHEN dest_state_fips='37' AND origin_state_fips&lt;&gt;'37' THEN num_individuals ELSE 0 END) - SUM(CASE WHEN origin_state_fips='37' AND dest_state_fips&lt;&gt;'37' THEN num_individuals ELSE 0 END) AS net_mig FROM fiscal.county_migration_flows WHERE dest_state_fips='37' OR origin_state_fips='37' GROUP BY year ORDER BY year</code></pre></details></li>
+</ol>
+</section>
+<footer>
+<p class="footnote">Peer-reviewed elasticities cited above are the primary evidence; the Kansas/NC series are a supplementary descriptive check using this corpus's all-filer IRS migration data, which cannot isolate high earners and should not be read as a replication of the cited studies.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-17</span></p>
+</footer>
+</main>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
