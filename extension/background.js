@@ -71,29 +71,21 @@ function validatePrompt(url, selection, mode) {
     + "Publish the result with publish_report.";
 }
 
+// The claude:// scheme is Claude Desktop's own registered protocol handler (its authority
+// happens to be spelled "claude.ai" by Anthropic's own URI design, same as any custom
+// scheme — this never touches a browser or the actual claude.ai website). Desktop-only:
+// there is no browser/claude.ai fallback path.
 function desktopLink(url, selection, mode) {
   return "claude://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url, selection, mode))
     + "&surface=chat&source=askamerica-extension";
 }
 
-function webLink(url, selection, mode) {
-  return "https://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url, selection, mode));
-}
-
-async function launchValidate(url, tabId, target, selection, mode) {
-  const link = target === "web" ? webLink(url, selection, mode) : desktopLink(url, selection, mode);
-  if (target === "web") {
-    await chrome.tabs.create({ url: link });
-    return;
-  }
+async function launchValidate(url, tabId, selection, mode) {
+  const link = desktopLink(url, selection, mode);
   // Navigating the page to a custom scheme hands off to the OS handler without leaving the
-  // article; Chrome asks once whether to open Claude. If no handler exists nothing happens,
-  // so the popup also offers the web link.
-  try {
-    await chrome.tabs.update(tabId, { url: link });
-  } catch (e) {
-    await chrome.tabs.create({ url: webLink(url, selection, mode) });
-  }
+  // article; Chrome asks once whether to open Claude. If no handler exists (Desktop isn't
+  // installed), nothing happens — there is no fallback to fall back to.
+  await chrome.tabs.update(tabId, { url: link }).catch(() => {});
 }
 
 function summarize(tally) {
@@ -139,11 +131,11 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   const url = info.linkUrl || info.pageUrl || (tab && tab.url);
   if (info.menuItemId === "aa-validate-selection") {
-    await launchValidate(url, tab && tab.id, "desktop", info.selectionText);
+    await launchValidate(url, tab && tab.id, info.selectionText);
     return;
   }
   if (info.menuItemId === "aa-validate-page") {
-    await launchValidate(url, tab && tab.id, "desktop");
+    await launchValidate(url, tab && tab.id);
   }
 });
 
@@ -170,7 +162,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         sendResponse(await engineStatus());
         break;
       case "aa:validate":
-        await launchValidate(msg.url, msg.tabId, msg.target || "desktop", msg.selection, msg.mode);
+        await launchValidate(msg.url, msg.tabId, msg.selection, msg.mode);
         sendResponse({ ok: true });
         break;
       case "aa:highlight": {

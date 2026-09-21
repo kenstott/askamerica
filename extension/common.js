@@ -17,15 +17,12 @@ function aaValidatePrompt(url) {
 }
 
 // Claude Desktop registers the claude:// scheme and opens a new chat with the prompt staged in
-// the composer at claude://claude.ai/new?q=<text>. The web app accepts the same query on
-// https://claude.ai/new. Neither auto-sends: the reader presses Enter.
+// the composer at claude://claude.ai/new?q=<text> (its authority is spelled "claude.ai" by
+// Anthropic's own URI design — this never touches a browser or the claude.ai website). Not
+// auto-sent: the reader presses Enter. Desktop-only, no web/browser fallback.
 function aaDesktopLink(url) {
   return "claude://claude.ai/new?q=" + encodeURIComponent(aaValidatePrompt(url))
     + "&surface=chat&source=askamerica-extension";
-}
-
-function aaWebLink(url) {
-  return "https://claude.ai/new?q=" + encodeURIComponent(aaValidatePrompt(url));
 }
 
 const AA_VERDICT_COLORS = {
