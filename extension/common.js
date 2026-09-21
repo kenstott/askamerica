@@ -6,8 +6,14 @@ function aaEngineBase(port) {
   return "http://127.0.0.1:" + (port || AA_DEFAULT_PORT);
 }
 
+// Kept in sync with background.js's validatePrompt() default (article) case — see that
+// file's comment for why every prompt names the AskAmerica connector explicitly.
 function aaValidatePrompt(url) {
-  return "Validate this article: " + url;
+  return "Using the AskAmerica connector, validate every factual claim in this article: " + url
+    + ". Check each claim against AskAmerica's own warehouse data first (search_catalog, then "
+    + "query); grade anything with no matching table 'not checkable here' rather than skipping "
+    + "it, and verify against independent primary sources where the corpus doesn't cover it. "
+    + "Publish the result with publish_report.";
 }
 
 // Claude Desktop registers the claude:// scheme and opens a new chat with the prompt staged in

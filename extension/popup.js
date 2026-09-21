@@ -11,11 +11,15 @@
     selection = (selRes && selRes.selection) || "";
   }
   const urlEl = document.getElementById("url");
+  const newsBtn = document.getElementById("validateNews");
   if (selection) {
     urlEl.textContent = "“" + (selection.length > 140 ? selection.slice(0, 140) + "…" : selection) + "”";
     urlEl.title = "Selected text — this is what gets validated, not the whole page";
     document.getElementById("validateDesktop").textContent = "Validate this selection with AskAmerica";
     document.getElementById("validateWeb").textContent = "Validate this selection with AskAmerica (claude.ai)";
+    // A selected claim always overrides page-level framing, so the news-report button (which
+    // only changes how the whole page is checked) has nothing to add here.
+    newsBtn.hidden = true;
   }
   document.getElementById("version").textContent = "v" + chrome.runtime.getManifest().version;
   const statusEl = document.getElementById("status");
@@ -60,6 +64,10 @@
   });
   document.getElementById("validateWeb").addEventListener("click", async () => {
     await chrome.runtime.sendMessage({ type: "aa:validate", url, selection, tabId: tab.id, target: "web" });
+    window.close();
+  });
+  newsBtn.addEventListener("click", async () => {
+    await chrome.runtime.sendMessage({ type: "aa:validate", url, selection, tabId: tab.id, target: "desktop", mode: "news" });
     window.close();
   });
   toggle.addEventListener("click", async () => {

@@ -39,25 +39,49 @@ async function claimsFor(url) {
 }
 
 // A highlighted passage is a specific claim to check, not a request to validate the whole
-// page it happens to sit on — the two prompts are deliberately different shapes.
-function validatePrompt(url, selection) {
+// page it happens to sit on — selection always wins over `mode`, even for the news-report
+// button, since a selected claim is a more specific ask than a page-level framing.
+//
+// Every prompt names the AskAmerica connector explicitly and spells out the tool sequence
+// (search_catalog, then query, then publish_report) instead of just saying "validate this" and
+// hoping Claude reaches for the connector on its own — a bare "Validate this article: <url>"
+// is exactly as likely to get answered from general web knowledge as from the connector.
+function validatePrompt(url, selection, mode) {
   if (selection && selection.trim()) {
-    return "Validate this claim: \"" + selection.trim() + "\" (from " + url + ")";
+    return "Using the AskAmerica connector, fact-check this specific claim: \"" + selection.trim()
+      + "\" (from " + url + "). Check it against AskAmerica's own warehouse data first "
+      + "(search_catalog, then query); if no matching table exists, verify it against "
+      + "independent primary sources instead and say so. Grade it true, mostly true, partially "
+      + "true, mostly false, false, not checkable here, or stale vintage, and publish the "
+      + "result with publish_report.";
   }
-  return "Validate this article: " + url;
+  if (mode === "news") {
+    return "Using the AskAmerica connector, fact-check this news report the way a professional "
+      + "fact-checker would: " + url + ". Extract every factual claim and attributed quote in "
+      + "the piece, verify each one against AskAmerica's own government data where a matching "
+      + "table exists (search_catalog, then query) and against independent primary sources "
+      + "otherwise. Grade the piece's overall accuracy on the Washington Post Fact Checker's "
+      + "0-4 Pinocchio scale, and flag anything materially misleading even if the individual "
+      + "facts check out. Publish the result with publish_report.";
+  }
+  return "Using the AskAmerica connector, validate every factual claim in this article: " + url
+    + ". Check each claim against AskAmerica's own warehouse data first (search_catalog, then "
+    + "query); grade anything with no matching table 'not checkable here' rather than skipping "
+    + "it, and verify against independent primary sources where the corpus doesn't cover it. "
+    + "Publish the result with publish_report.";
 }
 
-function desktopLink(url, selection) {
-  return "claude://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url, selection))
+function desktopLink(url, selection, mode) {
+  return "claude://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url, selection, mode))
     + "&surface=chat&source=askamerica-extension";
 }
 
-function webLink(url, selection) {
-  return "https://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url, selection));
+function webLink(url, selection, mode) {
+  return "https://claude.ai/new?q=" + encodeURIComponent(validatePrompt(url, selection, mode));
 }
 
-async function launchValidate(url, tabId, target, selection) {
-  const link = target === "web" ? webLink(url, selection) : desktopLink(url, selection);
+async function launchValidate(url, tabId, target, selection, mode) {
+  const link = target === "web" ? webLink(url, selection, mode) : desktopLink(url, selection, mode);
   if (target === "web") {
     await chrome.tabs.create({ url: link });
     return;
@@ -68,7 +92,7 @@ async function launchValidate(url, tabId, target, selection) {
   try {
     await chrome.tabs.update(tabId, { url: link });
   } catch (e) {
-    await chrome.tabs.create({ url: webLink(url, selection) });
+    await chrome.tabs.create({ url: webLink(url, selection, mode) });
   }
 }
 
@@ -146,7 +170,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         sendResponse(await engineStatus());
         break;
       case "aa:validate":
-        await launchValidate(msg.url, msg.tabId, msg.target || "desktop", msg.selection);
+        await launchValidate(msg.url, msg.tabId, msg.target || "desktop", msg.selection, msg.mode);
         sendResponse({ ok: true });
         break;
       case "aa:highlight": {
