@@ -25,6 +25,17 @@
   a { color: #1a3a8a; }
   footer { padding: 8px 12px; border-top: 1px solid #eee; font-size: 11px; color: #666; display: flex; justify-content: space-between; }
   .hint { font-size: 11px; color: #666; margin-top: 8px; }
+  .sessionBar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee; }
+  .sessionBar a { font-size: 12px; text-decoration: none; }
+  .sessionBar a.copy { color: #444; }
+  ul.sessionList { list-style: none; padding: 0; margin: 8px 0 0; max-height: 240px; overflow: auto; }
+  ul.sessionList li { padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+  ul.sessionList li:last-child { border-bottom: none; }
+  ul.sessionList .title { font-weight: 600; font-size: 12px; margin-bottom: 3px; }
+  ul.sessionList .tally { margin: 3px 0; }
+  ul.sessionList .pill { font-size: 10px; padding: 1px 6px; }
+  ul.sessionList .links { font-size: 11px; }
+  ul.sessionList .links a { margin-right: 10px; }
 </style>
 </head>
 <body>
@@ -37,6 +48,11 @@
   <button id="validateNews" class="secondary">Validate News Report</button>
   <button id="toggle" class="ghost" hidden>Hide highlights</button>
   <div class="hint">Opens Claude Desktop with a prompt. Press Enter to run it on your plan; the verdicts appear here and on the page when the report is published.</div>
+  <div class="sessionBar" id="sessionBar" hidden>
+    <a href="#" id="sessionToggle">Session history</a>
+    <a href="#" id="copySummary" class="copy">Copy summary</a>
+  </div>
+  <ul class="sessionList" id="sessionList" hidden></ul>
 </main>
 <footer><a href="#" id="options">Options</a><span id="version"></span></footer>
 <script src="common.js"></script>

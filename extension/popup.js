@@ -57,6 +57,67 @@
     }
   }
 
+  // Session history (features 1-3: list, quick-open, copyable summary) — all sourced from
+  // one /reports call, so only fetched once the engine is confirmed reachable above; an
+  // unreachable engine or a 403 (key mismatch between this extension build and the running
+  // engine build) just hides the section rather than showing an error, since this is a
+  // bonus view, not the popup's main job of validating the current page.
+  if (st && st.status === 200) {
+    const rres = await chrome.runtime.sendMessage({ type: "aa:reports" });
+    const reports = (rres && rres.status === 200 && rres.body && rres.body.reports) || [];
+    if (reports.length > 0) {
+      const sessionBar = document.getElementById("sessionBar");
+      const sessionList = document.getElementById("sessionList");
+      const sessionToggle = document.getElementById("sessionToggle");
+      sessionBar.hidden = false;
+      sessionToggle.textContent = "Session history (" + reports.length + ")";
+
+      const esc = s => (s || "").replace(/[&<>]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[ch]));
+      sessionList.innerHTML = reports.map(r => {
+        const pills = Object.keys(r.tally || {}).map(k =>
+          '<span class="pill" style="background:' + (AA_VERDICT_COLORS[k] || "#1a3a8a") + '">' + r.tally[k] + " " + esc(k) + "</span>").join("");
+        return '<li><div class="title">' + esc(r.title || "(untitled)") + '</div>' +
+          '<div class="tally">' + pills + '</div>' +
+          '<div class="links">' +
+          '<a href="' + esc(r.url) + '" target="_blank" rel="noopener">Article</a>' +
+          (r.report_url ? '<a href="' + esc(r.report_url) + '" target="_blank" rel="noopener">Report</a>' : "") +
+          '</div></li>';
+      }).join("");
+
+      sessionToggle.addEventListener("click", e => {
+        e.preventDefault();
+        sessionList.hidden = !sessionList.hidden;
+        sessionToggle.textContent = (sessionList.hidden ? "Session history (" : "Hide session history (") + reports.length + ")";
+      });
+
+      document.getElementById("copySummary").addEventListener("click", async e => {
+        e.preventDefault();
+        const totals = {};
+        for (const r of reports) {
+          for (const k of Object.keys(r.tally || {})) totals[k] = (totals[k] || 0) + r.tally[k];
+        }
+        const totalsLine = Object.keys(totals).map(k => totals[k] + " " + k).join(", ") || "no claims graded";
+        const lines = [
+          "AskAmerica session: " + reports.length + " article(s) checked — " + totalsLine + ".", ""
+        ];
+        for (const r of reports) {
+          const rTally = Object.keys(r.tally || {}).map(k => r.tally[k] + " " + k).join(", ") || "no claims graded";
+          lines.push("- " + (r.title || "(untitled)") + " (" + r.url + "): " + rTally);
+        }
+        const copyBtn = e.target;
+        try {
+          await navigator.clipboard.writeText(lines.join("\n"));
+          const original = copyBtn.textContent;
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => { copyBtn.textContent = original; }, 1200);
+        } catch (err) {
+          // Clipboard permission denied or unavailable — nothing more useful to do than
+          // leave the button's own label unchanged; the summary was still computed correctly.
+        }
+      });
+    }
+  }
+
   document.getElementById("validateDesktop").addEventListener("click", async () => {
     await chrome.runtime.sendMessage({ type: "aa:validate", url, selection, tabId: tab.id, target: "desktop" });
     window.close();

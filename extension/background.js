@@ -3,6 +3,14 @@
 // and popup ask this worker for claims so that only one place holds the host permission.
 
 const DEFAULT_PORT = 45123;
+// Must match ClaimsServer.REPORTS_KEY in askamerica-engine exactly — this is the
+// engine/extension handshake for /reports, which (unlike /claims and /status) returns the
+// whole session's validation history in one call rather than a single URL's. Deliberately
+// not a real secret (anyone who unpacks this extension or the public engine jar can read it
+// just as easily as this comment) — it filters opportunistic driveby scripts probing
+// localhost, which is the actual threat /reports faces; it protects nothing more sensitive
+// than that read-only history. Kept in sync by hand: the two live in separate repos.
+const REPORTS_KEY = "aa-reports-9f3c1e7b2a48d0c6";
 const VERDICT_COLORS = {
   "true": "#1b7f3b", "mostly true": "#4c9a2a", "partially true": "#c98a00",
   "mostly false": "#d2601a", "false": "#c0272d", "not checkable here": "#6b7280",
@@ -36,6 +44,14 @@ async function engineStatus() {
 async function claimsFor(url) {
   if (!url || !/^https?:/i.test(url)) return { status: 0, body: null };
   return engineFetch("/claims?url=" + encodeURIComponent(url));
+}
+
+// Every URL-based validation published this engine process's lifetime (session-scoped,
+// gone on engine restart) — for a "reports you've generated" list, distinct from claimsFor's
+// single-page lookup. Requires REPORTS_KEY; a 403 here almost always means the engine build
+// is out of sync with this extension build (the two keys no longer match).
+async function reportsFor() {
+  return engineFetch("/reports?key=" + encodeURIComponent(REPORTS_KEY));
 }
 
 // A highlighted passage is a specific claim to check, not a request to validate the whole
@@ -82,10 +98,31 @@ function desktopLink(url, selection, mode) {
 
 async function launchValidate(url, tabId, selection, mode) {
   const link = desktopLink(url, selection, mode);
-  // Navigating the page to a custom scheme hands off to the OS handler without leaving the
-  // article; Chrome asks once whether to open Claude. If no handler exists (Desktop isn't
-  // installed), nothing happens — there is no fallback to fall back to.
-  await chrome.tabs.update(tabId, { url: link }).catch(() => {});
+  // Measured live: navigating the ARTICLE tab itself to a claude:// URL (the previous
+  // approach) works fine when Claude Desktop is installed and claims the scheme, but
+  // destroys the article — replacing it with a blank/error page — whenever it isn't
+  // installed, isn't yet registered as the handler, or the OS handoff fails for any other
+  // reason. There is no reliable way for extension JS to check in advance whether a custom
+  // scheme has a registered handler (browsers deliberately don't expose that), so the fix is
+  // to never risk the article tab at all: do the handoff in a disposable helper tab instead,
+  // and close it shortly after regardless of outcome. The user's article is untouched either
+  // way — if Desktop opens, that's the whole result; if it doesn't, the only cost is a tab
+  // that flashed and closed, not a lost page.
+  let helperTabId = null;
+  try {
+    const helper = await chrome.tabs.create({ url: link, active: true });
+    helperTabId = helper && helper.id;
+  } catch (e) {
+    // tabs.create itself failing (e.g. a policy-restricted profile) — nothing more to try.
+    return;
+  }
+  if (helperTabId == null) return;
+  // Long enough for the OS to intercept the navigation and hand off to Desktop (or for
+  // Chrome's "Open Claude Desktop?" confirmation to appear) before cleanup; short enough
+  // that a failed handoff doesn't leave a stray blank tab sitting around.
+  setTimeout(() => {
+    chrome.tabs.remove(helperTabId).catch(() => {});
+  }, 1500);
 }
 
 function summarize(tally) {
@@ -160,6 +197,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       }
       case "aa:status":
         sendResponse(await engineStatus());
+        break;
+      case "aa:reports":
+        sendResponse(await reportsFor());
         break;
       case "aa:validate":
         await launchValidate(msg.url, msg.tabId, msg.selection, msg.mode);
