@@ -5,7 +5,7 @@
 const DEFAULT_PORT = 45123;
 // Must match ClaimsServer.REPORTS_KEY in askamerica-engine exactly — this is the
 // engine/extension handshake for /reports, which (unlike /claims and /status) returns the
-// whole session's validation history in one call rather than a single URL's. Deliberately
+// last 24 hours' validation history in one call rather than a single URL's. Deliberately
 // not a real secret (anyone who unpacks this extension or the public engine jar can read it
 // just as easily as this comment) — it filters opportunistic driveby scripts probing
 // localhost, which is the actual threat /reports faces; it protects nothing more sensitive
@@ -46,10 +46,11 @@ async function claimsFor(url) {
   return engineFetch("/claims?url=" + encodeURIComponent(url));
 }
 
-// Every URL-based validation published this engine process's lifetime (session-scoped,
-// gone on engine restart) — for a "reports you've generated" list, distinct from claimsFor's
-// single-page lookup. Requires REPORTS_KEY; a 403 here almost always means the engine build
-// is out of sync with this extension build (the two keys no longer match).
+// Every URL-based validation published in the last 24 hours, shared across every open
+// Claude Desktop conversation (the engine stores this in its shared pgwire-govdata
+// connection, not per-process memory) — for a "reports you've generated" list, distinct
+// from claimsFor's single-page lookup. Requires REPORTS_KEY; a 403 here almost always means
+// the engine build is out of sync with this extension build (the two keys no longer match).
 async function reportsFor() {
   return engineFetch("/reports?key=" + encodeURIComponent(REPORTS_KEY));
 }

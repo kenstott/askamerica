@@ -57,11 +57,13 @@
     }
   }
 
-  // Session history (features 1-3: list, quick-open, copyable summary) — all sourced from
-  // one /reports call, so only fetched once the engine is confirmed reachable above; an
-  // unreachable engine or a 403 (key mismatch between this extension build and the running
-  // engine build) just hides the section rather than showing an error, since this is a
-  // bonus view, not the popup's main job of validating the current page.
+  // Recent reports, last 24h (features 1-3: list, quick-open, copyable summary) — all
+  // sourced from one /reports call, so only fetched once the engine is confirmed reachable
+  // above; an unreachable engine or a 403 (key mismatch between this extension build and the
+  // running engine build) just hides the section rather than showing an error, since this is
+  // a bonus view, not the popup's main job of validating the current page. "Recent (24h)",
+  // not "session" -- the engine now shares this across every open conversation via its
+  // pgwire-govdata connection, so there's no single well-defined "session" to name it after.
   if (st && st.status === 200) {
     const rres = await chrome.runtime.sendMessage({ type: "aa:reports" });
     const reports = (rres && rres.status === 200 && rres.body && rres.body.reports) || [];
@@ -70,7 +72,7 @@
       const sessionList = document.getElementById("sessionList");
       const sessionToggle = document.getElementById("sessionToggle");
       sessionBar.hidden = false;
-      sessionToggle.textContent = "Session history (" + reports.length + ")";
+      sessionToggle.textContent = "Recent reports, 24h (" + reports.length + ")";
 
       const esc = s => (s || "").replace(/[&<>]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[ch]));
       sessionList.innerHTML = reports.map(r => {
@@ -87,7 +89,7 @@
       sessionToggle.addEventListener("click", e => {
         e.preventDefault();
         sessionList.hidden = !sessionList.hidden;
-        sessionToggle.textContent = (sessionList.hidden ? "Session history (" : "Hide session history (") + reports.length + ")";
+        sessionToggle.textContent = (sessionList.hidden ? "Recent reports, 24h (" : "Hide recent reports (") + reports.length + ")";
       });
 
       document.getElementById("copySummary").addEventListener("click", async e => {
@@ -98,7 +100,7 @@
         }
         const totalsLine = Object.keys(totals).map(k => totals[k] + " " + k).join(", ") || "no claims graded";
         const lines = [
-          "AskAmerica session: " + reports.length + " article(s) checked — " + totalsLine + ".", ""
+          "AskAmerica, last 24h: " + reports.length + " article(s) checked — " + totalsLine + ".", ""
         ];
         for (const r of reports) {
           const rTally = Object.keys(r.tally || {}).map(k => r.tally[k] + " " + k).join(", ") || "no claims graded";
