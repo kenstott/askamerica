@@ -21,6 +21,7 @@ export interface Env {
   LS_WEBHOOK_SECRET: string;    // Lemon Squeezy webhook signing secret
   LEMONSQUEEZY_API_KEY: string; // Lemon Squeezy API key (mints checkouts)
   ADMIN_SECRET: string;         // shared secret for admin key issuance
+  GITHUB_TOKEN: string;         // PAT w/ repo:issues scope on kenstott/govdata-ops (github-sync.ts)
 
   // Vars
   ENVIRONMENT: string;

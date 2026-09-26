@@ -6,6 +6,7 @@ import { handleCheckout } from './checkout';
 import { handleCredentials } from './credentials';
 import { handleAdminCreateKey, handleAdminGrant } from './admin';
 import { handleIssueReport } from './issues';
+import { syncIssuesToGithub } from './github-sync';
 import { handleTelemetry } from './telemetry';
 import {
   handleStudiesRegister, handleStudiesMe, handleStudiesUpload, handleStudyDelete,
@@ -113,5 +114,17 @@ export default {
     }
 
     return cors(response);
+  },
+
+  // Cron Trigger (see wrangler.toml [triggers]). Runs async, off the request path, so a
+  // GitHub outage or rate limit never blocks a live customer's /v1/issues call.
+  async scheduled(_event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
+    ctx.waitUntil(
+      syncIssuesToGithub(env).then(({ filed, failed }) => {
+        if (filed || failed) {
+          console.log(`[github-sync] filed=${filed} failed=${failed}`);
+        }
+      }),
+    );
   },
 };

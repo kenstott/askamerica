@@ -27,6 +27,7 @@ export async function handleIssueReport(request: Request, env: Env): Promise<Res
     reported_at?: string;
     subject?: string;
     body?: string;
+    type?: string;
   };
   try {
     payload = await request.json();
@@ -45,6 +46,13 @@ export async function handleIssueReport(request: Request, env: Env): Promise<Res
     return json({ error: 'subject and body are required' }, 400);
   }
 
+  // The client (askamerica-engine's report_issue tool) has always sent this, classified as
+  // exactly "defect" or "sourcing" — it was silently dropped here until 2026-09-26. An
+  // unrecognized value is stored as null rather than trusted verbatim, since it becomes a
+  // GitHub label downstream (see github-sync.ts) and a typo'd/injected value should not
+  // silently create a bogus label.
+  const type = payload.type === 'defect' || payload.type === 'sourcing' ? payload.type : null;
+
   // Attribution is best-effort: an unknown key must not cost the caller their report.
   let userId: string | null = null;
   const apiKey = request.headers.get('X-API-Key');
@@ -60,8 +68,8 @@ export async function handleIssueReport(request: Request, env: Env): Promise<Res
   try {
     await env.DB.prepare(
       `INSERT INTO issues
-         (id, reported_at, stamp, build, session_id, user_id, subject, body)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+         (id, reported_at, stamp, build, session_id, user_id, subject, body, type)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     )
       .bind(
         id,
@@ -72,6 +80,7 @@ export async function handleIssueReport(request: Request, env: Env): Promise<Res
         userId,
         subject.slice(0, MAX_SUBJECT),
         body.slice(0, MAX_BODY),
+        type,
       )
       .run();
   } catch (e) {
