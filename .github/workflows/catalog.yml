@@ -44,6 +44,15 @@ jobs:
             news-check-results
           sparse-checkout-cone-mode: false
 
+      - name: DEBUG list calcite checkout
+        run: |
+          echo "--- calcite top level ---"
+          ls -la calcite/
+          echo "--- news-check-results ---"
+          find calcite/news-check-results -maxdepth 3 2>&1 || echo "MISSING"
+          echo "--- sparse-checkout file ---"
+          cat calcite/.git/info/sparse-checkout 2>&1 || echo "no sparse-checkout file"
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
