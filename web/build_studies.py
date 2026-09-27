@@ -217,7 +217,7 @@ def load_headlines():
             "headline": t.get("headline", t.get("topic_slug", qid)),
             "run_dir": run_dir,
             "date": date,
-            "verdict": t.get("verdict", ""),
+            "pinocchios": t.get("pinocchios"),
             "source_url": t.get("source_url"),
         })
     headlines.sort(key=lambda h: h["date"], reverse=True)
@@ -237,10 +237,11 @@ def build_index(bank, entries, headlines=None):
         rows = []
         for h in headlines:
             headline = html.escape(h["headline"])
-            verdict = html.escape(h["verdict"])
+            p = h["pinocchios"]
+            grade = f"{p} Pinocchio{'s' if p != 1 else ''}" if p is not None else "not gradable"
             rows.append(
                 f'<li class="study-row"><a href="/studies/{h["slug"]}/">{headline}</a>'
-                f'<span class="study-date">{verdict} &middot; {html.escape(h["date"])}</span></li>'
+                f'<span class="study-date">{grade} &middot; {html.escape(h["date"])}</span></li>'
             )
         cards.append(
             '<div class="study-cat"><h2>Ripped From Today\'s Headlines</h2>'
