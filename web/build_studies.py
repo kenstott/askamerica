@@ -107,7 +107,7 @@ def latest_askamerica_run(n):
     return None
 
 
-def render_question_page(qid, plain_question, run_dir, run_date):
+def render_question_page(qid, plain_question, run_dir, run_date, source_url=None):
     """Write web/studies/<qid>/index.html from that run's report.html (preferred)
     or agent.md (fallback, escaped into a <pre> block — no markdown renderer is
     pulled in for one rarely-hit path).
@@ -116,10 +116,23 @@ def render_question_page(qid, plain_question, run_dir, run_date):
     history — `report.html` is current (server-side `publish_report`), but many
     runs predate that and carry `agent-report.html`, `agent.html`, or (rarely)
     `agent-report-1.html` instead. Try all of them, in the order a run is most
-    likely to have used, before falling back to the plain-text agent.md render."""
+    likely to have used, before falling back to the plain-text agent.md render.
+
+    `source_url` (news-check stories only) links back to the original article the
+    claim was checked against — every news-story-style report must show it."""
     dest_dir = os.path.join(OUT, qid)
     os.makedirs(dest_dir, exist_ok=True)
     dest = os.path.join(dest_dir, "index.html")
+
+    banner = BACK_BANNER
+    if source_url:
+        banner += (
+            '\n<div style="max-width:900px;margin:0 auto;padding:10px 20px 0;'
+            "font-family:'JetBrains Mono',monospace;font-size:12px;color:#768390;\">"
+            f'Original story: <a href="{html.escape(source_url)}" target="_blank" '
+            'rel="noopener noreferrer" style="color:#e8a24a;">'
+            f'{html.escape(source_url)}</a></div>'
+        )
 
     for candidate in ("report.html", "agent-report.html", "agent.html", "agent-report-1.html"):
         report = os.path.join(run_dir, candidate)
@@ -129,7 +142,7 @@ def render_question_page(qid, plain_question, run_dir, run_date):
             # The report is self-contained (own <title>/<style>/inline SVGs) — just
             # splice a small back-link banner in right after <body>, rather than
             # trying to merge it into this site's own nav/CSS and risking collisions.
-            body = re.sub(r"(<body[^>]*>)", r"\1\n" + BACK_BANNER, body, count=1)
+            body = re.sub(r"(<body[^>]*>)", r"\1\n" + banner, body, count=1)
             with open(dest, "w") as fh:
                 fh.write(body)
             return
@@ -139,14 +152,21 @@ def render_question_page(qid, plain_question, run_dir, run_date):
         with open(agent_md) as fh:
             text = fh.read()
         with open(dest, "w") as fh:
-            fh.write(_fallback_page(plain_question, run_date, text))
+            fh.write(_fallback_page(plain_question, run_date, text, source_url))
         return
 
     with open(dest, "w") as fh:
-        fh.write(_fallback_page(plain_question, run_date, "(no answer text found)"))
+        fh.write(_fallback_page(plain_question, run_date, "(no answer text found)", source_url))
 
 
-def _fallback_page(plain_question, run_date, text):
+def _fallback_page(plain_question, run_date, text, source_url=None):
+    source_line = ""
+    if source_url:
+        source_line = (
+            f'<p style="color:#768390;">Original story: '
+            f'<a href="{html.escape(source_url)}" target="_blank" rel="noopener noreferrer" '
+            f'style="color:#e8a24a;">{html.escape(source_url)}</a></p>'
+        )
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -163,6 +183,7 @@ def _fallback_page(plain_question, run_date, text):
 <main>
 <h1>{html.escape(plain_question)}</h1>
 <p style="color:#768390;">askamerica run &middot; {html.escape(run_date)}</p>
+{source_line}
 <pre>{html.escape(text)}</pre>
 </main>
 </body></html>
@@ -197,6 +218,7 @@ def load_headlines():
             "run_dir": run_dir,
             "date": date,
             "verdict": t.get("verdict", ""),
+            "source_url": t.get("source_url"),
         })
     headlines.sort(key=lambda h: h["date"], reverse=True)
     return headlines
@@ -337,7 +359,8 @@ def main():
 
     headlines = load_headlines()
     for h in headlines:
-        render_question_page(h["slug"], h["headline"], h["run_dir"], h["date"])
+        render_question_page(h["slug"], h["headline"], h["run_dir"], h["date"],
+                              source_url=h["source_url"])
 
     # Remove any studies/<slug>/ left over from a question or headline that no longer has a
     # delivered run (or was renamed/retired) — a prior build's stale page must not survive
