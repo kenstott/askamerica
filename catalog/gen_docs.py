@@ -15,23 +15,22 @@ import re
 
 import yaml
 
-# gen_evals (comparative-eval library pages) and gen_headlines (news-check "Ripped from
-# Today's Headlines" pages) are both optional add-ons to the core schema catalog build below.
-# Neither should ever be able to take down the whole site: gen_evals.py is currently an
-# uncommitted local-only draft on some checkouts (import fails), and even once real, either
-# generator can hit a missing/malformed corpus directory it doesn't control. Import and call
-# both defensively -- a broken or absent add-on skips with a warning, never a failed build.
+# gen_evals (comparative-eval library pages) is an optional add-on to the core schema catalog
+# build below. It should never be able to take down the whole site: gen_evals.py is currently an
+# uncommitted local-only draft on some checkouts (import fails), and even once real, it can hit a
+# missing/malformed corpus directory it doesn't control. Import and call it defensively -- a
+# broken or absent add-on skips with a warning, never a failed build.
 try:
     import gen_evals
 except ImportError as e:
     print(f"WARNING: gen_evals unavailable ({e}) -- skipping the comparative-eval library section.")
     gen_evals = None
 
-try:
-    import gen_headlines
-except ImportError as e:
-    print(f"WARNING: gen_headlines unavailable ({e}) -- skipping the news-check headlines section.")
-    gen_headlines = None
+# "Ripped from Today's Headlines" (news-check) does NOT belong on the catalog site -- it moved to
+# web/studies/ (see build_studies.py), the same public surface as the question-bank studies,
+# which only ever exposes the askamerica persona. gen_headlines.py used to publish EVERY
+# persona's answer (including everyman/expert -- internal comparison baselines never meant to be
+# public) under docs/headlines/; that generator and its output are removed from this build.
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 GOVDATA = os.environ.get(
@@ -173,12 +172,6 @@ def write_mkdocs_yml(cat):
             nav += gen_evals.nav_entries()
         except Exception as e:
             print(f"WARNING: gen_evals.nav_entries() failed ({e}) -- omitting its nav section.")
-    # "Ripped from Today's Headlines" (news-check) is its own top-level nav section.
-    if gen_headlines is not None:
-        try:
-            nav += gen_headlines.nav_entries()
-        except Exception as e:
-            print(f"WARNING: gen_headlines.nav_entries() failed ({e}) -- omitting its nav section.")
     cfg = f"""site_name: AskAmerica Data Catalog
 site_url: https://askamerica.ai/catalog/
 site_description: >
@@ -257,11 +250,6 @@ def main():
             gen_evals.main()
         except Exception as e:
             print(f"WARNING: gen_evals.main() failed ({e}) -- eval library pages not generated this build.")
-    if gen_headlines is not None:
-        try:
-            gen_headlines.main()
-        except Exception as e:
-            print(f"WARNING: gen_headlines.main() failed ({e}) -- headlines pages not generated this build.")
     write_mkdocs_yml(cat)
     t = sum(len(s["tables"]) for s in cat)
     c = sum(len(x["columns"]) for s in cat for x in s["tables"])

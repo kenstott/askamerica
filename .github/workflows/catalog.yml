@@ -34,14 +34,13 @@ jobs:
       - name: Checkout askamerica
         uses: actions/checkout@v4
 
-      - name: Checkout govdata schema YAMLs + news-check results (calcite)
+      - name: Checkout govdata schema YAMLs (calcite)
         uses: actions/checkout@v4
         with:
           repository: kenstott/calcite
           path: calcite
           sparse-checkout: |
             govdata/src/main/resources
-            news-check-results
           sparse-checkout-cone-mode: false
 
       - name: Set up Python
@@ -55,7 +54,6 @@ jobs:
       - name: Generate + build catalog
         env:
           GOVDATA_RESOURCES: ${{ github.workspace }}/calcite/govdata/src/main/resources
-          NEWS_CORPUS: ${{ github.workspace }}/calcite/news-check-results
         run: |
           python catalog/gen_docs.py
           mkdocs build -f catalog/mkdocs.yml
