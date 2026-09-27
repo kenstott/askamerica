@@ -51,7 +51,12 @@ def download_jar(version: str = None, dest: Path = DEFAULT_JAR_PATH) -> Path:
             pct = min(100, block_num * block_size * 100 // total_size)
             print(f"\r  {pct}%", end="", flush=True)
 
-    urllib.request.urlretrieve(download_url, dest, reporthook=_progress)
+    tmp_dest = dest.with_name(dest.name + f".tmp-{os.getpid()}")
+    try:
+        urllib.request.urlretrieve(download_url, tmp_dest, reporthook=_progress)
+        os.replace(tmp_dest, dest)
+    finally:
+        tmp_dest.unlink(missing_ok=True)
     print(f"\nEngine ready: {dest}")
     return dest
 
