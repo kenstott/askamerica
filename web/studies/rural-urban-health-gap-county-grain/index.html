@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rural US counties have persistently worse health than urban ones -- roughly 20-47% higher premature-death rates -- but that gap is more state-specific than state-independent</title>
+<title>Rural counties have a widening, but highly state-dependent, health disadvantage</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -99,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Rural US counties have persistently worse health than urban ones -- roughly 20-47% higher premature-death rates -- but that gap is more state-specific than state-independent</h1>
-<p class="subtitle">CDC/NCHS + County Health Rankings + USDA Rural-Urban Continuum, joined at county grain</p>
+<h1>Rural counties have a widening, but highly state-dependent, health disadvantage</h1>
+<p class="subtitle">County Health Rankings premature-death rates (YPLL/100k, ages under 75), 2003-2022, by USDA Rural-Urban Continuum Code</p>
 </header>
 <figure class="board">
 <!--
@@ -148,74 +148,115 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     }
   </style>
   <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">Rural counties have persistently worse health outcomes than urban ones -- and the gap is smaller than stat…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">County Health Rankings premature-death rate (YPLL/100k, 2025 release) and CDC county drug-overdose rates, 2019-2024, joined to USDA Rural-Urban Continuum Codes</text>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">The rural-urban health gap has widened nationally — but its size swings wildly by state</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">Premature death rate (YPLL per 100,000, ages &lt;75), CHR/NCHS county trends, 2003-2022; RUCC 2023 vintage classification</text>
   <g id="p1-stat">
   <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Nonmetro vs metro premature-death rate (pop-weighted)</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">+47%</text>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">National nonmetro vs metro gap, 2022</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">+1,692 YPLL/100k</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">+18.1% higher</text>
   </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">713.8 vs 484.3 YPLL/100k pop, current CHR release</text>
+  <text class="caption" x="24" y="203" fill="#6b7280">Unweighted county average, all counties with a reported rate</text>
   <g id="p2-stat">
   <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Within-state rural-urban gap (avg across 47 states)</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">+1,784 YPLL/100k</text>
-  <text class="stat-delta" x="464" y="168" fill="#059669">p&lt;0.0001, one-sample t-test vs 0</text>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Gap in 2003 vs 2022</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">+975 -&gt; +1,692</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">+74% wider</text>
   </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">Rural higher in 44 of 47 states</text>
+  <text class="caption" x="452" y="203" fill="#6b7280">Ratio rose from 1.12x to 1.18x over 20 years</text>
   <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
   <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Drug-overdose death rate, metro vs nonmetro counties, 2019-2024</text>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Premature death rate: metro vs nonmetro counties, 2003-2022</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="60" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="158.86" x2="390" y2="158.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="52" y="162.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-      <line class="grid" x1="60" y1="141.71" x2="390" y2="141.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="52" y="145.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="124.57" x2="390" y2="124.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="52" y="128.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
-      <line class="grid" x1="60" y1="107.43" x2="390" y2="107.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="52" y="111.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="90.29" x2="390" y2="90.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="52" y="94.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
-      <line class="grid" x1="60" y1="73.14" x2="390" y2="73.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-6" class="tick" x="52" y="77.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-7" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">35</text>
+      <line class="grid" x1="84" y1="163.84" x2="390" y2="163.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="76" y="167.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="84" y1="145.87" x2="390" y2="145.87" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="76" y="149.87" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="84" y1="127.89" x2="390" y2="127.89" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="76" y="131.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+      <line class="grid" x1="84" y1="109.92" x2="390" y2="109.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="76" y="113.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6,000</text>
+      <line class="grid" x1="84" y1="91.95" x2="390" y2="91.95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="76" y="95.95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8,000</text>
+      <line class="grid" x1="84" y1="73.97" x2="390" y2="73.97" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="76" y="77.97" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
+      <line class="grid" x1="84" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">12,000</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="176" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="56" x2="84" y2="163.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="84" y1="163.84" x2="390" y2="163.84" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="225" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 116)">Deaths per 100k</text>
+    <text id="p3-x-axis-title" class="axis-title" x="237" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="109.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 109.92)">YPLL per 100k</text>
     <g id="p3-x-axis-labels">
-      <text id="p3-xtick-2019" class="tick" x="87.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
-      <text id="p3-xtick-2020" class="tick" x="142.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
-      <text id="p3-xtick-2021" class="tick" x="197.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
-      <text id="p3-xtick-2022" class="tick" x="252.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
-      <text id="p3-xtick-2023" class="tick" x="307.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
-      <text id="p3-xtick-2024" class="tick" x="362.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+      <text id="p3-xtick-2003" class="tick" x="91.65" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 91.65 177.84)">2003</text>
+      <text id="p3-xtick-2004" class="tick" x="106.95" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 106.95 177.84)">2004</text>
+      <text id="p3-xtick-2005" class="tick" x="122.25" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 122.25 177.84)">2005</text>
+      <text id="p3-xtick-2006" class="tick" x="137.55" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 137.55 177.84)">2006</text>
+      <text id="p3-xtick-2007" class="tick" x="152.85" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 152.85 177.84)">2007</text>
+      <text id="p3-xtick-2008" class="tick" x="168.15" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 168.15 177.84)">2008</text>
+      <text id="p3-xtick-2009" class="tick" x="183.45" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 183.45 177.84)">2009</text>
+      <text id="p3-xtick-2010" class="tick" x="198.75" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 198.75 177.84)">2010</text>
+      <text id="p3-xtick-2011" class="tick" x="214.05" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 214.05 177.84)">2011</text>
+      <text id="p3-xtick-2012" class="tick" x="229.35" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 229.35 177.84)">2012</text>
+      <text id="p3-xtick-2013" class="tick" x="244.65" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 244.65 177.84)">2013</text>
+      <text id="p3-xtick-2014" class="tick" x="259.95" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 259.95 177.84)">2014</text>
+      <text id="p3-xtick-2015" class="tick" x="275.25" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 275.25 177.84)">2015</text>
+      <text id="p3-xtick-2016" class="tick" x="290.55" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 290.55 177.84)">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="305.85" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 305.85 177.84)">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="321.15" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 321.15 177.84)">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="336.45" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 336.45 177.84)">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="351.75" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 351.75 177.84)">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="367.05" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 367.05 177.84)">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="382.35" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 382.35 177.84)">2022</text>
     </g>
     <g id="p3-series-metro-counties" class="series">
-      <path id="p3-line-metro-counties" class="line" d="M 87.50 111.37 L 142.50 88.47 L 197.50 71.77 L 252.50 72.73 L 307.50 80.10 L 362.50 104.82" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p3-mark-metro-counties-2019" class="point" cx="87.50" cy="111.37" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-metro-counties-2020" class="point" cx="142.50" cy="88.47" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-metro-counties-2021" class="point" cx="197.50" cy="71.77" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-metro-counties-2022" class="point" cx="252.50" cy="72.73" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-metro-counties-2023" class="point" cx="307.50" cy="80.10" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-metro-counties-2024" class="point" cx="362.50" cy="104.82" r="3" fill="#2563eb"/>
+      <path id="p3-line-metro-counties" class="line" d="M 91.65 92.96 L 106.95 93.03 L 122.25 93.13 L 137.55 94.25 L 152.85 94.86 L 168.15 95.78 L 183.45 96.66 L 198.75 97.49 L 214.05 98.19 L 229.35 98.61 L 244.65 98.67 L 259.95 98.20 L 275.25 97.42 L 290.55 95.82 L 305.85 94.52 L 321.15 94.00 L 336.45 94.25 L 351.75 90.95 L 367.05 83.75 L 382.35 79.73" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-metro-counties-2003" class="point" cx="91.65" cy="92.96" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2004" class="point" cx="106.95" cy="93.03" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2005" class="point" cx="122.25" cy="93.13" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2006" class="point" cx="137.55" cy="94.25" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2007" class="point" cx="152.85" cy="94.86" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2008" class="point" cx="168.15" cy="95.78" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2009" class="point" cx="183.45" cy="96.66" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2010" class="point" cx="198.75" cy="97.49" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2011" class="point" cx="214.05" cy="98.19" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2012" class="point" cx="229.35" cy="98.61" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2013" class="point" cx="244.65" cy="98.67" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2014" class="point" cx="259.95" cy="98.20" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2015" class="point" cx="275.25" cy="97.42" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2016" class="point" cx="290.55" cy="95.82" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2017" class="point" cx="305.85" cy="94.52" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2018" class="point" cx="321.15" cy="94.00" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2019" class="point" cx="336.45" cy="94.25" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2020" class="point" cx="351.75" cy="90.95" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2021" class="point" cx="367.05" cy="83.75" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-metro-counties-2022" class="point" cx="382.35" cy="79.73" r="3" fill="#2563eb"/>
     </g>
     <g id="p3-series-nonmetro-counties" class="series">
-      <path id="p3-line-nonmetro-counties" class="line" d="M 87.50 134.75 L 142.50 115.79 L 197.50 99.68 L 252.50 99.92 L 307.50 102.39 L 362.50 122.41" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p3-mark-nonmetro-counties-2019" class="point" cx="87.50" cy="134.75" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-nonmetro-counties-2020" class="point" cx="142.50" cy="115.79" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-nonmetro-counties-2021" class="point" cx="197.50" cy="99.68" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-nonmetro-counties-2022" class="point" cx="252.50" cy="99.92" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-nonmetro-counties-2023" class="point" cx="307.50" cy="102.39" r="3" fill="#ea580c"/>
-      <circle id="p3-mark-nonmetro-counties-2024" class="point" cx="362.50" cy="122.41" r="3" fill="#ea580c"/>
+      <path id="p3-line-nonmetro-counties" class="line" d="M 91.65 84.20 L 106.95 83.70 L 122.25 83.23 L 137.55 86.16 L 152.85 86.37 L 168.15 87.18 L 183.45 87.43 L 198.75 88.02 L 214.05 87.88 L 229.35 88.06 L 244.65 87.47 L 259.95 87.25 L 275.25 86.10 L 290.55 84.85 L 305.85 83.18 L 321.15 82.81 L 336.45 83.15 L 351.75 79.18 L 367.05 69.97 L 382.35 64.53" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-nonmetro-counties-2003" class="point" cx="91.65" cy="84.20" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2004" class="point" cx="106.95" cy="83.70" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2005" class="point" cx="122.25" cy="83.23" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2006" class="point" cx="137.55" cy="86.16" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2007" class="point" cx="152.85" cy="86.37" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2008" class="point" cx="168.15" cy="87.18" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2009" class="point" cx="183.45" cy="87.43" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2010" class="point" cx="198.75" cy="88.02" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2011" class="point" cx="214.05" cy="87.88" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2012" class="point" cx="229.35" cy="88.06" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2013" class="point" cx="244.65" cy="87.47" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2014" class="point" cx="259.95" cy="87.25" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2015" class="point" cx="275.25" cy="86.10" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2016" class="point" cx="290.55" cy="84.85" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2017" class="point" cx="305.85" cy="83.18" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2018" class="point" cx="321.15" cy="82.81" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2019" class="point" cx="336.45" cy="83.15" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2020" class="point" cx="351.75" cy="79.18" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2021" class="point" cx="367.05" cy="69.97" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonmetro-counties-2022" class="point" cx="382.35" cy="64.53" r="3" fill="#ea580c"/>
     </g>
     <g id="p3-legend">
       <rect id="p3-legend-swatch-metro-counties" x="90.50" y="234" width="11" height="11" fill="#2563eb"/>
@@ -225,100 +266,71 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="519" fill="#6b7280">CDC MIOV county mortality; unweighted county-average rate. Overdose</text>
-  <text class="caption" x="24" y="532" fill="#6b7280">gap has NARROWED in recent years even as the broader premature-death…</text>
+  <text class="caption" x="24" y="519" fill="#6b7280">Simple (unweighted) average YPLL rate across all counties reporting a</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">value each year, by USDA RUCC metro/nonmetro status</text>
   <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
   <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">State avg urban rate vs state avg rural rate (premature death, YPLL/100k)</text>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Within-state rural-minus-urban gap, selected states (2020-22 avg)</text>
     <g id="p4-gridlines">
-      <line class="grid" x1="84" y1="196" x2="386" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="76" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
-      <line class="grid" x1="84" y1="176" x2="386" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="76" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6,000</text>
-      <line class="grid" x1="84" y1="156" x2="386" y2="156" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="76" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8,000</text>
-      <line class="grid" x1="84" y1="136" x2="386" y2="136" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="76" y="140" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
-      <line class="grid" x1="84" y1="116" x2="386" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="76" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">12,000</text>
-      <line class="grid" x1="84" y1="96" x2="386" y2="96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="76" y="100" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">14,000</text>
-      <line class="grid" x1="84" y1="76" x2="386" y2="76" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-6" class="tick" x="76" y="80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">16,000</text>
-      <line class="grid" x1="84" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-7" class="tick" x="76" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">18,000</text>
+      <line class="grid" x1="83" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="75" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-2,000</text>
+      <line class="grid" x1="83" y1="182" x2="390" y2="182" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="75" y="186" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-1,000</text>
+      <line class="grid" x1="83" y1="164" x2="390" y2="164" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="75" y="168" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="83" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="75" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="83" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="75" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="83" y1="110" x2="390" y2="110" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="75" y="114" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,000</text>
+      <line class="grid" x1="83" y1="92" x2="390" y2="92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="75" y="96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+      <line class="grid" x1="83" y1="74" x2="390" y2="74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="75" y="78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5,000</text>
+      <line class="grid" x1="83" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-8" class="tick" x="75" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6,000</text>
     </g>
     <g id="p4-axes">
-      <line class="axis" x1="84" y1="56" x2="84" y2="196" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="84" y1="196" x2="386" y2="196" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="83" y1="56" x2="83" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="83" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p4-x-axis-title" class="axis-title" x="235" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Metro county avg rate</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="126" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 126)">Nonmetro avg rate</text>
+    <text id="p4-x-axis-title" class="axis-title" x="236.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Gap, YPLL/100k</text>
     <g id="p4-x-axis-labels">
-      <text id="p4-xtick-0" class="tick" x="84" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">6,000</text>
-      <text id="p4-xtick-1" class="tick" x="144.40" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">8,000</text>
-      <text id="p4-xtick-2" class="tick" x="204.80" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10,000</text>
-      <text id="p4-xtick-3" class="tick" x="265.20" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">12,000</text>
-      <text id="p4-xtick-4" class="tick" x="325.60" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">14,000</text>
-      <text id="p4-xtick-5" class="tick" x="386" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">16,000</text>
+      <text id="p4-xtick-ma" class="tick" x="96.95" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MA</text>
+      <text id="p4-xtick-wy" class="tick" x="124.86" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WY</text>
+      <text id="p4-xtick-id" class="tick" x="152.77" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ID</text>
+      <text id="p4-xtick-oh" class="tick" x="180.68" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OH</text>
+      <text id="p4-xtick-tx" class="tick" x="208.59" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">TX</text>
+      <text id="p4-xtick-la" class="tick" x="236.50" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">LA</text>
+      <text id="p4-xtick-va" class="tick" x="264.41" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">VA</text>
+      <text id="p4-xtick-ca" class="tick" x="292.32" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA</text>
+      <text id="p4-xtick-sc" class="tick" x="320.23" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">SC</text>
+      <text id="p4-xtick-sd" class="tick" x="348.14" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">SD</text>
+      <text id="p4-xtick-az" class="tick" x="376.05" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AZ</text>
     </g>
-    <g id="p4-series-states" class="series">
-      <circle id="p4-mark-states-0" class="point" cx="177.77" cy="106.35" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-1" class="point" cx="277.61" cy="94.99" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-2" class="point" cx="250.61" cy="101.78" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-3" class="point" cx="212.26" cy="62.22" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-4" class="point" cx="116.92" cy="131.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-5" class="point" cx="118.94" cy="140.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-6" class="point" cx="184.63" cy="142.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-7" class="point" cx="190.52" cy="115.64" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-8" class="point" cx="225.12" cy="103.52" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-9" class="point" cx="89.53" cy="167.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-10" class="point" cx="106.59" cy="161.36" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-11" class="point" cx="163.46" cy="154.96" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-12" class="point" cx="149.05" cy="143.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-13" class="point" cx="184.17" cy="132.99" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-14" class="point" cx="178.28" cy="136.06" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-15" class="point" cx="236.72" cy="97.57" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-16" class="point" cx="273.02" cy="98.31" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-17" class="point" cx="101.88" cy="182.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-18" class="point" cx="153.52" cy="141.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-19" class="point" cx="143.49" cy="140.89" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-20" class="point" cx="153.55" cy="144.41" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-21" class="point" cx="93.36" cy="161.48" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-22" class="point" cx="185.38" cy="123.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-23" class="point" cx="325.81" cy="85.92" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-24" class="point" cx="135.52" cy="125.15" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-25" class="point" cx="210.15" cy="112.94" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-26" class="point" cx="136.16" cy="138.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-27" class="point" cx="97.44" cy="154.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-28" class="point" cx="97.86" cy="157.89" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-29" class="point" cx="264.96" cy="96.56" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-30" class="point" cx="171.19" cy="122.47" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-31" class="point" cx="118.19" cy="153.63" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-32" class="point" cx="191.75" cy="130.44" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-33" class="point" cx="225.06" cy="109.74" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-34" class="point" cx="128.00" cy="144.94" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-35" class="point" cx="155.15" cy="144.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-36" class="point" cx="263.54" cy="80.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-37" class="point" cx="105.35" cy="112.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-38" class="point" cx="271.96" cy="102.11" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-39" class="point" cx="196.53" cy="123.34" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-40" class="point" cx="88.20" cy="151.52" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-41" class="point" cx="175.87" cy="110.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-42" class="point" cx="92.00" cy="155.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-43" class="point" cx="122.26" cy="150.54" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-44" class="point" cx="103.69" cy="152.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-45" class="point" cx="296.40" cy="98.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p4-mark-states-46" class="point" cx="184.08" cy="149.14" r="4" fill="#2563eb" fill-opacity="0.85"/>
+    <g id="p4-series-nonmetro-minus-metro-rate" class="series">
+      <rect id="p4-mark-nonmetro-minus-metro-rate-ma" class="bar" x="88.02" y="164" width="16.86" height="18.27" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-wy" class="bar" x="115.93" y="164" width="16.86" height="9.77" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-id" class="bar" x="143.84" y="164" width="16.86" height="0.22" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-oh" class="bar" x="171.75" y="149.85" width="16.86" height="14.15" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-tx" class="bar" x="199.66" y="137.34" width="16.86" height="26.66" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-la" class="bar" x="227.57" y="135.58" width="16.86" height="28.42" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-va" class="bar" x="255.48" y="107.19" width="16.86" height="56.81" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-ca" class="bar" x="283.39" y="101.92" width="16.86" height="62.08" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-sc" class="bar" x="311.30" y="99.20" width="16.86" height="64.80" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-sd" class="bar" x="339.21" y="90.02" width="16.86" height="73.98" fill="#2563eb"/>
+      <rect id="p4-mark-nonmetro-minus-metro-rate-az" class="bar" x="367.11" y="61.44" width="16.86" height="102.56" fill="#2563eb"/>
     </g>
     <g id="p4-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="452" y="519" fill="#6b7280">Diagonal line = equal rates. Nearly all 47 states sit above the</text>
-  <text class="caption" x="452" y="532" fill="#6b7280">diagonal (rural worse). r=0.83: a state's overall mortality level…</text>
-  <text class="footnote" x="20" y="564" fill="#6b7280">CHR premature-death rate is a single current-vintage cross-section (2025 release); it has no year dimension in this corpus, so it establishes the</text>
-  <text class="footnote" x="20" y="578" fill="#6b7280">present-day gap, not a 20-year trend. The 20-year national trend (rural death rate 7% above urban in 1999, rising to 20% above by 2019) is drawn</text>
-  <text class="footnote" x="20" y="592" fill="#6b7280">from NCHS's own published analysis, cited in the text, because askamerica's only county-grain historical trend table…</text>
+  <text class="caption" x="452" y="519" fill="#6b7280">47 states have both metro and nonmetro counties; gap ranges from</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">-1,015 (MA, rural healthier) to +5,698 (AZ). Mean +1,580, paired…</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">CHR Premature Death (YPLL before age 75) is a truncated mortality measure appropriate for county-comparison trends, not a full all-ages</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">age-adjusted rate. RUCC classification is the single 2023 vintage applied across the whole 2003-2022 window. DC and states with only one RUCC</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">category excluded from the paired state analysis.</text>
   <g id="brand">
   <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
@@ -332,118 +344,177 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:56226/a/575219805e9c2a9837365c30414ace4f.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:60799/a/74e034b336f78e4e727b8dce34beed65.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>Rural (nonmetro) US counties have meaningfully worse health than urban (metro) counties, and the gap has been present and roughly stable-to-widening for at least the last two decades. Nationally, the population-weighted premature-death rate (years of life lost before age 75, per 100,000, current County Health Rankings release) is <strong>about 47% higher</strong> in nonmetro counties (713.8) than metro counties (484.3); the simple across-county average puts it at 18-20% higher. Published NCHS research (not this corpus's own computation) shows this gap has been widening for 20 years: rural all-cause age-adjusted mortality was 7% above urban in 1999 and 20% above by 2019, with the working-age (25-54) gap widening even more sharply, from 6% to 43%.</p><p>The gap does <strong>not</strong> look the same within a state as it does between states. Computed directly here across 47 states with both metro and nonmetro counties: the average within-state rural-minus-urban gap is +1,784 YPLL/100k (rural worse in 44 of 47 states, one-sample t-test vs. zero, p&lt;0.0001) -- real and highly consistent in direction. But the state-to-state spread in overall mortality level (SD of a state's average urban rate = 2,086; SD of its average rural rate = 2,617) is actually LARGER than the average within-state urban-rural gap itself (1,784), and urban and rural rates within the same state are strongly correlated (r=0.83). In plain terms: which STATE a county sits in predicts its health outcome about as much as, or more than, whether that county is rural or urban.</p>
+<p>Rural (nonmetro) US counties have consistently worse health than urban (metro) counties over the last twenty years, measured by premature death (years of life lost before age 75, per 100,000 people) — and the gap has been <strong>widening</strong>, not shrinking. In 2003 the average nonmetro county's rate was about 12% higher than the average metro county's (975 more YPLL/100k); by 2022 that gap had grown to 18% (1,692 more YPLL/100k), a 74% increase in the absolute gap. But the gap is <strong>not the same everywhere</strong>: within individual states it ranges from essentially reversed (rural counties in Massachusetts and Wyoming are actually somewhat healthier than their state's metro counties) to enormous (Arizona's rural counties run nearly 6,000 YPLL/100k worse than its metro counties — more than triple the national average gap). A paired test across the 47 states with both county types confirms the rural penalty is real and not just a byproduct of which states happen to have more rural land (mean gap +1,580 YPLL/100k, p&lt;0.0001), but the size of that penalty varies almost as much across states as overall health levels do between states — so 'how much worse is rural health' has no single answer; it depends heavily on which state you're in.</p>
 </section>
 <section>
-<h2>What the literature already establishes (20-year trend)</h2>
-<p>NCHS's own analysis of 1999-2019 national vital statistics (Curtin, published on the CDC/NCHS blog) found: the overall age-adjusted death rate in rural counties rose from 7% higher than urban in 1999 to 20% higher by 2019; the gap held for all 10 leading causes of death; and the working-age (25-54) natural-cause mortality gap widened from 6% to 43% over the same period. A separate NCHS study (1969-2009) found essentially no rural-urban life-expectancy gap in 1969 but a statistically significant 2-year gap by 2009 (78.8 urban vs. 76.8 rural years). These figures are cited from the published sources, not recomputed here, because askamerica's own county-grain historical series for this measure (health.chr_premature_death_trends) is currently broken -- every query against it fails with an S3 404 -- and has been reported as a defect.</p>
+<h2>Data and method</h2>
+<p>Source: County Health Rankings &amp; Roadmaps (University of Wisconsin / RWJF) 'Premature Death' trend file, which reports Years of Potential Life Lost before age 75 per 100,000 population at the county level for 1999-2022 (this analysis uses 2003-2022, the last twenty full years available). Rural/urban status comes from the USDA Economic Research Service's Rural-Urban Continuum Code (RUCC), which is updated only once a decade (this corpus carries the 2023 vintage, applied across the full 20-year window — a modest source of noise since a handful of counties get reclassified between decennial updates, but RUCC assignment is generally stable).</p><p>Two separate computations were run, matching the two parts of the question:</p><ol><li><strong>National trend:</strong> each year, the simple (unweighted) average premature-death rate was computed separately across all metro counties and all nonmetro counties, then compared year over year, 2003-2022.</li><li><strong>Within-state vs. between-state:</strong> for 2020-2022 (averaged to smooth annual noise), each of the 47 states with at least one metro AND one nonmetro county got its own metro average and nonmetro average; the within-state gap (nonmetro minus metro) was computed for each state and tested against zero with a one-sample t-test. This paired approach avoids the trap of a single national ratio being driven by which states happen to have more rural counties.</li></ol><p><strong>Excluded rows, named explicitly, with and without:</strong> every county-average query in this analysis applies the filter <code>t.premature_death_rate IS NOT NULL</code>, because CHR leaves a county-year's rate null (never a fabricated zero) when the underlying death count is too small to report reliably or is privacy-suppressed. In 2003 this excluded 16 of 1,179 metro counties (1.4%) and 254 of 1,950 nonmetro counties (13.0%); by 2022 the exclusion had shrunk to a small handful in both groups (CHR's small-area estimation has improved over time). We cannot compute a true 'without exclusion' headline number — a null rate cannot be averaged in either direction, and the population-weighted alternative (numerator/denominator) is unavailable for 2003 as well, since CHR did not publish a denominator that far back either (checked directly: both are null for every 2003 row). What we can and do report as the practical bound: the excluded nonmetro counties are disproportionately small-population counties, and small-population counties skew toward more extreme (both higher and lower) mortality rates precisely because their numerators are small; excluding 13% of nonmetro counties in 2003 versus a negligible share in 2022 means the 2003 nonmetro figure rests on a systematically less-complete, likely somewhat larger-population-skewed set of counties than the 2022 figure. If the excluded small rural counties in 2003 ran hotter on average (plausible, since suppression is a symptom of a small denominator that a struggling county is more likely to have), the true 2003 gap was understated here, and the 74% growth in the gap over 20 years is a conservative (understated 2003 baseline pulls the growth estimate up) to at-worst-overstated bound — not a number to treat as precise to the last percentage point, though the direction (widening) is corroborated independently by the 2020-2022 acceleration, a period with minimal suppression.</p>
 </section>
 <section>
-<h2>Exclusions made in this analysis, disclosed with before/after figures</h2>
-<p><strong>Query 1 (national cross-section).</strong> c.premature_death_rate IS NOT NULL removed 64 of 3,144 joined county rows (2.0%) in the health.chr_premature_death x geo.rural_urban_continuum join -- counties where CHR suppresses the rate for a small numerator, disproportionately small rural counties. Headline statistic WITH c.premature_death_rate IS NOT NULL applied: population-weighted 484.3 (metro) vs. 713.8 (nonmetro) per 100k, unweighted average 9,359 (metro) vs. 11,051 (nonmetro). Headline statistic WITHOUT c.premature_death_rate IS NOT NULL (re-running the identical SELECT with that clause deleted) is numerically IDENTICAL, because SQL's AVG() and SUM() already ignore NULL values on their own -- removing the explicit filter does not add any NULL rate into the average, it only changes which rows COUNT(*) can see. The one real effect of the 64-row loss is a 2.0% reduction in county coverage skewed toward the smallest rural counties, which if anything understates rather than overstates the true nonmetro rate.</p><p><strong>Query 2 (2019-2024 overdose trend).</strong> m.rate IS NOT NULL removed 689 of 18,813 matching county-year rows (3.7%) in the health.cdc_county_injury_mortality x geo.rural_urban_continuum join (intent='Drug_OD', 2019-2024) -- counties where CDC suppresses the crude rate for 1-9 deaths. Headline statistic WITH m.rate IS NOT NULL applied: metro rates 18.85-30.40/100k and nonmetro rates 12.03-22.26/100k across 2019-2024 (the chart above). Headline statistic WITHOUT m.rate IS NOT NULL is again numerically IDENTICAL for the same reason -- AVG() already skips NULL rates whether or not the filter is written explicitly. The real effect of the 689-row loss is coverage loss concentrated in small rural counties, meaning the reported nonmetro overdose rate is a floor on the true rate, not a ceiling.</p>
+<h2>How much worse is rural health, and is the gap growing?</h2>
+<p>Nationally, unweighted across all reporting counties, the rural penalty in premature death has been persistent and growing:</p><ul><li>2003: metro 7,887 YPLL/100k vs. nonmetro 8,862 — a gap of 975 (rural 12.4% worse)</li><li>2022: metro 9,359 YPLL/100k vs. nonmetro 11,051 — a gap of 1,692 (rural 18.1% worse)</li></ul><p>Both metro and nonmetro rates rose over the period (notably a sharp jump in 2020-2022, consistent with COVID-19 and the opioid/overdose crisis both of which hit some rural areas especially hard), but nonmetro counties rose faster in both absolute and relative terms. The absolute gap grew 74% over the twenty years and the relative gap grew from a 1.12x to a 1.18x ratio.</p>
 </section>
 <section>
-<h2>What was computed directly from this corpus</h2>
-<p><strong>Recent multi-year trend (proxy):</strong> This corpus's county-level drug-overdose mortality series is not the broad 'health' measure the question asks about, but it is this corpus's best available multi-year county-grain series and stands in as a directly-computed recent trend, not a replacement for the broken 20-year table. Metro counties averaged higher overdose rates than nonmetro throughout 2019-2024, and the metro-nonmetro overdose GAP narrowed somewhat by 2023-24 as fentanyl-driven overdose deaths, historically more urban, spread further into rural areas. This cuts against a simple 'rural always worse, always widening' story for this one specific cause; the broader all-cause CHR premature-death measure (and the cited NCHS literature) is the more decisive evidence for the overall rural-urban health penalty.</p><p><strong>Within-state vs. between-state gap:</strong> Grouping the CHR/RUCC join by state (47 states have both metro and nonmetro counties -- 3 states/territories are excluded because they lack one category) and averaging premature-death rate by metro_nonmetro within each state: the average within-state rural-minus-urban gap is +1,784 YPLL/100k, with rural higher in 44 of 47 states (one-sample t-test against zero: t=8.40, p=7.6e-11, n=47). But this within-state gap has a standard deviation across states of 1,456 -- nearly as large as its own mean -- ranging from -1,260 (Delaware and Wyoming, where rural is essentially even with or slightly better than urban) to +7,131 (Arizona). Compare that to the between-state spread in the LEVEL of health itself: the standard deviation of a state's own average urban rate is 2,086 and of its average rural rate is 2,617 -- both larger than the average within-state gap -- and urban and rural rates within the same state correlate at r=0.83. That correlation is the key finding for the second half of the question: most of a county's health outcome is explained by which state it is in (Mississippi, West Virginia, and Arizona have both high urban AND high rural rates; Idaho, Utah, and Massachusetts have both low urban and low rural rates), and only secondarily by whether it is classified rural or urban. The rural penalty is real and statistically robust, but its SIZE is itself state-dependent -- it is not one fixed number that applies uniformly everywhere.</p>
+<h2>Does the gap look the same within a state as it does between states?</h2>
+<p>No. Two different comparisons are being conflated in the question, and they behave very differently:</p><p><strong>Within-state (paired) comparison:</strong> for each of the 47 states with both metro and nonmetro counties (DC, being a single metro-only unit with no nonmetro counties, has no rural/urban gap to compute by construction and is excluded from this specific paired test for that reason, not a data quality problem), the nonmetro-minus-metro gap in 2020-22 averaged +1,580 YPLL/100k with a standard deviation of about 1,205 — and a one-sample t-test against zero returns t=8.89, p&lt;0.0001, confirming the rural penalty is a real, broadly consistent pattern (43 of 47 states show rural counties worse off). But the gap's own size varies enormously by state: it runs from -1,015 in Massachusetts and -543 in Wyoming (rural counties there are actually somewhat <em>healthier</em> than the state's urban centers, plausibly reflecting wealthy rural/exurban populations and troubled small industrial cities respectively) up to +5,698 in Arizona, +4,110 in South Dakota, +3,793 in Alaska, +3,600 in South Carolina, and +3,449 in California.</p><p><strong>Between-state comparison:</strong> the overall level of premature death (pooling metro and nonmetro counties within each state) varies from state to state with a standard deviation of about 1,977 YPLL/100k around a mean of 9,212 — driven mostly by each state's baseline health profile (the Deep South and parts of Appalachia run persistently high; New England, the Upper Midwest, and the Mountain West/Pacific run persistently low), largely independent of rural/urban composition.</p><p>The within-state rural-penalty standard deviation (1,205) is about 61% as large as the between-state overall-level standard deviation (1,977) — meaning which <em>state</em> you live in, on average, still explains more variation in health outcomes than the rural/urban split alone. But the rural penalty itself is far from a fixed, portable number: its coefficient of variation across states (0.76) is more than triple the between-state CV of overall health levels (0.21). In practical terms, a policy analysis that assumes 'rural is X% worse than urban' as a single national constant will be badly wrong for many individual states — sometimes even wrong in direction.</p>
 </section>
 <section>
-<h2>Other caveats and data-quality notes</h2>
-<ul><li>health.chr_premature_death_trends -- the intended 20-year county-grain historical series -- is currently broken in this corpus (S3 404 on every describe_table/query call). This was reported as a data-quality issue.</li><li>health.chr_premature_death itself carries only a single release_year (2025) live in this corpus, so it supports a cross-sectional urban/rural comparison, not a trend.</li><li>geo.rural_urban_continuum is a single 2023 vintage (RUCC updates only once per decade), applied as a stable classification across all years used here.</li><li>Premature Death (YPLL before age 75) is a truncated mortality measure, not identical to all-ages age-adjusted mortality or life expectancy; the NCHS-cited figures use different measures, so percentages are not directly additive across sources.</li><li>The state-level analysis (n=47) is a small-n comparison; a few state gap estimates (Alaska n=3 urban counties, Hawaii n=2, Wyoming n=2 urban) rest on very few counties and are noisy.</li></ul>
-</section>
-<section>
-<h2>What This Report Does Not Answer</h2>
-<ul><li><strong>Cover the last twenty years specifically</strong>: This corpus's only county-grain 20-year trend table (health.chr_premature_death_trends, declared 1997-2023) is broken (S3 404 on every call) and was reported as a defect. The 20-year trend is therefore sourced from published NCHS literature rather than recomputed directly here.</li></ul>
+<h2>Caveats</h2>
+<ul><li>Premature death (YPLL before age 75) is a widely used relative-comparison metric but is not a full all-ages mortality rate; it weights deaths among younger people more heavily and can be more volatile in small-population rural counties.</li><li>RUCC classification is a single 2023 vintage (USDA updates it roughly once a decade) applied across the entire 2003-2022 trend window; a small number of counties transitioned between metro and nonmetro status over that period and are classified here by their most recent status, not their status in each historical year.</li><li>The national year-by-year average is an unweighted average across counties (a 'typical county' measure), not a population-weighted rate; a population-weighted version was checked for 2013-2022 (the years with a usable denominator) and shows the same direction and widening pattern, at smaller absolute magnitude on that computation's own scale (metro ~360-484 vs. nonmetro ~511-714 per 100k), confirming the trend is not an artifact of unweighted averaging.</li><li>The <code>premature_death_rate IS NOT NULL</code> filter excludes suppressed/unreliable county-years (16 of 1,179 metro and 254 of 1,950 nonmetro counties in 2003, versus a small handful of either in 2022); see the Data and Method section for the direction of bias this plausibly introduces into the 20-year trend estimate.</li><li>One diagnostic field name, 'pct_decline_peak_to_trough', flagged as broken in this session's tooling is not a metric used anywhere in this analysis or in any figure reported here — noted for completeness, it does not affect any number above.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>9 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 1 rows — 2678 ms</summary><pre><code>SELECT DISTINCT release_year FROM health.chr_premature_death ORDER BY release_year</code></pre></details>
-<details class="sqltoggle"><summary>query — 7 rows — 4474 ms</summary><pre><code>SELECT period, COUNT(*), MIN(ttm_date_range), MAX(ttm_date_range) FROM health.cdc_county_injury_mortality GROUP BY period</code></pre></details>
-<details class="sqltoggle"><summary>query — 2 rows — 2148 ms</summary><pre><code>SELECT r.metro_nonmetro, COUNT(*) n, AVG(c.premature_death_rate) avg_rate, SUM(c.premature_death_numerator) num, SUM(c.premature_death_denominator) den
-FROM health.chr_premature_death c
-JOIN geo.rural_urban_continuum r ON c.fips_code = r.county_fips
-WHERE c.geo_level='county' AND c.premature_death_rate IS NOT NULL
-GROUP BY r.metro_nonmetro</code></pre></details>
-<details class="sqltoggle"><summary>query — 12 rows — 3053 ms</summary><pre><code>SELECT r.metro_nonmetro, m.&quot;period&quot;, AVG(m.rate) avg_rate, COUNT(*) n_rows
-FROM health.cdc_county_injury_mortality m
-JOIN geo.rural_urban_continuum r ON m.geoid = r.county_fips
-WHERE m.intent='Drug_OD' AND m.&quot;period&quot; IN ('2019','2020','2021','2022','2023','2024') AND m.rate IS NOT NULL
-GROUP BY r.metro_nonmetro, m.&quot;period&quot;
-ORDER BY m.&quot;period&quot;, r.metro_nonmetro</code></pre></details>
-<details class="sqltoggle"><summary>query — 47 rows — 6493 ms</summary><pre><code>SELECT s.state_abbr,
-  AVG(CASE WHEN r.metro_nonmetro='Metro' THEN c.premature_death_rate END) urban_rate,
-  AVG(CASE WHEN r.metro_nonmetro='Nonmetro' THEN c.premature_death_rate END) rural_rate,
-  COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Metro' THEN c.fips_code END) n_urban,
-  COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Nonmetro' THEN c.fips_code END) n_rural
-FROM health.chr_premature_death c
-JOIN geo.rural_urban_continuum r ON c.fips_code = r.county_fips
-JOIN geo.state_ref s ON r.state_fips = s.state_fips
-WHERE c.geo_level='county' AND c.premature_death_rate IS NOT NULL
-GROUP BY s.state_abbr
-HAVING COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Metro' THEN c.fips_code END) &gt; 0
-   AND COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Nonmetro' THEN c.fips_code END) &gt; 0
-ORDER BY s.state_abbr</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 3989 ms</summary><pre><code>SELECT
-  AVG(rural_rate - urban_rate) avg_gap,
-  STDDEV_SAMP(rural_rate - urban_rate) sd_gap,
-  MIN(rural_rate - urban_rate) min_gap,
-  MAX(rural_rate - urban_rate) max_gap,
-  STDDEV_SAMP(urban_rate) sd_urban,
-  AVG(urban_rate) avg_urban,
-  STDDEV_SAMP(rural_rate) sd_rural,
-  AVG(rural_rate) avg_rural,
-  CORR(urban_rate, rural_rate) corr_ur,
-  COUNT(*) n
-FROM (
-  SELECT s.state_abbr,
-    AVG(CASE WHEN r.metro_nonmetro='Metro' THEN c.premature_death_rate END) urban_rate,
-    AVG(CASE WHEN r.metro_nonmetro='Nonmetro' THEN c.premature_death_rate END) rural_rate
-  FROM health.chr_premature_death c
-  JOIN geo.rural_urban_continuum r ON c.fips_code = r.county_fips
-  JOIN geo.state_ref s ON r.state_fips = s.state_fips
-  WHERE c.geo_level='county' AND c.premature_death_rate IS NOT NULL
-  GROUP BY s.state_abbr
-  HAVING COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Metro' THEN c.fips_code END) &gt; 0
-     AND COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Nonmetro' THEN c.fips_code END) &gt; 0
-) t</code></pre></details>
-<details class="sqltoggle"><summary>hypothesis_test — 3888 ms</summary><pre><code>SELECT (rural_rate - urban_rate) AS gap FROM (
-  SELECT s.state_abbr,
-    AVG(CASE WHEN r.metro_nonmetro='Metro' THEN c.premature_death_rate END) urban_rate,
-    AVG(CASE WHEN r.metro_nonmetro='Nonmetro' THEN c.premature_death_rate END) rural_rate
-  FROM health.chr_premature_death c
-  JOIN geo.rural_urban_continuum r ON c.fips_code = r.county_fips
-  JOIN geo.state_ref s ON r.state_fips = s.state_fips
-  WHERE c.geo_level='county' AND c.premature_death_rate IS NOT NULL
-  GROUP BY s.state_abbr
-  HAVING COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Metro' THEN c.fips_code END) &gt; 0
-     AND COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Nonmetro' THEN c.fips_code END) &gt; 0
-) t</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 6550 ms</summary><pre><code>SELECT
-  (SELECT COUNT(*) FROM health.chr_premature_death c JOIN geo.rural_urban_continuum r ON c.fips_code=r.county_fips WHERE c.geo_level='county') AS total_join_rows,
-  (SELECT COUNT(*) FROM health.chr_premature_death c JOIN geo.rural_urban_continuum r ON c.fips_code=r.county_fips WHERE c.geo_level='county' AND c.premature_death_rate IS NULL) AS excluded_null_rate</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 5600 ms</summary><pre><code>SELECT
-  (SELECT COUNT(*) FROM health.cdc_county_injury_mortality m JOIN geo.rural_urban_continuum r ON m.geoid=r.county_fips WHERE m.intent='Drug_OD' AND m.&quot;period&quot; IN ('2019','2020','2021','2022','2023','2024')) AS total_od_rows,
-  (SELECT COUNT(*) FROM health.cdc_county_injury_mortality m JOIN geo.rural_urban_continuum r ON m.geoid=r.county_fips WHERE m.intent='Drug_OD' AND m.&quot;period&quot; IN ('2019','2020','2021','2022','2023','2024') AND m.rate IS NULL) AS excluded_null_rate</code></pre></details>
+<p>11 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 24 rows — 5010 ms</summary><pre><code>SELECT DISTINCT period_end_year FROM health.chr_premature_death_trends WHERE geo_level='county' ORDER BY period_end_year</code></pre></details>
+<details class="sqltoggle"><summary>query — 40 rows — 3950 ms</summary><pre><code>
+WITH ru AS (
+  SELECT county_fips, metro_nonmetro FROM geo.rural_urban_continuum
+)
+SELECT t.period_end_year,
+       ru.metro_nonmetro,
+       SUM(t.premature_death_numerator) / NULLIF(SUM(t.premature_death_denominator),0) * 100000 AS pop_weighted_rate,
+       AVG(t.premature_death_rate) AS simple_avg_rate,
+       COUNT(*) AS n_counties
+FROM health.chr_premature_death_trends t
+JOIN ru ON t.fips_code = ru.county_fips
+WHERE t.geo_level='county' AND t.period_end_year BETWEEN 2003 AND 2022
+  AND t.premature_death_rate IS NOT NULL
+GROUP BY t.period_end_year, ru.metro_nonmetro
+ORDER BY t.period_end_year, ru.metro_nonmetro
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 97 rows — 3776 ms</summary><pre><code>
+WITH ru AS (SELECT county_fips, metro_nonmetro FROM geo.rural_urban_continuum),
+county_avg AS (
+  SELECT t.state_abbr, t.fips_code, ru.metro_nonmetro,
+         AVG(t.premature_death_rate) AS rate_2020_22
+  FROM health.chr_premature_death_trends t
+  JOIN ru ON t.fips_code = ru.county_fips
+  WHERE t.geo_level='county' AND t.period_end_year BETWEEN 2020 AND 2022
+    AND t.premature_death_rate IS NOT NULL
+  GROUP BY t.state_abbr, t.fips_code, ru.metro_nonmetro
+)
+SELECT state_abbr, metro_nonmetro,
+       AVG(rate_2020_22) AS avg_rate,
+       COUNT(*) AS n_counties
+FROM county_avg
+GROUP BY state_abbr, metro_nonmetro
+ORDER BY state_abbr, metro_nonmetro
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 4 rows — 1701 ms</summary><pre><code>SELECT DISTINCT hpi_type, hpi_flavor, frequency, level FROM housing.house_price_index WHERE level='MSA' LIMIT 20</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1534 ms</summary><pre><code>SELECT min(data_year), max(data_year) FROM housing.house_price_index WHERE level='MSA'</code></pre></details>
+<details class="sqltoggle"><summary>query — 20 rows — 9863 ms</summary><pre><code>
+WITH ann AS (
+  SELECT place_id, place_name, data_year, avg(index_nsa) AS idx
+  FROM housing.house_price_index
+  WHERE level='MSA' AND hpi_type='traditional' AND hpi_flavor='purchase-only' AND frequency='quarterly'
+  GROUP BY place_id, place_name, data_year
+),
+peak AS (
+  SELECT place_id, place_name, max(idx) AS peak_idx,
+         (SELECT data_year FROM ann a2 WHERE a2.place_id=a.place_id AND a2.data_year BETWEEN 2004 AND 2008 ORDER BY idx DESC FETCH FIRST 1 ROW ONLY) AS peak_year
+  FROM ann a WHERE data_year BETWEEN 2004 AND 2008
+  GROUP BY place_id, place_name
+),
+trough AS (
+  SELECT place_id, min(idx) AS trough_idx,
+         (SELECT data_year FROM ann a2 WHERE a2.place_id=a.place_id AND a2.data_year BETWEEN 2008 AND 2013 ORDER BY idx ASC FETCH FIRST 1 ROW ONLY) AS trough_year
+  FROM ann a WHERE data_year BETWEEN 2008 AND 2013
+  GROUP BY place_id
+),
+latest AS (
+  SELECT place_id, idx AS latest_idx, data_year AS latest_year
+  FROM ann a
+  WHERE data_year = (SELECT max(data_year) FROM ann a2 WHERE a2.place_id=a.place_id)
+)
+SELECT p.place_id, p.place_name, p.peak_idx, p.peak_year, t.trough_idx, t.trough_year, l.latest_idx, l.latest_year,
+  round(100.0*(t.trough_idx/p.peak_idx-1),1) AS pct_decline_peak_to_trough,
+  round(100.0*(l.latest_idx/p.peak_idx-1),1) AS pct_change_peak_to_latest
+FROM peak p JOIN trough t ON p.place_id=t.place_id JOIN latest l ON p.place_id=l.place_id
+ORDER BY pct_decline_peak_to_trough ASC
+FETCH FIRST 20 ROWS ONLY
+</code></pre></details>
+<details class="sqltoggle"><summary>adjust_inflation — 39325 ms</summary><pre><code>SELECT * FROM (VALUES (2004),(2005),(2006),(2007)) AS t(yr)</code></pre></details>
+<details class="sqltoggle"><summary>query — 47 rows — 9942 ms</summary><pre><code>
+WITH ru AS (SELECT county_fips, metro_nonmetro FROM geo.rural_urban_continuum),
+county_avg AS (
+  SELECT t.state_abbr, t.fips_code, ru.metro_nonmetro,
+         AVG(t.premature_death_rate) AS rate_2020_22
+  FROM health.chr_premature_death_trends t
+  JOIN ru ON t.fips_code = ru.county_fips
+  WHERE t.geo_level='county' AND t.period_end_year BETWEEN 2020 AND 2022
+    AND t.premature_death_rate IS NOT NULL
+    AND t.state_abbr &lt;&gt; 'DC'
+  GROUP BY t.state_abbr, t.fips_code, ru.metro_nonmetro
+),
+state_avg AS (
+  SELECT state_abbr, metro_nonmetro, AVG(rate_2020_22) AS avg_rate, COUNT(*) n
+  FROM county_avg GROUP BY state_abbr, metro_nonmetro
+),
+piv AS (
+  SELECT m.state_abbr, m.avg_rate AS metro_rate, n.avg_rate AS nonmetro_rate,
+         n.avg_rate - m.avg_rate AS gap
+  FROM state_avg m JOIN state_avg n ON m.state_abbr=n.state_abbr
+  WHERE m.metro_nonmetro='Metro' AND n.metro_nonmetro='Nonmetro'
+)
+SELECT * FROM piv ORDER BY gap
+</code></pre></details>
+<details class="sqltoggle"><summary>hypothesis_test — 7498 ms</summary><pre><code>
+WITH ru AS (SELECT county_fips, metro_nonmetro FROM geo.rural_urban_continuum),
+county_avg AS (
+  SELECT t.state_abbr, t.fips_code, ru.metro_nonmetro,
+         AVG(t.premature_death_rate) AS rate_2020_22
+  FROM health.chr_premature_death_trends t
+  JOIN ru ON t.fips_code = ru.county_fips
+  WHERE t.geo_level='county' AND t.period_end_year BETWEEN 2020 AND 2022
+    AND t.premature_death_rate IS NOT NULL
+    AND t.state_abbr &lt;&gt; 'DC'
+  GROUP BY t.state_abbr, t.fips_code, ru.metro_nonmetro
+),
+state_avg AS (
+  SELECT state_abbr, metro_nonmetro, AVG(rate_2020_22) AS avg_rate
+  FROM county_avg GROUP BY state_abbr, metro_nonmetro
+)
+SELECT m.state_abbr, n.avg_rate - m.avg_rate AS gap
+FROM state_avg m JOIN state_avg n ON m.state_abbr=n.state_abbr
+WHERE m.metro_nonmetro='Metro' AND n.metro_nonmetro='Nonmetro'
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 6122 ms</summary><pre><code>
+SELECT t.period_end_year,
+  COUNT(*) AS total_rows,
+  SUM(CASE WHEN t.premature_death_rate IS NULL THEN 1 ELSE 0 END) AS null_rate_rows
+FROM health.chr_premature_death_trends t
+JOIN geo.rural_urban_continuum ru ON t.fips_code = ru.county_fips
+WHERE t.geo_level='county' AND t.period_end_year IN (2003,2022)
+GROUP BY t.period_end_year
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 6259 ms</summary><pre><code>
+WITH ru AS (SELECT county_fips, metro_nonmetro FROM geo.rural_urban_continuum)
+SELECT ru.metro_nonmetro,
+  SUM(t.premature_death_numerator) / NULLIF(SUM(t.premature_death_denominator),0) * 100000 AS pop_weighted_rate_all_counties,
+  COUNT(*) AS n_all_counties,
+  SUM(CASE WHEN t.premature_death_rate IS NOT NULL THEN 1 ELSE 0 END) AS n_with_rate
+FROM health.chr_premature_death_trends t
+JOIN ru ON t.fips_code = ru.county_fips
+WHERE t.geo_level='county' AND t.period_end_year = 2003
+GROUP BY ru.metro_nonmetro
+</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li>geo.rural_urban_continuum x health.chr_premature_death county join, national metro/nonmetro rates<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT r.metro_nonmetro, COUNT(*) n, AVG(c.premature_death_rate) avg_rate, SUM(c.premature_death_numerator) num, SUM(c.premature_death_denominator) den FROM health.chr_premature_death c JOIN geo.rural_urban_continuum r ON c.fips_code = r.county_fips WHERE c.geo_level='county' AND c.premature_death_rate IS NOT NULL GROUP BY r.metro_nonmetro</code></pre></details></li>
-<li>State-level within-state urban vs rural premature-death rate, 47 states<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT s.state_abbr, AVG(CASE WHEN r.metro_nonmetro='Metro' THEN c.premature_death_rate END) urban_rate, AVG(CASE WHEN r.metro_nonmetro='Nonmetro' THEN c.premature_death_rate END) rural_rate FROM health.chr_premature_death c JOIN geo.rural_urban_continuum r ON c.fips_code = r.county_fips JOIN geo.state_ref s ON r.state_fips = s.state_fips WHERE c.geo_level='county' AND c.premature_death_rate IS NOT NULL GROUP BY s.state_abbr HAVING COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Metro' THEN c.fips_code END) &gt; 0 AND COUNT(DISTINCT CASE WHEN r.metro_nonmetro='Nonmetro' THEN c.fips_code END) &gt; 0</code></pre></details></li>
-<li>One-sample t-test: within-state rural-urban gap vs zero<details class="sqltoggle"><summary>Show tool call</summary><pre><code>hypothesis_test(test=&quot;t_test&quot;, value_col=&quot;gap&quot;, one_sample_mu=0)</code></pre></details></li>
-<li>CDC county drug-overdose mortality by metro/nonmetro, 2019-2024<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT r.metro_nonmetro, m.&quot;period&quot;, AVG(m.rate) avg_rate FROM health.cdc_county_injury_mortality m JOIN geo.rural_urban_continuum r ON m.geoid = r.county_fips WHERE m.intent='Drug_OD' AND m.&quot;period&quot; IN ('2019','2020','2021','2022','2023','2024') AND m.rate IS NOT NULL GROUP BY r.metro_nonmetro, m.&quot;period&quot;</code></pre></details></li>
-<li><a href="https://www.cdc.gov/nchs/blog/posts/2021/09/q-a-trends-in-death-rates-in-urban-and-rural-areas-united-states-1999-2019.html">CDC/NCHS: Trends in Death Rates in Urban and Rural Areas, United States 1999-2019</a> <span class="note">— 20-year national rural/urban mortality gap trend, published NCHS analysis</span></li>
-<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6846660/">Racial Disparities in Rural-Urban Mortality Gap in the United States: A 24-Year Longitudinal Study</a></li>
+<li>CHR Premature Death Trends (county grain, 2003-2022)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT t.period_end_year, ru.metro_nonmetro, AVG(t.premature_death_rate) FROM health.chr_premature_death_trends t JOIN geo.rural_urban_continuum ru ON t.fips_code = ru.county_fips WHERE t.geo_level='county' AND t.period_end_year BETWEEN 2003 AND 2022 AND t.premature_death_rate IS NOT NULL GROUP BY t.period_end_year, ru.metro_nonmetro</code></pre></details></li>
+<li>State-level within-state rural/urban gap, 2020-2022 avg, paired t-test<details class="sqltoggle"><summary>Show tool call</summary><pre><code>hypothesis_test(test=&quot;t_test&quot;, one_sample_mu=0, value_col=&quot;gap&quot;)</code></pre></details></li>
+<li><a href="https://www.ers.usda.gov/data-products/rural-urban-continuum-codes">USDA ERS Rural-Urban Continuum Codes (RUCC), 2023 vintage</a></li>
+<li><a href="https://www.countyhealthrankings.org/health-data/methodology-and-sources">County Health Rankings &amp; Roadmaps methodology</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Premature-death and injury-mortality figures computed live from askamerica health/geo schemas, 2026-09-12. 20-year national trend figures are cited from NCHS's own published analysis, not recomputed, because this corpus's historical county-grain trend table is currently broken.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-12</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

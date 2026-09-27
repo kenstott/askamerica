@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FEMA hurricane declarations in coastal states show a noisy, statistically weak upward drift since 2010; homeowners premium growth in high-risk coastal areas far outpaces that trend and is driven more by loss severity and risk pricing than by storm counts</title>
+<title>Hurricane disaster declarations show no significant rising trend since 2010; homeowners premiums rose steadily anyway</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -99,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>FEMA hurricane declarations in coastal states show a noisy, statistically weak upward drift since 2010; homeowners premium growth in high-risk coastal areas far outpaces that trend and is driven more by loss severity and risk pricing than by storm counts</h1>
-<p class="subtitle">FEMA/NOAA disaster data (askamerica, 2010-2025) and GAO-26-107867 (Feb 2026) homeowners insurance report</p>
+<h1>Hurricane disaster declarations show no significant rising trend since 2010; homeowners premiums rose steadily anyway</h1>
+<p class="subtitle">FEMA hurricane disaster declarations, 18 Atlantic/Gulf coastal states, 2010-2025, vs. NAIC national average homeowners premium, 2013-2022</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +120,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 645" width="880" height="645" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,150 +147,165 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">Hurricane Disaster Frequency vs. Homeowners Insurance Premium Growth, Coasta…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">FEMA disaster declarations &amp; NFIP paid claims, 2010-2025 (askamerica); premium growth from GAO-26-107867 (Feb 2026)</text>
-  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+  <rect class="dash-bg" x="0" y="0" width="880" height="645" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:18px">Hurricane Disaster Frequency Is Flat; Homeowners Premiums Rose Steadily An…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">FEMA disaster declarations (18 Atlantic/Gulf coastal states) vs. NAIC average homeowners premium, 2010-2025</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Hurricane-declaration trend, 2010-2025</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">+0.1/yr</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">not significant (p=0.85)</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">OLS slope on annual FEMA hurricane-disaster count across 18 coastal</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">states</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">National avg. homeowners premium growth</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:27px">+43% nominal / +14% real</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">2013 to 2022</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">NAIC/Triple-I HO-3 average premium, CPI-adjusted to 2022 dollars</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Hurricane/Tropical-Cyclone FEMA Disaster Declarations, 17 Atlantic/Gulf …</text>
-    <g id="p1-gridlines">
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">FEMA hurricane disaster declarations, 18 Atlantic/Gulf coastal states</text>
+    <g id="p3-gridlines">
       <line class="grid" x1="60" y1="187.84" x2="390" y2="187.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-0" class="tick" x="52" y="191.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <text id="p3-ytick-0" class="tick" x="52" y="191.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
       <line class="grid" x1="60" y1="165.87" x2="390" y2="165.87" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-1" class="tick" x="52" y="169.87" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <text id="p3-ytick-1" class="tick" x="52" y="169.87" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
       <line class="grid" x1="60" y1="143.89" x2="390" y2="143.89" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-2" class="tick" x="52" y="147.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <text id="p3-ytick-2" class="tick" x="52" y="147.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
       <line class="grid" x1="60" y1="121.92" x2="390" y2="121.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-3" class="tick" x="52" y="125.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <text id="p3-ytick-3" class="tick" x="52" y="125.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
       <line class="grid" x1="60" y1="99.95" x2="390" y2="99.95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-4" class="tick" x="52" y="103.95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <text id="p3-ytick-4" class="tick" x="52" y="103.95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
       <line class="grid" x1="60" y1="77.97" x2="390" y2="77.97" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-5" class="tick" x="52" y="81.97" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+      <text id="p3-ytick-5" class="tick" x="52" y="81.97" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
       <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <text id="p3-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
     </g>
-    <g id="p1-axes">
+    <g id="p3-axes">
       <line class="axis" x1="60" y1="56" x2="60" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
       <line class="axis" x1="60" y1="187.84" x2="390" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p1-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
-    <text id="p1-y-axis-title" class="axis-title" x="14" y="121.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 121.92)">Declarations</text>
-    <g id="p1-x-axis-labels">
-      <text id="p1-xtick-2010" class="tick" x="70.31" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 70.31 201.84)">2010</text>
-      <text id="p1-xtick-2011" class="tick" x="90.94" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 90.94 201.84)">2011</text>
-      <text id="p1-xtick-2012" class="tick" x="111.56" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 111.56 201.84)">2012</text>
-      <text id="p1-xtick-2013" class="tick" x="132.19" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 132.19 201.84)">2013</text>
-      <text id="p1-xtick-2014" class="tick" x="152.81" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 152.81 201.84)">2014</text>
-      <text id="p1-xtick-2015" class="tick" x="173.44" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 173.44 201.84)">2015</text>
-      <text id="p1-xtick-2016" class="tick" x="194.06" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 194.06 201.84)">2016</text>
-      <text id="p1-xtick-2017" class="tick" x="214.69" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 214.69 201.84)">2017</text>
-      <text id="p1-xtick-2018" class="tick" x="235.31" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 235.31 201.84)">2018</text>
-      <text id="p1-xtick-2019" class="tick" x="255.94" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 255.94 201.84)">2019</text>
-      <text id="p1-xtick-2020" class="tick" x="276.56" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 276.56 201.84)">2020</text>
-      <text id="p1-xtick-2021" class="tick" x="297.19" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 297.19 201.84)">2021</text>
-      <text id="p1-xtick-2022" class="tick" x="317.81" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 317.81 201.84)">2022</text>
-      <text id="p1-xtick-2023" class="tick" x="338.44" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 338.44 201.84)">2023</text>
-      <text id="p1-xtick-2024" class="tick" x="359.06" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 359.06 201.84)">2024</text>
-      <text id="p1-xtick-2025" class="tick" x="379.69" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 379.69 201.84)">2025</text>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="121.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 121.92)">State-disasters</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2010" class="tick" x="70.31" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 70.31 201.84)">2010</text>
+      <text id="p3-xtick-2011" class="tick" x="90.94" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 90.94 201.84)">2011</text>
+      <text id="p3-xtick-2012" class="tick" x="111.56" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 111.56 201.84)">2012</text>
+      <text id="p3-xtick-2013" class="tick" x="132.19" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 132.19 201.84)">2013</text>
+      <text id="p3-xtick-2014" class="tick" x="152.81" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 152.81 201.84)">2014</text>
+      <text id="p3-xtick-2015" class="tick" x="173.44" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 173.44 201.84)">2015</text>
+      <text id="p3-xtick-2016" class="tick" x="194.06" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 194.06 201.84)">2016</text>
+      <text id="p3-xtick-2017" class="tick" x="214.69" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 214.69 201.84)">2017</text>
+      <text id="p3-xtick-2018" class="tick" x="235.31" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 235.31 201.84)">2018</text>
+      <text id="p3-xtick-2019" class="tick" x="255.94" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 255.94 201.84)">2019</text>
+      <text id="p3-xtick-2020" class="tick" x="276.56" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 276.56 201.84)">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="297.19" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 297.19 201.84)">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="317.81" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 317.81 201.84)">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="338.44" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 338.44 201.84)">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="359.06" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 359.06 201.84)">2024</text>
+      <text id="p3-xtick-2025" class="tick" x="379.69" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 379.69 201.84)">2025</text>
     </g>
-    <g id="p1-series-declarations" class="series">
-      <rect id="p1-mark-declarations-2010" class="bar" x="63.71" y="165.87" width="12.20" height="21.97" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2011" class="bar" x="84.34" y="104.34" width="12.20" height="83.50" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2012" class="bar" x="104.96" y="165.87" width="12.20" height="21.97" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2013" class="bar" x="125.59" y="113.13" width="12.20" height="74.71" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2014" class="bar" x="146.21" y="187.84" width="12.20" height="0" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2015" class="bar" x="166.84" y="187.84" width="12.20" height="0" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2016" class="bar" x="187.46" y="183.45" width="12.20" height="4.39" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2017" class="bar" x="208.09" y="104.34" width="12.20" height="83.50" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2018" class="bar" x="228.71" y="130.71" width="12.20" height="57.13" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2019" class="bar" x="249.34" y="117.53" width="12.20" height="70.31" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2020" class="bar" x="269.96" y="117.53" width="12.20" height="70.31" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2021" class="bar" x="290.59" y="56" width="12.20" height="131.84" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2022" class="bar" x="311.21" y="152.68" width="12.20" height="35.16" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2023" class="bar" x="331.84" y="139.50" width="12.20" height="48.34" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2024" class="bar" x="352.46" y="91.16" width="12.20" height="96.68" fill="#2563eb"/>
-      <rect id="p1-mark-declarations-2025" class="bar" x="373.09" y="157.08" width="12.20" height="30.76" fill="#2563eb"/>
+    <g id="p3-series-hurricane-declarations" class="series">
+      <rect id="p3-mark-hurricane-declarations-2010" class="bar" x="63.71" y="165.87" width="12.20" height="21.97" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2011" class="bar" x="84.34" y="95.55" width="12.20" height="92.29" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2012" class="bar" x="104.96" y="165.87" width="12.20" height="21.97" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2013" class="bar" x="125.59" y="104.34" width="12.20" height="83.50" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2014" class="bar" x="146.21" y="187.84" width="12.20" height="0" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2015" class="bar" x="166.84" y="187.84" width="12.20" height="0" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2016" class="bar" x="187.46" y="183.45" width="12.20" height="4.39" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2017" class="bar" x="208.09" y="104.34" width="12.20" height="83.50" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2018" class="bar" x="228.71" y="130.71" width="12.20" height="57.13" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2019" class="bar" x="249.34" y="117.53" width="12.20" height="70.31" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2020" class="bar" x="269.96" y="117.53" width="12.20" height="70.31" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2021" class="bar" x="290.59" y="56" width="12.20" height="131.84" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2022" class="bar" x="311.21" y="152.68" width="12.20" height="35.16" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2023" class="bar" x="331.84" y="152.68" width="12.20" height="35.16" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2024" class="bar" x="352.46" y="157.08" width="12.20" height="30.76" fill="#2563eb"/>
+      <rect id="p3-mark-hurricane-declarations-2025" class="bar" x="373.09" y="170.26" width="12.20" height="17.58" fill="#2563eb"/>
     </g>
-    <g id="p1-annotations"><!-- panel annotations --></g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="363" fill="#6b7280">Weak, noisy upward slope: +0.35/yr, r²=0.05 (2010-2025) — not a</text>
-  <text class="caption" x="24" y="376" fill="#6b7280">statistically robust trend</text>
-  <rect class="panel-edge" x="448" y="82" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="82" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
-    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">NFIP Paid Flood Claims, Same Coastal States ($, nominal)</text>
-    <g id="p2-gridlines">
-      <line class="grid" x1="66" y1="219.84" x2="390" y2="219.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-0" class="tick" x="58" y="223.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="66" y1="178.88" x2="390" y2="178.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-1" class="tick" x="58" y="182.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5B</text>
-      <line class="grid" x1="66" y1="137.92" x2="390" y2="137.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-2" class="tick" x="58" y="141.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10B</text>
-      <line class="grid" x1="66" y1="96.96" x2="390" y2="96.96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-3" class="tick" x="58" y="100.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15B</text>
-      <line class="grid" x1="66" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-4" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20B</text>
+  <text class="caption" x="24" y="519" fill="#6b7280">Distinct disaster-number x state combos, incident_type='Hurricane'.</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">Source: FEMA OpenFEMA via disasters.disaster_declarations.</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Average U.S. homeowners insurance premium</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="77" y1="163.84" x2="390" y2="163.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="69" y="167.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="136.88" x2="390" y2="136.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="69" y="140.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+      <line class="grid" x1="77" y1="109.92" x2="390" y2="109.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="69" y="113.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="77" y1="82.96" x2="390" y2="82.96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="69" y="86.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,500</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
     </g>
-    <g id="p2-axes">
-      <line class="axis" x1="66" y1="56" x2="66" y2="219.84" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="66" y1="219.84" x2="390" y2="219.84" stroke="#9ca3af" stroke-width="1"/>
+    <g id="p4-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="163.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="163.84" x2="390" y2="163.84" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p2-x-axis-title" class="axis-title" x="228" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
-    <text id="p2-y-axis-title" class="axis-title" x="14" y="137.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 137.92)">Paid claims ($)</text>
-    <g id="p2-x-axis-labels">
-      <text id="p2-xtick-2010" class="tick" x="76.13" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 76.13 233.84)">2010</text>
-      <text id="p2-xtick-2011" class="tick" x="96.38" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 96.38 233.84)">2011</text>
-      <text id="p2-xtick-2012" class="tick" x="116.63" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 116.63 233.84)">2012</text>
-      <text id="p2-xtick-2013" class="tick" x="136.88" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 136.88 233.84)">2013</text>
-      <text id="p2-xtick-2014" class="tick" x="157.13" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 157.13 233.84)">2014</text>
-      <text id="p2-xtick-2015" class="tick" x="177.38" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 177.38 233.84)">2015</text>
-      <text id="p2-xtick-2016" class="tick" x="197.63" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 197.63 233.84)">2016</text>
-      <text id="p2-xtick-2017" class="tick" x="217.88" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 217.88 233.84)">2017</text>
-      <text id="p2-xtick-2018" class="tick" x="238.13" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 238.13 233.84)">2018</text>
-      <text id="p2-xtick-2019" class="tick" x="258.38" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 258.38 233.84)">2019</text>
-      <text id="p2-xtick-2020" class="tick" x="278.63" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 278.63 233.84)">2020</text>
-      <text id="p2-xtick-2021" class="tick" x="298.88" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 298.88 233.84)">2021</text>
-      <text id="p2-xtick-2022" class="tick" x="319.13" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 319.13 233.84)">2022</text>
-      <text id="p2-xtick-2023" class="tick" x="339.38" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 339.38 233.84)">2023</text>
-      <text id="p2-xtick-2024" class="tick" x="359.63" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 359.63 233.84)">2024</text>
-      <text id="p2-xtick-2025" class="tick" x="379.88" y="233.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 379.88 233.84)">2025</text>
+    <text id="p4-x-axis-title" class="axis-title" x="233.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="109.92" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 109.92)">Premium ($)</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-2013" class="tick" x="92.65" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 92.65 177.84)">2013</text>
+      <text id="p4-xtick-2014" class="tick" x="123.95" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 123.95 177.84)">2014</text>
+      <text id="p4-xtick-2015" class="tick" x="155.25" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 155.25 177.84)">2015</text>
+      <text id="p4-xtick-2016" class="tick" x="186.55" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 186.55 177.84)">2016</text>
+      <text id="p4-xtick-2017" class="tick" x="217.85" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 217.85 177.84)">2017</text>
+      <text id="p4-xtick-2018" class="tick" x="249.15" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 249.15 177.84)">2018</text>
+      <text id="p4-xtick-2019" class="tick" x="280.45" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 280.45 177.84)">2019</text>
+      <text id="p4-xtick-2020" class="tick" x="311.75" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 311.75 177.84)">2020</text>
+      <text id="p4-xtick-2021" class="tick" x="343.05" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 343.05 177.84)">2021</text>
+      <text id="p4-xtick-2022" class="tick" x="374.35" y="177.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 374.35 177.84)">2022</text>
     </g>
-    <g id="p2-series-paid-claims" class="series">
-      <rect id="p2-mark-paid-claims-2010" class="bar" x="69.65" y="217.17" width="11.96" height="2.67" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2011" class="bar" x="89.90" y="206.44" width="11.96" height="13.40" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2012" class="bar" x="110.15" y="143.06" width="11.96" height="76.78" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2013" class="bar" x="130.40" y="218.27" width="11.96" height="1.57" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2014" class="bar" x="150.65" y="219.36" width="11.96" height="0.48" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2015" class="bar" x="170.90" y="213.12" width="11.96" height="6.72" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2016" class="bar" x="191.15" y="206.64" width="11.96" height="13.20" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2017" class="bar" x="211.40" y="135.06" width="11.96" height="84.78" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2018" class="bar" x="231.65" y="209.33" width="11.96" height="10.51" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2019" class="bar" x="251.90" y="210.75" width="11.96" height="9.09" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2020" class="bar" x="272.15" y="213.45" width="11.96" height="6.39" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2021" class="bar" x="292.40" y="206.14" width="11.96" height="13.70" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2022" class="bar" x="312.65" y="178.17" width="11.96" height="41.67" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2023" class="bar" x="332.90" y="213.15" width="11.96" height="6.69" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2024" class="bar" x="353.15" y="79.19" width="11.96" height="140.65" fill="#2563eb"/>
-      <rect id="p2-mark-paid-claims-2025" class="bar" x="373.40" y="217.24" width="11.96" height="2.60" fill="#2563eb"/>
+    <g id="p4-series-nominal" class="series">
+      <path id="p4-line-nominal" class="line" d="M 92.65 104.74 L 123.95 102.80 L 155.25 100.59 L 186.55 99.57 L 217.85 98.54 L 249.15 96.49 L 280.45 95.25 L 311.75 93.15 L 343.05 87.76 L 374.35 79.24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p4-mark-nominal-2013" class="point" cx="92.65" cy="104.74" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-nominal-2014" class="point" cx="123.95" cy="102.80" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-nominal-2015" class="point" cx="155.25" cy="100.59" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-nominal-2016" class="point" cx="186.55" cy="99.57" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-nominal-2017" class="point" cx="217.85" cy="98.54" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-nominal-2018" class="point" cx="249.15" cy="96.49" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-nominal-2019" class="point" cx="280.45" cy="95.25" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-nominal-2020" class="point" cx="311.75" cy="93.15" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-nominal-2021" class="point" cx="343.05" cy="87.76" r="3" fill="#2563eb"/>
+      <circle id="p4-mark-nominal-2022" class="point" cx="374.35" cy="79.24" r="3" fill="#2563eb"/>
     </g>
-    <g id="p2-annotations"><!-- panel annotations --></g>
+    <g id="p4-series-real-2022" class="series">
+      <path id="p4-line-real-2022" class="line" d="M 92.65 89.59 L 123.95 88.41 L 155.25 85.76 L 186.55 85.49 L 217.85 85.87 L 249.15 85.33 L 280.45 85.33 L 311.75 83.93 L 343.05 81.67 L 374.35 79.24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p4-mark-real-2022-2013" class="point" cx="92.65" cy="89.59" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-real-2022-2014" class="point" cx="123.95" cy="88.41" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-real-2022-2015" class="point" cx="155.25" cy="85.76" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-real-2022-2016" class="point" cx="186.55" cy="85.49" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-real-2022-2017" class="point" cx="217.85" cy="85.87" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-real-2022-2018" class="point" cx="249.15" cy="85.33" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-real-2022-2019" class="point" cx="280.45" cy="85.33" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-real-2022-2020" class="point" cx="311.75" cy="83.93" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-real-2022-2021" class="point" cx="343.05" cy="81.67" r="3" fill="#ea580c"/>
+      <circle id="p4-mark-real-2022-2022" class="point" cx="374.35" cy="79.24" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p4-legend">
+      <rect id="p4-legend-swatch-nominal" x="123.50" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p4-legend-label-nominal" class="legend-label" x="139.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Nominal $</text>
+      <rect id="p4-legend-swatch-real-2022" x="209.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p4-legend-label-real-2022" class="legend-label" x="225.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Real 2022 $</text>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
   </svg>
-  <g id="p3-stat">
-  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="434" fill="#6b7280">US avg homeowners premium growth, real, 2019-2024</text>
-  <text class="stat-value" x="36" y="464" fill="#1f2328">+3%</text>
-  </g>
-  <text class="caption" x="24" y="519" fill="#6b7280">GAO-26-107867 national estimate</text>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="434" fill="#6b7280">Southern coastal / high-wind-risk areas, same period</text>
-  <text class="stat-value" x="464" y="464" fill="#1f2328">+25% or more</text>
-  <text class="stat-delta" x="464" y="484" fill="#059669">vs +3% national</text>
-  </g>
-  <text class="caption" x="452" y="519" fill="#6b7280">Parts of NC and TX exceeded +50% real</text>
+  <text class="caption" x="452" y="519" fill="#6b7280">NAIC HO-3 average premium, nominal and CPI-adjusted (Source: NAIC via</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">Triple-I).</text>
+  <text class="footnote" x="20" y="564" fill="#6b7280">FEMA declarations are a policy/administrative count (a governor request approved by the President), not a direct meteorological hazard measure --</text>
+  <text class="footnote" x="20" y="578" fill="#6b7280">and they are highly volatile year to year (0 in 2014-15, 30 in 2021). No state- or year-panel homeowners premium series was available in this</text>
+  <text class="footnote" x="20" y="592" fill="#6b7280">corpus or found in open NAIC/Triple-I data, so the premium side is a national average, not coastal-state-specific.</text>
   <g id="brand">
-  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="604" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -299,78 +314,65 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="619" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:50562/a/43888b58443e4f54399dfdae2028ee4e.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:62114/a/ae2f287cc821ae9b7113e9ad82a81790.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p><strong>Frequency:</strong> Within the only window this corpus loads for FEMA disaster declarations (2010-2025), hurricane/tropical-cyclone declarations in 17 Atlantic and Gulf coastal states show a positive but statistically weak drift &mdash; a regression slope of about +0.35 declarations/year with r&sup2; = 0.05 (r = 0.22, n = 16 years). That is not a reliable rising trend; it is dominated by a handful of very active years (2021: 30 declarations; 2017: 19; 2011: 19) sitting alongside near-zero years (2014-2015: 0; 2016: 1). Broader NOAA climatology (outside this corpus, summarized in Step 2) shows basin-wide major-hurricane activity has trended up since the 1970s-80s, but U.S. <em>landfalling</em> major-hurricane counts were actually lower in the 2010s than the 2000s &mdash; landfall frequency, which is what drives U.S. disaster declarations and insured losses, is considerably more variable than basin-wide counts.</p><p><strong>Insurance:</strong> Nationally, real (inflation-adjusted) homeowners premiums rose only about 3% from 2019-2024 (GAO-26-107867, Feb 2026). But premiums in southern coastal, high-wind-risk areas rose 25% or more over the same window, with parts of North Carolina and Texas exceeding 50% in real terms, and Florida renewal premiums up roughly 68% from May 2021 to May 2023 in other industry analyses. So premium growth in coastal states is running many multiples of the national rate and far outpacing any measurable rise in disaster <em>count</em>. GAO's own econometric model attributes this mainly to the LEVEL of wind risk (homes in high-wind-risk areas carry premiums ~58% higher than medium-risk homes) and to loss <em>severity</em> and state regulatory/approval-speed differences &mdash; not simply to a rising count of declared disasters. Consistent with that, this corpus's own NFIP paid-claims series for the same coastal states is extremely lumpy and driven by a few catastrophic-severity years (2012 Sandy, 2017 Harvey/Irma, 2022 Ian, 2024 Helene/Milton) rather than tracking the declaration-count series (correlation between the two series here is only r &asymp; 0.29).</p>
+<p><strong>No.</strong> The frequency of federally declared hurricane disasters in the 18 Atlantic/Gulf coastal states has <strong>not</strong> shown a statistically significant rising trend over 2010-2025 (OLS regression of annual count on year: slope +0.097 state-disasters/year, p=0.845, n=16, r-squared=0.003) -- it is instead extremely volatile, from zero declarations in 2014-2015 to 30 in the record 2021 season. Homeowners insurance premiums, meanwhile, rose steadily and substantially over the same broad period regardless of any single year's hurricane count: the national average premium climbed 43% in nominal dollars (14% after inflation) from 2013 to 2022, with growth accelerating sharply in 2021 (+7.6%) and 2022 (+11.2%). A same-year correlation between coastal hurricane-declaration counts and premium growth is weak and not significant (r=0.18, p=0.65); a one-year-lagged version (this year's premium growth vs. last year's hurricane count) is moderate and marginally significant (r=0.70, p=0.038) but rests on only 9 annual observations and should not be read as proof of a lag effect. In short: premiums are tracking rising rebuilding/reinsurance costs and claim severity broadly, not the count of declared hurricane events specifically.</p>
 </section>
 <section>
-<h2>Step 1 — Has hurricane disaster frequency in coastal states actually been rising?</h2>
-<p>Query: FEMA <code>disasters.disaster_declarations</code>, counting distinct <code>disaster_number</code> per state with <code>incident_type</code> in Hurricane / Tropical Storm / Tropical Depression / Typhoon, summed across 17 Atlantic and Gulf coastal states (TX, LA, MS, AL, FL, GA, SC, NC, VA, MD, DE, NJ, NY, CT, RI, MA, ME). Because FEMA issues a separate disaster number per affected state, one storm hitting five states counts five times &mdash; this measures state-level declaration frequency, not distinct-storm count.</p><table border="1" cellpadding="4"><tr><th>Year</th><th>2010</th><th>2011</th><th>2012</th><th>2013</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr><tr><td>Declarations</td><td>5</td><td>19</td><td>5</td><td>17</td><td>0</td><td>0</td><td>1</td><td>19</td><td>13</td><td>16</td><td>16</td><td>30</td><td>8</td><td>11</td><td>22</td><td>7</td></tr></table><p>Regression of count on year (regr_slope/regr_r2 in-engine): slope = +0.346/year, intercept = -685.7, r = 0.217, r&sup2; = 0.047, n = 14 non-zero years used in the aggregate call (16 years total including the two zero years). An r&sup2; of 0.05 means year explains under 5% of the variance in this series &mdash; the year-to-year swings (from 0 declarations to 30) dwarf any linear trend. <strong>This corpus's declared coverage window for FEMA disaster declarations begins in 2010</strong> (confirmed via data_coverage: observed 2010-2026, contiguous, no interior gaps), so a longer pre-2010 baseline could not be computed from this table.</p><p>To put the 2010-2025 window in a longer historical context, I searched the open literature (not this corpus, cited separately below): NOAA/WeatherTiger summaries indicate Atlantic basin-wide Category 3-5 hurricane frequency rose from roughly 1.6/year in the 1970s-80s to roughly 3.1-3.8/year in the 2000s-2010s, consistent with a real long-run upward trend in basin-wide major-hurricane activity. But U.S. <em>landfalling</em> major hurricanes specifically were fewer in the 2010s (about 3) than in the 2000s (about 7) &mdash; landfall, which is what actually triggers FEMA declarations and insurance losses in a given state, does not move in lockstep with basin-wide counts. That reconciles with the weak, noisy trend measured directly in the FEMA data above: basin activity is up over the long run, but the year-to-year and even decade-to-decade pattern of which coastal states actually get hit is highly variable, so 'has frequency actually been rising' is best answered as: modestly and noisily at best over the measurable 2010-2025 window in this corpus, against a backdrop of a real but landfall-inconsistent long-run basin-wide increase.</p>
+<h2>Step 1 -- Has hurricane disaster frequency actually risen?</h2>
+<p>Using FEMA's OpenFEMA disaster-declarations data (<code>disasters.disaster_declarations</code>), disasters with <code>incident_type = 'Hurricane'</code> were counted as distinct disaster-number x state combinations across 18 Atlantic and Gulf coastal states (AL, FL, GA, LA, MS, NC, SC, TX, VA, MD, DE, NJ, NY, CT, RI, MA, NH, ME) for 2010-2025 (2026 is only partially in the window and excluded). The annual series is: 2010: 5, 2011: 21, 2012: 5, 2013: 19, 2014: 0, 2015: 0, 2016: 1, 2017: 19, 2018: 13, 2019: 16, 2020: 16, 2021: 30, 2022: 8, 2023: 8, 2024: 7, 2025: 4.</p><p>An OLS regression of this count on year (run via this session's <code>ols_regression</code> tool) gives a slope of +0.097 disasters/year, standard error 0.488, t=0.199, p=0.845, r-squared=0.003 -- statistically indistinguishable from zero, and the tool itself flags this as a small-n (n=16), single-predictor estimate with wide standard errors. The series is dominated by extreme year-to-year swings (two consecutive zero years in 2014-2015, then a record 30 in 2021) rather than a monotonic trend. This matches the broader meteorological literature: total U.S. landfalling hurricane counts have not shown a clear long-term increasing trend, even though hurricane <em>intensity</em> and associated rainfall/storm-surge damage have trended up in many studies. It is also worth flagging that a FEMA declaration is a policy outcome (a governor's request, approved by the President) as well as a weather outcome -- it can shift with administrative practice, not just storm activity -- so this measure is at best a proxy for hazard frequency, not a pure meteorological count.</p>
 </section>
 <section>
-<h2>Step 2 — Does homeowners insurance premium growth track that frequency?</h2>
-<p>This corpus (askamerica) does not carry a homeowners-insurance premium table (search_catalog returned no match for 'homeowners'; NAIC/state-level homeowners premium data is not ingested). I went to the primary published source instead: GAO-26-107867, <em>Homeowners Insurance: Premiums Generally Tracked Inflation but Rose More in Disaster-Prone Areas</em> (U.S. Government Accountability Office, published February 27, 2026, to the Senate Banking Committee). I fetched and read the report's own HTML text directly (files.gao.gov/reports/GAO-26-107867/index.html) rather than relying on a secondary summary.</p><p>GAO's headline finding: the average U.S. homeowners premium rose about 3% in real (inflation-adjusted) terms from 2019 to 2024. But premiums in parts of certain states &mdash; particularly southern coastal areas at high risk of wind damage &mdash; rose 25% or more in real terms over the same five years, with parts of North Carolina and Texas exceeding 50%. GAO's own econometric model (built on First Street Technology's 2019-2024 premium estimates) found homes in high-wind-risk areas carry premiums about 58% higher than similar homes in medium-wind-risk areas, versus only an 8% premium increase moving from medium to high wildfire risk &mdash; wind risk (which correlates with hurricane exposure) is the dominant natural-disaster driver of premium levels in their model, well ahead of a simple event count.</p><p>Two independent secondary sources corroborate the coastal-specific severity of the increase: Policygenius-based reporting found Florida renewal premiums up about 68% from May 2021 to May 2023, and about 35% in the single May 2022-May 2023 window, with Louisiana up 27% in that window. These are geography-specific spikes far in excess of the roughly 3% national real increase GAO measured.</p><p><strong>Does growth TRACK frequency, specifically?</strong> The evidence says no, not closely. Three separate signals point the same direction: (1) FEMA declaration counts for coastal states (Step 1) show a weak, noisy trend (r&sup2;=0.05) with no monotonic year-over-year rise; (2) this corpus's own NFIP paid-claims series for the identical 17 coastal states is dominated by a small number of catastrophic-severity years rather than declaration count &mdash; correlating the two series directly (both queried here) gives r &asymp; 0.29, a weak relationship; (3) GAO's own regression attributes premium growth mainly to risk LEVEL (wind-risk rating) and to state regulatory approval speed, reinsurance/replacement-cost inflation, and loss severity, not to a rising count of declared disasters. In short: premiums are rising fastest exactly where wind risk is rated highest, but that rise is running several multiples of any measured rise in hurricane-disaster frequency &mdash; it looks driven by the cost and severity of the disasters that do occur (rebuilding costs, reinsurance, litigation, regulatory lag) more than by how often they occur.</p>
+<h2>Step 2 -- Has homeowners premium growth tracked that frequency?</h2>
+<p>This corpus (askamerica) does not carry a homeowners-insurance premium table -- <code>search_catalog</code> confirmed "homeowners" as an unmatched term against every schema; the closest analogues (NFIP flood policies, crop insurance) cover different risks. National average homeowners premium data therefore comes from NAIC data as published via the Insurance Information Institute (Triple-I): $1,096 (2013) rising steadily to $1,569 (2022), a 43.2% nominal increase. Adjusted to 2022 dollars using BLS CPI-U (via this session's <code>adjust_inflation</code> tool), the real increase over the same period is 14.0% ($1,377 to $1,569) -- still a genuine real increase, but roughly a third the size of the nominal figure, with inflation accounting for the rest. Growth accelerated most in the final two years of the series: +7.6% in 2021 and +11.2% in 2022 (nominal), the two years following the record-active 2020 and 2021 hurricane seasons and a period of rising reinsurance and rebuilding costs broadly.</p><p>NAIC's more recent (2018-2024) regional analysis, cited via Triple-I and CNBC coverage of the report, found inflation-adjusted premium growth of 18% in the Northeast, 25% in the Midwest, 27% in the Southeast, and 43% in the West over that period. The Southeast region -- which contains most of the Gulf/Atlantic hurricane-exposed states in this analysis -- had the second-highest regional growth rate, behind only the West (where wildfire, not hurricanes, is the dominant peril). That regional pattern is at least directionally consistent with hurricane exposure being one factor behind faster Southeast premium growth, though it is far from the largest one in the data (the West's non-hurricane-driven growth was highest).</p>
 </section>
 <section>
-<h2>Data and methodology notes</h2>
-<ul><li>Coastal-state definition: the 17 states with an Atlantic or Gulf of Mexico coastline (TX through ME); Pacific and Great Lakes states were excluded since hurricane/tropical-cyclone risk there is negligible to nonexistent.</li><li>FEMA declaration counts are STATE-level declaration counts (one storm can generate several state-level declarations), not a distinct-storm count &mdash; this is the standard FEMA disaster-declaration grain and is the correct measure for 'declared disaster frequency,' but it is not the same as a meteorological storm count.</li><li>The FEMA disaster_declarations table's coverage in this corpus begins in 2010; no earlier FEMA declaration history was queryable here, which limits how far back the frequency trend could be measured directly. The longer-run NOAA context in Step 1 comes from open-web sources, not this corpus, and is labeled as such.</li><li>NFIP paid-claims figures are nominal (not inflation-adjusted) building+contents payouts; the deprecation warning on this table (OpenFEMA freezing this endpoint after 2026-10-15 in favor of a v3 dataset) does not affect the historical rows used here.</li><li>No homeowners-insurance premium time series exists in this corpus; the premium figures throughout are sourced externally to GAO-26-107867 and secondary industry reporting, clearly separated from the askamerica-sourced hurricane/NFIP figures.</li></ul>
+<h2>Step 3 -- Does frequency track growth statistically?</h2>
+<p>Aligning the coastal hurricane-declaration count with the national premium series for the years both are available (2013-2022): the same-year correlation between hurricane count and the premium <em>level</em> is weak (r=0.28, p=0.43, n=10). Correlating same-year hurricane count against that year's premium percent-change is also weak and insignificant (r=0.18, p=0.65, n=9). Correlating the <em>prior</em> year's hurricane count against the following year's premium percent-change -- allowing for the real-world lag between a bad storm season and an insurer's next rate filing being approved by a state regulator -- gives a moderate, marginally significant relationship (r=0.70, p=0.038, n=9). Given the very small sample (9 annual data points) this lagged result should be read as suggestive, not as established causation; it is also consistent with, but does not prove, the standard insurance-industry account that rate increases take one to several years to work through state regulatory approval after a loss year.</p><p>The more robust finding is the asymmetry: premium growth was continuous and substantial across nearly every year in the series -- premiums rose every single year from 2013 to 2022 -- while hurricane-declaration frequency bounced between zero and 30. Premiums did not fall in the quiet 2014-2015 seasons, and did not spike or dip in lockstep with any single active or quiet hurricane year. That pattern says premium growth is driven mainly by cumulative and broad-based cost pressure -- rebuilding/materials costs, reinsurance pricing, general claim severity (wind/hail claim severity rose from $14,747 per claim in 2019 to over $19,700 by 2022 per ISO/Triple-I data) and litigation/loss trends -- rather than by the count of hurricanes declared in any given year.</p>
 </section>
 <section>
 <h2>Every query behind this report</h2>
 <p>5 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 24 rows — 1823 ms</summary><pre><code>SELECT DISTINCT incident_type FROM disasters.disaster_declarations ORDER BY 1</code></pre></details>
-<details class="sqltoggle"><summary>query — 15 rows — 7884 ms</summary><pre><code>SELECT dd.&quot;year&quot;, COUNT(DISTINCT dd.disaster_number) AS hurricane_disasters
-FROM disasters.disaster_declarations dd
-JOIN geo.state_ref sr ON dd.state_fips = sr.state_fips
-WHERE dd.incident_type IN ('Hurricane','Tropical Storm','Tropical Depression','Typhoon')
-  AND sr.state_abbr IN ('TX','LA','MS','AL','FL','GA','SC','NC','VA','MD','DE','NJ','NY','CT','RI','MA','ME')
-GROUP BY dd.&quot;year&quot;
-ORDER BY dd.&quot;year&quot;</code></pre></details>
-<details class="sqltoggle"><summary>query — 14 rows — 5113 ms</summary><pre><code>SELECT dd.&quot;year&quot;, COUNT(DISTINCT dd.disaster_number) AS hurricane_only_disasters
-FROM disasters.disaster_declarations dd
-JOIN geo.state_ref sr ON dd.state_fips = sr.state_fips
-WHERE dd.incident_type = 'Hurricane'
-  AND sr.state_abbr IN ('TX','LA','MS','AL','FL','GA','SC','NC','VA','MD','DE','NJ','NY','CT','RI','MA','ME')
-GROUP BY dd.&quot;year&quot;
-ORDER BY dd.&quot;year&quot;</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 6028 ms</summary><pre><code>WITH d AS (
-  SELECT dd.&quot;year&quot;::INT AS yr, COUNT(DISTINCT dd.disaster_number) AS n
-  FROM disasters.disaster_declarations dd
-  JOIN geo.state_ref sr ON dd.state_fips = sr.state_fips
-  WHERE dd.incident_type IN ('Hurricane','Tropical Storm','Tropical Depression','Typhoon')
-    AND sr.state_abbr IN ('TX','LA','MS','AL','FL','GA','SC','NC','VA','MD','DE','NJ','NY','CT','RI','MA','ME')
-  GROUP BY dd.&quot;year&quot;
-)
-SELECT regr_slope(n, yr) AS slope, regr_intercept(n, yr) AS intercept, corr(n, yr) AS r, regr_r2(n, yr) AS r2, count(*) AS n_years
-FROM d WHERE yr BETWEEN 2010 AND 2025</code></pre></details>
-<details class="sqltoggle"><summary>query — 16 rows — 38079 ms</summary><pre><code>SELECT nc.&quot;year&quot;::INT AS yr, SUM(nc.amount_paid_building + nc.amount_paid_contents) AS total_paid
-FROM disasters.nfip_claims nc
-JOIN geo.state_ref sr ON nc.state_fips = sr.state_fips
-WHERE sr.state_abbr IN ('TX','LA','MS','AL','FL','GA','SC','NC','VA','MD','DE','NJ','NY','CT','RI','MA','ME')
-  AND nc.&quot;year&quot;::INT BETWEEN 2010 AND 2025
-GROUP BY nc.&quot;year&quot;
-ORDER BY yr</code></pre></details>
+<details class="sqltoggle"><summary>query — 91 rows — 2836 ms</summary><pre><code>SELECT year, state_fips, count(distinct disaster_number) as hurricane_disasters
+FROM disasters.disaster_declarations
+WHERE incident_type = 'Hurricane'
+  AND state_fips IN ('01','12','13','22','28','37','45','48','51','24','10','34','36','09','44','25','33','23')
+GROUP BY year, state_fips
+ORDER BY year</code></pre></details>
+<details class="sqltoggle"><summary>query — 14 rows — 2894 ms</summary><pre><code>SELECT year, count(distinct disaster_number || '-' || state_fips) as hurricane_state_disasters
+FROM disasters.disaster_declarations
+WHERE incident_type = 'Hurricane'
+  AND state_fips IN ('01','12','13','22','28','37','45','48','51','24','10','34','36','09','44','25','33','23')
+GROUP BY year
+ORDER BY year</code></pre></details>
+<details class="sqltoggle"><summary>query — 14 rows — 2902 ms</summary><pre><code>SELECT CAST(year AS INT) as yr, count(distinct disaster_number || '-' || state_fips) as hurricane_state_disasters
+FROM disasters.disaster_declarations
+WHERE incident_type = 'Hurricane'
+  AND state_fips IN ('01','12','13','22','28','37','45','48','51','24','10','34','36','09','44','25','33','23')
+GROUP BY CAST(year AS INT)</code></pre></details>
+<details class="sqltoggle"><summary>adjust_inflation — 22733 ms</summary><pre><code>SELECT * FROM (VALUES (2013,1096),(2014,1132),(2015,1173),(2016,1192),(2017,1211),(2018,1249),(2019,1272),(2020,1311),(2021,1411),(2022,1569)) AS t(yr, premium)</code></pre></details>
+<details class="sqltoggle"><summary>ols_regression — 321 ms</summary><pre><code>SELECT * FROM (VALUES (2010,5),(2011,21),(2012,5),(2013,19),(2014,0),(2015,0),(2016,1),(2017,19),(2018,13),(2019,16),(2020,16),(2021,30),(2022,8),(2023,8),(2024,7),(2025,4)) AS t(yr, hurricane_count)</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li>FEMA disaster declarations, hurricane/tropical-cyclone counts, 17 coastal states, 2010-2025<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT dd.&quot;year&quot;, COUNT(DISTINCT dd.disaster_number) AS hurricane_disasters FROM disasters.disaster_declarations dd JOIN geo.state_ref sr ON dd.state_fips = sr.state_fips WHERE dd.incident_type IN ('Hurricane','Tropical Storm','Tropical Depression','Typhoon') AND sr.state_abbr IN ('TX','LA','MS','AL','FL','GA','SC','NC','VA','MD','DE','NJ','NY','CT','RI','MA','ME') GROUP BY dd.&quot;year&quot; ORDER BY dd.&quot;year&quot;</code></pre></details></li>
-<li>NFIP paid flood claims, same 17 coastal states, 2010-2025<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT nc.&quot;year&quot;::INT AS yr, SUM(nc.amount_paid_building + nc.amount_paid_contents) AS total_paid FROM disasters.nfip_claims nc JOIN geo.state_ref sr ON nc.state_fips = sr.state_fips WHERE sr.state_abbr IN ('TX','LA','MS','AL','FL','GA','SC','NC','VA','MD','DE','NJ','NY','CT','RI','MA','ME') AND nc.&quot;year&quot;::INT BETWEEN 2010 AND 2025 GROUP BY nc.&quot;year&quot; ORDER BY yr</code></pre></details></li>
-<li>Regression of hurricane declaration count on year, coastal states<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query (regr_slope/regr_r2/corr aggregates)(outcome=&quot;hurricane_disasters&quot;, predictor=&quot;year&quot;, window=&quot;2010-2025&quot;)</code></pre></details></li>
-<li><a href="https://files.gao.gov/reports/GAO-26-107867/index.html">GAO-26-107867, Homeowners Insurance: Premiums Generally Tracked Inflation but Rose More in Disaster-Prone Areas (U.S. GAO, Feb 27 2026)</a> <span class="note">— Fetched and read directly; national +3% real 2019-2024, coastal +25%+, NC/TX pockets +50%+, wind-risk premium model</span></li>
-<li><a href="https://www.policygenius.com/homeowners-insurance/home-insurance-pricing-report-2023/">Forbes Advisor / Policygenius home insurance pricing report coverage of Florida/Louisiana premium spikes</a> <span class="note">— Florida +68% real 5/2021-5/2023; secondary industry source, not primary-verified by direct fetch</span></li>
-<li><a href="https://weathertiger.com/tropical/decade-in-review-the-2010s-hurricane-seasons-predictions-for-2020s/">NOAA/WeatherTiger Atlantic hurricane decade-in-review context (basin-wide vs. landfalling major hurricanes)</a> <span class="note">— Web search summary, not a primary NOAA table fetch; used only for long-run qualitative context outside the corpus's 2010-2025 window</span></li>
+<li>FEMA disaster declarations, incident_type='Hurricane', 2010-2025, 18 coastal states<details class="sqltoggle"><summary>Show tool call</summary><pre><code>query(sql=&quot;SELECT CAST(year AS INT) as yr, count(distinct disaster_number || '-' || state_fips) as hurricane_state_disasters FROM disasters.disaster_declarations WHERE incident_type = 'Hurricane' AND state_fips IN ('01','12','13','22','28','37','45','48','51','24','10','34','36','09','44','25','33','23') GROUP BY CAST(year AS INT)&quot;)</code></pre></details></li>
+<li>OLS regression of annual hurricane-disaster count on year, 2010-2025<details class="sqltoggle"><summary>Show tool call</summary><pre><code>ols_regression(outcome=&quot;hurricane_count&quot;, predictors=[&quot;yr&quot;])</code></pre></details></li>
+<li>CPI-U inflation adjustment of NAIC premium series to 2022 dollars<details class="sqltoggle"><summary>Show tool call</summary><pre><code>adjust_inflation(base_year=2022, value_col=&quot;premium&quot;, year_col=&quot;yr&quot;)</code></pre></details></li>
+<li><a href="https://www.iii.org/fact-statistic/facts-statistics-homeowners-and-renters-insurance">Facts + Statistics: Homeowners and renters insurance - Triple-I (NAIC premium data, national and by state, 2013-2022; loss frequency/severity 2019-2023)</a></li>
+<li><a href="https://www.cnbc.com/2026/08/06/homeowners-insurance-costs-soar-naic-report.html">NAIC 2018-2024 regional homeowners premium trend analysis, reported by CNBC</a></li>
+<li><a href="https://content.naic.org/article/naic-releases-first-its-kind-national-analysis-homeowners-insurance-market-trends">NAIC press release on national homeowners insurance market trends analysis</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">FEMA/NFIP figures computed live from askamerica (disasters schema, 2010-2025 coverage window). Homeowners-insurance premium figures are external to this corpus, sourced to GAO-26-107867 (primary, fetched directly) and secondary industry reporting (Policygenius/Forbes), each labeled by source.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-15</span></p>
+<p class="footnote">Hurricane-frequency measure is FEMA disaster declarations (an administrative/policy count), not a raw meteorological hazard index -- treat as a proxy. Homeowners premium series is a national average (NAIC/Triple-I), not coastal-state-specific, because no state-level multi-year homeowners premium panel was found in this corpus or in open NAIC/Triple-I publications; the 2018-2024 NAIC regional breakdown is the closest available geographic granularity.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

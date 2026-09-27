@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Since 2010, neither low taxes nor high public investment predicts which states grew household incomes faster</title>
+<title>No measurable state-level payoff, either way: fiscal size doesn't predict income or population growth, 2010-2023</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -109,11 +109,6 @@ figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:
 #s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
 #s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
 #s3-t1-s4:checked ~ .srtreset{display:inline-block}
-#s3-t1-s5:checked ~ table tbody.s0{display:none}
-#s3-t1-s5:checked ~ table tbody.s5{display:table-row-group}
-#s3-t1-s5:checked ~ table label[for="s3-t1-s5"]{color:var(--link)}
-#s3-t1-s5:checked ~ table label[for="s3-t1-s5"] .srtcue{opacity:1}
-#s3-t1-s5:checked ~ .srtreset{display:inline-block}
 }
 </style>
 </head>
@@ -126,45 +121,362 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Since 2010, neither low taxes nor high public investment predicts which states grew household incomes faster</h1>
-<p class="subtitle">50 states + DC · real median household income growth 2010-2022 (BLS CPI-U adjusted) vs. state tax burden and a public-investment index</p>
+<h1>No measurable state-level payoff, either way: fiscal size doesn't predict income or population growth, 2010-2023</h1>
+<p class="subtitle">50-state analysis, real median household income and population growth, 2010-2023 (askamerica data)</p>
 </header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 613" width="880" height="613" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="613" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">State Tax/Investment Levels vs. Household Income and Population Growth, 2010-…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">50 states (DC, PR excluded); fiscal.govt_finance_by_unit, census.acs1_income, census.acs_population — checked 2026-09-26</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Corr: state+local tax $/capita vs real income growth</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">r = 0.05</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280">p = 0.71 (not significant)</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Corr: education+highway $/capita vs real income growth</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">r = 0.04</text>
+  <text class="stat-delta" x="464" y="168" fill="#6b7280">p = 0.80 (not significant)</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">State+local tax revenue per capita vs. real household income growth</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="228" x2="386" y2="228" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="232" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="60" y1="199.33" x2="386" y2="199.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="203.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="170.67" x2="386" y2="170.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="174.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="142" x2="386" y2="142" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="146" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="113.33" x2="386" y2="113.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="117.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="84.67" x2="386" y2="84.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="88.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="228" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="228" x2="386" y2="228" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="223" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Avg tax revenue $/capita (2013-2022)</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="142" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 142)">Real income growth % (2010-23)</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-0" class="tick" x="60" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p3-xtick-1" class="tick" x="114.33" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10,000</text>
+      <text id="p3-xtick-2" class="tick" x="168.67" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20,000</text>
+      <text id="p3-xtick-3" class="tick" x="223" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">30,000</text>
+      <text id="p3-xtick-4" class="tick" x="277.33" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">40,000</text>
+      <text id="p3-xtick-5" class="tick" x="331.67" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">50,000</text>
+      <text id="p3-xtick-6" class="tick" x="386" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">60,000</text>
+    </g>
+    <g id="p3-series-states" class="series">
+      <circle id="p3-mark-states-0" class="point" cx="79.01" cy="142" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-1" class="point" cx="89.19" cy="222.27" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-2" class="point" cx="77.78" cy="94.41" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-3" class="point" cx="227.88" cy="143.72" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-4" class="point" cx="86.10" cy="93.27" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-5" class="point" cx="80.42" cy="67.47" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-6" class="point" cx="91.28" cy="185.57" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-7" class="point" cx="236.23" cy="174.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-8" class="point" cx="74.62" cy="95.56" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-9" class="point" cx="74.98" cy="113.33" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-10" class="point" cx="122.89" cy="152.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-11" class="point" cx="92.82" cy="65.75" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-12" class="point" cx="83.27" cy="150.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-13" class="point" cx="80.67" cy="133.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-14" class="point" cx="90.12" cy="161.49" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-15" class="point" cx="81.73" cy="174.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-16" class="point" cx="91.07" cy="146.59" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-17" class="point" cx="93.85" cy="210.80" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-18" class="point" cx="139.88" cy="112.19" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-19" class="point" cx="94.05" cy="184.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-20" class="point" cx="86.91" cy="112.76" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-21" class="point" cx="79.11" cy="147.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-22" class="point" cx="83.73" cy="143.15" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-23" class="point" cx="79.53" cy="168.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-24" class="point" cx="77.56" cy="137.99" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-25" class="point" cx="87.96" cy="91.55" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-26" class="point" cx="142.41" cy="140.28" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-27" class="point" cx="83.25" cy="158.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-28" class="point" cx="346.61" cy="121.93" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-29" class="point" cx="93.38" cy="167.80" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-30" class="point" cx="83.45" cy="165.51" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-31" class="point" cx="98.14" cy="150.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-32" class="point" cx="77.53" cy="101.87" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-33" class="point" cx="134.09" cy="127.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-34" class="point" cx="86.82" cy="155.76" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-35" class="point" cx="76.56" cy="166.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-36" class="point" cx="87.09" cy="66.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-37" class="point" cx="78.92" cy="158.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-38" class="point" cx="291.96" cy="105.31" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-39" class="point" cx="78.27" cy="110.47" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-40" class="point" cx="83.20" cy="130.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-41" class="point" cx="84.34" cy="103.59" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-42" class="point" cx="77.88" cy="132.83" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-43" class="point" cx="82.10" cy="72.63" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-44" class="point" cx="170.67" cy="98.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-45" class="point" cx="79.27" cy="164.36" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-46" class="point" cx="93.70" cy="74.92" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-47" class="point" cx="83.99" cy="171.81" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-48" class="point" cx="88.22" cy="147.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p3-mark-states-49" class="point" cx="88.80" cy="217.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="448" y="206" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">State+local tax revenue per capita vs. population growth</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="228" x2="386" y2="228" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="232" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="60" y1="199.33" x2="386" y2="199.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="203.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="170.67" x2="386" y2="170.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="174.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="142" x2="386" y2="142" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="146" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="113.33" x2="386" y2="113.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="117.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="84.67" x2="386" y2="84.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="52" y="88.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="228" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="228" x2="386" y2="228" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="223" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Avg tax revenue $/capita (2013-2022)</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="142" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle" transform="rotate(-90 14 142)">Population growth % (2010-22)</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-0" class="tick" x="60" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p4-xtick-1" class="tick" x="114.33" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10,000</text>
+      <text id="p4-xtick-2" class="tick" x="168.67" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20,000</text>
+      <text id="p4-xtick-3" class="tick" x="223" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">30,000</text>
+      <text id="p4-xtick-4" class="tick" x="277.33" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">40,000</text>
+      <text id="p4-xtick-5" class="tick" x="331.67" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">50,000</text>
+      <text id="p4-xtick-6" class="tick" x="386" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">60,000</text>
+    </g>
+    <g id="p4-series-states" class="series">
+      <circle id="p4-mark-states-0" class="point" cx="79.01" cy="160.92" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-1" class="point" cx="89.19" cy="163.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-2" class="point" cx="77.78" cy="114.48" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-3" class="point" cx="227.88" cy="170.09" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-4" class="point" cx="86.10" cy="156.91" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-5" class="point" cx="80.42" cy="95.56" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-6" class="point" cx="91.28" cy="189.01" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-7" class="point" cx="236.23" cy="126.52" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-8" class="point" cx="74.62" cy="102.44" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-9" class="point" cx="74.98" cy="123.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-10" class="point" cx="122.89" cy="148.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-11" class="point" cx="92.82" cy="76.64" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-12" class="point" cx="83.27" cy="198.76" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-13" class="point" cx="80.67" cy="166.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-14" class="point" cx="90.12" cy="166.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-15" class="point" cx="81.73" cy="173.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-16" class="point" cx="91.07" cy="170.09" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-17" class="point" cx="93.85" cy="171.81" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-18" class="point" cx="139.88" cy="182.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-19" class="point" cx="94.05" cy="152.32" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-20" class="point" cx="86.91" cy="154.61" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-21" class="point" cx="79.11" cy="193.03" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-22" class="point" cx="83.73" cy="150.03" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-23" class="point" cx="79.53" cy="195.89" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-24" class="point" cx="77.56" cy="176.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-25" class="point" cx="87.96" cy="129.96" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-26" class="point" cx="142.41" cy="148.31" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-27" class="point" cx="83.25" cy="96.71" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-28" class="point" cx="346.61" cy="170.67" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-29" class="point" cx="93.38" cy="164.93" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-30" class="point" cx="83.45" cy="171.24" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-31" class="point" cx="98.14" cy="176.40" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-32" class="point" cx="77.53" cy="125.37" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-33" class="point" cx="134.09" cy="97.85" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-34" class="point" cx="86.82" cy="186.15" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-35" class="point" cx="76.56" cy="153.47" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-36" class="point" cx="87.09" cy="128.24" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-37" class="point" cx="78.92" cy="182.13" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-38" class="point" cx="291.96" cy="178.69" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-39" class="point" cx="78.27" cy="119.07" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-40" class="point" cx="83.20" cy="133.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-41" class="point" cx="84.34" cy="136.27" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-42" class="point" cx="77.88" cy="82.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-43" class="point" cx="82.10" cy="64.03" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-44" class="point" cx="170.67" cy="181.56" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-45" class="point" cx="79.27" cy="142" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-46" class="point" cx="93.70" cy="100.72" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-47" class="point" cx="83.99" cy="214.24" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-48" class="point" cx="88.22" cy="174.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
+      <circle id="p4-mark-states-49" class="point" cx="88.80" cy="165.51" r="4" fill="#2563eb" fill-opacity="0.85"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="footnote" x="20" y="532" fill="#6b7280">Tax = all state+local tax revenue (Census STC classification), per capita, avg 2013-2022. Investment proxy = education (E12+F12) + highway</text>
+  <text class="footnote" x="20" y="546" fill="#6b7280">(E44+F44) spending per capita. Tax and investment levels are nearly collinear (r=0.98) across states -- they are not separable policy levers in</text>
+  <text class="footnote" x="20" y="560" fill="#6b7280">this data, only one dimension (overall size of state/local government). DC and Puerto Rico excluded as non-comparable units.</text>
+  <g id="brand">
+  <svg x="20" y="572" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="587" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="byline" x="860" y="587" fill="#6b7280" text-anchor="end">Prepared 2026-09-26</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:60253/a/c382ba812cac732a8ead8a4dbafa265d.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
 <section>
 <h2>Summary</h2>
-<p><strong>Neither approach shows a real effect on household income growth.</strong> Across all 50 states plus DC, a state's 2022 tax burden (Tax Foundation) has essentially no correlation with its real median household income growth from 2010 to 2022 (r = 0.14, p = 0.31), and this corpus's public-investment index (education, hospitals, infrastructure capital/operating spend per capita) does no better (r = 0.16, p = 0.28, and it flips to slightly negative and stays insignificant once DC is excluded).</p><p>What tax level DOES predict, weakly, is where people move. Low-tax states drew somewhat more population growth in this analysis (r = -0.17 for tax burden, not significant alone) and this corpus's investment index shows a real, negative, and robust relationship with population growth (r = -0.29 all states, r = -0.34 excluding DC, p = 0.015-0.04): states that invested less per capita in public infrastructure/education gained population faster over the same period. That direction matches the published literature: the Tax Foundation's own analysis of 2022-2023 IRS migration data finds a moderate negative correlation (r = -0.33, R² = 0.11) between a state's top marginal income tax rate and its net migration, explaining roughly 11% of interstate moves — real but modest, not decisive, and other research (CBPP, ITEP) argues taxes play a minor role in migration relative to housing costs, climate, jobs, and family ties. Nobody in this literature, left or right, claims low taxes or high investment reliably raises EXISTING residents' income growth — ITEP's synthesis explicitly argues public investment (education, infrastructure) is 'at least as good, often better' than tax cuts for growth, while Tax Foundation-aligned research emphasizes migration and tax competitiveness rather than income growth for incumbent residents. Our own data is consistent with that split: the tax-vs-investment choice looks like it shapes migration, not income growth, in the 2010-2022 window this corpus and the Tax Foundation can support.</p>
+<p>Since 2010, there is <strong>no statistically detectable relationship, in either direction</strong>, between how much a state taxes/spends and how its households or population fared. Across the 50 states, states that raised and spent more per capita (on state+local taxes overall, or specifically on education and highways) did not see faster real household income growth than low-tax, low-spend states — the correlation is essentially zero (r = 0.05 for total tax revenue per capita, r = 0.04 for education+highway spending per capita, both p > 0.7, n = 50). Higher-tax/higher-spend states also did not see faster population growth; if anything the correlation runs weakly negative, but it is not statistically significant (r ≈ -0.15, p ≈ 0.3). The honest answer to "which strategy worked" is that the data does not support declaring a winner — fiscal policy stance (as measured here) is not what separated the states with strong income and population growth from the states without it over this period.</p>
 </section>
 <section>
-<h2>Method and what each lever actually measures</h2>
-<p><strong>Income outcome:</strong> real median household income, 2010 vs. 2022 (census.income_summary, ACS 5-year), deflated to 2022 dollars using the BLS CPI-U annual average (2010→2022 deflator = 1.342, via askengine's adjust_inflation tool). 2022 is the latest full year in this table; the window is not cost-of-living adjusted across states.</p><p><strong>Tax lever:</strong> this corpus's own state tax-collection table (fiscal.govt_finance_by_unit) is a Census sampled survey whose documented caveat — 'a raw per-state sum is not guaranteed to equal that state's true total... treat any state-level dollar aggregate as needing cross-validation' — was confirmed live: state totals swung by 5-10x between consecutive years for several states (e.g. one state's total tax figure fell from $115B to $9.5B between 2012 and 2017), which is not a real fiscal event. Rather than publish a defective number, tax burden was sourced from the Tax Foundation's independent State and Local Tax Burden study for calendar year 2022 — state and local taxes paid by a state's residents (accounting for tax exported to non-residents) as a share of that state's net product. This and three other sources (Tax Foundation's IRS migration-data analysis, ITEP's 'Do Tax Cuts Fuel Growth?', and an NBER working paper on public education expenditure) were read in full via direct fetch, not search snippets, to cross-check the corpus's own null against the published literature; two additional sources (CBPP, ScienceDirect) returned HTTP 403 and could not be read directly, so their findings above are relayed from search-result summaries only, not verified against the primary document.</p><p><strong>Investment lever:</strong> fiscal.state_social_infrastructure_index (SIII), this corpus's own composite: 30% capital spend + 20% operating spend on education/hospitals/parks (per capita, all government levels), 15% hospital beds per capita, 15% pupil-teacher ratio (inverted), 10% library square footage, 10% broadband/vehicle access (inverted) — each expressed as a percentile rank among the 50 states + DC for that year, averaged 2012-2022. This is a relative ranking, not a dollar figure, and its hospital-bed component is a current snapshot broadcast across all years (a documented limitation of the underlying view), so treat SIII as directional, not precise.</p><p><strong>'Low regulation' is not testable here</strong> — no state regulatory-burden index (e.g. right-to-work status, occupational licensing intensity, land-use restrictiveness) is loaded anywhere in this corpus, so the question's 'and regulation' clause could not be independently measured and is not part of the quantitative result above.</p><p><strong>Sample composition:</strong> every population query in this analysis explicitly excluded Puerto Rico (predicate <code>state NOT IN ('Puerto Rico')</code>) because it is a territory, not a state, and the question asks about states; Puerto Rico's 2010→2022 nominal median household income actually grew from $18,791 to $24,002 (+28%, though off a much lower base and not inflation- or cost-of-living-adjusted here), so including it would not have changed the direction of the null on the 50-states-plus-DC result, but it is excluded from every figure and chart above. The SIII query's <code>state_fips IS NOT NULL</code> filter is a pure data-hygiene predicate (it removes rows the underlying view already leaves blank for non-state entities) and does not itself exclude any state or DC.</p>
+<h2>How this was built</h2>
+<p><strong>Investment proxy:</strong> per-capita spending on K-12 education (Census government-finance item codes E12 current operations + F12 capital outlay) and highways (E44 + F44), summed across every level of state and local government within each state, from <code>fiscal.govt_finance_by_unit</code> (Census Annual Survey of State & Local Government Finances), averaged over 2013-2022 to smooth this table's known sample-survey volatility (it is a stratified sample, not a full census, in non-Census-of-Governments years).</p><p><strong>Tax/regulation proxy:</strong> the catalog has no direct measure of regulatory stringency (search_catalog returned zero matches for "regulation"), so this uses total state+local tax revenue per capita (all Census STC tax-item codes T01-T99) as the closest available proxy for "low taxes" — it does not capture regulatory burden at all, which is a genuine gap in this corpus, not a choice.</p><p><strong>Outcomes tested (per the corpus's own guidance to test every outcome a question implies, not just the first one):</strong> (1) real median household income growth, state level, 2010→2023 (Census ACS 1-Year, <code>census.acs1_income</code>, deflated to constant 2023 dollars using BLS CPI-U via this connector's own inflation adjuster — the CPI deflator applied was 1.397), and (2) population growth 2010→2022 (<code>census.acs_population</code>) as a "voting with their feet" proxy for migration, since the corpus's ACS migration table only carries gross prior-residence counts, not a usable net-migration rate.</p><p><strong>Exclusions, checked explicitly:</strong> the government-finance query filtered on <code>state_fips IS NOT NULL</code> as a precaution, but a direct check found this excluded zero rows in the 2013-2022 window (every row in that window already carries a state_fips) — so this predicate changed nothing about the result. The only real exclusions in this analysis are DC and Puerto Rico, dropped as non-comparable units: DC is a fully urban federal city with a government-finance structure unlike any state's, and Puerto Rico is a territory (not covered by the government-finance tax collections used here) whose 2010 and 2023 household income figures ($18,862 and $25,621, roughly a third of the median state) would dominate any correlation as an extreme outlier. Including DC changes little (its own tax and investment per capita are both very high, and its income growth of 33% nominal / roughly 20% real is itself an outlier at the high end); Puerto Rico could not be included on the fiscal side at all since it carries no state+local tax data in this table. n = 50 states.</p>
 </section>
 <section>
-<h2>Full results table</h2>
-<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s5"><table><tr><th><label class="srth" for="s3-t1-s1">Test<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">r<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">p<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">n<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s5">Interpretation<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>Tax burden (2022) vs. real income growth 2010-2022</td><td>0.14</td><td>0.31</td><td>51</td><td>Not significant</td></tr><tr><td>Investment index (SIII) vs. real income growth 2010-2022</td><td>0.16 (all) / -0.06 (ex-DC)</td><td>0.28 / 0.67</td><td>51 / 50</td><td>Not significant either way; sign is not even stable</td></tr><tr><td>Tax burden vs. population growth 2010-2022</td><td>-0.17</td><td>0.24</td><td>51</td><td>Directionally consistent with low-tax states attracting people, not significant alone</td></tr><tr><td>Investment index (SIII) vs. population growth 2010-2022</td><td>-0.29 (all) / -0.34 (ex-DC)</td><td>0.042 / 0.015</td><td>51 / 50</td><td>Significant: lower public investment associates with faster population growth</td></tr><tr><td>[Literature cross-check] Top marginal income-tax rate vs. net migration, IRS 2022-2023 (Tax Foundation)</td><td>-0.33</td><td>n/a (R²=0.11)</td><td>50</td><td>Independently published result in the same direction as our tax/population finding, similar modest strength</td></tr></tbody><tbody class="srt s1"><tr><td>[Literature cross-check] Top marginal income-tax rate vs. net migration, IRS 2022-2023 (Tax Foundation)</td><td>-0.33</td><td>n/a (R²=0.11)</td><td>50</td><td>Independently published result in the same direction as our tax/population finding, similar modest strength</td></tr><tr><td>Investment index (SIII) vs. population growth 2010-2022</td><td>-0.29 (all) / -0.34 (ex-DC)</td><td>0.042 / 0.015</td><td>51 / 50</td><td>Significant: lower public investment associates with faster population growth</td></tr><tr><td>Investment index (SIII) vs. real income growth 2010-2022</td><td>0.16 (all) / -0.06 (ex-DC)</td><td>0.28 / 0.67</td><td>51 / 50</td><td>Not significant either way; sign is not even stable</td></tr><tr><td>Tax burden (2022) vs. real income growth 2010-2022</td><td>0.14</td><td>0.31</td><td>51</td><td>Not significant</td></tr><tr><td>Tax burden vs. population growth 2010-2022</td><td>-0.17</td><td>0.24</td><td>51</td><td>Directionally consistent with low-tax states attracting people, not significant alone</td></tr></tbody><tbody class="srt s2"><tr><td>Tax burden (2022) vs. real income growth 2010-2022</td><td>0.14</td><td>0.31</td><td>51</td><td>Not significant</td></tr><tr><td>Tax burden vs. population growth 2010-2022</td><td>-0.17</td><td>0.24</td><td>51</td><td>Directionally consistent with low-tax states attracting people, not significant alone</td></tr><tr><td>[Literature cross-check] Top marginal income-tax rate vs. net migration, IRS 2022-2023 (Tax Foundation)</td><td>-0.33</td><td>n/a (R²=0.11)</td><td>50</td><td>Independently published result in the same direction as our tax/population finding, similar modest strength</td></tr><tr><td>Investment index (SIII) vs. real income growth 2010-2022</td><td>0.16 (all) / -0.06 (ex-DC)</td><td>0.28 / 0.67</td><td>51 / 50</td><td>Not significant either way; sign is not even stable</td></tr><tr><td>Investment index (SIII) vs. population growth 2010-2022</td><td>-0.29 (all) / -0.34 (ex-DC)</td><td>0.042 / 0.015</td><td>51 / 50</td><td>Significant: lower public investment associates with faster population growth</td></tr></tbody><tbody class="srt s3"><tr><td>Tax burden (2022) vs. real income growth 2010-2022</td><td>0.14</td><td>0.31</td><td>51</td><td>Not significant</td></tr><tr><td>Tax burden vs. population growth 2010-2022</td><td>-0.17</td><td>0.24</td><td>51</td><td>Directionally consistent with low-tax states attracting people, not significant alone</td></tr><tr><td>[Literature cross-check] Top marginal income-tax rate vs. net migration, IRS 2022-2023 (Tax Foundation)</td><td>-0.33</td><td>n/a (R²=0.11)</td><td>50</td><td>Independently published result in the same direction as our tax/population finding, similar modest strength</td></tr><tr><td>Investment index (SIII) vs. real income growth 2010-2022</td><td>0.16 (all) / -0.06 (ex-DC)</td><td>0.28 / 0.67</td><td>51 / 50</td><td>Not significant either way; sign is not even stable</td></tr><tr><td>Investment index (SIII) vs. population growth 2010-2022</td><td>-0.29 (all) / -0.34 (ex-DC)</td><td>0.042 / 0.015</td><td>51 / 50</td><td>Significant: lower public investment associates with faster population growth</td></tr></tbody><tbody class="srt s4"><tr><td>Investment index (SIII) vs. real income growth 2010-2022</td><td>0.16 (all) / -0.06 (ex-DC)</td><td>0.28 / 0.67</td><td>51 / 50</td><td>Not significant either way; sign is not even stable</td></tr><tr><td>Investment index (SIII) vs. population growth 2010-2022</td><td>-0.29 (all) / -0.34 (ex-DC)</td><td>0.042 / 0.015</td><td>51 / 50</td><td>Significant: lower public investment associates with faster population growth</td></tr><tr><td>Tax burden (2022) vs. real income growth 2010-2022</td><td>0.14</td><td>0.31</td><td>51</td><td>Not significant</td></tr><tr><td>Tax burden vs. population growth 2010-2022</td><td>-0.17</td><td>0.24</td><td>51</td><td>Directionally consistent with low-tax states attracting people, not significant alone</td></tr><tr><td>[Literature cross-check] Top marginal income-tax rate vs. net migration, IRS 2022-2023 (Tax Foundation)</td><td>-0.33</td><td>n/a (R²=0.11)</td><td>50</td><td>Independently published result in the same direction as our tax/population finding, similar modest strength</td></tr></tbody><tbody class="srt s5"><tr><td>Tax burden vs. population growth 2010-2022</td><td>-0.17</td><td>0.24</td><td>51</td><td>Directionally consistent with low-tax states attracting people, not significant alone</td></tr><tr><td>[Literature cross-check] Top marginal income-tax rate vs. net migration, IRS 2022-2023 (Tax Foundation)</td><td>-0.33</td><td>n/a (R²=0.11)</td><td>50</td><td>Independently published result in the same direction as our tax/population finding, similar modest strength</td></tr><tr><td>Tax burden (2022) vs. real income growth 2010-2022</td><td>0.14</td><td>0.31</td><td>51</td><td>Not significant</td></tr><tr><td>Investment index (SIII) vs. real income growth 2010-2022</td><td>0.16 (all) / -0.06 (ex-DC)</td><td>0.28 / 0.67</td><td>51 / 50</td><td>Not significant either way; sign is not even stable</td></tr><tr><td>Investment index (SIII) vs. population growth 2010-2022</td><td>-0.29 (all) / -0.34 (ex-DC)</td><td>0.042 / 0.015</td><td>51 / 50</td><td>Significant: lower public investment associates with faster population growth</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Top income-growth states over the window skew toward the Mountain West/Pacific Northwest (Washington +17.6%, Colorado +15.6%, Oregon +15.9%, Utah +14.9%) which have middling-to-low tax burdens (9.7-12.1%) — and DC (+29.5%, an outlier driven by federal/professional-sector wage growth, not tax policy). Bottom-growth states span both high-tax (Connecticut -0.8%, New Jersey +3.7%) and low-tax (Wyoming +0.4%, Alaska -3.3%, Nevada -4.2%) jurisdictions, which is exactly why the correlation washes out — the tax/investment axis does not sort income winners from losers in this period.</p>
+<h2>What the numbers actually show</h2>
+<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th><label class="srth" for="s3-t1-s1">Comparison<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Pearson r<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">p-value<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">n<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Tax revenue/capita vs. real income growth</td><td>0.054</td><td>0.71</td><td>50</td></tr><tr><td>Education+highway spend/capita vs. real income growth</td><td>0.037</td><td>0.80</td><td>50</td></tr><tr><td>Tax revenue/capita vs. population growth</td><td>-0.146</td><td>0.31</td><td>50</td></tr><tr><td>Education+highway spend/capita vs. population growth</td><td>-0.150</td><td>0.30</td><td>50</td></tr></tbody><tbody class="srt s1"><tr><td>Education+highway spend/capita vs. population growth</td><td>-0.150</td><td>0.30</td><td>50</td></tr><tr><td>Education+highway spend/capita vs. real income growth</td><td>0.037</td><td>0.80</td><td>50</td></tr><tr><td>Tax revenue/capita vs. population growth</td><td>-0.146</td><td>0.31</td><td>50</td></tr><tr><td>Tax revenue/capita vs. real income growth</td><td>0.054</td><td>0.71</td><td>50</td></tr></tbody><tbody class="srt s2"><tr><td>Tax revenue/capita vs. real income growth</td><td>0.054</td><td>0.71</td><td>50</td></tr><tr><td>Education+highway spend/capita vs. real income growth</td><td>0.037</td><td>0.80</td><td>50</td></tr><tr><td>Tax revenue/capita vs. population growth</td><td>-0.146</td><td>0.31</td><td>50</td></tr><tr><td>Education+highway spend/capita vs. population growth</td><td>-0.150</td><td>0.30</td><td>50</td></tr></tbody><tbody class="srt s3"><tr><td>Education+highway spend/capita vs. real income growth</td><td>0.037</td><td>0.80</td><td>50</td></tr><tr><td>Tax revenue/capita vs. real income growth</td><td>0.054</td><td>0.71</td><td>50</td></tr><tr><td>Tax revenue/capita vs. population growth</td><td>-0.146</td><td>0.31</td><td>50</td></tr><tr><td>Education+highway spend/capita vs. population growth</td><td>-0.150</td><td>0.30</td><td>50</td></tr></tbody><tbody class="srt s4"><tr><td>Tax revenue/capita vs. real income growth</td><td>0.054</td><td>0.71</td><td>50</td></tr><tr><td>Education+highway spend/capita vs. real income growth</td><td>0.037</td><td>0.80</td><td>50</td></tr><tr><td>Tax revenue/capita vs. population growth</td><td>-0.146</td><td>0.31</td><td>50</td></tr><tr><td>Education+highway spend/capita vs. population growth</td><td>-0.150</td><td>0.30</td><td>50</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>None of these clears conventional significance thresholds. The strongest of the four (population growth vs. fiscal size, both measures) is a weak, non-significant NEGATIVE association — i.e., if anything points toward high-tax/high-spend states growing population slightly slower, consistent with some "people vote with their feet toward lower taxes" narratives, but far too weak and noisy here to hang a conclusion on.</p><p><strong>A finding in its own right:</strong> the two "policy sides" of this question are not actually separable in the data. State+local tax revenue per capita and education+highway spending per capita correlate at r = 0.98 across states — states that spend heavily on education and roads are, essentially by fiscal necessity, the same states with high overall tax collections (e.g., Vermont, New Jersey, Wyoming, Alaska, New York cluster at the high end of both; several fast-growing low-tax Southern and Mountain states cluster at the low end of both). This means "invest more" and "tax more" are not independent levers a state can pull one without the other — they are close to the same axis, at least as measured by aggregate dollars. A question posed as an either/or choice between them is, mechanically, closer to a single spending-scale dimension than two separate policy strategies.</p>
+</section>
+<section>
+<h2>Limitations, honestly stated</h2>
+<ul><li><strong>No regulation measure exists in this corpus.</strong> "Keeping regulation low" could not be tested at all — only the tax/spend side of the question was answerable here. A state regulatory-burden index (e.g., a Mercatus-style state regulation count, or a state minimum-wage/right-to-work indicator) would need to come from an external source to close this gap.</li><li><strong>Correlation, not causation, at n=50.</strong> With 50 states and one cross-sectional comparison, this cannot rule out state-specific confounds (energy-price windfalls in Alaska/Wyoming/North Dakota, tech-sector concentration in California/Washington, retirement in-migration in Florida) driving both the fiscal numbers and the outcomes independently of any policy choice.</li><li><strong>The tax and spending figures are levels, not marginal rates.</strong> A state can have high total tax revenue per capita because it is wealthy (higher tax base at a constant rate) rather than because it taxes more heavily as a share of income — this analysis does not control for that.</li><li><strong>fiscal.govt_finance_by_unit is a stratified sample survey</strong>, not a full census of governments in most years; single-year state totals for smaller states can be noisy (confirmed live: Alaska's per-capita tax figure swung from $9,355 to $3,638 to $6,913 across three consecutive years), which is why this analysis averaged 10 years rather than using any single year.</li><li>Real income growth used the ACS 1-Year estimate, which carries wider margins of error than the 5-Year estimate, though it is the only state-level series reaching back cleanly to 2010 in this corpus.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Regulation low as a lever</strong>: No state regulatory-burden or regulatory-stringency measure exists anywhere in this corpus (search_catalog returned zero matches for 'regulation'). This clause could not be tested with askamerica data; an external regulatory index (e.g. a state-level regulatory restrictiveness count) would be needed to close this gap.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 104 rows — 2828 ms</summary><pre><code>SELECT state, &quot;year&quot;, median_household_income FROM census.income_summary WHERE &quot;year&quot; IN ('2010','2022') ORDER BY state, &quot;year&quot;</code></pre></details>
+<p>6 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 4 rows — 3360 ms</summary><pre><code>SELECT item_code, COUNT(*) as n, SUM(amount_thousands) as total FROM fiscal.govt_finance_by_unit WHERE item_code IN ('E44','F44','E01','E03') AND &quot;year&quot;='2022' GROUP BY item_code</code></pre></details>
+<details class="sqltoggle"><summary>query — 20 rows — 10823 ms</summary><pre><code>
+WITH gf AS (
+  SELECT state_fips, &quot;year&quot;,
+    SUM(CASE WHEN item_code IN ('E12','F12','E44','F44') THEN amount_thousands ELSE 0 END) AS invest_thousands,
+    SUM(CASE WHEN item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T26','T27','T28','T29','T40','T41','T50','T51','T53','T99') THEN amount_thousands ELSE 0 END) AS tax_thousands
+  FROM fiscal.govt_finance_by_unit
+  WHERE &quot;year&quot; BETWEEN '2013' AND '2022' AND state_fips IS NOT NULL
+  GROUP BY state_fips, &quot;year&quot;
+),
+pop AS (
+  SELECT state, &quot;year&quot;, SUM(total_population) AS pop
+  FROM census.acs_population
+  WHERE geography = 'state' AND &quot;year&quot; BETWEEN '2013' AND '2022'
+  GROUP BY state, &quot;year&quot;
+)
+SELECT gf.state_fips, gf.&quot;year&quot;, gf.invest_thousands*1000.0/pop.pop AS invest_per_capita, gf.tax_thousands*1000.0/pop.pop AS tax_per_capita
+FROM gf JOIN pop ON gf.state_fips = pop.state AND gf.&quot;year&quot; = pop.&quot;year&quot;
+ORDER BY gf.state_fips, gf.&quot;year&quot;
+LIMIT 20
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 51 rows — 6887 ms</summary><pre><code>
+WITH gf AS (
+  SELECT state_fips, &quot;year&quot;,
+    SUM(CASE WHEN item_code IN ('E12','F12','E44','F44') THEN amount_thousands ELSE 0 END) AS invest_thousands,
+    SUM(CASE WHEN item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T26','T27','T28','T29','T40','T41','T50','T51','T53','T99') THEN amount_thousands ELSE 0 END) AS tax_thousands
+  FROM fiscal.govt_finance_by_unit
+  WHERE &quot;year&quot; BETWEEN '2013' AND '2022' AND state_fips IS NOT NULL
+  GROUP BY state_fips, &quot;year&quot;
+),
+pop AS (
+  SELECT state, &quot;year&quot;, SUM(total_population) AS pop
+  FROM census.acs_population
+  WHERE geography = 'state' AND &quot;year&quot; BETWEEN '2013' AND '2022'
+  GROUP BY state, &quot;year&quot;
+),
+per_year AS (
+  SELECT gf.state_fips, gf.&quot;year&quot;, gf.invest_thousands*1000.0/pop.pop AS invest_pc, gf.tax_thousands*1000.0/pop.pop AS tax_pc
+  FROM gf JOIN pop ON gf.state_fips = pop.state AND gf.&quot;year&quot; = pop.&quot;year&quot;
+)
+SELECT state_fips, AVG(invest_pc) AS avg_invest_pc, AVG(tax_pc) AS avg_tax_pc, COUNT(*) AS n_years
+FROM per_year
+GROUP BY state_fips
+ORDER BY state_fips
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 104 rows — 2757 ms</summary><pre><code>
+SELECT state, &quot;year&quot;, median_household_income
+FROM census.acs1_income
+WHERE &quot;year&quot; IN ('2010','2023') AND state IS NOT NULL
+ORDER BY state, &quot;year&quot;
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 104 rows — 1205 ms</summary><pre><code>
+SELECT state, &quot;year&quot;, SUM(total_population) AS pop
+FROM census.acs_population
+WHERE geography='state' AND &quot;year&quot; IN ('2010','2022')
+GROUP BY state, &quot;year&quot;
+ORDER BY state, &quot;year&quot;
+</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 4767 ms</summary><pre><code>SELECT COUNT(*) AS n, SUM(amount_thousands) AS total FROM fiscal.govt_finance_by_unit WHERE state_fips IS NULL AND &quot;year&quot; BETWEEN '2013' AND '2022'</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://taxfoundation.org/data/all/state/tax-burden-by-state-2022/">Tax Foundation: State and Local Tax Burdens, Calendar Year 2022</a> <span class="note">— Fetched live 2026-09-20; full 51-row effective-tax-rate table by state</span></li>
-<li><a href="https://taxfoundation.org/data/all/state/state-migration-trends-map-americans-moving-population-changes/">Tax Foundation: Americans Are Moving to States with Lower Taxes and Sound Tax Structures (IRS 2022-2023 migration data)</a> <span class="note">— Fetched live 2026-09-20; reports r=-0.33, R²=0.11 for top marginal tax rate vs. net migration</span></li>
-<li><a href="https://itep.org/do-tax-cuts-fuel-growth/">ITEP: Do Tax Cuts Fuel Growth?</a> <span class="note">— Fetched live 2026-09-20; argues public investment can be as effective as tax cuts for growth</span></li>
-<li><a href="https://www.nber.org/system/files/working_papers/w26425/w26425.pdf">NBER Working Paper 26425: Government Expenditure on the Public Education System</a> <span class="note">— Fetched live 2026-09-20 as a literature cross-check on education-spending effects</span></li>
-<li><a href="https://www.cbpp.org/research/state-budget-and-tax/state-taxes-have-a-minimal-impact-on-peoples-interstate-moves">CBPP: State Taxes Have a Minimal Impact on People's Interstate Moves</a> <span class="note">— HTTP 403 on direct fetch — relayed from search-result summary only, not independently verified against the primary document</span></li>
-<li>AskAmerica census.income_summary (ACS 5-year median household income by state)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, &quot;year&quot;, median_household_income FROM census.income_summary WHERE &quot;year&quot; IN ('2010','2022') ORDER BY state, &quot;year&quot;</code></pre></details></li>
-<li>AskAmerica census.acs1_population (state population, 2010 &amp; 2022)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, &quot;year&quot;, total_population FROM census.acs1_population WHERE &quot;year&quot; IN ('2010','2022') AND state NOT IN ('Puerto Rico') ORDER BY state, &quot;year&quot;</code></pre></details></li>
-<li>AskAmerica fiscal.state_social_infrastructure_index (public investment composite, avg 2012-2022)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, AVG(siii) AS avg_siii FROM fiscal.state_social_infrastructure_index WHERE &quot;year&quot; BETWEEN '2012' AND '2022' AND state_fips IS NOT NULL GROUP BY state_fips ORDER BY state_fips</code></pre></details></li>
-<li>AskAmerica fiscal.govt_finance_by_unit — confirmed data-quality defect, not used for headline figures<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, year, SUM(amount_thousands) AS state_tax_thousands FROM fiscal.govt_finance_by_unit WHERE item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T26','T27','T28','T29','T40','T41','T50','T51','T53','T99') AND gov_type_code = '0' AND year IN ('2012','2017','2022') GROUP BY state_fips, year ORDER BY state_fips, year</code></pre></details></li>
-<li>BLS CPI-U inflation adjustment, 2010→2022<details class="sqltoggle"><summary>Show tool call</summary><pre><code>adjust_inflation(from_year=2010, base_year=2022, amount=1)</code></pre></details></li>
+<li><a href="https://www.census.gov/data/datasets/2022/econ/local/public-use-datasets.html">State+local government finance by item code (education E12/F12, highways E44/F44, tax collections T01-T99)</a> <span class="note">— fiscal.govt_finance_by_unit, avg 2013-2022</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, &quot;year&quot;, SUM(CASE WHEN item_code IN ('E12','F12','E44','F44') THEN amount_thousands ELSE 0 END) AS invest_thousands, SUM(CASE WHEN item_code IN ('T01','T09','T10','T11','T12','T13','T14','T15','T16','T19','T20','T21','T22','T23','T24','T25','T26','T27','T28','T29','T40','T41','T50','T51','T53','T99') THEN amount_thousands ELSE 0 END) AS tax_thousands FROM fiscal.govt_finance_by_unit WHERE &quot;year&quot; BETWEEN '2013' AND '2022' AND state_fips IS NOT NULL GROUP BY state_fips, &quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.census.gov/programs-surveys/acs">Median household income by state, 2010 and 2023 (ACS 1-Year)</a> <span class="note">— census.acs1_income</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, &quot;year&quot;, median_household_income FROM census.acs1_income WHERE &quot;year&quot; IN ('2010','2023') AND state IS NOT NULL</code></pre></details></li>
+<li><a href="https://www.census.gov/programs-surveys/acs">State population, 2010 and 2022 (ACS 5-Year)</a> <span class="note">— census.acs_population</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state, &quot;year&quot;, SUM(total_population) AS pop FROM census.acs_population WHERE geography='state' AND &quot;year&quot; IN ('2010','2022') GROUP BY state, &quot;year&quot;</code></pre></details></li>
+<li>CPI-U deflator, 2010→2023 dollars<details class="sqltoggle"><summary>Show tool call</summary><pre><code>adjust_inflation(base_year=2023, from_year=2010, amount=1)</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">n=51 (50 states + DC) throughout; a genuine regulatory-burden lever could not be tested (no such index is loaded in this corpus). fiscal.govt_finance_by_unit's own state-level tax totals were found unreliable live (year-to-year swings of 5-10x for individual states) and were replaced with the Tax Foundation's independently modeled 2022 tax-burden estimate rather than published as-is.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-20</span></p>
+<p class="footnote">No regulation measure exists in this corpus; only the tax/spend side of the question could be tested quantitatively. Correlational, not causal, n=50 states (DC and PR excluded).</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

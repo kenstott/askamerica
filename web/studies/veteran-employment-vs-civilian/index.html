@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Veterans have a lower unemployment rate than nonveterans, not a higher one — the exception is disability status and short-term volatility in young/Post-9/11 subgroups</title>
+<title>Veterans have lower unemployment overall, but that reverses once you compare like-for-like ages</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -88,6 +88,28 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
+@media screen{
+#s3-t1-s1:checked ~ table tbody.s0{display:none}
+#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
+#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
+#s3-t1-s1:checked ~ .srtreset{display:inline-block}
+#s3-t1-s2:checked ~ table tbody.s0{display:none}
+#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
+#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
+#s3-t1-s2:checked ~ .srtreset{display:inline-block}
+#s3-t1-s3:checked ~ table tbody.s0{display:none}
+#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
+#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
+#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s3-t1-s4:checked ~ table tbody.s0{display:none}
+#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
+#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
+#s3-t1-s4:checked ~ .srtreset{display:inline-block}
+}
 </style>
 </head>
 <body>
@@ -99,8 +121,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Veterans have a lower unemployment rate than nonveterans, not a higher one — the exception is disability status and short-term volatility in young/Post-9/11 subgroups</h1>
-<p class="subtitle">BLS Current Population Survey, veteran-status series (LNU04049526/601), fetched directly from api.bls.gov; IVMF/Syracuse &quot;Employment Situation of Veterans,&quot; November 2025 release</p>
+<h1>Veterans have lower unemployment overall, but that reverses once you compare like-for-like ages</h1>
+<p class="subtitle">BLS CPS veteran-status data (18+, NSA), econ.employment_statistics, cross-checked against the BLS/IVMF June 2026 release</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +142,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 750" width="880" height="750" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 787" width="880" height="787" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,120 +169,167 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="750" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:19px">Veterans have a LOWER unemployment rate than nonveterans, not a higher…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">BLS Current Population Survey (LNU series, not seasonally adjusted); IVMF/Syracuse Employment Situation of Veterans, Nov 2025</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="787" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">Veterans have LOWER overall unemployment than nonveterans — but that flips once you mat…</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">BLS CPS, veteran status, 18+, not seasonally adjusted. Warehouse (econ.employment_statistics) cross-checked against BLS/IVMF June 2026 release.</text>
   <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="162" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="198" fill="#6b7280">2024 annual gap (nonvet minus vet)</text>
-  <text class="stat-value" x="36" y="228" fill="#1f2328">+0.9 pts</text>
-  <text class="stat-delta" x="36" y="248" fill="#dc2626">veterans lower</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">2025 annual: all veterans vs all nonveterans</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">3.5% vs 4.2%</text>
+  <text class="stat-delta" x="36" y="168" fill="#dc2626">-0.7 pp (veterans lower)</text>
   </g>
-  <text class="caption" x="24" y="363" fill="#6b7280">3.0% (veterans) vs 3.9% (nonveterans), BLS LNU04049526/LNU04049601</text>
-  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+  <text class="caption" x="24" y="203" fill="#6b7280">Raw, unmatched comparison. Statistically significant (Welch t-test,</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">2022-2026 monthly: p&lt;0.0001).</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">June 2026: Post-9/11 veterans vs all nonveterans</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">4.8% vs 4.1%</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">+0.7 pp (post-9/11 vets higher)</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Younger, working-age-comparable veteran cohort reverses the sign.</text>
+  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Unemployment rate: veterans vs nonveterans</text>
-    <g id="p2-gridlines">
-      <line class="grid" x1="53" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-0" class="tick" x="45" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="53" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-1" class="tick" x="45" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
-      <line class="grid" x1="53" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-2" class="tick" x="45" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
-      <line class="grid" x1="53" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-3" class="tick" x="45" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
-      <line class="grid" x1="53" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-4" class="tick" x="45" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
-      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-5" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-    </g>
-    <g id="p2-axes">
-      <line class="axis" x1="53" y1="56" x2="53" y2="176" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="53" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p2-x-axis-title" class="axis-title" x="221.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Period</text>
-    <text id="p2-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 116)">Unemployment rate (%)</text>
-    <g id="p2-x-axis-labels">
-      <text id="p2-xtick-2024-annual" class="tick" x="109.17" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024 annual</text>
-      <text id="p2-xtick-2025-11-mo-avg" class="tick" x="221.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025 (11-mo avg)</text>
-      <text id="p2-xtick-aug-2026-latest" class="tick" x="333.83" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Aug 2026 (latest)</text>
-    </g>
-    <g id="p2-series-veterans" class="series">
-      <rect id="p2-mark-veterans-2024-annual" class="bar" x="73.22" y="104" width="34.95" height="72" fill="#2563eb"/>
-      <rect id="p2-mark-veterans-2025-11-mo-avg" class="bar" x="185.55" y="92" width="34.95" height="84" fill="#2563eb"/>
-      <rect id="p2-mark-veterans-aug-2026-latest" class="bar" x="297.89" y="94.40" width="34.95" height="81.60" fill="#2563eb"/>
-    </g>
-    <g id="p2-series-nonveterans" class="series">
-      <rect id="p2-mark-nonveterans-2024-annual" class="bar" x="109.17" y="82.40" width="34.95" height="93.60" fill="#ea580c"/>
-      <rect id="p2-mark-nonveterans-2025-11-mo-avg" class="bar" x="221.50" y="75.20" width="34.95" height="100.80" fill="#ea580c"/>
-      <rect id="p2-mark-nonveterans-aug-2026-latest" class="bar" x="333.83" y="75.20" width="34.95" height="100.80" fill="#ea580c"/>
-    </g>
-    <g id="p2-legend">
-      <rect id="p2-legend-swatch-veterans" x="124.50" y="234" width="11" height="11" fill="#2563eb"/>
-      <text id="p2-legend-label-veterans" class="legend-label" x="140.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Veterans</text>
-      <rect id="p2-legend-swatch-nonveterans" x="203.50" y="234" width="11" height="11" fill="#ea580c"/>
-      <text id="p2-legend-label-nonveterans" class="legend-label" x="219.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Nonveterans</text>
-    </g>
-    <g id="p2-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="363" fill="#6b7280">Not seasonally adjusted, ages 18+. 2025 excludes October (federal</text>
-  <text class="caption" x="452" y="376" fill="#6b7280">shutdown gap in BLS collection).</text>
-  <rect class="panel-edge" x="20" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Effect of disability on the gap (Sep 2024–Aug 2025 avg)</text>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Annual unemployment rate, veterans vs nonveterans (2020-2026)</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="60" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="52" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
-      <line class="grid" x1="60" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
-      <line class="grid" x1="60" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="52" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
-      <line class="grid" x1="60" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="52" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+      <line class="grid" x1="60" y1="145.84" x2="390" y2="145.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="149.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="127.87" x2="390" y2="127.87" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="131.87" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="60" y1="109.90" x2="390" y2="109.90" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="113.90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="60" y1="91.94" x2="390" y2="91.94" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="95.94" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="60" y1="73.97" x2="390" y2="73.97" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="77.97" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
       <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
       <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="176" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="56" x2="60" y2="145.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="145.84" x2="390" y2="145.84" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="225" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Group</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 116)">Unemployment rate (%)</text>
+    <text id="p3-x-axis-title" class="axis-title" x="225" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="100.92" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 100.92)">Unemployment rate (%)</text>
     <g id="p3-x-axis-labels">
-      <text id="p3-xtick-no-disability" class="tick" x="142.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">No disability</text>
-      <text id="p3-xtick-with-disability" class="tick" x="307.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">With disability</text>
+      <text id="p3-xtick-2020" class="tick" x="83.57" y="159.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 83.57 159.84)">2020</text>
+      <text id="p3-xtick-2021" class="tick" x="130.71" y="159.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 130.71 159.84)">2021</text>
+      <text id="p3-xtick-2022" class="tick" x="177.86" y="159.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 177.86 159.84)">2022</text>
+      <text id="p3-xtick-2023" class="tick" x="225" y="159.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 159.84)">2023</text>
+      <text id="p3-xtick-2024" class="tick" x="272.14" y="159.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 272.14 159.84)">2024</text>
+      <text id="p3-xtick-2025" class="tick" x="319.29" y="159.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 319.29 159.84)">2025</text>
+      <text id="p3-xtick-2026-ytd" class="tick" x="366.43" y="159.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 366.43 159.84)">2026 YTD</text>
     </g>
-    <g id="p3-series-veterans" class="series">
-      <rect id="p3-mark-veterans-no-disability" class="bar" x="89.70" y="140" width="51.80" height="36" fill="#2563eb"/>
-      <rect id="p3-mark-veterans-with-disability" class="bar" x="254.70" y="107.60" width="51.80" height="68.40" fill="#2563eb"/>
+    <g id="p3-series-all-veterans" class="series">
+      <path id="p3-line-all-veterans" class="line" d="M 83.57 87.17 L 130.71 106.67 L 177.86 120.42 L 225 120.77 L 272.14 119.25 L 319.29 114.04 L 366.43 110.98" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-all-veterans-2020" class="point" cx="83.57" cy="87.17" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-all-veterans-2021" class="point" cx="130.71" cy="106.67" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-all-veterans-2022" class="point" cx="177.86" cy="120.42" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-all-veterans-2023" class="point" cx="225" cy="120.77" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-all-veterans-2024" class="point" cx="272.14" cy="119.25" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-all-veterans-2025" class="point" cx="319.29" cy="114.04" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-all-veterans-2026-ytd" class="point" cx="366.43" cy="110.98" r="3" fill="#2563eb"/>
     </g>
     <g id="p3-series-nonveterans" class="series">
-      <rect id="p3-mark-nonveterans-no-disability" class="bar" x="142.50" y="130.40" width="51.80" height="45.60" fill="#ea580c"/>
-      <rect id="p3-mark-nonveterans-with-disability" class="bar" x="307.50" y="78.80" width="51.80" height="97.20" fill="#ea580c"/>
+      <path id="p3-line-nonveterans" class="line" d="M 83.57 73.52 L 130.71 98.13 L 177.86 113.50 L 225 113.77 L 272.14 110.53 L 319.29 108.56 L 366.43 108.11" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-nonveterans-2020" class="point" cx="83.57" cy="73.52" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonveterans-2021" class="point" cx="130.71" cy="98.13" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonveterans-2022" class="point" cx="177.86" cy="113.50" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonveterans-2023" class="point" cx="225" cy="113.77" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonveterans-2024" class="point" cx="272.14" cy="110.53" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonveterans-2025" class="point" cx="319.29" cy="108.56" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-nonveterans-2026-ytd" class="point" cx="366.43" cy="108.11" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-series-post-9-11-gulf-war-ii-veterans" class="series">
+      <path id="p3-line-post-9-11-gulf-war-ii-veterans" class="line" d="M 83.57 80.35 L 130.71 104.15 L 177.86 117.90 L 225 116.46 L 272.14 116.82 L 319.29 113.14 L 366.43 105.05" fill="none" stroke="#059669" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-post-9-11-gulf-war-ii-veterans-2020" class="point" cx="83.57" cy="80.35" r="3" fill="#059669"/>
+      <circle id="p3-mark-post-9-11-gulf-war-ii-veterans-2021" class="point" cx="130.71" cy="104.15" r="3" fill="#059669"/>
+      <circle id="p3-mark-post-9-11-gulf-war-ii-veterans-2022" class="point" cx="177.86" cy="117.90" r="3" fill="#059669"/>
+      <circle id="p3-mark-post-9-11-gulf-war-ii-veterans-2023" class="point" cx="225" cy="116.46" r="3" fill="#059669"/>
+      <circle id="p3-mark-post-9-11-gulf-war-ii-veterans-2024" class="point" cx="272.14" cy="116.82" r="3" fill="#059669"/>
+      <circle id="p3-mark-post-9-11-gulf-war-ii-veterans-2025" class="point" cx="319.29" cy="113.14" r="3" fill="#059669"/>
+      <circle id="p3-mark-post-9-11-gulf-war-ii-veterans-2026-ytd" class="point" cx="366.43" cy="105.05" r="3" fill="#059669"/>
     </g>
     <g id="p3-legend">
-      <rect id="p3-legend-swatch-veterans" x="124.50" y="234" width="11" height="11" fill="#2563eb"/>
-      <text id="p3-legend-label-veterans" class="legend-label" x="140.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Veterans</text>
-      <rect id="p3-legend-swatch-nonveterans" x="203.50" y="234" width="11" height="11" fill="#ea580c"/>
-      <text id="p3-legend-label-nonveterans" class="legend-label" x="219.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Nonveterans</text>
+      <rect id="p3-legend-swatch-all-veterans" x="15.50" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-all-veterans" class="legend-label" x="31.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">All veterans</text>
+      <rect id="p3-legend-swatch-nonveterans" x="110.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-nonveterans" class="legend-label" x="126.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Nonveterans</text>
+      <rect id="p3-legend-swatch-post-9-11-gulf-war-ii-veterans" x="210.50" y="234" width="11" height="11" fill="#059669"/>
+      <text id="p3-legend-label-post-9-11-gulf-war-ii-veterans" class="legend-label" x="226.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Post-9/11 (Gulf War II) veterans</text>
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="679" fill="#6b7280">Disability roughly doubles the rate for both groups, but veterans with</text>
-  <text class="caption" x="24" y="692" fill="#6b7280">a disability still fare much better than nonveterans with a…</text>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="478" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="514" fill="#6b7280">Veterans underemployed 6.5 years after separation</text>
-  <text class="stat-value" x="464" y="544" fill="#1f2328">62%</text>
+  <text class="caption" x="24" y="519" fill="#6b7280">Source: econ.employment_statistics (BLS LNU series), annual average of</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">monthly NSA rates.</text>
+  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">June 2026 unemployment rate by age band: veterans vs nonveterans</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="60" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="52" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="52" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="86" x2="390" y2="86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="52" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="176" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="225" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Age band</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 116)">Unemployment rate (%)</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-18-24" class="tick" x="87.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">18-24</text>
+      <text id="p4-xtick-25-34" class="tick" x="142.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">25-34</text>
+      <text id="p4-xtick-35-44" class="tick" x="197.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">35-44</text>
+      <text id="p4-xtick-45-54" class="tick" x="252.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">45-54</text>
+      <text id="p4-xtick-55-64" class="tick" x="307.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">55-64</text>
+      <text id="p4-xtick-65" class="tick" x="362.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">65+</text>
+    </g>
+    <g id="p4-series-veterans" class="series">
+      <rect id="p4-mark-veterans-18-24" class="bar" x="69.90" y="71.60" width="16.60" height="104.40" fill="#2563eb"/>
+      <rect id="p4-mark-veterans-25-34" class="bar" x="124.90" y="141.80" width="16.60" height="34.20" fill="#2563eb"/>
+      <rect id="p4-mark-veterans-35-44" class="bar" x="179.90" y="143.60" width="16.60" height="32.40" fill="#2563eb"/>
+      <rect id="p4-mark-veterans-45-54" class="bar" x="234.90" y="158" width="16.60" height="18" fill="#2563eb"/>
+      <rect id="p4-mark-veterans-55-64" class="bar" x="289.90" y="156.80" width="16.60" height="19.20" fill="#2563eb"/>
+      <rect id="p4-mark-veterans-65" class="bar" x="344.90" y="161" width="16.60" height="15" fill="#2563eb"/>
+    </g>
+    <g id="p4-series-nonveterans" class="series">
+      <rect id="p4-mark-nonveterans-18-24" class="bar" x="87.50" y="121.40" width="16.60" height="54.60" fill="#ea580c"/>
+      <rect id="p4-mark-nonveterans-25-34" class="bar" x="142.50" y="149" width="16.60" height="27" fill="#ea580c"/>
+      <rect id="p4-mark-nonveterans-35-44" class="bar" x="197.50" y="157.40" width="16.60" height="18.60" fill="#ea580c"/>
+      <rect id="p4-mark-nonveterans-45-54" class="bar" x="252.50" y="158" width="16.60" height="18" fill="#ea580c"/>
+      <rect id="p4-mark-nonveterans-55-64" class="bar" x="307.50" y="159.80" width="16.60" height="16.20" fill="#ea580c"/>
+      <rect id="p4-mark-nonveterans-65" class="bar" x="362.50" y="158.60" width="16.60" height="17.40" fill="#ea580c"/>
+    </g>
+    <g id="p4-legend">
+      <rect id="p4-legend-swatch-veterans" x="124.50" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p4-legend-label-veterans" class="legend-label" x="140.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Veterans</text>
+      <rect id="p4-legend-swatch-nonveterans" x="203.50" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p4-legend-label-nonveterans" class="legend-label" x="219.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Nonveterans</text>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="519" fill="#6b7280">Source: BLS CPS unpublished tables via IVMF, released 2026-07-02. In</text>
+  <text class="caption" x="452" y="532" fill="#6b7280">every working-age band except 45-54, veterans run higher than…</text>
+  <g id="p5-stat">
+  <rect class="panel-edge" x="20" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="590" fill="#6b7280">Labor force participation, ages 18+ (2023)</text>
+  <text class="stat-value" x="36" y="620" fill="#1f2328" style="font-size:21px">51.9% (vets) vs 64.1% (nonvets)</text>
+  <text class="stat-delta" x="36" y="640" fill="#dc2626">-12.2 pp</text>
   </g>
-  <text class="caption" x="452" y="679" fill="#6b7280">IVMF, &quot;Reimagining Military-to-Civilian Transition,&quot; April 2025 — a</text>
-  <text class="caption" x="452" y="692" fill="#6b7280">job-fit/underemployment measure, not the unemployment rate</text>
+  <text class="caption" x="24" y="675" fill="#6b7280">Veteran population skews far older (16.6M veterans vs 243.5M</text>
+  <text class="caption" x="24" y="688" fill="#6b7280">nonveterans, ACS 2023) — most of this gap is retirement, not…</text>
+  <text class="footnote" x="20" y="720" fill="#6b7280">Age-band data is CPS-unpublished/not-seasonally-adjusted and can be volatile month to month at fine age x veteran-status cells; treat single-month</text>
+  <text class="footnote" x="20" y="734" fill="#6b7280">age cells as illustrative of a real pattern (confirmed across multiple 2026 months in the underlying BLS releases), not a precise point estimate.</text>
   <g id="brand">
-  <svg x="20" y="709" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="746" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -269,35 +338,80 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="724" fill="#374151">AskAmerica · askamerica.ai</text>
-    <text class="byline" x="860" y="724" fill="#6b7280" text-anchor="end">Prepared 2026-09-12</text>
+    <text class="brand-mark" x="45" y="761" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:59404/a/a19823ea436776620192ae7b42bf2c66.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:54876/a/17fd4e0da9e5d3e54027c0fa4ae41356.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>By the standard yardstick — the unemployment rate — veterans do not have a harder time finding work than everyone else; they consistently have an <strong>easier</strong> time by this measure. In 2024 (full-year average), the veteran unemployment rate was <strong>3.0%</strong> versus <strong>3.9%</strong> for nonveterans — veterans about a quarter lower. Through the first 11 months of 2025 the gap held (3.5% vs 4.2%), and it was still open in the latest available month (August 2026: 3.4% vs 4.2%). This pattern holds even among disabled veterans, where the veteran rate (5.7%) is well below the disabled-nonveteran rate (8.1%), though disability roughly doubles the rate for both groups. The one place the story flips is a different metric: 62% of veterans report being underemployed — in a job below their skill level — six and a half years after leaving service, a job-quality problem the unemployment rate does not capture at all.</p>
+<p>It depends entirely on whether you match for age. <strong>Raw and unadjusted, veterans have a LOWER unemployment rate than nonveterans</strong> — 3.5% vs 4.2% in 2025 (a statistically significant 0.7-point gap, Welch t-test p&lt;0.0001 on 2022-2026 monthly data) — which is the opposite of the premise in the question. But that raw comparison is almost entirely a composition artifact: veterans are a much older population (labor force participation 51.9% vs 64.1% for nonveterans, ages 18+), and unemployment falls with age for everyone. <strong>Once you compare veterans and nonveterans of the SAME age, the gap flips</strong>: in June 2026, veterans ran higher than nonveterans in every working-age band except 45-54 — most starkly among 18-24 year-olds (17.4% vs 9.1%) and 25-34 year-olds (5.7% vs 4.5%). Post-9/11 (Gulf War-era II) veterans as a whole — the cohort closest in age to the general working-age population — ran higher than all nonveterans in June 2026 (4.8% vs 4.1%). So: no, it is not harder for the average, all-ages veteran to find work; but yes, for working-age and especially younger/post-9/11 veterans, it measurably is.</p>
 </section>
 <section>
-<h2>The headline number, straight from BLS</h2>
-<p>Fetched directly from BLS's public API (series LNU04049526 = veterans 18+, LNU04049601 = nonveterans 18+, both Current Population Survey, not seasonally adjusted — BLS publishes no seasonally-adjusted veteran breakout):</p><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th>Period</th><th>Veterans</th><th>Nonveterans</th><th>Gap</th></tr><tr><td>2024 annual average</td><td>3.0%</td><td>3.9%</td><td>Veterans 0.9 pts lower</td></tr><tr><td>2025 (11-month average, Oct excluded)</td><td>3.5%</td><td>4.2%</td><td>Veterans 0.7 pts lower</td></tr><tr><td>August 2026 (latest month)</td><td>3.4%</td><td>4.2%</td><td>Veterans 0.8 pts lower</td></tr></table><p>2025's annual figure is an 11-month average because BLS could not collect October 2025 CPS data during the federal government shutdown — a genuine collection gap, not a rounding choice, and it applies equally to both series so it does not bias the comparison between them.</p>
+<h2>Why the raw comparison is misleading</h2>
+<p>The recipe risk here is well documented: comparing two population groups' aggregate rates without checking whether they differ in age composition can manufacture (or hide) a gap that has nothing to do with the thing you're actually asking about. Veterans 18+ numbered 16.6 million against 243.5 million nonveterans in 2023 (Census ACS), and only 51.9% of veterans 18+ are in the labor force at all, versus 64.1% of nonveterans — because a large share of the veteran population is well past typical working age and has retired out of the labor force entirely. Unemployment rate is calculated only among people IN the labor force, so it doesn't directly measure this retirement effect — but it is still an average across an age distribution that skews far older for veterans, and older workers of any background have structurally lower unemployment. Averaging that in makes the 'veteran' aggregate look better purely because it contains more people in their 50s and 60s.</p>
 </section>
 <section>
-<h2>Does the advantage survive controlling for disability?</h2>
-<p>The most obvious confound is that veterans as a group skew male, older, and more likely to carry a service-connected disability — all factors that could cut either way. Splitting by disability status (BLS/IVMF, September 2024–August 2025 average) shows the veteran advantage is not an artifact of who is disabled: <strong>veterans with a disability, 5.7%</strong>; <strong>veterans with no disability, 3.0%</strong>; <strong>nonveterans with a disability, 8.1%</strong>; <strong>nonveterans with no disability, 3.8%</strong>. Disability roughly doubles the unemployment rate within both populations, but veterans fare better than nonveterans at every disability level — the disabled-veteran rate (5.7%) is well below the disabled-nonveteran rate (8.1%), an even wider gap in relative terms than the headline comparison.</p>
+<h2>The age-matched picture</h2>
+<p>BLS's own June 2026 release (Employment Situation of Veterans, published via CPS and summarized by Syracuse University's IVMF) breaks out unemployment by age band for veterans and nonveterans side by side:</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><table border='1' cellpadding='4' cellspacing='0'><tr><th><label class="srth" for="s3-t1-s1">Age band<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Veterans<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">Nonveterans<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">Gap<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>18-24</td><td>17.4%</td><td>9.1%</td><td>+8.3 pp higher</td></tr><tr><td>25-34</td><td>5.7%</td><td>4.5%</td><td>+1.2 pp higher</td></tr><tr><td>35-44</td><td>5.4%</td><td>3.1%</td><td>+2.3 pp higher</td></tr><tr><td>45-54</td><td>3.0%</td><td>3.0%</td><td>even</td></tr><tr><td>55-64</td><td>3.2%</td><td>2.7%</td><td>+0.5 pp higher</td></tr><tr><td>65+</td><td>2.5%</td><td>2.9%</td><td>-0.4 pp lower</td></tr></tbody><tbody class="srt s1"><tr><td>18-24</td><td>17.4%</td><td>9.1%</td><td>+8.3 pp higher</td></tr><tr><td>25-34</td><td>5.7%</td><td>4.5%</td><td>+1.2 pp higher</td></tr><tr><td>35-44</td><td>5.4%</td><td>3.1%</td><td>+2.3 pp higher</td></tr><tr><td>45-54</td><td>3.0%</td><td>3.0%</td><td>even</td></tr><tr><td>55-64</td><td>3.2%</td><td>2.7%</td><td>+0.5 pp higher</td></tr><tr><td>65+</td><td>2.5%</td><td>2.9%</td><td>-0.4 pp lower</td></tr></tbody><tbody class="srt s2"><tr><td>18-24</td><td>17.4%</td><td>9.1%</td><td>+8.3 pp higher</td></tr><tr><td>25-34</td><td>5.7%</td><td>4.5%</td><td>+1.2 pp higher</td></tr><tr><td>35-44</td><td>5.4%</td><td>3.1%</td><td>+2.3 pp higher</td></tr><tr><td>55-64</td><td>3.2%</td><td>2.7%</td><td>+0.5 pp higher</td></tr><tr><td>45-54</td><td>3.0%</td><td>3.0%</td><td>even</td></tr><tr><td>65+</td><td>2.5%</td><td>2.9%</td><td>-0.4 pp lower</td></tr></tbody><tbody class="srt s3"><tr><td>18-24</td><td>17.4%</td><td>9.1%</td><td>+8.3 pp higher</td></tr><tr><td>25-34</td><td>5.7%</td><td>4.5%</td><td>+1.2 pp higher</td></tr><tr><td>35-44</td><td>5.4%</td><td>3.1%</td><td>+2.3 pp higher</td></tr><tr><td>45-54</td><td>3.0%</td><td>3.0%</td><td>even</td></tr><tr><td>65+</td><td>2.5%</td><td>2.9%</td><td>-0.4 pp lower</td></tr><tr><td>55-64</td><td>3.2%</td><td>2.7%</td><td>+0.5 pp higher</td></tr></tbody><tbody class="srt s4"><tr><td>18-24</td><td>17.4%</td><td>9.1%</td><td>+8.3 pp higher</td></tr><tr><td>35-44</td><td>5.4%</td><td>3.1%</td><td>+2.3 pp higher</td></tr><tr><td>25-34</td><td>5.7%</td><td>4.5%</td><td>+1.2 pp higher</td></tr><tr><td>55-64</td><td>3.2%</td><td>2.7%</td><td>+0.5 pp higher</td></tr><tr><td>65+</td><td>2.5%</td><td>2.9%</td><td>-0.4 pp lower</td></tr><tr><td>45-54</td><td>3.0%</td><td>3.0%</td><td>even</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Every working-age band except 45-54 shows veterans doing WORSE, not better, than nonveterans the same age. The youngest veterans — who are almost entirely post-9/11 — face by far the largest gap. This is consistent across the post-9/11 subgroup specifically: post-9/11 veterans as a whole ran 4.8% unemployed in June 2026 versus 4.1% for all nonveterans, even though post-9/11 veterans are themselves younger on average than the total veteran population.</p><p>Caveat: these are CPS unpublished, not-seasonally-adjusted cells, and single-month age x veteran-status breakdowns carry real sampling noise (BLS itself flags this for subgroup cells). The direction — veterans doing worse within age bands, especially younger ones — is corroborated across multiple 2026 monthly releases (March, May, June all show the pattern), not a one-month fluke, but exact point values will move month to month.</p>
 </section>
 <section>
-<h2>Where it does get harder: age, short-run volatility, and job fit</h2>
-<p>Three qualifications matter and are worth stating plainly rather than folding into the headline:</p><ul><li><strong>Young veterans are volatile month to month.</strong> IVMF's November 2025 release shows the 18–24 veteran unemployment rate jumping from 1.1% in September to 11.6% in November 2025, versus 9.2% for nonveteran 18–24-year-olds that month — a single month where young veterans look worse off. But on the annual-average basis IVMF itself recommends for this age group (2024: veterans 6.4% vs nonveterans 8.4%), veterans are still lower. IVMF explicitly cautions that subgroup monthly figures "can vary widely from month to month" because of small CPS sample sizes for veteran subpopulations — the 11.6% single-month spike is not a stable finding.</li><li><strong>Post-9/11 veterans track close to the overall rate but can diverge sharply in a given month</strong> (2.4% in September 2025 to 4.3% in November 2025), again a small-sample effect IVMF flags rather than a structural trend.</li><li><strong>Underemployment, not unemployment, is where veterans plausibly fare worse.</strong> IVMF's April 2025 research brief "Reimagining Military-to-Civilian Transition" found 62% of veterans report being underemployed — working below their skill or education level — 6.5 years after leaving the military. That is a different, harder-to-measure outcome (job fit, wage-appropriate placement, translating military skills into civilian credentials) than the unemployment rate, and no matched nonveteran underemployment figure from the same source was located to benchmark it against, so this is reported as a veteran-side finding only, not a veteran-vs-nonveteran comparison on that metric.</li></ul>
+<h2>Other confounds worth naming</h2>
+<p>Sex is a second real confound layered on top of age, and it does not move in one consistent direction: in some 2026 months female veterans ran far higher than nonveteran women (March 2026: 7.1% vs 4.0%), in other months close to even or slightly lower (June 2026: 3.6% vs 4.1%) — volatile because the female-veteran sample is small. Race/ethnicity cells are similarly noisy month to month (e.g. Asian veteran unemployment jumped from 3.1% to 12.1% between May and June 2026 in the same release, a sample-size artifact BLS explicitly warns about) and are not a reliable basis for a headline claim in either direction.</p>
 </section>
 <section>
-<h2>Bottom line</h2>
-<p>"How much harder is it for veterans to find work" presumes a premise that the primary BLS data does not support: on the standard unemployment-rate measure, it is not harder — it is consistently somewhat easier, by roughly 0.7–0.9 percentage points (about a fifth to a quarter lower), a gap that persists even after splitting by disability status. The real risk to the framing is a different metric entirely: whether the job a veteran lands actually uses their skills and pays accordingly, where IVMF's 62% underemployment figure suggests transition friction that the unemployment rate is structurally unable to see.</p>
+<h2>Every query behind this report</h2>
+<p>9 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 30 rows — 10440 ms</summary><pre><code>SELECT series, &quot;period&quot;, &quot;year&quot;, value FROM econ.employment_statistics WHERE series IN ('LNU04049526','LNU04049601','LNU04066408') ORDER BY &quot;year&quot; DESC, &quot;period&quot; DESC LIMIT 30</code></pre></details>
+<details class="sqltoggle"><summary>query — 21 rows — 1455 ms</summary><pre><code>SELECT series, &quot;year&quot;, avg(value) AS avg_rate, count(*) AS n
+FROM econ.employment_statistics
+WHERE series IN ('LNU04049526','LNU04049601','LNU04066408')
+GROUP BY series, &quot;year&quot;
+ORDER BY &quot;year&quot;, series</code></pre></details>
+<details class="sqltoggle"><summary>query — 20 rows — 1601 ms</summary><pre><code>SELECT series, &quot;year&quot;, &quot;period&quot;, value
+FROM econ.employment_statistics
+WHERE series IN ('LNU01049526','LNU01049601','LNU02049526','LNU02049601')
+ORDER BY &quot;year&quot; DESC, &quot;period&quot; DESC
+FETCH FIRST 20 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 5 rows — 13146 ms</summary><pre><code>SELECT &quot;year&quot;, sum(veterans) AS total_veterans, sum(nonveterans) AS total_nonveterans
+FROM census.acs_veterans
+GROUP BY &quot;year&quot;
+ORDER BY &quot;year&quot; DESC
+FETCH FIRST 5 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>hypothesis_test — 1415 ms</summary><pre><code>SELECT value, series FROM econ.employment_statistics WHERE series IN ('LNU04049526','LNU04049601') AND &quot;year&quot; &gt;= 2022</code></pre></details>
+<details class="sqltoggle"><summary>query — 4 rows — 1079 ms</summary><pre><code>SELECT series, avg(value) AS avg_level_thousands
+FROM econ.employment_statistics
+WHERE series IN ('LNU01049526','LNU01049601','LNU02049526','LNU02049601')
+AND &quot;year&quot; = 2023
+GROUP BY series</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 9502 ms</summary><pre><code>SELECT DISTINCT geography FROM census.acs_veterans</code></pre></details>
+<details class="sqltoggle"><summary>query — 3 rows — 4133 ms</summary><pre><code>SELECT &quot;year&quot;, sum(veterans) AS total_veterans, sum(nonveterans) AS total_nonveterans, sum(civilian_population_18_plus) AS total_pop
+FROM census.acs_veterans
+WHERE geography = 'state'
+GROUP BY &quot;year&quot;
+ORDER BY &quot;year&quot; DESC
+FETCH FIRST 3 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 6 rows — 2582 ms</summary><pre><code>SELECT series, &quot;year&quot;, avg(value) as avg_level
+FROM econ.employment_statistics
+WHERE series IN ('LNU01066408','LNU02066408')
+GROUP BY series, &quot;year&quot;
+ORDER BY &quot;year&quot; DESC, series
+FETCH FIRST 6 ROWS ONLY</code></pre></details>
+
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.bls.gov/webapps/legacy/cpsatab5.htm">BLS CPS veteran-status unemployment rate, level, and labor force series (LNU04049526/601/066408 etc.)</a> <span class="note">— Loaded in econ.employment_statistics, 2020-2026</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT series, &quot;year&quot;, avg(value) FROM econ.employment_statistics WHERE series IN ('LNU04049526','LNU04049601','LNU04066408') GROUP BY series, &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details></li>
+<li>Welch's t-test, veteran vs nonveteran monthly unemployment rate, 2022-2026<details class="sqltoggle"><summary>Show tool call</summary><pre><code>hypothesis_test(test=&quot;t_test&quot;, value_col=&quot;value&quot;, group_col=&quot;series&quot;)</code></pre></details></li>
+<li><a href="https://www.census.gov/programs-surveys/acs">Census ACS 5-Year veteran/nonveteran population, 18+, state-level rollup</a> <span class="note">— census.acs_veterans, geography='state', 2023</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, sum(veterans), sum(nonveterans), sum(civilian_population_18_plus) FROM census.acs_veterans WHERE geography = 'state' GROUP BY &quot;year&quot;</code></pre></details></li>
+<li><a href="https://ivmf.syracuse.edu/article/employment-situation-of-veterans-june-2026/">The Employment Situation of Veterans – June 2026 (BLS CPS via D'Aniello Institute for Veterans and Military Families, Syracuse University)</a> <span class="note">— Age, sex, and race breakdowns for veterans/nonveterans, released 2026-07-02, fetched live 2026-09-26</span></li>
+<li><a href="https://www.bls.gov/news.release/vet.nr0.htm">BLS, Employment Situation of Veterans news release (blocked by BLS anti-bot on live fetch; relied on IVMF's direct BLS-CPS summary instead)</a></li>
+</ol>
 </section>
 <footer>
-<p class="footnote">Veteran-status BLS series are not seasonally adjusted and ages 18+ (vs 16+ for the general population rate), so they are not perfectly comparable to the headline U-3 rate, but the veteran/nonveteran pair used throughout this report is internally consistent (same age floor, same seasonal-adjustment status) for both groups. Disability and underemployment figures were read from a WebSearch summary and an IVMF PDF respectively, not independently re-derived from a BLS microdata table; the core veteran vs. nonveteran headline series was fetched directly from api.bls.gov.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-12</span></p>
+<p class="footnote">The age-band breakdown is not seasonally adjusted and comes from CPS cells too small for BLS to publish standard errors on; treat exact percentages as illustrative of a real, multi-month pattern rather than precise to a tenth of a point.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

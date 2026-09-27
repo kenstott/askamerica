@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>China's export-sales swings show up in USDA's weekly data within 1–8 business days, and a resumption week can be 3–6 times the size of a normal week</title>
+<title>A China soybean purchase shows up in USDA data within 1-7 days — and one flash sale can dwarf a normal week</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -99,37 +99,169 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>China's export-sales swings show up in USDA's weekly data within 1–8 business days, and a resumption week can be 3–6 times the size of a normal week</h1>
-<p class="subtitle">USDA FAS Export Sales Reporting Program methodology; 2018 and 2025 US-China soybean episodes</p>
+<h1>A China soybean purchase shows up in USDA data within 1-7 days — and one flash sale can dwarf a normal week</h1>
+<p class="subtitle">USDA FAS Export Sales Reporting mechanics, and the 2025 pause/resumption episode</p>
 </header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 746" width="880" height="746" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="746" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">China Soybean Purchases and USDA Weekly Export-Sales Reporting</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Reporting mechanics and the 2025 pause/resumption episode, per press reporting on USDA data</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Flash-sale reporting lag</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">1 business day</text>
+  </g>
+  <text class="caption" x="24" y="203" fill="#6b7280">Single-destination sale ≥100,000 MT of soybeans must be reported by</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">exporter by 3pm ET next business day; USDA publishes at 9am ET the da…</text>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Full weekly report lag</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">Up to 6-7 days</text>
+  </g>
+  <text class="caption" x="452" y="203" fill="#6b7280">Weekly ESR report covers Fri-Thu period, published the following</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">Thursday 8:30am ET</text>
+  <g id="p3-stat">
+  <rect class="panel-edge" x="20" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="274" fill="#6b7280">2025 China soybean freeze</text>
+  <text class="stat-value" x="36" y="304" fill="#1f2328">~6 months, ~$0 sales</text>
+  </g>
+  <text class="caption" x="24" y="359" fill="#6b7280">May 2025 to late Oct 2025 — Chinese buyers froze US soybean purchases</text>
+  <text class="caption" x="24" y="372" fill="#6b7280">during tariff dispute</text>
+  <g id="p4-stat">
+  <rect class="panel-edge" x="448" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="274" fill="#6b7280">Single resumption-day sale</text>
+  <text class="stat-value" x="464" y="304" fill="#1f2328">792,000 tons</text>
+  </g>
+  <text class="caption" x="452" y="359" fill="#6b7280">Largest single-day US soybean sale to China in two years, reported via</text>
+  <text class="caption" x="452" y="372" fill="#6b7280">daily flash-sale system, Nov 2025</text>
+  <rect class="panel-edge" x="20" y="394" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="394" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">US weekly soybean export inspections, 2025/26 marketing year (USDA, via…</text>
+    <g id="p5-gridlines">
+      <line class="grid" x1="91" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-0" class="tick" x="83" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="91" y1="114.50" x2="390" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-1" class="tick" x="83" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500,000</text>
+      <line class="grid" x1="91" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-2" class="tick" x="83" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1M</text>
+      <line class="grid" x1="91" y1="75.50" x2="390" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-3" class="tick" x="83" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5M</text>
+      <line class="grid" x1="91" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p5-ytick-4" class="tick" x="83" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2M</text>
+    </g>
+    <g id="p5-axes">
+      <line class="axis" x1="91" y1="56" x2="91" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="91" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p5-x-axis-title" class="axis-title" x="240.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Week</text>
+    <text id="p5-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">Metric tons</text>
+    <g id="p5-x-axis-labels">
+      <text id="p5-xtick-week-of-oct-16-peak-pre-china" class="tick" x="165.75" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 165.75 148)">Week of Oct 16 (peak, pre-China)</text>
+      <text id="p5-xtick-week-of-nov-20-post-china-resumption-news" class="tick" x="315.25" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 315.25 148)">Week of Nov 20 (post China-resumption news)</text>
+    </g>
+    <g id="p5-series-weekly-us-soybean-export-inspections-all-destinations-mt" class="series">
+      <rect id="p5-mark-weekly-us-soybean-export-inspections-all-destinations-mt-week-of-oct-16-peak-pre-china" class="bar" x="117.91" y="71.60" width="94.68" height="62.40" fill="#2563eb"/>
+      <rect id="p5-mark-weekly-us-soybean-export-inspections-all-destinations-mt-week-of-nov-20-post-china-resumption-news" class="bar" x="267.41" y="102.80" width="94.68" height="31.20" fill="#2563eb"/>
+    </g>
+    <g id="p5-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="675" fill="#6b7280">Weekly export inspections roughly halved even as headline China</text>
+  <text class="caption" x="24" y="688" fill="#6b7280">purchase news broke — the ESR/flash-sale figures (which record sales,…</text>
+  <g id="brand">
+  <svg x="20" y="705" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="720" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:49546/a/82d123e10af2ece6b904284f861291ec.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
 <section>
 <h2>Summary</h2>
-<p><strong>Speed:</strong> A China purchase or cancellation can become publicly visible in as little as <strong>one business day</strong> if it is a &quot;large&quot; sale (≥100,000 metric tons in a single day to one destination, or ≥200,000 MT cumulative in the reporting week) — those trigger USDA's daily &quot;flash sale&quot; announcement at 9:00 a.m. ET the next business day. Everything else, including cancellations and smaller purchases, surfaces in the weekly aggregate <strong>U.S. Export Sales</strong> report, published every Thursday at 8:30 a.m. ET for the reporting week that ran the prior Friday–Thursday — so the maximum lag for an ordinary transaction is about <strong>6 business days</strong>, longer if a sale narrowly misses the Thursday cutoff and rolls into the next weekly cycle.</p><p><strong>Size of the swing:</strong> A normal, active-season week of <em>total U.S.</em> soybean export sales (all destinations combined) runs roughly <strong>1.0–1.5 million metric tons (MMT)</strong>. China has typically taken roughly half of all U.S. soybean exports in recent years, so a routine active-demand &quot;China week&quot; is plausibly a few hundred thousand MT. Against that baseline the swings from a pause or resumption are large: during the 2025 pause, sales to China ran at essentially zero for roughly six months (May–October 2025), and even after the late-October truce, China imported <strong>no soybeans from the U.S. for three straight months</strong> (through November) because shipments take time to arrive after being booked. At resumption, the reporting week ending November 27, 2025 alone recorded about <strong>3.0 MMT</strong> of net soybean sales to China — a single week equal to two to three normal <em>all-destination</em> weeks, and roughly 6–10x what a normal single-destination China week looks like. The mirror-image 2018–19 episode saw China's soybean-export share (previously ~60–62%) collapse for months after China's July 2018 retaliatory tariff, with U.S. soybean exports to China down about 25% and outstanding China sales down 53% year-over-year by mid-2019.</p><p><strong>Corpus-coverage note:</strong> AskAmerica's own government-data warehouse does not carry USDA FAS's weekly Export Sales dataset (checked via search_catalog and list_tables against the <code>ag</code> schema and the <code>econ</code> trade tables) — only monthly Census trade figures and annual USDA NASS/ERS series are loaded, and this table's specific weekly China-purchase cadence is not one of them. Every weekly-cadence figure in this report is sourced directly from USDA FAS's own program documentation and closely-reported coverage of its weekly releases, not from a query against this corpus.</p>
+<p>A China agricultural purchase pause or resumption shows up in US government data in two speeds. The fast channel is USDA's daily "flash sale" announcement: a single sale of 100,000+ metric tons of soybeans to one destination in one day must be reported by the exporter by 3pm ET the next business day, and USDA publishes it by 9am ET the following morning — roughly a 1-business-day lag from transaction to public disclosure. The slower, comprehensive channel is the Weekly Export Sales report, covering a Friday-Thursday window and published every Thursday at 8:30am ET, a lag of up to about a week. A pause is invisible by construction: it shows up only as an absence of announcements and near-zero net-sales lines over several weekly reports, not as any single flagged event. A resumption is loud: it typically appears first as one or more oversized daily flash sales, ahead of that week's full aggregate. In the actual 2025 episode, China froze all US soybean purchases for roughly six months (May-October) and then resumed with a single-day sale of 792,000 tons — by itself comparable to or larger than a whole normal week's China demand — followed by about 1.9 million tonnes across six sales over four weeks. Separately, weekly export INSPECTIONS (physical shipments, a related but distinct USDA weekly series) swung from a 1.6-million-tonne peak week in mid-October to 800,000 tonnes five weeks later, with essentially none of that volume yet bound for China — illustrating that sales data and shipment data can move on different timelines and even different directions during the same event.</p>
 </section>
 <section>
-<h2>How the reporting mechanism works, and why the lag varies</h2>
-<p>USDA's Export Sales Reporting Program (established 1973, after the Soviet Union's unexpected 1972 grain purchases caused a domestic price shock) has two tiers:</p><ul><li><strong>Daily &quot;flash&quot; reporting.</strong> Exporters must report any single sale that reaches the &quot;large sale&quot; threshold — <strong>100,000 metric tons or more in one day to one destination</strong>, or cumulative sales of <strong>200,000 MT or more to one destination within the weekly reporting period</strong> (soybean oil uses a lower 20,000/40,000-ton threshold) — by 3:00 p.m. Eastern the next business day. USDA compiles and releases those reports publicly at 9:00 a.m. Eastern the following business day. This is the fastest channel: a big China purchase made Monday afternoon is public Tuesday morning.</li><li><strong>Weekly aggregate reporting.</strong> All other sales, cancellations, and destination changes flow into the weekly <em>U.S. Export Sales</em> report. The reporting week runs <strong>Friday through Thursday</strong>; exporters must submit by 11:59 p.m. Eastern the following Monday; USDA publishes the compiled weekly summary every <strong>Thursday at 8:30 a.m. Eastern</strong>. A transaction on a Saturday, for instance, is captured in that reporting week and appears in the report published the following Thursday — about 5–6 days later. A transaction that just misses a Thursday cutoff rolls into the next weekly cycle, extending the effective lag toward two weeks in the worst case.</li></ul><p>So the answer to &quot;how quickly&quot; depends on transaction size: a large single sale or cancellation is visible in about a day via the flash system; smaller sales and the fuller weekly detail (marketing-year splits, cumulative outstanding sales, by-destination breakdowns) show up on a roughly weekly cadence with up to about a week's lag. Note separately that the weekly <em>sales</em> report reflects bookings/commitments, not physical arrivals — China's customs data showed zero soybean imports from the U.S. for three straight months after the late-October 2025 truce even as USDA's weekly sales reports showed large new China bookings, because cargoes booked in a given week take weeks to ship and clear customs.</p>
+<h2>How fast: the two reporting channels</h2>
+<ul><li><strong>Daily flash sales</strong> – USDA's mandatory reporting rule requires any exporter who sells 100,000+ metric tons of soybeans (or the equivalent threshold for corn, wheat, etc.) to a single destination in a single day to notify USDA by 3:00pm ET the next business day. USDA's Foreign Agricultural Service (FAS) then publishes the sale publicly by 9:00am ET the following business day — a large single-day China purchase is public within about 24 business hours of the trade.</li><li><strong>Weekly Export Sales Report</strong> – exporters report all sales activity for a Friday-through-Thursday reporting week, with a filing deadline of 11:59pm ET the following Monday; USDA compiles and releases the full weekly summary (net sales, outstanding sales, shipments, by commodity and destination) every Thursday at 8:30am ET. A trade near the start of a reporting week won't appear in the comprehensive weekly numbers for up to about 6-7 days, even if it was already flagged via an earlier flash-sale release.</li><li><strong>A pause has no positive signal</strong> – there is no report that announces "China stopped buying"; a halt only becomes visible as an absence — zero or near-zero net sales/no China lines — across consecutive weekly reports, and as the disappearance of flash-sale announcements. Confirming a genuine pause (versus a routine lull) takes at least one full weekly reporting cycle, typically several.</li><li>USDA revises both daily and weekly figures for cancellations and destination reclassifications in later releases, so early figures in a resumption episode are commonly revised upward as "unknown destination" bookings get reassigned to China.</li><li><strong>Sales versus shipments are separate USDA weekly series that can diverge sharply.</strong> As of November 20, 2025 — three weeks after the flash-sale resumption began — USDA's separate weekly export-inspections data showed zero physical soybean shipments bound for China and total inspections down to their lowest level in years, even as the sales-side ESR/flash-sale reports were already showing large new China bookings. A resumption shows up in the sales data before it shows up in the shipment data.</li></ul>
 </section>
 <section>
-<h2>How big the swings are relative to a normal week</h2>
-<p>For scale: in marketing year 2024/25 the U.S. exported about 68.7 MMT of soy products in total, with roughly 51.2 MMT as whole beans — averaging out to a bit under 1 MMT/week across a full year, though actual weekly totals swing well above and below that within a season (single weeks of 1.17–1.49 MMT total net sales were reported in December 2024–January 2025). China has accounted for roughly half of total U.S. soybean exports in recent years (versus roughly 60–62% before the 2018 trade war), so a normal active-demand week of China-bound sales alone is plausibly in the several-hundred-thousand-MT range.</p><p>Two real episodes illustrate the swings against that baseline:</p><ul><li><strong>2025 pause → resumption.</strong> Sales to China ran at &quot;near-zero&quot; for roughly six months (through October 2025) — a complete stop against a baseline that would otherwise have been several hundred thousand MT/week. After the late-October/November 2025 trade truce, USDA recorded six separate large sales to China totaling more than 1.9 MMT between October 30 and November 28, and traders told Reuters that more than 7 MMT had been purchased since the truce by late December, en route to the roughly 8 MMT China had bought by year-end against its ~12 MMT pledge. For the single reporting week ending November 27, 2025, USDA's weekly report showed about <strong>3.0 MMT</strong> of net soybean sales to China in that one week alone — roughly two to three times an entire normal week of <em>all-destination</em> U.S. soybean sales, and several multiples of a routine single-destination China week.</li><li><strong>2018–19 pause (the first trade war).</strong> After China's July 6, 2018 retaliatory 25% tariff, which hit a market that had been taking about 62% of U.S. soybean exports, sales to China collapsed for an extended period; by mid-2019 total U.S. soybean exports to China were down about 25% year-over-year and outstanding (booked but unshipped) sales to China were down 53%. That period also saw net cancellations and destination reassignments recorded in the weekly reports (e.g., previously committed China cargoes resold to Bangladesh and Iran) — the mirror image of the 2025 resumption spike, but the decline was stretched across many weeks rather than concentrated in one.</li></ul><p>Put together, the pattern across both episodes is consistent in shape even though the direction differs: a pause shows up in the weekly data as a multi-week run of near-zero or net-cancellation figures for China specifically, while a resumption tends to show up as one or a small number of outsized weeks — multiples of a normal week's total sales — as buyers work through pent-up demand and negotiated purchase commitments, rather than as a smooth return to the prior weekly pace.</p>
+<h2>How big: the swings versus a normal week</h2>
+<p>US soybean exports run roughly 44-51 million metric tons per marketing year across all destinations, an average of very roughly 0.85-1 million metric tons per week averaged over a full year — but actual weekly volume is highly seasonal (concentrated in the fall harvest/shipping season) and can swing heavily on single-buyer decisions, so "normal" varies a great deal by week and season. Against that backdrop, the 2025 China episode shows swings that are large multiples of routine weekly activity:</p><ul><li><strong>Pause (May-October 2025):</strong> China's net soybean purchases from the US fell to essentially zero for about six months during the tariff dispute — a complete drop-out of what is normally the single largest destination for US soybeans (roughly half of exported US soybeans in a normal year), not a partial slowdown.</li><li><strong>Resumption, sales side (late October-November 2025):</strong> the single largest one-day sale on resumption was 792,000 tons — China's largest single-day US soybean purchase in two years — comparable to or larger than a whole normal week's China demand on its own. Over the following month (October 30-November 28), USDA recorded six separate major sales totaling more than 1.9 million tonnes.</li><li><strong>Resumption, shipment side:</strong> weekly export inspections (all destinations) fell from a roughly 1.6-million-tonne peak the week of October 16 to about 800,000 tonnes the week of November 20 — roughly half — even as sales-side headlines were turning positive, because the underlying price/tariff dynamics (a 10% Chinese tariff still made US beans barely competitive with Brazil) meant purchases were not yet translating into shipments.</li><li><strong>Commitment scale:</strong> China ultimately committed to roughly 12 million metric tons for the final two months of 2025 alone, then pledges of 25 million tons/year for 2026-2028. By spring 2026, cumulative exports to China from January-March were reported up 57% year-over-year, but China's share of total US soybean exports since the September 2025 marketing-year start remained under 30%, roughly half its typical share — underscoring that even a large headline sales-side rebound can take many months to close a gap opened by a multi-month pause.</li></ul><p>The general pattern: because China is typically the largest single buyer of US soybeans, its absence or return doesn't just nudge the weekly total — it can be the difference between a near-zero print and a print several times a routine week's volume, concentrated in one or two headline sales rather than spread evenly across the week, with the shipment data lagging the sales data by additional weeks.</p>
+</section>
+<section>
+<h2>Data availability note</h2>
+<p>AskAmerica's own government-data corpus does not currently carry USDA FAS's Export Sales Reporting (ESR) system — neither the weekly Thursday report nor the daily flash-sale releases. It holds monthly Census trade data (econ.trade_exports) and USDA NASS/ERS/RMA/FSA production and payment tables, none of which is the weekly, commodity-by-destination export-sales series this question actually asks about; no query was run against those tables for this answer since they cannot isolate weekly soybean flash sales. This gap has been filed as a sourcing issue (report_issue) recommending ingestion of USDA's Export Sales Query System as a new table. The figures above come instead from USDA's own published Export Sales Reporting Program rules and from press coverage that reads USDA's weekly and daily data directly (Grain Journal; CZ app, authored by former USDA ERS economist Fred Gale, citing USDA export-inspection and Chinese customs data; Agri-Pulse; Investigate Midwest/Tennessee Lookout citing USDA export data); direct fetches of fas.usda.gov itself returned HTTP 403 during this research, so no figure here was read first-hand from USDA's own table.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Quantify using AskAmerica's own government-data corpus</strong>: search_catalog (queries for &quot;weekly export sales soybeans China USDA&quot; and &quot;export sales report FAS weekly commitments outstanding sales&quot;) and list_tables on the ag schema turned up no table covering USDA FAS's Export Sales Reporting (ESR) system — the actual weekly Thursday report and daily flash-sale releases this question is about. The corpus's ag tables are NASS/ERS/RMA/FSA (production, farm ops, crop insurance, payments); econ.trade_exports is monthly Census HS-6 trade data, a different source, frequency, and grain, and was not queried for this answer since it cannot isolate weekly soybean flash sales. This is a genuine, confirmed sourcing gap (filed as an issue recommending an ag.fas_export_sales ingestion), not a case where the corpus was queried and returned a value — no query() call was made against any table for this question. The answer below instead comes from USDA FAS's own published reporting-program rules and from press coverage that read USDA's weekly/daily data directly (Grain Journal, CZ app/Fred Gale, Agri-Pulse, Investigate Midwest); direct fetches of fas.usda.gov itself returned HTTP 403 during this research.</li></ul>
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://apps.fas.usda.gov/info/factsheets/expsls.asp">USDA FAS — The Export Sales Reporting System: Early Alert System (program mechanics, reporting thresholds, timing)</a></li>
-<li><a href="https://www.fas.usda.gov/data/weekly-export-sales-11252025">USDA FAS — Weekly Export Sales report page</a></li>
-<li><a href="https://farmdocdaily.illinois.edu/2025/11/us-china-soybean-deal-comparing-past-export-levels-and-global-market-impacts.html">farmdoc daily (Purdue/Illinois) — U.S.–China Soybean Deal: Comparing Past Export Levels and Global Market Impacts, Nov 17 2025</a></li>
-<li><a href="https://www.farmprogress.com/marketing/china-adds-to-u-s-soy-buys-with-largest-deal-since-2025">Farm Progress — China buys most U.S. soybeans since November 2025 / flash sales tracking</a></li>
-<li><a href="https://www.spglobal.com/energy/en/news-research/latest-news/agriculture/111825-china-resumes-us-soybean-imports-after-trade-truce">S&amp;P Global — China resumes US soybean imports after trade truce, Nov 18 2025</a></li>
-<li><a href="https://fortune.com/2025/12/31/china-buys-two-thirds-of-pledged-u-s-soybeans-as-2025-closes/">Fortune/Bloomberg (Hallie Gu, Michael Hirtzer) — China buys two-thirds of pledged U.S. soybeans as 2025 closes, Dec 31 2025</a></li>
-<li><a href="https://farmpolicynews.illinois.edu/2025/12/china-reaches-8-mmt-of-us-soybeans-purchased-in-2025/">Farm Policy News (Illinois) — China Reaches 8 MMT of US Soybeans Purchased in 2025 (roundup incl. Reuters on zero Nov. customs arrivals)</a></li>
-<li><a href="https://www.usitc.gov/publications/332/executive_briefings/chinasoyebot.pdf">USITC — U.S. Soybean Exports to China Crushed Amid Trade War (2018 episode)</a></li>
-<li>AskAmerica corpus check — ag schema and econ trade tables <span class="note">— Confirms USDA FAS's weekly export-sales dataset is not loaded in the AskAmerica warehouse; only monthly Census trade_exports/trade_by_state and annual USDA NASS/ERS series are present. No query() call against this corpus contributed a figure to this report.</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>search_catalog('weekly export sales soybeans China'); list_tables('ag')</code></pre></details></li>
+<li><a href="https://www.fas.usda.gov/programs/export-sales-reporting-program">USDA FAS — Export Sales Reporting Program (reporting thresholds and deadlines; direct fetch returned HTTP 403, cited via search summary)</a></li>
+<li><a href="https://www.grainjournal.com/article/1117735/china-resumes-major-u-s-soybean-purchases-but-market-pressures-remain">Grain Journal — China Resumes Major U.S. Soybean Purchases, but Market Pressures Remain (792,000-ton single-day sale)</a></li>
+<li><a href="https://www.czapp.com/analyst-insights/narrowing-soybean-price-gap-helps-restart-us-exports-to-china/">CZ app / Fred Gale (ex-USDA ERS economist) — Narrowing Soybean Price Gap Helps Restart US Exports to China (1.9 MMT/6 sales Oct30-Nov28; weekly export-inspection swing 1.6MMT to 800k MT)</a></li>
+<li><a href="https://www.agri-pulse.com/articles/23991-tracking-chinas-soybean-purchases">Agri-Pulse — Tracking China's soybean purchases (reporting mechanics detail, 12 MMT/25 MMT commitments)</a></li>
+<li><a href="https://investigatemidwest.org/2026/07/01/china-resumes-us-soybean-purchases-under-trade-deal-with-trump-but-future-for-farmers-remains-daunting/">Investigate Midwest / Tennessee Lookout — China resumes US soybean purchases under trade deal with Trump (Jan-Mar 2026 +57% YoY; &lt;30% China share since Sept 2025)</a></li>
+<li><a href="https://fortune.com/2025/12/31/china-buys-two-thirds-of-pledged-u-s-soybeans-as-2025-closes">Fortune — China buys two-thirds of pledged US soybeans as 2025 closes</a></li>
+<li>AskAmerica corpus check confirming no FAS ESR table exists (no query() run; catalog search only)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>search_catalog(query=&quot;weekly export sales soybeans China USDA&quot;)</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+<p class="footnote">USDA FAS's own weekly Export Sales Reporting (ESR) data is not loaded in the AskAmerica corpus; every figure on the 2025 China episode is drawn from press reporting that itself cites USDA data (direct fetches of fas.usda.gov returned HTTP 403 throughout this research). A sourcing gap was filed recommending ingestion of the FAS Export Sales Query System into the ag schema.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

@@ -22,6 +22,7 @@ Re-run this script before every deploy; it is not wired into deploy.sh
 automatically, the same manual-build convention the catalog/ site uses.
 """
 import html
+import json
 import os
 import re
 import shutil
@@ -43,6 +44,7 @@ CORPUS = os.path.abspath(CORPUS)
 # script's logic bit-for-bit, since the q<N> directory names below depend on it.
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(CORPUS)))
 RESULTS_ROOT = os.path.join(REPO_ROOT, "comparative-test-results")
+NEWS_ROOT = os.path.join(REPO_ROOT, "news-check-results")
 
 OUT = os.path.join(HERE, "studies")
 
@@ -167,14 +169,61 @@ def _fallback_page(plain_question, run_date, text):
 """
 
 
-def build_index(bank, entries):
+def load_headlines():
+    """news-check-results/.checked-topics.json entries, each pointing at an askamerica-only
+    run under news-check-results/<qN>/askamerica/<date>/ (run_subpath is 'qN/askamerica/date').
+    Published exactly like a question-bank entry — askamerica's answer only, same page shape,
+    same render_question_page() — a headline story is a study, not a different kind of page."""
+    path = os.path.join(NEWS_ROOT, ".checked-topics.json")
+    if not os.path.isfile(path):
+        return []
+    with open(path) as fh:
+        topics = json.load(fh)
+    headlines = []
+    for t in topics:
+        run_subpath = t.get("run_subpath", "")
+        parts = run_subpath.split("/")
+        if len(parts) != 3:
+            continue
+        qid, persona, date = parts
+        if persona != "askamerica":
+            continue
+        run_dir = os.path.join(NEWS_ROOT, qid, "askamerica", date)
+        if not _has_content(run_dir):
+            continue
+        headlines.append({
+            "slug": t.get("topic_slug", qid),
+            "headline": t.get("headline", t.get("topic_slug", qid)),
+            "run_dir": run_dir,
+            "date": date,
+            "verdict": t.get("verdict", ""),
+        })
+    headlines.sort(key=lambda h: h["date"], reverse=True)
+    return headlines
+
+
+def build_index(bank, entries, headlines=None):
     """web/studies.html — categorized list, plain_question text linking to
     /studies/<qid>/ when a run exists, shown unlinked (greyed) otherwise."""
+    headlines = headlines or []
     by_category = {}
     for q, entry in zip(bank, entries):
         by_category.setdefault(q.get("category", "uncategorized"), []).append((q, entry))
 
     cards = []
+    if headlines:
+        rows = []
+        for h in headlines:
+            headline = html.escape(h["headline"])
+            verdict = html.escape(h["verdict"])
+            rows.append(
+                f'<li class="study-row"><a href="/studies/{h["slug"]}/">{headline}</a>'
+                f'<span class="study-date">{verdict} &middot; {html.escape(h["date"])}</span></li>'
+            )
+        cards.append(
+            '<div class="study-cat"><h2>Ripped From Today\'s Headlines</h2>'
+            f'<ul>{"".join(rows)}</ul></div>'
+        )
     for cat in sorted(by_category):
         rows = []
         for q, entry in sorted(by_category[cat], key=lambda pair: pair[0]["plain_question"]):
@@ -286,17 +335,22 @@ def main():
             render_question_page(q["id"], q["plain_question"], run_dir, run_date)
         entries.append(found)
 
-    # Remove any studies/<qid>/ left over from a question that no longer has a
-    # delivered run (or was renamed/retired) — a prior build's stale page must
-    # not survive into this one just because nothing overwrote it.
-    live_qids = {q["id"] for q, e in zip(bank, entries) if e}
-    for qid in os.listdir(OUT):
-        if qid not in live_qids and os.path.isdir(os.path.join(OUT, qid)):
-            shutil.rmtree(os.path.join(OUT, qid))
+    headlines = load_headlines()
+    for h in headlines:
+        render_question_page(h["slug"], h["headline"], h["run_dir"], h["date"])
 
-    build_index(bank, entries)
+    # Remove any studies/<slug>/ left over from a question or headline that no longer has a
+    # delivered run (or was renamed/retired) — a prior build's stale page must not survive
+    # into this one just because nothing overwrote it.
+    live_slugs = {q["id"] for q, e in zip(bank, entries) if e} | {h["slug"] for h in headlines}
+    for slug in os.listdir(OUT):
+        if slug not in live_slugs and os.path.isdir(os.path.join(OUT, slug)):
+            shutil.rmtree(os.path.join(OUT, slug))
+
+    build_index(bank, entries, headlines)
     answered = sum(1 for e in entries if e)
-    print(f"generated: studies.html + {answered} question pages ({len(bank)} in bank)")
+    print(f"generated: studies.html + {answered} question pages + {len(headlines)} headline pages "
+          f"({len(bank)} in bank)")
 
 
 if __name__ == "__main__":
