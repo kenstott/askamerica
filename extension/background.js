@@ -75,17 +75,27 @@ function validatePrompt(url, selection, mode) {
   if (mode === "news") {
     return "Using the AskAmerica connector, fact-check this news report the way a professional "
       + "fact-checker would: " + url + ". Extract every factual claim and attributed quote in "
-      + "the piece, verify each one against AskAmerica's own government data where a matching "
-      + "table exists (search_catalog, then query) and against independent primary sources "
-      + "otherwise. Grade the piece's overall accuracy on the Washington Post Fact Checker's "
+      + "the piece; check each one against AskAmerica's own warehouse data first (search_catalog, "
+      + "then query), and if no matching table exists, verify it against independent primary "
+      + "sources instead and say so. If the connector's own fetch of " + url + " itself fails "
+      + "(some publishers block automated fetches with an HTTP 403 or similar) — don't stop the "
+      + "check: search for the same story reported by another outlet, or for the underlying "
+      + "claims directly, and verify what you can find that way; grade only the specific claims "
+      + "you truly cannot access anywhere as 'not checkable here', rather than abandoning the "
+      + "whole report. Grade the piece's overall accuracy on the Washington Post Fact Checker's "
       + "0-4 Pinocchio scale, and flag anything materially misleading even if the individual "
       + "facts check out. Publish the result with publish_report.";
   }
   return "Using the AskAmerica connector, validate every factual claim in this article: " + url
     + ". Check each claim against AskAmerica's own warehouse data first (search_catalog, then "
-    + "query); grade anything with no matching table 'not checkable here' rather than skipping "
-    + "it, and verify against independent primary sources where the corpus doesn't cover it. "
-    + "Publish the result with publish_report.";
+    + "query); if no matching table exists, verify it against independent primary sources "
+    + "instead and say so — grade anything with no matching table and no independent source "
+    + "'not checkable here' rather than skipping it. If the connector's own fetch of " + url
+    + " itself fails (some publishers block automated fetches with an HTTP 403 or similar) — "
+    + "don't stop the check: search for the same story reported by another outlet, or for the "
+    + "underlying claims directly, and verify what you can find that way; grade only the "
+    + "specific claims you truly cannot access anywhere as 'not checkable here'. Publish the "
+    + "result with publish_report.";
 }
 
 // The claude:// scheme is Claude Desktop's own registered protocol handler (its authority
