@@ -21,6 +21,7 @@ secrets/tooling), so studies.html and studies/ ship with everything else.
 Re-run this script before every deploy; it is not wired into deploy.sh
 automatically, the same manual-build convention the catalog/ site uses.
 """
+import datetime
 import html
 import json
 import os
@@ -29,6 +30,8 @@ import shutil
 import sys
 
 import yaml
+
+HEADLINES_RECENT_HOURS = 48
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -224,28 +227,125 @@ def load_headlines():
     return headlines
 
 
-def build_index(bank, entries, headlines=None):
+def split_recent_headlines(headlines):
+    """Split into (recent, archived): recent = dated within the last
+    HEADLINES_RECENT_HOURS of today. Headline dates are calendar dates (no
+    time-of-day), so the cutoff is a whole-day approximation of "last 48
+    hours" — today and yesterday count as recent, anything older is archived."""
+    cutoff_days = HEADLINES_RECENT_HOURS // 24
+    today = datetime.date.today()
+    recent, archived = [], []
+    for h in headlines:
+        try:
+            d = datetime.date.fromisoformat(h["date"])
+        except ValueError:
+            archived.append(h)
+            continue
+        if (today - d).days < cutoff_days + 1:
+            recent.append(h)
+        else:
+            archived.append(h)
+    return recent, archived
+
+
+def _headline_rows(headlines):
+    rows = []
+    for h in headlines:
+        headline = html.escape(h["headline"])
+        p = h["pinocchios"]
+        grade = f"{p} Pinocchio{'s' if p != 1 else ''}" if p is not None else "not gradable"
+        rows.append(
+            f'<li class="study-row"><a href="/studies/{h["slug"]}/">{headline}</a>'
+            f'<span class="study-date">{grade} &middot; {html.escape(h["date"])}</span></li>'
+        )
+    return rows
+
+
+def build_headlines_archive(headlines):
+    """web/studies/headlines-archive/index.html — every headline older than the
+    48-hour window shown on the main studies page, same row styling, newest first
+    (already sorted by load_headlines)."""
+    dest_dir = os.path.join(OUT, "headlines-archive")
+    os.makedirs(dest_dir, exist_ok=True)
+    rows = _headline_rows(headlines)
+    body = (
+        '<div class="study-cat"><h2>Headlines Archive</h2>'
+        f'<ul>{"".join(rows)}</ul></div>'
+        if rows else '<p class="hero-sub">No archived headlines yet.</p>'
+    )
+    page = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Headlines Archive — AskAmerica</title>
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {{
+    --bg: #080b0f; --border: #1e2d3d; --amber: #e8a24a;
+    --text: #cdd9e5; --text-dim: #768390; --white: #f0f6fc;
+    --mono: 'JetBrains Mono', monospace; --serif: 'Instrument Serif', serif;
+  }}
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{ background: var(--bg); color: var(--text); font-family: var(--mono);
+          font-size: 14px; line-height: 1.7; }}
+  main {{ max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }}
+  h1 {{ font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 400;
+        color: var(--white); margin-bottom: 1.5rem; }}
+  .study-cat h2 {{ font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
+                   color: var(--amber); border-bottom: 1px solid var(--border);
+                   padding-bottom: 0.6rem; margin-bottom: 0.8rem; }}
+  .study-cat ul {{ list-style: none; }}
+  .study-row {{ display: flex; justify-content: space-between; align-items: baseline;
+                gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--border); }}
+  .study-row a {{ color: var(--text); text-decoration: none; font-size: 14px; line-height: 1.5; }}
+  .study-row a:hover {{ color: var(--amber); }}
+  .study-date {{ color: var(--text-dim); font-size: 11px; white-space: nowrap; flex-shrink: 0; }}
+</style>
+</head>
+<body>
+{BACK_BANNER}
+<main>
+  <h1>Headlines Archive</h1>
+  {body}
+</main>
+</body>
+</html>
+"""
+    with open(os.path.join(dest_dir, "index.html"), "w") as fh:
+        fh.write(page)
+
+
+def build_index(bank, entries, recent_headlines=None, archived_headlines=None):
     """web/studies.html — categorized list, plain_question text linking to
-    /studies/<qid>/ when a run exists, shown unlinked (greyed) otherwise."""
-    headlines = headlines or []
+    /studies/<qid>/ when a run exists, shown unlinked (greyed) otherwise.
+
+    "Ripped From Today's Headlines" shows only headlines from the last
+    HEADLINES_RECENT_HOURS; anything older is demoted to a link into the
+    /studies/headlines-archive/ page (see build_headlines_archive)."""
+    recent_headlines = recent_headlines or []
+    archived_headlines = archived_headlines or []
     by_category = {}
     for q, entry in zip(bank, entries):
         by_category.setdefault(q.get("category", "uncategorized"), []).append((q, entry))
 
     cards = []
-    if headlines:
-        rows = []
-        for h in headlines:
-            headline = html.escape(h["headline"])
-            p = h["pinocchios"]
-            grade = f"{p} Pinocchio{'s' if p != 1 else ''}" if p is not None else "not gradable"
-            rows.append(
-                f'<li class="study-row"><a href="/studies/{h["slug"]}/">{headline}</a>'
-                f'<span class="study-date">{grade} &middot; {html.escape(h["date"])}</span></li>'
-            )
+    if recent_headlines or archived_headlines:
+        rows = _headline_rows(recent_headlines)
+        if not rows:
+            rows.append('<li class="study-row study-pending">No headlines in the last 48 hours'
+                         '<span class="study-date"></span></li>')
+        archive_link = (
+            '<div style="margin-top:0.6rem;"><a href="/studies/headlines-archive/" '
+            'style="color:var(--text-dim);font-size:12px;">'
+            f'View {len(archived_headlines)} archived headline'
+            f'{"s" if len(archived_headlines) != 1 else ""} &rarr;</a></div>'
+            if archived_headlines else ""
+        )
         cards.append(
             '<div class="study-cat"><h2>Ripped From Today\'s Headlines</h2>'
-            f'<ul>{"".join(rows)}</ul></div>'
+            f'<ul>{"".join(rows)}</ul>{archive_link}</div>'
         )
     for cat in sorted(by_category):
         rows = []
@@ -363,18 +463,23 @@ def main():
         render_question_page(h["slug"], h["headline"], h["run_dir"], h["date"],
                               source_url=h["source_url"])
 
+    recent_headlines, archived_headlines = split_recent_headlines(headlines)
+    build_headlines_archive(archived_headlines)
+
     # Remove any studies/<slug>/ left over from a question or headline that no longer has a
     # delivered run (or was renamed/retired) — a prior build's stale page must not survive
-    # into this one just because nothing overwrote it.
-    live_slugs = {q["id"] for q, e in zip(bank, entries) if e} | {h["slug"] for h in headlines}
+    # into this one just because nothing overwrote it. "headlines-archive" is a standing page,
+    # not a stale slug, so it's always kept.
+    live_slugs = ({q["id"] for q, e in zip(bank, entries) if e} | {h["slug"] for h in headlines}
+                  | {"headlines-archive"})
     for slug in os.listdir(OUT):
         if slug not in live_slugs and os.path.isdir(os.path.join(OUT, slug)):
             shutil.rmtree(os.path.join(OUT, slug))
 
-    build_index(bank, entries, headlines)
+    build_index(bank, entries, recent_headlines, archived_headlines)
     answered = sum(1 for e in entries if e)
-    print(f"generated: studies.html + {answered} question pages + {len(headlines)} headline pages "
-          f"({len(bank)} in bank)")
+    print(f"generated: studies.html + {answered} question pages + {len(recent_headlines)} recent "
+          f"headline pages + {len(archived_headlines)} archived ({len(bank)} in bank)")
 
 
 if __name__ == "__main__":
