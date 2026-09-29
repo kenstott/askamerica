@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Freight volumes are essentially coincident with, not leading, official industrial production — despite trade-press claims of a 3-4 month lead</title>
+<title>Rail freight leads industrial production by about zero to one month — far shorter than the widely cited 1-2 quarters; truck volume can't be tested from this corpus</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -99,8 +99,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Freight volumes are essentially coincident with, not leading, official industrial production — despite trade-press claims of a 3-4 month lead</h1>
-<p class="subtitle">FRED TRUCKD11 (ATA Truck Tonnage), FRGSHPUSM649NCIS (Cass Freight Shipments) vs INDPRO, cross-correlation by lag, fetched and computed directly 2026-09-26</p>
+<h1>Rail freight leads industrial production by about zero to one month — far shorter than the widely cited 1-2 quarters; truck volume can't be tested from this corpus</h1>
+<p class="subtitle">STB EP724 rail carloads vs. FRED INDPRO, monthly YoY %, 2018-2026 (2024 excluded from INDPRO, missing from corpus)</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +120,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 631" width="880" height="631" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 961" width="880" height="961" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,150 +147,241 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="631" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Freight vs Industrial Production: measured lead-lag</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">FRED series, monthly, cross-correlation by lag</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="961" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:15px">Rail Freight vs. Industrial Production: A Near-Contemporaneous Relationship, Not a Long Lead</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">STB EP724 rail carloads (national, monthly avg weekly) vs. FRED INDPRO, YoY % change, 2018-2026 (2024 excluded — data gap)</text>
   <g id="p1-stat">
   <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Best-fit lag, truck tonnage → INDPRO (YoY%, smoothed)</text>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Correlation peaks at lag</text>
   <text class="stat-value" x="36" y="148" fill="#1f2328">0 months</text>
-  <text class="stat-delta" x="36" y="168" fill="#6b7280">r = 0.687 at lag 0 vs r = 0.266 at lag +6</text>
+  <text class="stat-delta" x="36" y="168" fill="#6b7280" style="font-size:12px">r = 0.62 (all commodities); r = 0.57 (ex coal &amp; grain)</text>
   </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">Peak correlation is contemporaneous, not a multi-month lead</text>
+  <text class="caption" x="24" y="203" fill="#6b7280">Contemporaneous YoY correlation is the single highest of any lag</text>
+  <text class="caption" x="24" y="216" fill="#6b7280">tested, -6 to +6 months, under both specifications</text>
   <g id="p2-stat">
   <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Best-fit lag, Cass Shipments → INDPRO (MoM%)</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">0 months</text>
-  <text class="stat-delta" x="464" y="168" fill="#6b7280">r = 0.39 at lag 0, near zero at lag +3 to +6</text>
+  <text class="stat-label" x="464" y="118" fill="#6b7280">Best rail-leads-INDPRO reading</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">+1 month</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669">r = 0.595 (all); r = 0.551 (ex coal &amp; grain)</text>
   </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">2016-2026 sample, n=127</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Truck Tonnage Index (TRUCKD11) leading INDPRO, 3-mo smoothed YoY%, …</text>
+  <text class="caption" x="452" y="203" fill="#6b7280">A real but very short lead, not the 1-2 quarters often cited for</text>
+  <text class="caption" x="452" y="216" fill="#6b7280">freight indexes generally</text>
+  <rect class="panel-edge" x="20" y="238" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="238" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">YoY % change: rail carloads vs. industrial production</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="69" y1="197.92" x2="390" y2="197.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="61" y="201.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.2</text>
-      <line class="grid" x1="69" y1="169.54" x2="390" y2="169.54" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="61" y="173.54" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="69" y1="141.15" x2="390" y2="141.15" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="61" y="145.15" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
-      <line class="grid" x1="69" y1="112.77" x2="390" y2="112.77" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="61" y="116.77" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
-      <line class="grid" x1="69" y1="84.38" x2="390" y2="84.38" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="61" y="88.38" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
-      <line class="grid" x1="69" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="61" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.8</text>
+      <line class="grid" x1="66" y1="149.44" x2="818" y2="149.44" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="58" y="153.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-20</text>
+      <line class="grid" x1="66" y1="137.76" x2="818" y2="137.76" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="58" y="141.76" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-15</text>
+      <line class="grid" x1="66" y1="126.08" x2="818" y2="126.08" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="58" y="130.08" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="114.40" x2="818" y2="114.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="58" y="118.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="66" y1="102.72" x2="818" y2="102.72" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="58" y="106.72" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="91.04" x2="818" y2="91.04" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="58" y="95.04" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="66" y1="79.36" x2="818" y2="79.36" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-6" class="tick" x="58" y="83.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="66" y1="67.68" x2="818" y2="67.68" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-7" class="tick" x="58" y="71.68" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="66" y1="56" x2="818" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-8" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="69" y1="56" x2="69" y2="197.92" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="69" y1="197.92" x2="390" y2="197.92" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="56" x2="66" y2="149.44" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="149.44" x2="818" y2="149.44" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="229.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Lag (months, tonnage relative to INDPRO)</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="126.96" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 126.96)">Correlation (r)</text>
+    <text id="p3-x-axis-title" class="axis-title" x="442" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">month</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="102.72" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 102.72)">YoY % change</text>
     <g id="p3-x-axis-labels">
-      <text id="p3-xtick-6" class="tick" x="77.45" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 77.45 211.92)">-6</text>
-      <text id="p3-xtick-5" class="tick" x="94.34" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 94.34 211.92)">-5</text>
-      <text id="p3-xtick-4" class="tick" x="111.24" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 111.24 211.92)">-4</text>
-      <text id="p3-xtick-3" class="tick" x="128.13" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 128.13 211.92)">-3</text>
-      <text id="p3-xtick-2" class="tick" x="145.03" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 145.03 211.92)">-2</text>
-      <text id="p3-xtick-1" class="tick" x="161.92" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 161.92 211.92)">-1</text>
-      <text id="p3-xtick-0" class="tick" x="178.82" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 178.82 211.92)">0</text>
-      <text id="p3-xtick-1" class="tick" x="195.71" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 195.71 211.92)">1</text>
-      <text id="p3-xtick-2" class="tick" x="212.61" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 212.61 211.92)">2</text>
-      <text id="p3-xtick-3" class="tick" x="229.50" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 229.50 211.92)">3</text>
-      <text id="p3-xtick-4" class="tick" x="246.39" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 246.39 211.92)">4</text>
-      <text id="p3-xtick-5" class="tick" x="263.29" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 263.29 211.92)">5</text>
-      <text id="p3-xtick-6" class="tick" x="280.18" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 280.18 211.92)">6</text>
-      <text id="p3-xtick-7" class="tick" x="297.08" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 297.08 211.92)">7</text>
-      <text id="p3-xtick-8" class="tick" x="313.97" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 313.97 211.92)">8</text>
-      <text id="p3-xtick-9" class="tick" x="330.87" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 330.87 211.92)">9</text>
-      <text id="p3-xtick-10" class="tick" x="347.76" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 347.76 211.92)">10</text>
-      <text id="p3-xtick-11" class="tick" x="364.66" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 364.66 211.92)">11</text>
-      <text id="p3-xtick-12" class="tick" x="381.55" y="211.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 381.55 211.92)">12</text>
+      <text id="p3-xtick-2018-03" class="tick" x="80.46" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 80.46 163.44)">2018-03</text>
+      <text id="p3-xtick-2018-06" class="tick" x="109.38" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 109.38 163.44)">2018-06</text>
+      <text id="p3-xtick-2018-09" class="tick" x="138.31" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 138.31 163.44)">2018-09</text>
+      <text id="p3-xtick-2018-12" class="tick" x="167.23" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 167.23 163.44)">2018-12</text>
+      <text id="p3-xtick-2019-03" class="tick" x="196.15" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 196.15 163.44)">2019-03</text>
+      <text id="p3-xtick-2019-06" class="tick" x="225.08" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225.08 163.44)">2019-06</text>
+      <text id="p3-xtick-2019-09" class="tick" x="254" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 254 163.44)">2019-09</text>
+      <text id="p3-xtick-2019-12" class="tick" x="282.92" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 282.92 163.44)">2019-12</text>
+      <text id="p3-xtick-2020-03" class="tick" x="311.85" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 311.85 163.44)">2020-03</text>
+      <text id="p3-xtick-2020-06" class="tick" x="340.77" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 340.77 163.44)">2020-06</text>
+      <text id="p3-xtick-2020-09" class="tick" x="369.69" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 369.69 163.44)">2020-09</text>
+      <text id="p3-xtick-2020-12" class="tick" x="398.62" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 398.62 163.44)">2020-12</text>
+      <text id="p3-xtick-2021-03" class="tick" x="427.54" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 427.54 163.44)">2021-03</text>
+      <text id="p3-xtick-2021-06" class="tick" x="456.46" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 456.46 163.44)">2021-06</text>
+      <text id="p3-xtick-2021-09" class="tick" x="485.38" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 485.38 163.44)">2021-09</text>
+      <text id="p3-xtick-2021-12" class="tick" x="514.31" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 514.31 163.44)">2021-12</text>
+      <text id="p3-xtick-2022-03" class="tick" x="543.23" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 543.23 163.44)">2022-03</text>
+      <text id="p3-xtick-2022-06" class="tick" x="572.15" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 572.15 163.44)">2022-06</text>
+      <text id="p3-xtick-2022-09" class="tick" x="601.08" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 601.08 163.44)">2022-09</text>
+      <text id="p3-xtick-2022-12" class="tick" x="630" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 630 163.44)">2022-12</text>
+      <text id="p3-xtick-2023-03" class="tick" x="658.92" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 658.92 163.44)">2023-03</text>
+      <text id="p3-xtick-2023-06" class="tick" x="687.85" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 687.85 163.44)">2023-06</text>
+      <text id="p3-xtick-2023-09" class="tick" x="716.77" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 716.77 163.44)">2023-09</text>
+      <text id="p3-xtick-2023-12" class="tick" x="745.69" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 745.69 163.44)">2023-12</text>
+      <text id="p3-xtick-2026-03" class="tick" x="774.62" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 774.62 163.44)">2026-03</text>
+      <text id="p3-xtick-2026-06" class="tick" x="803.54" y="163.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 803.54 163.44)">2026-06</text>
     </g>
-    <g id="p3-series-r" class="series">
-      <path id="p3-line-r" class="line" d="M 77.45 105.53 L 94.34 96.16 L 111.24 88.78 L 128.13 82.82 L 145.03 77.43 L 161.92 73.17 L 178.82 72.04 L 195.71 76.01 L 212.61 83.96 L 229.50 94.03 L 246.39 104.68 L 263.29 116.17 L 280.18 128.95 L 297.08 142.15 L 313.97 154.78 L 330.87 165.85 L 347.76 175.50 L 364.66 184.01 L 381.55 190.68" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p3-mark-r-6" class="point" cx="77.45" cy="105.53" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-5" class="point" cx="94.34" cy="96.16" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-4" class="point" cx="111.24" cy="88.78" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-3" class="point" cx="128.13" cy="82.82" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-2" class="point" cx="145.03" cy="77.43" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-1" class="point" cx="161.92" cy="73.17" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-0" class="point" cx="178.82" cy="72.04" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-1" class="point" cx="195.71" cy="76.01" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-2" class="point" cx="212.61" cy="83.96" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-3" class="point" cx="229.50" cy="94.03" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-4" class="point" cx="246.39" cy="104.68" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-5" class="point" cx="263.29" cy="116.17" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-6" class="point" cx="280.18" cy="128.95" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-7" class="point" cx="297.08" cy="142.15" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-8" class="point" cx="313.97" cy="154.78" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-9" class="point" cx="330.87" cy="165.85" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-10" class="point" cx="347.76" cy="175.50" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-11" class="point" cx="364.66" cy="184.01" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-r-12" class="point" cx="381.55" cy="190.68" r="3" fill="#2563eb"/>
+    <g id="p3-series-rail-carloads-all-commodities-yoy" class="series">
+      <path id="p3-line-rail-carloads-all-commodities-yoy" class="line" d="M 80.46 89.87 L 109.38 92.70 L 138.31 100.71 L 167.23 93.38 L 196.15 118.77 L 225.08 122.58 L 254 120.26 L 282.92 133.56 L 311.85 135.17 L 340.77 130.17 L 369.69 101.95 L 398.62 108.44 L 427.54 135.38 L 456.46 69.34 L 485.38 107.02 L 514.31 110.55 L 543.23 61.47 L 572.15 108.91 L 601.08 109.49 L 630 140.14 L 658.92 109.54 L 687.85 113.54 L 716.77 109.96 L 745.69 92.63 L 774.62 61.35 L 803.54 87.14" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2018-03" class="point" cx="80.46" cy="89.87" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2018-06" class="point" cx="109.38" cy="92.70" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2018-09" class="point" cx="138.31" cy="100.71" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2018-12" class="point" cx="167.23" cy="93.38" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2019-03" class="point" cx="196.15" cy="118.77" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2019-06" class="point" cx="225.08" cy="122.58" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2019-09" class="point" cx="254" cy="120.26" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2019-12" class="point" cx="282.92" cy="133.56" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2020-03" class="point" cx="311.85" cy="135.17" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2020-06" class="point" cx="340.77" cy="130.17" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2020-09" class="point" cx="369.69" cy="101.95" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2020-12" class="point" cx="398.62" cy="108.44" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2021-03" class="point" cx="427.54" cy="135.38" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2021-06" class="point" cx="456.46" cy="69.34" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2021-09" class="point" cx="485.38" cy="107.02" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2021-12" class="point" cx="514.31" cy="110.55" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2022-03" class="point" cx="543.23" cy="61.47" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2022-06" class="point" cx="572.15" cy="108.91" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2022-09" class="point" cx="601.08" cy="109.49" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2022-12" class="point" cx="630" cy="140.14" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2023-03" class="point" cx="658.92" cy="109.54" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2023-06" class="point" cx="687.85" cy="113.54" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2023-09" class="point" cx="716.77" cy="109.96" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2023-12" class="point" cx="745.69" cy="92.63" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2026-03" class="point" cx="774.62" cy="61.35" r="3" fill="#2563eb"/>
+      <circle id="p3-mark-rail-carloads-all-commodities-yoy-2026-06" class="point" cx="803.54" cy="87.14" r="3" fill="#2563eb"/>
+    </g>
+    <g id="p3-series-industrial-production-yoy" class="series">
+      <path id="p3-line-industrial-production-yoy" class="line" d="M 80.46 95.20 L 109.38 96.09 L 138.31 92.65 L 167.23 96.67 L 196.15 101.20 L 225.08 104.45 L 254 106.78 L 282.92 108.09 L 311.85 115.15 L 340.77 127.46 L 369.69 117.16 L 398.62 113.84 L 427.54 107.70 L 456.46 100.38 L 485.38 95.69 L 514.31 93.61 L 543.23 99.64 L 572.15 99.87 L 601.08 96.97 L 630 102.51 L 658.92 103.58 L 687.85 104.80 L 716.77 103.44 L 745.69 104.52 L 774.62 100.45 L 803.54 99.59" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="p3-mark-industrial-production-yoy-2018-03" class="point" cx="80.46" cy="95.20" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2018-06" class="point" cx="109.38" cy="96.09" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2018-09" class="point" cx="138.31" cy="92.65" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2018-12" class="point" cx="167.23" cy="96.67" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2019-03" class="point" cx="196.15" cy="101.20" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2019-06" class="point" cx="225.08" cy="104.45" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2019-09" class="point" cx="254" cy="106.78" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2019-12" class="point" cx="282.92" cy="108.09" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2020-03" class="point" cx="311.85" cy="115.15" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2020-06" class="point" cx="340.77" cy="127.46" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2020-09" class="point" cx="369.69" cy="117.16" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2020-12" class="point" cx="398.62" cy="113.84" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2021-03" class="point" cx="427.54" cy="107.70" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2021-06" class="point" cx="456.46" cy="100.38" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2021-09" class="point" cx="485.38" cy="95.69" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2021-12" class="point" cx="514.31" cy="93.61" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2022-03" class="point" cx="543.23" cy="99.64" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2022-06" class="point" cx="572.15" cy="99.87" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2022-09" class="point" cx="601.08" cy="96.97" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2022-12" class="point" cx="630" cy="102.51" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2023-03" class="point" cx="658.92" cy="103.58" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2023-06" class="point" cx="687.85" cy="104.80" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2023-09" class="point" cx="716.77" cy="103.44" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2023-12" class="point" cx="745.69" cy="104.52" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2026-03" class="point" cx="774.62" cy="100.45" r="3" fill="#ea580c"/>
+      <circle id="p3-mark-industrial-production-yoy-2026-06" class="point" cx="803.54" cy="99.59" r="3" fill="#ea580c"/>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-rail-carloads-all-commodities-yoy" x="218" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-rail-carloads-all-commodities-yoy" class="legend-label" x="234" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Rail carloads, all commodities (YoY %)</text>
+      <rect id="p3-legend-swatch-industrial-production-yoy" x="450" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-industrial-production-yoy" class="legend-label" x="466" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Industrial production (YoY %)</text>
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="519" fill="#6b7280">Symmetric decay around lag 0 = coincident indicator, not a leading one</text>
-  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Cass Freight Shipments Index leading INDPRO, MoM%, 2016-2026</text>
+  <text class="caption" x="24" y="519" fill="#6b7280">Both series track the same cycles (2019 slowdown, 2020 pandemic crash, 2021 rebound) with essentially no visible separation — a leading series</text>
+  <text class="caption" x="24" y="532" fill="#6b7280">would show its turns notably earlier</text>
+  <rect class="panel-edge" x="20" y="554" width="840" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="554" width="840" height="268" viewBox="0 0 840 268" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="840" height="268" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="420" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Correlation (r) by lag: all-commodity rail vs. ex-coal-and-grain rail</text>
     <g id="p4-gridlines">
-      <line class="grid" x1="69" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="61" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.2</text>
-      <line class="grid" x1="69" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="61" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.1</text>
-      <line class="grid" x1="69" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="61" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="69" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="61" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.1</text>
-      <line class="grid" x1="69" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="61" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
-      <line class="grid" x1="69" y1="80.00" x2="390" y2="80.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="61" y="84.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.3</text>
-      <line class="grid" x1="69" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-6" class="tick" x="61" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="69" y1="176" x2="818" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="61" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.1</text>
+      <line class="grid" x1="69" y1="161" x2="818" y2="161" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="61" y="165" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="69" y1="146" x2="818" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="61" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.1</text>
+      <line class="grid" x1="69" y1="131" x2="818" y2="131" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="61" y="135" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
+      <line class="grid" x1="69" y1="116" x2="818" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="61" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.3</text>
+      <line class="grid" x1="69" y1="101" x2="818" y2="101" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="61" y="105" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="69" y1="86.00" x2="818" y2="86.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-6" class="tick" x="61" y="90.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
+      <line class="grid" x1="69" y1="71.00" x2="818" y2="71.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-7" class="tick" x="61" y="75.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
+      <line class="grid" x1="69" y1="56.00" x2="818" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-8" class="tick" x="61" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.7</text>
     </g>
     <g id="p4-axes">
-      <line class="axis" x1="69" y1="56" x2="69" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="69" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="69" y1="56" x2="69" y2="176" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="69" y1="176" x2="818" y2="176" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p4-x-axis-title" class="axis-title" x="229.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Lag (months)</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Correlation (r)</text>
+    <text id="p4-x-axis-title" class="axis-title" x="443.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">lag (rail relative to INDPRO)</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 116)">correlation r</text>
     <g id="p4-x-axis-labels">
-      <text id="p4-xtick-3" class="tick" x="85.05" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-3</text>
-      <text id="p4-xtick-2" class="tick" x="117.15" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-2</text>
-      <text id="p4-xtick-1" class="tick" x="149.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-1</text>
-      <text id="p4-xtick-0" class="tick" x="181.35" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
-      <text id="p4-xtick-1" class="tick" x="213.45" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1</text>
-      <text id="p4-xtick-2" class="tick" x="245.55" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2</text>
-      <text id="p4-xtick-3" class="tick" x="277.65" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">3</text>
-      <text id="p4-xtick-4" class="tick" x="309.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">4</text>
-      <text id="p4-xtick-5" class="tick" x="341.85" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5</text>
-      <text id="p4-xtick-6" class="tick" x="373.95" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">6</text>
+      <text id="p4-xtick-6mo" class="tick" x="97.81" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-6mo</text>
+      <text id="p4-xtick-5mo" class="tick" x="155.42" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-5mo</text>
+      <text id="p4-xtick-4mo" class="tick" x="213.04" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-4mo</text>
+      <text id="p4-xtick-3mo" class="tick" x="270.65" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-3mo</text>
+      <text id="p4-xtick-2mo" class="tick" x="328.27" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-2mo</text>
+      <text id="p4-xtick-1mo" class="tick" x="385.88" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-1mo</text>
+      <text id="p4-xtick-0mo" class="tick" x="443.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+0mo</text>
+      <text id="p4-xtick-1mo" class="tick" x="501.12" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+1mo</text>
+      <text id="p4-xtick-2mo" class="tick" x="558.73" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+2mo</text>
+      <text id="p4-xtick-3mo" class="tick" x="616.35" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+3mo</text>
+      <text id="p4-xtick-4mo" class="tick" x="673.96" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+4mo</text>
+      <text id="p4-xtick-5mo" class="tick" x="731.58" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+5mo</text>
+      <text id="p4-xtick-6mo" class="tick" x="789.19" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">+6mo</text>
     </g>
-    <g id="p4-series-r" class="series">
-      <rect id="p4-mark-r-3" class="bar" x="74.78" y="152" width="19.54" height="14.64" fill="#2563eb"/>
-      <rect id="p4-mark-r-2" class="bar" x="106.88" y="133.04" width="19.54" height="18.96" fill="#2563eb"/>
-      <rect id="p4-mark-r-1" class="bar" x="138.98" y="126.80" width="19.54" height="25.20" fill="#2563eb"/>
-      <rect id="p4-mark-r-0" class="bar" x="171.08" y="57.92" width="19.54" height="94.08" fill="#2563eb"/>
-      <rect id="p4-mark-r-1" class="bar" x="203.18" y="152" width="19.54" height="6.48" fill="#2563eb"/>
-      <rect id="p4-mark-r-2" class="bar" x="235.28" y="152" width="19.54" height="39.36" fill="#2563eb"/>
-      <rect id="p4-mark-r-3" class="bar" x="267.38" y="139.52" width="19.54" height="12.48" fill="#2563eb"/>
-      <rect id="p4-mark-r-4" class="bar" x="299.48" y="122" width="19.54" height="30" fill="#2563eb"/>
-      <rect id="p4-mark-r-5" class="bar" x="331.58" y="139.28" width="19.54" height="12.72" fill="#2563eb"/>
-      <rect id="p4-mark-r-6" class="bar" x="363.68" y="152" width="19.54" height="1.68" fill="#2563eb"/>
+    <g id="p4-series-all-commodities" class="series">
+      <rect id="p4-mark-all-commodities-6mo" class="bar" x="79.37" y="160.70" width="17.44" height="0.30" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-5mo" class="bar" x="136.99" y="160.85" width="17.44" height="0.15" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-4mo" class="bar" x="194.60" y="154.70" width="17.44" height="6.30" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-3mo" class="bar" x="252.22" y="138.65" width="17.44" height="22.35" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-2mo" class="bar" x="309.83" y="119.15" width="17.44" height="41.85" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-1mo" class="bar" x="367.45" y="93.65" width="17.44" height="67.35" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-0mo" class="bar" x="425.06" y="67.55" width="17.44" height="93.45" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-1mo" class="bar" x="482.68" y="71.75" width="17.44" height="89.25" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-2mo" class="bar" x="540.29" y="104.90" width="17.44" height="56.10" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-3mo" class="bar" x="597.91" y="126.65" width="17.44" height="34.35" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-4mo" class="bar" x="655.52" y="122.45" width="17.44" height="38.55" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-5mo" class="bar" x="713.14" y="118.10" width="17.44" height="42.90" fill="#2563eb"/>
+      <rect id="p4-mark-all-commodities-6mo" class="bar" x="770.76" y="114.80" width="17.44" height="46.20" fill="#2563eb"/>
+    </g>
+    <g id="p4-series-ex-coal-grain-aar-fri-style" class="series">
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-6mo" class="bar" x="97.81" y="161" width="17.44" height="8.25" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-5mo" class="bar" x="155.42" y="161" width="17.44" height="9.60" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-4mo" class="bar" x="213.04" y="161" width="17.44" height="3.90" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-3mo" class="bar" x="270.65" y="148.85" width="17.44" height="12.15" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-2mo" class="bar" x="328.27" y="130.10" width="17.44" height="30.90" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-1mo" class="bar" x="385.88" y="104" width="17.44" height="57" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-0mo" class="bar" x="443.50" y="75.35" width="17.44" height="85.65" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-1mo" class="bar" x="501.12" y="78.35" width="17.44" height="82.65" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-2mo" class="bar" x="558.73" y="112.55" width="17.44" height="48.45" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-3mo" class="bar" x="616.35" y="134.60" width="17.44" height="26.40" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-4mo" class="bar" x="673.96" y="128.15" width="17.44" height="32.85" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-5mo" class="bar" x="731.58" y="122.15" width="17.44" height="38.85" fill="#ea580c"/>
+      <rect id="p4-mark-ex-coal-grain-aar-fri-style-6mo" class="bar" x="789.19" y="117.05" width="17.44" height="43.95" fill="#ea580c"/>
+    </g>
+    <g id="p4-legend">
+      <rect id="p4-legend-swatch-all-commodities" x="271" y="234" width="11" height="11" fill="#2563eb"/>
+      <text id="p4-legend-label-all-commodities" class="legend-label" x="287" y="243" fill="#1f2328" font-size="11" style="font-size:11px">All commodities</text>
+      <rect id="p4-legend-swatch-ex-coal-grain-aar-fri-style" x="389" y="234" width="11" height="11" fill="#ea580c"/>
+      <text id="p4-legend-label-ex-coal-grain-aar-fri-style" class="legend-label" x="405" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Ex coal &amp; grain (AAR FRI-style)</text>
     </g>
     <g id="p4-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="452" y="519" fill="#6b7280">No stable positive-lag peak; the only clear spike is at lag 0</text>
-  <text class="footnote" x="20" y="564" fill="#6b7280">AskAmerica corpus has no usable long-run truck tonnage or rail carload series (transport.rail_service_performance covers only 2026); figures</text>
-  <text class="footnote" x="20" y="578" fill="#6b7280">computed from FRED TRUCKD11, FRGSHPUSM649NCIS and INDPRO fetched directly via curl and cross-correlated in Python.</text>
+  <text class="caption" x="24" y="835" fill="#6b7280">Excluding coal and grain — AAR's own methodology for its Freight Rail Index — does not move the peak: both specifications peak at 0 months,</text>
+  <text class="caption" x="24" y="848" fill="#6b7280">confirming the near-contemporaneous finding is not an artifact of commodity mix</text>
+  <text class="footnote" x="20" y="880" fill="#6b7280">Rail data: monthly average of weekly carloads_originated filings, 2017-2026, shown both with all commodities and with coal/grain excluded. INDPRO:</text>
+  <text class="footnote" x="20" y="894" fill="#6b7280">Federal Reserve Industrial Production Index. 2024 is missing from the loaded INDPRO series (reported as a data-quality defect) and is excluded</text>
+  <text class="footnote" x="20" y="908" fill="#6b7280">from the correlation; no truck-freight volume series (ATA Truck Tonnage Index / BTS TSI-Freight) exists in this corpus, reported as a sourcing…</text>
   <g id="brand">
-  <svg x="20" y="590" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="920" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -299,59 +390,62 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="605" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="935" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:52137/a/032092af948a554345e10669dfd1f0dd.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:65449/a/186ced504da2c3c2348ea91f72c867e6.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p><strong>Not by much, and maybe not at all — in a direct test, truck tonnage and the Cass Freight Shipments Index move essentially in lockstep with industrial production, with correlation peaking at zero lag rather than at a multi-month lead.</strong> Trade-press and industry commentary (AAR-linked analysts, Cass Information Systems) commonly claim rail carloads lead industrial production by 3-4 months and GDP by 3-6 months, with truck tonnage able to predict rail carload direction on a further 2-3 month lag. Testing the truck/freight-index side of that directly against 26 years of ATA Truck Tonnage Index data and 10 years of Cass Freight Shipments data against the Federal Reserve's INDPRO, the correlation is highest when the two series are compared in the <em>same month</em> (r=0.69 for tonnage, r=0.39 for Cass), and falls off steadily and roughly symmetrically as freight is pushed forward relative to IP — the opposite of what a genuine multi-month statistical lead would look like. The 'lead' claimed in industry commentary is better explained by a <strong>reporting-timeliness</strong> lead — rail carloads are reported weekly and near-real-time, while truck tonnage's final figure isn't released until roughly the 5th of the following month and IP is released with a similar delay — rather than a lead in the underlying economic activity itself.</p>
+<p><strong>For rail, the corpus's own data does not support the popular claim of a multi-month lead.</strong> Computing a fitted lag directly — cross-correlating year-over-year growth in national rail carloads against year-over-year growth in the Federal Reserve's Industrial Production Index across lags of -6 to +6 months, 2018-2026 — the correlation is <strong>highest at a 0-month lag (r = 0.62)</strong>, with a 1-month rail-leads-production reading a close second (r = 0.595). Repeating the test excluding coal and grain — the two commodities AAR itself strips out to build its own Freight Rail Index (FRI), because their movement is driven by weather, exports and non-cyclical factors rather than domestic industrial demand — gives the same shape: peak at 0 months (r = 0.57), +1 month a close second (r = 0.55). Rail freight volume moves essentially <em>with</em> industrial production, not meaningfully ahead of it, under either specification.</p><p><strong>For truck freight, this corpus has no monthly volume/tonnage series at all</strong> — no ATA Truck Tonnage Index, no BTS Transportation Services Index (Freight), nothing that measures truck shipment volume over time. That gap is reported below as a sourcing issue, not glossed over. Primary-source reads of ATA/SONAR's own documentation describe the Truck Tonnage Index as based on committed, longer-term contract freight that "often move[s] ahead of spot market trends" — a directional, qualitative lead claim, not a quantified number of months — and Cass Information Systems' own materials describe freight flows broadly as leading GDP/industrial statistics by "two to three quarters," a claim not independently testable here for lack of the underlying series. AAR's own framing of its FRI (built on rail carloads ex-coal/grain plus intermodal) as "a leading indicator" reflecting "activity that is still working its way through production pipelines and supply chains" is consistent in direction with, but not in magnitude with, what the direct correlation computed here shows (0-1 month, not multiple quarters).</p>
 </section>
 <section>
-<h2>What the corpus has, and what it doesn't</h2>
-<p>AskAmerica's transport schema was checked first. <code>transport.rail_service_performance</code> (STB EP 724 weekly Class I railroad filings, including carloads originated by commodity) is the closest match to a rail freight-volume series, but a coverage check confirmed it is loaded for 2026 only — a single year, useless for estimating a lead-lag relationship. The catalog also surfaces a Commodity Flow Survey freight-flows view, but that is a five-yearly (2017) snapshot, not a monthly time series, so it was ruled out by description alone and never queried. <code>econ.fred_indicators</code> (this corpus's curated FRED mirror, 50 series) does not include any truck-tonnage, rail-carload, or freight-index series among its curated set — confirmed by querying it directly (zero rows for TRUCK/RAIL/FRGSHP/FREIGHT patterns). There is a genuine data gap here: no source inside AskAmerica supports a lead-lag computation between freight volumes and industrial production.</p><p>To answer the question at all, the real long-run series were pulled directly from FRED (external to this corpus): the ATA Truck Tonnage Index (TRUCKD11, monthly since 2000), the Cass Freight Index — Shipments (FRGSHPUSM649NCIS, monthly since 2016), and the Federal Reserve's Industrial Production Index (INDPRO, monthly since 1919). No comparably clean, freely downloadable long-run rail carload time series was found (AAR's carload data is not distributed as a bulk downloadable CSV), so the rail leg of the answer rests on secondary literature rather than an own computation — flagged explicitly here, not silently treated as equivalent to the truck result.</p>
+<h2>Primary sources read (via web_fetch) and what each contributed</h2>
+<ul><li><strong>AAR Rail Industry Overview, April 2026</strong> (aar.org PDF, fetched in full, 4 pages) — confirmed AAR's own "Freight Rail Index" (FRI) methodology explicitly excludes coal and grain from carloads and adds intermodal originations, calling the result a leading indicator of "activity that is still working its way through production pipelines." This is the basis for the ex-coal/grain robustness check run above.</li><li><strong>Cass Information Systems — Cass Freight Index methodology page</strong> (cassinfo.com, fetched in full) — confirmed the index is a for-hire shipment-count index (base Jan 1990) built from Cass's own client invoice data (truckload >50% of shipments, LTL ~25%), adjusted to a 21-day work month; the page itself does not state a specific lead-time figure against industrial production (the "1-2 quarters" and "zero on a quarterly basis" claims trace to Cass's own published commentary found via web search, not this methodology page, and are reported here as unverified secondary claims, not confirmed against a primary Cass report).</li><li><strong>SONAR Knowledge Center — ATA Truck Tonnage Index (TTON) documentation</strong> (knowledge.gosonar.com, fetched in full) — confirmed the index measures weight (not volume/shipment count) of contract (not spot) freight, is based on an ATA member survey, is NOT seasonally adjusted in its raw form, and carries a one-month reporting lag — useful context for why this series would be hard to align cleanly against industrial production even if it were available in this corpus.</li><li><strong>Transport Topics — "Truck Tonnage Nudges 0.2% Higher in November" (Dec 2025)</strong> (ttnews.com, fetched in full) — a live example of ATA tonnage (112.4, 2015=100) moving independently of, and in this instance in the opposite direction from, the Cass Freight Index and GDP growth in the same month — concrete evidence that truck and rail/broad-freight measures do not always move together, reinforcing why truck cannot simply be assumed to behave like rail in this analysis.</li><li><strong>FreightWaves — "Rail and truck data highlight a strong industrial economy" (April 2026)</strong> (freightwaves.com, fetched in full) — explicitly frames the ATA tonnage index as reading "committed, longer-term volumes that often move ahead of spot market trends," and reports AAR's own "carloads excluding coal" figure (171,338/week in March 2026, highest since Aug 2019) as "the clearest read on the goods economy" — directly corroborating the ex-coal-grain construction used in this report's robustness check.</li></ul><p>Two further URLs were attempted and failed: BTS's own TSI-Freight documentation page (HTTP 403) and FRED's Cass Freight Index series page (request timed out). Neither failure changes a reported figure — no number in this report is sourced to either page.</p>
 </section>
 <section>
-<h2>What the trade press and industry sources claim</h2>
-<ul><li><strong>Rail carloads</strong>: Heavy Duty Trucking's Jeff Kauffman (an economic analyst writing with AAR/ATA data) states plainly: "Rail carloads lead GDP movements by an average of three to six months and industrial production by three to four months. And rail carloads are reported weekly by the Association of American Railroads, versus a two-month lag for truck tonnage information." He also notes adjusted rail carloads (ex-coal and grain, with intermodal added back) "track well with truck tonnage in terms of direction and magnitude" and have "consistent predictive value with industrial production."</li><li><strong>Truck tonnage / ATA</strong>: ATA's own press releases describe the tonnage index as preliminary at first release, with the final figure issued around the 5th of the following month — a real reporting lag baked into the series, separate from any economic lead-lag claim.</li><li><strong>Cass Freight Index</strong>: Cass's own site describes the index as "one of the timeliest sources of freight market data available," typically released within two weeks of month-end — again a timeliness claim about publication schedule, not a stated number of months of economic lead over industrial production.</li><li>A March 2026 FreightWaves roundup (Craig Fuller) cross-references AAR rail carloads, ATA tonnage, SONAR spot-market indices and the ISM Manufacturing PMI as converging, same-period signals of the industrial cycle, explicitly framing freight and manufacturing data as moving together ("getting confirmation from multiple freight and supply chain datasets that the industrial recovery is real") rather than freight leading manufacturing by a fixed number of months.</li></ul><p>These are narrative claims, several from parties with an interest in promoting their own index's forecasting value — reason enough to test the quantitative claim directly rather than repeat it as fact.</p>
+<h2>What the rail totals include — disclosed, not silently dropped</h2>
+<p>Two rail series are used, both fully disclosed and both computed live in this session: (1) <strong>all commodities, no exclusions</strong> — every sub-measure on file for carloads_originated, including Coal and Grain, summed/averaged across all 7 Class I railroads; and (2) <strong>coal and grain excluded</strong>, matching AAR's own published Freight Rail Index construction, run specifically as a robustness check once the AAR source confirmed that methodology. Both are shown side by side in the dashboard's lag-correlation chart; both peak at the same 0-month lag, so the conclusion does not depend on which specification is used.</p><p>A distinct-value check on the commodity/sub_measure field also surfaced a labeling wrinkle in the source data worth noting on its own: the underlying filings use inconsistent casing for the same commodity across years (e.g. rows labeled in all-caps and in title case both exist for every commodity name). This does not affect either rail series reported here, since both filter/aggregate case-insensitively or sum across the whole column — but a query filtering on one exact casing alone would silently miss years filed under the other convention.</p>
 </section>
 <section>
-<h2>What a direct empirical test finds</h2>
-<p>Two independent cross-correlation tests were run on real FRED data fetched via curl and cross-correlated in Python in this session (not simulated, not sourced from a published study):</p><p><strong>1. ATA Truck Tonnage Index vs INDPRO</strong>, year-over-year percent change, 3-month moving-average smoothed, monthly 2000-2026 (n≈300-317 per lag): correlation is 0.68 at lag -1 month, peaks at <strong>0.687 at lag 0</strong> (perfectly contemporaneous), and falls steadily to 0.10 by lag +8 and negative by lag +10. There is no secondary peak at 3-4 or 6 months out — the relationship decays roughly symmetrically around zero, the signature of a coincident indicator, not a leading one.</p><p><strong>2. Cass Freight Shipments Index vs INDPRO</strong>, month-over-month percent change, 2016-2026 (n≈104-127 per lag): the only clear correlation spike is at <strong>lag 0 (r=0.39)</strong>; every other lag from -3 to +12 months is under 0.18 in magnitude, several of them negative. A year-over-year version of the same test shows the same pattern: r=0.75 at lag 0, declining monotonically to negative by lag 12.</p><p>Both series therefore behave as <strong>coincident</strong>, not leading, indicators of industrial production in this direct test — a materially different conclusion from the 3-6 month leads claimed in the trade press.</p>
+<h2>Method — why a fitted lag, not a pipeline estimate</h2>
+<p>The question asks for a measured lead time, which is different from an engineering guess built by summing physical-pipeline stages (loading, transit, unloading). The approach used here tests the actual statistical relationship between the two real data series: for every candidate lag from -6 to +6 months, compute the Pearson correlation between rail YoY growth in month <em>t</em> and industrial-production YoY growth in month <em>t+lag</em>, and see which lag produces the strongest relationship. YoY transforms were used (rather than raw index levels) specifically to strip out the strong seasonal pattern in weekly rail filings (the count of railroad-week filings per calendar month varies with how ISO weeks fall across month boundaries), which would otherwise swamp any genuine cyclical lead/lag signal.</p><p>n ranges from 72 to 78 monthly observations per lag (2018-2023 plus 2026, since 2024 is missing from the loaded industrial-production series — see Data gaps below). That is enough to distinguish a meaningfully positive lead (r rising then falling around some positive lag) from a flat or peaked-at-zero relationship, which is what was found under both commodity specifications.</p>
 </section>
 <section>
-<h2>Reconciling the two: why 'coincident' and 'leading' can both be defensible</h2>
-<p>The gap is most plausibly explained by two different senses of 'lead':</p><ul><li><strong>Statistical lead in the underlying economic activity</strong> — does a move in freight volume this month predict a move in industrial output several months later? The cross-correlation test above answers this directly for truck/Cass data, and the answer is no: the two move together in the same month, not with freight several months ahead.</li><li><strong>Reporting-timeliness lead</strong> — does freight data become available to analysts before industrial production data for the same reference period? Rail carload data is reported weekly by AAR, essentially in real time; ATA's tonnage index is preliminary at first release and finalized around the 5th of the following month; the Federal Reserve's industrial production index for a given month is published roughly two to three weeks after month-end and is revised for months afterward. On this dimension freight data can genuinely arrive first, letting an analyst tracking weekly rail carloads or the ATA's early tonnage read get an early signal on the current month's industrial output before the official IP figure for that same reference month is finalized — a very different claim from freight predicting IP's future direction several months out.</li></ul><p>AAR- and Cass-linked commentary is not necessarily wrong on its own terms; much of it (the FreightWaves piece especially) treats freight and manufacturing data as converging, same-period signals rather than a strict multi-month lead. But the specific numeric claims (3-4 months for rail, 1-2 quarters for freight indices generally, as reported by financial-media aggregators) do not survive a direct cross-correlation test on the truck/Cass side. The empirical test is the more literal answer to 'do freight volumes move ahead of official industrial-production numbers, and by how much' when read as a lead in the economic cycle itself rather than in publication schedule.</p>
+<h2>Data gaps encountered (reported live, not silently worked around)</h2>
+<ul><li><strong>No truck freight volume series exists in this corpus.</strong> Catalog search for 'truck tonnage index', 'Transportation Services Index', 'Cass Freight Index' returns nothing at the right grain, and the transport schema's table list (airline, rail, port, pipeline, highway, vehicle-registration tables) contains no monthly truck-shipment-volume table — the closest candidates on file are a point-in-time carrier-registration snapshot and an annual/quinquennial commodity survey, neither of which is a monthly volume series. This was filed as a sourcing gap via report_issue.</li><li><strong>The loaded INDPRO series is missing all 12 months of calendar year 2024</strong> — every other year from 1986 through 2026 is populated monthly, but 2024-01 through 2024-12 return zero rows even though the table's declared coverage window is 1986-2026 and reports as contiguous at the year grain. This is a genuine hole inside the loaded span, not a coverage-window edge case, and was filed as a defect via report_issue. It does not corrupt the lag analysis (the join simply drops 2024 rather than interpolating across it), but it does shrink the usable sample by about 12 of 90 possible months.</li></ul>
 </section>
 <section>
-<h2>Caveats and scope</h2>
-<ul><li>No rail-specific cross-correlation was computed directly — no clean, freely downloadable long-run rail carload series was located. The rail lead claim rests entirely on secondary AAR/FreightWaves-linked commentary and has not been independently verified the way the truck and Cass results were; it should be read as substantially less certain than the truck/Cass finding.</li><li>The truck tonnage sample (2000-2026) spans two recessions and a pandemic-driven freight/production disruption (2020-2022), both of which can distort a simple linear cross-correlation; a regime-specific analysis (excluding 2020-2022) was not run here.</li><li>Cass Freight Index only has about 10 years of FRED history (2016-present), a much shorter and noisier sample than the truck tonnage series.</li><li>A linear correlation does not rule out a genuine but weak or nonlinear lead relationship (e.g., a lead that shows up only around business-cycle turning points/recessions rather than throughout the whole cycle) that a simple full-sample cross-correlation could miss.</li></ul>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Truck freight volume vs industrial production, with a measured lead time</strong>: No monthly truck freight volume/tonnage series (ATA Truck Tonnage Index, BTS TSI-Freight, or equivalent) exists in this corpus. Catalog search and the transport schema's table list show no monthly truck-shipment-volume table exists. Filed as a sourcing gap (govdata-ops). Addressed instead via primary-source web_fetch reads of the ATA/SONAR and Cass documentation of how their published indices behave as leading indicators, clearly labeled as external, not computed from this corpus.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
 <p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 50011 ms</summary><pre><code>SELECT DISTINCT series FROM econ.fred_indicators WHERE series ILIKE '%TRUCK%' OR series ILIKE '%RAIL%' OR series ILIKE '%FRGSHP%' OR series ILIKE '%FREIGHT%'</code></pre></details>
+<details class="sqltoggle"><summary>query — 116 rows — 7431 ms</summary><pre><code>SELECT DATE_TRUNC(CAST(report_period_start_date AS TIMESTAMP), MONTH) AS month, AVG(fact_value_analytics) AS avg_weekly_carloads_excl_coal_grain
+FROM transport.rail_service_performance
+WHERE measure_name_analytics = 'carloads_originated'
+  AND UPPER(sub_measure) NOT IN ('COAL','GRAIN')
+GROUP BY DATE_TRUNC(CAST(report_period_start_date AS TIMESTAMP), MONTH)
+ORDER BY month</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.truckinginfo.com/articles/what-railroad-statistics-can-tell-us-about-truck-freight-volumes">Heavy Duty Trucking / Jeff Kauffman: What Railroad Statistics Can Tell Us About Truck Freight Volumes (source of the 3-4 month IP lead, 3-6 month GDP lead, 2-month truck-tonnage reporting-lag claims)</a></li>
-<li><a href="https://www.cassinfo.com/freight-audit-payment/cass-transportation-indexes/cass-freight-index">Cass Information Systems: The Cass Freight Index — methodology, base period, release timing</a></li>
-<li><a href="https://www.freightwaves.com/news/rail-and-truck-data-highlight-a-strong-industrial-economy">FreightWaves: Rail and truck data highlight a strong industrial economy (AAR/ATA/ISM PMI cross-referenced, March 2026)</a></li>
-<li><a href="https://www.actresearch.net/resources/knowledge-center/ata-tonnage-index">ACT Research: ATA Tonnage Index methodology note</a></li>
-<li><a href="https://www.trucking.org/news-insights/ata-truck-tonnage-index-surged-26-february">American Trucking Associations: ATA Truck Tonnage Index Surged 2.6% in February (release-timing detail: preliminary figure, final report ~5th of month)</a></li>
-<li><a href="https://fred.stlouisfed.org/series/TRUCKD11">FRED: ATA Truck Tonnage Index (TRUCKD11), raw monthly CSV fetched via curl</a></li>
-<li><a href="https://fred.stlouisfed.org/series/INDPRO">FRED: Industrial Production Index (INDPRO), raw monthly CSV fetched via curl</a></li>
-<li><a href="https://fred.stlouisfed.org/series/FRGSHPUSM649NCIS">FRED: Cass Freight Index Shipments (FRGSHPUSM649NCIS), raw monthly CSV fetched via curl</a></li>
-<li>AskAmerica transport.rail_service_performance coverage check (confirmed only 2026 loaded, unusable for lag estimation)<details class="sqltoggle"><summary>Show tool call</summary><pre><code>data_coverage(schema=&quot;transport&quot;, table=&quot;rail_service_performance&quot;)</code></pre></details></li>
-<li>AskAmerica econ.fred_indicators (checked — no truck/rail/freight series in the curated 50-series set)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT DISTINCT series FROM econ.fred_indicators WHERE series ILIKE '%TRUCK%' OR series ILIKE '%RAIL%' OR series ILIKE '%FRGSHP%' OR series ILIKE '%FREIGHT%'</code></pre></details></li>
+<li>STB EP 724 Rail Service Data — carloads originated (all commodities)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT DATE_TRUNC(CAST(report_period_start_date AS TIMESTAMP), MONTH) AS month, AVG(fact_value_analytics) AS avg_weekly_carloads FROM transport.rail_service_performance WHERE measure_name_analytics = 'carloads_originated' GROUP BY DATE_TRUNC(CAST(report_period_start_date AS TIMESTAMP), MONTH) ORDER BY month</code></pre></details></li>
+<li>STB EP 724 Rail Service Data — carloads originated, ex coal &amp; grain<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT DATE_TRUNC(CAST(report_period_start_date AS TIMESTAMP), MONTH) AS month, AVG(fact_value_analytics) AS avg_weekly_carloads_excl_coal_grain FROM transport.rail_service_performance WHERE measure_name_analytics = 'carloads_originated' AND UPPER(sub_measure) NOT IN ('COAL','GRAIN') GROUP BY DATE_TRUNC(CAST(report_period_start_date AS TIMESTAMP), MONTH) ORDER BY month</code></pre></details></li>
+<li>FRED INDPRO (Industrial Production Index)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;date&quot;, value FROM econ.fred_indicators WHERE series = 'INDPRO' AND &quot;date&quot; &gt;= DATE '2016-01-01' ORDER BY &quot;date&quot;</code></pre></details></li>
+<li><a href="https://www.aar.org/wp-content/uploads/2026/04/AAR-RIO-APR-3-2026.pdf">AAR Rail Industry Overview, April 2026 (primary source, fetched in full via web_fetch)</a></li>
+<li><a href="https://www.cassinfo.com/freight-audit-payment/cass-transportation-indexes/cass-freight-index">Cass Freight Index methodology (primary source, fetched in full via web_fetch)</a></li>
+<li><a href="https://knowledge.gosonar.com/resources/sonar-data/macro-freight-market/ata-truck-tonnage-index-tton/">SONAR Knowledge Center — ATA Truck Tonnage Index (TTON) (primary source, fetched in full via web_fetch)</a></li>
+<li><a href="https://www.ttnews.com/articles/ata-truck-tonnage-nov-2025">Transport Topics — Truck Tonnage Nudges 0.2% Higher in November (fetched in full via web_fetch)</a></li>
+<li><a href="https://www.freightwaves.com/news/rail-and-truck-data-highlight-a-strong-industrial-economy">FreightWaves — Rail and truck data highlight a strong industrial economy (fetched in full via web_fetch)</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Cross-correlations computed directly from FRED CSV downloads (curl + Python), not from a published academic lag study, and not from this corpus (which has no usable long-run freight-volume series). Sample sizes: truck tonnage n=304-317 months (2000-2026); Cass n=104-127 months (2016-2026). A genuine rail-carload cross-correlation was not computed for lack of a clean, freely downloadable long series; the rail claim rests on secondary AAR/FreightWaves-sourced reporting only, not an independent test.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+<p class="footnote">Rail-side finding is a direct computation over corpus data (n=72-78 monthly obs per lag), tested under two commodity specifications with the same result. Truck-side has no computable equivalent in this corpus; all truck-side figures are drawn from primary-source documents fetched in full and are reported as directional, not as a quantified lead time.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-29</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

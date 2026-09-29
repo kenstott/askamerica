@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Grid strain from data centers: outage metrics haven't clearly worsened yet — but reliability risk and business-interruption exposure to neighbors are already being priced in</title>
+<title>Data-center growth is triggering a new, escalating type of grid disturbance — but a broad rise in outages for ordinary local businesses remains a documented risk, not yet a measured trend</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -99,46 +99,204 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Grid strain from data centers: outage metrics haven't clearly worsened yet — but reliability risk and business-interruption exposure to neighbors are already being priced in</h1>
-<p class="subtitle">EIA Electric Power Annual, PJM/Utility Dive, AM Best/Risk &amp; Insurance, and insurance trade press, fetched Sept 2026</p>
+<h1>Data-center growth is triggering a new, escalating type of grid disturbance — but a broad rise in outages for ordinary local businesses remains a documented risk, not yet a measured trend</h1>
+<p class="subtitle">EIA reliability data, NERC's 2025 Long-Term Reliability Assessment and Level 3 alert, and PJM/Dominion incident reports</p>
 </header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Data-Center Load Growth vs. Grid Reliability</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">EIA reliability data (national) + NERC/PJM incident reports, 2013-2026</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="118" fill="#6b7280">Largest data-center load-loss event in PJM history</text>
+  <text class="stat-value" x="36" y="148" fill="#1f2328">3,800 MW</text>
+  <text class="stat-delta" x="36" y="168" fill="#059669">Jul 22, 2026, Dominion (Northern VA) zone</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:10px">NERC areas at elevated/high resource-adequacy risk (next 5 yrs)</text>
+  <text class="stat-value" x="464" y="148" fill="#1f2328">13 of 23</text>
+  <text class="stat-delta" x="464" y="168" fill="#059669" style="font-size:11px">PJM, ERCOT, MISO among them; Level 3 alert issued May 2026</text>
+  </g>
+  <rect class="panel-edge" x="20" y="206" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="206" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Escalating data-center-linked grid disturbance events (PJM/Dominion, No…</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="77" y1="212" x2="390" y2="212" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="69" y="216" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="173" x2="390" y2="173" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="69" y="177" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="77" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="69" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="77" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="69" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,000</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="212" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="212" x2="390" y2="212" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-x-axis-title" class="axis-title" x="233.50" y="256" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Event date</text>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="134" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 134)">MW dropped from grid</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2024" class="tick" x="129.17" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+      <text id="p3-xtick-2025" class="tick" x="233.50" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
+      <text id="p3-xtick-jul-22-2026" class="tick" x="337.83" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Jul 22, 2026</text>
+    </g>
+    <g id="p3-series-mw-lost-when-data-centers-tripped-off" class="series">
+      <rect id="p3-mark-mw-lost-when-data-centers-tripped-off-2024" class="bar" x="95.78" y="153.50" width="65.77" height="58.50" fill="#2563eb"/>
+      <rect id="p3-mark-mw-lost-when-data-centers-tripped-off-2025" class="bar" x="200.11" y="153.50" width="65.77" height="58.50" fill="#2563eb"/>
+      <rect id="p3-mark-mw-lost-when-data-centers-tripped-off-jul-22-2026" class="bar" x="304.45" y="63.80" width="65.77" height="148.20" fill="#2563eb"/>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="499" fill="#6b7280">Each event: dozens of data centers rode through a routine transmission</text>
+  <text class="caption" x="24" y="512" fill="#6b7280">fault and switched to backup power, per NERC/PJM incident reviews.…</text>
+  <rect class="panel-edge" x="448" y="206" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="206" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">National avg. annual power-interruption duration per customer (SAIDI, all …</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="67" y1="212" x2="390" y2="212" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="59" y="216" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="67" y1="180.80" x2="390" y2="180.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="59" y="184.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="67" y1="149.60" x2="390" y2="149.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="59" y="153.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="67" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="59" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="67" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="59" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="67" y1="56" x2="67" y2="212" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="67" y1="212" x2="390" y2="212" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p4-x-axis-title" class="axis-title" x="228.50" y="256" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
+    <text id="p4-y-axis-title" class="axis-title" x="14" y="134" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 134)">Minutes/yr</text>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-2017" class="tick" x="99.30" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+      <text id="p4-xtick-2018" class="tick" x="163.90" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2018</text>
+      <text id="p4-xtick-2020" class="tick" x="228.50" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p4-xtick-2021" class="tick" x="293.10" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
+      <text id="p4-xtick-2022" class="tick" x="357.70" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+    </g>
+    <g id="p4-series-saidi-all-events" class="series">
+      <rect id="p4-mark-saidi-all-events-2017" class="bar" x="78.63" y="68.48" width="40.34" height="143.52" fill="#2563eb"/>
+      <rect id="p4-mark-saidi-all-events-2018" class="bar" x="143.23" y="99.68" width="40.34" height="112.32" fill="#2563eb"/>
+      <rect id="p4-mark-saidi-all-events-2020" class="bar" x="207.83" y="61.30" width="40.34" height="150.70" fill="#2563eb"/>
+      <rect id="p4-mark-saidi-all-events-2021" class="bar" x="272.43" y="69.73" width="40.34" height="142.27" fill="#2563eb"/>
+      <rect id="p4-mark-saidi-all-events-2022" class="bar" x="337.03" y="107.17" width="40.34" height="104.83" fill="#2563eb"/>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="499" fill="#6b7280">EIA Form 861. Year-to-year swings track major-storm activity, not</text>
+  <text class="caption" x="452" y="512" fill="#6b7280">baseline grid reliability. Excluding major events, duration has held…</text>
+  <g id="brand">
+  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:60172/a/dabd569d42dc1b5bd090471f437885b4.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
 <section>
 <h2>Summary</h2>
-<p><strong>Outage frequency and duration have been drifting worse nationally for over a decade, but that trend predates the AI data-center boom and is driven mainly by aging infrastructure and worse storms — not, on current evidence, by data centers.</strong> What IS new and does trace directly to data centers is a run of acute grid-<em>disturbance</em> events in the most data-center-dense regions (mass automatic disconnections of gigawatts of data-center load during transmission faults), plus explicit grid-operator warnings that a real capacity shortfall and rolling-blackout risk could arrive within a few years in PJM. On the insurance side, the industry's own analysis (AM Best, via Risk & Insurance) explicitly names the mechanism a reader would expect: data centers' grid and water demand can constrain resources for surrounding communities, "potentially giving rise to third-party property damage lawsuits from residents or other businesses affected by those constraints." That confirms the concern is real and recognized by insurers — but it is described as an emerging liability exposure, not yet a measured rise in business-interruption claims or premiums for unrelated nearby businesses.</p>
+<p><strong>Short answer: not yet at scale for ordinary customers, but the underlying risk is real, worsening fast, and now serious enough that grid regulators have escalated to mandatory action — while broad-based business-interruption impact on non-data-center businesses remains a documented risk rather than a measured trend.</strong> National outage-duration statistics (EIA SAIDI) show no clean upward trend attributable to data centers: year-to-year swings since 2013 track major storm years (e.g., 2020's record ~483 minutes/customer was a bad-hurricane year; 2022 was back down to 336 minutes), and when major events are excluded, average interruption duration has held essentially flat around two hours per customer per year nationwide since EIA started tracking in 2013. But in the specific regions where data-center growth is heaviest — Dominion Energy's Northern Virginia zone within PJM, and ERCOT in Texas — grid operators have documented a new, escalating, and mechanically distinct failure mode: large numbers of data centers simultaneously disconnecting from the grid during routine transmission faults because their internal voltage/frequency protection is oversensitive. Three such events have hit PJM's Dominion zone: ~1,500 MW in July 2024, ~1,500 MW in February 2025, and a record ~3,800 MW event on July 22, 2026 — the largest in PJM's history, per PJM's own August 2026 presentation. None has yet caused a sustained blackout for ordinary customers (grid operators recovered control within minutes each time), but the trend is escalating fast enough that NERC issued a rare, highest-severity Level 3 alert in May 2026 mandating seven specific actions from every transmission planner, operator, and balancing authority in North America. NERC's own January 2026 assessment now rates 13 of 23 North American grid regions — including PJM, ERCOT, and MISO — at elevated or high risk of energy shortfalls within five years, driven mostly by data-center demand growth. On business-interruption exposure: insurers treat power supply as the single largest driver of BI losses at data centers themselves (45% of data-center outages, per the Uptime Institute, cited in Swiss Re's 2026 sigma report), and Swiss Re documents insurers already pricing regional "accumulation risk" — the danger that one grid event could trigger correlated claims across many co-located data centers and their programs at once. What is not yet documented anywhere found in this research is a quantified rise in BI claims, premiums, or actual outage exposure for ordinary local businesses (not data centers) specifically because of nearby data-center growth; the connecting evidence is rising electricity costs and explicit rolling-blackout warnings from utility and grid officials in these regions, not a measured change in those businesses' own outage statistics.</p>
 </section>
 <section>
-<h2>1. National outage trend: real, but not obviously data-center-driven</h2>
-<p>EIA's Electric Power Annual data (Form EIA-861) shows a genuine multi-year decline in U.S. distribution reliability, <strong>excluding major storm events</strong>: SAIDI (average outage minutes per customer per year) rose from roughly 102.8–106.1 minutes in 2013 to 125.7 minutes in 2022, and 123.6 minutes in 2024. SAIFI (average interruptions per customer) rose about 4.8% from 2013–2021. Trade coverage of this trend (POWER magazine) attributes it to aging distribution infrastructure and worsening weather and does not cite data centers or large-load growth as a driver — this decline was underway well before the current AI/data-center buildout accelerated after 2022.</p>
+<h2>What the AskAmerica corpus does and doesn't cover</h2>
+<p>askengine's catalog was searched directly (search_catalog, find_recipe) for outage, reliability, SAIDI/SAIFI, and business-interruption measures. <strong>Confirmed gap: no table in this corpus carries power-outage frequency, duration, or reliability-index data</strong> — the term "outage" matched zero columns or tables across all ~26 schemas. The closest tables are energy.eia_power_plants, energy.eia_electricity_generation, energy.eia_electricity_prices, and energy.eia_utility_annual, all of which cover generation, capacity, and retail prices, not interruption events. This is a genuine sourcing gap rather than a query-shape problem, so the entire outage/reliability/insurance analysis below is built from primary and near-primary external sources — EIA's own published reliability releases, NERC's own assessment, alert, and incident-review documents, PJM's own August 2026 event presentation (via Utility Dive's direct reporting), and Swiss Re Institute's own sigma research (via Risk & Insurance) — fetched directly rather than from this connector's warehouse.</p>
 </section>
 <section>
-<h2>2. Where it gets specific to data centers: disturbance events and capacity warnings, not (yet) routine outage stats</h2>
-<p>In the regions where data-center growth is most concentrated — PJM's footprint broadly, and specifically Northern Virginia's "Data Center Alley" in Loudoun County — the documented risk shows up differently than a rising SAIDI number:</p><ul><li><strong>Interconnection delays, not yet outages:</strong> in 2022 Dominion Energy told data-center developers that new connections in Eastern Loudoun County would be delayed for years because transmission infrastructure hadn't kept pace; the utility resumed only partial, reduced allocations, with constraints expected to persist until new 500kV transmission lines complete around 2026 (Data Center Frontier, fetched directly).</li><li><strong>Mass-disconnection disturbance events:</strong> a 2022 incident and a subsequent 2026 event each saw several gigawatts of Northern Virginia data-center load automatically trip offline to backup generation during a transmission fault, sending a voltage disturbance across the entire PJM footprint from Virginia to Chicago and taking roughly ten minutes to stabilize — far longer than a typical disturbance. PJM has proposed new reliability rules requiring large loads to ride through disturbances instead of tripping.</li><li><strong>Explicit reliability-shortfall warnings:</strong> Utility Dive (fetched directly, a Dec. 2025 NRDC opinion piece drawing on PJM's own published scenarios) reports PJM will have "just enough power to keep the grid reliable" starting summer 2026, and that by June 2027 the region may fall below reliability standards — meaning a greater risk of rolling blackouts during winter storms and summer heat waves — if data-center interconnections keep outpacing new supply. PJM's own published scenarios reportedly show "deep shortages" by 2030. The same piece states data-center-driven capacity-price increases added $9.4 billion to PJM-region electricity bills this past summer, with another $1.4 billion locked in for next summer and an estimated $100 billion by 2033.</li></ul><p><strong>What could not be verified:</strong> a utility-specific (Dominion Virginia) before/after SAIDI/SAIFI series filed with the Virginia State Corporation Commission was not fetched as a primary document in this session, so this answer cannot say whether routine, everyday outage minutes in the data-center-heavy service territory have themselves measurably risen relative to other Virginia utilities or the national trend. The documented risk today is concentrated in acute large-scale disturbance events, interconnection/connection delays, and forward-looking capacity-adequacy warnings — not (yet) a demonstrated rise in everyday SAIDI/SAIFI specific to that territory.</p>
+<h2>1. Has outage frequency or duration actually gone up?</h2>
+<p><strong>Nationally: no clean trend tied to data centers.</strong> EIA has collected SAIDI (System Average Interruption Duration Index, hours of non-momentary interruption per customer per year) and SAIFI (frequency of interruptions) from utilities since 2013. U.S. customers experienced the longest average interruption duration on record in 2020 (~483 minutes, roughly eight hours, including major events). By 2022 the national average had fallen to 336 minutes (5.6 hours), a decline EIA attributes directly to fewer major weather disasters that year versus 2021 (18 billion-dollar weather disasters in 2022, including Hurricane Ian, Hurricane Nicole, and Winter Storm Elliott). <strong>Critically, EIA's own analysis states that "since 2013, the average duration of electricity interruptions each year has remained consistently around two hours after excluding major events"</strong> — i.e., the swings in the headline national number are a weather-events story, not a baseline-grid-degradation story, and EIA's releases do not attribute the trend to data-center load growth. States with the longest interruptions in the most recent data (Florida, West Virginia, Maine, Vermont, New Hampshire) are hurricane- and forest-exposed states, not the data-center-heavy states (Virginia, Texas).</p><p><strong>In the specific regions with the heaviest data-center concentration, a new and escalating disturbance pattern has emerged</strong> that the standard SAIDI/SAIFI index doesn't directly capture, because in every documented case so far it did not reach retail customers as a sustained outage. PJM's own presentation to its Operating Committee (Aug. 6, 2026) documents three successive events in Dominion Energy's Northern Virginia zone — home to the world's largest data-center cluster: roughly 1,500 MW of data-center load tripped off in 2024, another ~1,500 MW in 2025, and a record 3,800 MW on July 22, 2026, the largest such event in PJM's history, triggered by a normally-cleared fault on a single 230-kV line. PJM's Operating Committee chair stated bluntly that "these data centers are too sensitive to the kind of voltage that they like, and we feel they are disconnecting too early." PJM recovered system balance within nine minutes (versus NERC's 30-minute standard) each time, and no sustained customer blackout resulted, though the July 2024 event caused roughly 10 minutes of voltage flicker felt from Chicago to Boston to Miami. A parallel pattern has occurred in ERCOT, where cryptocurrency-mining and other large flexible loads caused 25 separate load-loss events (100-400 MW each) since November 2023.</p><p><strong>Regulators have now escalated this from a monitored curiosity to a mandatory compliance issue.</strong> After a Level 2 warning in 2025 drew what NERC called insufficient responses ("entities generally did not have sufficient processes, procedures, or methods to address emerging computational loads"), NERC issued a rare Level 3 "Essential Actions" alert — its highest severity level, previously used only for inverter-based-resource risks — in May 2026, requiring transmission planners, operators, and balancing authorities across North America to collect detailed modeling data from computational loads, revise reliability-study triggers, and install dynamic fault-recording devices, with compliance responses due Aug. 3, 2026. Separately, NERC's January 2026 Long-Term Reliability Assessment rates 13 of 23 North American assessment areas — including PJM, ERCOT, MISO, and SERC-Central — at elevated or high resource-adequacy risk over the next five years, citing data-center-driven demand as the largest single contributor to a projected 224 GW rise in summer peak demand (a rate NERC says is the highest it has tracked since 1995). Virginia's own Joint Legislative Audit and Review Commission (JLARC) reached the same regional conclusion independently, and Central Virginia Electric Cooperative's CEO told Cardinal News he personally expects rolling blackouts in the PJM footprint within three to five years. <strong>Net effect: the frequency of grid-stress events mechanically tied to data centers has clearly and measurably increased and is still escalating (1,500 MW → 1,500 MW → 3,800 MW across three successive years), but this has not yet translated into a measured rise in sustained outage frequency or duration for ordinary customers — it is a forward risk indicator that grid regulators are now treating as urgent, not a realized outage-statistics trend.</strong></p>
 </section>
 <section>
-<h2>3. Business-interruption exposure for other local businesses: named as a real risk, not yet a measured trend</h2>
-<p>AM Best's own data-center risk analysis, as reported in Risk & Insurance (fetched directly), identifies business interruption as "potentially the most consequential exposure" in the data-center insurance market because a disruption at one facility "can instantly cascade across interconnected networks, affecting multiple clients and services simultaneously." Critically, the same report goes further and names exactly the mechanism this question asks about: data centers' "heavy water consumption for cooling and their demand on local electrical grids can constrain resource availability for surrounding communities, potentially giving rise to third-party property damage lawsuits from residents or <strong>other businesses</strong> affected by those constraints." That is the clearest, most direct documented link found between data-center grid strain and exposure for unrelated local businesses — but it is framed by AM Best as a liability/lawsuit exposure that could arise, not a business-interruption claims trend that has already been measured or priced with a number.</p><p>Separately, Aon's CEO of risk capital (Insurance Business, fetched directly) confirms business interruption, contractor credit, and power infrastructure are the industry's top emerging concerns for the data centers themselves over the next 12 months — overall data-center insurance market capacity has grown roughly 50% in the past year — and that carriers are also developing companion coverage for the dedicated power plants some developers are now building because grid availability is limited. Other coverage (Insurance Business, Veridion) describes carriers tightening pricing and terms "across an entire region, not just at individual sites" where data centers cluster, due to accumulation/correlated-loss risk in their portfolios — a mechanism by which a data center's grid exposure could indirectly raise costs for other insureds nearby, though again not quantified for unrelated local businesses specifically.</p><p>Net: the industry itself has identified and named the pathway from data-center grid/water strain to third-party exposure for neighboring residents and businesses. That confirms the concern is legitimate and being actively underwritten around, but no source found puts a number on business-interruption claims frequency, severity, or premium increases specifically for non-data-center local businesses as a result of data-center-driven grid strain — that remains an anticipated risk, not yet a documented trend.</p>
+<h2>2. Does that translate into more business-interruption exposure for other local businesses?</h2>
+<p><strong>For data centers themselves, yes, clearly and with quantified figures.</strong> Swiss Re Institute's 2026 sigma report (via Risk & Insurance) states that power supply is the largest single driver of business-interruption risk at data centers, responsible for 45% of data-center outages per the Uptime Institute, and that global insurance premiums tied to data centers are projected to more than double from $10.6 billion to $24.2 billion by 2030. Swiss Re explicitly flags "accumulation risk": developers cluster multiple data centers within roughly 20-mile radiuses (e.g., Abilene, TX), meaning a single regional grid or catastrophe event can trigger correlated claims across many insured facilities and separate insurance programs (building, equipment, and power-plant coverage are often placed separately, making total exposure hard to track) simultaneously. Swiss Re's engineering lead is quoted saying the industry must move "beyond passive risk transfer to actively enabling resilience" given how concentrated, energy-dependent, and systemically critical these facilities have become.</p><p><strong>For ordinary local businesses that are not themselves data centers, no source found in this research quantifies a rise in BI claims, premiums, or realized outages specifically attributable to nearby data-center load growth.</strong> The documented connecting mechanisms are: (a) <em>rising electricity costs</em> that raise operating costs for every business in the region — Virginia's JLARC study found that data centers currently cover their own cost of service, but that future demand growth (projected to require Virginia to use 15% more energy even before new data-center demand, doubling within a decade) is likely to raise costs for other customers, and PJM capacity prices have risen sharply amid data-center-driven demand growth; (b) <em>explicit, named rolling-blackout warnings</em> from utility and grid officials serving these same regions — Central Virginia Electric Cooperative's CEO stated plainly "I believe we will have rotating blackouts before this gets resolved" within three to five years in PJM, a warning that applies to every customer on that grid, not just data centers; and (c) <em>regulatory and legislative responses treating the spillover as a real, expected risk</em> — JLARC recommended legislation clarifying that Virginia utilities may delay (though not deny) new large-customer service specifically to protect existing customers' reliability, and Georgia adopted a 2025 rule requiring large-load customers to co-fund grid upgrades, both of which are policy actions premised on an expected, not-yet-fully-realized, spillover risk to other ratepayers and businesses.</p>
 </section>
 <section>
-<h2>Data availability note</h2>
-<p>The AskAmerica connector's SQL warehouse was checked directly (search_catalog) and confirmed to carry no table for grid outage indices (SAIDI/SAIFI) or business-interruption insurance claims — the energy schema has generation, capacity, and utility financial data but not reliability/outage statistics. This answer is therefore built entirely from EIA's published Electric Power Annual figures and directly fetched trade-press/industry-report coverage, not from a warehouse query. That should be read as a genuine coverage gap in the connector rather than an absence of the underlying government data (EIA does collect SAIDI/SAIFI via Form EIA-861, and Virginia's SCC separately tracks it for Dominion Energy).</p>
+<h2>Bottom line and what would resolve this more precisely</h2>
+<p>These are two separate, honestly-labeled findings, not one: (1) a <strong>new, mechanically well-documented, and rapidly escalating grid-disturbance pattern</strong> tied directly to data-center concentration in PJM/Dominion (Northern Virginia) and ERCOT (Texas) — three successive Virginia events growing from 1,500 MW to a record 3,800 MW in three years, serious enough that NERC escalated to its highest-severity Level 3 mandatory alert in May 2026, with 13 of 23 North American grid regions now rated at elevated or high resource-adequacy risk; and (2) <strong>no published measurement yet</strong> that ordinary local businesses in those regions are experiencing more or longer outages, or higher business-interruption losses, specifically because of that data-center growth. What exists instead is a chain of documented, named risk: rising electricity costs, explicit rolling-blackout warnings from the same utility executives serving those businesses, and regulatory bodies (JLARC, Georgia PSC) treating cost/reliability spillover as expected enough to legislate against. A rigorous causal test would require utility-territory-level SAIDI/SAIFI data (EIA Form 861 detail, not yet in this corpus, would need to be pulled at the individual-utility rather than national level) compared before and after major data-center interconnection in specific counties like Loudoun, VA, against a comparable non-data-center-growth region — that comparison was outside the scope of what could be completed here but is the next step that would convert this from a documented risk into a measured trend.</p>
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.eia.gov/electricity/annual/pdf/epa.pdf">EIA Electric Power Annual 2024 — national SAIDI/SAIFI reliability data</a></li>
-<li><a href="https://www.powermag.com/u-s-power-distribution-system-reliability-has-declined-over-the-past-decade-how-to-make-it-better/">POWER Magazine — U.S. Power Distribution System Reliability Has Declined Over the Past Decade</a></li>
-<li><a href="https://www.datacenterfrontier.com/energy/article/11436951/dominion-resumes-new-connections-but-loudoun-faces-lengthy-power-constraints">Data Center Frontier — Dominion Resumes New Connections, But Loudoun Faces Lengthy Power Constraints</a></li>
-<li><a href="https://www.utilitydive.com/news/solving-pjms-data-center-problem/805600/">Utility Dive — Solving PJM's data center problem (NRDC opinion, citing PJM's own reliability scenarios)</a></li>
-<li><a href="https://riskandinsurance.com/data-center-boom-creates-complex-high-stakes-insurance-challenges/">Risk &amp; Insurance — Data Center Boom Creates Complex, High-Stakes Insurance Challenges (AM Best report coverage)</a></li>
-<li><a href="https://www.insurancebusinessmag.com/us/news/construction/data-center-insurances-next-challenges-bi-credit-and-power-584361.aspx">Insurance Business — Data center insurance's next challenges: BI, credit and power (Aon)</a></li>
-<li><a href="https://mlq.ai/news/northern-virginia-data-center-disconnect-dumps-3-gw-off-pjm-grid-takes-10-minutes-to-stabilize/">MLQ News — Northern Virginia Data Center Disconnect Dumps 3 GW Off PJM Grid (search summary; not independently fetched)</a></li>
-<li><a href="https://www.datacenterdynamics.com/en/news/pjm-grid-hit-by-voltage-disturbance-after-data-center-load-abruptly-drops-offline-report/">Data Center Dynamics — PJM grid hit by voltage disturbance after data center load abruptly drops offline (search summary; fetch blocked, HTTP 403)</a></li>
-<li><a href="https://www.scc.virginia.gov/media/sccvirginiagov-home/regulated-industries/utility-regulation/responsibilities/2025-scc-combined-annual-report.pdf">Virginia SCC — 2025 Combined Annual Report (utility reliability indices; not fetched as primary document, cited from search summary only)</a></li>
+<li><a href="https://www.eia.gov/electricity/data/eia861/">AskAmerica search_catalog — confirmed no outage/reliability table in corpus</a> <span class="note">— energy schema tables cover generation/prices/capacity only; verified via search_catalog before external research</span></li>
+<li><a href="https://www.nerc.com/globalassets/our-work/assessments/nerc_ltra_2025.pdf">NERC 2025 Long-Term Reliability Assessment (Jan 2026)</a></li>
+<li><a href="https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/">Utility Dive — PJM eyes data center, crypto reliability requirements after 3.8 GW of load trips offline (fetched directly)</a></li>
+<li><a href="https://www.utilitydive.com/news/nerc-issues-rare-level-3-alert-over-data-center-load-losses/819295/">Utility Dive — NERC issues Level 3 alert, mandates action to address data center load losses (fetched directly)</a></li>
+<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=61303">EIA Today in Energy — U.S. electricity customers averaged five and one-half hours of power interruptions in 2022 (fetched directly)</a></li>
+<li><a href="https://riskandinsurance.com/data-centers-powering-ai-create-unprecedented-risk-accumulation-challenges-for-insurers/">Risk &amp; Insurance — Data Centers Powering AI Create Unprecedented Risk Accumulation Challenges for Insurers, citing Swiss Re Institute sigma report (fetched directly)</a></li>
+<li><a href="https://cardinalnews.org/2025/04/11/energy-demand-will-outstrip-supply-in-virginia-as-data-centers-proliferate/">Cardinal News — Energy demand will outstrip supply in Virginia as data centers proliferate, citing JLARC and NERC reports (fetched directly)</a></li>
+<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=43915">EIA Today in Energy — U.S. customers experienced nearly six hours of power interruptions in 2018</a></li>
+<li><a href="https://www.powermag.com/3-gw-off-pjm-again-what-nercs-2024-investigation-already-told-us/">PowerMag — 3 GW Off PJM, Again: What NERC's 2024 Investigation Already Told Us</a></li>
+<li><a href="https://www.nbcwashington.com/news/local/northern-virginia/how-loudoun-county-data-centers-are-linked-to-power-flickering-across-half-the-u-s/4134124/">NBC Washington — How Loudoun County data centers are linked to power flickering across half the U.S.</a></li>
+<li><a href="https://www.ajg.com/news-and-insights/data-center-risks-business-cyber-insurance/">Gallagher (AJG) — 5 Risks Shaping the Future of Data Centers</a></li>
+<li><a href="https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/101425-data-center-grid-power-demand-to-rise-22-in-2025-nearly-triple-by-2030">S&amp;P Global — Data center grid-power demand to rise 22% in 2025, nearly triple by 2030</a></li>
+<li><a href="https://www.belfercenter.org/research-analysis/data-centers-texas-virginia-comparison">Belfer Center — Data Centers and Large-Scale Electric Growth: The Virginia and Texas Experiences</a></li>
+<li><a href="https://grist.org/accountability/data-centers-are-straining-the-grid-can-they-be-forced-to-pay-for-it/">Grist — Data centers are straining the grid. Can they be forced to pay for it?</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">AskAmerica's SQL warehouse carries no outage-frequency/duration (SAIDI/SAIFI) or business-interruption-claims tables today (confirmed via search_catalog); all figures above come from EIA's published Electric Power Annual and directly fetched trade-press/industry-report sources. A utility-specific (Dominion Virginia) before/after SAIDI/SAIFI comparison from the Virginia SCC's own filings was not obtained and would strengthen the region-specific claim.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+<p class="footnote">This corpus (AskAmerica/askengine) has no power-outage frequency/duration or SAIDI/SAIFI table -- confirmed via search_catalog before researching externally. All outage, reliability, and insurance figures above come from EIA, NERC, PJM (via Utility Dive), Swiss Re (via Risk &amp;amp; Insurance), and JLARC/Cardinal News reporting, fetched directly rather than pulled from queryable warehouse data.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-29</span></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
