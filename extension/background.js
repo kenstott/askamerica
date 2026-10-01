@@ -71,8 +71,10 @@ function validatePrompt(url, selection, mode) {
       + "(search_catalog, then query); if no matching table exists, verify it against "
       + "independent primary sources instead and say so. Grade it true, mostly true, partially "
       + "false, mostly false, false, unsupported (asserted with no evidence offered and none "
-      + "found), not checkable here, or stale vintage, and as the final step build the validation "
-      + "report with create_report_artifact.";
+      + "found), not checkable here, or stale vintage, and as the final step "
+      + "call create_report_artifact and deliver the report both "
+      + "ways: render it as an artifact in this conversation and give the link to the local "
+      + "report page.";
   }
   if (mode === "news") {
     return "Using the AskAmerica connector, fact-check this news report the way a professional "
@@ -89,7 +91,9 @@ function validatePrompt(url, selection, mode) {
       + "found 'unsupported'. Do not assign an overall rating of your own: the connector "
       + "computes the honesty and bias scores for the author and each speaker from the graded "
       + "claims. Flag anything materially misleading even if the individual facts check out. "
-      + "As the final step, build the validation report with create_report_artifact.";
+      + "As the final step, call create_report_artifact and deliver the report both "
+      + "ways: render it as an artifact in this conversation and give the link to the local "
+      + "report page.";
   }
   return "Using the AskAmerica connector, validate every factual claim in this article: " + url
     + ". Check each claim against AskAmerica's own warehouse data first (search_catalog, then "
@@ -100,7 +104,9 @@ function validatePrompt(url, selection, mode) {
     + "don't stop the check: search for the same story reported by another outlet, or for the "
     + "underlying claims directly, and verify what you can find that way; grade only the "
     + "specific claims you truly cannot access anywhere as 'not checkable here'. As the final "
-    + "step, build the validation report with create_report_artifact.";
+    + "step, call create_report_artifact and deliver the report both "
+    + "ways: render it as an artifact in this conversation and give the link to the local "
+    + "report page.";
 }
 
 // The claude:// scheme is Claude Desktop's own registered protocol handler (its authority

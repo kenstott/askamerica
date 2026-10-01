@@ -13,7 +13,9 @@ function aaValidatePrompt(url) {
     + ". Check each claim against AskAmerica's own warehouse data first (search_catalog, then "
     + "query); grade anything with no matching table 'not checkable here' rather than skipping "
     + "it, and verify against independent primary sources where the corpus doesn't cover it. "
-    + "As the final step, build the validation report with create_report_artifact.";
+    + "As the final step, call create_report_artifact and deliver the report both ways: "
+    + "render it as an artifact in this conversation and give the link to the local report "
+    + "page.";
 }
 
 // Claude Desktop registers the claude:// scheme and opens a new chat with the prompt staged in
