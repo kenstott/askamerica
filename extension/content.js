@@ -4,9 +4,9 @@
 
 (() => {
   const VERDICT_COLORS = {
-    "true": "#1b7f3b", "mostly true": "#4c9a2a", "partially true": "#c98a00",
-    "mostly false": "#d2601a", "false": "#c0272d", "not checkable here": "#6b7280",
-    "stale vintage": "#6d5bd0"
+    "true": "#1b7f3b", "mostly true": "#4c9a2a", "partially false": "#c98a00",
+    "mostly false": "#d2601a", "false": "#c0272d", "unsupported": "#8a5a2b",
+    "not checkable here": "#6b7280", "stale vintage": "#6d5bd0"
   };
   let validation = null;
   let drawn = false;
@@ -87,6 +87,17 @@
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 
+  // Who made the claim and what kind it is, as the report's own table marks them.
+  function marker(claim) {
+    const kind = String(claim.kind || "").toLowerCase();
+    const group = String(claim.group || "").toLowerCase();
+    const who = group === "subject_claims" ? String(claim.speaker || "").trim()
+      : group === "author_claims" ? "the author"
+      : group === "fidelity" ? "a relayed source" : "";
+    return [who, kind === "causal" ? "causal claim" : kind === "attack" ? "personal attack" : "",
+      claim.central === true ? "central claim" : ""].filter(Boolean).join(" · ");
+  }
+
   function showPop(anchor, claim, sticky) {
     hidePop();
     const verdict = (claim.verdict || "").toLowerCase();
@@ -97,6 +108,7 @@
     const srcs = Array.isArray(claim.sources) ? claim.sources : [];
     pop.innerHTML =
       '<span class="aa-brand">AskAmerica</span><div class="aa-verdict">' + esc(verdict) + "</div>" +
+      (marker(claim) ? '<div class="aa-marker">' + esc(marker(claim)) + "</div>" : "") +
       "<dl>" +
       (claim.article_value ? "<dt>Article says</dt><dd>" + esc(claim.article_value) + "</dd>" : "") +
       (claim.warehouse_value ? "<dt>Warehouse says</dt><dd>" + esc(claim.warehouse_value) +
@@ -137,7 +149,8 @@
     b.className = "aa-banner";
     const t = v.tally || {};
     const parts = Object.keys(t).map(k => t[k] + " " + k).join(" · ");
-    b.innerHTML = '<strong>AskAmerica validated this page</strong><span>' + esc(parts) + "</span>" +
+    // For a validation the engine writes the title: the subject plus the verdict its scores give.
+    b.innerHTML = "<strong>AskAmerica: " + esc(v.title || "validated this page") + "</strong><span>" + esc(parts) + "</span>" +
       (found < total ? "<span>(" + (total - found) + " claim" + (total - found === 1 ? "" : "s") + " not located on the page)</span>" : "") +
       (v.report_url ? '<a href="' + esc(v.report_url) + '" target="_blank" rel="noopener">Open report</a>' : "") +
       '<span class="aa-close" title="Hide">✕</span>';

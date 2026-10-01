@@ -46,7 +46,9 @@
       const items = (v.claims || []).map(c =>
         '<li><span class="v" style="color:' + (AA_VERDICT_COLORS[(c.verdict || "").toLowerCase()] || "#1a3a8a") + '">' +
         (c.verdict || "") + "</span><br>" + (c.assertion || "").replace(/[&<>]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[ch])) + "</li>").join("");
-      result.innerHTML = '<div class="tally">' + pills + "</div><ol class=\"claims\">" + items + "</ol>" +
+      const headline = (v.title || "").replace(/[&<>]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[ch]));
+      result.innerHTML = (headline ? '<div class="headline">' + headline + "</div>" : "") +
+        '<div class="tally">' + pills + "</div><ol class=\"claims\">" + items + "</ol>" +
         (v.report_url ? '<a href="' + v.report_url + '" target="_blank" rel="noopener">Open the full report</a>' : "");
       toggle.hidden = false;
       const state = await chrome.tabs.sendMessage(tab.id, { type: "aa:page-state" }).catch(() => null);

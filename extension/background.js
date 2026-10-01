@@ -3,7 +3,8 @@
 // and popup ask this worker for claims so that only one place holds the host permission.
 
 const DEFAULT_PORT = 45123;
-// Must match ClaimsServer.REPORTS_KEY in askamerica-engine exactly — this is the
+// The verdict list must match McpServer.VERDICTS in askamerica-engine.
+// REPORTS_KEY must match ClaimsServer.REPORTS_KEY in askamerica-engine exactly — this is the
 // engine/extension handshake for /reports, which (unlike /claims and /status) returns the
 // last 24 hours' validation history in one call rather than a single URL's. Deliberately
 // not a real secret (anyone who unpacks this extension or the public engine jar can read it
@@ -12,9 +13,9 @@ const DEFAULT_PORT = 45123;
 // than that read-only history. Kept in sync by hand: the two live in separate repos.
 const REPORTS_KEY = "aa-reports-9f3c1e7b2a48d0c6";
 const VERDICT_COLORS = {
-  "true": "#1b7f3b", "mostly true": "#4c9a2a", "partially true": "#c98a00",
-  "mostly false": "#d2601a", "false": "#c0272d", "not checkable here": "#6b7280",
-  "stale vintage": "#6d5bd0"
+  "true": "#1b7f3b", "mostly true": "#4c9a2a", "partially false": "#c98a00",
+  "mostly false": "#d2601a", "false": "#c0272d", "unsupported": "#8a5a2b",
+  "not checkable here": "#6b7280", "stale vintage": "#6d5bd0"
 };
 
 async function getPort() {
@@ -60,7 +61,7 @@ async function reportsFor() {
 // button, since a selected claim is a more specific ask than a page-level framing.
 //
 // Every prompt names the AskAmerica connector explicitly and spells out the tool sequence
-// (search_catalog, then query, then publish_report) instead of just saying "validate this" and
+// (search_catalog, then query, then preview_report) instead of just saying "validate this" and
 // hoping Claude reaches for the connector on its own — a bare "Validate this article: <url>"
 // is exactly as likely to get answered from general web knowledge as from the connector.
 function validatePrompt(url, selection, mode) {
@@ -69,8 +70,9 @@ function validatePrompt(url, selection, mode) {
       + "\" (from " + url + "). Check it against AskAmerica's own warehouse data first "
       + "(search_catalog, then query); if no matching table exists, verify it against "
       + "independent primary sources instead and say so. Grade it true, mostly true, partially "
-      + "true, mostly false, false, not checkable here, or stale vintage, and publish the "
-      + "result with publish_report.";
+      + "false, mostly false, false, unsupported (asserted with no evidence offered and none "
+      + "found), not checkable here, or stale vintage, and build the validation report with "
+      + "preview_report.";
   }
   if (mode === "news") {
     return "Using the AskAmerica connector, fact-check this news report the way a professional "
@@ -82,9 +84,12 @@ function validatePrompt(url, selection, mode) {
       + "check: search for the same story reported by another outlet, or for the underlying "
       + "claims directly, and verify what you can find that way; grade only the specific claims "
       + "you truly cannot access anywhere as 'not checkable here', rather than abandoning the "
-      + "whole report. Grade the piece's overall accuracy on the Washington Post Fact Checker's "
-      + "0-4 Pinocchio scale, and flag anything materially misleading even if the individual "
-      + "facts check out. Publish the result with publish_report.";
+      + "whole report. Sort each claim by who makes it — the author, each quoted speaker, or a "
+      + "source the piece relays — and grade a claim asserted with no evidence offered and none "
+      + "found 'unsupported'. Do not assign an overall rating of your own: the connector "
+      + "computes the honesty and bias scores for the author and each speaker from the graded "
+      + "claims. Flag anything materially misleading even if the individual facts check out. "
+      + "Build the validation report with preview_report.";
   }
   return "Using the AskAmerica connector, validate every factual claim in this article: " + url
     + ". Check each claim against AskAmerica's own warehouse data first (search_catalog, then "
@@ -94,8 +99,8 @@ function validatePrompt(url, selection, mode) {
     + " itself fails (some publishers block automated fetches with an HTTP 403 or similar) — "
     + "don't stop the check: search for the same story reported by another outlet, or for the "
     + "underlying claims directly, and verify what you can find that way; grade only the "
-    + "specific claims you truly cannot access anywhere as 'not checkable here'. Publish the "
-    + "result with publish_report.";
+    + "specific claims you truly cannot access anywhere as 'not checkable here'. Build the "
+    + "validation report with preview_report.";
 }
 
 // The claude:// scheme is Claude Desktop's own registered protocol handler (its authority
@@ -139,7 +144,7 @@ async function launchValidate(url, tabId, selection, mode) {
 function summarize(tally) {
   let n = 0;
   let worst = null;
-  const order = ["false", "mostly false", "partially true", "stale vintage",
+  const order = ["false", "mostly false", "unsupported", "partially false", "stale vintage",
     "not checkable here", "mostly true", "true"];
   for (const k of Object.keys(tally || {})) n += tally[k];
   for (const k of order) if (tally && tally[k]) { worst = k; break; }

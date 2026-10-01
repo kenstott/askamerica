@@ -15,13 +15,17 @@ running on your machine and highlights each checked claim on the page.
    selection with AskAmerica," validate just that passage instead of the whole page — the
    prompt becomes `Validate this claim: "<selected text>" (from <url>)`.
 2. **Validate.** The engine's validation instructions take over inside that chat: every
-   assertion is extracted verbatim, tested against the warehouse, graded, and published with a
-   claim-by-claim table.
-3. **Overlay.** On publish, the engine records the claims table under the article's URL and
+   assertion is extracted verbatim, sorted by who makes it (the author, each quoted speaker, a
+   relayed source), tested against the warehouse and graded — true, mostly true, partially
+   false, mostly false, false, unsupported, not checkable here, or stale vintage. The engine
+   computes an honesty score and a bias score for the author and for each speaker from those
+   grades, and writes the report's headline from them.
+3. **Overlay.** When the report is built, the engine records the claims table under the article's URL and
    serves it on `http://127.0.0.1:45123/claims?url=…`. The content script asks for the current
    page's table, finds each verbatim assertion in the page text, and marks it with its verdict.
-   Hover or click a mark for the article figure, the warehouse figure, the independent figure,
-   the sources, and the SQL. The toolbar badge shows the number of claims checked, coloured by
+   Hover or click a mark for who made the claim, the article figure, the warehouse figure, the
+   independent figure, the sources, and the SQL. The banner and the popup show the engine's
+   headline. The toolbar badge shows the number of claims checked, coloured by
    the worst verdict.
 
 Nothing leaves the machine except what your own Claude session sends; the loopback endpoint is
@@ -50,6 +54,6 @@ manifest tweak (`browser_specific_settings`, or the Xcode converter) but the cod
 ## Engine side
 
 `ClaimsServer` in `askamerica-engine` (fixed loopback port, `-Daskamerica.claims.port` to
-change) records a validation on every `publish_report` that carries `claims`, keyed by
+change) records a validation on every `preview_report` that carries `claims`, keyed by
 `source_url` (defaults to the session's last `web_fetch` URL). `GET /status` answers
 `{ok, validations}`; `GET /claims?url=` answers the stored table or 404.
