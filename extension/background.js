@@ -61,7 +61,7 @@ async function reportsFor() {
 // button, since a selected claim is a more specific ask than a page-level framing.
 //
 // Every prompt names the AskAmerica connector explicitly and spells out the tool sequence
-// (search_catalog, then query, then preview_report) instead of just saying "validate this" and
+// (search_catalog, then query, then create_report_artifact) instead of just saying "validate this" and
 // hoping Claude reaches for the connector on its own — a bare "Validate this article: <url>"
 // is exactly as likely to get answered from general web knowledge as from the connector.
 function validatePrompt(url, selection, mode) {
@@ -71,8 +71,8 @@ function validatePrompt(url, selection, mode) {
       + "(search_catalog, then query); if no matching table exists, verify it against "
       + "independent primary sources instead and say so. Grade it true, mostly true, partially "
       + "false, mostly false, false, unsupported (asserted with no evidence offered and none "
-      + "found), not checkable here, or stale vintage, and build the validation report with "
-      + "preview_report.";
+      + "found), not checkable here, or stale vintage, and as the final step build the validation "
+      + "report with create_report_artifact.";
   }
   if (mode === "news") {
     return "Using the AskAmerica connector, fact-check this news report the way a professional "
@@ -89,7 +89,7 @@ function validatePrompt(url, selection, mode) {
       + "found 'unsupported'. Do not assign an overall rating of your own: the connector "
       + "computes the honesty and bias scores for the author and each speaker from the graded "
       + "claims. Flag anything materially misleading even if the individual facts check out. "
-      + "Build the validation report with preview_report.";
+      + "As the final step, build the validation report with create_report_artifact.";
   }
   return "Using the AskAmerica connector, validate every factual claim in this article: " + url
     + ". Check each claim against AskAmerica's own warehouse data first (search_catalog, then "
@@ -99,8 +99,8 @@ function validatePrompt(url, selection, mode) {
     + " itself fails (some publishers block automated fetches with an HTTP 403 or similar) — "
     + "don't stop the check: search for the same story reported by another outlet, or for the "
     + "underlying claims directly, and verify what you can find that way; grade only the "
-    + "specific claims you truly cannot access anywhere as 'not checkable here'. Build the "
-    + "validation report with preview_report.";
+    + "specific claims you truly cannot access anywhere as 'not checkable here'. As the final "
+    + "step, build the validation report with create_report_artifact.";
 }
 
 // The claude:// scheme is Claude Desktop's own registered protocol handler (its authority

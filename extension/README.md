@@ -54,6 +54,6 @@ manifest tweak (`browser_specific_settings`, or the Xcode converter) but the cod
 ## Engine side
 
 `ClaimsServer` in `askamerica-engine` (fixed loopback port, `-Daskamerica.claims.port` to
-change) records a validation on every `preview_report` that carries `claims`, keyed by
+change) records a validation on every `create_report_artifact` (or `preview_report`) that carries `claims`, keyed by
 `source_url` (defaults to the session's last `web_fetch` URL). `GET /status` answers
 `{ok, validations}`; `GET /claims?url=` answers the stored table or 404.
