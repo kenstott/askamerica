@@ -26,8 +26,9 @@ interface Event {
  * POST /v1/telemetry — records MCP tool-call telemetry to Analytics Engine.
  *
  * Analytics Engine rather than D1: this is high-cardinality time-series data written on
- * every tool call, which is what AE is for and what D1 is not. The client is opt-in, so
- * nothing arrives unless a user turned telemetry on.
+ * every tool call, which is what AE is for and what D1 is not. The client is opt-OUT:
+ * telemetry is on by default, so a fresh install sends until the user turns it off (the setup
+ * window's checkbox or the set_telemetry tool). The privacy page says so; keep them aligned.
  *
  * Accepts one event or a batch, so a busy session costs one request rather than fifty.
  * Blob and double positions are fixed — anything querying mcp_telemetry depends on this
