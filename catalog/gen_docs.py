@@ -52,15 +52,6 @@ ICONS = {
 # Tables declared in the govdata schema YAMLs whose ETL has not run yet, so they hold no rows.
 # The catalog lists only queryable data; remove an entry here once its table is loaded.
 NOT_YET_LOADED = {
-    "ag.nass_aquaculture",
-    "environment.ocean_sst_monthly",
-    "fisheries.mrip_recreational_catch",
-    "fisheries.mrip_recreational_effort",
-    "fisheries.noaa_feus_economic_impacts",
-    "fisheries.rmis_locations",
-    "fisheries.rmis_releases",
-    "fisheries.stock_smart_assessments",
-    "weather.coops_high_low",
     "weather.coops_daily_surge",
 }
 
