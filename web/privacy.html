@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AskAmerica — Privacy</title>
+<meta name="description" content="What AskAmerica collects, why, who processes it, and how to opt out or ask for deletion.">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1a3a8a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#080b0f; --bg2:#0d1117; --border:#1e2d3d; --amber:#e8a24a; --amber-dim:#7a5120;
+    --text:#cdd9e5; --text-dim:#768390; --white:#f0f6fc;
+    --mono:'JetBrains Mono',monospace; --serif:'Instrument Serif',serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.75;
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:3rem 1.5rem}
+  a{color:var(--amber);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{width:100%;max-width:760px}
+  .home{color:var(--text-dim);font-size:13px}
+  h1{font-family:var(--serif);font-weight:400;color:var(--white);font-size:2.8rem;line-height:1.1;margin:1.5rem 0 .5rem}
+  h1 em{font-style:italic;color:var(--amber)}
+  h2{font-family:var(--serif);font-weight:400;color:var(--white);font-size:1.6rem;margin:2.4rem 0 .6rem}
+  .sub{color:var(--text-dim);margin-bottom:1.5rem}
+  p,ul{margin-bottom:1rem}
+  ul{padding-left:1.3rem}
+  li{margin-bottom:.5rem}
+  strong{color:var(--white);font-weight:500}
+  code{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:12.5px}
+  .box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:1.2rem 0}
+  footer{margin-top:3rem;color:var(--text-dim);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="/">← AskAmerica</a>
+  <h1>Privacy <em>policy</em></h1>
+  <p class="sub">Effective October 15, 2026. AskAmerica is operated by SimpleIsHard LLC. Questions, access and deletion requests: <a href="mailto:support@askamerica.ai">support@askamerica.ai</a>.</p>
+
+  <div class="box">
+    <strong>In short.</strong> The data AskAmerica serves is public government data. What we collect is about
+    you and your use of the service: your email and plan, a record of the queries you run, usage telemetry
+    that is <strong>on by default and that you can turn off</strong>, and anything you choose to send us in an issue
+    report or publish as a report. The website sets no cookies and runs no advertising or analytics scripts.
+  </div>
+
+  <h2>What we collect</h2>
+  <ul>
+    <li><strong>Account.</strong> Your email address, used to create your account and to email you sign-in codes.
+      We derive an account ID from it (a hash of the lowercased address) and store your plan.
+      API keys are stored only as hashes, so we cannot read a key back to you.</li>
+    <li><strong>Payments.</strong> Paid plans are sold through Lemon Squeezy, which handles your payment details.
+      We receive and store your Lemon Squeezy customer, subscription and order identifiers and the quota each order granted.
+      We do not receive your card number.</li>
+    <li><strong>Query metering.</strong> When you run a query through the service we record your account ID, a query ID,
+      the table, the bytes planned and scanned, rows returned, duration, and the first 1,024 characters of the query text.
+      We use this to meter your quota, to bill, and to run and improve the service.</li>
+    <li><strong>Usage telemetry (on by default).</strong> The AskAmerica software sends a record for each tool call:
+      a session identifier, the software version, the tool name, the time, duration, row count, whether it succeeded,
+      the SQL (first 2,048 characters), and any error message (first 512 characters).
+      The record contains no email address or account ID. (The software attaches your API key to the request as a header, as it does for
+      all calls to our API, but the telemetry service does not read or store it.) SQL and error text can contain whatever you typed into a query,
+      so do not put secrets in queries. To opt out, ask your assistant to turn telemetry off (the <code>set_telemetry</code> tool
+      with <code>enabled: false</code>); your choice is saved in <code>~/.askamerica/telemetry.json</code>.</li>
+    <li><strong>Issue reports.</strong> If you report a problem through the software, we keep the subject and text of the report,
+      the software version, a session identifier, and your account ID when your API key is present.
+      Reports are copied into our private issue tracker on GitHub, where our team reads them. Do not include secrets in a report.</li>
+    <li><strong>Published reports.</strong> Nothing you create is public unless you publish it. A published report appears on a public page at
+      <code>&lt;your-handle&gt;.askamerica.ai</code> with the display name and organization you gave us.
+      You can delete a published report from your account's page on that site.</li>
+  </ul>
+
+  <h2>The website</h2>
+  <ul>
+    <li>No cookies, and no advertising or analytics scripts.</li>
+    <li>Fonts are loaded from Google Fonts, so Google receives your IP address and browser details when a page loads.</li>
+    <li>If you enter your API key on this site, it is kept in your browser's local storage so you do not have to type it again.
+      Clear your site data to remove it.</li>
+    <li>The site is hosted on Cloudflare, which keeps standard server logs (IP address, request, time) as part of delivering it.</li>
+  </ul>
+
+  <h2>On your computer</h2>
+  <p>The AskAmerica software keeps files in a folder named <code>.askamerica</code> in your home directory: your account details and API key,
+  the downloaded engine and data-server files, and a local history of recent tool calls (including their arguments) that lets
+  report checks survive a restart. Call-history files are removed after seven days without use. This local history stays on your computer;
+  it is not uploaded. Deleting the folder removes everything the software stored locally.</p>
+
+  <h2>Who processes your data for us</h2>
+  <ul>
+    <li><strong>Cloudflare</strong> — hosting, the API, our database, and storage of metering and telemetry records.</li>
+    <li><strong>Lemon Squeezy</strong> — payments and billing.</li>
+    <li><strong>Resend</strong> — delivery of sign-in code emails.</li>
+    <li><strong>GitHub</strong> — our private issue tracker, where issue reports are copied.</li>
+    <li><strong>Google Fonts</strong> — web fonts for this site.</li>
+  </ul>
+
+  <h2>Your choices</h2>
+  <ul>
+    <li>Turn telemetry off at any time, as described above.</li>
+    <li>Email <a href="mailto:support@askamerica.ai">support@askamerica.ai</a> to ask what we hold about you, or to ask us to delete your account and the records tied to it.</li>
+    <li>Delete your published reports from your account's page, and delete the local <code>.askamerica</code> folder from your computer.</li>
+  </ul>
+
+  <h2>Changes</h2>
+  <p>If this policy changes we will post the new version here and update the effective date above.</p>
+
+  <footer>© 2026 SimpleIsHard LLC</footer>
+</div>
+</body>
+</html>
