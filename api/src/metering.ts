@@ -11,16 +11,27 @@ export async function handleUsageReport(request: Request, env: Env): Promise<Res
     return json({ error: 'unauthorized' }, 401);
   }
 
-  const { query_id, table, actual_bytes, planned_bytes, row_count, duration_ms, query_text } =
-    await request.json<{
-      query_id:     string;
-      table:        string;
-      actual_bytes: number;
-      planned_bytes: number;
-      row_count:    number;
-      duration_ms:  number;
-      query_text:   string;
-    }>();
+  let report: {
+    query_id: string;
+    table: string;
+    actual_bytes: number;
+    planned_bytes: number;
+    row_count: number;
+    duration_ms: number;
+    query_text: string;
+  };
+  try {
+    report = await request.json();
+  } catch {
+    return json({ error: 'invalid_json' }, 400);
+  }
+  const { query_id, table, actual_bytes, planned_bytes, row_count, duration_ms, query_text } = report;
+  for (const [name, v] of [['actual_bytes', actual_bytes], ['planned_bytes', planned_bytes],
+                           ['row_count', row_count], ['duration_ms', duration_ms]] as const) {
+    if (typeof v !== 'number' || !Number.isFinite(v) || v < 0) {
+      return json({ error: 'invalid_field', field: name }, 400);
+    }
+  }
 
   env.ANALYTICS.writeDataPoint({
     blobs: [

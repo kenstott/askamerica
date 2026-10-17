@@ -69,10 +69,10 @@ export default {
     } else if (method === 'POST' && path === '/v1/auth/verify-otp') {
       response = await handleVerifyOtp(request, env);
     } else if (method === 'POST' && path === '/v1/metering/usage') {
-      ctx.waitUntil(handleUsageReport(request, env));
-      response = new Response(JSON.stringify({ ok: true }), {
-        headers: { 'Content-Type': 'application/json' },
-      });
+      // Awaited, like telemetry and issues: the answer is the real outcome. Answering ok before
+      // the work ran meant a bad key, a malformed body or a failed write was invisible to the
+      // caller, so a client that loses usage reports could never find out.
+      response = await handleUsageReport(request, env);
     } else if (method === 'GET' && path === '/v1/quota') {
       response = await handleQuotaStatus(request, env);
     } else if (method === 'GET' && path === '/v1/checkout') {
