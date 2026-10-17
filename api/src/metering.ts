@@ -6,7 +6,10 @@ export async function handleUsageReport(request: Request, env: Env): Promise<Res
   if (!apiKey) return json({ error: 'unauthorized' }, 401);
 
   const userId = await resolveUser(apiKey, env);
-  if (!userId) return json({ error: 'unauthorized' }, 401);
+  if (!userId) {
+    console.warn('usage report rejected: key not in KEYS');
+    return json({ error: 'unauthorized' }, 401);
+  }
 
   const { query_id, table, actual_bytes, planned_bytes, row_count, duration_ms, query_text } =
     await request.json<{
@@ -36,6 +39,7 @@ export async function handleUsageReport(request: Request, env: Env): Promise<Res
   });
 
   await recordActualUsage(userId, actual_bytes, env);
+  console.log(`usage recorded user=${userId} bytes=${actual_bytes}`);
 
   return json({ ok: true });
 }
