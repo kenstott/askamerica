@@ -91,7 +91,4 @@ export async function recordActualUsage(
      VALUES (?, ?, ?, ?)
      ON CONFLICT(user_id, period) DO UPDATE SET used_bytes = used_bytes + excluded.used_bytes`
   ).bind(userId, period, limit, bytes).run();
-
-  // invalidate KV so the next quota read re-reads from D1
-  await env.QUOTA.delete(`${userId}:${period}`);
 }

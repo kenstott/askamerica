@@ -88,6 +88,21 @@ describe('POST /v1/metering/usage through the Worker', () => {
     expect(await usedBytes(u.userId, u.period)).toBe(0);
   });
 
+  it('records an hourly aggregate', async () => {
+    const u = await seedUser();
+    const r = await report(u.apiKey, { query_count: 3, actual_bytes: 357, row_count: 9, duration_ms: 40 });
+    expect(r.status).toBe(200);
+    expect(await r.json()).toEqual({ ok: true });
+    expect(await usedBytes(u.userId, u.period)).toBe(357);
+  });
+
+  it('refuses an aggregate with a bad query count and records nothing', async () => {
+    const u = await seedUser();
+    const r = await report(u.apiKey, { query_count: -1, actual_bytes: 10, row_count: 1, duration_ms: 1 });
+    expect(r.status).toBe(400);
+    expect(await usedBytes(u.userId, u.period)).toBe(0);
+  });
+
   it('refuses a negative or non-numeric figure and records nothing', async () => {
     const u = await seedUser();
     const negative = await report(u.apiKey, { ...good(10), actual_bytes: -5 });

@@ -1,6 +1,13 @@
 import { Env } from './types';
 import { resolveUser, recordActualUsage } from './quota';
 
+// Engines from this release on send one aggregate per API key per hour:
+//   {query_count, actual_bytes, row_count, duration_ms}
+// Released engines still send one report per query:
+//   {query_id, table, query_text, planned_bytes, actual_bytes, row_count, duration_ms}
+// which is recorded as an aggregate of one query.
+const NUMERIC_FIELDS = ['actual_bytes', 'row_count', 'duration_ms'] as const;
+
 export async function handleUsageReport(request: Request, env: Env): Promise<Response> {
   const apiKey = request.headers.get('X-API-Key');
   if (!apiKey) return json({ error: 'unauthorized' }, 401);
@@ -11,46 +18,42 @@ export async function handleUsageReport(request: Request, env: Env): Promise<Res
     return json({ error: 'unauthorized' }, 401);
   }
 
-  let report: {
-    query_id: string;
-    table: string;
-    actual_bytes: number;
-    planned_bytes: number;
-    row_count: number;
-    duration_ms: number;
-    query_text: string;
-  };
+  let r: any;
   try {
-    report = await request.json();
+    r = await request.json();
   } catch {
     return json({ error: 'invalid_json' }, 400);
   }
-  const { query_id, table, actual_bytes, planned_bytes, row_count, duration_ms, query_text } = report;
-  for (const [name, v] of [['actual_bytes', actual_bytes], ['planned_bytes', planned_bytes],
-                           ['row_count', row_count], ['duration_ms', duration_ms]] as const) {
+  if (typeof r !== 'object' || r === null) {
+    return json({ error: 'invalid_report' }, 400);
+  }
+  const perQuery = r.query_count === undefined;
+  const fields: readonly string[] = perQuery
+    ? [...NUMERIC_FIELDS, 'planned_bytes'] : [...NUMERIC_FIELDS, 'query_count'];
+  for (const name of fields) {
+    const v = r[name];
     if (typeof v !== 'number' || !Number.isFinite(v) || v < 0) {
       return json({ error: 'invalid_field', field: name }, 400);
     }
   }
+  const queryCount: number = perQuery ? 1 : r.query_count;
 
   env.ANALYTICS.writeDataPoint({
-    blobs: [
-      userId,
-      query_id,
-      table,
-      (query_text ?? '').slice(0, 1024),
-    ],
+    blobs: perQuery
+      ? [userId, r.query_id, r.table, (r.query_text ?? '').slice(0, 1024)]
+      : [userId, 'aggregate', '', ''],
     doubles: [
-      planned_bytes,
-      actual_bytes,
-      row_count,
-      duration_ms,
+      perQuery ? r.planned_bytes : r.actual_bytes,
+      r.actual_bytes,
+      r.row_count,
+      r.duration_ms,
+      queryCount,
     ],
     indexes: [userId],
   });
 
-  await recordActualUsage(userId, actual_bytes, env);
-  console.log(`usage recorded user=${userId} bytes=${actual_bytes}`);
+  await recordActualUsage(userId, r.actual_bytes, env);
+  console.log(`usage recorded user=${userId} queries=${queryCount} bytes=${r.actual_bytes}`);
 
   return json({ ok: true });
 }
