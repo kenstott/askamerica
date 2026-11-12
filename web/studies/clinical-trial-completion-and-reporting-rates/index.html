@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Registered clinical trials finish at ~46% and post results at only ~21% of completed trials — industry and NIH sponsors report results 2.5-3x as often as academic or state/local government sponsors</title>
+<title>About 3 in 10 completed interventional trials post results on ClinicalTrials.gov, ranging from about 50% for industry to under 5% for non-US government and hospital sponsors</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -88,28 +91,6 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
-@media screen{
-#s2-t1-s1:checked ~ table tbody.s0{display:none}
-#s2-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s2-t1-s1:checked ~ table label[for="s2-t1-s1"]{color:var(--link)}
-#s2-t1-s1:checked ~ table label[for="s2-t1-s1"] .srtcue{opacity:1}
-#s2-t1-s1:checked ~ .srtreset{display:inline-block}
-#s2-t1-s2:checked ~ table tbody.s0{display:none}
-#s2-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s2-t1-s2:checked ~ table label[for="s2-t1-s2"]{color:var(--link)}
-#s2-t1-s2:checked ~ table label[for="s2-t1-s2"] .srtcue{opacity:1}
-#s2-t1-s2:checked ~ .srtreset{display:inline-block}
-#s2-t1-s3:checked ~ table tbody.s0{display:none}
-#s2-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s2-t1-s3:checked ~ table label[for="s2-t1-s3"]{color:var(--link)}
-#s2-t1-s3:checked ~ table label[for="s2-t1-s3"] .srtcue{opacity:1}
-#s2-t1-s3:checked ~ .srtreset{display:inline-block}
-#s2-t1-s4:checked ~ table tbody.s0{display:none}
-#s2-t1-s4:checked ~ table tbody.s4{display:table-row-group}
-#s2-t1-s4:checked ~ table label[for="s2-t1-s4"]{color:var(--link)}
-#s2-t1-s4:checked ~ table label[for="s2-t1-s4"] .srtcue{opacity:1}
-#s2-t1-s4:checked ~ .srtreset{display:inline-block}
-}
 </style>
 </head>
 <body>
@@ -121,235 +102,26 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Registered clinical trials finish at ~46% and post results at only ~21% of completed trials — industry and NIH sponsors report results 2.5-3x as often as academic or state/local government sponsors</h1>
-<p class="subtitle">ClinicalTrials.gov trials with a last-update-post-date since 2020 (health.clinical_trials). n=386,834 trials, 178,992 completed.</p>
+<h1>About 3 in 10 completed interventional trials post results on ClinicalTrials.gov, ranging from about 50% for industry to under 5% for non-US government and hospital sponsors</h1>
 </header>
-<figure class="board">
-<!--
-  Dashboard from AskAmerica compose_dashboard. Self-contained: no
-  external assets, no scripts. Drop it into an artifact or an HTML
-  page as-is.
-
-  Each panel is a nested <svg> with its own viewBox, so a panel's
-  internal coordinates are exactly what its own data produced. Panel
-  ids are namespaced p1-, p2-, ... so the per-chart editing contract
-  still works: p2-mark-california, p3-series-nominal, and so on.
-
-  Safe to edit: panel captions (<text class="caption">), the
-  dashboard title/subtitle/footnote, any panel's fills, and the
-  per-panel <g id="pN-annotations"> groups, which paint last.
-  Do NOT move a panel's internal geometry, and do NOT change one
-  panel's axis domain: panels sharing a scale_group were given one
-  domain deliberately so they can be compared.
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 599" width="880" height="599" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
-  <style>
-    .dash-title { font-size: 20px; font-weight: 650 }
-    .dash-subtitle { font-size: 13px }
-    .caption { font-size: 11px }
-    .footnote { font-size: 11px; font-style: italic }
-    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
-    .byline { font-size: 11px }
-    .stat-label { font-size: 12px }
-    .stat-value { font-size: 30px; font-weight: 650 }
-    .stat-delta { font-size: 13px; font-weight: 600 }
-    .title { font-size: 15px; font-weight: 600 }
-    .axis-title { font-size: 12px }
-    .tick { font-size: 11px }
-    .value-label { font-size: 11px; font-weight: 600 }
-    .callout { font-size: 11px; font-style: italic }
-    @media (prefers-color-scheme: dark) {
-      .dash-bg, .chart-bg { fill: #16181d }
-      .panel-edge { stroke: #2c3038 }
-      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
-      .stat-value, .title, .axis-title, .tick, .value-label,
-      .callout, .legend-label, .byline { fill: #e6e8eb }
-      .brand-mark { fill: #9aa4b2 }
-      .axis { stroke: #6b7280 }
-      .grid { stroke: #2c3038 }
-    }
-  </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="599" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">Most registered trials complete, but far fewer post results -- and industry/NIH sponsors post results 2.5-3x …</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">ClinicalTrials.gov trials with a last-update since 2020 (health.clinical_trials, AskAmerica corpus). n=386,834 trials.</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Trials reaching COMPLETED status</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">46.3%</text>
-  <text class="stat-delta" x="36" y="168" fill="#6b7280">178,992 of 386,834</text>
-  </g>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Completed trials that posted results</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">20.8%</text>
-  <text class="stat-delta" x="464" y="168" fill="#dc2626">37,254 of 178,992 completed</text>
-  </g>
-  <rect class="panel-edge" x="20" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Share of trials reaching COMPLETED status, by sponsor type</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="121" x2="390" y2="121" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="52" y="125" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="108" x2="390" y2="108" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="52" y="112" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="52" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="82" x2="390" y2="82" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="52" y="86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="60" y1="69" x2="390" y2="69" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="52" y="73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-    </g>
-    <g id="p3-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Sponsor type</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">% completed</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-other-gov-state-local-govt" class="tick" x="87.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 87.50 148)">OTHER_GOV (state/local govt)</text>
-      <text id="p3-xtick-other-academic-hospital" class="tick" x="142.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.50 148)">OTHER (academic/hospital)</text>
-      <text id="p3-xtick-network" class="tick" x="197.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 197.50 148)">NETWORK</text>
-      <text id="p3-xtick-nih" class="tick" x="252.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 252.50 148)">NIH</text>
-      <text id="p3-xtick-industry" class="tick" x="307.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.50 148)">INDUSTRY</text>
-      <text id="p3-xtick-fed-other-federal" class="tick" x="362.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 362.50 148)">FED (other federal)</text>
-    </g>
-    <g id="p3-series-of-trials-completed" class="series">
-      <rect id="p3-mark-of-trials-completed-other-gov-state-local-govt" class="bar" x="69.90" y="75.89" width="34.20" height="58.11" fill="#2563eb"/>
-      <rect id="p3-mark-of-trials-completed-other-academic-hospital" class="bar" x="124.90" y="76.67" width="34.20" height="57.33" fill="#2563eb"/>
-      <rect id="p3-mark-of-trials-completed-network" class="bar" x="179.90" y="71.34" width="34.20" height="62.66" fill="#2563eb"/>
-      <rect id="p3-mark-of-trials-completed-nih" class="bar" x="234.90" y="64.58" width="34.20" height="69.42" fill="#2563eb"/>
-      <rect id="p3-mark-of-trials-completed-industry" class="bar" x="289.90" y="63.54" width="34.20" height="70.46" fill="#2563eb"/>
-      <rect id="p3-mark-of-trials-completed-fed-other-federal" class="bar" x="344.90" y="61.46" width="34.20" height="72.54" fill="#2563eb"/>
-    </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="487" fill="#6b7280">Completion rates cluster 44-56% across sponsor types -- the gap opens</text>
-  <text class="caption" x="24" y="500" fill="#6b7280">at reporting, not completion.</text>
-  <rect class="panel-edge" x="448" y="206" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="206" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Share of COMPLETED trials that posted results, by sponsor type</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="121" x2="390" y2="121" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="52" y="125" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="108" x2="390" y2="108" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="52" y="112" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="52" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="82" x2="390" y2="82" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="52" y="86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="60" y1="69" x2="390" y2="69" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="52" y="73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-    </g>
-    <g id="p4-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p4-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Sponsor type</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">% with results</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-other-gov-state-local-govt" class="tick" x="87.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 87.50 148)">OTHER_GOV (state/local govt)</text>
-      <text id="p4-xtick-other-academic-hospital" class="tick" x="142.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 142.50 148)">OTHER (academic/hospital)</text>
-      <text id="p4-xtick-network" class="tick" x="197.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 197.50 148)">NETWORK</text>
-      <text id="p4-xtick-nih" class="tick" x="252.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 252.50 148)">NIH</text>
-      <text id="p4-xtick-industry" class="tick" x="307.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.50 148)">INDUSTRY</text>
-      <text id="p4-xtick-fed-other-federal" class="tick" x="362.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 362.50 148)">FED (other federal)</text>
-    </g>
-    <g id="p4-series-of-completed-trials-with-results-posted" class="series">
-      <rect id="p4-mark-of-completed-trials-with-results-posted-other-gov-state-local-govt" class="bar" x="69.90" y="130.10" width="34.20" height="3.90" fill="#2563eb"/>
-      <rect id="p4-mark-of-completed-trials-with-results-posted-other-academic-hospital" class="bar" x="124.90" y="114.89" width="34.20" height="19.11" fill="#2563eb"/>
-      <rect id="p4-mark-of-completed-trials-with-results-posted-network" class="bar" x="179.90" y="95.78" width="34.20" height="38.22" fill="#2563eb"/>
-      <rect id="p4-mark-of-completed-trials-with-results-posted-nih" class="bar" x="234.90" y="83.69" width="34.20" height="50.31" fill="#2563eb"/>
-      <rect id="p4-mark-of-completed-trials-with-results-posted-industry" class="bar" x="289.90" y="82.78" width="34.20" height="51.22" fill="#2563eb"/>
-      <rect id="p4-mark-of-completed-trials-with-results-posted-fed-other-federal" class="bar" x="344.90" y="56" width="34.20" height="78" fill="#2563eb"/>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="487" fill="#6b7280">Industry, NIH and other-federal sponsors report results roughly 2.5-4x</text>
-  <text class="caption" x="452" y="500" fill="#6b7280">as often as academic/hospital-led and state/local-government trials.</text>
-  <text class="footnote" x="20" y="532" fill="#6b7280">health.clinical_trials mirrors ClinicalTrials.gov and is restricted to studies with a last-update-post-date on or after 2020-01-01 -- not the full</text>
-  <text class="footnote" x="20" y="546" fill="#6b7280">multi-decade registry. has_results means results were EVER posted, not that they met the FDAAA one-year deadline.</text>
-  <g id="brand">
-  <svg x="20" y="558" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
-    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
-    <g clip-path="url(#brand-tile)">
-      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
-      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
-    </g>
-    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
-    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
-  </svg>
-    <text class="brand-mark" x="45" y="573" fill="#374151">AskAmerica · askamerica.ai</text>
-    <text class="byline" x="860" y="573" fill="#6b7280" text-anchor="end">Prepared 2026-09-26</text>
-  </g>
-  <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:54379/a/970f01a14c7175298223c2238a67edfa.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
-</figure>
 <section>
 <h2>Summary</h2>
-<p>Of 386,834 clinical trials on ClinicalTrials.gov with any activity since 2020, <strong>46.3% (178,992) have reached COMPLETED status</strong>. Of those completed trials, only <strong>20.8% (37,254) have ever posted results</strong> to the registry's results database -- the rest finished but left the outcome unreported. Sponsor type explains most of the variation: <strong>industry sponsors report results for 39.4% of their completed trials and NIH for 38.7%</strong>, roughly <strong>2.5 to 3 times the rate of academic/hospital sponsors (14.7%) and more than 10 times the rate of other state/local-government sponsors (3.0%)</strong>. Completion rates themselves are far more uniform across sponsor types (44-56%) -- the real divergence is in whether a finished trial ever gets its results posted, not whether it finishes.</p>
+<p>Among 137,671 interventional trials registered on ClinicalTrials.gov with primary completion 2010-2023 (health.clinical_trials, updated since 2020), 70% (96,987) are marked COMPLETED. Only 29.5% of completed trials have posted results. Terminated trials post at 47%. Roughly 25% of all trials in the window have results.</p><p>By funder: NIH 79%, FDA-linked FED (e.g., VA) 69%, industry 50%, other (mostly universities/hospitals) 21%, other government 4.5%. Named sponsors range from 96% (GlaxoSmithKline, VA ORD) to 0% (Riphah International University) among sponsors with 300+ completed trials: Pfizer 84%, Lilly 81%, Novartis 59%, Janssen 34%, Mayo 44%, Cairo University 1.1%, AP-HP 1.3%.</p><p>Caveats: results posting is legally required only for FDAAA-applicable trials (drugs/devices, US nexus), and the table has no applicable flag, so low rates for non-US academic sponsors partly reflect no legal obligation. The table covers studies updated since 2020; statuses are sponsor-reported, and 21,469 trials are stuck in UNKNOWN status with almost no results.</p>
 </section>
 <section>
-<h2>How this was measured</h2>
-<p>Query against <code>health.clinical_trials</code> (AskAmerica corpus, sourced from clinicaltrials.gov, restricted by table design to studies with a last-update-post-date on or after 2020-01-01). Completion is <code>overall_status = 'COMPLETED'</code>. Results reporting is the table's <code>has_results</code> flag, sourced from the API's top-level <code>hasResults</code> field -- it flags whether summary results were EVER posted to the results database, independent of whether that happened within the legally required window. Sponsor grouping used <code>funder_type</code> (INDUSTRY, NIH, FED, OTHER_GOV, NETWORK, OTHER -- OTHER is overwhelmingly academic medical centers, hospitals and individual-investigator-led trials) as the primary breakdown, with individual top lead_sponsor organizations shown for additional texture.</p><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><table border="1" cellpadding="6" style="border-collapse:collapse"><tr><th><label class="srth" for="s2-t1-s1">Sponsor type<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">Trials<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">% Completed<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">Results among completed<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>INDUSTRY</td><td>75,353</td><td>54.2%</td><td>39.4%</td></tr><tr><td>NIH</td><td>4,220</td><td>53.4%</td><td>38.7%</td></tr><tr><td>FED (other federal, e.g. VA)</td><td>2,457</td><td>55.8%</td><td>60.0%</td></tr><tr><td>NETWORK</td><td>2,863</td><td>48.2%</td><td>29.4%</td></tr><tr><td>OTHER (academic/hospital/investigator)</td><td>291,076</td><td>44.1%</td><td>14.7%</td></tr><tr><td>OTHER_GOV (state/local govt)</td><td>10,145</td><td>44.7%</td><td>3.0%</td></tr></tbody><tbody class="srt s1"><tr><td>FED (other federal, e.g. VA)</td><td>2,457</td><td>55.8%</td><td>60.0%</td></tr><tr><td>INDUSTRY</td><td>75,353</td><td>54.2%</td><td>39.4%</td></tr><tr><td>NETWORK</td><td>2,863</td><td>48.2%</td><td>29.4%</td></tr><tr><td>NIH</td><td>4,220</td><td>53.4%</td><td>38.7%</td></tr><tr><td>OTHER (academic/hospital/investigator)</td><td>291,076</td><td>44.1%</td><td>14.7%</td></tr><tr><td>OTHER_GOV (state/local govt)</td><td>10,145</td><td>44.7%</td><td>3.0%</td></tr></tbody><tbody class="srt s2"><tr><td>OTHER (academic/hospital/investigator)</td><td>291,076</td><td>44.1%</td><td>14.7%</td></tr><tr><td>INDUSTRY</td><td>75,353</td><td>54.2%</td><td>39.4%</td></tr><tr><td>OTHER_GOV (state/local govt)</td><td>10,145</td><td>44.7%</td><td>3.0%</td></tr><tr><td>NIH</td><td>4,220</td><td>53.4%</td><td>38.7%</td></tr><tr><td>NETWORK</td><td>2,863</td><td>48.2%</td><td>29.4%</td></tr><tr><td>FED (other federal, e.g. VA)</td><td>2,457</td><td>55.8%</td><td>60.0%</td></tr></tbody><tbody class="srt s3"><tr><td>FED (other federal, e.g. VA)</td><td>2,457</td><td>55.8%</td><td>60.0%</td></tr><tr><td>INDUSTRY</td><td>75,353</td><td>54.2%</td><td>39.4%</td></tr><tr><td>NIH</td><td>4,220</td><td>53.4%</td><td>38.7%</td></tr><tr><td>NETWORK</td><td>2,863</td><td>48.2%</td><td>29.4%</td></tr><tr><td>OTHER_GOV (state/local govt)</td><td>10,145</td><td>44.7%</td><td>3.0%</td></tr><tr><td>OTHER (academic/hospital/investigator)</td><td>291,076</td><td>44.1%</td><td>14.7%</td></tr></tbody><tbody class="srt s4"><tr><td>FED (other federal, e.g. VA)</td><td>2,457</td><td>55.8%</td><td>60.0%</td></tr><tr><td>INDUSTRY</td><td>75,353</td><td>54.2%</td><td>39.4%</td></tr><tr><td>NIH</td><td>4,220</td><td>53.4%</td><td>38.7%</td></tr><tr><td>NETWORK</td><td>2,863</td><td>48.2%</td><td>29.4%</td></tr><tr><td>OTHER (academic/hospital/investigator)</td><td>291,076</td><td>44.1%</td><td>14.7%</td></tr><tr><td>OTHER_GOV (state/local govt)</td><td>10,145</td><td>44.7%</td><td>3.0%</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>Individual large sponsors show the same split: Pfizer (65.6% completed, 59.1% with results), Novartis (60.2% completed, 35.7% with results) and the VA Office of Research and Development (57.2% completed, 51.5% with results) post results at multiples of Cairo University, Assiut University, Assistance Publique-Hopitaux de Paris and Riphah International University -- all large academic/hospital sponsors reporting results on well under 1% of their trials despite completing 16-62% of them.</p>
-</section>
-<section>
-<h2>How this compares to the published literature</h2>
-<p>Independent studies of FDAAA-mandated results reporting find a similar direction but higher absolute rates, because they use a narrower, legally-defined denominator (only trials the FDAAA Final Rule actually requires to report, generally later-phase interventional drug/device trials with US sites) rather than every registered study. A NEJM-style compliance analysis reported industry sponsors posting results for roughly 64.5% of FDAAA-applicable trials (about 50.3% within the mandated one-year deadline), versus roughly 31.4% for U.S. government-sponsored trials reported within one year -- both higher than this corpus's all-trials figures, as expected, since this table's denominator (all registered trials, including many not covered by the mandate: Phase 1s, non-US-only sites, observational studies) is broader and less compliance-selected than the FDAAA-applicable-only denominator the compliance literature uses. The direction is the same in both: government/academic sponsors lag well behind industry and NIH.</p>
-</section>
-<section>
-<h2>Caveats</h2>
-<ul><li><code>health.clinical_trials</code> only carries studies with a last-update-post-date on or after 2020-01-01 -- this is a recent-activity slice of the registry, not its full ~30-year history, so completion and reporting shares here describe trials still being actively maintained in the database, not every trial ever registered.</li><li><code>has_results</code> measures whether results were EVER posted, with no deadline attached -- it is not the same measure the FDAAA-compliance literature uses (results posted within the legally mandated 1-year window), so the percentages here are not directly comparable in magnitude to published FDAAA compliance-rate studies, only in direction.</li><li><code>enrollment_count</code> is null for 100% of rows in this table, so trial size could not be used as an additional covariate.</li><li>Sponsor-type groupings (funder_type) are ClinicalTrials.gov's own coarse categories; OTHER is a large, heterogeneous bucket dominated by academic medical centers and hospitals, not a single sponsor archetype.</li></ul>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Applicable-trial (FDAAA) legal denominator</strong>: Registry has no applicable-clinical-trial flag; used all interventional trials as a proxy, so rates understate compliance among legally covered trials.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>4 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 14 rows — 3835 ms</summary><pre><code>SELECT overall_status, COUNT(*) c FROM health.clinical_trials GROUP BY overall_status ORDER BY c DESC</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 3452 ms</summary><pre><code>SELECT COUNT(*) total,
-  SUM(CASE WHEN overall_status='COMPLETED' THEN 1 ELSE 0 END) completed,
-  SUM(CASE WHEN has_results THEN 1 ELSE 0 END) has_results,
-  SUM(CASE WHEN overall_status='COMPLETED' AND has_results THEN 1 ELSE 0 END) completed_with_results
-FROM health.clinical_trials</code></pre></details>
-<details class="sqltoggle"><summary>query — 9 rows — 2426 ms</summary><pre><code>SELECT funder_type, COUNT(*) total,
-  SUM(CASE WHEN overall_status='COMPLETED' THEN 1 ELSE 0 END) completed,
-  SUM(CASE WHEN has_results THEN 1 ELSE 0 END) has_results,
-  SUM(CASE WHEN overall_status='COMPLETED' AND has_results THEN 1 ELSE 0 END) completed_with_results
-FROM health.clinical_trials
-GROUP BY funder_type ORDER BY total DESC</code></pre></details>
-<details class="sqltoggle"><summary>query — 25 rows — 1541 ms</summary><pre><code>SELECT lead_sponsor, COUNT(*) total,
-  SUM(CASE WHEN overall_status='COMPLETED' THEN 1 ELSE 0 END) completed,
-  SUM(CASE WHEN has_results THEN 1 ELSE 0 END) has_results,
-  ROUND(100.0*SUM(CASE WHEN has_results THEN 1 ELSE 0 END)/COUNT(*),1) pct_results,
-  ROUND(100.0*SUM(CASE WHEN overall_status='COMPLETED' THEN 1 ELSE 0 END)/COUNT(*),1) pct_completed
-FROM health.clinical_trials
-GROUP BY lead_sponsor
-HAVING COUNT(*) &gt;= 300
-ORDER BY total DESC
-LIMIT 25</code></pre></details>
+<p>3 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 8 rows — 1656 ms</summary><pre><code>SELECT funder_type, count(*) n, sum(CASE WHEN has_results THEN 1 ELSE 0 END) res, round(100.0*sum(CASE WHEN has_results THEN 1 ELSE 0 END)/count(*),1) pct FROM health.clinical_trials WHERE study_type='INTERVENTIONAL' AND overall_status='COMPLETED' AND primary_completion_date &gt;= '2010-01-01' AND primary_completion_date &lt; '2024-01-01' GROUP BY funder_type ORDER BY n DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 9 rows — 605 ms</summary><pre><code>SELECT overall_status, count(*) n, round(100.0*sum(CASE WHEN has_results THEN 1 ELSE 0 END)/count(*),1) pct FROM health.clinical_trials WHERE study_type='INTERVENTIONAL' AND primary_completion_date &gt;= '2010-01-01' AND primary_completion_date &lt; '2024-01-01' GROUP BY overall_status ORDER BY n DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 27 rows — 758 ms</summary><pre><code>SELECT lead_sponsor, funder_type, count(*) n, round(100.0*sum(CASE WHEN has_results THEN 1 ELSE 0 END)/count(*),1) pct FROM health.clinical_trials WHERE study_type='INTERVENTIONAL' AND overall_status='COMPLETED' AND primary_completion_date &gt;= '2010-01-01' AND primary_completion_date &lt; '2024-01-01' GROUP BY lead_sponsor, funder_type HAVING count(*)&gt;=300 ORDER BY pct DESC</code></pre></details>
 
 </section>
-<section class="sources">
-<h2>Sources</h2>
-<ol>
-<li>health.clinical_trials (AskAmerica corpus, ClinicalTrials.gov mirror)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT COUNT(*) total, SUM(CASE WHEN overall_status='COMPLETED' THEN 1 ELSE 0 END) completed, SUM(CASE WHEN has_results THEN 1 ELSE 0 END) has_results, SUM(CASE WHEN overall_status='COMPLETED' AND has_results THEN 1 ELSE 0 END) completed_with_results FROM health.clinical_trials</code></pre></details></li>
-<li>Sponsor-type breakdown, health.clinical_trials<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT funder_type, COUNT(*) total, SUM(CASE WHEN overall_status='COMPLETED' THEN 1 ELSE 0 END) completed, SUM(CASE WHEN has_results THEN 1 ELSE 0 END) has_results, SUM(CASE WHEN overall_status='COMPLETED' AND has_results THEN 1 ELSE 0 END) completed_with_results FROM health.clinical_trials GROUP BY funder_type ORDER BY total DESC</code></pre></details></li>
-<li><a href="https://www.nejm.org/doi/full/10.1056/NEJMsa1409364">Compliance with Results Reporting at ClinicalTrials.gov, and related FDAAA TrialsTracker coverage</a></li>
-<li><a href="https://fdaaa.trialstracker.net/faq/">FDAAA TrialsTracker FAQ / compliance tool background</a></li>
-<li><a href="https://www.tctmd.com/news/most-clinical-trial-sponsors-fail-report-data-mandated-fda">Most Clinical Trial Sponsors Fail to Report Data as Mandated by FDA (TCTMD coverage of compliance studies)</a></li>
-</ol>
-</section>
 <footer>
-<p class="footnote">Figures are computed directly from the AskAmerica health.clinical_trials table (a ClinicalTrials.gov mirror restricted to studies updated since 2020-01-01), not from the compliance-literature sources, which use a narrower FDAAA-applicable-trial denominator and are cited for directional comparison only.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
