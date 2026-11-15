@@ -14,11 +14,13 @@ KINDS = {
     "promise": "Promise",
     "personal_attack": "Personal attack",
 }
+# In ladder order, from best supported to ruled out; the header tally follows this order.
 RESULTS = {
     "supported": "Supported",
-    "contradicted": "Contradicted",
-    "unsupported": "Unsupported",
     "unsettled": "Unsettled",
+    "unsupported": "Unsupported",
+    "contradicted": "Contradicted",
+    "false": "False",
     "citejacked": "Citejacked",
     "not_checked": "Not yet checked",
 }
@@ -30,12 +32,16 @@ SOURCE_STATUS = {
 }
 LEGEND = [
     ("Supported", "Warehouse or external primary data confirms the statement."),
-    ("Contradicted", "A primary source, read directly, says something different on the specific "
-                     "point. The finding says so if that source's own inquiry is still open."),
-    ("Unsupported", "No evidence was found in the AskAmerica warehouse or any external factual "
-                    "source. This does not mean the statement is false."),
     ("Unsettled", "Evidence was found, but it does not decide the claim: it turns on how a law or "
                   "a loose term is read, or the evidence does not speak to the specific point."),
+    ("Unsupported", "No evidence was found in the AskAmerica warehouse or any external factual "
+                    "source. This does not mean the statement is false."),
+    ("Contradicted", "A primary source, read directly, says something different on the specific "
+                     "point, but some question remains open: an inquiry is unfinished, or the "
+                     "source could be using a different definition or period."),
+    ("False", "A settled official record, read directly, rules the statement out: a published "
+              "measurement, no ordinary reading of the statement that fits it, and nothing "
+              "pending that could change it."),
     ("Citejacked", "The speaker cites a source that does not say what the speaker claims."),
     ("Premised prediction", "An opinion or prediction that rests on a factual premise. The label "
                             "rates the premise only, never the opinion or prediction built on it."),
@@ -326,6 +332,8 @@ def render_day(day, back_banner):
   .badge {{ font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
             padding: 2px 8px; border: 1px solid currentColor; }}
   .r-supported {{ color: #57ab5a; }} .r-contradicted {{ color: #e5534b; }}
+  .badge.r-false {{ color: #080b0f; background: #e5534b; border-color: #e5534b; }}
+  .rating.r-false {{ color: #e5534b; font-weight: 700; }}
   .r-unsupported {{ color: #c69026; }} .r-citejacked {{ color: #b083f0; }}
   .r-unsettled {{ color: #6cb6ff; }}
   .r-not_checked, .r-na {{ color: var(--text-dim); }}
