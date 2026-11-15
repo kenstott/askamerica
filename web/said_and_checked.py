@@ -106,6 +106,11 @@ def validate(doc, where):
         else:
             _require(s.get("result") is None, w,
                      "only factual statements and premised predictions carry a result")
+        # Every checked statement states its test: what would make it true, what would make it
+        # false, and what leaves it undeterminable. Written before the data is pulled.
+        if s["kind"] in CHECKED_KINDS and s["result"] != "not_checked":
+            _require(isinstance(s.get("test"), str) and s["test"].strip(), w,
+                     "a checked statement needs a test (true if / false if / cannot be determined if)")
         if s["kind"] == "premised_prediction":
             _require(isinstance(s.get("premise"), str) and s["premise"].strip(), w,
                      "a premised_prediction needs a premise")
@@ -211,6 +216,8 @@ def _statement_html(s, by_id):
     if kind == "premised_prediction":
         finding = ('<p class="premise"><span>Premise rated</span> %s</p>'
                    % html.escape(s["premise"])) + finding
+    if s.get("test"):
+        finding += ('<p class="test"><span>How this was tested</span> %s</p>' % html.escape(s["test"]))
     evidence = ""
     if s.get("evidence"):
         # AskAmerica's own warehouse queries are listed first and marked, including a query
@@ -350,6 +357,9 @@ def render_day(day, back_banner):
   .context {{ color: var(--text-dim); font-size: 12px; margin-bottom: 0.4rem; }}
   .premise, .counter {{ margin-top: 0.7rem; font-size: 13px; overflow-wrap: anywhere; }}
   .counter span.rating {{ font-size: 12px; letter-spacing: 0; text-transform: none; margin: 0 0 0 0.3rem; }}
+  .test {{ margin-top: 0.6rem; font-size: 12px; color: var(--text-dim); overflow-wrap: anywhere; }}
+  .test > span {{ color: var(--text-dim); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+                  border: 1px solid var(--border); padding: 1px 6px; margin-right: 0.4rem; }}
   .premise > span, .counter > span:first-child {{ color: var(--amber); font-size: 11px; letter-spacing: 0.06em;
                                   text-transform: uppercase; margin-right: 0.4rem; }}
   details.fold {{ margin: 0 0 1rem; padding: 0.6rem 0.9rem; }}
