@@ -50,6 +50,10 @@ LEGEND = [
                           "directly addresses the same point and says otherwise. A link is not a "
                           "finding about which is right, and a rating shown beside a "
                           "counter-statement rates that statement only."),
+    ("Contradicts own statement", "A link between two factual statements by the same speaker that "
+                                  "cannot both be true on the same specific point. A link is not "
+                                  "a finding about which one is right; each statement keeps its "
+                                  "own label."),
     ("Not checkable", "An opinion, prediction, promise or personal attack. No data can settle it."),
 ]
 # Kinds that carry a result. A premised prediction is an opinion or prediction that rests on a
@@ -140,6 +144,16 @@ def validate(doc, where):
                      "counter-statement link to %r is not recorded on both statements" % other)
             _require(by_id[other]["speaker"] != s["speaker"], w,
                      "a counter-statement must come from a different speaker")
+        # An internal contradiction pairs two factual statements by the same speaker.
+        for other in s.get("self_contradictions") or []:
+            _require(other in by_id and other != s["id"], w,
+                     "self_contradictions names no such statement")
+            _require(s["id"] in (by_id[other].get("self_contradictions") or []), w,
+                     "internal-contradiction link to %r is not recorded on both statements" % other)
+            _require(by_id[other]["speaker"] == s["speaker"], w,
+                     "an internal contradiction pairs two statements by the same speaker")
+            _require(s["kind"] == "factual" and by_id[other]["kind"] == "factual", w,
+                     "an internal contradiction pairs two factual statements")
 
 
 def load_days(root):
@@ -171,6 +185,7 @@ def is_folded(s):
     """Shown inside the speaker's collapsed group: nothing was checked, nothing is linked to
     it and it carries no finding, so it adds a line to the record and no information."""
     return (not is_checked(s) and not s.get("counter_statements")
+            and not s.get("self_contradictions")
             and not s.get("counter_documents") and not s.get("finding"))
 
 
@@ -260,6 +275,15 @@ def _statement_html(s, by_id):
     if counters:
         counter = ('<p class="counter"><span>Counter-statement</span> %s</p>'
                    % " &middot; ".join(counters))
+    own = [
+        '<a href="#s%d">\u201c%s\u201d</a> <span class="where">(%s)</span>'
+        % (other_id, html.escape(_excerpt(by_id[other_id]["quote"])),
+           html.escape(by_id[other_id]["reported_by"]["outlet"]))
+        for other_id in s.get("self_contradictions") or []]
+    if own:
+        # Not a rating: it says only that the two statements cannot both be true.
+        counter += ('<p class="counter own"><span>Contradicts own statement</span> %s</p>'
+                    % " &middot; ".join(own))
     return (
         '<div class="stmt" id="s%d">'
         '<div class="tags"><span class="badge %s">%s</span>'
@@ -377,6 +401,7 @@ def render_day(day, back_banner):
   blockquote {{ border-left: 2px solid var(--amber); padding-left: 0.9rem; color: var(--white);
                 overflow-wrap: anywhere; }}
   .context {{ color: var(--text-dim); font-size: 12px; margin-bottom: 0.4rem; }}
+  .counter .where {{ color: var(--text-dim); font-size: 12px; }}
   .premise, .counter {{ margin-top: 0.7rem; font-size: 13px; overflow-wrap: anywhere; }}
   .counter span.rating {{ font-size: 12px; letter-spacing: 0; text-transform: none; margin: 0 0 0 0.3rem; }}
   .test {{ margin-top: 0.6rem; font-size: 12px; color: var(--text-dim); overflow-wrap: anywhere; }}
