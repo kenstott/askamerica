@@ -6,6 +6,7 @@ import html
 import json
 import os
 import re
+import sys
 
 KINDS = {
     "factual": "Factual claim",
@@ -125,6 +126,10 @@ def validate(doc, where):
             if ev.get("askamerica"):
                 _require(ev["url"].startswith("https://askamerica.ai/catalog/"), w,
                          "an askamerica evidence entry links to the table's catalog page")
+                _require(isinstance(ev.get("sql"), str) and ev["sql"].strip(), w,
+                         "an askamerica evidence entry carries the sql that was run")
+            else:
+                _require("sql" not in ev, w, "only an askamerica evidence entry carries sql")
     # A counter-statement link is shown on both statements, so it must be recorded on both.
     by_id = {s["id"]: s for s in stmts}
     for s in stmts:
@@ -222,10 +227,20 @@ def _statement_html(s, by_id):
     if s.get("evidence"):
         # AskAmerica's own warehouse queries are listed first and marked, including a query
         # that only bounds the answer.
+        # Each of those carries a [SQL] button that shows the exact query that was run.
         ordered = sorted(s["evidence"], key=lambda e: not e.get("askamerica"))
-        evidence = '<p class="evidence">Evidence: %s</p>' % ", ".join(
-            ('<span class="aa">AskAmerica data</span> ' if e.get("askamerica") else "")
-            + _link(e["url"], e["label"]) for e in ordered)
+        parts, panels = [], []
+        for i, e in enumerate(ordered):
+            part = _link(e["url"], e["label"])
+            if e.get("askamerica"):
+                panel_id = "sql-%d-%d" % (s["id"], i)
+                part = ('<span class="aa">AskAmerica data</span> %s '
+                        '<button type="button" class="sqlbtn" aria-expanded="false" '
+                        'aria-controls="%s">[SQL]</button>' % (part, panel_id))
+                panels.append('<pre class="sql" id="%s" hidden>%s</pre>'
+                              % (panel_id, html.escape(e["sql"].strip())))
+            parts.append(part)
+        evidence = '<p class="evidence">Evidence: %s</p>%s' % (", ".join(parts), "".join(panels))
     counters = []
     for other_id in s.get("counter_statements") or []:
         o = by_id[other_id]
@@ -271,6 +286,13 @@ OPEN_TARGET_SCRIPT = """<script>
   }
   window.addEventListener("hashchange", reveal);
   reveal();
+  document.addEventListener("click", function (ev) {
+    var b = ev.target.closest && ev.target.closest(".sqlbtn");
+    if (!b) { return; }
+    var panel = document.getElementById(b.getAttribute("aria-controls"));
+    panel.hidden = !panel.hidden;
+    b.setAttribute("aria-expanded", String(!panel.hidden));
+  });
 })();
 </script>"""
 
@@ -369,6 +391,12 @@ def render_day(day, back_banner):
   .tally {{ color: var(--text); font-size: 13px; margin-bottom: 1.5rem; }}
   .evidence .aa {{ color: var(--bg); background: var(--amber); font-size: 10px; letter-spacing: 0.06em;
                   text-transform: uppercase; padding: 1px 6px; margin-right: 0.2rem; }}
+  .sqlbtn {{ font: inherit; font-size: 11px; color: var(--amber); background: none; border: 0;
+            padding: 0 0.15rem; cursor: pointer; }}
+  .sqlbtn:hover, .sqlbtn[aria-expanded="true"] {{ text-decoration: underline; }}
+  pre.sql {{ margin: 0.4rem 0 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border);
+            font-size: 12px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere;
+            color: var(--text); }}
   .finding {{ margin-top: 0.6rem; }}
   .evidence, .src {{ margin-top: 0.4rem; font-size: 12px; color: var(--text-dim);
                      overflow-wrap: anywhere; }}
@@ -408,3 +436,25 @@ def index_rows(days):
             f'{speakers} speakers</span></li>'
         )
     return rows
+
+
+def main(argv):
+    """python3 said_and_checked.py <statements.json>: validate one day's file without building.
+    The unattended daily run uses this to decide whether a day is published or held."""
+    if len(argv) != 2:
+        sys.exit("usage: said_and_checked.py <statements.json>")
+    path = argv[1]
+    with open(path) as fh:
+        doc = json.load(fh)
+    try:
+        validate(doc, path)
+        _require(doc["date"] == os.path.basename(os.path.dirname(os.path.abspath(path))), path,
+                 "date does not match its directory")
+    except InvalidStatements as e:
+        sys.exit("INVALID %s" % e)
+    n, speakers, _ = counts(doc)
+    print("VALID %s: %d statements, %d speakers; %s" % (path, n, speakers, result_summary(doc)))
+
+
+if __name__ == "__main__":
+    main(sys.argv)
