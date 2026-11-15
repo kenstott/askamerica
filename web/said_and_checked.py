@@ -17,6 +17,7 @@ RESULTS = {
     "supported": "Supported",
     "contradicted": "Contradicted",
     "unsupported": "Unsupported",
+    "unsettled": "Unsettled",
     "citejacked": "Citejacked",
     "not_checked": "Not yet checked",
 }
@@ -31,6 +32,8 @@ LEGEND = [
     ("Contradicted", "Data exists and says something different."),
     ("Unsupported", "No evidence was found in the AskAmerica warehouse or any external factual "
                     "source. This does not mean the statement is false."),
+    ("Unsettled", "Evidence was found, but it does not decide the claim: it turns on how a law or "
+                  "a loose term is read, or on an investigation that has not reported."),
     ("Citejacked", "The speaker cites a source that does not say what the speaker claims."),
     ("Not checkable", "An opinion, prediction, promise or personal attack. No data can settle it."),
 ]
@@ -213,6 +216,7 @@ def render_day(day, back_banner):
             padding: 2px 8px; border: 1px solid currentColor; }}
   .r-supported {{ color: #57ab5a; }} .r-contradicted {{ color: #e5534b; }}
   .r-unsupported {{ color: #c69026; }} .r-citejacked {{ color: #b083f0; }}
+  .r-unsettled {{ color: #6cb6ff; }}
   .r-not_checked, .r-na {{ color: var(--text-dim); }}
   .kind {{ color: var(--text-dim); font-size: 11px; }}
   blockquote {{ border-left: 2px solid var(--amber); padding-left: 0.9rem; color: var(--white);
