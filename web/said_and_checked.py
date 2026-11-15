@@ -434,7 +434,7 @@ def render_day(day, back_banner):
   details.person > summary::-webkit-details-marker {{ display: none; }}
   details.person > summary::before {{ content: "+"; position: absolute; left: 0; top: 1.05rem;
                                       color: var(--amber); font-size: 16px; line-height: 1.5; }}
-  details.person[open] > summary::before {{ content: "\2212"; }}
+  details.person[open] > summary::before {{ content: "\\2212"; }}
   details.person[open] > summary {{ border-bottom: 1px solid var(--border); margin-bottom: 1.2rem; }}
   details.person[open] {{ padding-bottom: 1.5rem; }}
   details.person .office {{ border: 0; padding: 0; margin: 0; }}
