@@ -212,7 +212,11 @@ def counts(day):
 
 def result_summary(day):
     """'8 checked: 3 supported, 3 unsettled, 2 unsupported · 48 not checkable'."""
-    stmts = day["statements"]
+    return statements_summary(day["statements"])
+
+
+def statements_summary(stmts):
+    """The same line for any list of statements: the whole day, or one speaker."""
     tally = {}
     for s in stmts:
         if is_checked(s):
@@ -336,6 +340,15 @@ OPEN_TARGET_SCRIPT = """<script>
   window.addEventListener("hashchange", reveal);
   reveal();
   document.addEventListener("click", function (ev) {
+    var all = ev.target.closest && ev.target.closest(".openall");
+    if (all) {
+      var open = all.getAttribute("aria-expanded") !== "true";
+      var people = document.querySelectorAll("details.person");
+      for (var i = 0; i < people.length; i++) { people[i].open = open; }
+      all.setAttribute("aria-expanded", String(open));
+      all.textContent = open ? "Close all" : "Open all";
+      return;
+    }
     var b = ev.target.closest && ev.target.closest(".sqlbtn");
     if (!b) { return; }
     var panel = document.getElementById(b.getAttribute("aria-controls"));
@@ -368,9 +381,12 @@ def render_day(day, back_banner):
                     % (len(group), "" if len(group) == 1 else "s", label,
                        "".join(_statement_html(s, by_id) for s in group))
                 )
+        # One collapsible section per speaker; the summary line carries that speaker's counts.
         sections.append(
-            '<section><h2>%s%s</h2><p class="office">%s</p>%s</section>'
-            % (html.escape(name), party, html.escape(first["office"]), body)
+            '<details class="person"><summary><h2>%s%s</h2><p class="office">%s</p>'
+            '<p class="ptally">%d statement%s &middot; %s</p></summary>%s</details>'
+            % (html.escape(name), party, html.escape(first["office"]), len(items),
+               "" if len(items) == 1 else "s", statements_summary(items), body)
         )
     n, speakers, _ = counts(day)
     summary = result_summary(day)
@@ -411,7 +427,20 @@ def render_day(day, back_banner):
   dt {{ color: var(--white); margin-top: 0.5rem; }}
   dd {{ color: var(--text-dim); }}
   .rule {{ color: var(--text-dim); margin-top: 0.8rem; }}
-  section {{ margin-bottom: 2.5rem; }}
+  details.person {{ border: 0; border-top: 1px solid var(--border); background: none; padding: 0;
+                    margin: 0; font-size: 14px; }}
+  details.person:last-of-type {{ border-bottom: 1px solid var(--border); }}
+  details.person > summary {{ list-style: none; padding: 0.9rem 0 0.9rem 1.4rem; position: relative; }}
+  details.person > summary::-webkit-details-marker {{ display: none; }}
+  details.person > summary::before {{ content: "+"; position: absolute; left: 0; top: 1.05rem;
+                                      color: var(--amber); font-size: 16px; line-height: 1.5; }}
+  details.person[open] > summary::before {{ content: "\2212"; }}
+  details.person[open] > summary {{ border-bottom: 1px solid var(--border); margin-bottom: 1.2rem; }}
+  details.person[open] {{ padding-bottom: 1.5rem; }}
+  details.person .office {{ border: 0; padding: 0; margin: 0; }}
+  .ptally {{ color: var(--text); font-size: 12px; margin-top: 0.2rem; }}
+  .openall {{ font: inherit; font-size: 12px; color: var(--amber); background: none; border: 0;
+              padding: 0; margin: 0 0 0.8rem; cursor: pointer; }}
   h2 {{ font-family: var(--serif); font-weight: 400; font-size: 1.5rem; color: var(--white); }}
   .office {{ color: var(--text-dim); font-size: 12px; border-bottom: 1px solid var(--border);
              padding-bottom: 0.5rem; margin-bottom: 1rem; }}
@@ -472,10 +501,13 @@ def render_day(day, back_banner):
   <details>
     <summary>How to read this page</summary>
     <dl>{legend}</dl>
-    <p class="rule">Every statement is listed, whatever its kind. There are no scores and no
-      totals per person. Statements that could not be checked are folded under each speaker.
+    <p class="rule">Every statement is listed, whatever its kind. There are no scores. Each
+      person's section is collapsed; the counts beside a name cover only that person's statements
+      on this page, and are not a rating of the person. Statements that could not be checked are
+      folded under each speaker.
       Selection: {html.escape(day["selection_rule"])}</p>
   </details>
+  <button class="openall" type="button" aria-expanded="false">Open all</button>
   {"".join(sections)}
 </main>
 {OPEN_TARGET_SCRIPT}

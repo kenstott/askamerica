@@ -336,7 +336,7 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
     cards = []
     if said_days:
         cards.append(
-            '<div class="study-cat"><h2>Said &amp; Checked</h2>'
+            '<div class="study-cat" id="sandc"><h2>Said &amp; Checked</h2>'
             f'<ul>{"".join(said_and_checked.index_rows(said_days))}</ul></div>'
         )
     if recent_headlines or archived_headlines:
@@ -352,7 +352,7 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
             if archived_headlines else ""
         )
         cards.append(
-            '<div class="study-cat"><h2>Ripped From Today\'s Headlines</h2>'
+            '<div class="study-cat" id="headlines"><h2>Ripped From Today\'s Headlines</h2>'
             f'<ul>{"".join(rows)}</ul>{archive_link}</div>'
         )
     for cat in sorted(by_category):
@@ -407,6 +407,13 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
   .nav-links {{ display: flex; gap: 1.75rem; list-style: none; }}
   .nav-links a {{ color: var(--text-dim); text-decoration: none; font-size: 13px; }}
   .nav-links a:hover {{ color: var(--white); }}
+  @media (max-width: 600px) {{
+    nav {{ height: auto; flex-wrap: wrap; padding: 0 1rem; }}
+    .nav-logo {{ height: 44px; }}
+    .nav-links {{ width: 100%; gap: 1.25rem; padding: 0 0 10px; overflow-x: auto;
+                 white-space: nowrap; scrollbar-width: none; }}
+    .nav-links::-webkit-scrollbar {{ display: none; }}
+  }}
   main {{ max-width: 900px; margin: 0 auto; padding: 4rem 2rem 6rem; }}
   .hero-label {{ font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
                  color: var(--amber); margin-bottom: 1rem; }}
@@ -414,7 +421,7 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
         color: var(--white); margin-bottom: 1rem; }}
   .hero-sub {{ color: var(--text-dim); max-width: 560px; font-size: 14px; margin-bottom: 1.5rem; }}
   .hero-count {{ color: var(--text-dim); font-size: 12px; margin-bottom: 3rem; }}
-  .study-cat {{ margin-bottom: 2.5rem; }}
+  .study-cat {{ margin-bottom: 2.5rem; scroll-margin-top: 110px; }}
   .study-cat h2 {{ font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
                    color: var(--amber); border-bottom: 1px solid var(--border);
                    padding-bottom: 0.6rem; margin-bottom: 0.8rem; }}
