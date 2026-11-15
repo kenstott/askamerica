@@ -64,6 +64,9 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 """.strip()
 
 
+# Days of Said & Checked listed on the studies page; the all-days page lists every day.
+SAID_DAYS_SHOWN = 7
+
 def load_bank():
     path = os.path.join(CORPUS, "questions.yaml")
     with open(path) as fh:
@@ -268,20 +271,37 @@ def build_headlines_archive(headlines):
     """web/studies/headlines-archive/index.html — every headline older than the
     48-hour window shown on the main studies page, same row styling, newest first
     (already sorted by load_headlines)."""
-    dest_dir = os.path.join(OUT, "headlines-archive")
+    _build_list_page("headlines-archive", "Headlines Archive", _headline_rows(headlines),
+                     "No archived headlines yet.")
+
+
+SAID_ARCHIVE_SLUG = "said-and-checked-archive"
+
+
+def build_said_archive(said_days):
+    """web/studies/said-and-checked-archive/index.html: every Said & Checked day, newest
+    first (already sorted by load_days). The main studies page lists only the latest
+    SAID_DAYS_SHOWN days and links here."""
+    _build_list_page(SAID_ARCHIVE_SLUG, "Said & Checked: All Days",
+                     said_and_checked.index_rows(said_days), "No days published yet.")
+
+
+def _build_list_page(slug, title, rows, empty):
+    """A standing page under web/studies/<slug>/ holding one list of study rows."""
+    dest_dir = os.path.join(OUT, slug)
     os.makedirs(dest_dir, exist_ok=True)
-    rows = _headline_rows(headlines)
+    heading = html.escape(title)
     body = (
-        '<div class="study-cat"><h2>Headlines Archive</h2>'
+        f'<div class="study-cat"><h2>{heading}</h2>'
         f'<ul>{"".join(rows)}</ul></div>'
-        if rows else '<p class="hero-sub">No archived headlines yet.</p>'
+        if rows else f'<p class="hero-sub">{html.escape(empty)}</p>'
     )
     page = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Headlines Archive — AskAmerica</title>
+<title>{heading} — AskAmerica</title>
 <link rel="icon" type="image/svg+xml" href="/icon.svg">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
@@ -310,7 +330,7 @@ def build_headlines_archive(headlines):
 <body>
 {BACK_BANNER}
 <main>
-  <h1>Headlines Archive</h1>
+  <h1>{heading}</h1>
   {body}
 </main>
 </body>
@@ -318,6 +338,48 @@ def build_headlines_archive(headlines):
 """
     with open(os.path.join(dest_dir, "index.html"), "w") as fh:
         fh.write(page)
+
+
+# The question bank's own `category` values are fine-grained (about 140 for 240 questions,
+# most holding one question). The studies page lists questions under these broad topics.
+# First matching rule wins; each rule is (broad topic, words any of which appears in the
+# category). A category no rule matches is listed under Other and named in the build output.
+OTHER_TOPIC = "Other"
+BROAD_TOPICS = [
+    ("Testing Claims and Debates", ("article validation", "question bias", "causal chain",
+                                    "policy debates", "correlation")),
+    ("Veterans", ("veteran",)),
+    ("Insurance, Disasters and Risk", ("insurance", "catastrophe", "disaster", "underwriting",
+                                       "business interruption", "cargo risk", "liability risk",
+                                       "workers compensation", "emergency management",
+                                       "site resilience")),
+    ("Agriculture and Commodities", ("agricultur", "crop", "commodity")),
+    ("Energy and Environment", ("energy", "environment", "climate", "resource security")),
+    ("Health", ("health", "pharma")),
+    ("Education", ("education",)),
+    ("Banking and Finance", ("bank", "credit risk", "consumer finance", "financial", "lending",
+                             "rates signal", "corporate governance", "market structure")),
+    ("Government, Politics and Public Money", ("campaign finance", "congressional", "governance",
+                                               "money in politics", "political", "fiscal",
+                                               "public finance", "government spending",
+                                               "regulat", "policy analysis")),
+    ("Crime, Security and Defense", ("criminal", "criminology", "police", "cyber", "defense",
+                                     "immigration")),
+    ("Infrastructure and Transportation", ("infrastructure", "aviation", "transport", "logistics")),
+    ("Housing and Communities", ("housing", "demographics", "social mobility", "social safety")),
+    ("Science and Innovation", ("innovation", "science")),
+    ("Economy, Labor and Trade", ("economic", "labor", "trade", "manufacturing", "industrial",
+                                  "macro", "market sizing", "retail", "workforce", "workplace")),
+]
+
+
+def broad_topic(category):
+    name = category.replace("_", " ").replace("-", " ")
+    for topic, words in BROAD_TOPICS:
+        if any(w in name for w in words):
+            return topic
+    print(f"WARNING: category {category!r} matches no broad topic; listed under {OTHER_TOPIC}")
+    return OTHER_TOPIC
 
 
 def build_index(bank, entries, recent_headlines=None, archived_headlines=None, said_days=None):
@@ -331,13 +393,21 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
     archived_headlines = archived_headlines or []
     by_category = {}
     for q, entry in zip(bank, entries):
-        by_category.setdefault(q.get("category", "uncategorized"), []).append((q, entry))
+        by_category.setdefault(broad_topic(q.get("category", "uncategorized")), []).append((q, entry))
 
     cards = []
     if said_days:
+        # Newest first. The listing shows the latest SAID_DAYS_SHOWN days; every day stays
+        # published at its own address and is listed on the all-days page.
+        rows = said_and_checked.index_rows(said_days)
+        all_days_link = (
+            f'<div style="margin-top:0.6rem;"><a href="/studies/{SAID_ARCHIVE_SLUG}/" '
+            'style="color:var(--text-dim);font-size:12px;">'
+            f'All days ({len(rows)}) &rarr;</a></div>'
+        )
         cards.append(
             '<div class="study-cat" id="sandc"><h2>Said &amp; Checked</h2>'
-            f'<ul>{"".join(said_and_checked.index_rows(said_days))}</ul></div>'
+            f'<ul>{"".join(rows[:SAID_DAYS_SHOWN])}</ul>{all_days_link}</div>'
         )
     if recent_headlines or archived_headlines:
         rows = _headline_rows(recent_headlines)
@@ -355,7 +425,7 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
             '<div class="study-cat" id="headlines"><h2>Ripped From Today\'s Headlines</h2>'
             f'<ul>{"".join(rows)}</ul>{archive_link}</div>'
         )
-    for cat in sorted(by_category):
+    for cat in sorted(by_category, key=lambda c: (c == OTHER_TOPIC, c)):
         rows = []
         for q, entry in sorted(by_category[cat], key=lambda pair: pair[0]["plain_question"]):
             plain = html.escape(q["plain_question"])
@@ -491,9 +561,10 @@ def main():
         os.makedirs(dest_dir, exist_ok=True)
         with open(os.path.join(dest_dir, "index.html"), "w") as fh:
             fh.write(said_and_checked.render_day(day, BACK_BANNER))
+    build_said_archive(said_days)
 
     live_slugs = ({q["id"] for q, e in zip(bank, entries) if e} | {h["slug"] for h in headlines}
-                  | {"headlines-archive"} | {said_and_checked.slug(d) for d in said_days})
+                  | {"headlines-archive", SAID_ARCHIVE_SLUG} | {said_and_checked.slug(d) for d in said_days})
     for slug in os.listdir(OUT):
         if slug not in live_slugs and os.path.isdir(os.path.join(OUT, slug)):
             shutil.rmtree(os.path.join(OUT, slug))

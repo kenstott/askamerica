@@ -95,7 +95,7 @@ def validate(doc, where):
         _require(isinstance(s, dict), w, "must be an object")
         _require(isinstance(s.get("id"), int) and s["id"] not in seen, w, "id missing or repeated")
         seen.add(s["id"])
-        for field in ("speaker", "office", "quote", "context"):
+        for field in ("speaker", "office", "quote", "context", "topic"):
             _require(isinstance(s.get(field), str) and s[field].strip(), w, field + " is required")
         rb = s.get("reported_by")
         _require(isinstance(rb, dict) and isinstance(rb.get("outlet"), str) and _is_url(rb.get("url")),
@@ -337,18 +337,39 @@ OPEN_TARGET_SCRIPT = """<script>
     }
     el.scrollIntoView();
   }
+  // Each statement exists once. Changing the view moves it into that view's slots.
+  function show(name) {
+    var views = document.querySelectorAll(".view");
+    for (var i = 0; i < views.length; i++) { views[i].hidden = views[i].id !== "view-" + name; }
+    var slots = document.querySelectorAll("#view-" + name + " .slot");
+    for (var j = 0; j < slots.length; j++) {
+      var ids = slots[j].getAttribute("data-ids").split(",");
+      for (var k = 0; k < ids.length; k++) {
+        slots[j].appendChild(document.getElementById("s" + ids[k]));
+      }
+    }
+    var btns = document.querySelectorAll(".viewbtn");
+    for (var m = 0; m < btns.length; m++) {
+      btns[m].setAttribute("aria-pressed", String(btns[m].getAttribute("data-view") === name));
+    }
+    var all = document.querySelector(".openall");
+    all.setAttribute("aria-expanded", "false");
+    all.textContent = "Open all";
+  }
   window.addEventListener("hashchange", reveal);
   reveal();
   document.addEventListener("click", function (ev) {
     var all = ev.target.closest && ev.target.closest(".openall");
     if (all) {
       var open = all.getAttribute("aria-expanded") !== "true";
-      var people = document.querySelectorAll("details.person");
+      var people = document.querySelectorAll(".view:not([hidden]) details");
       for (var i = 0; i < people.length; i++) { people[i].open = open; }
       all.setAttribute("aria-expanded", String(open));
       all.textContent = open ? "Close all" : "Open all";
       return;
     }
+    var v = ev.target.closest && ev.target.closest(".viewbtn");
+    if (v) { show(v.getAttribute("data-view")); return; }
     var b = ev.target.closest && ev.target.closest(".sqlbtn");
     if (!b) { return; }
     var panel = document.getElementById(b.getAttribute("aria-controls"));
@@ -359,35 +380,102 @@ OPEN_TARGET_SCRIPT = """<script>
 </script>"""
 
 
-def render_day(day, back_banner):
-    by_id = {s["id"]: s for s in day["statements"]}
-    by_speaker = {}
+OTHER_TOPIC = "Other"
+
+
+def topic_of(day):
+    """Statement id -> the topic it is listed under. A topic with a single statement on the
+    page is listed under Other, so every group on the page holds more than one statement
+    or is Other."""
+    n = {}
     for s in day["statements"]:
-        by_speaker.setdefault(s["speaker"], []).append(s)
-    sections = []
-    for name in sorted(by_speaker, key=lambda n: n.split()[-1].lower()):
-        items = by_speaker[name]
-        first = items[0]
-        party = " (%s)" % html.escape(first["party"]) if first.get("party") else ""
-        shown = [s for s in items if not is_folded(s)]
-        folded = [s for s in items if is_folded(s)]
-        body = "".join(_statement_html(s, by_id) for s in shown)
-        # Two collapsed groups: statements waiting for a check, then those no data can settle.
-        for label, group in (("not yet checked", [s for s in folded if is_waiting(s)]),
-                             ("not checkable", [s for s in folded if not is_waiting(s)])):
-            if group:
-                body += (
-                    '<details class="fold"><summary>%d statement%s %s</summary>%s</details>'
-                    % (len(group), "" if len(group) == 1 else "s", label,
-                       "".join(_statement_html(s, by_id) for s in group))
-                )
-        # One collapsible section per speaker; the summary line carries that speaker's counts.
-        sections.append(
-            '<details class="person"><summary><h2>%s%s</h2><p class="office">%s</p>'
-            '<p class="ptally">%d statement%s &middot; %s</p></summary>%s</details>'
-            % (html.escape(name), party, html.escape(first["office"]), len(items),
-               "" if len(items) == 1 else "s", statements_summary(items), body)
-        )
+        n[s["topic"]] = n.get(s["topic"], 0) + 1
+    return {s["id"]: (s["topic"] if n[s["topic"]] > 1 else OTHER_TOPIC) for s in day["statements"]}
+
+
+def _plural(n, word):
+    return "%d %s%s" % (n, word, "" if n == 1 else "s")
+
+
+def _leaf_html(items, by_id, fill):
+    """The statements of one inner group: those with something to show, then the collapsed
+    groups. Statements are written once, in the speaker view (fill). The topic view gets empty
+    slots naming the same statements, and the page script moves them when the view changes."""
+    def slot(group):
+        ids = ",".join(str(s["id"]) for s in group)
+        inner = "".join(_statement_html(s, by_id) for s in group) if fill else ""
+        return '<div class="slot" data-ids="%s">%s</div>' % (ids, inner)
+    shown = [s for s in items if not is_folded(s)]
+    folded = [s for s in items if is_folded(s)]
+    out = slot(shown) if shown else ""
+    # Two collapsed groups: statements waiting for a check, then those no data can settle.
+    for label, group in (("not yet checked", [s for s in folded if is_waiting(s)]),
+                         ("not checkable", [s for s in folded if not is_waiting(s)])):
+        if group:
+            out += ('<details class="fold"><summary>%s %s</summary>%s</details>'
+                    % (_plural(len(group), "statement"), label, slot(group)))
+    return out
+
+
+def _speaker_key(name):
+    return name.split()[-1].lower()
+
+
+def _speaker_label(s):
+    return html.escape(s["speaker"]) + (" (%s)" % html.escape(s["party"]) if s.get("party") else "")
+
+
+def _views_html(day):
+    """Two orderings of the same statements, each two levels deep: speaker then topic, and
+    topic then speaker. Every group is collapsed and its heading carries its own counts."""
+    stmts = day["statements"]
+    by_id = {s["id"]: s for s in stmts}
+    topic = topic_of(day)
+
+    def topic_order(items):
+        """Largest topic first, Other last."""
+        size = {}
+        for s in items:
+            size[topic[s["id"]]] = size.get(topic[s["id"]], 0) + 1
+        return sorted(size, key=lambda t: (t == OTHER_TOPIC, -size[t], t))
+
+    def sub(title, items, fill):
+        return ('<details class="sub"><summary><h3>%s</h3><p class="ptally">%s &middot; %s</p>'
+                '</summary>%s</details>'
+                % (title, _plural(len(items), "statement"), statements_summary(items),
+                   _leaf_html(items, by_id, fill)))
+
+    def top(title, office, extra, items, body):
+        return ('<details class="person"><summary><h2>%s</h2>%s'
+                '<p class="ptally">%s%s &middot; %s</p></summary>%s</details>'
+                % (title, '<p class="office">%s</p>' % office if office else "",
+                   _plural(len(items), "statement"), extra, statements_summary(items), body))
+
+    speakers = sorted({s["speaker"] for s in stmts}, key=_speaker_key)
+    by_speaker = []
+    for name in speakers:
+        items = [s for s in stmts if s["speaker"] == name]
+        body = "".join(sub(html.escape(t), [s for s in items if topic[s["id"]] == t], True)
+                       for t in topic_order(items))
+        by_speaker.append(top(_speaker_label(items[0]), html.escape(items[0]["office"]),
+                              " &middot; " + _plural(len(topic_order(items)), "topic"), items, body))
+    by_topic = []
+    for t in topic_order(stmts):
+        items = [s for s in stmts if topic[s["id"]] == t]
+        names = sorted({s["speaker"] for s in items}, key=_speaker_key)
+        body = ""
+        for name in names:
+            mine = [s for s in items if s["speaker"] == name]
+            body += sub(_speaker_label(mine[0]), mine, False)
+        by_topic.append(top(html.escape(t), "", " &middot; " + _plural(len(names), "speaker"),
+                            items, body))
+    return ('<div class="view" id="view-speaker">%s</div>'
+            '<div class="view" id="view-topic" hidden>%s</div>'
+            % ("".join(by_speaker), "".join(by_topic)))
+
+
+def render_day(day, back_banner):
+    views = _views_html(day)
     n, speakers, _ = counts(day)
     summary = result_summary(day)
     lede = "".join("<p>%s</p>" % html.escape(p) for p in day["lede"])
@@ -439,8 +527,21 @@ def render_day(day, back_banner):
   details.person[open] {{ padding-bottom: 1.5rem; }}
   details.person .office {{ border: 0; padding: 0; margin: 0; }}
   .ptally {{ color: var(--text); font-size: 12px; margin-top: 0.2rem; }}
-  .openall {{ font: inherit; font-size: 12px; color: var(--amber); background: none; border: 0;
-              padding: 0; margin: 0 0 0.8rem; cursor: pointer; }}
+  .controls {{ display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+               gap: 0.6rem 1.5rem; margin: 0 0 0.8rem; font-size: 12px; color: var(--text-dim); }}
+  .openall, .viewbtn {{ font: inherit; font-size: 12px; color: var(--amber); background: none;
+                        border: 0; padding: 0; cursor: pointer; }}
+  .viewbtn {{ border: 1px solid var(--border); padding: 2px 10px; margin-left: 0.4rem; }}
+  .viewbtn[aria-pressed="true"] {{ color: var(--bg); background: var(--amber);
+                                   border-color: var(--amber); }}
+  details.sub {{ border: 0; border-left: 1px solid var(--border); background: none;
+                 padding: 0 0 0 1rem; margin: 0 0 0.6rem 0.2rem; font-size: 14px; }}
+  details.sub > summary {{ padding: 0.35rem 0; }}
+  details.sub[open] > summary {{ margin-bottom: 1rem; }}
+  details.sub h3 {{ display: inline; font-family: var(--mono); font-weight: 500; font-size: 14px;
+                    color: var(--white); }}
+  details.sub .ptally {{ color: var(--text-dim); margin: 0 0 0 1rem; }}
+  .slot .stmt:last-child {{ border-bottom: 0; }}
   h2 {{ font-family: var(--serif); font-weight: 400; font-size: 1.5rem; color: var(--white); }}
   .office {{ color: var(--text-dim); font-size: 12px; border-bottom: 1px solid var(--border);
              padding-bottom: 0.5rem; margin-bottom: 1rem; }}
@@ -501,14 +602,22 @@ def render_day(day, back_banner):
   <details>
     <summary>How to read this page</summary>
     <dl>{legend}</dl>
-    <p class="rule">Every statement is listed, whatever its kind. There are no scores. Each
-      person's section is collapsed; the counts beside a name cover only that person's statements
-      on this page, and are not a rating of the person. Statements that could not be checked are
+    <p class="rule">Every statement is listed, whatever its kind. There are no scores. Statements
+      are grouped two levels deep, by speaker and then topic or by topic and then speaker, and
+      every group is collapsed. A topic with a single statement is listed under Other. The counts
+      beside a name cover only that person's statements on this page, and are not a rating of
+      the person. Statements that could not be checked are
       folded under each speaker.
       Selection: {html.escape(day["selection_rule"])}</p>
   </details>
-  <button class="openall" type="button" aria-expanded="false">Open all</button>
-  {"".join(sections)}
+  <div class="controls">
+    <span class="by">Organize by
+      <button class="viewbtn" type="button" data-view="speaker" aria-pressed="true">Speaker</button>
+      <button class="viewbtn" type="button" data-view="topic" aria-pressed="false">Topic</button>
+    </span>
+    <button class="openall" type="button" aria-expanded="false">Open all</button>
+  </div>
+  {views}
 </main>
 {OPEN_TARGET_SCRIPT}
 </body>
