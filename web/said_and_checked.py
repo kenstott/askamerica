@@ -66,7 +66,7 @@ def validate(doc, where):
         _require(isinstance(s, dict), w, "must be an object")
         _require(isinstance(s.get("id"), int) and s["id"] not in seen, w, "id missing or repeated")
         seen.add(s["id"])
-        for field in ("speaker", "office", "quote"):
+        for field in ("speaker", "office", "quote", "context"):
             _require(isinstance(s.get(field), str) and s[field].strip(), w, field + " is required")
         rb = s.get("reported_by")
         _require(isinstance(rb, dict) and isinstance(rb.get("outlet"), str) and _is_url(rb.get("url")),
@@ -145,10 +145,11 @@ def _statement_html(s):
         '<div class="stmt">'
         '<div class="tags"><span class="badge %s">%s</span>'
         '<span class="kind">%s</span></div>'
+        '<p class="context">%s</p>'
         '<blockquote>%s</blockquote>%s%s'
         '<p class="src">%s</p></div>'
         % (badge_class, html.escape(badge), html.escape(KINDS[kind]),
-           html.escape(s["quote"]), finding, evidence, src_line)
+           html.escape(s["context"]), html.escape(s["quote"]), finding, evidence, src_line)
     )
 
 
@@ -216,6 +217,7 @@ def render_day(day, back_banner):
   .kind {{ color: var(--text-dim); font-size: 11px; }}
   blockquote {{ border-left: 2px solid var(--amber); padding-left: 0.9rem; color: var(--white);
                 overflow-wrap: anywhere; }}
+  .context {{ color: var(--text-dim); font-size: 12px; margin-bottom: 0.4rem; }}
   .finding {{ margin-top: 0.6rem; }}
   .evidence, .src {{ margin-top: 0.4rem; font-size: 12px; color: var(--text-dim);
                      overflow-wrap: anywhere; }}
