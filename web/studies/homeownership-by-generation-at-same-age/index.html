@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Younger Americans are 10-40% less likely to own homes than earlier generations were at the same age</title>
+<title>Young Americans own homes at roughly 4-6 points lower rates than boomers and Gen X did at the same age</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -88,33 +96,6 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
-@media screen{
-#s3-t1-s1:checked ~ table tbody.s0{display:none}
-#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
-#s3-t1-s1:checked ~ .srtreset{display:inline-block}
-#s3-t1-s2:checked ~ table tbody.s0{display:none}
-#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
-#s3-t1-s2:checked ~ .srtreset{display:inline-block}
-#s3-t1-s3:checked ~ table tbody.s0{display:none}
-#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
-#s3-t1-s3:checked ~ .srtreset{display:inline-block}
-#s3-t1-s4:checked ~ table tbody.s0{display:none}
-#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
-#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
-#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
-#s3-t1-s4:checked ~ .srtreset{display:inline-block}
-#s3-t1-s5:checked ~ table tbody.s0{display:none}
-#s3-t1-s5:checked ~ table tbody.s5{display:table-row-group}
-#s3-t1-s5:checked ~ table label[for="s3-t1-s5"]{color:var(--link)}
-#s3-t1-s5:checked ~ table label[for="s3-t1-s5"] .srtcue{opacity:1}
-#s3-t1-s5:checked ~ .srtreset{display:inline-block}
-}
 </style>
 </head>
 <body>
@@ -126,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Younger Americans are 10-40% less likely to own homes than earlier generations were at the same age</h1>
-<p class="subtitle">Comparison controls for age; magnitude depends on which generations, which age, and which measure of &quot;own&quot;</p>
+<h1>Young Americans own homes at roughly 4-6 points lower rates than boomers and Gen X did at the same age</h1>
+<p class="subtitle">Redfin/IPUMS-CPS same-age generational comparison (2025); Census ACS B25007 (census.acs_housing_tenure_by_age), 2009-2024 5-year vintages</p>
 </header>
 <figure class="board">
 <!--
@@ -147,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 947" width="880" height="947" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -174,188 +155,185 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="947" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:14px">Younger Americans own homes at meaningfully lower rates than earlier generations did at the same …</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">Sources: Apartment List (Census/ACS microdata, individual-level rate) and Redfin (CPS ASEC via IPUMS), plus in-house ACS B25007 check</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Millennials vs Boomers, homeownership at age 30</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">33% vs 48%</text>
-  <text class="stat-delta" x="36" y="168" fill="#dc2626">-31% relative</text>
-  </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">Individual-level rate (Apartment List, Census Bureau data)</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Gen Z vs Gen X, homeownership at age 28</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">38.3% vs 42.5%</text>
-  <text class="stat-delta" x="464" y="168" fill="#dc2626">-10% relative</text>
-  </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">Household-head rate (Redfin/CPS ASEC via IPUMS)</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Homeownership rate at age 30, by generation</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="52" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="52" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="60" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="52" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Homeownership at the same age</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Redfin CPS: ownership rate at same age, 2025</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="60" y1="252" x2="390" y2="252" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="52" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="224" x2="390" y2="224" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="52" y="228" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="196" x2="390" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="52" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="168" x2="390" y2="168" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="52" y="172" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="140" x2="390" y2="140" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="52" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="112" x2="390" y2="112" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="52" y="116" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="60" y1="84" x2="390" y2="84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-6" class="tick" x="52" y="88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
       <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+      <text id="p1-ytick-7" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">70</text>
     </g>
-    <g id="p3-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
+    <g id="p1-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="252" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="252" x2="390" y2="252" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Generation (born decade)</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">% owning home at 30</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-silent" class="tick" x="101.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Silent</text>
-      <text id="p3-xtick-baby-boomer" class="tick" x="183.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Baby Boomer</text>
-      <text id="p3-xtick-gen-x" class="tick" x="266.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Gen X</text>
-      <text id="p3-xtick-millennial" class="tick" x="348.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Millennial</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="154" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 154)">% owning</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-age-28" class="tick" x="142.50" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Age 28</text>
+      <text id="p1-xtick-age-36" class="tick" x="307.50" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Age 36</text>
     </g>
-    <g id="p3-series-homeownership-rate-at-age-30" class="series">
-      <rect id="p3-mark-homeownership-rate-at-age-30-silent" class="bar" x="74.85" y="68" width="51.80" height="132" fill="#2563eb"/>
-      <rect id="p3-mark-homeownership-rate-at-age-30-baby-boomer" class="bar" x="157.35" y="84.80" width="51.80" height="115.20" fill="#2563eb"/>
-      <rect id="p3-mark-homeownership-rate-at-age-30-gen-x" class="bar" x="239.85" y="99.20" width="51.80" height="100.80" fill="#2563eb"/>
-      <rect id="p3-mark-homeownership-rate-at-age-30-millennial" class="bar" x="322.35" y="120.80" width="51.80" height="79.20" fill="#2563eb"/>
+    <g id="p1-series-baby-boomers" class="series">
+      <g class="hover">
+        <title>Age 28 — Baby boomers: 44.4</title>
+        <rect id="p1-mark-baby-boomers-age-28" class="bar" x="89.70" y="127.68" width="34.20" height="124.32" fill="#2563eb"/>
+        <rect class="hit" x="89.70" y="56" width="34.20" height="196" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Age 36 — Baby boomers: 63.7</title>
+        <rect id="p1-mark-baby-boomers-age-36" class="bar" x="254.70" y="73.64" width="34.20" height="178.36" fill="#2563eb"/>
+        <rect class="hit" x="254.70" y="56" width="34.20" height="196" fill="#000" fill-opacity="0"/>
+      </g>
     </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
+    <g id="p1-series-gen-x" class="series">
+      <g class="hover">
+        <title>Age 28 — Gen X: 42.5</title>
+        <rect id="p1-mark-gen-x-age-28" class="bar" x="124.90" y="133" width="34.20" height="119" fill="#ea580c"/>
+        <rect class="hit" x="124.90" y="56" width="34.20" height="196" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Age 36 — Gen X: 61.2</title>
+        <rect id="p1-mark-gen-x-age-36" class="bar" x="289.90" y="80.64" width="34.20" height="171.36" fill="#ea580c"/>
+        <rect class="hit" x="289.90" y="56" width="34.20" height="196" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p1-series-gen-z-millennials" class="series">
+      <g class="hover">
+        <title>Age 28 — Gen Z / Millennials: 38.3</title>
+        <rect id="p1-mark-gen-z-millennials-age-28" class="bar" x="160.10" y="144.76" width="34.20" height="107.24" fill="#059669"/>
+        <rect class="hit" x="160.10" y="56" width="34.20" height="196" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Age 36 — Gen Z / Millennials: 57.2</title>
+        <rect id="p1-mark-gen-z-millennials-age-36" class="bar" x="325.10" y="91.84" width="34.20" height="160.16" fill="#059669"/>
+        <rect class="hit" x="325.10" y="56" width="34.20" height="196" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p1-legend">
+      <rect id="p1-legend-swatch-baby-boomers" x="63" y="296" width="11" height="11" fill="#2563eb"/>
+      <text id="p1-legend-label-baby-boomers" class="legend-label" x="79" y="305" fill="#1f2328" font-size="11" style="font-size:11px">Baby boomers</text>
+      <rect id="p1-legend-swatch-gen-x" x="171" y="296" width="11" height="11" fill="#ea580c"/>
+      <text id="p1-legend-label-gen-x" class="legend-label" x="187" y="305" fill="#1f2328" font-size="11" style="font-size:11px">Gen X</text>
+      <rect id="p1-legend-swatch-gen-z-millennials" x="234" y="296" width="11" height="11" fill="#059669"/>
+      <text id="p1-legend-label-gen-z-millennials" class="legend-label" x="250" y="305" fill="#1f2328" font-size="11" style="font-size:11px">Gen Z / Millennials</text>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="519" fill="#6b7280">Individual-level rate: share of adults who are the householder or</text>
-  <text class="caption" x="24" y="532" fill="#6b7280">spouse of an owner. Source: Apartment List, 2025 Millennial…</text>
-  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Homeownership rate at ages 28 and 36, current cohort vs parents' generat…</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="60" y1="156" x2="390" y2="156" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="52" y="160" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="141.71" x2="390" y2="141.71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="52" y="145.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="127.43" x2="390" y2="127.43" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="52" y="131.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="113.14" x2="390" y2="113.14" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="52" y="117.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="98.86" x2="390" y2="98.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="52" y="102.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="60" y1="84.57" x2="390" y2="84.57" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="52" y="88.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
-      <line class="grid" x1="60" y1="70.29" x2="390" y2="70.29" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-6" class="tick" x="52" y="74.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
+  <rect class="panel-edge" x="448" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">ACS owner share by age band</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="60" y1="252" x2="390" y2="252" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="52" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="224" x2="390" y2="224" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="52" y="228" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="196" x2="390" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="52" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="168" x2="390" y2="168" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="52" y="172" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="60" y1="140" x2="390" y2="140" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="52" y="144" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="60" y1="112" x2="390" y2="112" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="52" y="116" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="60" y1="84" x2="390" y2="84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-6" class="tick" x="52" y="88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
       <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-7" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">70</text>
+      <text id="p2-ytick-7" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">70</text>
     </g>
-    <g id="p4-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="156" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="156" x2="390" y2="156" stroke="#9ca3af" stroke-width="1"/>
+    <g id="p2-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="252" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="252" x2="390" y2="252" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p4-x-axis-title" class="axis-title" x="225" y="200" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Age reached</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="106" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 106)">% owning home</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-age-28" class="tick" x="142.50" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Age 28</text>
-      <text id="p4-xtick-age-36" class="tick" x="307.50" y="174" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Age 36</text>
+    <text id="p2-y-axis-title" class="axis-title" x="14" y="154" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 154)">% owner</text>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-2009" class="tick" x="93" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2009</text>
+      <text id="p2-xtick-2012" class="tick" x="159" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2012</text>
+      <text id="p2-xtick-2016" class="tick" x="225" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2016</text>
+      <text id="p2-xtick-2020" class="tick" x="291" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p2-xtick-2024" class="tick" x="357" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
     </g>
-    <g id="p4-series-baby-boomers-at-that-age" class="series">
-      <rect id="p4-mark-baby-boomers-at-that-age-age-28" class="bar" x="89.70" y="92.57" width="34.20" height="63.43" fill="#2563eb"/>
-      <rect id="p4-mark-baby-boomers-at-that-age-age-36" class="bar" x="254.70" y="65" width="34.20" height="91" fill="#2563eb"/>
+    <g id="p2-series-25-34" class="series">
+      <path id="p2-line-25-34" class="line" d="M 93 125.16 L 159 136.08 L 225 146.72 L 291 143.08 L 357 136.92" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="hover">
+        <title>2009 — 25-34: 45.3</title>
+        <circle id="p2-mark-25-34-2009" class="point" cx="93" cy="125.16" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="93" cy="125.16" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2012 — 25-34: 41.4</title>
+        <circle id="p2-mark-25-34-2012" class="point" cx="159" cy="136.08" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="159" cy="136.08" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2016 — 25-34: 37.6</title>
+        <circle id="p2-mark-25-34-2016" class="point" cx="225" cy="146.72" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="225" cy="146.72" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2020 — 25-34: 38.9</title>
+        <circle id="p2-mark-25-34-2020" class="point" cx="291" cy="143.08" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="291" cy="143.08" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2024 — 25-34: 41.1</title>
+        <circle id="p2-mark-25-34-2024" class="point" cx="357" cy="136.92" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="357" cy="136.92" r="8" fill="#000" fill-opacity="0"/>
+      </g>
     </g>
-    <g id="p4-series-gen-x-at-that-age" class="series">
-      <rect id="p4-mark-gen-x-at-that-age-age-28" class="bar" x="124.90" y="95.29" width="34.20" height="60.71" fill="#ea580c"/>
-      <rect id="p4-mark-gen-x-at-that-age-age-36" class="bar" x="289.90" y="68.57" width="34.20" height="87.43" fill="#ea580c"/>
+    <g id="p2-series-35-44" class="series">
+      <path id="p2-line-35-44" class="line" d="M 93 67.48 L 159 77.28 L 225 89.88 L 291 87.36 L 357 81.48" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="hover">
+        <title>2009 — 35-44: 65.9</title>
+        <circle id="p2-mark-35-44-2009" class="point" cx="93" cy="67.48" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="93" cy="67.48" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2012 — 35-44: 62.4</title>
+        <circle id="p2-mark-35-44-2012" class="point" cx="159" cy="77.28" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="159" cy="77.28" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2016 — 35-44: 57.9</title>
+        <circle id="p2-mark-35-44-2016" class="point" cx="225" cy="89.88" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="225" cy="89.88" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2020 — 35-44: 58.8</title>
+        <circle id="p2-mark-35-44-2020" class="point" cx="291" cy="87.36" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="291" cy="87.36" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2024 — 35-44: 60.9</title>
+        <circle id="p2-mark-35-44-2024" class="point" cx="357" cy="81.48" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="357" cy="81.48" r="8" fill="#000" fill-opacity="0"/>
+      </g>
     </g>
-    <g id="p4-series-millennials-gen-z-2025-at-that-age" class="series">
-      <rect id="p4-mark-millennials-gen-z-2025-at-that-age-age-28" class="bar" x="160.10" y="101.29" width="34.20" height="54.71" fill="#059669"/>
-      <rect id="p4-mark-millennials-gen-z-2025-at-that-age-age-36" class="bar" x="325.10" y="74.29" width="34.20" height="81.71" fill="#059669"/>
+    <g id="p2-legend">
+      <rect id="p2-legend-swatch-25-34" x="148" y="296" width="11" height="11" fill="#2563eb"/>
+      <text id="p2-legend-label-25-34" class="legend-label" x="164" y="305" fill="#1f2328" font-size="11" style="font-size:11px">25-34</text>
+      <rect id="p2-legend-swatch-35-44" x="214" y="296" width="11" height="11" fill="#ea580c"/>
+      <text id="p2-legend-label-35-44" class="legend-label" x="230" y="305" fill="#1f2328" font-size="11" style="font-size:11px">35-44</text>
     </g>
-    <g id="p4-legend">
-      <rect id="p4-legend-swatch-baby-boomers-at-that-age" x="62" y="214" width="11" height="11" fill="#2563eb"/>
-      <text id="p4-legend-label-baby-boomers-at-that-age" class="legend-label" x="78" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Baby Boomers (at that age)</text>
-      <rect id="p4-legend-swatch-gen-x-at-that-age" x="236" y="214" width="11" height="11" fill="#ea580c"/>
-      <text id="p4-legend-label-gen-x-at-that-age" class="legend-label" x="252" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Gen X (at that age)</text>
-      <rect id="p4-legend-swatch-millennials-gen-z-2025-at-that-age" x="101" y="234" width="11" height="11" fill="#059669"/>
-      <text id="p4-legend-label-millennials-gen-z-2025-at-that-age" class="legend-label" x="117" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Millennials/Gen Z (2025, at that age)</text>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="452" y="519" fill="#6b7280">Household-head homeownership rate. Source: Redfin analysis of CPS</text>
-  <text class="caption" x="452" y="532" fill="#6b7280">Annual Social and Economic Supplement via IPUMS-CPS, Jan 2026.</text>
-  <rect class="panel-edge" x="20" y="554" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="554" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">US homeownership rate, householders aged 25-34 (national)</text>
-    <g id="p5-gridlines">
-      <line class="grid" x1="60" y1="187.84" x2="390" y2="187.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-0" class="tick" x="52" y="191.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="161.47" x2="390" y2="161.47" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-1" class="tick" x="52" y="165.47" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="135.10" x2="390" y2="135.10" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-2" class="tick" x="52" y="139.10" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="108.74" x2="390" y2="108.74" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-3" class="tick" x="52" y="112.74" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="82.37" x2="390" y2="82.37" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-4" class="tick" x="52" y="86.37" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
-    </g>
-    <g id="p5-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="187.84" x2="390" y2="187.84" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p5-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
-    <text id="p5-y-axis-title" class="axis-title" x="14" y="121.92" fill="#1f2328" font-size="9" style="font-size:9px" text-anchor="middle" transform="rotate(-90 14 121.92)">% owning home, age 25-34</text>
-    <g id="p5-x-axis-labels">
-      <text id="p5-xtick-2009" class="tick" x="71" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 71 201.84)">2009</text>
-      <text id="p5-xtick-2010" class="tick" x="93" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 93 201.84)">2010</text>
-      <text id="p5-xtick-2011" class="tick" x="115" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115 201.84)">2011</text>
-      <text id="p5-xtick-2012" class="tick" x="137" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 137 201.84)">2012</text>
-      <text id="p5-xtick-2013" class="tick" x="159" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 159 201.84)">2013</text>
-      <text id="p5-xtick-2014" class="tick" x="181" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 181 201.84)">2014</text>
-      <text id="p5-xtick-2015" class="tick" x="203" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 203 201.84)">2015</text>
-      <text id="p5-xtick-2016" class="tick" x="225" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 201.84)">2016</text>
-      <text id="p5-xtick-2017" class="tick" x="247" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 247 201.84)">2017</text>
-      <text id="p5-xtick-2018" class="tick" x="269" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 269 201.84)">2018</text>
-      <text id="p5-xtick-2019" class="tick" x="291" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 291 201.84)">2019</text>
-      <text id="p5-xtick-2020" class="tick" x="313" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 313 201.84)">2020</text>
-      <text id="p5-xtick-2021" class="tick" x="335" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 335 201.84)">2021</text>
-      <text id="p5-xtick-2022" class="tick" x="357" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357 201.84)">2022</text>
-      <text id="p5-xtick-2023" class="tick" x="379" y="201.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 379 201.84)">2023</text>
-    </g>
-    <g id="p5-series-owner-rate-age-25-34" class="series">
-      <path id="p5-line-owner-rate-age-25-34" class="line" d="M 71 68.39 L 93 71.29 L 115 74.46 L 137 78.68 L 159 82.10 L 181 85.00 L 203 87.11 L 225 88.70 L 247 87.64 L 269 87.64 L 291 86.85 L 313 85.27 L 335 83.42 L 357 81.58 L 379 80.26" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2009" class="point" cx="71" cy="68.39" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2010" class="point" cx="93" cy="71.29" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2011" class="point" cx="115" cy="74.46" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2012" class="point" cx="137" cy="78.68" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2013" class="point" cx="159" cy="82.10" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2014" class="point" cx="181" cy="85.00" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2015" class="point" cx="203" cy="87.11" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2016" class="point" cx="225" cy="88.70" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2017" class="point" cx="247" cy="87.64" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2018" class="point" cx="269" cy="87.64" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2019" class="point" cx="291" cy="86.85" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2020" class="point" cx="313" cy="85.27" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2021" class="point" cx="335" cy="83.42" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2022" class="point" cx="357" cy="81.58" r="3" fill="#2563eb"/>
-      <circle id="p5-mark-owner-rate-age-25-34-2023" class="point" cx="379" cy="80.26" r="3" fill="#2563eb"/>
-    </g>
-    <g id="p5-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="835" fill="#6b7280">ACS 5-year, table B25007, householder tenure by age, all states</text>
-  <text class="caption" x="24" y="848" fill="#6b7280">summed. Rate fell from the post-recession peak and has only partly…</text>
-  <text class="footnote" x="20" y="880" fill="#6b7280">Two independent methodologies (individual-level vs household-head rate) give different magnitudes; both point the same direction. In-corpus ACS</text>
-  <text class="footnote" x="20" y="894" fill="#6b7280">series only reaches back to 2009, so it corroborates but cannot alone establish the multi-generation comparison.</text>
   <g id="brand">
-  <svg x="20" y="906" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -364,55 +342,42 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="921" fill="#374151">AskAmerica · askamerica.ai</text>
-    <text class="byline" x="860" y="921" fill="#6b7280" text-anchor="end">Prepared 2026-09-26</text>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:63581/a/564eadf4d9ec357ecc36aeab42eb31fa.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:51058/a/699bdc840a9d0a292fc460d67cdebfec.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>Younger Americans today own homes at meaningfully lower rates than earlier generations did at the same age — the size of the gap depends on which generations and which exact age you compare, but every credible age-controlled measure points the same direction. Comparing <strong>Millennials to Baby Boomers at age 30</strong> (an individual-level ownership measure from Census Bureau microdata), Millennials are about <strong>31% less likely</strong> to own a home (33% vs. 48%); against the Silent Generation the gap is <strong>40% less likely</strong> (33% vs. 55%). Comparing <strong>Gen Z to Gen X at age 28</strong> using a household-head measure from the Current Population Survey, the gap is smaller but still real: about <strong>10% less likely</strong> (38.3% vs. 42.5%). A parallel check in this corpus's own ACS data shows the national homeownership rate for householders aged 25-34 fell from 45.3% in 2009 to a low of 37.6% in 2016 and has only partially recovered to 40.8% by 2023 — still well below the 2009 level, corroborating the trend though it cannot by itself span multiple generations since ACS microdata here only reaches back to 2009.</p>
+<p>At the same age, today's young adults are about 4 to 6 percentage points less likely to own than earlier generations, or roughly 10 percent less likely in relative terms. Redfin's CPS analysis (2025): at 28, Gen Z owns at 38.3% versus 42.5% for Gen X and 44.4% for boomers (gap 4.2 and 6.1 points). At 36, millennials own at 57.2% versus 61.2% and 63.7% (gap 4.0 and 6.5 points). Millennials at 28 were at 36.8%, so Gen Z is slightly ahead of millennials.</p>
 </section>
 <section>
-<h2>Why the estimates differ</h2>
-<p>Two independent research shops measure this differently, and both are legitimate:</p><ul><li><strong>Apartment List</strong> uses an <em>individual-level</em> rate: the share of all adults (not households) who are either the householder or the householder's spouse in an owner-occupied home. This is more sensitive to trends like adult children living with parents, and tends to read lower and show a larger generational gap.</li><li><strong>Redfin</strong> uses a <em>household-head</em> rate from the Current Population Survey Annual Social and Economic Supplement (via IPUMS-CPS, spanning 1976-2025): the share of household heads of a given generation who own vs. rent. People still living with parents or other family are excluded from the calculation entirely for their generation, which tends to narrow the measured gap somewhat.</li></ul><p>Neither is "more correct" — they answer slightly different questions (what share of all young adults own homes, vs. what share of young adults who have formed their own household own homes). Reporting a single number without naming which measure it is would overstate the precision of the answer.</p>
-</section>
-<section>
-<h2>The numbers, generation by generation</h2>
-<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s5"><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th><label class="srth" for="s3-t1-s1">Comparison<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s2">Older generation<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">Younger generation<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">Relative gap<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s5">Measure / source<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>At age 30</td><td>Silent Gen: 55%</td><td>Millennials: 33%</td><td>-40%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Baby Boomers: 48%</td><td>Millennials: 33%</td><td>-31%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Gen X: 42%</td><td>Millennials: 33%</td><td>-21%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 28</td><td>Baby Boomers: 44.4%</td><td>Gen Z (2025): 38.3%</td><td>-14%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 28</td><td>Gen X: 42.5%</td><td>Gen Z (2025): 38.3%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 36</td><td>Baby Boomers: 63.7%</td><td>Millennials (2025): 57.2%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 36</td><td>Gen X: 61.2%</td><td>Millennials (2025): 57.2%</td><td>-7%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr></tbody><tbody class="srt s1"><tr><td>At age 36</td><td>Baby Boomers: 63.7%</td><td>Millennials (2025): 57.2%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 36</td><td>Gen X: 61.2%</td><td>Millennials (2025): 57.2%</td><td>-7%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 30</td><td>Silent Gen: 55%</td><td>Millennials: 33%</td><td>-40%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Baby Boomers: 48%</td><td>Millennials: 33%</td><td>-31%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Gen X: 42%</td><td>Millennials: 33%</td><td>-21%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 28</td><td>Baby Boomers: 44.4%</td><td>Gen Z (2025): 38.3%</td><td>-14%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 28</td><td>Gen X: 42.5%</td><td>Gen Z (2025): 38.3%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr></tbody><tbody class="srt s2"><tr><td>At age 36</td><td>Baby Boomers: 63.7%</td><td>Millennials (2025): 57.2%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 36</td><td>Gen X: 61.2%</td><td>Millennials (2025): 57.2%</td><td>-7%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 30</td><td>Silent Gen: 55%</td><td>Millennials: 33%</td><td>-40%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Baby Boomers: 48%</td><td>Millennials: 33%</td><td>-31%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 28</td><td>Baby Boomers: 44.4%</td><td>Gen Z (2025): 38.3%</td><td>-14%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 28</td><td>Gen X: 42.5%</td><td>Gen Z (2025): 38.3%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 30</td><td>Gen X: 42%</td><td>Millennials: 33%</td><td>-21%</td><td>Individual-level, Apartment List / Census Bureau</td></tr></tbody><tbody class="srt s3"><tr><td>At age 36</td><td>Baby Boomers: 63.7%</td><td>Millennials (2025): 57.2%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 36</td><td>Gen X: 61.2%</td><td>Millennials (2025): 57.2%</td><td>-7%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 28</td><td>Baby Boomers: 44.4%</td><td>Gen Z (2025): 38.3%</td><td>-14%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 28</td><td>Gen X: 42.5%</td><td>Gen Z (2025): 38.3%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 30</td><td>Silent Gen: 55%</td><td>Millennials: 33%</td><td>-40%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Baby Boomers: 48%</td><td>Millennials: 33%</td><td>-31%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Gen X: 42%</td><td>Millennials: 33%</td><td>-21%</td><td>Individual-level, Apartment List / Census Bureau</td></tr></tbody><tbody class="srt s4"><tr><td>At age 36</td><td>Gen X: 61.2%</td><td>Millennials (2025): 57.2%</td><td>-7%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 28</td><td>Gen X: 42.5%</td><td>Gen Z (2025): 38.3%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 36</td><td>Baby Boomers: 63.7%</td><td>Millennials (2025): 57.2%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 28</td><td>Baby Boomers: 44.4%</td><td>Gen Z (2025): 38.3%</td><td>-14%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 30</td><td>Gen X: 42%</td><td>Millennials: 33%</td><td>-21%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Baby Boomers: 48%</td><td>Millennials: 33%</td><td>-31%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Silent Gen: 55%</td><td>Millennials: 33%</td><td>-40%</td><td>Individual-level, Apartment List / Census Bureau</td></tr></tbody><tbody class="srt s5"><tr><td>At age 28</td><td>Baby Boomers: 44.4%</td><td>Gen Z (2025): 38.3%</td><td>-14%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 28</td><td>Gen X: 42.5%</td><td>Gen Z (2025): 38.3%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 36</td><td>Baby Boomers: 63.7%</td><td>Millennials (2025): 57.2%</td><td>-10%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 36</td><td>Gen X: 61.2%</td><td>Millennials (2025): 57.2%</td><td>-7%</td><td>Household-head, Redfin / CPS-ASEC via IPUMS</td></tr><tr><td>At age 30</td><td>Silent Gen: 55%</td><td>Millennials: 33%</td><td>-40%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Baby Boomers: 48%</td><td>Millennials: 33%</td><td>-31%</td><td>Individual-level, Apartment List / Census Bureau</td></tr><tr><td>At age 30</td><td>Gen X: 42%</td><td>Millennials: 33%</td><td>-21%</td><td>Individual-level, Apartment List / Census Bureau</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>The pattern holds across both data sources and both metrics: each generation since the Silent Generation has bought homes more slowly than the one before it at the same age, per Apartment List's analysis, and the gap between the two most recent generations and their parents' generation runs roughly 7% to 40% relative, narrower in the household-head measure and wider in the individual-level measure, and generally wider the younger the age compared (the housing-formation gap has been narrowing somewhat as Millennials age into their late 30s, per Redfin, since the 2008 financial crisis hit Gen X's home equity too around the same calendar years).</p>
-</section>
-<section>
-<h2>Corroborating check in this corpus</h2>
-<p>This connector's own Census ACS data (table <code>census.acs_housing_tenure_by_age</code>, ACS 5-year estimates, table B25007) does not carry a generation label or reach back before 2009, so it cannot on its own reproduce a Boomer-vs-Millennial comparison. But it does let us check the recent trajectory of the 25-34 age band nationally (summing across all states): the homeownership rate for that age band fell from 45.3% in 2009 to a trough of 37.6% in 2016 (a period spanning the post-2008 recession's effect on young buyers), before partially recovering to 40.8% by 2023 — still 4.5 points below the 2009 level. This is consistent with, but narrower in scope than, the multi-generation comparisons above; it reflects the same age band across 14 years of one persistent (largely Millennial, later Gen Z) cohort turnover, not a same-age comparison of distinct generations decades apart.</p>
+<h2>Independent check from the warehouse (ACS)</h2>
+<p>Owner share of occupied units by householder age, national sum of states, 5-year ACS: ages 25-34 were 45.3% (2009), 37.6% (2016 low), 41.1% (2024). Ages 35-44: 65.9%, 57.9%, 60.9%. Ages 45-54: 74.2% in 2009 vs 69.6% in 2024. Under 25: 16.8% vs 16.2%. So ownership in the 25-44 bands has recovered from the mid-2010s trough but remains 4-5 points below 2009 (the 2009 vintage covers 2005-09, a housing-boom period). This corroborates a gap of about 4-5 points, but spans only 15 years.</p>
 </section>
 <section>
 <h2>Caveats</h2>
-<ul><li>Generational birth-year boundaries (Silent, Boomer, Gen X, Millennial, Gen Z) are conventions, not census categories, and different researchers use slightly different cutoffs.</li><li>The two external sources use somewhat different generational age brackets and calendar years, so their generational rates are internally consistent within each source but not perfectly interchangeable across sources.</li><li>Both external figures come from CPS/ACS microdata reprocessed by Apartment List and Redfin respectively; this response did not re-derive the individual-level or CPS-ASEC generational series from raw microdata, since this corpus's own tables do not carry the individual/generation-linked fields needed to reproduce them independently. The in-corpus ACS check above is an independent partial corroboration, not a full replication.</li></ul>
+<ul><li>Redfin counts household heads only and excludes people living with parents or relatives; including them would make the population-wide gap larger, since young adults now head fewer households.</li><li>Redfin ages are single years from CPS; ACS uses 10-year bands and a rate over occupied units, not people. The two are not directly comparable.</li><li>I did not recompute the CPS figures; they come from Redfin's page. A different write-up (MPA Magazine) shows far lower figures on a different methodology and was not used.</li><li>Relative gap: 4.2/44.4 is about 9%, 6.5/63.7 about 10%.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Full generation-matched history in warehouse</strong>: Warehouse starts 2009; the pre-2009 boomer comparison comes only from Redfin.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
 <p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 15 rows — 21169 ms</summary><pre><code>SELECT &quot;year&quot;,
-  SUM(owner_25_to_34) AS owners_25_34,
-  SUM(owner_25_to_34) + SUM(renter_25_to_34) AS total_25_34,
-  ROUND(100.0*SUM(owner_25_to_34)/(SUM(owner_25_to_34)+SUM(renter_25_to_34)),1) AS rate_25_34
-FROM census.acs_housing_tenure_by_age
-WHERE geography = 'state'
-GROUP BY &quot;year&quot;
-ORDER BY &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 16 rows — 2189 ms</summary><pre><code>SELECT &quot;year&quot;, SUM(owner_25_to_34) o2, SUM(renter_25_to_34) r2, SUM(owner_35_to_44) o3, SUM(renter_35_to_44) r3, SUM(owner_15_to_24) o1, SUM(renter_15_to_24) r1, SUM(owner_45_to_54) o4, SUM(renter_45_to_54) r4 FROM census.acs_housing_tenure_by_age WHERE geography='state' GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.apartmentlist.com/research/millennial-homeownership-2025">Apartment List's 2025 Millennial Homeownership Report</a> <span class="note">— Individual-level homeownership rate by generation at age 30, using Census Bureau ACS/CPS microdata</span></li>
-<li><a href="https://www.redfin.com/news/homeownership-rate-by-generation-2025/">Redfin: More Gen Zers are Buying Homes, But It's a Trickle, Not a Flood</a> <span class="note">— Household-head homeownership rate by generation at matched ages, CPS Annual Social and Economic Supplement via IPUMS-CPS, published Jan 2026</span></li>
-<li>census.acs_housing_tenure_by_age (ACS 5-year, table B25007) <span class="note">— In-house corroborating check: national owner-occupied rate for householders aged 25-34, 2009-2023</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, SUM(owner_25_to_34) AS owners_25_34, SUM(owner_25_to_34)+SUM(renter_25_to_34) AS total_25_34, ROUND(100.0*SUM(owner_25_to_34)/(SUM(owner_25_to_34)+SUM(renter_25_to_34)),1) AS rate_25_34 FROM census.acs_housing_tenure_by_age WHERE geography = 'state' GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details></li>
+<li><a href="https://www.redfin.com/news/homeownership-rate-by-generation-2025/">Redfin, homeownership rate by generation 2025</a> <span class="note">— IPUMS-CPS ASEC 1976-2025</span></li>
+<li><a href="https://www.census.gov/data/developers/data-sets/acs-5year.html">census.acs_housing_tenure_by_age</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, SUM(owner_25_to_34) o2, SUM(renter_25_to_34) r2, SUM(owner_35_to_44) o3, SUM(renter_35_to_44) r3, SUM(owner_15_to_24) o1, SUM(renter_15_to_24) r1, SUM(owner_45_to_54) o4, SUM(renter_45_to_54) r4 FROM census.acs_housing_tenure_by_age WHERE geography='state' GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

@@ -31,6 +31,8 @@ import sys
 
 import yaml
 
+import said_and_checked
+
 HEADLINES_RECENT_HOURS = 48
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -48,6 +50,7 @@ CORPUS = os.path.abspath(CORPUS)
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(CORPUS)))
 RESULTS_ROOT = os.path.join(REPO_ROOT, "comparative-test-results")
 NEWS_ROOT = os.path.join(REPO_ROOT, "news-check-results")
+SAID_ROOT = os.path.join(REPO_ROOT, "said-and-checked-results")
 
 OUT = os.path.join(HERE, "studies")
 
@@ -317,7 +320,7 @@ def build_headlines_archive(headlines):
         fh.write(page)
 
 
-def build_index(bank, entries, recent_headlines=None, archived_headlines=None):
+def build_index(bank, entries, recent_headlines=None, archived_headlines=None, said_days=None):
     """web/studies.html — categorized list, plain_question text linking to
     /studies/<qid>/ when a run exists, shown unlinked (greyed) otherwise.
 
@@ -331,6 +334,11 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None):
         by_category.setdefault(q.get("category", "uncategorized"), []).append((q, entry))
 
     cards = []
+    if said_days:
+        cards.append(
+            '<div class="study-cat"><h2>Said &amp; Checked</h2>'
+            f'<ul>{"".join(said_and_checked.index_rows(said_days))}</ul></div>'
+        )
     if recent_headlines or archived_headlines:
         rows = _headline_rows(recent_headlines)
         if not rows:
@@ -470,16 +478,24 @@ def main():
     # delivered run (or was renamed/retired) — a prior build's stale page must not survive
     # into this one just because nothing overwrote it. "headlines-archive" is a standing page,
     # not a stale slug, so it's always kept.
+    said_days = said_and_checked.load_days(SAID_ROOT)
+    for day in said_days:
+        dest_dir = os.path.join(OUT, said_and_checked.slug(day))
+        os.makedirs(dest_dir, exist_ok=True)
+        with open(os.path.join(dest_dir, "index.html"), "w") as fh:
+            fh.write(said_and_checked.render_day(day, BACK_BANNER))
+
     live_slugs = ({q["id"] for q, e in zip(bank, entries) if e} | {h["slug"] for h in headlines}
-                  | {"headlines-archive"})
+                  | {"headlines-archive"} | {said_and_checked.slug(d) for d in said_days})
     for slug in os.listdir(OUT):
         if slug not in live_slugs and os.path.isdir(os.path.join(OUT, slug)):
             shutil.rmtree(os.path.join(OUT, slug))
 
-    build_index(bank, entries, recent_headlines, archived_headlines)
+    build_index(bank, entries, recent_headlines, archived_headlines, said_days)
     answered = sum(1 for e in entries if e)
     print(f"generated: studies.html + {answered} question pages + {len(recent_headlines)} recent "
-          f"headline pages + {len(archived_headlines)} archived ({len(bank)} in bank)")
+          f"headline pages + {len(archived_headlines)} archived + {len(said_days)} Said & Checked "
+          f"({len(bank)} in bank)")
 
 
 if __name__ == "__main__":
