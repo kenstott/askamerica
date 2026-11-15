@@ -117,6 +117,9 @@ def validate(doc, where):
         for ev in s.get("evidence") or []:
             _require(isinstance(ev, dict) and isinstance(ev.get("label"), str) and _is_url(ev.get("url")),
                      w, "evidence entries need label and url")
+            if ev.get("askamerica"):
+                _require(ev["url"].startswith("https://askamerica.ai/catalog/"), w,
+                         "an askamerica evidence entry links to the table's catalog page")
     # A counter-statement link is shown on both statements, so it must be recorded on both.
     by_id = {s["id"]: s for s in stmts}
     for s in stmts:
@@ -210,8 +213,12 @@ def _statement_html(s, by_id):
                    % html.escape(s["premise"])) + finding
     evidence = ""
     if s.get("evidence"):
+        # AskAmerica's own warehouse queries are listed first and marked, including a query
+        # that only bounds the answer.
+        ordered = sorted(s["evidence"], key=lambda e: not e.get("askamerica"))
         evidence = '<p class="evidence">Evidence: %s</p>' % ", ".join(
-            _link(e["url"], e["label"]) for e in s["evidence"])
+            ('<span class="aa">AskAmerica data</span> ' if e.get("askamerica") else "")
+            + _link(e["url"], e["label"]) for e in ordered)
     counters = []
     for other_id in s.get("counter_statements") or []:
         o = by_id[other_id]
@@ -350,6 +357,8 @@ def render_day(day, back_banner):
   details.fold .stmt:last-child {{ border-bottom: 0; margin-bottom: 0; padding-bottom: 0.2rem; }}
   .stmt:target {{ outline: 1px solid var(--amber); outline-offset: 8px; }}
   .tally {{ color: var(--text); font-size: 13px; margin-bottom: 1.5rem; }}
+  .evidence .aa {{ color: var(--bg); background: var(--amber); font-size: 10px; letter-spacing: 0.06em;
+                  text-transform: uppercase; padding: 1px 6px; margin-right: 0.2rem; }}
   .finding {{ margin-top: 0.6rem; }}
   .evidence, .src {{ margin-top: 0.4rem; font-size: 12px; color: var(--text-dim);
                      overflow-wrap: anywhere; }}
