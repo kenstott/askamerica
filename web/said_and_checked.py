@@ -50,6 +50,10 @@ LEGEND = [
                           "directly addresses the same point and says otherwise. A link is not a "
                           "finding about which is right, and a rating shown beside a "
                           "counter-statement rates that statement only."),
+    ("Said more than once", "When a speaker makes the same claim several times in similar words, it is "
+                            "listed once, with the other wordings and where each was said shown "
+                            "beneath it. Versions that differ on a figure, date or cause stay "
+                            "separate."),
     ("Contradicts own statement", "A link between two factual statements by the same speaker that "
                                   "cannot both be true on the same specific point. A link is not "
                                   "a finding about which one is right; each statement keeps its "
@@ -124,6 +128,11 @@ def validate(doc, where):
         for cd in s.get("counter_documents") or []:
             _require(isinstance(cd, dict) and isinstance(cd.get("label"), str) and _is_url(cd.get("url")),
                      w, "counter_documents entries need label and url")
+        # Other places the same speaker made the same claim, condensed into this entry.
+        for alt in s.get("also_said") or []:
+            _require(isinstance(alt, dict) and isinstance(alt.get("quote"), str) and alt["quote"].strip()
+                     and isinstance(alt.get("outlet"), str) and _is_url(alt.get("url")), w,
+                     "also_said entries need quote, outlet and url")
         for ev in s.get("evidence") or []:
             _require(isinstance(ev, dict) and isinstance(ev.get("label"), str) and _is_url(ev.get("url")),
                      w, "evidence entries need label and url")
@@ -178,7 +187,12 @@ def slug(day):
 
 
 def is_checked(s):
-    return s["kind"] in CHECKED_KINDS
+    return s["kind"] in CHECKED_KINDS and s.get("result") != "not_checked"
+
+
+def is_waiting(s):
+    """Checkable, but over the day's check cap: shown as "not yet checked"."""
+    return s["kind"] in CHECKED_KINDS and s.get("result") == "not_checked"
 
 
 def is_folded(s):
@@ -206,7 +220,10 @@ def result_summary(day):
     parts = ["%d %s" % (tally[r], RESULTS[r].lower()) for r in RESULTS if r in tally]
     checked = sum(tally.values())
     out = "%d checked" % checked + (": " + ", ".join(parts) if parts else "")
-    return out + " &middot; %d not checkable" % (len(stmts) - checked)
+    waiting = sum(1 for s in stmts if is_waiting(s))
+    if waiting:
+        out += " &middot; %d not yet checked" % waiting
+    return out + " &middot; %d not checkable" % (len(stmts) - checked - waiting)
 
 
 def _link(url, text):
@@ -221,7 +238,7 @@ def _excerpt(text, words=9):
 
 def _statement_html(s, by_id):
     kind = s["kind"]
-    if is_checked(s):
+    if is_checked(s) or is_waiting(s):
         badge_class, badge = "r-" + s["result"], RESULTS[s["result"]]
     else:
         badge_class, badge = "r-na", "Not checkable"
@@ -275,6 +292,13 @@ def _statement_html(s, by_id):
     if counters:
         counter = ('<p class="counter"><span>Counter-statement</span> %s</p>'
                    % " &middot; ".join(counters))
+    also = ""
+    if s.get("also_said"):
+        also = ('<details class="also"><summary>Said %d more time%s in similar words</summary><ul>%s</ul></details>'
+                % (len(s["also_said"]), "" if len(s["also_said"]) == 1 else "s",
+                   "".join('<li>\u201c%s\u201d <span class="where">%s</span></li>'
+                           % (html.escape(a["quote"]), _link(a["url"], a["outlet"]))
+                           for a in s["also_said"])))
     own = [
         '<a href="#s%d">\u201c%s\u201d</a> <span class="where">(%s)</span>'
         % (other_id, html.escape(_excerpt(by_id[other_id]["quote"])),
@@ -289,10 +313,11 @@ def _statement_html(s, by_id):
         '<div class="tags"><span class="badge %s">%s</span>'
         '<span class="kind">%s</span></div>'
         '<p class="context">%s</p>'
-        '<blockquote>%s</blockquote>%s%s%s'
+        '<blockquote>%s</blockquote>%s%s%s%s'
         '<p class="src">%s</p></div>'
         % (s["id"], badge_class, html.escape(badge), html.escape(KINDS[kind]),
-           html.escape(s["context"]), html.escape(s["quote"]), finding, evidence, counter, src_line)
+           html.escape(s["context"]), html.escape(s["quote"]), also, finding, evidence, counter,
+           src_line)
     )
 
 
@@ -334,12 +359,15 @@ def render_day(day, back_banner):
         shown = [s for s in items if not is_folded(s)]
         folded = [s for s in items if is_folded(s)]
         body = "".join(_statement_html(s, by_id) for s in shown)
-        if folded:
-            body += (
-                '<details class="fold"><summary>%d statement%s not checkable</summary>%s</details>'
-                % (len(folded), "" if len(folded) == 1 else "s",
-                   "".join(_statement_html(s, by_id) for s in folded))
-            )
+        # Two collapsed groups: statements waiting for a check, then those no data can settle.
+        for label, group in (("not yet checked", [s for s in folded if is_waiting(s)]),
+                             ("not checkable", [s for s in folded if not is_waiting(s)])):
+            if group:
+                body += (
+                    '<details class="fold"><summary>%d statement%s %s</summary>%s</details>'
+                    % (len(group), "" if len(group) == 1 else "s", label,
+                       "".join(_statement_html(s, by_id) for s in group))
+                )
         sections.append(
             '<section><h2>%s%s</h2><p class="office">%s</p>%s</section>'
             % (html.escape(name), party, html.escape(first["office"]), body)
@@ -401,6 +429,11 @@ def render_day(day, back_banner):
   blockquote {{ border-left: 2px solid var(--amber); padding-left: 0.9rem; color: var(--white);
                 overflow-wrap: anywhere; }}
   .context {{ color: var(--text-dim); font-size: 12px; margin-bottom: 0.4rem; }}
+  details.also {{ margin-top: 0.5rem; font-size: 13px; }}
+  details.also summary {{ cursor: pointer; color: var(--text-dim); font-size: 12px; }}
+  details.also ul {{ margin: 0.4rem 0 0; padding-left: 1.1rem; }}
+  details.also li {{ margin-bottom: 0.35rem; }}
+  details.also .where {{ color: var(--text-dim); font-size: 12px; }}
   .counter .where {{ color: var(--text-dim); font-size: 12px; }}
   .premise, .counter {{ margin-top: 0.7rem; font-size: 13px; overflow-wrap: anywhere; }}
   .counter span.rating {{ font-size: 12px; letter-spacing: 0; text-transform: none; margin: 0 0 0 0.3rem; }}
