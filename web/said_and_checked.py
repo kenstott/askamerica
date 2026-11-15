@@ -30,11 +30,12 @@ SOURCE_STATUS = {
 }
 LEGEND = [
     ("Supported", "Warehouse or external primary data confirms the statement."),
-    ("Contradicted", "Data exists and says something different."),
+    ("Contradicted", "A primary source, read directly, says something different on the specific "
+                     "point. The finding says so if that source's own inquiry is still open."),
     ("Unsupported", "No evidence was found in the AskAmerica warehouse or any external factual "
                     "source. This does not mean the statement is false."),
     ("Unsettled", "Evidence was found, but it does not decide the claim: it turns on how a law or "
-                  "a loose term is read, or on an investigation that has not reported."),
+                  "a loose term is read, or the evidence does not speak to the specific point."),
     ("Citejacked", "The speaker cites a source that does not say what the speaker claims."),
     ("Premised prediction", "An opinion or prediction that rests on a factual premise. The label "
                             "rates the premise only, never the opinion or prediction built on it."),
