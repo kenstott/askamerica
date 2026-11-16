@@ -18,13 +18,15 @@ export interface Env {
   R2_ACCOUNT_ID: string;
   R2_BUCKET: string;
   R2_TEMP_TOKEN: string;         // Cloudflare API token to mint scoped temp R2 creds
-  LS_WEBHOOK_SECRET: string;    // Lemon Squeezy webhook signing secret
-  LEMONSQUEEZY_API_KEY: string; // Lemon Squeezy API key (mints checkouts)
+  STRIPE_WEBHOOK_SECRET: string; // Stripe webhook endpoint signing secret (whsec_...)
+  STRIPE_SECRET_KEY: string;     // Stripe key (mints checkouts, reads customers)
   ADMIN_SECRET: string;         // shared secret for admin key issuance
   GITHUB_TOKEN: string;         // PAT w/ repo:issues scope on kenstott/govdata-ops (github-sync.ts)
 
   // Vars
   ENVIRONMENT: string;
+  STRIPE_PRICE_STARTER: string;  // Stripe price id of the Starter plan
+  STRIPE_PRICE_PRO: string;      // Stripe price id of the Pro plan
 }
 
 export interface QuotaRecord {
@@ -38,13 +40,4 @@ export const TIER_LIMITS: Record<string, number> = {
   starter:  50  * 1024 * 1024 * 1024,         // 50 GB
   pro:      500 * 1024 * 1024 * 1024,         // 500 GB
   internal: Number.MAX_SAFE_INTEGER,           // unlimited
-};
-
-// Maps Lemon Squeezy variant id -> tier. Includes both live and test ids so the
-// webhook attributes correctly in either mode.
-export const LS_VARIANT_TIERS: Record<string, string> = {
-  "1285257": "starter",  // live
-  "1667060": "pro",      // live
-  "1934204": "starter",  // test
-  "1934205": "pro",      // test
 };

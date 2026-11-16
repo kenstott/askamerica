@@ -70,6 +70,9 @@ const API = 'https://api.askamerica.ai';
 const params = new URLSearchParams(location.search);
 const stored = params.get('key') || localStorage.getItem('askamerica_api_key') || '';
 if (stored) document.getElementById('key').value = stored;
+if (params.get('paid')) {
+  document.getElementById('msg').textContent = 'Payment received. Your new plan is active within a minute.';
+}
 
 async function loadPlans() {
   const key = document.getElementById('key').value.trim();
@@ -112,7 +115,7 @@ function card(name, p, featured, oneTime) {
 }
 
 document.getElementById('key').addEventListener('keydown', e => { if (e.key === 'Enter') loadPlans(); });
-if (stored) loadPlans();
+if (stored && !params.get('paid')) loadPlans();
 </script>
 </body>
 </html>

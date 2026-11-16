@@ -1,50 +1,39 @@
 import { Env } from './types';
 import { resolveUser } from './quota';
+import { stripe } from './stripe';
 
-const STORE_ID = '285474';
+const SITE = 'https://askamerica.ai';
 
-// Checkout variant ids. These are the TEST ids while we validate billing —
-// swap to the live ids at launch (live: starter 1285257, pro 1667060), and
-// point the Worker's LEMONSQUEEZY_API_KEY at the live key.
-const CHECKOUT_VARIANTS: Record<string, string> = {
-  starter: '1934204',
-  pro:     '1934205',
-};
+// One-time prepaid passes (Stripe one-time prices → checkout.session.completed webhook).
+// Empty until such prices exist; fill with { price_id: bytes }.
+export const PREPAID_PRICES: Record<string, number> = {};
 
-// One-time prepaid passes (LS single-payment products → order_created webhook).
-// Empty until such products exist; fill with { variant_id: bytes }.
-const PREPAID_VARIANTS: Record<string, number> = {};
-
-/** Bytes granted by a one-time prepaid variant (0 if the variant isn't prepaid). */
-export function prepaidBytesFor(variantId: string): number {
-  return PREPAID_VARIANTS[variantId] ?? 0;
+/** Bytes granted by a one-time prepaid price (0 if the price isn't prepaid). */
+export function prepaidBytesFor(priceId: string): number {
+  return PREPAID_PRICES[priceId] ?? 0;
 }
 
-/** Create a hosted checkout via the LS API, returning its URL (custom.user_id baked in). */
-async function createCheckout(env: Env, variantId: string, userId: string): Promise<string | null> {
-  const res = await fetch('https://api.lemonsqueezy.com/v1/checkouts', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${env.LEMONSQUEEZY_API_KEY}`,
-      'Content-Type': 'application/vnd.api+json',
-      'Accept': 'application/vnd.api+json',
-    },
-    body: JSON.stringify({
-      data: {
-        type: 'checkouts',
-        attributes: { checkout_data: { custom: { user_id: userId } } },
-        relationships: {
-          store:   { data: { type: 'stores', id: STORE_ID } },
-          variant: { data: { type: 'variants', id: variantId } },
-        },
-      },
-    }),
+/**
+ * Create a Stripe-hosted checkout for one plan, returning its URL. Stripe Managed Payments is
+ * the merchant of record. user_id rides on the session and on the subscription it creates, so
+ * every subscription event names the AskAmerica user.
+ */
+async function createCheckout(env: Env, priceId: string, userId: string): Promise<string | null> {
+  const res = await stripe(env, 'POST', '/checkout/sessions', {
+    'mode': 'subscription',
+    'managed_payments[enabled]': 'true',
+    'line_items[0][price]': priceId,
+    'line_items[0][quantity]': '1',
+    'metadata[user_id]': userId,
+    'subscription_data[metadata][user_id]': userId,
+    'success_url': `${SITE}/upgrade.html?paid=1`,
+    'cancel_url': `${SITE}/upgrade.html`,
   });
   if (!res.ok) {
     return null;
   }
-  const data = await res.json<{ data?: { attributes?: { url?: string } } }>();
-  return data?.data?.attributes?.url ?? null;
+  const data = await res.json<{ url?: string }>();
+  return data.url ?? null;
 }
 
 export async function handleCheckout(request: Request, env: Env): Promise<Response> {
@@ -58,8 +47,8 @@ export async function handleCheckout(request: Request, env: Env): Promise<Respon
   }
 
   const [starter, pro] = await Promise.all([
-    createCheckout(env, CHECKOUT_VARIANTS.starter, userId),
-    createCheckout(env, CHECKOUT_VARIANTS.pro, userId),
+    createCheckout(env, env.STRIPE_PRICE_STARTER, userId),
+    createCheckout(env, env.STRIPE_PRICE_PRO, userId),
   ]);
   if (!starter || !pro) {
     return json({ error: 'checkout_unavailable' }, 502);

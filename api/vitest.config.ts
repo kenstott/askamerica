@@ -14,8 +14,10 @@ export default defineWorkersConfig(async () => {
             // Test-only secrets/bindings (D1/KV/AE/vars come from wrangler.toml).
             bindings: {
               TEST_MIGRATIONS: migrations,
-              LS_WEBHOOK_SECRET: 'test-webhook-secret',
-              LEMONSQUEEZY_API_KEY: 'test-ls-key',
+              STRIPE_WEBHOOK_SECRET: 'test-webhook-secret',
+              STRIPE_SECRET_KEY: 'sk_test_unit',
+              STRIPE_PRICE_STARTER: 'price_test_starter',
+              STRIPE_PRICE_PRO: 'price_test_pro',
               RESEND_API_KEY: 'test-resend',
               ADMIN_SECRET: 'test-admin',
               R2_ACCOUNT_ID: 'test-acct',

@@ -1,7 +1,8 @@
-import { env } from 'cloudflare:test';
-import { describe, it, expect } from 'vitest';
+import { env, fetchMock } from 'cloudflare:test';
+import { describe, it, expect, beforeAll, afterEach } from 'vitest';
 import { handleQuotaStatus, handleUsageReport } from '../src/metering';
-import { handleLemonSqueezyWebhook } from '../src/webhook';
+import { handleStripeWebhook } from '../src/webhook';
+import { handleCheckout, PREPAID_PRICES } from '../src/checkout';
 
 const GiB = 1024 * 1024 * 1024;
 const E = env as any;
@@ -43,21 +44,39 @@ async function quota(apiKey: string): Promise<any> {
   return r.json();
 }
 
-async function sign(body: string): Promise<string> {
+const NOW = Math.floor(Date.now() / 1000);
+
+async function sign(body: string, t = NOW): Promise<string> {
   const key = await crypto.subtle.importKey('raw', new TextEncoder().encode('test-webhook-secret'),
     { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-  const mac = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(body));
-  return [...new Uint8Array(mac)].map(b => b.toString(16).padStart(2, '0')).join('');
+  const mac = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(`${t}.${body}`));
+  const hex = [...new Uint8Array(mac)].map(b => b.toString(16).padStart(2, '0')).join('');
+  return `t=${t},v1=${hex}`;
 }
 
-async function webhook(payload: object, signature?: string): Promise<Response> {
+async function webhook(payload: Record<string, unknown>, signature?: string): Promise<Response> {
   const body = JSON.stringify(payload);
-  return handleLemonSqueezyWebhook(new Request('http://x/v1/webhooks/lemonsqueezy', {
+  return handleStripeWebhook(new Request('http://x/v1/webhooks/stripe', {
     method: 'POST',
-    headers: { 'X-Signature': signature ?? await sign(body), 'Content-Type': 'application/json' },
+    headers: { 'Stripe-Signature': signature ?? await sign(body), 'Content-Type': 'application/json' },
     body,
   }), env);
 }
+
+/** A Stripe subscription event for one of our prices (or any price), as Stripe shapes it. */
+function subEvent(type: string, price: string, status: string, userId?: string, customer = 'cus_1') {
+  return {
+    type: `customer.subscription.${type}`,
+    data: { object: {
+      id: 'sub_1', customer, status,
+      metadata: userId ? { user_id: userId } : {},
+      items: { data: [{ price: { id: price } }] },
+    } },
+  };
+}
+
+beforeAll(() => { fetchMock.activate(); fetchMock.disableNetConnect(); });
+afterEach(() => fetchMock.assertNoPendingInterceptors());
 
 // ── tests ────────────────────────────────────────────────────────────────────
 describe('metered consumption', () => {
@@ -91,48 +110,141 @@ describe('subscription lifecycle', () => {
   it('upgrade raises the limit and preserves used_bytes', async () => {
     const { apiKey, userId } = await seedUser();
     await meter(apiKey, 300 * 1024 * 1024);
-    const r = await webhook({
-      meta: { event_name: 'subscription_updated', custom_data: { user_id: userId } },
-      data: { id: 's1', attributes: { status: 'active', variant_id: 1934204, customer_id: 1, first_subscription_item: { subscription_id: 1 } } },
-    });
+    const r = await webhook(subEvent('updated', 'price_test_starter', 'active', userId));
     expect(r.status).toBe(200);
     const q = await quota(apiKey);
     expect(q.tier).toBe('starter');
     expect(q.limit_bytes).toBe(50 * GiB);
     expect(q.used_bytes).toBe(300 * 1024 * 1024);           // preserved
     expect(q.remaining_bytes).toBe(50 * GiB - 300 * 1024 * 1024);
+    const row = await E.DB.prepare('SELECT stripe_customer_id c, stripe_subscription_id s FROM users WHERE id = ?')
+      .bind(userId).first();
+    expect(row).toEqual({ c: 'cus_1', s: 'sub_1' });
+  });
+
+  it('grants on subscription created, and while trialing', async () => {
+    const { apiKey, userId } = await seedUser();
+    await webhook(subEvent('created', 'price_test_pro', 'trialing', userId));
+    expect((await quota(apiKey)).tier).toBe('pro');
   });
 
   it('does NOT grant on a non-active status (past_due)', async () => {
     const { apiKey, userId } = await seedUser('starter', 50 * GiB);
-    await webhook({
-      meta: { event_name: 'subscription_updated', custom_data: { user_id: userId } },
-      data: { id: 's', attributes: { status: 'past_due', variant_id: 1934204 } },
-    });
+    await webhook(subEvent('updated', 'price_test_starter', 'past_due', userId));
     expect((await quota(apiKey)).tier).toBe('free');
   });
 
-  it('downgrades to free on subscription_expired', async () => {
+  it('downgrades to free when the subscription is deleted', async () => {
     const { apiKey, userId } = await seedUser('starter', 50 * GiB);
-    await webhook({
-      meta: { event_name: 'subscription_expired', custom_data: { user_id: userId } },
-      data: { id: 's', attributes: {} },
-    });
+    await webhook(subEvent('deleted', 'price_test_starter', 'canceled', userId));
     expect((await quota(apiKey)).tier).toBe('free');
   });
 
-  it('derives user_id from email when custom_data is absent', async () => {
-    const { apiKey, email } = await seedUser();
-    const r = await webhook({
-      meta: { event_name: 'subscription_updated' },
-      data: { id: 's', attributes: { status: 'active', variant_id: 1934205, user_email: email.toUpperCase() } },
-    });
-    expect(r.status).toBe(200);
-    expect((await quota(apiKey)).tier).toBe('pro');          // 1934205 = pro
+  it('keeps the plan while a cancelled subscription is still active', async () => {
+    const { apiKey, userId } = await seedUser('starter', 50 * GiB);
+    const ev = subEvent('updated', 'price_test_starter', 'active', userId);
+    (ev.data.object as any).cancel_at_period_end = true;
+    await webhook(ev);
+    expect((await quota(apiKey)).tier).toBe('starter');
   });
 
-  it('rejects a webhook with a bad signature', async () => {
-    const r = await webhook({ meta: { event_name: 'subscription_updated' }, data: {} }, 'deadbeef');
-    expect(r.status).toBe(403);
+  it('derives user_id from the Stripe customer email when metadata is absent', async () => {
+    const { apiKey, email } = await seedUser();
+    fetchMock.get('https://api.stripe.com').intercept({ path: '/v1/customers/cus_mail' })
+      .reply(200, { id: 'cus_mail', email: email.toUpperCase() });
+    const r = await webhook(subEvent('updated', 'price_test_pro', 'active', undefined, 'cus_mail'));
+    expect(r.status).toBe(200);
+    expect((await quota(apiKey)).tier).toBe('pro');
+  });
+
+  it("ignores another product's subscription: no grant, no downgrade, no customer lookup", async () => {
+    const paid = await seedUser('pro', 500 * GiB);
+    const free = await seedUser();
+    // The same account sells other subscriptions; these name our users but not our prices.
+    expect((await webhook(subEvent('deleted', 'price_other_product', 'canceled', paid.userId))).status).toBe(200);
+    expect((await webhook(subEvent('updated', 'price_other_product', 'active', free.userId))).status).toBe(200);
+    expect((await webhook(subEvent('updated', 'price_other_product', 'active', undefined, 'cus_x'))).status).toBe(200);
+    expect((await quota(paid.apiKey)).tier).toBe('pro');
+    expect((await quota(free.apiKey)).tier).toBe('free');
+  });
+
+  it('asks Stripe to retry when the customer lookup fails', async () => {
+    fetchMock.get('https://api.stripe.com').intercept({ path: '/v1/customers/cus_down' }).reply(500, {});
+    const r = await webhook(subEvent('updated', 'price_test_pro', 'active', undefined, 'cus_down'));
+    expect(r.status).toBe(500);
+  });
+
+  it('rejects a webhook with a bad signature, a malformed one, or one signed for another body', async () => {
+    const ev = subEvent('updated', 'price_test_pro', 'active', 'u');
+    expect((await webhook(ev, 't=1,v1=deadbeef')).status).toBe(403);
+    expect((await webhook(ev, 'garbage')).status).toBe(403);
+    expect((await webhook(ev, await sign('{"other":"body"}'))).status).toBe(403);
+  });
+});
+
+describe('prepaid passes', () => {
+  const session = (userId: string, pi: string) => ({
+    type: 'checkout.session.completed',
+    data: { object: { mode: 'payment', payment_status: 'paid', payment_intent: pi,
+      metadata: { user_id: userId, price_id: 'price_test_pass' } } },
+  });
+
+  it('credits a paid pass once, and a refund takes it back once', async () => {
+    PREPAID_PRICES['price_test_pass'] = 10 * GiB;
+    try {
+      const { apiKey, userId } = await seedUser();
+      await webhook(session(userId, 'pi_1'));
+      await webhook(session(userId, 'pi_1'));                 // Stripe retry
+      expect((await quota(apiKey)).limit_bytes).toBe(11 * GiB);
+      const refund = { type: 'charge.refunded', data: { object: { payment_intent: 'pi_1' } } };
+      await webhook(refund);
+      await webhook(refund);
+      expect((await quota(apiKey)).limit_bytes).toBe(1 * GiB);
+    } finally {
+      delete PREPAID_PRICES['price_test_pass'];
+    }
+  });
+
+  it("ignores a paid session for a price that is not a pass, and a refund of someone else's charge", async () => {
+    const { apiKey, userId } = await seedUser();
+    await webhook(session(userId, 'pi_2'));                   // price_test_pass is not configured
+    await webhook({ type: 'charge.refunded', data: { object: { payment_intent: 'pi_unknown' } } });
+    expect((await quota(apiKey)).limit_bytes).toBe(1 * GiB);
+  });
+});
+
+describe('checkout', () => {
+  it('opens a Managed Payments subscription checkout per plan, carrying the user on both objects', async () => {
+    const { apiKey, userId } = await seedUser();
+    const seen: URLSearchParams[] = [];
+    fetchMock.get('https://api.stripe.com')
+      .intercept({ path: '/v1/checkout/sessions', method: 'POST' })
+      .reply(200, (req) => {
+        const form = new URLSearchParams(String(req.body));
+        seen.push(form);
+        return { url: `https://checkout.stripe.com/c/pay/${form.get('line_items[0][price]')}` };
+      }).times(2);
+    const r = await handleCheckout(new Request('http://x/v1/checkout', { headers: { 'X-API-Key': apiKey } }), env);
+    expect(r.status).toBe(200);
+    const body: any = await r.json();
+    expect(body.starter).toEqual({ price_usd: 19, quota_gb: 50, checkout_url: 'https://checkout.stripe.com/c/pay/price_test_starter' });
+    expect(body.pro.checkout_url).toBe('https://checkout.stripe.com/c/pay/price_test_pro');
+    expect(seen.length).toBe(2);
+    for (const form of seen) {
+      expect(form.get('mode')).toBe('subscription');
+      expect(form.get('managed_payments[enabled]')).toBe('true');
+      expect(form.get('metadata[user_id]')).toBe(userId);
+      expect(form.get('subscription_data[metadata][user_id]')).toBe(userId);
+    }
+  });
+
+  it('answers 502 when Stripe refuses a checkout, and 401 without a valid key', async () => {
+    const { apiKey } = await seedUser();
+    fetchMock.get('https://api.stripe.com')
+      .intercept({ path: '/v1/checkout/sessions', method: 'POST' }).reply(400, { error: {} }).times(2);
+    const r = await handleCheckout(new Request('http://x/v1/checkout', { headers: { 'X-API-Key': apiKey } }), env);
+    expect(r.status).toBe(502);
+    expect((await handleCheckout(new Request('http://x/v1/checkout'), env)).status).toBe(401);
+    expect((await handleCheckout(new Request('http://x/v1/checkout', { headers: { 'X-API-Key': 'nope' } }), env)).status).toBe(401);
   });
 });

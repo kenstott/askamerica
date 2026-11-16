@@ -1,7 +1,7 @@
 import { Env } from './types';
 import { handleRequestOtp, handleVerifyOtp } from './auth';
 import { handleUsageReport, handleQuotaStatus } from './metering';
-import { handleLemonSqueezyWebhook } from './webhook';
+import { handleStripeWebhook } from './webhook';
 import { handleCheckout } from './checkout';
 import { handleCredentials } from './credentials';
 import { handleAdminCreateKey, handleAdminGrant } from './admin';
@@ -77,8 +77,8 @@ export default {
       response = await handleQuotaStatus(request, env);
     } else if (method === 'GET' && path === '/v1/checkout') {
       response = await handleCheckout(request, env);
-    } else if (method === 'POST' && path === '/v1/webhooks/lemonsqueezy') {
-      response = await handleLemonSqueezyWebhook(request, env);
+    } else if (method === 'POST' && path === '/v1/webhooks/stripe') {
+      response = await handleStripeWebhook(request, env);
     } else if (method === 'GET' && path === '/v1/catalog/credentials') {
       response = await handleCredentials(request, env);
     } else if (method === 'POST' && path === '/v1/telemetry') {
