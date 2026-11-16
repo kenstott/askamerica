@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Speculative positioning is only weakly related to physical supply changes, at any lag — and what relationship exists points to positioning reacting to fundamentals, not anticipating them</title>
+<title>In gas, speculative positioning moves before and alongside inventory surprises; in crude it shows no reliable timing relationship</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -99,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Speculative positioning is only weakly related to physical supply changes, at any lag — and what relationship exists points to positioning reacting to fundamentals, not anticipating them</h1>
-<p class="subtitle">CFTC Disaggregated COT (managed-money net longs), WTI crude and Henry Hub natural gas, vs. EIA weekly stocks/storage, 2009-2026</p>
+<h1>In gas, speculative positioning moves before and alongside inventory surprises; in crude it shows no reliable timing relationship</h1>
+<p class="subtitle">CFTC Disaggregated COT (managed money, WTI 067651 and NYMEX nat gas 023651) vs EIA weekly stocks, 2010-2026, n about 870 weeks</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 599" width="880" height="599" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,116 +155,151 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="599" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Speculative positioning vs. physical supply: cross-correlation by lag</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">CFTC Disaggregated COT (managed-money net longs) vs. EIA weekly stocks/storage, 4-week changes, 2009-2026</text>
-  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">WTI crude: positioning vs. commercial stocks</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:16px">Correlation: change in managed-money net position (t) vs seasonal storage surprise (t+k)</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="13" style="font-size:13px" font-weight="600" text-anchor="middle">Correlation by lag k (positive k = positioning leads)</text>
     <g id="p1-gridlines">
-      <line class="grid" x1="76" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-0" class="tick" x="68" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.15</text>
-      <line class="grid" x1="76" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-1" class="tick" x="68" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.10</text>
-      <line class="grid" x1="76" y1="102.80" x2="390" y2="102.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-2" class="tick" x="68" y="106.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.05</text>
-      <line class="grid" x1="76" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-3" class="tick" x="68" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.00</text>
-      <line class="grid" x1="76" y1="71.60" x2="390" y2="71.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-4" class="tick" x="68" y="75.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.05</text>
-      <line class="grid" x1="76" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-5" class="tick" x="68" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.10</text>
+      <line class="grid" x1="76" y1="238" x2="390" y2="238" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="68" y="242" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.20</text>
+      <line class="grid" x1="76" y1="207.67" x2="390" y2="207.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="68" y="211.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.15</text>
+      <line class="grid" x1="76" y1="177.33" x2="390" y2="177.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="68" y="181.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.10</text>
+      <line class="grid" x1="76" y1="147" x2="390" y2="147" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="68" y="151" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.05</text>
+      <line class="grid" x1="76" y1="116.67" x2="390" y2="116.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="68" y="120.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.00</text>
+      <line class="grid" x1="76" y1="86.33" x2="390" y2="86.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="68" y="90.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.05</text>
+      <line class="grid" x1="76" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-6" class="tick" x="68" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.10</text>
     </g>
     <g id="p1-axes">
-      <line class="axis" x1="76" y1="56" x2="76" y2="134" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="76" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="76" y1="56" x2="76" y2="238" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="76" y1="238" x2="390" y2="238" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p1-x-axis-title" class="axis-title" x="233" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">lag (weeks)</text>
-    <text id="p1-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">correlation (r)</text>
+    <text id="p1-x-axis-title" class="axis-title" x="233" y="282" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">lag k (weeks)</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="147" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 147)">correlation</text>
     <g id="p1-x-axis-labels">
-      <text id="p1-xtick-positioning-leads-8wk" class="tick" x="98.43" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 98.43 148)">positioning leads 8wk</text>
-      <text id="p1-xtick-positioning-leads-4wk" class="tick" x="143.29" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 143.29 148)">positioning leads 4wk</text>
-      <text id="p1-xtick-positioning-leads-2wk" class="tick" x="188.14" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 188.14 148)">positioning leads 2wk</text>
-      <text id="p1-xtick-contemporaneous" class="tick" x="233" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 233 148)">contemporaneous</text>
-      <text id="p1-xtick-positioning-lags-2wk" class="tick" x="277.86" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 277.86 148)">positioning lags 2wk</text>
-      <text id="p1-xtick-positioning-lags-4wk" class="tick" x="322.71" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 322.71 148)">positioning lags 4wk</text>
-      <text id="p1-xtick-positioning-lags-8wk" class="tick" x="367.57" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 367.57 148)">positioning lags 8wk</text>
+      <text id="p1-xtick-4" class="tick" x="93.44" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-4</text>
+      <text id="p1-xtick-3" class="tick" x="128.33" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-3</text>
+      <text id="p1-xtick-2" class="tick" x="163.22" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-2</text>
+      <text id="p1-xtick-1" class="tick" x="198.11" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-1</text>
+      <text id="p1-xtick-0" class="tick" x="233" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <text id="p1-xtick-1" class="tick" x="267.89" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1</text>
+      <text id="p1-xtick-2" class="tick" x="302.78" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2</text>
+      <text id="p1-xtick-3" class="tick" x="337.67" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">3</text>
+      <text id="p1-xtick-4" class="tick" x="372.56" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">4</text>
     </g>
-    <g id="p1-series-r" class="series">
-      <rect id="p1-mark-r-positioning-leads-8wk" class="bar" x="84.07" y="64.74" width="27.71" height="22.46" fill="#2563eb"/>
-      <rect id="p1-mark-r-positioning-leads-4wk" class="bar" x="128.93" y="59.74" width="27.71" height="27.46" fill="#2563eb"/>
-      <rect id="p1-mark-r-positioning-leads-2wk" class="bar" x="173.79" y="66.30" width="27.71" height="20.90" fill="#2563eb"/>
-      <rect id="p1-mark-r-contemporaneous" class="bar" x="218.65" y="71.60" width="27.71" height="15.60" fill="#2563eb"/>
-      <rect id="p1-mark-r-positioning-lags-2wk" class="bar" x="263.50" y="80.02" width="27.71" height="7.18" fill="#2563eb"/>
-      <rect id="p1-mark-r-positioning-lags-4wk" class="bar" x="308.36" y="87.20" width="27.71" height="0.62" fill="#2563eb"/>
-      <rect id="p1-mark-r-positioning-lags-8wk" class="bar" x="353.22" y="84.39" width="27.71" height="2.81" fill="#2563eb"/>
+    <g id="p1-series-crude" class="series">
+      <path id="p1-line-crude" class="line" d="M 93.44 120.31 L 128.33 71.77 L 163.22 157.92 L 198.11 123.95 L 233 154.89 L 267.89 159.13 L 302.78 144.57 L 337.67 116.06 L 372.56 120.31" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="hover">
+        <title>-4 — Crude: -0.006</title>
+        <circle id="p1-mark-crude-4" class="point" cx="93.44" cy="120.31" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="93.44" cy="120.31" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>-3 — Crude: 0.074</title>
+        <circle id="p1-mark-crude-3" class="point" cx="128.33" cy="71.77" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="128.33" cy="71.77" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>-2 — Crude: -0.068</title>
+        <circle id="p1-mark-crude-2" class="point" cx="163.22" cy="157.92" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="163.22" cy="157.92" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>-1 — Crude: -0.012</title>
+        <circle id="p1-mark-crude-1" class="point" cx="198.11" cy="123.95" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="198.11" cy="123.95" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>0 — Crude: -0.063</title>
+        <circle id="p1-mark-crude-0" class="point" cx="233" cy="154.89" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="233" cy="154.89" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>1 — Crude: -0.07</title>
+        <circle id="p1-mark-crude-1" class="point" cx="267.89" cy="159.13" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="267.89" cy="159.13" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2 — Crude: -0.046</title>
+        <circle id="p1-mark-crude-2" class="point" cx="302.78" cy="144.57" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="302.78" cy="144.57" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>3 — Crude: 0.001</title>
+        <circle id="p1-mark-crude-3" class="point" cx="337.67" cy="116.06" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="337.67" cy="116.06" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>4 — Crude: -0.006</title>
+        <circle id="p1-mark-crude-4" class="point" cx="372.56" cy="120.31" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="372.56" cy="120.31" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p1-series-natural-gas" class="series">
+      <path id="p1-line-natural-gas" class="line" d="M 93.44 86.94 L 128.33 77.84 L 163.22 122.73 L 198.11 166.41 L 233 230.72 L 267.89 230.11 L 302.78 208.27 L 337.67 117.88 L 372.56 106.35" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="hover">
+        <title>-4 — Natural gas: 0.049</title>
+        <circle id="p1-mark-natural-gas-4" class="point" cx="93.44" cy="86.94" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="93.44" cy="86.94" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>-3 — Natural gas: 0.064</title>
+        <circle id="p1-mark-natural-gas-3" class="point" cx="128.33" cy="77.84" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="128.33" cy="77.84" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>-2 — Natural gas: -0.01</title>
+        <circle id="p1-mark-natural-gas-2" class="point" cx="163.22" cy="122.73" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="163.22" cy="122.73" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>-1 — Natural gas: -0.082</title>
+        <circle id="p1-mark-natural-gas-1" class="point" cx="198.11" cy="166.41" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="198.11" cy="166.41" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>0 — Natural gas: -0.188</title>
+        <circle id="p1-mark-natural-gas-0" class="point" cx="233" cy="230.72" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="233" cy="230.72" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>1 — Natural gas: -0.187</title>
+        <circle id="p1-mark-natural-gas-1" class="point" cx="267.89" cy="230.11" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="267.89" cy="230.11" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2 — Natural gas: -0.151</title>
+        <circle id="p1-mark-natural-gas-2" class="point" cx="302.78" cy="208.27" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="302.78" cy="208.27" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>3 — Natural gas: -0.002</title>
+        <circle id="p1-mark-natural-gas-3" class="point" cx="337.67" cy="117.88" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="337.67" cy="117.88" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>4 — Natural gas: 0.017</title>
+        <circle id="p1-mark-natural-gas-4" class="point" cx="372.56" cy="106.35" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="372.56" cy="106.35" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p1-legend">
+      <rect id="p1-legend-swatch-crude" x="135" y="296" width="11" height="11" fill="#2563eb"/>
+      <text id="p1-legend-label-crude" class="legend-label" x="151" y="305" fill="#1f2328" font-size="11" style="font-size:11px">Crude</text>
+      <rect id="p1-legend-swatch-natural-gas" x="200" y="296" width="11" height="11" fill="#ea580c"/>
+      <text id="p1-legend-label-natural-gas" class="legend-label" x="216" y="305" fill="#1f2328" font-size="11" style="font-size:11px">Natural gas</text>
     </g>
     <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="363" fill="#6b7280">n=873 weeks. Peak r=0.09 at positioning leading by 4 weeks - weak.</text>
-  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Henry Hub gas: positioning vs. Lower-48 storage</text>
-    <g id="p2-gridlines">
-      <line class="grid" x1="76" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-0" class="tick" x="68" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.15</text>
-      <line class="grid" x1="76" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-1" class="tick" x="68" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.10</text>
-      <line class="grid" x1="76" y1="102.80" x2="390" y2="102.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-2" class="tick" x="68" y="106.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-0.05</text>
-      <line class="grid" x1="76" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-3" class="tick" x="68" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.00</text>
-      <line class="grid" x1="76" y1="71.60" x2="390" y2="71.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-4" class="tick" x="68" y="75.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.05</text>
-      <line class="grid" x1="76" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-5" class="tick" x="68" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.10</text>
-    </g>
-    <g id="p2-axes">
-      <line class="axis" x1="76" y1="56" x2="76" y2="134" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="76" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p2-x-axis-title" class="axis-title" x="233" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">lag (weeks)</text>
-    <text id="p2-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">correlation (r)</text>
-    <g id="p2-x-axis-labels">
-      <text id="p2-xtick-positioning-leads-8wk" class="tick" x="98.43" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 98.43 148)">positioning leads 8wk</text>
-      <text id="p2-xtick-positioning-leads-4wk" class="tick" x="143.29" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 143.29 148)">positioning leads 4wk</text>
-      <text id="p2-xtick-positioning-leads-2wk" class="tick" x="188.14" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 188.14 148)">positioning leads 2wk</text>
-      <text id="p2-xtick-contemporaneous" class="tick" x="233" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 233 148)">contemporaneous</text>
-      <text id="p2-xtick-positioning-lags-2wk" class="tick" x="277.86" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 277.86 148)">positioning lags 2wk</text>
-      <text id="p2-xtick-positioning-lags-4wk" class="tick" x="322.71" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 322.71 148)">positioning lags 4wk</text>
-      <text id="p2-xtick-positioning-lags-8wk" class="tick" x="367.57" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 367.57 148)">positioning lags 8wk</text>
-    </g>
-    <g id="p2-series-r" class="series">
-      <rect id="p2-mark-r-positioning-leads-8wk" class="bar" x="84.07" y="86.26" width="27.71" height="0.94" fill="#2563eb"/>
-      <rect id="p2-mark-r-positioning-leads-4wk" class="bar" x="128.93" y="87.20" width="27.71" height="9.67" fill="#2563eb"/>
-      <rect id="p2-mark-r-positioning-leads-2wk" class="bar" x="173.79" y="87.20" width="27.71" height="33.70" fill="#2563eb"/>
-      <rect id="p2-mark-r-contemporaneous" class="bar" x="218.65" y="87.20" width="27.71" height="43.99" fill="#2563eb"/>
-      <rect id="p2-mark-r-positioning-lags-2wk" class="bar" x="263.50" y="87.20" width="27.71" height="30.89" fill="#2563eb"/>
-      <rect id="p2-mark-r-positioning-lags-4wk" class="bar" x="308.36" y="87.20" width="27.71" height="19.34" fill="#2563eb"/>
-      <rect id="p2-mark-r-positioning-lags-8wk" class="bar" x="353.22" y="87.20" width="27.71" height="15.91" fill="#2563eb"/>
-    </g>
-    <g id="p2-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="363" fill="#6b7280">n=873 weeks. Peak |r|=0.14 at contemporaneous - positioning tracks</text>
-  <text class="caption" x="452" y="376" fill="#6b7280">storage, doesn't anticipate it.</text>
-  <g id="p3-stat">
-  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="434" fill="#6b7280">Crude: strongest lead-lag r</text>
-  <text class="stat-value" x="36" y="464" fill="#1f2328">r = 0.09</text>
-  <text class="stat-delta" x="36" y="484" fill="#6b7280">positioning leads by ~4wk</text>
-  </g>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="434" fill="#6b7280">Gas: strongest lead-lag r</text>
-  <text class="stat-value" x="464" y="464" fill="#1f2328">r = -0.14</text>
-  <text class="stat-delta" x="464" y="484" fill="#6b7280">contemporaneous, not leading</text>
-  </g>
-  <text class="footnote" x="20" y="532" fill="#6b7280">Weekly changes joined on ISO week (COT Tuesday report vs EIA weekly stocks/storage report). All correlations are weak (|r| &lt; 0.15); none support a</text>
-  <text class="footnote" x="20" y="546" fill="#6b7280">strong lead-lag relationship in either direction.</text>
   <g id="brand">
-  <svg x="20" y="558" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -265,312 +308,56 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="573" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:58937/a/79b87da4ebbeb5209981689270373f94.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:54179/a/7210cb0480f04216716cf3c321b5f394.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
-<h2>Summary</h2>
-<p>Neither. Speculative positioning in energy futures shows only a weak statistical relationship to changes in the physical supply picture at any lag tested (-8 to +8 weeks), and the strongest cell in each commodity's lag profile points opposite directions: for WTI crude, positioning changes very weakly precede inventory changes (r=0.09 at a 4-week lead — noise-adjacent); for Henry Hub natural gas, the strongest relationship is contemporaneous-to-slightly-lagging (r=-0.14, with positioning tracking storage changes rather than anticipating them). Read together with the published literature on CFTC Commitments of Traders data, the honest answer is that speculative positioning mostly reacts to information (fundamentals and price moves) rather than reliably front-running the physical supply picture — but the raw statistical signal here is too weak in either commodity to call this a strong lead-lag relationship at all.</p>
+<h2>Answer</h2>
+<p>It depends on the commodity. In <strong>natural gas</strong>, weekly changes in managed-money net positioning (share of open interest) line up with the storage surprise of the same week (r=-0.19) and the next two weeks (r=-0.19, -0.15), but not with surprises already published. Positioning moves before or with the physical change, never after it. In <strong>crude oil</strong>, no lag from -4 to +4 weeks is clearly distinguishable from zero (all |r| at most 0.07, about 2 standard errors).</p>
 </section>
 <section>
-<h2>Method</h2>
-<p>Built a weekly panel joining CFTC's Disaggregated Commitments of Traders report (managed-money net long position = money_manager_long_all minus money_manager_short_all, contract 067411 for NYMEX WTI light sweet crude and contract 023651 for NYMEX Henry Hub natural gas) to EIA's weekly physical-supply series (U.S. commercial crude stocks excluding SPR, product EPC0/process SAX; and Lower-48 working natural gas storage, storage_type SWO), matched by ISO year-week (COT reports Tuesday, EIA reports Friday of the same week). Computed 4-week rolling changes in both series (smoothing week-to-week reporting noise, which the raw weekly-change version showed was too noisy to read at all — every lag correlation on raw weekly deltas was under 0.05 in magnitude for both commodities). Cross-correlated the smoothed positioning-change series against the smoothed supply-change series at lags of -8, -4, -2, 0, +2, +4, +8 weeks (positive lag = positioning change precedes the supply-change reading). n=873 overlapping weeks per commodity (crude: 2009-2026; the join intersects CFTC's 2006-2026 window with EIA petroleum stocks' 2010-2026 window; gas: full CFTC-vs-EIA-storage overlap).</p>
-</section>
-<section>
-<h2>Findings by commodity</h2>
-<ul><li><strong>WTI crude:</strong> the peak correlation across the entire lag sweep is r=0.088, occurring when positioning changes lead stock changes by 4 weeks. Every other lag, in both directions, is weaker. This is a positive but very weak signal, consistent with money managers occasionally building length ahead of an anticipated drawdown (or vice versa) — but at r&lt;0.10 it explains under 1% of the variance in stock changes and is not a reliable predictive relationship.</li><li><strong>Henry Hub natural gas:</strong> the peak correlation is r=-0.141 at zero lag (contemporaneous), and it degrades in both directions from there — including at every 'positioning leads' lag, where it is close to zero or even flips sign. The pattern here is the opposite shape from crude: positioning tracks storage changes as they happen (or slightly afterward), not ahead of them. The negative sign is intuitive — bigger storage builds (bearish, oversupply) coincide with net long positions falling.</li></ul>
-</section>
-<section>
-<h2>Cross-check against published research</h2>
-<p>This matches the general finding in CFTC's own methodology studies and the academic literature on Commitments of Traders data: Granger-causality tests run by the CFTC and independent researchers on managed-money/non-commercial position changes versus prices generally find little evidence that speculative position changes lead price or fundamental moves — if anything, some studies find net positions increase in the week <em>following</em> a price move, i.e. positioning reacting to information rather than anticipating it. The 2008 CFTC Interim Report on Crude Oil's own daily Granger tests over 2000-2008 reached a similarly qualified conclusion (a relationship exists in some markets but causation from positions to prices/fundamentals could not be established). Our finding — weak-to-negligible predictive lead from positioning into physical supply, and where any signal exists it is close to contemporaneous or even lagging (gas) — is consistent with, not contradicted by, that literature. No single external study was replicated number-for-number here because none published a directly comparable stocks/positioning cross-correlation at these exact contracts and lags; this analysis extends the corpus's own COT and EIA data to that specific comparison.</p>
+<h2>Method and results</h2>
+<p>Supply signal: weekly change in U.S. working gas (Lower 48, Bcf) or U.S. crude stocks ex-SPR, minus the same-week-of-year average change. Positioning: weekly change in (managed-money long minus short)/open interest. COT Tuesday matched to the EIA Friday week-ending three days later. Lagged correlations k=-4..+4 (k>0: positioning at t vs supply at t+k), then an HC1-robust regression on surprises at t-2..t+2 and own lag (n=843).</p><table><tr><th>k</th><th>-2</th><th>-1</th><th>0</th><th>+1</th><th>+2</th><th>+3</th></tr><tr><td>Crude r</td><td>-0.068</td><td>-0.012</td><td>-0.063</td><td>-0.070</td><td>-0.046</td><td>0.001</td></tr><tr><td>Gas r</td><td>-0.010</td><td>-0.082</td><td>-0.188</td><td>-0.187</td><td>-0.151</td><td>-0.002</td></tr></table><p>2-SE band about 0.068. Gas regression: surprise at t p=0.002, t+1 p=0.016, t+2 p=0.001; t-1 p=0.97, t-2 p=0.26; own lag 0.21 (p&lt;0.001); R-squared 0.10. Crude: no surprise term below p=0.05; own lag 0.15; R-squared 0.03.</p>
 </section>
 <section>
 <h2>Caveats</h2>
-<ul><li>Correlation, not causation: no covariates (price, seasonality, refinery maintenance schedules) are controlled for here — a joint driver of both series would show up as correlation without either leading the other.</li><li>r-values throughout are small (|r|&lt;0.15); with n=873 that clears conventional statistical significance at these sample sizes but the practical predictive power is minimal — this is a directional read, not a tradeable signal.</li><li>EIA petroleum stocks table's declared coverage starts 2010, one year later than CFTC's 2006 start, so the crude panel begins in late 2009/2010 by construction of the join, not a data gap in CFTC's series itself.</li></ul>
+<ul><li>Likely common driver (weather) rather than speculators causing storage changes; the sign is bullish positioning before smaller-than-normal injections.</li><li>EIA stocks for a week ending Friday publish the next Wednesday, after the Tuesday COT snapshot, so the lead is not a reporting artifact.</li><li>Small explanatory power; not a trading signal. Production (monthly), prices, Brent and products not tested. Seasonal mean uses the full sample; data are current revised values.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Production (monthly) as the supply measure</strong>: EIA production is monthly and state-level, too coarse to time against weekly COT; weekly inventory changes used instead.</li><li><strong>Causality</strong>: Only timing/predictive association shown; weather is a likely common driver for gas.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>15 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 50 rows — 3588 ms</summary><pre><code>SELECT DISTINCT cftc_contract_market_code, contract_market_name, commodity_name FROM cftc.cot_disaggregated_futures WHERE commodity_name ILIKE '%CRUDE%' OR commodity_name ILIKE '%NATURAL GAS%' OR contract_market_name ILIKE '%WTI%' OR contract_market_name ILIKE '%HENRY HUB%' LIMIT 50</code></pre></details>
-<details class="sqltoggle"><summary>query — 3 rows — 3765 ms</summary><pre><code>SELECT DISTINCT cftc_contract_market_code, contract_market_name, commodity_name FROM cftc.cot_disaggregated_futures WHERE contract_market_name ILIKE 'CRUDE OIL, LIGHT SWEET%' OR contract_market_name ILIKE 'NATURAL GAS%' OR contract_market_name = 'WTI FINANCIAL CRUDE OIL' FETCH FIRST 30 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 3128 ms</summary><pre><code>SELECT DISTINCT cftc_contract_market_code, contract_market_name FROM cftc.cot_disaggregated_futures WHERE contract_market_name = 'NATURAL GAS' OR contract_market_name ILIKE 'NAT GAS NYME%' FETCH FIRST 10 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 3965 ms</summary><pre><code>SELECT DISTINCT series_id, series_description, product_code, padd, eia_area_code FROM energy.eia_petroleum_stocks WHERE product_code = 'EPC0' AND (padd = 'National' OR eia_area_code = 'NAT' OR eia_area_code='USA') FETCH FIRST 10 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 1058 ms</summary><pre><code>SELECT DISTINCT series_id, storage_type_code, region, eia_region_code FROM energy.eia_natural_gas_storage WHERE storage_type_code = 'SAW' AND region = 'National' FETCH FIRST 10 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 7 rows — 4357 ms</summary><pre><code>SELECT DISTINCT padd, eia_area_code, product FROM energy.eia_petroleum_stocks WHERE product_code = 'EPC0' FETCH FIRST 20 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 8 rows — 1246 ms</summary><pre><code>SELECT DISTINCT region, eia_region_code, storage_type_code, storage_type FROM energy.eia_natural_gas_storage FETCH FIRST 30 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 10185 ms</summary><pre><code>
-WITH cot AS (
-  SELECT report_date,
-         EXTRACT(isoyear FROM report_date) AS iso_year,
-         EXTRACT(week FROM report_date) AS iso_week,
-         (money_manager_long_all - money_manager_short_all) AS net_mm,
-         open_interest_all AS oi
-  FROM cftc.cot_disaggregated_futures
-  WHERE cftc_contract_market_code = '067411'
-),
-stocks AS (
-  SELECT CAST(report_date AS DATE) AS report_date,
-         EXTRACT(isoyear FROM CAST(report_date AS DATE)) AS iso_year,
-         EXTRACT(week FROM CAST(report_date AS DATE)) AS iso_week,
-         stocks_kbbl
-  FROM energy.eia_petroleum_stocks
-  WHERE product_code = 'EPC0' AND padd = 'U.S.'
-),
-joined AS (
-  SELECT c.report_date AS cot_date, s.report_date AS stock_date,
-         c.net_mm, c.oi, s.stocks_kbbl
-  FROM cot c
-  JOIN stocks s ON c.iso_year = s.iso_year AND c.iso_week = s.iso_week
-),
-withchg AS (
-  SELECT cot_date, net_mm, oi, stocks_kbbl,
-         net_mm - LAG(net_mm) OVER (ORDER BY cot_date) AS d_net_mm,
-         stocks_kbbl - LAG(stocks_kbbl) OVER (ORDER BY cot_date) AS d_stocks
-  FROM joined
-),
-lags AS (
-  SELECT cot_date, d_net_mm, d_stocks,
-    LAG(d_net_mm,1) OVER (ORDER BY cot_date) AS pos_lead1,
-    LAG(d_net_mm,2) OVER (ORDER BY cot_date) AS pos_lead2,
-    LAG(d_net_mm,4) OVER (ORDER BY cot_date) AS pos_lead4,
-    LEAD(d_net_mm,1) OVER (ORDER BY cot_date) AS pos_lag1,
-    LEAD(d_net_mm,2) OVER (ORDER BY cot_date) AS pos_lag2,
-    LEAD(d_net_mm,4) OVER (ORDER BY cot_date) AS pos_lag4
-  FROM withchg
-)
-SELECT COUNT(*) AS n, MIN(cot_date) AS min_d, MAX(cot_date) AS max_d,
-  corr(d_net_mm, d_stocks) AS corr_lag0,
-  corr(pos_lead1, d_stocks) AS corr_positioning_leads_1wk,
-  corr(pos_lead2, d_stocks) AS corr_positioning_leads_2wk,
-  corr(pos_lead4, d_stocks) AS corr_positioning_leads_4wk,
-  corr(pos_lag1, d_stocks) AS corr_positioning_lags_1wk,
-  corr(pos_lag2, d_stocks) AS corr_positioning_lags_2wk,
-  corr(pos_lag4, d_stocks) AS corr_positioning_lags_4wk
-FROM lags
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 5 rows — 3448 ms</summary><pre><code>SELECT report_date, COUNT(*) c FROM energy.eia_petroleum_stocks WHERE product_code='EPC0' AND padd='U.S.' GROUP BY report_date HAVING COUNT(*)&gt;1 FETCH FIRST 5 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 5 rows — 4380 ms</summary><pre><code>SELECT DISTINCT process_code, process_name FROM energy.eia_petroleum_stocks WHERE product_code='EPC0' AND padd='U.S.'</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 13359 ms</summary><pre><code>
-WITH cot AS (
-  SELECT report_date,
-         EXTRACT(isoyear FROM report_date) AS iso_year,
-         EXTRACT(week FROM report_date) AS iso_week,
-         (money_manager_long_all - money_manager_short_all) AS net_mm,
-         open_interest_all AS oi
-  FROM cftc.cot_disaggregated_futures
-  WHERE cftc_contract_market_code = '067411'
-),
-stocks AS (
-  SELECT CAST(report_date AS DATE) AS report_date,
-         EXTRACT(isoyear FROM CAST(report_date AS DATE)) AS iso_year,
-         EXTRACT(week FROM CAST(report_date AS DATE)) AS iso_week,
-         stocks_kbbl
-  FROM energy.eia_petroleum_stocks
-  WHERE product_code = 'EPC0' AND padd = 'U.S.' AND process_code = 'SAX'
-),
-joined AS (
-  SELECT c.report_date AS cot_date, s.report_date AS stock_date,
-         c.net_mm, c.oi, s.stocks_kbbl,
-         ROW_NUMBER() OVER (PARTITION BY c.report_date ORDER BY s.report_date) AS rn
-  FROM cot c
-  JOIN stocks s ON c.iso_year = s.iso_year AND c.iso_week = s.iso_week
-),
-dedup AS (
-  SELECT cot_date, net_mm, oi, stocks_kbbl FROM joined WHERE rn = 1
-),
-withchg AS (
-  SELECT cot_date, net_mm, oi, stocks_kbbl,
-         net_mm - LAG(net_mm) OVER (ORDER BY cot_date) AS d_net_mm,
-         stocks_kbbl - LAG(stocks_kbbl) OVER (ORDER BY cot_date) AS d_stocks
-  FROM dedup
-),
-lags AS (
-  SELECT cot_date, d_net_mm, d_stocks,
-    LAG(d_net_mm,1) OVER (ORDER BY cot_date) AS pos_lead1,
-    LAG(d_net_mm,2) OVER (ORDER BY cot_date) AS pos_lead2,
-    LAG(d_net_mm,4) OVER (ORDER BY cot_date) AS pos_lead4,
-    LEAD(d_net_mm,1) OVER (ORDER BY cot_date) AS pos_lag1,
-    LEAD(d_net_mm,2) OVER (ORDER BY cot_date) AS pos_lag2,
-    LEAD(d_net_mm,4) OVER (ORDER BY cot_date) AS pos_lag4
-  FROM withchg
-)
-SELECT COUNT(*) AS n, MIN(cot_date) AS min_d, MAX(cot_date) AS max_d,
-  corr(d_net_mm, d_stocks) AS corr_lag0,
-  corr(pos_lead1, d_stocks) AS positioning_leads_1wk,
-  corr(pos_lead2, d_stocks) AS positioning_leads_2wk,
-  corr(pos_lead4, d_stocks) AS positioning_leads_4wk,
-  corr(pos_lag1, d_stocks) AS positioning_lags_1wk,
-  corr(pos_lag2, d_stocks) AS positioning_lags_2wk,
-  corr(pos_lag4, d_stocks) AS positioning_lags_4wk
-FROM lags
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 500 rows — 13926 ms</summary><pre><code>
-WITH cot AS (
-  SELECT report_date,
-         EXTRACT(isoyear FROM report_date) AS iso_year,
-         EXTRACT(week FROM report_date) AS iso_week,
-         (money_manager_long_all - money_manager_short_all) AS net_mm,
-         open_interest_all AS oi
-  FROM cftc.cot_disaggregated_futures
-  WHERE cftc_contract_market_code = '067411'
-),
-stocks AS (
-  SELECT CAST(report_date AS DATE) AS report_date,
-         EXTRACT(isoyear FROM CAST(report_date AS DATE)) AS iso_year,
-         EXTRACT(week FROM CAST(report_date AS DATE)) AS iso_week,
-         stocks_kbbl
-  FROM energy.eia_petroleum_stocks
-  WHERE product_code = 'EPC0' AND padd = 'U.S.' AND process_code = 'SAX'
-),
-joined AS (
-  SELECT c.report_date AS cot_date, s.report_date AS stock_date,
-         c.net_mm, c.oi, s.stocks_kbbl,
-         ROW_NUMBER() OVER (PARTITION BY c.report_date ORDER BY s.report_date) AS rn
-  FROM cot c
-  JOIN stocks s ON c.iso_year = s.iso_year AND c.iso_week = s.iso_week
-)
-SELECT cot_date, net_mm, oi, stocks_kbbl FROM joined WHERE rn = 1 ORDER BY cot_date
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 500 rows — 12312 ms</summary><pre><code>
-WITH cot AS (
-  SELECT report_date,
-         EXTRACT(isoyear FROM report_date) AS iso_year,
-         EXTRACT(week FROM report_date) AS iso_week,
-         (money_manager_long_all - money_manager_short_all) AS net_mm,
-         open_interest_all AS oi
-  FROM cftc.cot_disaggregated_futures
-  WHERE cftc_contract_market_code = '023651'
-),
-storage AS (
-  SELECT CAST(report_date AS DATE) AS report_date,
-         EXTRACT(isoyear FROM CAST(report_date AS DATE)) AS iso_year,
-         EXTRACT(week FROM CAST(report_date AS DATE)) AS iso_week,
-         volume_bcf
-  FROM energy.eia_natural_gas_storage
-  WHERE storage_type_code = 'SWO' AND region = 'Lower 48 States'
-),
-joined AS (
-  SELECT c.report_date AS cot_date, s.report_date AS gas_date,
-         c.net_mm, c.oi, s.volume_bcf,
-         ROW_NUMBER() OVER (PARTITION BY c.report_date ORDER BY s.report_date) AS rn
-  FROM cot c
-  JOIN storage s ON c.iso_year = s.iso_year AND c.iso_week = s.iso_week
-)
-SELECT cot_date, net_mm, oi, volume_bcf FROM joined WHERE rn = 1 ORDER BY cot_date
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 14711 ms</summary><pre><code>
-WITH cot AS (
-  SELECT report_date,
-         EXTRACT(isoyear FROM report_date) AS iso_year,
-         EXTRACT(week FROM report_date) AS iso_week,
-         (money_manager_long_all - money_manager_short_all) AS net_mm
-  FROM cftc.cot_disaggregated_futures
-  WHERE cftc_contract_market_code = '067411'
-),
-stocks AS (
-  SELECT CAST(report_date AS DATE) AS report_date,
-         EXTRACT(isoyear FROM CAST(report_date AS DATE)) AS iso_year,
-         EXTRACT(week FROM CAST(report_date AS DATE)) AS iso_week,
-         stocks_kbbl
-  FROM energy.eia_petroleum_stocks
-  WHERE product_code = 'EPC0' AND padd = 'U.S.' AND process_code = 'SAX'
-),
-joined AS (
-  SELECT c.report_date AS d, c.net_mm, s.stocks_kbbl,
-         ROW_NUMBER() OVER (PARTITION BY c.report_date ORDER BY s.report_date) AS rn
-  FROM cot c JOIN stocks s ON c.iso_year=s.iso_year AND c.iso_week=s.iso_week
-),
-dedup AS (SELECT d, net_mm, stocks_kbbl FROM joined WHERE rn=1),
-chg AS (
-  SELECT d, net_mm - LAG(net_mm,4) OVER (ORDER BY d) AS mm4,
-         stocks_kbbl - LAG(stocks_kbbl,4) OVER (ORDER BY d) AS st4
-  FROM dedup
-),
-lagset AS (
-  SELECT d, mm4, st4,
-    LAG(mm4,8) OVER (ORDER BY d) AS mm_lead8,
-    LAG(mm4,4) OVER (ORDER BY d) AS mm_lead4,
-    LAG(mm4,2) OVER (ORDER BY d) AS mm_lead2,
-    LEAD(mm4,2) OVER (ORDER BY d) AS mm_lag2,
-    LEAD(mm4,4) OVER (ORDER BY d) AS mm_lag4,
-    LEAD(mm4,8) OVER (ORDER BY d) AS mm_lag8
-  FROM chg
-)
-SELECT COUNT(*) n,
-  corr(mm4, st4) c0,
-  corr(mm_lead8, st4) positioning_leads_8wk,
-  corr(mm_lead4, st4) positioning_leads_4wk,
-  corr(mm_lead2, st4) positioning_leads_2wk,
-  corr(mm_lag2, st4) positioning_lags_2wk,
-  corr(mm_lag4, st4) positioning_lags_4wk,
-  corr(mm_lag8, st4) positioning_lags_8wk
-FROM lagset
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 11465 ms</summary><pre><code>
-WITH cot AS (
-  SELECT report_date,
-         EXTRACT(isoyear FROM report_date) AS iso_year,
-         EXTRACT(week FROM report_date) AS iso_week,
-         (money_manager_long_all - money_manager_short_all) AS net_mm
-  FROM cftc.cot_disaggregated_futures
-  WHERE cftc_contract_market_code = '023651'
-),
-storage AS (
-  SELECT CAST(report_date AS DATE) AS report_date,
-         EXTRACT(isoyear FROM CAST(report_date AS DATE)) AS iso_year,
-         EXTRACT(week FROM CAST(report_date AS DATE)) AS iso_week,
-         volume_bcf
-  FROM energy.eia_natural_gas_storage
-  WHERE storage_type_code = 'SWO' AND region = 'Lower 48 States'
-),
-joined AS (
-  SELECT c.report_date AS d, c.net_mm, s.volume_bcf,
-         ROW_NUMBER() OVER (PARTITION BY c.report_date ORDER BY s.report_date) AS rn
-  FROM cot c JOIN storage s ON c.iso_year=s.iso_year AND c.iso_week=s.iso_week
-),
-dedup AS (SELECT d, net_mm, volume_bcf FROM joined WHERE rn=1),
-chg AS (
-  SELECT d, net_mm - LAG(net_mm,4) OVER (ORDER BY d) AS mm4,
-         volume_bcf - LAG(volume_bcf,4) OVER (ORDER BY d) AS st4
-  FROM dedup
-),
-lagset AS (
-  SELECT d, mm4, st4,
-    LAG(mm4,8) OVER (ORDER BY d) AS mm_lead8,
-    LAG(mm4,4) OVER (ORDER BY d) AS mm_lead4,
-    LAG(mm4,2) OVER (ORDER BY d) AS mm_lead2,
-    LEAD(mm4,2) OVER (ORDER BY d) AS mm_lag2,
-    LEAD(mm4,4) OVER (ORDER BY d) AS mm_lag4,
-    LEAD(mm4,8) OVER (ORDER BY d) AS mm_lag8
-  FROM chg
-)
-SELECT COUNT(*) n,
-  corr(mm4, st4) c0,
-  corr(mm_lead8, st4) positioning_leads_8wk,
-  corr(mm_lead4, st4) positioning_leads_4wk,
-  corr(mm_lead2, st4) positioning_leads_2wk,
-  corr(mm_lag2, st4) positioning_lags_2wk,
-  corr(mm_lag4, st4) positioning_lags_4wk,
-  corr(mm_lag8, st4) positioning_lags_8wk
-FROM lagset
-</code></pre></details>
+<p>14 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 7 rows — 794 ms</summary><pre><code>select distinct series_id, series_description from energy.eia_petroleum_stocks where product_code='EPC0' and eia_area_code in ('NUS','USA','R10') fetch first 20 rows only</code></pre></details>
+<details class="sqltoggle"><summary>query — 8 rows — 1612 ms</summary><pre><code>select cftc_contract_market_code c, contract_market_name n, min(report_date) a, max(report_date) b, count(*) k from cftc.cot_disaggregated_futures where cftc_contract_market_code in ('067651','023651','022651','111659','06765T') or contract_market_name ilike '%NATURAL GAS%' or contract_market_name ilike 'CRUDE OIL%' group by cftc_contract_market_code, contract_market_name order by k desc fetch first 20 rows only</code></pre></details>
+<details class="sqltoggle"><summary>query — 510 ms</summary><pre><code>select series_id, storage_type_code, min(report_date) a, max(report_date) b, count(*) k from energy.eia_natural_gas_storage where eia_region_code='NAT' group by series_id, storage_type_code</code></pre></details>
+<details class="sqltoggle"><summary>query — 8 rows — 524 ms</summary><pre><code>select eia_region_code, region, storage_type_code, min(report_date) a, max(report_date) b, count(*) k from energy.eia_natural_gas_storage group by eia_region_code, region, storage_type_code order by k desc fetch first 30 rows only</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 0 ms</summary><pre><code>with s as (select cast(report_date as date) d, stocks_kbbl v, stock_week wk from energy.eia_petroleum_stocks where series_id='WCESTUS1' and stock_year&gt;=2010), s2 as (select d, wk, v-lag(v) over (order by d) dv from s), s3 as (select d, dv - avg(dv) over (partition by wk) as ds, row_number() over (order by d) as i from s2 where dv is not null), c as (select report_date d, cast(money_manager_long_all - money_manager_short_all as double)/open_interest_all nmm from cftc.cot_disaggregated_futures where cftc_contract_market_code='067651'), c2 as (select d, nmm - lag(nmm) over (order by d) dn, nmm from c) select s3.i, s3.d sd, ds, dn, nmm from s3 join c2 on cast(date_trunc('week', s3.d) as date)=cast(date_trunc('week', c2.d) as date) where dn is not null</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 0 ms</summary><pre><code>select s3.i, s3.d as sd, s3.ds, c2.dn, c2.nmm from (select s2.d, s2.dv - avg(s2.dv) over (partition by s2.wk) as ds, row_number() over (order by s2.d) as i from (select s.d, s.wk, s.v - lag(s.v) over (order by s.d) as dv from (select cast(report_date as date) as d, stocks_kbbl as v, stock_week as wk from energy.eia_petroleum_stocks where series_id='WCESTUS1') s) s2 where s2.dv is not null) s3 join (select c.d, c.nmm - lag(c.nmm) over (order by c.d) as dn, c.nmm from (select report_date as d, cast(money_manager_long_all - money_manager_short_all as double)/open_interest_all as nmm from cftc.cot_disaggregated_futures where cftc_contract_market_code='067651') c) c2 on c2.d = s3.d - interval '3' day where c2.dn is not null</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1862 ms</summary><pre><code>WITH crude_w AS (select s3.i, s3.d as sd, s3.ds, c2.dn, c2.nmm from (select s2.d, s2.dv - avg(s2.dv) over (partition by s2.wk) as ds, row_number() over (order by s2.d) as i from (select s.d, s.wk, s.v - lag(s.v) over (order by s.d) as dv from (select cast(report_date as date) as d, stocks_kbbl as v, stock_week as wk from energy.eia_petroleum_stocks where series_id='WCESTUS1') s) s2 where s2.dv is not null) s3 join (select c.d, c.nmm - lag(c.nmm) over (order by c.d) as dn, c.nmm from (select report_date as d, cast(money_manager_long_all - money_manager_short_all as double)/open_interest_all as nmm from cftc.cot_disaggregated_futures where cftc_contract_market_code='067651') c) c2 on c2.d = s3.d - interval '3' day where c2.dn is not null) select count(*) n, min(sd) a, max(sd) b, corr(ds,dn) r0 from crude_w</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 0 ms</summary><pre><code>select s3.i, s3.d as sd, s3.ds, c2.dn, c2.nmm from (select s2.d, s2.dv - avg(s2.dv) over (partition by s2.wk) as ds, row_number() over (order by s2.d) as i from (select s.d, s.wk, s.v - lag(s.v) over (order by s.d) as dv from (select cast(report_date as date) as d, volume_bcf as v, storage_week as wk from energy.eia_natural_gas_storage where eia_region_code='R48' and storage_type_code='SWO') s) s2 where s2.dv is not null) s3 join (select c.d, c.nmm - lag(c.nmm) over (order by c.d) as dn, c.nmm from (select report_date as d, cast(money_manager_long_all - money_manager_short_all as double)/open_interest_all as nmm from cftc.cot_disaggregated_futures where cftc_contract_market_code='023651') c) c2 on c2.d = s3.d - interval '3' day where c2.dn is not null</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 3629 ms</summary><pre><code>WITH crude_w AS (select s3.i, s3.d as sd, s3.ds, c2.dn, c2.nmm from (select s2.d, s2.dv - avg(s2.dv) over (partition by s2.wk) as ds, row_number() over (order by s2.d) as i from (select s.d, s.wk, s.v - lag(s.v) over (order by s.d) as dv from (select cast(report_date as date) as d, stocks_kbbl as v, stock_week as wk from energy.eia_petroleum_stocks where series_id='WCESTUS1') s) s2 where s2.dv is not null) s3 join (select c.d, c.nmm - lag(c.nmm) over (order by c.d) as dn, c.nmm from (select report_date as d, cast(money_manager_long_all - money_manager_short_all as double)/open_interest_all as nmm from cftc.cot_disaggregated_futures where cftc_contract_market_code='067651') c) c2 on c2.d = s3.d - interval '3' day where c2.dn is not null) select 'crude' m, k.k, count(*) n, corr(a.dn, b.ds) r from crude_w a join crude_w b on b.i = a.i + 1 cross join (select 1 k from crude_w fetch first 1 rows only) k group by k.k</code></pre></details>
+<details class="sqltoggle"><summary>query — 18 rows — 4349 ms</summary><pre><code>WITH crude_w AS (select s3.i, s3.d as sd, s3.ds, c2.dn, c2.nmm from (select s2.d, s2.dv - avg(s2.dv) over (partition by s2.wk) as ds, row_number() over (order by s2.d) as i from (select s.d, s.wk, s.v - lag(s.v) over (order by s.d) as dv from (select cast(report_date as date) as d, stocks_kbbl as v, stock_week as wk from energy.eia_petroleum_stocks where series_id='WCESTUS1') s) s2 where s2.dv is not null) s3 join (select c.d, c.nmm - lag(c.nmm) over (order by c.d) as dn, c.nmm from (select report_date as d, cast(money_manager_long_all - money_manager_short_all as double)/open_interest_all as nmm from cftc.cot_disaggregated_futures where cftc_contract_market_code='067651') c) c2 on c2.d = s3.d - interval '3' day where c2.dn is not null), gas_w AS (select s3.i, s3.d as sd, s3.ds, c2.dn, c2.nmm from (select s2.d, s2.dv - avg(s2.dv) over (partition by s2.wk) as ds, row_number() over (order by s2.d) as i from (select s.d, s.wk, s.v - lag(s.v) over (order by s.d) as dv from (select cast(report_date as date) as d, volume_bcf as v, storage_week as wk from energy.eia_natural_gas_storage where eia_region_code='R48' and storage_type_code='SWO') s) s2 where s2.dv is not null) s3 join (select c.d, c.nmm - lag(c.nmm) over (order by c.d) as dn, c.nmm from (select report_date as d, cast(money_manager_long_all - money_manager_short_all as double)/open_interest_all as nmm from cftc.cot_disaggregated_futures where cftc_contract_market_code='023651') c) c2 on c2.d = s3.d - interval '3' day where c2.dn is not null) select m, k, count(*) n, corr(dn, ds) r from (select 'crude' m, g.k, a.dn, b.ds from crude_w a cross join (values (-4),(-3),(-2),(-1),(0),(1),(2),(3),(4)) as g(k) join crude_w b on b.i = a.i + g.k union all select 'gas' m, g.k, a.dn, b.ds from gas_w a cross join (values (-4),(-3),(-2),(-1),(0),(1),(2),(3),(4)) as g(k) join gas_w b on b.i = a.i + g.k) t group by m, k order by m, k</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 0 ms</summary><pre><code>select a.dn, a.ds as ds0, p.ds as dsm1, q.ds as dsm2, f.ds as dsp1, f2.ds as dsp2, p.dn as dnm1 from gas_w a join gas_w p on p.i=a.i-1 join gas_w q on q.i=a.i-2 join gas_w f on f.i=a.i+1 join gas_w f2 on f2.i=a.i+2</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 10 ms</summary><pre><code>select a.dn, a.ds as ds0, p.ds as dsm1, q.ds as dsm2, f.ds as dsp1, f2.ds as dsp2, p.dn as dnm1 from crude_w a join crude_w p on p.i=a.i-1 join crude_w q on q.i=a.i-2 join crude_w f on f.i=a.i+1 join crude_w f2 on f2.i=a.i+2</code></pre></details>
+<details class="sqltoggle"><summary>robust_regression — 4084 ms</summary><pre><code>WITH gas_reg AS (WITH gas_w AS (select s3.i, s3.d as sd, s3.ds, c2.dn, c2.nmm from (select s2.d, s2.dv - avg(s2.dv) over (partition by s2.wk) as ds, row_number() over (order by s2.d) as i from (select s.d, s.wk, s.v - lag(s.v) over (order by s.d) as dv from (select cast(report_date as date) as d, volume_bcf as v, storage_week as wk from energy.eia_natural_gas_storage where eia_region_code='R48' and storage_type_code='SWO') s) s2 where s2.dv is not null) s3 join (select c.d, c.nmm - lag(c.nmm) over (order by c.d) as dn, c.nmm from (select report_date as d, cast(money_manager_long_all - money_manager_short_all as double)/open_interest_all as nmm from cftc.cot_disaggregated_futures where cftc_contract_market_code='023651') c) c2 on c2.d = s3.d - interval '3' day where c2.dn is not null) select a.dn, a.ds as ds0, p.ds as dsm1, q.ds as dsm2, f.ds as dsp1, f2.ds as dsp2, p.dn as dnm1 from gas_w a join gas_w p on p.i=a.i-1 join gas_w q on q.i=a.i-2 join gas_w f on f.i=a.i+1 join gas_w f2 on f2.i=a.i+2) select * from gas_reg</code></pre></details>
+<details class="sqltoggle"><summary>robust_regression — 5235 ms</summary><pre><code>WITH crude_reg AS (WITH crude_w AS (select s3.i, s3.d as sd, s3.ds, c2.dn, c2.nmm from (select s2.d, s2.dv - avg(s2.dv) over (partition by s2.wk) as ds, row_number() over (order by s2.d) as i from (select s.d, s.wk, s.v - lag(s.v) over (order by s.d) as dv from (select cast(report_date as date) as d, stocks_kbbl as v, stock_week as wk from energy.eia_petroleum_stocks where series_id='WCESTUS1') s) s2 where s2.dv is not null) s3 join (select c.d, c.nmm - lag(c.nmm) over (order by c.d) as dn, c.nmm from (select report_date as d, cast(money_manager_long_all - money_manager_short_all as double)/open_interest_all as nmm from cftc.cot_disaggregated_futures where cftc_contract_market_code='067651') c) c2 on c2.d = s3.d - interval '3' day where c2.dn is not null) select a.dn, a.ds as ds0, p.ds as dsm1, q.ds as dsm2, f.ds as dsp1, f2.ds as dsp2, p.dn as dnm1 from crude_w a join crude_w p on p.i=a.i-1 join crude_w q on q.i=a.i-2 join crude_w f on f.i=a.i+1 join crude_w f2 on f2.i=a.i+2) select * from crude_reg</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://publicreporting.cftc.gov/resource/72hh-3qpy.json">CFTC Disaggregated Commitments of Traders (Futures-Only), contracts 067411 (WTI) and 023651 (Henry Hub)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>See method section; full panel/lag SQL run against cftc.cot_disaggregated_futures joined to energy.eia_petroleum_stocks (product_code='EPC0', padd='U.S.', process_code='SAX') and energy.eia_natural_gas_storage (storage_type_code='SWO', region='Lower 48 States') on ISO year-week, with 4-week rolling changes cross-correlated at lags -8..+8 weeks.</code></pre></details></li>
-<li><a href="https://www.eia.gov/petroleum/weekly/">EIA weekly petroleum stocks (crude, ex-SPR) and weekly natural gas storage (Lower 48 working gas)</a> <span class="note">— EIA API v2, weekly series</span></li>
-<li><a href="https://www.cftc.gov/sites/default/files/idc/groups/public/@newsroom/documents/file/itfinterimreportoncrudeoil0708.pdf">CFTC, Interim Report on Crude Oil (2008) — daily Granger causality tests on managed-money positions vs. WTI prices, 2000-2008</a></li>
-<li><a href="https://www.cftc.gov/sites/default/files/idc/groups/public/@swaps/documents/file/plstudy_19_cftc.pdf">CFTC, The Role of Speculators in the Crude Oil Futures Market</a></li>
-<li><a href="https://www.imf.org/external/pubs/ft/wp/2014/wp14218.pdf">IMF WP/14/218, Oil Price Volatility and the Role of Speculation</a></li>
+<li><a href="https://publicreporting.cftc.gov/resource/72hh-3qpy.json">cftc.cot_disaggregated_futures</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>select report_date, money_manager_long_all, money_manager_short_all, open_interest_all from cftc.cot_disaggregated_futures where cftc_contract_market_code in ('067651','023651')</code></pre></details></li>
+<li><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=WCESTUS1&amp;f=W">energy.eia_petroleum_stocks WCESTUS1</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>select report_date, stocks_kbbl from energy.eia_petroleum_stocks where series_id='WCESTUS1'</code></pre></details></li>
+<li><a href="https://www.eia.gov/dnav/ng/ng_stor_wkly_s1_w.htm">energy.eia_natural_gas_storage R48 SWO</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>select report_date, volume_bcf from energy.eia_natural_gas_storage where eia_region_code='R48' and storage_type_code='SWO'</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Correlational, weekly-grain analysis using this corpus's own CFTC and EIA data; not a causal test and not adjusted for price or seasonal confounds.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

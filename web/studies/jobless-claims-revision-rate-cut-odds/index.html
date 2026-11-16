@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Initial jobless claims get revised almost every week — but the revision (about 0.5-1.5K, occasionally up to a few thousand) is far too small to move rate-cut pricing on its own</title>
+<title>Initial jobless claims are revised almost every week, but by only about 1,000 claims, too small to move rate-cut odds</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -109,16 +117,6 @@ figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:
 #s2-t1-s4:checked ~ table label[for="s2-t1-s4"]{color:var(--link)}
 #s2-t1-s4:checked ~ table label[for="s2-t1-s4"] .srtcue{opacity:1}
 #s2-t1-s4:checked ~ .srtreset{display:inline-block}
-#s2-t1-s5:checked ~ table tbody.s0{display:none}
-#s2-t1-s5:checked ~ table tbody.s5{display:table-row-group}
-#s2-t1-s5:checked ~ table label[for="s2-t1-s5"]{color:var(--link)}
-#s2-t1-s5:checked ~ table label[for="s2-t1-s5"] .srtcue{opacity:1}
-#s2-t1-s5:checked ~ .srtreset{display:inline-block}
-#s2-t1-s6:checked ~ table tbody.s0{display:none}
-#s2-t1-s6:checked ~ table tbody.s6{display:table-row-group}
-#s2-t1-s6:checked ~ table label[for="s2-t1-s6"]{color:var(--link)}
-#s2-t1-s6:checked ~ table label[for="s2-t1-s6"] .srtcue{opacity:1}
-#s2-t1-s6:checked ~ .srtreset{display:inline-block}
 }
 </style>
 </head>
@@ -131,8 +129,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Initial jobless claims get revised almost every week — but the revision (about 0.5-1.5K, occasionally up to a few thousand) is far too small to move rate-cut pricing on its own</h1>
-<p class="subtitle">Source: U.S. Department of Labor / ETA weekly UI claims press releases (oui.doleta.gov), 6 releases sampled across 2026</p>
+<h1>Initial jobless claims are revised almost every week, but by only about 1,000 claims, too small to move rate-cut odds</h1>
+<p class="subtitle">ICSA seasonally adjusted, ALFRED vintages (Thursday releases 2026-08-20 to 2026-11-12), 12 weeks; units persons</p>
 </header>
 <figure class="board">
 <!--
@@ -152,7 +150,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -179,74 +177,118 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:19px">Initial jobless claims revisions vs. what actually moves rate-cut pricing</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">6 sampled DOL/ETA weekly releases, 2026</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Next-week revision to advance initial claims (thousands)</text>
   <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Weeks revised (of 6 sampled)</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">6 of 6 (100%)</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="100" fill="#6b7280">Weeks revised</text>
+  <text class="stat-value" x="36" y="130" fill="#1f2328">11 of 12</text>
   </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">Every sampled week's advance figure changed the following release</text>
   <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Average revision size</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">~1,500 claims (~0.7%)</text>
+  <rect class="panel-edge" x="448" y="64" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="100" fill="#6b7280">Mean revision</text>
+  <text class="stat-value" x="464" y="130" fill="#1f2328">+1.1k</text>
   </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">Range: -1,000 to +3,000 across the 6 samples</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="331" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="331" viewBox="0 0 412 331" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="331" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Size of next-week revision by sampled week (thousands)</text>
+  <rect class="panel-edge" x="20" y="188" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="188" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Revision by claims week (thousands)</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="59" y1="232.84" x2="390" y2="232.84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="51" y="236.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-1</text>
-      <line class="grid" x1="59" y1="188.63" x2="390" y2="188.63" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="51" y="192.63" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="59" y1="144.42" x2="390" y2="144.42" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="51" y="148.42" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
-      <line class="grid" x1="59" y1="100.21" x2="390" y2="100.21" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="51" y="104.21" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
-      <line class="grid" x1="59" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="51" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
+      <line class="grid" x1="52" y1="56" x2="52" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-0" class="tick" x="52" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.0</text>
+      <line class="grid" x1="136.50" y1="56" x2="136.50" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-1" class="tick" x="136.50" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.5</text>
+      <line class="grid" x1="221" y1="56" x2="221" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-2" class="tick" x="221" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1.0</text>
+      <line class="grid" x1="305.50" y1="56" x2="305.50" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-3" class="tick" x="305.50" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1.5</text>
+      <line class="grid" x1="390" y1="56" x2="390" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-4" class="tick" x="390" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2.0</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="59" y1="56" x2="59" y2="232.84" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="59" y1="232.84" x2="390" y2="232.84" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="52" y1="56" x2="52" y2="276" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="52" y1="276" x2="390" y2="276" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="224.50" y="307" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Week ending (revised the following Thursday)</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="144.42" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 144.42)">Revision, thousands</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-jan-10-wk" class="tick" x="86.58" y="246.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 86.58 246.84)">Jan 10 wk</text>
-      <text id="p3-xtick-feb-21-wk" class="tick" x="141.75" y="246.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 141.75 246.84)">Feb 21 wk</text>
-      <text id="p3-xtick-may-2-wk" class="tick" x="196.92" y="246.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 196.92 246.84)">May 2 wk</text>
-      <text id="p3-xtick-jul-4-wk" class="tick" x="252.08" y="246.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 252.08 246.84)">Jul 4 wk</text>
-      <text id="p3-xtick-aug-8-wk" class="tick" x="307.25" y="246.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 307.25 246.84)">Aug 8 wk</text>
-      <text id="p3-xtick-sep-12-wk" class="tick" x="362.42" y="246.84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 362.42 246.84)">Sep 12 wk</text>
+    <g id="p3-category-axis-labels">
+      <text id="p3-xtick-aug15" class="tick" x="44" y="69.17" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Aug15</text>
+      <text id="p3-xtick-aug22" class="tick" x="44" y="87.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Aug22</text>
+      <text id="p3-xtick-aug29" class="tick" x="44" y="105.83" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Aug29</text>
+      <text id="p3-xtick-sep5" class="tick" x="44" y="124.17" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Sep5</text>
+      <text id="p3-xtick-sep12" class="tick" x="44" y="142.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Sep12</text>
+      <text id="p3-xtick-sep19" class="tick" x="44" y="160.83" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Sep19</text>
+      <text id="p3-xtick-sep26" class="tick" x="44" y="179.17" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Sep26</text>
+      <text id="p3-xtick-oct3" class="tick" x="44" y="197.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Oct3</text>
+      <text id="p3-xtick-oct10" class="tick" x="44" y="215.83" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Oct10</text>
+      <text id="p3-xtick-oct17" class="tick" x="44" y="234.17" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Oct17</text>
+      <text id="p3-xtick-oct24" class="tick" x="44" y="252.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Oct24</text>
+      <text id="p3-xtick-oct31" class="tick" x="44" y="270.83" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Oct31</text>
     </g>
-    <g id="p3-series-revision-thousands" class="series">
-      <rect id="p3-mark-revision-thousands-jan-10-wk" class="bar" x="68.93" y="144.42" width="34.31" height="44.21" fill="#2563eb"/>
-      <rect id="p3-mark-revision-thousands-feb-21-wk" class="bar" x="124.10" y="144.42" width="34.31" height="44.21" fill="#2563eb"/>
-      <rect id="p3-mark-revision-thousands-may-2-wk" class="bar" x="179.26" y="188.63" width="34.31" height="44.21" fill="#2563eb"/>
-      <rect id="p3-mark-revision-thousands-jul-4-wk" class="bar" x="234.43" y="144.42" width="34.31" height="44.21" fill="#2563eb"/>
-      <rect id="p3-mark-revision-thousands-aug-8-wk" class="bar" x="289.60" y="56" width="34.31" height="132.63" fill="#2563eb"/>
-      <rect id="p3-mark-revision-thousands-sep-12-wk" class="bar" x="344.76" y="100.21" width="34.31" height="88.42" fill="#2563eb"/>
+    <g id="p3-series-revision" class="series">
+      <g class="hover">
+        <title>Aug15 — Revision: 1</title>
+        <rect id="p3-mark-revision-aug15" class="bar" x="52" y="59.30" width="169" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="56.67" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Aug22 — Revision: 1</title>
+        <rect id="p3-mark-revision-aug22" class="bar" x="52" y="77.63" width="169" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="75.00" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Aug29 — Revision: 1</title>
+        <rect id="p3-mark-revision-aug29" class="bar" x="52" y="95.97" width="169" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="93.33" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Sep5 — Revision: 0</title>
+        <rect id="p3-mark-revision-sep5" class="bar" x="52" y="114.30" width="0" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="111.67" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Sep12 — Revision: 2</title>
+        <rect id="p3-mark-revision-sep12" class="bar" x="52" y="132.63" width="338" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="130" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Sep19 — Revision: 1</title>
+        <rect id="p3-mark-revision-sep19" class="bar" x="52" y="150.97" width="169" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="148.33" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Sep26 — Revision: 2</title>
+        <rect id="p3-mark-revision-sep26" class="bar" x="52" y="169.30" width="338" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="166.67" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Oct3 — Revision: 1</title>
+        <rect id="p3-mark-revision-oct3" class="bar" x="52" y="187.63" width="169" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="185" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Oct10 — Revision: 1</title>
+        <rect id="p3-mark-revision-oct10" class="bar" x="52" y="205.97" width="169" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="203.33" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Oct17 — Revision: 1</title>
+        <rect id="p3-mark-revision-oct17" class="bar" x="52" y="224.30" width="169" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="221.67" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Oct24 — Revision: 1</title>
+        <rect id="p3-mark-revision-oct24" class="bar" x="52" y="242.63" width="169" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="240" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Oct31 — Revision: 2</title>
+        <rect id="p3-mark-revision-oct31" class="bar" x="52" y="260.97" width="338" height="10.73" fill="#2563eb"/>
+        <rect class="hit" x="52" y="258.33" width="338" height="16" fill="#000" fill-opacity="0"/>
+      </g>
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="582" fill="#6b7280">All from DOL/ETA press-release text: 'the previous week's level was</text>
-  <text class="caption" x="24" y="595" fill="#6b7280">revised...'</text>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="349.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="385.50" fill="#6b7280">For scale: typical wk-over-wk noise / consensus spread</text>
-  <text class="stat-value" x="464" y="415.50" fill="#1f2328">5,000-25,000</text>
-  </g>
-  <text class="caption" x="452" y="582" fill="#6b7280">Normal week-to-week swings and forecaster consensus ranges both dwarf</text>
-  <text class="caption" x="452" y="595" fill="#6b7280">the revision size</text>
-  <text class="footnote" x="20" y="627" fill="#6b7280">Source: U.S. Department of Labor, Employment and Training Administration, Unemployment Insurance Weekly Claims press releases</text>
-  <text class="footnote" x="20" y="641" fill="#6b7280">(oui.doleta.gov/press), fetched directly for releases dated 2026-01-22, 2026-03-05, 2026-05-14, 2026-07-16, 2026-08-20, 2026-09-24.</text>
   <g id="brand">
-  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -255,38 +297,44 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:54624/a/8c2b43c64936e1e4861fe17344f35e3d.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:59579/a/a7cd6472ea4cbcd228d7296725b995c7.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
-<h2>Summary</h2>
-<p><strong>Virtually every week.</strong> By design, DOL's weekly initial-claims report is revised the following week for a structural reason, not noise: the advance figure counts claims by the state <em>paying</em> the benefit, while the revision a week later reallocates the same claims by the claimant's state of <em>residence</em> (DOL's own technical note on every release). In a hand-checked sample of six 2026 releases spread across the year (January, March, May, July, August, September), <strong>all six weeks (6/6) were revised</strong> — none came back unchanged. The revisions ran +1,000, +1,000, -1,000, +1,000, +3,000, and +2,000 (in thousands of claims), or about 0.5%-1.4% of the ~200,000-level base, averaging roughly 1,500 claims (~0.7%).</p><p><strong>That size is not big enough, on its own, to move rate-cut odds.</strong> A typical week-to-week move in the seasonally adjusted claims level itself runs roughly 5,000-15,000+ (visible in the same release tables), and the spread of professional forecasters' own consensus estimates for the advance number is commonly 10,000-25,000. A 1,000-3,000 revision is a fraction of both bars. Markets and the Fed react to sustained shifts in the 4-week moving average or to payroll-scale surprises (e.g., a nonfarm-payrolls miss of 100,000+ swung September 2026 rate-hike odds from about 1-in-3 to 60% within a day) — a magnitude an order of magnitude larger than any claims revision observed here.</p>
+<h2>Answer</h2>
+<p>In the 12 weeks I could reconstruct (claims weeks ending 2026-08-15 to 2026-10-31), the advance figure was changed in the following week's release <strong>11 times out of 12 (92%)</strong>. Every revision was zero or upward: mean <strong>+1,083 claims</strong>, range 0 to +2,000, about 0.5% of the ~200,000 level. That is far smaller than typical week-to-week moves (2k to 9k) and consensus misses (about 4k to 5k), so the revision by itself is too small to matter for rate-cut pricing. Rare exceptions exist (a 17,000 downward revision in May 2023 from Massachusetts reporting corrections).</p>
 </section>
 <section>
-<h2>How the revision works and how often it happens</h2>
-<p>DOL's own technical notes (identical language in every release checked) state the mechanism explicitly: the advance figure comes from the ETA 538 report (claims by the state paying the benefit); the following week's revision comes from the ETA 539 report (claims reallocated by the claimant's state of residence). Because this is a different administrative basis, not a data-quality correction, a revision is the expected outcome nearly every week — it isn't a rare 'oops.'</p><p>Six DOL/ETA press releases were fetched directly and their 'previous week's level was revised...' sentence read verbatim:</p><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s5"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s6"><table border="1" cellpadding="6" style="border-collapse:collapse;width:100%"><tr><th><label class="srth" for="s2-t1-s1">Release date<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">Week being revised<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">Advance figure<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">Revised figure<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s5">Revision<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s6">% of level<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>2026-01-22</td><td>wk ending Jan 10</td><td>198,000</td><td>199,000</td><td>+1,000</td><td>+0.51%</td></tr><tr><td>2026-03-05</td><td>wk ending Feb 21</td><td>212,000</td><td>213,000</td><td>+1,000</td><td>+0.47%</td></tr><tr><td>2026-05-14</td><td>wk ending May 2</td><td>200,000</td><td>199,000</td><td>-1,000</td><td>-0.50%</td></tr><tr><td>2026-07-16</td><td>wk ending Jul 4</td><td>215,000</td><td>216,000</td><td>+1,000</td><td>+0.46%</td></tr><tr><td>2026-08-20</td><td>wk ending Aug 8</td><td>209,000</td><td>212,000</td><td>+3,000</td><td>+1.44%</td></tr><tr><td>2026-09-24</td><td>wk ending Sep 12</td><td>196,000</td><td>198,000</td><td>+2,000</td><td>+1.02%</td></tr></tbody><tbody class="srt s1"><tr><td>2026-01-22</td><td>wk ending Jan 10</td><td>198,000</td><td>199,000</td><td>+1,000</td><td>+0.51%</td></tr><tr><td>2026-03-05</td><td>wk ending Feb 21</td><td>212,000</td><td>213,000</td><td>+1,000</td><td>+0.47%</td></tr><tr><td>2026-05-14</td><td>wk ending May 2</td><td>200,000</td><td>199,000</td><td>-1,000</td><td>-0.50%</td></tr><tr><td>2026-07-16</td><td>wk ending Jul 4</td><td>215,000</td><td>216,000</td><td>+1,000</td><td>+0.46%</td></tr><tr><td>2026-08-20</td><td>wk ending Aug 8</td><td>209,000</td><td>212,000</td><td>+3,000</td><td>+1.44%</td></tr><tr><td>2026-09-24</td><td>wk ending Sep 12</td><td>196,000</td><td>198,000</td><td>+2,000</td><td>+1.02%</td></tr></tbody><tbody class="srt s2"><tr><td>2026-03-05</td><td>wk ending Feb 21</td><td>212,000</td><td>213,000</td><td>+1,000</td><td>+0.47%</td></tr><tr><td>2026-09-24</td><td>wk ending Sep 12</td><td>196,000</td><td>198,000</td><td>+2,000</td><td>+1.02%</td></tr><tr><td>2026-01-22</td><td>wk ending Jan 10</td><td>198,000</td><td>199,000</td><td>+1,000</td><td>+0.51%</td></tr><tr><td>2026-08-20</td><td>wk ending Aug 8</td><td>209,000</td><td>212,000</td><td>+3,000</td><td>+1.44%</td></tr><tr><td>2026-07-16</td><td>wk ending Jul 4</td><td>215,000</td><td>216,000</td><td>+1,000</td><td>+0.46%</td></tr><tr><td>2026-05-14</td><td>wk ending May 2</td><td>200,000</td><td>199,000</td><td>-1,000</td><td>-0.50%</td></tr></tbody><tbody class="srt s3"><tr><td>2026-07-16</td><td>wk ending Jul 4</td><td>215,000</td><td>216,000</td><td>+1,000</td><td>+0.46%</td></tr><tr><td>2026-03-05</td><td>wk ending Feb 21</td><td>212,000</td><td>213,000</td><td>+1,000</td><td>+0.47%</td></tr><tr><td>2026-08-20</td><td>wk ending Aug 8</td><td>209,000</td><td>212,000</td><td>+3,000</td><td>+1.44%</td></tr><tr><td>2026-05-14</td><td>wk ending May 2</td><td>200,000</td><td>199,000</td><td>-1,000</td><td>-0.50%</td></tr><tr><td>2026-01-22</td><td>wk ending Jan 10</td><td>198,000</td><td>199,000</td><td>+1,000</td><td>+0.51%</td></tr><tr><td>2026-09-24</td><td>wk ending Sep 12</td><td>196,000</td><td>198,000</td><td>+2,000</td><td>+1.02%</td></tr></tbody><tbody class="srt s4"><tr><td>2026-07-16</td><td>wk ending Jul 4</td><td>215,000</td><td>216,000</td><td>+1,000</td><td>+0.46%</td></tr><tr><td>2026-03-05</td><td>wk ending Feb 21</td><td>212,000</td><td>213,000</td><td>+1,000</td><td>+0.47%</td></tr><tr><td>2026-08-20</td><td>wk ending Aug 8</td><td>209,000</td><td>212,000</td><td>+3,000</td><td>+1.44%</td></tr><tr><td>2026-01-22</td><td>wk ending Jan 10</td><td>198,000</td><td>199,000</td><td>+1,000</td><td>+0.51%</td></tr><tr><td>2026-05-14</td><td>wk ending May 2</td><td>200,000</td><td>199,000</td><td>-1,000</td><td>-0.50%</td></tr><tr><td>2026-09-24</td><td>wk ending Sep 12</td><td>196,000</td><td>198,000</td><td>+2,000</td><td>+1.02%</td></tr></tbody><tbody class="srt s5"><tr><td>2026-08-20</td><td>wk ending Aug 8</td><td>209,000</td><td>212,000</td><td>+3,000</td><td>+1.44%</td></tr><tr><td>2026-09-24</td><td>wk ending Sep 12</td><td>196,000</td><td>198,000</td><td>+2,000</td><td>+1.02%</td></tr><tr><td>2026-01-22</td><td>wk ending Jan 10</td><td>198,000</td><td>199,000</td><td>+1,000</td><td>+0.51%</td></tr><tr><td>2026-03-05</td><td>wk ending Feb 21</td><td>212,000</td><td>213,000</td><td>+1,000</td><td>+0.47%</td></tr><tr><td>2026-07-16</td><td>wk ending Jul 4</td><td>215,000</td><td>216,000</td><td>+1,000</td><td>+0.46%</td></tr><tr><td>2026-05-14</td><td>wk ending May 2</td><td>200,000</td><td>199,000</td><td>-1,000</td><td>-0.50%</td></tr></tbody><tbody class="srt s6"><tr><td>2026-08-20</td><td>wk ending Aug 8</td><td>209,000</td><td>212,000</td><td>+3,000</td><td>+1.44%</td></tr><tr><td>2026-09-24</td><td>wk ending Sep 12</td><td>196,000</td><td>198,000</td><td>+2,000</td><td>+1.02%</td></tr><tr><td>2026-01-22</td><td>wk ending Jan 10</td><td>198,000</td><td>199,000</td><td>+1,000</td><td>+0.51%</td></tr><tr><td>2026-03-05</td><td>wk ending Feb 21</td><td>212,000</td><td>213,000</td><td>+1,000</td><td>+0.47%</td></tr><tr><td>2026-07-16</td><td>wk ending Jul 4</td><td>215,000</td><td>216,000</td><td>+1,000</td><td>+0.46%</td></tr><tr><td>2026-05-14</td><td>wk ending May 2</td><td>200,000</td><td>199,000</td><td>-1,000</td><td>-0.50%</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>Result: <strong>6 of 6 sampled weeks (100%) were revised</strong>; 5 of 6 revised upward, 1 revised downward. Average absolute revision: ~1,500 claims (~0.73% of level). None of the six sampled weeks' claims figures were left unchanged, consistent with DOL's stated methodology guaranteeing a near-universal revision rather than an occasional correction.</p>
+<h2>Data</h2>
+<input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><table><tr><th><label class="srth" for="s2-t1-s1">Claims week ending<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s2">Advance<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">Revised next week<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">Change<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Aug 15</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Aug 22</td><td>203k</td><td>204k</td><td>+1k</td></tr><tr><td>Aug 29</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Sep 5</td><td>206k</td><td>206k</td><td>0</td></tr><tr><td>Sep 12</td><td>196k</td><td>198k</td><td>+2k</td></tr><tr><td>Sep 19</td><td>197k</td><td>198k</td><td>+1k</td></tr><tr><td>Sep 26</td><td>197k</td><td>199k</td><td>+2k</td></tr><tr><td>Oct 3</td><td>197k</td><td>198k</td><td>+1k</td></tr><tr><td>Oct 10</td><td>199k</td><td>200k</td><td>+1k</td></tr><tr><td>Oct 17</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Oct 24</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Oct 31</td><td>189k</td><td>191k</td><td>+2k</td></tr></tbody><tbody class="srt s1"><tr><td>Oct 31</td><td>189k</td><td>191k</td><td>+2k</td></tr><tr><td>Aug 29</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Sep 26</td><td>197k</td><td>199k</td><td>+2k</td></tr><tr><td>Oct 24</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Aug 22</td><td>203k</td><td>204k</td><td>+1k</td></tr><tr><td>Sep 19</td><td>197k</td><td>198k</td><td>+1k</td></tr><tr><td>Oct 17</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Aug 15</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Sep 12</td><td>196k</td><td>198k</td><td>+2k</td></tr><tr><td>Oct 10</td><td>199k</td><td>200k</td><td>+1k</td></tr><tr><td>Sep 5</td><td>206k</td><td>206k</td><td>0</td></tr><tr><td>Oct 3</td><td>197k</td><td>198k</td><td>+1k</td></tr></tbody><tbody class="srt s2"><tr><td>Aug 15</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Aug 29</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Sep 5</td><td>206k</td><td>206k</td><td>0</td></tr><tr><td>Aug 22</td><td>203k</td><td>204k</td><td>+1k</td></tr><tr><td>Oct 10</td><td>199k</td><td>200k</td><td>+1k</td></tr><tr><td>Sep 19</td><td>197k</td><td>198k</td><td>+1k</td></tr><tr><td>Sep 26</td><td>197k</td><td>199k</td><td>+2k</td></tr><tr><td>Oct 3</td><td>197k</td><td>198k</td><td>+1k</td></tr><tr><td>Sep 12</td><td>196k</td><td>198k</td><td>+2k</td></tr><tr><td>Oct 17</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Oct 24</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Oct 31</td><td>189k</td><td>191k</td><td>+2k</td></tr></tbody><tbody class="srt s3"><tr><td>Aug 15</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Aug 29</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Sep 5</td><td>206k</td><td>206k</td><td>0</td></tr><tr><td>Aug 22</td><td>203k</td><td>204k</td><td>+1k</td></tr><tr><td>Oct 10</td><td>199k</td><td>200k</td><td>+1k</td></tr><tr><td>Sep 26</td><td>197k</td><td>199k</td><td>+2k</td></tr><tr><td>Sep 12</td><td>196k</td><td>198k</td><td>+2k</td></tr><tr><td>Sep 19</td><td>197k</td><td>198k</td><td>+1k</td></tr><tr><td>Oct 3</td><td>197k</td><td>198k</td><td>+1k</td></tr><tr><td>Oct 17</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Oct 24</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Oct 31</td><td>189k</td><td>191k</td><td>+2k</td></tr></tbody><tbody class="srt s4"><tr><td>Sep 12</td><td>196k</td><td>198k</td><td>+2k</td></tr><tr><td>Sep 26</td><td>197k</td><td>199k</td><td>+2k</td></tr><tr><td>Oct 31</td><td>189k</td><td>191k</td><td>+2k</td></tr><tr><td>Aug 15</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Aug 22</td><td>203k</td><td>204k</td><td>+1k</td></tr><tr><td>Aug 29</td><td>206k</td><td>207k</td><td>+1k</td></tr><tr><td>Sep 19</td><td>197k</td><td>198k</td><td>+1k</td></tr><tr><td>Oct 3</td><td>197k</td><td>198k</td><td>+1k</td></tr><tr><td>Oct 10</td><td>199k</td><td>200k</td><td>+1k</td></tr><tr><td>Oct 17</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Oct 24</td><td>194k</td><td>195k</td><td>+1k</td></tr><tr><td>Sep 5</td><td>206k</td><td>206k</td><td>0</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>Advance = last row of that Thursday's ALFRED vintage; revised = same week in the next Thursday's vintage. Cross-checks: FXStreet reports Nov 7 week 200k vs prior week 191k (revised from 189k); Yahoo reports 197k on Oct 1 vs 198k prior (my vintages: Sep 19 week 198k, consistent). The Nov 7 print of 200k is revised on Nov 19. The warehouse (econ.fred_indicators ICSA) holds only current values, which match the revised numbers but carry no vintages.</p>
 </section>
 <section>
-<h2>Is that revision size big enough to move rate-cut pricing?</h2>
-<p>Three benchmarks argue no, not on its own:</p><ul><li><strong>Week-to-week noise dwarfs the revision.</strong> The same DOL release tables show the seasonally adjusted level itself swinging by 5,000-45,000 from one week to the next during 2025-2026 (e.g., -32,000 in one September 2025 week, +19,000 in a January 2026 week). A 1,000-3,000 revision is well inside that normal noise band and would not itself change anyone's read on the trend.</li><li><strong>Consensus forecast spreads are wider than the revision.</strong> Economist consensus ranges for the advance claims print are commonly reported with a 10,000-25,000 spread between the low and high estimate in a given week. A revision of 1,000-3,000 is smaller than the uncertainty already priced into the forecast itself.</li><li><strong>What actually moves Fed pricing is scale, not a single week's claims revision.</strong> The clearest 2026 example: a nonfarm-payrolls miss (jobs unexpectedly falling rather than rising) sent CME FedWatch's probability of a September 2026 hold from roughly one-in-three to 45% to 60% within two days — a move driven by a headline surprise of 100,000+ jobs, not a few-thousand-claims revision. The Fed and markets watch the claims series' <em>4-week moving average</em> and multi-week trend for turning points, not the single-week revision.</li></ul><p>Bottom line: the revision is real, near-certain, and mechanically explained — but at roughly 1,000-3,000 claims on a ~200,000 base, it is too small relative to both normal week-to-week volatility and consensus forecast uncertainty to be, by itself, a lever that moves rate-cut odds. It would only start to matter if a revision were unusually large (many thousands, well outside the 6-week range observed here) or coincided with a broader run of upside/downside surprises across several weeks.</p>
+<h2>Why it likely does not matter for cut odds</h2>
+<ul><li>The revision (about 1k) is a fraction of the weekly change in the advance level and of consensus misses (e.g. 197k vs 201k forecast on Oct 1; 200k vs 195k on Nov 12).</li><li>Revisions are consistently small and upward (late state filings), a predictable bias, so it is largely priced into how traders read the prior week.</li><li>Rate expectations are driven mainly by payrolls, unemployment rate and inflation; claims near 190-200k signal low layoffs regardless of a 1k revision. Pages fetched show hawkish chatter (10-year near 5.1%), so cut odds are being set by inflation more than claims.</li><li>Caveats: 12-week sample; annual seasonal-factor revisions and state reporting corrections can be much larger; I did not regress market-implied cut probabilities on claims surprises, so 'does not matter' is an inference from magnitudes, not a measured market response.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Long-history or full-sample frequency</strong>: Warehouse holds only current ICSA values, no vintages; ALFRED multi-vintage fetches timed out, so sample is 12 weeks (Aug-Nov 2026). March seasonal-factor revisions excluded.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 15 rows — 3419 ms</summary><pre><code>SELECT date, value FROM econ.fred_indicators WHERE series='ICSA' AND date &gt;= DATE '2026-08-01' ORDER BY date</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://oui.doleta.gov/press/2026/012226.pdf">DOL/ETA UI Weekly Claims release, Jan 22 2026</a></li>
-<li><a href="https://oui.doleta.gov/press/2026/030526.pdf">DOL/ETA UI Weekly Claims release, Mar 5 2026</a></li>
-<li><a href="https://oui.doleta.gov/press/2026/051426.pdf">DOL/ETA UI Weekly Claims release, May 14 2026</a></li>
-<li><a href="https://oui.doleta.gov/press/2026/071626.pdf">DOL/ETA UI Weekly Claims release, Jul 16 2026</a></li>
-<li><a href="https://oui.doleta.gov/press/2026/082026.pdf">DOL/ETA UI Weekly Claims release, Aug 20 2026</a></li>
-<li><a href="https://oui.doleta.gov/press/2026/092426.pdf">DOL/ETA UI Weekly Claims release, Sep 24 2026</a></li>
-<li><a href="https://www.cnbc.com/2026/08/07/odds-the-fed-hikes-in-september-tumble-following-big-july-jobs-miss.html">CNBC: Odds Fed hikes in September tumble after big July jobs miss</a></li>
-<li>AskAmerica corpus check: econ.fred_indicators / labor_market_conditions carry only current (most-revised) ICSA values, no vintage/first-print history for jobless claims <span class="note">— Confirmed via describe_table and search_catalog before turning to DOL primary-source PDFs</span></li>
+<li><a href="https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=ICSA&amp;vintage_date=2026-11-12">ALFRED ICSA vintage CSVs (fetched 2026-11-16)</a></li>
+<li><a href="https://www.fxstreet.com/news/us-initial-jobless-claims-rose-to-200k-last-week-202611121337">FXStreet, claims 200K week ending Nov 7</a></li>
+<li><a href="https://finance.yahoo.com/economy/articles/us-initial-jobless-claims-fall-125455228.html">Yahoo Finance, claims 197,000 Oct 1 2026</a></li>
+<li><a href="https://investinglive.com/news/us-initial-jobless-claims-229k-versus-245k-estimate-20230525">investinglive, May 2023 17k revision</a></li>
+<li><a href="https://fred.stlouisfed.org/series/ICSA">AskAmerica econ.fred_indicators ICSA</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;date&quot;, &quot;value&quot; FROM econ.fred_indicators WHERE series='ICSA' AND &quot;date&quot; &gt;= DATE '2026-08-01' ORDER BY &quot;date&quot;</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Sample is 6 releases spread across 2026 (not all 52 weeks of the year), chosen at roughly 6-8 week intervals to check for seasonal variation; all 6 happened to show a nonzero revision, consistent with DOL's stated methodology (a structural reallocation, not a sporadic correction) but this is not a full-year census. The AskAmerica data warehouse does not carry a jobless-claims revision/vintage table (only current, most-revised FRED ICSA/CCSA values), so this analysis relies on primary-source DOL/ETA PDF releases rather than the connector's own tables.</p>
 <p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>

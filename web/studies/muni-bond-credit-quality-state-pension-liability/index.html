@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Illinois, Kentucky, New Jersey, Mississippi and Connecticut carry the biggest pension funding gaps — and it does show up in bond pricing, though rating trajectory matters as much as the raw shortfall</title>
+<title>Illinois, Kentucky and New Jersey carry the widest pension funding gaps; markets price it at the extremes, but ratings and contribution discipline matter more than the raw ratio</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -99,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Illinois, Kentucky, New Jersey, Mississippi and Connecticut carry the biggest pension funding gaps — and it does show up in bond pricing, though rating trajectory matters as much as the raw shortfall</h1>
-<p class="subtitle">Reason Foundation Annual Pension Solvency Report (FY2024 data); Bond Buyer, Moody's, S&amp;P, KBRA rating actions (2026)</p>
+<h1>Illinois, Kentucky and New Jersey carry the widest pension funding gaps; markets price it at the extremes, but ratings and contribution discipline matter more than the raw ratio</h1>
+<p class="subtitle">Pension figures: Reason Foundation 2025 report, Equable, CRR. Spreads: Boyer research, Bond Buyer, Schwab/Bloomberg snapshot. Not computed from the AskAmerica warehouse.</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 737" width="880" height="737" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,134 +155,113 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="737" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Pension Funding Gaps and How They Price Into State Bonds</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">Reason Foundation Annual Pension Solvency Report (FY2024 data); Bond Buyer, Moody's, S&amp;P, KBRA rating actions (2026)</text>
-  <rect class="panel-edge" x="20" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Pension funded ratio, worst- and best-funded states (FY2024)</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">State pension funded ratio, best and worst (Reason 2025 report)</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="303" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="303" viewBox="0 0 412 303" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="303" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Funded ratio, %</text>
     <g id="p1-gridlines">
-      <line class="grid" x1="67" y1="156.88" x2="390" y2="156.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-0" class="tick" x="59" y="160.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="140.07" x2="390" y2="140.07" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-1" class="tick" x="59" y="144.07" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="67" y1="123.25" x2="390" y2="123.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-2" class="tick" x="59" y="127.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="67" y1="106.44" x2="390" y2="106.44" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-3" class="tick" x="59" y="110.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-      <line class="grid" x1="67" y1="89.63" x2="390" y2="89.63" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-4" class="tick" x="59" y="93.63" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
-      <line class="grid" x1="67" y1="72.81" x2="390" y2="72.81" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-5" class="tick" x="59" y="76.81" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">120</text>
+      <line class="grid" x1="105" y1="56" x2="105" y2="235" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-0" class="tick" x="105" y="251" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <line class="grid" x1="147.50" y1="56" x2="147.50" y2="235" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-1" class="tick" x="147.50" y="251" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <line class="grid" x1="190" y1="56" x2="190" y2="235" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-2" class="tick" x="190" y="251" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">40</text>
+      <line class="grid" x1="232.50" y1="56" x2="232.50" y2="235" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-3" class="tick" x="232.50" y="251" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">60</text>
+      <line class="grid" x1="275" y1="56" x2="275" y2="235" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-4" class="tick" x="275" y="251" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">80</text>
+      <line class="grid" x1="317.50" y1="56" x2="317.50" y2="235" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-5" class="tick" x="317.50" y="251" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">100</text>
+      <line class="grid" x1="360" y1="56" x2="360" y2="235" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-6" class="tick" x="360" y="251" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">120</text>
     </g>
     <g id="p1-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="156.88" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="156.88" x2="390" y2="156.88" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="105" y1="56" x2="105" y2="235" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="105" y1="235" x2="360" y2="235" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p1-x-axis-title" class="axis-title" x="228.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
-    <text id="p1-y-axis-title" class="axis-title" x="14" y="106.44" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 106.44)">Funded ratio %</text>
-    <g id="p1-x-axis-labels">
-      <text id="p1-xtick-illinois" class="tick" x="84.94" y="170.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 84.94 170.88)">Illinois</text>
-      <text id="p1-xtick-kentucky" class="tick" x="120.83" y="170.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 120.83 170.88)">Kentucky</text>
-      <text id="p1-xtick-new-jersey" class="tick" x="156.72" y="170.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 156.72 170.88)">New Jersey</text>
-      <text id="p1-xtick-mississippi" class="tick" x="192.61" y="170.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 192.61 170.88)">Mississippi</text>
-      <text id="p1-xtick-connecticut" class="tick" x="228.50" y="170.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 170.88)">Connecticut</text>
-      <text id="p1-xtick-u-s-median" class="tick" x="264.39" y="170.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 264.39 170.88)">U.S. median</text>
-      <text id="p1-xtick-south-dakota" class="tick" x="300.28" y="170.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 300.28 170.88)">South Dakota</text>
-      <text id="p1-xtick-washington" class="tick" x="336.17" y="170.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 336.17 170.88)">Washington</text>
-      <text id="p1-xtick-tennessee" class="tick" x="372.06" y="170.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 372.06 170.88)">Tennessee</text>
+    <text id="p1-value-axis-title" class="axis-title" x="232.50" y="279" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Funded ratio %</text>
+    <text id="p1-category-axis-title" class="axis-title" x="14" y="145.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 145.50)">State</text>
+    <g id="p1-category-axis-labels">
+      <text id="p1-xtick-illinois" class="tick" x="97" y="68.95" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Illinois</text>
+      <text id="p1-xtick-kentucky" class="tick" x="97" y="86.85" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Kentucky</text>
+      <text id="p1-xtick-new-jersey" class="tick" x="97" y="104.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">New Jersey</text>
+      <text id="p1-xtick-pennsylvania" class="tick" x="97" y="122.65" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Pennsylvania</text>
+      <text id="p1-xtick-texas" class="tick" x="97" y="140.55" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Texas</text>
+      <text id="p1-xtick-california" class="tick" x="97" y="158.45" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">California</text>
+      <text id="p1-xtick-new-york" class="tick" x="97" y="176.35" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">New York</text>
+      <text id="p1-xtick-south-dakota" class="tick" x="97" y="194.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">South Dakota</text>
+      <text id="p1-xtick-washington" class="tick" x="97" y="212.15" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Washington</text>
+      <text id="p1-xtick-tennessee" class="tick" x="97" y="230.05" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Tennessee</text>
     </g>
     <g id="p1-series-funded-ratio" class="series">
-      <rect id="p1-mark-funded-ratio-illinois" class="bar" x="73.46" y="113.17" width="21.97" height="43.71" fill="#2563eb"/>
-      <rect id="p1-mark-funded-ratio-kentucky" class="bar" x="109.35" y="111.48" width="21.97" height="45.40" fill="#2563eb"/>
-      <rect id="p1-mark-funded-ratio-new-jersey" class="bar" x="145.24" y="110.64" width="21.97" height="46.24" fill="#2563eb"/>
-      <rect id="p1-mark-funded-ratio-mississippi" class="bar" x="181.13" y="109.80" width="21.97" height="47.08" fill="#2563eb"/>
-      <rect id="p1-mark-funded-ratio-connecticut" class="bar" x="217.02" y="106.86" width="21.97" height="50.02" fill="#2563eb"/>
-      <rect id="p1-mark-funded-ratio-u-s-median" class="bar" x="252.90" y="90.47" width="21.97" height="66.41" fill="#2563eb"/>
-      <rect id="p1-mark-funded-ratio-south-dakota" class="bar" x="288.79" y="72.81" width="21.97" height="84.07" fill="#2563eb"/>
-      <rect id="p1-mark-funded-ratio-washington" class="bar" x="324.68" y="71.13" width="21.97" height="85.75" fill="#2563eb"/>
-      <rect id="p1-mark-funded-ratio-tennessee" class="bar" x="360.57" y="69.45" width="21.97" height="87.43" fill="#2563eb"/>
+      <g class="hover">
+        <title>Illinois — Funded ratio %: 52</title>
+        <rect id="p1-mark-funded-ratio-illinois" class="bar" x="105" y="59.22" width="110.50" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="56.45" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-illinois" class="value-label" x="219.50" y="68.95" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">52</text>
+      <g class="hover">
+        <title>Kentucky — Funded ratio %: 54</title>
+        <rect id="p1-mark-funded-ratio-kentucky" class="bar" x="105" y="77.12" width="114.75" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="74.35" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-kentucky" class="value-label" x="223.75" y="86.85" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">54</text>
+      <g class="hover">
+        <title>New Jersey — Funded ratio %: 55</title>
+        <rect id="p1-mark-funded-ratio-new-jersey" class="bar" x="105" y="95.02" width="116.88" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="92.25" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-new-jersey" class="value-label" x="225.88" y="104.75" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">55</text>
+      <g class="hover">
+        <title>Pennsylvania — Funded ratio %: 66</title>
+        <rect id="p1-mark-funded-ratio-pennsylvania" class="bar" x="105" y="112.92" width="140.25" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="110.15" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-pennsylvania" class="value-label" x="249.25" y="122.65" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">66</text>
+      <g class="hover">
+        <title>Texas — Funded ratio %: 80</title>
+        <rect id="p1-mark-funded-ratio-texas" class="bar" x="105" y="130.82" width="170" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="128.05" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-texas" class="value-label" x="279" y="140.55" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">80</text>
+      <g class="hover">
+        <title>California — Funded ratio %: 82</title>
+        <rect id="p1-mark-funded-ratio-california" class="bar" x="105" y="148.72" width="174.25" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="145.95" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-california" class="value-label" x="283.25" y="158.45" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">82</text>
+      <g class="hover">
+        <title>New York — Funded ratio %: 94</title>
+        <rect id="p1-mark-funded-ratio-new-york" class="bar" x="105" y="166.62" width="199.75" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="163.85" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-new-york" class="value-label" x="308.75" y="176.35" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">94</text>
+      <g class="hover">
+        <title>South Dakota — Funded ratio %: 100</title>
+        <rect id="p1-mark-funded-ratio-south-dakota" class="bar" x="105" y="184.52" width="212.50" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="181.75" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-south-dakota" class="value-label" x="321.50" y="194.25" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">100</text>
+      <g class="hover">
+        <title>Washington — Funded ratio %: 103</title>
+        <rect id="p1-mark-funded-ratio-washington" class="bar" x="105" y="202.42" width="218.88" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="199.65" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-washington" class="value-label" x="327.88" y="212.15" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">103</text>
+      <g class="hover">
+        <title>Tennessee — Funded ratio %: 104</title>
+        <rect id="p1-mark-funded-ratio-tennessee" class="bar" x="105" y="220.32" width="221" height="10.46" fill="#2563eb"/>
+        <rect class="hit" x="105" y="217.55" width="255" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-funded-ratio-tennessee" class="value-label" x="330" y="230.05" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">104</text>
     </g>
     <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="363" fill="#6b7280">Reason Foundation Annual Pension Solvency Report, FY2024 (most recent</text>
-  <text class="caption" x="24" y="376" fill="#6b7280">complete year). US median funded ratio 79%.</text>
-  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Unfunded pension liability per capita, worst-gap states</text>
-    <g id="p2-gridlines">
-      <line class="grid" x1="84" y1="161.20" x2="390" y2="161.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-0" class="tick" x="76" y="165.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="84" y1="134.90" x2="390" y2="134.90" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-1" class="tick" x="76" y="138.90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5,000</text>
-      <line class="grid" x1="84" y1="108.60" x2="390" y2="108.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-2" class="tick" x="76" y="112.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10,000</text>
-      <line class="grid" x1="84" y1="82.30" x2="390" y2="82.30" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-3" class="tick" x="76" y="86.30" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15,000</text>
-      <line class="grid" x1="84" y1="56.00" x2="390" y2="56.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-4" class="tick" x="76" y="60.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20,000</text>
-    </g>
-    <g id="p2-axes">
-      <line class="axis" x1="84" y1="56" x2="84" y2="161.20" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="84" y1="161.20" x2="390" y2="161.20" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p2-x-axis-title" class="axis-title" x="237" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
-    <text id="p2-y-axis-title" class="axis-title" x="14" y="108.60" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 108.60)">Unfunded $ per resident</text>
-    <g id="p2-x-axis-labels">
-      <text id="p2-xtick-illinois" class="tick" x="105.86" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 105.86 175.20)">Illinois</text>
-      <text id="p2-xtick-connecticut" class="tick" x="149.57" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 149.57 175.20)">Connecticut</text>
-      <text id="p2-xtick-alaska" class="tick" x="193.29" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 193.29 175.20)">Alaska</text>
-      <text id="p2-xtick-hawaii" class="tick" x="237" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 237 175.20)">Hawaii</text>
-      <text id="p2-xtick-new-jersey" class="tick" x="280.71" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 280.71 175.20)">New Jersey</text>
-      <text id="p2-xtick-mississippi" class="tick" x="324.43" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 324.43 175.20)">Mississippi</text>
-      <text id="p2-xtick-kentucky" class="tick" x="368.14" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 368.14 175.20)">Kentucky</text>
-    </g>
-    <g id="p2-series-per-capita-unfunded-liability" class="series">
-      <rect id="p2-mark-per-capita-unfunded-liability-illinois" class="bar" x="91.87" y="78.07" width="26.98" height="83.13" fill="#2563eb"/>
-      <rect id="p2-mark-per-capita-unfunded-liability-connecticut" class="bar" x="135.58" y="107.81" width="26.98" height="53.39" fill="#2563eb"/>
-      <rect id="p2-mark-per-capita-unfunded-liability-alaska" class="bar" x="179.30" y="108.65" width="26.98" height="52.55" fill="#2563eb"/>
-      <rect id="p2-mark-per-capita-unfunded-liability-hawaii" class="bar" x="223.01" y="109.74" width="26.98" height="51.46" fill="#2563eb"/>
-      <rect id="p2-mark-per-capita-unfunded-liability-new-jersey" class="bar" x="266.73" y="110.24" width="26.98" height="50.96" fill="#2563eb"/>
-      <rect id="p2-mark-per-capita-unfunded-liability-mississippi" class="bar" x="310.44" y="113.69" width="26.98" height="47.51" fill="#2563eb"/>
-      <rect id="p2-mark-per-capita-unfunded-liability-kentucky" class="bar" x="354.15" y="115.83" width="26.98" height="45.37" fill="#2563eb"/>
-    </g>
-    <g id="p2-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="363" fill="#6b7280">Reason Foundation, FY2024 data. Illinois is the highest per-capita gap</text>
-  <text class="caption" x="452" y="376" fill="#6b7280">in the nation, more than 50% above the second-highest state…</text>
-  <g id="p3-stat">
-  <rect class="panel-edge" x="20" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="434" fill="#6b7280">Chicago 10-yr GO spread over AAA benchmark</text>
-  <text class="stat-value" x="36" y="464" fill="#1f2328">155-175 bps</text>
-  <text class="stat-delta" x="36" y="484" fill="#059669">up from 124 bps on Sept 16, 2026</text>
-  </g>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="398" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="434" fill="#6b7280" style="font-size:10px">Illinois still &quot;lowest-rated state government&quot; (S&amp;P, Sept 2026)</text>
-  <text class="stat-value" x="464" y="464" fill="#1f2328" style="font-size:21px">A / A1 / A- (S&amp;P/Moody's/Fitch)</text>
-  <text class="stat-delta" x="464" y="484" fill="#059669">up 11-12 notches since 2021, but still last place</text>
-  </g>
-  <g id="p5-stat">
-  <rect class="panel-edge" x="20" y="522" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="558" fill="#6b7280">New Jersey KBRA upgrade (Sept 2, 2026)</text>
-  <text class="stat-value" x="36" y="588" fill="#1f2328">A+ → AA-</text>
-  <text class="stat-delta" x="36" y="608" fill="#059669" style="font-size:9px">10th straight upgrade since 2020; pension still &quot;very high&quot; per KBRA</text>
-  </g>
-  <g id="p6-stat">
-  <rect class="panel-edge" x="448" y="522" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="558" fill="#6b7280">Illinois unfunded pension liability, per capita</text>
-  <text class="stat-value" x="464" y="588" fill="#1f2328">$15,804</text>
-  <text class="stat-delta" x="464" y="608" fill="#6b7280">highest of any state (Reason Foundation, FY2024)</text>
-  </g>
-  <text class="footnote" x="20" y="656" fill="#6b7280">Pension data: Reason Foundation Annual Pension Solvency Report (FY2024, most recent complete year). Bond pricing and rating-action figures: Bond</text>
-  <text class="footnote" x="20" y="670" fill="#6b7280">Buyer reporting, Sept 2026. This corpus (askamerica/govdata) carries no pension-liability or municipal-bond-pricing table -- confirmed via</text>
-  <text class="footnote" x="20" y="684" fill="#6b7280">search_catalog -- so no figure here is drawn from an askamerica query.</text>
+  <text class="footnote" x="20" y="393" fill="#6b7280">Only states named in Reason's published text; the 50-state table was not retrievable as text.</text>
   <g id="brand">
-  <svg x="20" y="696" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -283,44 +270,45 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="711" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:53114/a/d14daa74b52f1806639603c799c55db7.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:55766/a/aa06389e25c14fa09d6fef2162c0143d.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
-<h2>Summary</h2>
-<p><strong>Illinois, Kentucky, New Jersey, Mississippi and Connecticut</strong> carry the deepest pension funding gaps in the country, all below 60% funded as of the end of FY2024 (Reason Foundation's Annual Pension Solvency Report), against a national median funded ratio of 79%. Illinois is the clear outlier on every measure: worst funded ratio in the nation (52%), and by far the largest unfunded liability <em>per resident</em> at $15,804 — more than 50% higher than the next-worst state (Connecticut, $10,151). By raw dollar amount, California ($265B) and Illinois ($201B) top the list, but California's ratio is far healthier once its much larger economy and pension-fund base are accounted for. Three states — Tennessee (104%), Washington (102%) and South Dakota (100%) — reported no aggregate unfunded pension liability at all at the end of FY2024.</p><p>Yes, this gap shows up in bond pricing — but the relationship runs through credit-rating trajectory and fiscal management more than through the static size of the shortfall. Chicago's own general-obligation bonds have recently traded 155-175 basis points over the AAA municipal benchmark, widening rapidly through September 2026 (up from 124 bps just over a week earlier) as market participants say pricing is running ahead of what the rating agencies have formally acted on. Yet at the state level, Illinois — still explicitly called "the lowest-rated state government" by S&P even after its 2026 upgrades — has now had 11-12 rating upgrades since 2021 specifically because it strung together eight consecutive balanced budgets and enacted (if only partial) pension-liability-reduction measures, not because its funded ratio actually improved much. New Jersey's KBRA upgrade to AA- in September 2026 tells the identical story: the rating agency explicitly still calls the state's unfunded pension and retiree health-benefit obligations "very high," but rewarded it anyway for six consecutive years of paying its full actuarially required pension contribution. Bond markets price the direction the state is moving as much as the depth of the hole itself.</p>
+<h2>Answer</h2>
+<p>The widest gaps by funded ratio are Illinois (52%), Kentucky (54%) and New Jersey (55%) per Reason Foundation's 2025 report; Equable names Illinois, Kentucky and Mississippi as below 60%. In dollars, California, Illinois, Texas and New Jersey are largest, which partly reflects size. Pennsylvania (66%) is the largest big-state laggard. Nationally the gap is $1.27 trillion at 82.5% funded (Equable, 2025) or about 77.7% (Boston College CRR) depending on method.</p><p>Does it show up in bond pricing? Yes on average, but not one-for-one. Boyer's cross-state study finds one standard deviation more net pension liability to GDP is associated with about 18 bp higher CDS spreads (about 28 bp in bond spreads), strongest where state constitutions protect pensions. Illinois, the worst-funded, has traded the widest state spread to the AAA benchmark (163 bp at 10 years in early 2023, narrowing to 145 bp after upgrades, versus 60-70 bp at its early-2022 tightest). But a June 2026 snapshot has Illinois at 62 bp and New Jersey at 21 bp despite similar funded ratios, so ratings, supplemental contributions and budget health drive pricing at least as much as the funded ratio itself.</p>
 </section>
 <section>
-<h2>1. Which states have the biggest gap between promised and funded pensions</h2>
-<p>Reason Foundation's Annual Pension Solvency Report, drawn directly from states' own audited financial statements for the fiscal year ending 2024 (the most recent year with complete data across all states), gives three distinct rankings depending on what "biggest gap" means:</p><ul><li><strong>Relative gap (funded ratio: cents on the dollar of promises actually funded)</strong> — Illinois is worst in the nation at <strong>52% funded</strong>. The other states under 60% are Kentucky (54%), New Jersey (55%), Mississippi (56%), and Connecticut (59.5%). The national median across all state and local plans was 79% funded at the end of FY2024 — meaning governments nationally have about 79 cents saved for every dollar of pension benefit already promised.</li><li><strong>Absolute dollar gap</strong> — California ($265B) and Illinois ($201B) carry by far the largest unfunded liabilities in raw dollars, followed by Texas ($92.2B) and New Jersey ($92B), then Pennsylvania ($67B) and Ohio ($61B). This ranking mechanically favors large, populous states; California's funded ratio is materially better than Illinois's despite the larger dollar total.</li><li><strong>Per-capita gap</strong> — the cleanest "promise vs. delivery" burden measure, since it normalizes for state size. Illinois again leads at <strong>$15,804 per resident</strong>, with Connecticut second ($10,151), followed by Alaska ($9,990), Hawaii ($9,784), New Jersey ($9,688), Mississippi ($9,033), New Mexico ($8,641) and Kentucky ($8,626).</li></ul><p>Illinois is the consistent outlier across all three cuts — worst funded ratio, second-largest dollar total, and by a wide margin the worst per-capita burden. Tennessee, Washington and South Dakota are the only three states reporting zero aggregate unfunded pension liability at all.</p>
+<h2>What I did and did not verify</h2>
+<p>The AskAmerica warehouse has no state pension funded-status table and no municipal spread series (searches returned nothing relevant; the one table I queried, Census government finance, returned unit counts only and no pension liabilities). All pension and spread figures come from the web sources cited, which I read directly except Equable (403), Schwab's table and the Equable PDF, which were not readable; the Schwab spread figures (62 bp Illinois, 21 bp New Jersey, 12 Jun 2026) and Equable's state statements come from search-result summaries. The full 50-state ranking was not retrievable, so I did not rank all states and ran no regression of my own. Funded ratios differ by source because of discount-rate and fiscal-year conventions (Reason 79% for 2024 vs Equable 78.0% vs CRR 76.2%).</p>
 </section>
 <section>
-<h2>2. Does it show up in bond pricing</h2>
-<p><strong>Yes — both in spreads and in ratings — but rating trajectory and fiscal management dominate the raw funding-ratio number.</strong></p><p><strong>Spreads:</strong> Chicago's general-obligation debt (layered on top of the state's own pension pressure) has recently traded at a widening spread over the AAA municipal benchmark: a GO bond maturing January 2036 carried an evaluated yield of 5.583% as of September 25, 2026 — a spread of roughly 155 basis points to AAA, according to Municipal Market Analytics data reported by Bond Buyer, up from 148 bps on September 17 and 124 bps on September 16. A separately cited 10-year GO spread reached 175 bps, described by one market participant as higher than the average sub-investment-grade bond in the Bloomberg high-yield municipal index, even though Chicago's own ratings (BBB+/BBB+/BBB/Baa3 from KBRA/Fitch/S&P/Moody's) remain investment grade. Analysts quoted directly attributed this to the market pricing in a possible downgrade "before any of the rating agencies have taken that step," citing Chicago's underfunded pensions, structural budget imbalances and reliance on refinancing gimmicks as the underlying credit concerns — alongside a general widening in BBB-rated municipal spreads across the market that is not specific to Chicago.</p><p><strong>Ratings:</strong> At the state level, Illinois remains — in S&P's own words as of September 2026 — "the lowest-rated state government," citing "elevated pension liabilities and chronically underfunded pensions" by name as the reason. Yet Illinois has been upgraded 11 times since 2021 (Moody's to A1 from A2 in August 2026; S&P to A from A-minus in September 2026), specifically because of eight consecutive on-time balanced budgets, a rebuilt $2.53B rainy-day fund, and the governor's incremental pension-liability-reduction measures — improvements in fiscal management and trajectory, not in the actual funded ratio, which both rating agencies still flag as the state's central structural weakness. New Jersey's KBRA upgrade to AA- on September 2, 2026 followed the same pattern almost exactly: KBRA cited six consecutive years of the state paying its full actuarially required pension contribution as a key driver, while explicitly still warning that New Jersey's unfunded pension and retiree health-benefit obligations remain "very high relative to residents' income and the state economy."</p><p>The upshot: the size of the pension gap is priced into both credit ratings (it is cited by name as the binding constraint keeping Illinois in last place among states, and New Jersey's obligations are still flagged as a risk despite the upgrade) and into market spreads (Chicago's widening GO spread, tied explicitly by analysts to legacy pension underfunding among other structural issues). But the <em>rate of change</em> — whether a state is making its full required contribution and running balanced budgets — moves ratings and, with a lag, spreads, even while the absolute funding gap stays enormous. A state can be simultaneously the worst-funded in the country and one of the year's biggest rating-upgrade stories, which is exactly what happened to both Illinois and New Jersey in 2026.</p>
+<h2>Evidence on pricing</h2>
+<ul><li>Boyer (Chicago Booth, 2018 draft): 18 bp CDS / 28 bp bond spread per SD of net pension liability to GDP; IV exercise suggests causal; stronger with constitutional pension protection.</li><li>Illinois: March 2023 Bond Buyer reports ratings upgrades tied to supplemental pension payments, rainy-day deposits and debt paydown; spreads narrowed from 90/163/175 bp to 75/145/165 bp (1/10/25-year).</li><li>CRR (2025): contributions now exceed 100% of actuarially required in aggregate, over 80% of plans pay the full amount; funded status improves only modestly. Hence markets reward contribution discipline.</li><li>Biggs/AEI (2015, fair-value basis): gaps range from 5% of gross state product in Washington to 37% in Illinois, so Illinois ranks worst on a market-value basis too.</li></ul><p>Caveat: Boyer's sample is older (2010s), and spreads also reflect liquidity, ratings, tax base and issuance size. This is descriptive, not a new causal estimate.</p>
 </section>
 <section>
-<h2>Data and methodology note</h2>
-<p>The askamerica/govdata connector was searched first (search_catalog for "pension," "liabilities," "state pension") and returned zero matching tables or columns across its roughly 26 topic schemas — there is no pension-liability table and no municipal-bond-pricing/yield-spread table in this corpus. Every figure in this report is instead drawn from primary sources read directly: Reason Foundation's own published Annual Pension Solvency Report page (fetched and read in full, not a search snippet) for every funded-ratio and unfunded-liability figure, and Bond Buyer's own news articles (fetched and read in full) for every spread and rating-action figure, cross-referenced against the rating agencies' own stated rationale as quoted in that reporting. This is disclosed as an external-source-based answer rather than presented as connector-derived; no askamerica query, statistical tool, or table underlies any number above, so no claims-validation scoring was run — this is a research synthesis, not a fact-check of a third-party claim.</p>
+<h2>Every query behind this report</h2>
+<p>2 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 3979 ms</summary><pre><code>SELECT item_code, COUNT(*) n, SUM(amount_thousands) total FROM fiscal.govt_finance_by_unit WHERE &quot;year&quot; = 2022 AND gov_type_code = 0 AND state_fips = '17' AND item_code LIKE 'X%' GROUP BY item_code ORDER BY total DESC FETCH FIRST 10 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 3 rows — 2162 ms</summary><pre><code>SELECT &quot;year&quot;, COUNT(*) n FROM fiscal.govt_finance_by_unit WHERE gov_type_code = 0 AND state_fips = '17' GROUP BY &quot;year&quot; ORDER BY &quot;year&quot; DESC FETCH FIRST 3 ROWS ONLY</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://reason.org/data-visualization/state-pension-debt/">Reason Foundation, Annual Pension Solvency Report data visualization — state pension debt (FY2024)</a></li>
-<li><a href="https://www.bondbuyer.com/news/chicagos-spreads-widen-ahead-of-refinancing">Bond Buyer, Chicago's spreads widen ahead of refinancing (Sept 25, 2026)</a></li>
-<li><a href="https://www.bondbuyer.com/news/illinois-gets-moodys-bond-rating-upgrade">Bond Buyer, Illinois lands Moody's upgrade to A1 (Aug 26, 2026)</a></li>
-<li><a href="https://www.bondbuyer.com/news/s-p-upgrades-illinois-gos-to-a-from-a-minus">Bond Buyer, S&amp;P upgrades Illinois GOs to A from A-minus (Sept 2, 2026)</a></li>
-<li><a href="https://jerseyvindicator.org/2026/09/03/agency-raises-new-jersey-bond-rating-citing-pension-payments-and-budget-management">Jersey Vindicator, Agency raises New Jersey bond rating, citing pension payments and budget management (Sept 3, 2026)</a></li>
-<li><a href="https://www.kbra.com/publications/XkYpByvk/kbra-upgrades-state-of-new-jersey-general-obligation-bonds-to-aa-and-appropriation-bonds-to-a-assigns-a-rating-to-new-jersey-transportation-trust-fund-authority-transportation-program-bonds-2026-series-aa-and-2026-series-bb">KBRA, press release: KBRA upgrades State of New Jersey general obligation bonds to AA- (Sept 2, 2026)</a></li>
-<li><a href="https://www.nasra.org/crediteffects">NASRA, Credit Effects of Public Pension Funding (rating-agency methodology index)</a></li>
-<li><a href="https://equable.org/state-of-pensions-2025/">Equable Institute, State of Pensions 2025 (national funded-ratio trend, corroborating context)</a></li>
-<li>AskAmerica/govdata catalog search — no pension or municipal-bond-pricing table found <span class="note">— search_catalog query for 'pension' and 'liabilities' returned zero matches across all schemas</span></li>
+<li><a href="https://reason.org/commentary/how-every-states-public-pension-system-ranks/">Reason Foundation, how every state's pension system ranks</a></li>
+<li><a href="https://finance.yahoo.com/news/equable-institute-analysis-u-public-135300850.html">Equable year-end update press release (Yahoo/PRNewswire)</a></li>
+<li><a href="https://www.brookings.edu/wp-content/uploads/2018/07/Boyer-7.12.18.pdf">Boyer, Public Pensions, Political Economy and State Government Borrowing Costs</a></li>
+<li><a href="https://www.bondbuyer.com/news/illinois-spreads-narrow-after-upgrades-as-appetite-for-its-paper-grows">Bond Buyer, Illinois spreads narrow after upgrades (Mar 2023)</a></li>
+<li><a href="https://crr.bc.edu/the-funded-status-of-public-plans-keeps-improving-albeit-modestly/">CRR, funded status of public plans</a></li>
+<li><a href="https://www.aei.org/economics/state-and-local-government-pensions-from-unfunded-to-prefunded/">AEI, Biggs state pension gaps</a></li>
+<li><a href="https://www.schwabassetmanagement.com/node/30226">Schwab state GO spread table (search snippet only)</a></li>
+<li><a href="https://www.census.gov/data/datasets/2023/econ/local/public-use-datasets.html">AskAmerica fiscal.govt_finance_by_unit (queried, no pension liability data)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, COUNT(*) n FROM fiscal.govt_finance_by_unit WHERE gov_type_code = 0 AND state_fips = '17' GROUP BY &quot;year&quot; ORDER BY &quot;year&quot; DESC FETCH FIRST 3 ROWS ONLY</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">This corpus has no pension-liability or municipal-bond-pricing table; every figure is drawn from primary sources fetched and read directly (Reason Foundation's own report, Bond Buyer's own reporting, KBRA's own press release), not from askamerica queries.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
