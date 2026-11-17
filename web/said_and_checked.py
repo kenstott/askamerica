@@ -8,6 +8,8 @@ import os
 import re
 import sys
 
+import topics
+
 KINDS = {
     "factual": "Factual claim",
     "opinion_or_prediction": "Opinion or prediction",
@@ -64,6 +66,7 @@ LEGEND = [
 # stated factual premise; its result rates the premise, never the opinion built on it.
 CHECKED_KINDS = ("factual", "premised_prediction")
 SLUG_PREFIX = "said-and-checked-"
+SAID_ARCHIVE_SLUG = "said-and-checked-archive"
 
 
 class InvalidStatements(Exception):
@@ -106,6 +109,8 @@ def validate(doc, where):
             _require(src.get("url") is None, w, "source.url must be null when not_found")
         else:
             _require(_is_url(src.get("url")), w, "source.url is required when the original was found")
+        _require(s.get("broad_topic") in topics.SAID_TOPICS, w,
+                 "broad_topic must be one of topics.SAID_TOPICS")
         _require(s.get("kind") in KINDS, w, "bad kind")
         if s["kind"] in CHECKED_KINDS:
             _require(s.get("result") in RESULTS, w, s["kind"] + " statement needs a result")
@@ -630,35 +635,54 @@ def render_day(day, back_banner):
 SITE = "https://askamerica.ai"
 FEED_FILE = "said-and-checked.xml"
 FEED_PATH = "/studies/" + FEED_FILE
+# One feed per broad topic, in a directory the build keeps as a standing page.
+TOPIC_FEED_DIR = "said-and-checked-feeds"
 FEED_DAYS = 14
 # The feed leads with these results, most decisive first.
 FEED_LEAD_RESULTS = ("false", "contradicted")
 
 
-def subscribe_links(style=""):
-    """'Subscribe: RSS · Feedly · Inoreader'. The reader links add the feed in one click."""
+def topic_feed_path(topic):
+    return "/studies/%s/%s.xml" % (TOPIC_FEED_DIR, topics.slug(topic))
+
+
+def _reader_links(path, style=""):
+    """'RSS · Feedly · Inoreader' for one feed. The reader links add the feed in one click."""
     from urllib.parse import quote
-    feed = quote(SITE + FEED_PATH, safe="")
+    feed = quote(SITE + path, safe="")
     a = '<a href="%s"%s>%s</a>'
     st = ' style="%s"' % style if style else ""
-    return "Subscribe: " + " &middot; ".join([
-        a % (FEED_PATH, st, "RSS"),
+    return " &middot; ".join([
+        a % (path, st, "RSS"),
         a % ("https://feedly.com/i/subscription/feed/" + feed, st, "Feedly"),
         a % ("https://www.inoreader.com/?add_feed=" + feed, st, "Inoreader"),
     ])
 
 
-def _feed_title(day):
-    stmts = day["statements"]
+def subscribe_links(style=""):
+    """'Subscribe: RSS · Feedly · Inoreader · by topic' for the all-statements feed."""
+    st = ' style="%s"' % style if style else ""
+    return ("Subscribe: " + _reader_links(FEED_PATH, style)
+            + ' &middot; <a href="/studies/%s/#topics"%s>by topic</a>' % (SAID_ARCHIVE_SLUG, st))
+
+
+def topic_subscribe_rows():
+    """One row per broad topic for the all-days page."""
+    return ['<li class="study-row">%s<span class="study-date">%s</span></li>'
+            % (html.escape(t), _reader_links(topic_feed_path(t))) for t in topics.SAID_TOPICS]
+
+
+def _feed_title(date, stmts, topic=None):
     found = ["%d %s" % (n, RESULTS[r].lower()) for r in FEED_LEAD_RESULTS
              for n in [sum(1 for s in stmts if s.get("result") == r)] if n]
-    return "Said & Checked, %s: %s" % (
-        day["date"], ", ".join(found) if found else "none false or contradicted")
+    return "Said & Checked%s, %s: %s" % (
+        ", " + topic if topic else "", date,
+        ", ".join(found) if found else "none false or contradicted")
 
 
-def _feed_description(day, page_url):
-    """The day's false and contradicted statements first, then the day's tally and a link."""
-    leads = sorted((s for s in day["statements"] if s.get("result") in FEED_LEAD_RESULTS),
+def _feed_description(stmts, page_url):
+    """The false and contradicted statements first, then the tally and a link to the day."""
+    leads = sorted((s for s in stmts if s.get("result") in FEED_LEAD_RESULTS),
                    key=lambda s: (FEED_LEAD_RESULTS.index(s["result"]), s["id"]))
     parts = []
     if leads:
@@ -671,41 +695,51 @@ def _feed_description(day, page_url):
         parts.append("<p><strong>False or contradicted</strong></p><ul>%s</ul>" % items)
     else:
         parts.append("<p>No statement was found false or contradicted.</p>")
-    n, speakers, _ = counts(day)
-    parts.append("<p>%d statements by %d officeholders. %s.</p>"
-                 % (n, speakers, result_summary(day)))
+    n, speakers = len(stmts), len({s["speaker"] for s in stmts})
+    parts.append("<p>%d statement%s by %d officeholder%s. %s.</p>"
+                 % (n, "" if n == 1 else "s", speakers, "" if speakers == 1 else "s",
+                    statements_summary(stmts)))
     parts.append('<p><a href="%s">Read every statement and how each was checked</a></p>'
                  % html.escape(page_url, quote=True))
     return "".join(parts)
 
 
-def feed_xml(days):
-    """RSS 2.0 feed of the latest FEED_DAYS days. A day keeps its address (the guid) as it is
-    republished during the day, so a reader lists it once."""
+def feed_xml(days, topic=None):
+    """RSS 2.0 feed of the latest FEED_DAYS days, of every statement or of one broad topic.
+    A topic feed has an item only for days with a statement on that topic. A day keeps its
+    guid as it is republished during the day, so a reader lists it once."""
     import datetime
     from email.utils import format_datetime
     from xml.sax.saxutils import escape
 
     items = []
     for day in days[:FEED_DAYS]:
+        stmts = [s for s in day["statements"] if topic is None or s["broad_topic"] == topic]
+        if not stmts:
+            continue
         url = "%s/studies/%s/" % (SITE, slug(day))
+        guid = url if topic is None else url + "#topic-" + topics.slug(topic)
         y, m, d = (int(p) for p in day["date"].split("-"))
         pub = format_datetime(datetime.datetime(y, m, d, tzinfo=datetime.timezone.utc))
         items.append(
-            "<item><title>%s</title><link>%s</link><guid isPermaLink=\"true\">%s</guid>"
+            "<item><title>%s</title><link>%s</link><guid isPermaLink=\"false\">%s</guid>"
             "<pubDate>%s</pubDate><description>%s</description></item>"
-            % (escape(_feed_title(day)), escape(url), escape(url), pub,
-               escape(_feed_description(day, url))))
+            % (escape(_feed_title(day["date"], stmts, topic)), escape(url), escape(guid), pub,
+               escape(_feed_description(stmts, url))))
+    path = FEED_PATH if topic is None else topic_feed_path(topic)
+    title = "Said & Checked" + (": " + topic if topic else "")
+    about = ("What officeholders said each day" + (" about " + topic if topic else "")
+             + ", and which statements government data supports, contradicts or rules out.")
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
-        "<title>Said &amp; Checked &#8212; AskAmerica</title>"
-        "<link>%s/studies/said-and-checked-archive/</link>"
+        "<title>%s &#8212; AskAmerica</title>"
+        "<link>%s/studies/%s/</link>"
         '<atom:link href="%s%s" rel="self" type="application/rss+xml"/>'
-        "<description>What officeholders said each day, and which statements government data "
-        "supports, contradicts or rules out.</description>"
+        "<description>%s</description>"
         "<language>en-us</language>%s</channel></rss>\n"
-        % (SITE, SITE, FEED_PATH, "".join(items)))
+        % (escape(title), SITE, SAID_ARCHIVE_SLUG, SITE, escape(path), escape(about),
+           "".join(items)))
 
 
 def index_rows(days):

@@ -32,6 +32,7 @@ import sys
 import yaml
 
 import said_and_checked
+import topics
 
 HEADLINES_RECENT_HOURS = 48
 
@@ -275,18 +276,23 @@ def build_headlines_archive(headlines):
                      "No archived headlines yet.")
 
 
-SAID_ARCHIVE_SLUG = "said-and-checked-archive"
+SAID_ARCHIVE_SLUG = said_and_checked.SAID_ARCHIVE_SLUG
 
 
 def build_said_archive(said_days):
     """web/studies/said-and-checked-archive/index.html: every Said & Checked day, newest
     first (already sorted by load_days). The main studies page lists only the latest
     SAID_DAYS_SHOWN days and links here."""
+    topic_section = (
+        '<div class="study-cat" id="topics" style="margin-top:2.5rem;"><h2>Subscribe by topic</h2>'
+        f'<ul>{"".join(said_and_checked.topic_subscribe_rows())}</ul></div>'
+    )
     _build_list_page(SAID_ARCHIVE_SLUG, "Said & Checked: All Days",
-                     said_and_checked.index_rows(said_days), "No days published yet.")
+                     said_and_checked.index_rows(said_days), "No days published yet.",
+                     extra=topic_section)
 
 
-def _build_list_page(slug, title, rows, empty):
+def _build_list_page(slug, title, rows, empty, extra=""):
     """A standing page under web/studies/<slug>/ holding one list of study rows."""
     dest_dir = os.path.join(OUT, slug)
     os.makedirs(dest_dir, exist_ok=True)
@@ -295,7 +301,7 @@ def _build_list_page(slug, title, rows, empty):
         f'<div class="study-cat"><h2>{heading}</h2>'
         f'<ul>{"".join(rows)}</ul></div>'
         if rows else f'<p class="hero-sub">{html.escape(empty)}</p>'
-    )
+    ) + extra
     page = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -341,45 +347,18 @@ def _build_list_page(slug, title, rows, empty):
 
 
 # The question bank's own `category` values are fine-grained (about 140 for 240 questions,
-# most holding one question). The studies page lists questions under these broad topics.
-# First matching rule wins; each rule is (broad topic, words any of which appears in the
-# category). A category no rule matches is listed under Other and named in the build output.
-OTHER_TOPIC = "Other"
-BROAD_TOPICS = [
-    ("Testing Claims and Debates", ("article validation", "question bias", "causal chain",
-                                    "policy debates", "correlation")),
-    ("Veterans", ("veteran",)),
-    ("Insurance, Disasters and Risk", ("insurance", "catastrophe", "disaster", "underwriting",
-                                       "business interruption", "cargo risk", "liability risk",
-                                       "workers compensation", "emergency management",
-                                       "site resilience")),
-    ("Agriculture and Commodities", ("agricultur", "crop", "commodity")),
-    ("Energy and Environment", ("energy", "environment", "climate", "resource security")),
-    ("Health", ("health", "pharma")),
-    ("Education", ("education",)),
-    ("Banking and Finance", ("bank", "credit risk", "consumer finance", "financial", "lending",
-                             "rates signal", "corporate governance", "market structure")),
-    ("Government, Politics and Public Money", ("campaign finance", "congressional", "governance",
-                                               "money in politics", "political", "fiscal",
-                                               "public finance", "government spending",
-                                               "regulat", "policy analysis")),
-    ("Crime, Security and Defense", ("criminal", "criminology", "police", "cyber", "defense",
-                                     "immigration")),
-    ("Infrastructure and Transportation", ("infrastructure", "aviation", "transport", "logistics")),
-    ("Housing and Communities", ("housing", "demographics", "social mobility", "social safety")),
-    ("Science and Innovation", ("innovation", "science")),
-    ("Economy, Labor and Trade", ("economic", "labor", "trade", "manufacturing", "industrial",
-                                  "macro", "market sizing", "retail", "workforce", "workplace")),
-]
+# most holding one question). The studies page lists questions under the broad topics in
+# topics.py, shared with Said & Checked. A category no keyword matches is listed under Other
+# and named in the build output.
+OTHER_TOPIC = topics.OTHER_TOPIC
 
 
 def broad_topic(category):
-    name = category.replace("_", " ").replace("-", " ")
-    for topic, words in BROAD_TOPICS:
-        if any(w in name for w in words):
-            return topic
-    print(f"WARNING: category {category!r} matches no broad topic; listed under {OTHER_TOPIC}")
-    return OTHER_TOPIC
+    topic = topics.study_topic(category)
+    if topic is None:
+        print(f"WARNING: category {category!r} matches no broad topic; listed under {OTHER_TOPIC}")
+        return OTHER_TOPIC
+    return topic
 
 
 def build_index(bank, entries, recent_headlines=None, archived_headlines=None, said_days=None):
@@ -567,9 +546,17 @@ def main():
     build_said_archive(said_days)
     with open(os.path.join(OUT, said_and_checked.FEED_FILE), "w") as fh:
         fh.write(said_and_checked.feed_xml(said_days))
+    # Every topic gets a feed file, empty or not, so a subscribe link never 404s.
+    feed_dir = os.path.join(OUT, said_and_checked.TOPIC_FEED_DIR)
+    if os.path.isdir(feed_dir):
+        shutil.rmtree(feed_dir)
+    os.makedirs(feed_dir)
+    for t in topics.SAID_TOPICS:
+        with open(os.path.join(feed_dir, topics.slug(t) + ".xml"), "w") as fh:
+            fh.write(said_and_checked.feed_xml(said_days, t))
 
     live_slugs = ({q["id"] for q, e in zip(bank, entries) if e} | {h["slug"] for h in headlines}
-                  | {"headlines-archive", SAID_ARCHIVE_SLUG} | {said_and_checked.slug(d) for d in said_days})
+                  | {"headlines-archive", SAID_ARCHIVE_SLUG, said_and_checked.TOPIC_FEED_DIR} | {said_and_checked.slug(d) for d in said_days})
     for slug in os.listdir(OUT):
         if slug not in live_slugs and os.path.isdir(os.path.join(OUT, slug)):
             shutil.rmtree(os.path.join(OUT, slug))
