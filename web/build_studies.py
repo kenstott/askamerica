@@ -287,6 +287,12 @@ def build_said_archive(said_days):
         '<div class="study-cat" id="topics" style="margin-top:2.5rem;"><h2>Subscribe by topic</h2>'
         f'<ul>{"".join(said_and_checked.topic_subscribe_rows())}</ul></div>'
     )
+    topic_section += (
+        '<div class="study-cat" id="states" style="margin-top:2.5rem;"><h2>Subscribe by state</h2>'
+        '<p style="color:var(--text-dim);font-size:12px;margin-bottom:0.6rem;">Statements by a '
+        "state's members of Congress and governor, and statements about the state.</p>"
+        f'<ul>{"".join(said_and_checked.state_subscribe_rows())}</ul></div>'
+    )
     _build_list_page(SAID_ARCHIVE_SLUG, "Said & Checked: All Days",
                      said_and_checked.index_rows(said_days), "No days published yet.",
                      extra=topic_section)
@@ -553,7 +559,11 @@ def main():
     os.makedirs(feed_dir)
     for t in topics.SAID_TOPICS:
         with open(os.path.join(feed_dir, topics.slug(t) + ".xml"), "w") as fh:
-            fh.write(said_and_checked.feed_xml(said_days, t))
+            fh.write(said_and_checked.feed_xml(said_days, topic=t))
+    os.makedirs(os.path.join(feed_dir, "states"))
+    for code in said_and_checked.US_STATES:
+        with open(os.path.join(feed_dir, "states", code.lower() + ".xml"), "w") as fh:
+            fh.write(said_and_checked.feed_xml(said_days, state=code))
 
     live_slugs = ({q["id"] for q, e in zip(bank, entries) if e} | {h["slug"] for h in headlines}
                   | {"headlines-archive", SAID_ARCHIVE_SLUG, said_and_checked.TOPIC_FEED_DIR} | {said_and_checked.slug(d) for d in said_days})
