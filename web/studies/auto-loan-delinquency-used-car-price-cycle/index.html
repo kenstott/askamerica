@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Auto loan delinquency is at a series record while used-car values have stabilized well below their 2021 peak — lenders remain exposed, but mainly through legacy 2021-2023 vintages, not a fresh price collapse</title>
+<title>Auto delinquency tracks used-car prices only loosely (r about -0.4); lenders are not facing a collapse in collateral, but 2021-22 vintages are underwater-prone</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -89,21 +97,21 @@ figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
 @media screen{
-#s3-t1-s1:checked ~ table tbody.s0{display:none}
-#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
-#s3-t1-s1:checked ~ .srtreset{display:inline-block}
-#s3-t1-s2:checked ~ table tbody.s0{display:none}
-#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
-#s3-t1-s2:checked ~ .srtreset{display:inline-block}
-#s3-t1-s3:checked ~ table tbody.s0{display:none}
-#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
-#s3-t1-s3:checked ~ .srtreset{display:inline-block}
+#s2-t1-s1:checked ~ table tbody.s0{display:none}
+#s2-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"]{color:var(--link)}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"] .srtcue{opacity:1}
+#s2-t1-s1:checked ~ .srtreset{display:inline-block}
+#s2-t1-s2:checked ~ table tbody.s0{display:none}
+#s2-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"]{color:var(--link)}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"] .srtcue{opacity:1}
+#s2-t1-s2:checked ~ .srtreset{display:inline-block}
+#s2-t1-s3:checked ~ table tbody.s0{display:none}
+#s2-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"]{color:var(--link)}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"] .srtcue{opacity:1}
+#s2-t1-s3:checked ~ .srtreset{display:inline-block}
 }
 </style>
 </head>
@@ -116,180 +124,44 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Auto loan delinquency is at a series record while used-car values have stabilized well below their 2021 peak — lenders remain exposed, but mainly through legacy 2021-2023 vintages, not a fresh price collapse</h1>
-<p class="subtitle">NY Fed Household Debt &amp; Credit Report; Cox Automotive Manheim Index; Philadelphia Fed (Apr 2026); Edmunds — as of September 2026</p>
+<h1>Auto delinquency tracks used-car prices only loosely (r about -0.4); lenders are not facing a collapse in collateral, but 2021-22 vintages are underwater-prone</h1>
+<p class="subtitle">NY Fed Consumer Credit Panel (warehouse econ.household_debt_credit, 2003Q1-2026Q3) vs BLS CPI used cars and trucks CUSR0000SETA02 (FRED, quarter-end months)</p>
 </header>
-<figure class="board">
-<!--
-  Dashboard from AskAmerica compose_dashboard. Self-contained: no
-  external assets, no scripts. Drop it into an artifact or an HTML
-  page as-is.
-
-  Each panel is a nested <svg> with its own viewBox, so a panel's
-  internal coordinates are exactly what its own data produced. Panel
-  ids are namespaced p1-, p2-, ... so the per-chart editing contract
-  still works: p2-mark-california, p3-series-nominal, and so on.
-
-  Safe to edit: panel captions (<text class="caption">), the
-  dashboard title/subtitle/footnote, any panel's fills, and the
-  per-panel <g id="pN-annotations"> groups, which paint last.
-  Do NOT move a panel's internal geometry, and do NOT change one
-  panel's axis domain: panels sharing a scale_group were given one
-  domain deliberately so they can be compared.
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
-  <style>
-    .dash-title { font-size: 20px; font-weight: 650 }
-    .dash-subtitle { font-size: 13px }
-    .caption { font-size: 11px }
-    .footnote { font-size: 11px; font-style: italic }
-    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
-    .byline { font-size: 11px }
-    .stat-label { font-size: 12px }
-    .stat-value { font-size: 30px; font-weight: 650 }
-    .stat-delta { font-size: 13px; font-weight: 600 }
-    .title { font-size: 15px; font-weight: 600 }
-    .axis-title { font-size: 12px }
-    .tick { font-size: 11px }
-    .value-label { font-size: 11px; font-weight: 600 }
-    .callout { font-size: 11px; font-style: italic }
-    @media (prefers-color-scheme: dark) {
-      .dash-bg, .chart-bg { fill: #16181d }
-      .panel-edge { stroke: #2c3038 }
-      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
-      .stat-value, .title, .axis-title, .tick, .value-label,
-      .callout, .legend-label, .byline { fill: #e6e8eb }
-      .brand-mark { fill: #9aa4b2 }
-      .axis { stroke: #6b7280 }
-      .grid { stroke: #2c3038 }
-    }
-  </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Auto Loan Delinquency vs. Used-Car Collateral Values</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Cox Automotive Manheim Index; NY Fed Household Debt &amp; Credit; Edmunds; Fitch (as of Sep 2026)</text>
-  <rect class="panel-edge" x="20" y="82" width="412" height="317" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="82" width="412" height="317" viewBox="0 0 412 317" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="317" class="chart-bg" fill="#ffffff"/>
-    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Manheim Used Vehicle Value Index</text>
-    <g id="p1-gridlines">
-      <line class="grid" x1="67" y1="187.88" x2="390" y2="187.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-0" class="tick" x="59" y="191.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="165.90" x2="390" y2="165.90" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-1" class="tick" x="59" y="169.90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
-      <line class="grid" x1="67" y1="143.92" x2="390" y2="143.92" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-2" class="tick" x="59" y="147.92" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="121.94" x2="390" y2="121.94" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-3" class="tick" x="59" y="125.94" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150</text>
-      <line class="grid" x1="67" y1="99.96" x2="390" y2="99.96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-4" class="tick" x="59" y="103.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
-      <line class="grid" x1="67" y1="77.98" x2="390" y2="77.98" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-5" class="tick" x="59" y="81.98" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">250</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-6" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
-    </g>
-    <g id="p1-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="187.88" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="187.88" x2="390" y2="187.88" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p1-x-axis-title" class="axis-title" x="228.50" y="293" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Period</text>
-    <text id="p1-y-axis-title" class="axis-title" x="14" y="121.94" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 121.94)">Index (Jan1995=100)</text>
-    <g id="p1-x-axis-labels">
-      <text id="p1-xtick-dec-2019" class="tick" x="99.30" y="201.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 99.30 201.88)">Dec 2019</text>
-      <text id="p1-xtick-dec-2021-peak" class="tick" x="163.90" y="201.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 163.90 201.88)">Dec 2021 (peak)</text>
-      <text id="p1-xtick-jun-2024-trough" class="tick" x="228.50" y="201.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 228.50 201.88)">Jun 2024 (trough)</text>
-      <text id="p1-xtick-dec-2024" class="tick" x="293.10" y="201.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 293.10 201.88)">Dec 2024</text>
-      <text id="p1-xtick-aug-2026" class="tick" x="357.70" y="201.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357.70 201.88)">Aug 2026</text>
-    </g>
-    <g id="p1-series-manheim-index" class="series">
-      <path id="p1-line-manheim-index" class="line" d="M 99.30 125.72 L 163.90 74.60 L 228.50 101.67 L 293.10 97.85 L 357.70 96.36" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p1-mark-manheim-index-dec-2019" class="point" cx="99.30" cy="125.72" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-manheim-index-dec-2021-peak" class="point" cx="163.90" cy="74.60" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-manheim-index-jun-2024-trough" class="point" cx="228.50" cy="101.67" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-manheim-index-dec-2024" class="point" cx="293.10" cy="97.85" r="3" fill="#2563eb"/>
-      <circle id="p1-mark-manheim-index-aug-2026" class="point" cx="357.70" cy="96.36" r="3" fill="#2563eb"/>
-    </g>
-    <g id="p1-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="412" fill="#6b7280">Cox Automotive Manheim Used Vehicle Value Index, seasonally adjusted</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="186.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="222.50" fill="#6b7280">Auto loan serious delinquency (90+ days), Q2 2026</text>
-  <text class="stat-value" x="464" y="252.50" fill="#1f2328">5.5% of balances</text>
-  <text class="stat-delta" x="464" y="272.50" fill="#059669">+0.2pp vs. 2010Q4 GFC peak (5.3%)</text>
-  </g>
-  <text class="caption" x="452" y="412" fill="#6b7280">NY Fed Household Debt &amp; Credit Report; a series record</text>
-  <g id="p3-stat">
-  <rect class="panel-edge" x="20" y="447" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="483" fill="#6b7280">Subprime 60+ day delinquency, Q3 2025</text>
-  <text class="stat-value" x="36" y="513" fill="#1f2328" style="font-size:22px">~6% (subprime); 1.68% overall</text>
-  <text class="stat-delta" x="36" y="533" fill="#059669" style="font-size:11px">Highest since 2008 (overall); highest in 20+ yrs (subprime)</text>
-  </g>
-  <text class="caption" x="24" y="568" fill="#6b7280">Philadelphia Fed / NY Fed CCP-Equifax auto tradelines</text>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="447" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="483" fill="#6b7280">New-vehicle trade-ins with negative equity, Q2 2026</text>
-  <text class="stat-value" x="464" y="513" fill="#1f2328">29.6% of trade-ins</text>
-  <text class="stat-delta" x="464" y="533" fill="#059669">+3.0pp vs. Q2 2025 (26.6%)</text>
-  </g>
-  <text class="caption" x="452" y="568" fill="#6b7280">Edmunds; average underwater amount ~$7,000-7,200</text>
-  <text class="footnote" x="20" y="613" fill="#6b7280">Manheim Index is a used-vehicle wholesale price gauge, not this corpus's own data (askamerica carries new-vehicle CPI only, not a used-vehicle</text>
-  <text class="footnote" x="20" y="627" fill="#6b7280">price series or any delinquency measure). Delinquency figures are stock/flow measures from the NY Fed Consumer Credit Panel/Equifax data,</text>
-  <text class="footnote" x="20" y="641" fill="#6b7280">cross-checked against Philadelphia Fed's 2026 decomposition.</text>
-  <g id="brand">
-  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
-    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
-    <g clip-path="url(#brand-tile)">
-      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
-      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
-    </g>
-    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
-    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
-  </svg>
-    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
-  </g>
-  <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:65026/a/de92287f91a7d0995fc6e5c96de0c50c.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
-</figure>
 <section>
-<h2>Summary</h2>
-<p><strong>The two series move together but with a multi-year lag, and the relationship runs mainly through loan underwriting at origination, not through real-time collateral marking.</strong> Used-vehicle wholesale values (Manheim Index) spiked to an all-time high of 257.7 in December 2021, then fell roughly 24% to a trough of 196.1 by June 2024, and have since stabilized in the low-to-mid 200s (208.2 in August 2026). Auto loan delinquency kept climbing through this whole period, including after prices started falling: the 90+ day serious delinquency rate reached a series record 5.5% of balances in Q2 2026, above even the 2010 Great Recession peak of 5.3%, and the 60+ day rate hit its highest level since 2008 in Q3 2025. The link is that record-high prices in 2021-2023 pushed borrowers into larger loans and higher payments, and the subsequent price decline then left many of those same borrowers underwater (negative equity, now 29.6% of trade-ins) years later — not a case of today's price level directly triggering today's missed payments. On exposure: yes, lenders (especially independent/non-bank subprime specialists) are exposed, but the Philadelphia Fed's April 2026 analysis finds the exposure is concentrated in a backlog of loans that entered delinquency in 2022-2023 and are taking longer to resolve, rather than a fresh wave of newly distressed borrowers — a nuance the headline delinquency rate does not show on its own.</p>
+<h2>Answer</h2>
+<p>Loosely, and with the wrong sign for a simple story. Across 2003Q1-2026Q3 (95 quarters) the year-over-year change in used-car CPI correlates about -0.40 with the year-over-year change in both the 90+ day delinquent share of auto balances and the flow into 30+ day delinquency: falling prices go with rising delinquency, but only ~16% of variance is shared. Delinquency is slow-moving and mostly follows credit quality, interest rates and the labor market. Today the used-car index is down about 14% from its Dec 2021 peak but still about 30% above Dec 2019, so on this measure lenders are not facing collapsing collateral. The stress is in borrowers: 90+ day delinquent share is 5.66% in 2026Q3, the highest in this 2003-2026 series, up from 3.73% in 2022Q4.</p>
 </section>
 <section>
-<h2>What this corpus (askamerica) does and does not carry</h2>
-<p>search_catalog was checked directly for both 'delinquency' and a used-car/used-vehicle price series. Neither exists in this warehouse: 'delinquency' returned zero matching tables or columns across the whole catalog (banking, fiscal, housing, sec schemas), and the only vehicle-price series loaded is <code>econ.new_vehicles_cpi</code> (BLS series CUUR0000SETA01/SS45011/SS45021) — <strong>new</strong> vehicles only. The used cars and trucks CPI series (CUUR0000SETA02) and any wholesale/auction used-vehicle index (Manheim, Black Book) are not ingested. This is a genuine sourcing gap, not a query failure — confirmed by inspecting the actual loaded series list (<code>SELECT DISTINCT series FROM econ.new_vehicles_cpi</code> returns only the three new-vehicle codes). Everything below therefore comes from primary external sources rather than an askamerica query, and no correlation, regression, or diff-in-differences was computed on any series in this session — every quantitative relationship cited below is a figure taken directly from the named study's own published analysis.</p>
+<h2>What I computed</h2>
+<input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><table><tr><th><label class="srth" for="s2-t1-s1">Window<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">r: price YoY vs change in 90+ share YoY<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">r: price YoY vs change in 30+ flow YoY<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>2003-2026 (n=91)</td><td>-0.40</td><td>-0.40</td></tr><tr><td>2003-2019 (n=64)</td><td>-0.12</td><td>-0.40</td></tr><tr><td>2010-2019 (n=40)</td><td>+0.13</td><td>-0.57</td></tr><tr><td>2021-2026 (n=23)</td><td>-0.74</td><td>-0.63</td></tr></tbody><tbody class="srt s1"><tr><td>2003-2019 (n=64)</td><td>-0.12</td><td>-0.40</td></tr><tr><td>2003-2026 (n=91)</td><td>-0.40</td><td>-0.40</td></tr><tr><td>2010-2019 (n=40)</td><td>+0.13</td><td>-0.57</td></tr><tr><td>2021-2026 (n=23)</td><td>-0.74</td><td>-0.63</td></tr></tbody><tbody class="srt s2"><tr><td>2010-2019 (n=40)</td><td>+0.13</td><td>-0.57</td></tr><tr><td>2003-2019 (n=64)</td><td>-0.12</td><td>-0.40</td></tr><tr><td>2003-2026 (n=91)</td><td>-0.40</td><td>-0.40</td></tr><tr><td>2021-2026 (n=23)</td><td>-0.74</td><td>-0.63</td></tr></tbody><tbody class="srt s3"><tr><td>2003-2026 (n=91)</td><td>-0.40</td><td>-0.40</td></tr><tr><td>2003-2019 (n=64)</td><td>-0.12</td><td>-0.40</td></tr><tr><td>2010-2019 (n=40)</td><td>+0.13</td><td>-0.57</td></tr><tr><td>2021-2026 (n=23)</td><td>-0.74</td><td>-0.63</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>The link is unstable: near zero for the 90+ share before 2020, strong only in the post-2021 boom-and-bust. Levels: price vs 30+ flow r=-0.44 (all), but price level vs 90+ share is +0.33 over the full sample (spurious trend overlap). Lags: price YoY leads the 90+ share change most strongly at 1-3 quarters (r about -0.45 to -0.46), faint for the 30+ flow. Quarterly overlapping YoY changes are autocorrelated, so p-values would be overstated; treat these as descriptive, not causal. In 2008-09, delinquency rose while used prices fell sharply into early 2009 (index 122 vs 139 in 2008Q1), consistent with the link, but recession job losses coincided.</p>
 </section>
 <section>
-<h2>How closely delinquency has tracked used-car prices</h2>
-<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><table border='1' cellpadding='6' style='border-collapse:collapse'><tr><th><label class="srth" for="s3-t1-s1">Period<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s3-t1-s2">Used-vehicle prices (Manheim Index)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">Auto loan delinquency<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>2021</td><td>Spiked to an all-time high (257.7 by Dec 2021), driven by pandemic supply shortages</td><td>Near historic lows — stimulus payments and loan-payment forbearance kept delinquency suppressed</td></tr><tr><td>2022-2023</td><td>Began a sustained decline from the 2021 peak</td><td>Started climbing sharply; loans originated in these very years, at record high prices, are now over 62% of all loans currently in default (per Philadelphia Fed's report)</td></tr><tr><td>Mid-2024</td><td>Bottomed around 196.1 (June 2024), about 24% below the peak</td><td>Continued rising — the price decline did not coincide with a delinquency decline</td></tr><tr><td>Dec 2024 - Aug 2026</td><td>Stabilized/modestly recovered (204.8 -> 208.2)</td><td>Kept setting new records (90+ day rate reached 5.5% in Q2 2026, above the 2010 GFC peak)</td></tr></tbody><tbody class="srt s1"><tr><td>2021</td><td>Spiked to an all-time high (257.7 by Dec 2021), driven by pandemic supply shortages</td><td>Near historic lows — stimulus payments and loan-payment forbearance kept delinquency suppressed</td></tr><tr><td>2022-2023</td><td>Began a sustained decline from the 2021 peak</td><td>Started climbing sharply; loans originated in these very years, at record high prices, are now over 62% of all loans currently in default (per Philadelphia Fed's report)</td></tr><tr><td>Dec 2024 - Aug 2026</td><td>Stabilized/modestly recovered (204.8 -> 208.2)</td><td>Kept setting new records (90+ day rate reached 5.5% in Q2 2026, above the 2010 GFC peak)</td></tr><tr><td>Mid-2024</td><td>Bottomed around 196.1 (June 2024), about 24% below the peak</td><td>Continued rising — the price decline did not coincide with a delinquency decline</td></tr></tbody><tbody class="srt s2"><tr><td>2022-2023</td><td>Began a sustained decline from the 2021 peak</td><td>Started climbing sharply; loans originated in these very years, at record high prices, are now over 62% of all loans currently in default (per Philadelphia Fed's report)</td></tr><tr><td>Mid-2024</td><td>Bottomed around 196.1 (June 2024), about 24% below the peak</td><td>Continued rising — the price decline did not coincide with a delinquency decline</td></tr><tr><td>2021</td><td>Spiked to an all-time high (257.7 by Dec 2021), driven by pandemic supply shortages</td><td>Near historic lows — stimulus payments and loan-payment forbearance kept delinquency suppressed</td></tr><tr><td>Dec 2024 - Aug 2026</td><td>Stabilized/modestly recovered (204.8 -> 208.2)</td><td>Kept setting new records (90+ day rate reached 5.5% in Q2 2026, above the 2010 GFC peak)</td></tr></tbody><tbody class="srt s3"><tr><td>Mid-2024</td><td>Bottomed around 196.1 (June 2024), about 24% below the peak</td><td>Continued rising — the price decline did not coincide with a delinquency decline</td></tr><tr><td>Dec 2024 - Aug 2026</td><td>Stabilized/modestly recovered (204.8 -> 208.2)</td><td>Kept setting new records (90+ day rate reached 5.5% in Q2 2026, above the 2010 GFC peak)</td></tr><tr><td>2021</td><td>Spiked to an all-time high (257.7 by Dec 2021), driven by pandemic supply shortages</td><td>Near historic lows — stimulus payments and loan-payment forbearance kept delinquency suppressed</td></tr><tr><td>2022-2023</td><td>Began a sustained decline from the 2021 peak</td><td>Started climbing sharply; loans originated in these very years, at record high prices, are now over 62% of all loans currently in default (per Philadelphia Fed's report)</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>The pattern is a <strong>lagged, indirect relationship</strong>: elevated prices at origination (2021-2023) — not the level of prices today — are the main channel connecting used-car values to delinquency. High prices meant larger loan balances and higher monthly payments; a 2024 Federal Reserve Board FEDS Notes study (Adams, Bord & Sannoh, cited in the Philadelphia Fed report) reports that higher monthly payments, driven primarily by elevated vehicle prices rather than interest rates, accounted for roughly 40% of the rise in the two-year delinquency rate for 2019-2022 vintages — a figure from that study's own analysis, not computed in this session. Falling prices after 2021 then left many of those same borrowers underwater, making it harder to sell or refinance out of a loan that had become unaffordable, compounding delinquency even as the price index itself declined.</p><p>An important qualifier, from the Philadelphia Fed (April 2026): the headline delinquency rate is a <em>stock</em> measure. Their decomposition of NY Fed Consumer Credit Panel/Equifax auto tradelines finds that since Q3 2022, the rise in delinquency is driven mainly by loans that remain delinquent quarter after quarter (a growing backlog not resolving through cure, charge-off, or repossession) and by 'redefaulters,' rather than by a rising flow of newly distressed borrowers. Lenders have expanded use of loan extensions (deferring payments to the loan's end), which the report links to troubled loans staying in the delinquent pool longer rather than resolving. So part of the 'record' delinquency level reflects slower workout of older problem loans, not only a fresh acceleration of new borrower distress.</p>
+<h2>Current exposure</h2>
+<ul><li>Used CPI: 179.9 (Oct 2026) vs peak 211.7 (Dec 2021): -14%; vs Dec 2019 (140.1): +30%. Price YoY has hovered within roughly +/-3% since 2025, so there is no current price slide.</li><li>Delinquency is rising without a price drop: 90+ share 5.66% (2026Q3), flow into 90+ 3.02%, flow into 30+ 7.96%; auto balances $1.73T (record).</li><li>Exposure concentrates in loans written 2021-23 at peak prices: the index fell about 9-10% YoY through 2022-24, so those borrowers likely have negative equity, raising loss severity on repossession. That is an inference from index levels; the corpus has no loan-level LTV, vintage or recovery data.</li></ul>
 </section>
 <section>
-<h2>Are lenders currently exposed to falling collateral values?</h2>
-<p>Yes, in three concrete ways, though the exposure is concentrated rather than system-wide:</p><ul><li><strong>Negative equity is at or near record levels.</strong> 29.6% of new-vehicle trade-ins carried negative equity in Q2 2026 (up from 26.6% a year earlier), with the average underwater amount around $7,000-7,200 — near an all-time high. Q1 2026's 30.9% underwater share was the highest for any quarter since Q1 2021. This directly means that on repossession, many lenders recover a vehicle worth less than the outstanding loan balance.</li><li><strong>Exposure is concentrated in subprime and non-bank lenders.</strong> Subprime borrowers hold only 17% of active auto loan accounts but account for nearly two-thirds of all delinquent loans; the subprime 60+ day rate has hovered near 6% since mid-2024, the highest in over 20 years of data. Independent, non-bank 'other finance' lenders — who skew heavily toward used-vehicle and subprime lending — hold about 40% of subprime accounts and show the longest unresolved-delinquency timelines, making them the segment most exposed to weak recovery values on repossessed collateral.</li><li><strong>Loan structure amplifies the risk.</strong> Widespread use of 72-96 month loan terms and reportedly aggressive loan-to-value lending (some programs cited above 140% LTV for subprime borrowers, per industry reporting) mean many loans were structurally underwater from origination, before any price decline — falling collateral values simply widen an already-existing gap for these borrowers.</li></ul><p>Offsetting this: used-vehicle prices have <em>not</em> collapsed further recently — they stabilized in 2024-2026 and were running slightly above year-ago levels as of late 2024 and again through mid-2026 (Cox Automotive reported a modest +0.4% year-over-year gain at end of 2024). So the acute risk today is less 'prices are currently falling out from under lenders' and more 'a large stock of 2021-2023-vintage loans, originated against since-depreciated collateral, is still working through the system slowly.' If used-car prices were to resume falling meaningfully from here, that would compound losses on this already-strained back book, particularly for subprime specialty and buy-here-pay-here lenders and the asset-backed securities investors holding pools of these loans — industry reporting (Fitch data, via CarEdge) places the subprime 60+ day delinquency index at its highest level in over 32 years as of January 2026.</li></ul>
-</section>
-<section>
-<h2>Caveats and what would sharpen this further</h2>
-<ul><li>This corpus carries neither an auto-loan delinquency series nor a used-vehicle price index, so the relationship above is described from primary published sources (NY Fed, Philadelphia Fed, Cox Automotive, Edmunds) rather than computed with a direct correlation or regression inside this connector. No diff-in-differences, correlation, or regression tool was run in this session; a proper lagged correlation between Manheim index changes and delinquency rate changes, run on the NY Fed CCP microdata plus Manheim's full monthly series, would be the natural follow-up if that data gap is closed.</li><li>The Philadelphia Fed's stock/flow decomposition is the single most important qualifying finding here: it argues the 'record' headline delinquency rate somewhat overstates the pace of genuinely new borrower distress, because much of the increase is unresolved backlog rather than fresh defaults. That distinction matters for how alarmed to be about the trend going forward versus the level today.</li><li>Figures cited (Manheim Index levels, NY Fed delinquency rates, Edmunds negative-equity shares, Philadelphia Fed decomposition) were read directly from the cited primary releases via fetch. One exception: the subprime 60+ day index's '32-year record' figure is from a CarEdge secondary write-up of a Fitch-sourced chart originally posted on LinkedIn, not a direct Fitch publication fetch — flagged here as a lower-confidence data point relative to the NY Fed and Philadelphia Fed figures, which were read from the agencies' own releases.</li></ul>
+<h2>Caveats</h2>
+<p>CPI used cars is a retail, quality-adjusted index, not wholesale auction prices (Manheim), which move faster and lead; Manheim is not in the corpus. NY Fed data cover all lenders and all credit tiers, so subprime stress is diluted. The used-car series was fetched from FRED (BLS CUSR0000SETA02, seasonally adjusted, quarter-end months), not the warehouse; I typed quarter-end values into the analysis from that fetch. A 2020-21 stimulus/forbearance period depressed delinquency while prices spiked, which drives the post-2021 negative correlation.</p>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 3 rows — 14531 ms</summary><pre><code>SELECT DISTINCT series FROM econ.new_vehicles_cpi</code></pre></details>
+<p>4 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 7709 ms</summary><pre><code>select series, count(*) n, min(&quot;date&quot;) a, max(&quot;date&quot;) b from econ.fred_indicators where series ilike '%used%' or series ilike '%CUSR0000SETA02%' or series ilike '%CUUR0000SETA02%' or series ilike '%AUTO%' or series ilike '%MANHEIM%' group by series</code></pre></details>
+<details class="sqltoggle"><summary>query — 4 rows — 2594 ms</summary><pre><code>select distinct loan_type, metric, delinquency_status from econ.household_debt_credit where loan_type='auto' fetch first 20 rows only</code></pre></details>
+<details class="sqltoggle"><summary>query — 124 rows — 819 ms</summary><pre><code>select period, metric, &quot;value&quot; from econ.household_debt_credit where loan_type='auto' and period &gt;= '2019Q1' order by period, metric</code></pre></details>
+<details class="sqltoggle"><summary>query — 64 rows — 912 ms</summary><pre><code>select period, max(case when metric='pct_balance_90plus_delinquent' then &quot;value&quot; end) p90, max(case when metric='flow_into_serious_delinquency_90plus' then &quot;value&quot; end) f90, max(case when metric='flow_into_early_delinquency_30plus' then &quot;value&quot; end) f30 from econ.household_debt_credit where loan_type='auto' and period &lt; '2019Q1' group by period order by period</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.newyorkfed.org/newsevents/news/research/2026/20260811">NY Fed Quarterly Report on Household Debt and Credit, Q2 2026 press release</a></li>
-<li><a href="https://www.philadelphiafed.org/-/media/FRBP/Assets/Consumer-Finance/Reports/cfi-report-april-2026-do-recent-auto-loan-delinquency-rates-overstate-borrower-distress.pdf">Philadelphia Fed, 'Do Recent Auto Loan Delinquency Rates Overstate Borrower Distress?' (April 2026)</a></li>
-<li><a href="https://www.coxautoinc.com/insights/december-2024-muvvi/">Cox Automotive Manheim Used Vehicle Value Index, December 2024 report</a></li>
-<li><a href="https://caredge.com/guides/auto-loan-crisis-32-year-record">CarEdge, 'The Auto Loan Crisis Just Hit a 32-Year Record' (Fitch subprime 60+ day index, secondary write-up)</a></li>
-<li><a href="https://www.cnbc.com/2026/03/30/negative-equity-trade-ins-car-buyers.html">CNBC/Edmunds, negative-equity trade-in reporting, Q1-Q2 2026</a></li>
-<li>askamerica econ.new_vehicles_cpi table (confirms only new-vehicle CPI series are loaded, not used-vehicle prices) <span class="note">— Returned only CUUR0000SETA01, CUUR0000SS45011, CUUR0000SS45021 — no used-vehicle series and no delinquency table exists in this corpus.</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT DISTINCT series FROM econ.new_vehicles_cpi</code></pre></details></li>
+<li><a href="https://fred.stlouisfed.org/series/CUSR0000SETA02">FRED CUSR0000SETA02 used cars and trucks CPI</a> <span class="note">— fetched 2026-11-17 via fredgraph.csv</span></li>
+<li><a href="https://www.newyorkfed.org/microeconomics/hhdc">AskAmerica econ.household_debt_credit (NY Fed CCP)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>select period, metric, &quot;value&quot; from econ.household_debt_credit where loan_type='auto' order by period, metric</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">askamerica (this connector) carries no auto-loan delinquency series and no used-vehicle price index; every figure above is sourced from primary external releases (NY Fed, Philadelphia Fed, Cox Automotive, Edmunds), fetched directly except where noted.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
+<p class="footnote">Descriptive correlations on quarterly data; not causal. Used-car CPI is a retail proxy for collateral value.</p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

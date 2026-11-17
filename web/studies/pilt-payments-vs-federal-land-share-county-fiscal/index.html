@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PILT Payments Cover Only Roughly 5-20% of the Property Tax Federal Land Would Otherwise Generate</title>
+<title>PILT pays about $1 an acre; against a rough proxy for lost property tax it covers roughly 10-30% nationally, though in low-value Western rangeland it can come close</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -99,286 +107,39 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>PILT Payments Cover Only Roughly 5-20% of the Property Tax Federal Land Would Otherwise Generate</h1>
-<p class="subtitle">DOI Payments in Lieu of Taxes (PILT), FY2024, compared against a modeled property-tax equivalent using rural land values</p>
+<h1>PILT pays about $1 an acre; against a rough proxy for lost property tax it covers roughly 10-30% nationally, though in low-value Western rangeland it can come close</h1>
 </header>
-<figure class="board">
-<!--
-  Dashboard from AskAmerica compose_dashboard. Self-contained: no
-  external assets, no scripts. Drop it into an artifact or an HTML
-  page as-is.
-
-  Each panel is a nested <svg> with its own viewBox, so a panel's
-  internal coordinates are exactly what its own data produced. Panel
-  ids are namespaced p1-, p2-, ... so the per-chart editing contract
-  still works: p2-mark-california, p3-series-nominal, and so on.
-
-  Safe to edit: panel captions (<text class="caption">), the
-  dashboard title/subtitle/footnote, any panel's fills, and the
-  per-panel <g id="pN-annotations"> groups, which paint last.
-  Do NOT move a panel's internal geometry, and do NOT change one
-  panel's axis domain: panels sharing a scale_group were given one
-  domain deliberately so they can be compared.
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 746" width="880" height="746" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
-  <style>
-    .dash-title { font-size: 20px; font-weight: 650 }
-    .dash-subtitle { font-size: 13px }
-    .caption { font-size: 11px }
-    .footnote { font-size: 11px; font-style: italic }
-    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
-    .byline { font-size: 11px }
-    .stat-label { font-size: 12px }
-    .stat-value { font-size: 30px; font-weight: 650 }
-    .stat-delta { font-size: 13px; font-weight: 600 }
-    .title { font-size: 15px; font-weight: 600 }
-    .axis-title { font-size: 12px }
-    .tick { font-size: 11px }
-    .value-label { font-size: 11px; font-weight: 600 }
-    .callout { font-size: 11px; font-style: italic }
-    @media (prefers-color-scheme: dark) {
-      .dash-bg, .chart-bg { fill: #16181d }
-      .panel-edge { stroke: #2c3038 }
-      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
-      .stat-value, .title, .axis-title, .tick, .value-label,
-      .callout, .legend-label, .byline { fill: #e6e8eb }
-      .brand-mark { fill: #9aa4b2 }
-      .axis { stroke: #6b7280 }
-      .grid { stroke: #2c3038 }
-    }
-  </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="746" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:17px">PILT Payments Cover Only a Fraction of the Property Tax Federal Land Would Gene…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">DOI PILT payments (lands.pilt_county_payments, FY2024) vs. estimated local property tax on federal acreage, using USDA NASS Mountain-region rangeland values as a rural-land pr…</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">FY2024 national PILT paid</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">$621.2M</text>
-  </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">lands.pilt_county_payments, all states/territories</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Federal acres covered</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">606.7M acres</text>
-  </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">~27% of all US land</text>
-  <g id="p3-stat">
-  <rect class="panel-edge" x="20" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="274" fill="#6b7280">National average PILT rate</text>
-  <text class="stat-value" x="36" y="304" fill="#1f2328">$1.02/acre</text>
-  </g>
-  <text class="caption" x="24" y="359" fill="#6b7280">vs. FY2025 statutory rate of $3.46/acre (Alt. A) -- PILT already pays</text>
-  <text class="caption" x="24" y="372" fill="#6b7280">below its own formula's ceiling in practice</text>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="274" fill="#6b7280">Estimated coverage of foregone property tax</text>
-  <text class="stat-value" x="464" y="304" fill="#1f2328">~5%-20%</text>
-  <text class="stat-delta" x="464" y="324" fill="#dc2626">far short of full compensation</text>
-  </g>
-  <text class="caption" x="452" y="359" fill="#6b7280">Modeled using $900-$1,800/acre rural land value x 0.5%-1% effective</text>
-  <text class="caption" x="452" y="372" fill="#6b7280">tax rate</text>
-  <rect class="panel-edge" x="20" y="394" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="394" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">Estimated PILT coverage of foregone property tax, by state (FY2024)</text>
-    <g id="p5-gridlines">
-      <line class="grid" x1="60" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-0" class="tick" x="52" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-1" class="tick" x="52" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-      <line class="grid" x1="60" y1="152" x2="390" y2="152" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-2" class="tick" x="52" y="156" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="128" x2="390" y2="128" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-3" class="tick" x="52" y="132" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
-      <line class="grid" x1="60" y1="104" x2="390" y2="104" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-4" class="tick" x="52" y="108" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="80" x2="390" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-5" class="tick" x="52" y="84" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-    </g>
-    <g id="p5-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p5-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
-    <text id="p5-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">Coverage %</text>
-    <g id="p5-x-axis-labels">
-      <text id="p5-xtick-ak" class="tick" x="73.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AK</text>
-      <text id="p5-xtick-nv" class="tick" x="101.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NV</text>
-      <text id="p5-xtick-or" class="tick" x="128.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OR</text>
-      <text id="p5-xtick-wy" class="tick" x="156.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WY</text>
-      <text id="p5-xtick-id" class="tick" x="183.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ID</text>
-      <text id="p5-xtick-ca" class="tick" x="211.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA</text>
-      <text id="p5-xtick-mt" class="tick" x="238.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MT</text>
-      <text id="p5-xtick-ut" class="tick" x="266.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">UT</text>
-      <text id="p5-xtick-az" class="tick" x="293.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AZ</text>
-      <text id="p5-xtick-co" class="tick" x="321.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CO</text>
-      <text id="p5-xtick-nm" class="tick" x="348.75" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NM</text>
-      <text id="p5-xtick-wa" class="tick" x="376.25" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WA</text>
-    </g>
-    <g id="p5-series-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate" class="series">
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-ak" class="bar" x="64.95" y="190.88" width="16.60" height="9.12" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-nv" class="bar" x="92.45" y="168.80" width="16.60" height="31.20" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-or" class="bar" x="119.95" y="148.64" width="16.60" height="51.36" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-wy" class="bar" x="147.45" y="134.24" width="16.60" height="65.76" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-id" class="bar" x="174.95" y="132.80" width="16.60" height="67.20" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-ca" class="bar" x="202.45" y="121.76" width="16.60" height="78.24" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-mt" class="bar" x="229.95" y="116" width="16.60" height="84" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-ut" class="bar" x="257.45" y="119.84" width="16.60" height="80.16" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-az" class="bar" x="284.95" y="111.20" width="16.60" height="88.80" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-co" class="bar" x="312.45" y="92.48" width="16.60" height="107.52" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-nm" class="bar" x="339.95" y="80.96" width="16.60" height="119.04" fill="#2563eb"/>
-      <rect id="p5-mark-est-coverage-mid-scenario-1-200-acre-land-value-0-75-tax-rate-wa" class="bar" x="367.45" y="68" width="16.60" height="132" fill="#2563eb"/>
-    </g>
-    <g id="p5-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="675" fill="#6b7280">Higher-land-value states (WA, NM, CO) show higher modeled coverage;</text>
-  <text class="caption" x="24" y="688" fill="#6b7280">low-value desert/tundra states (AK, NV) show the worst -- because…</text>
-  <rect class="panel-edge" x="448" y="394" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="394" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p6-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Actual PILT payment per federal acre, by state (FY2024)</text>
-    <g id="p6-gridlines">
-      <line class="grid" x1="63" y1="200" x2="390" y2="200" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-0" class="tick" x="55" y="204" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="63" y1="171.20" x2="390" y2="171.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-1" class="tick" x="55" y="175.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
-      <line class="grid" x1="63" y1="142.40" x2="390" y2="142.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-2" class="tick" x="55" y="146.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
-      <line class="grid" x1="63" y1="113.60" x2="390" y2="113.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-3" class="tick" x="55" y="117.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5</text>
-      <line class="grid" x1="63" y1="84.80" x2="390" y2="84.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-4" class="tick" x="55" y="88.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.0</text>
-      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-5" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.5</text>
-    </g>
-    <g id="p6-axes">
-      <line class="axis" x1="63" y1="56" x2="63" y2="200" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="63" y1="200" x2="390" y2="200" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p6-x-axis-title" class="axis-title" x="226.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">State</text>
-    <text id="p6-y-axis-title" class="axis-title" x="14" y="128" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 128)">$ per acre</text>
-    <g id="p6-x-axis-labels">
-      <text id="p6-xtick-ak" class="tick" x="76.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AK</text>
-      <text id="p6-xtick-nv" class="tick" x="103.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NV</text>
-      <text id="p6-xtick-or" class="tick" x="131.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">OR</text>
-      <text id="p6-xtick-wy" class="tick" x="158.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WY</text>
-      <text id="p6-xtick-mt" class="tick" x="185.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">MT</text>
-      <text id="p6-xtick-id" class="tick" x="212.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">ID</text>
-      <text id="p6-xtick-ca" class="tick" x="240.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CA</text>
-      <text id="p6-xtick-ut" class="tick" x="267.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">UT</text>
-      <text id="p6-xtick-az" class="tick" x="294.63" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">AZ</text>
-      <text id="p6-xtick-co" class="tick" x="321.88" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">CO</text>
-      <text id="p6-xtick-nm" class="tick" x="349.13" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">NM</text>
-      <text id="p6-xtick-wa" class="tick" x="376.38" y="218" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">WA</text>
-    </g>
-    <g id="p6-series-pilt-acre-paid" class="series">
-      <rect id="p6-mark-pilt-acre-paid-ak" class="bar" x="67.91" y="190.38" width="16.44" height="9.62" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-nv" class="bar" x="95.16" y="166.42" width="16.44" height="33.58" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-or" class="bar" x="122.41" y="144.65" width="16.44" height="55.35" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-wy" class="bar" x="149.66" y="128.81" width="16.44" height="71.19" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-mt" class="bar" x="176.91" y="109.22" width="16.44" height="90.78" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-id" class="bar" x="204.16" y="127.37" width="16.44" height="72.63" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-ca" class="bar" x="231.41" y="115.33" width="16.44" height="84.67" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-ut" class="bar" x="258.66" y="113.54" width="16.44" height="86.46" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-az" class="bar" x="285.91" y="104.04" width="16.44" height="95.96" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-co" class="bar" x="313.16" y="83.94" width="16.44" height="116.06" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-nm" class="bar" x="340.41" y="71.67" width="16.44" height="128.33" fill="#2563eb"/>
-      <rect id="p6-mark-pilt-acre-paid-wa" class="bar" x="367.66" y="57.44" width="16.44" height="142.56" fill="#2563eb"/>
-    </g>
-    <g id="p6-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="675" fill="#6b7280">Actual PILT ranges roughly $0.17-$2.48/acre across these 12</text>
-  <text class="caption" x="452" y="688" fill="#6b7280">highest-federal-acreage states -- a narrow band that does not track…</text>
-  <g id="brand">
-  <svg x="20" y="705" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
-    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
-    <g clip-path="url(#brand-tile)">
-      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
-      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
-    </g>
-    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
-    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
-  </svg>
-    <text class="brand-mark" x="45" y="720" fill="#374151">AskAmerica · askamerica.ai</text>
-    <text class="byline" x="860" y="720" fill="#6b7280" text-anchor="end">Prepared 2026-09-26</text>
-  </g>
-  <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:61963/a/32558074cb082c1bf5a87779bd4db3f4.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
-</figure>
 <section>
-<h2>Summary</h2>
-<p><strong>No — Payments in Lieu of Taxes (PILT) fall well short of covering what county and local governments would collect in property tax if federal land were privately owned and taxable.</strong> In FY2024, DOI paid $621.2 million in PILT across roughly 607 million federal acres nationwide -- about $1.02 per acre. Modeling what that same acreage would generate in property tax if it were assessed like typical private rural/rangeland (USDA NASS Mountain-region pastureland runs $900-$1,800/acre, at a typical 0.5%-1% effective property tax rate, implying $4.50-$18/acre in foregone tax), PILT covers roughly <strong>5% to 20%</strong> of that estimate nationally, with wide state variation -- worse than 2% in Alaska and Nevada (low land value, huge federal acreage) and closer to 20-28% in Washington, New Mexico, and Colorado (smaller federal footprint, higher land value). The reason is structural, not incidental: PILT pays a flat, population-capped statutory rate per acre ($3.46/acre under Alternative A for FY2025, per CRS) that has no mechanism to track actual local land values or tax rates at all -- so wherever land is worth more than the formula assumes, the gap widens.</p>
+<h2>Answer</h2>
+<p>Mostly no. In FY2025 PILT paid about <b>$645M on ~607M federal acres, about $1.06 per acre</b> (FY2026: $733M, $1.21/acre). Using a crude proxy for what the land would pay if taxed as private pasture (state NASS pasture value times an assumed effective tax rate), PILT covers about <b>30% at a 0.3% rate, 15% at 0.6%, and 9% at 1.0%</b> across 48 states. No state covered the 0.6% case in aggregate. Coverage is better in cheap, arid Western rangeland (for example NM pays $2.31/acre against $630/acre pasture; at 0.3% that is roughly $1.9 of tax, so PILT would exceed it) and worse where land is valuable (FL, CA, ID).</p>
 </section>
 <section>
-<h2>How PILT actually works (and why it isn't tax-equivalency by design)</h2>
-<p>Per the Congressional Research Service's <em>The Payments in Lieu of Taxes (PILT) Program: An Overview</em> (CRS R46260, updated Nov. 19, 2025), the dominant payment mechanism (Section 6902, nearly all PILT funding) is calculated by multiplying entitlement acres by one of two statutory per-acre rates -- $3.46/acre (Alternative A, reduced by certain prior-year federal payments such as mineral-royalty revenue sharing) or $0.50/acre (Alternative B, not reduced) -- whichever yields the higher county payment, subject to a population-based ceiling. Neither rate has any connection to the assessed value of the land or the local property tax rate. Two much smaller mechanisms (Sections 6904 and 6905, together about 0.1% of FY2024 PILT dollars) do calculate payments as a percentage of fair market value/prior taxes levied, but they apply only to specific park/wilderness acquisitions, not to the federal estate generally.</p><p>This session's own query against lands.pilt_county_payments confirms the actual national average payment realized was about $1.02/acre in FY2024 -- already below even the $3.46/acre Alternative A statutory rate, because of the population ceiling and prior-payment offsets built into the formula.</p>
+<h2>Evidence</h2>
+<ul><li>PILT per acre rose from $0.37 (FY2005) to $0.85 (FY2020), $1.06 (FY2025), $1.21 (FY2026), while federal acres stayed ~607M. Source: lands.pilt_county_payments. Part of this is catch-up, not full compensation.</li><li>Alaska is an outlier at $0.17/acre (225M acres); Nevada $0.60.</li><li>An older Forest Service study (FY1997) found potential property taxes exceeded PILT by $1.31/acre, and exceeded PILT plus revenue sharing by $0.94/acre, nationally.</li><li>Caveats: the proxy values federal land as pasture, which understates timber, minerals, parks and developable land but ignores that federal land often has no improvements; the tax rate is assumed; PILT also pays for services burdens and is capped by population formulas, and counties also get separate revenue sharing (Secure Rural Schools, mineral royalties) not counted here.</li></ul>
 </section>
 <section>
-<h2>Recomputing the coverage ratio with current data (not the stale 1999 estimate)</h2>
-<p>The only national tax-equivalency study that has directly computed a PILT-to-foregone-property-tax ratio is a 1999 USDA Forest Service report using FY1997 data, which implied roughly 30% coverage. That figure is now 27 years old and, as this session's recomputation and cross-referencing show, is very likely stale: PILT payments have grown roughly in line with inflation since 1997, but rural land values (especially in the fast-growing Mountain West, where most federal land sits) have risen far faster than inflation over that period, which should have pushed the true coverage ratio down, not left it near 30%.</p><p>To recompute a current estimate, this session joined lands.pilt_county_payments (FY2024 payments and federal acreage by state) against two different denominators:</p><ul><li><strong>A national blended land-value proxy</strong> (total property tax collected by all local governments in fiscal.govt_finance_by_unit, item T01, divided by all land in the state from geo.counties) badly understates true land value for remote federal acreage, because it is dragged up by a small footprint of very valuable urban parcels that generate most of a state's tax dollars on a tiny fraction of its land area. This method implies coverage under 1% nationally -- almost certainly too pessimistic, since it implicitly compares desert BLM land to Los Angeles real estate.</li><li><strong>A rural-land-value proxy</strong> (USDA NASS's 2024 Mountain-region average pastureland value, about $909/acre, with a national pastureland average of $1,830/acre, applied at a 0.5%-1% effective property tax rate typical of Western states) is a much more realistic stand-in for the actual, low-density land most federal acreage represents. This method puts national coverage at roughly <strong>5%-20%</strong>, clustering around 10-15% for most states, which is materially below the 1999 study's ~30% figure and in the same range that two independent unaided estimates converged on in prior analysis of this same question (1.5%-11%).</li></ul><p>Both current-data approaches -- and the independent literature -- agree on the direction: PILT covers a small minority of the true foregone property tax, likely somewhere in the high single digits to low 20s percent, not anywhere close to full compensation, and nowhere near the ~30% implied by the 27-year-old study.</p><p><strong>Caveat on ag.nass_land_values:</strong> this warehouse's own USDA NASS land-value table (ag.nass_land_values) returned zero rows for every query tried despite declaring 2009-2025 coverage -- a genuine data gap, logged as a sourcing issue. The $900-$1,830/acre pastureland figures used above therefore come from USDA NASS's own published 2024 Land Values Summary (fetched via web search/NASS press releases), not from this corpus.</p>
-</section>
-<section>
-<h2>State-level variation: the gap is worst exactly where land is cheapest</h2>
-<p>Because PILT's per-acre rate is flat and nationally uniform while land value varies enormously by state, the modeled coverage ratio tracks land value, not federal presence. Alaska (225 million federal acres, mostly remote tundra/forest with low land value) and Nevada (57 million acres, mostly desert) show the lowest modeled coverage (under 7%) even though they receive some of the largest total PILT checks in dollar terms. States with smaller federal footprints and higher land value -- Washington, New Mexico, Colorado -- show modeled coverage in the 20-28% range under the same assumptions, still well short of full compensation. Actual PILT dollars paid per acre only range from about $0.17/acre (Alaska) to $2.48/acre (Washington) across the twelve largest federal-land states -- a narrow band that reflects the formula's uniform structure, not any attempt to match local land values.</p>
-</section>
-<section>
-<h2>Bottom line</h2>
-<p>PILT was never designed to be a precise tax-equivalency payment -- it is a capped, flat-rate, population-adjusted formula. Measured against what federal land would plausibly generate in local property tax if it were privately owned, current PILT payments cover only a modest fraction of that amount -- this analysis estimates roughly 5%-20%, most plausibly around 10-15%, well below the ~30% figure from the sole 1999 national study, which is stale and should not be treated as current.</p>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Estimate foregone property tax</strong>: No county assessed-value or tax-rate data for federal parcels exists in the corpus; I used a proxy (state pasture value x assumed 0.3-1.0% effective rate) and a 1999 Forest Service study. This is an estimate, not a measurement.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>8 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 5 rows — 1533 ms</summary><pre><code>SELECT fiscal_year, SUM(payment_dollars) AS total_pilt, SUM(total_acres) AS total_acres FROM lands.pilt_county_payments WHERE fiscal_year IN (2020,2021,2022,2023,2024) GROUP BY fiscal_year ORDER BY fiscal_year</code></pre></details>
-<details class="sqltoggle"><summary>query — 13 rows — 20323 ms</summary><pre><code>SELECT &quot;year&quot;, SUM(amount_thousands) AS total_t01_thousands FROM fiscal.govt_finance_by_unit WHERE item_code = 'T01' AND gov_type_code = 1 GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 1580 ms</summary><pre><code>SELECT SUM(land_area) AS total_land_area_sqm FROM geo.counties WHERE &quot;year&quot; = '2023'</code></pre></details>
-<details class="sqltoggle"><summary>query — 12 rows — 1324 ms</summary><pre><code>SELECT &quot;year&quot;, gov_type_code, SUM(amount_thousands) AS total_t01_thousands FROM fiscal.govt_finance_by_unit WHERE item_code = 'T01' AND &quot;year&quot; IN ('2022','2023') GROUP BY &quot;year&quot;, gov_type_code ORDER BY &quot;year&quot;, gov_type_code</code></pre></details>
-<details class="sqltoggle"><summary>query — 4156 ms</summary><pre><code>SELECT state_fips_code, state_alpha, &quot;year&quot;, &quot;value&quot; FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND unit_desc='$ / ACRE' AND class_desc='AG LAND, INCL BUILDINGS' AND &quot;year&quot; = '2023' ORDER BY state_alpha LIMIT 60</code></pre></details>
-<details class="sqltoggle"><summary>query — 1065 ms</summary><pre><code>SELECT state_fips_code, state_alpha, &quot;year&quot;, &quot;value&quot; FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND unit_desc='$ / ACRE' AND class_desc='AG LAND, INCL BUILDINGS' AND &quot;year&quot; = 2023 ORDER BY state_alpha FETCH FIRST 60 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 1058 ms</summary><pre><code>SELECT DISTINCT class_desc FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND unit_desc='$ / ACRE' AND &quot;year&quot;=2023</code></pre></details>
-<details class="sqltoggle"><summary>query — 12 rows — 9440 ms</summary><pre><code>
-WITH pilt AS (
-  SELECT p.state_code, SUM(p.payment_dollars) AS pilt_dollars, SUM(p.total_acres) AS fed_acres
-  FROM lands.pilt_county_payments p
-  WHERE p.fiscal_year = 2024
-  GROUP BY p.state_code
-),
-land AS (
-  SELECT state_fips, SUM(land_area)/4046.8564224 AS total_acres
-  FROM geo.counties WHERE &quot;year&quot;='2023'
-  GROUP BY state_fips
-),
-tax AS (
-  SELECT state_fips, SUM(amount_thousands)*1000 AS tax_dollars
-  FROM fiscal.govt_finance_by_unit
-  WHERE item_code='T01' AND &quot;year&quot;='2023'
-  GROUP BY state_fips
-)
-SELECT s.state_abbr, s.state_fips, pilt.pilt_dollars, pilt.fed_acres, land.total_acres, tax.tax_dollars
-FROM pilt
-JOIN geo.state_ref s ON s.state_abbr = pilt.state_code
-LEFT JOIN land ON land.state_fips = s.state_fips
-LEFT JOIN tax ON tax.state_fips = s.state_fips
-ORDER BY pilt.fed_acres DESC
-FETCH FIRST 12 ROWS ONLY
-</code></pre></details>
+<p>3 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 8 rows — 1065 ms</summary><pre><code>SELECT fiscal_year, SUM(payment_dollars) pay, SUM(total_acres) acres, SUM(payment_dollars)*1.0/SUM(total_acres) per_acre, COUNT(*) n FROM lands.pilt_county_payments WHERE fiscal_year IN (2005,2010,2015,2020,2023,2024,2025,2026) GROUP BY fiscal_year ORDER BY fiscal_year</code></pre></details>
+<details class="sqltoggle"><summary>query — 15 rows — 3268 ms</summary><pre><code>SELECT p.state_code, SUM(p.payment_dollars) pay, SUM(p.total_acres) acres, SUM(p.payment_dollars)*1.0/SUM(p.total_acres) per_acre, MAX(v.value) pasture_val FROM lands.pilt_county_payments p LEFT JOIN ag.nass_land_values v ON v.state_alpha=p.state_code AND v.year=2025 AND v.source_desc='SURVEY' AND v.statisticcat_desc='ASSET VALUE' AND v.unit_desc='$ / ACRE' AND v.class_desc='PASTURELAND' WHERE p.fiscal_year=2025 GROUP BY p.state_code ORDER BY pay DESC FETCH FIRST 15 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1707 ms</summary><pre><code>WITH s AS (SELECT p.state_code, SUM(p.payment_dollars) pay, SUM(p.total_acres) acres, MAX(v.value) pv FROM lands.pilt_county_payments p JOIN ag.nass_land_values v ON v.state_alpha=p.state_code AND v.year=2025 AND v.source_desc='SURVEY' AND v.statisticcat_desc='ASSET VALUE' AND v.unit_desc='$ / ACRE' AND v.class_desc='PASTURELAND' WHERE p.fiscal_year=2025 GROUP BY p.state_code) SELECT COUNT(*) n, SUM(pay) pay, SUM(acres) acres, SUM(acres*pv)/SUM(acres) wtd_pasture, SUM(pay)/SUM(acres*pv*0.003) cov_03, SUM(pay)/SUM(acres*pv*0.006) cov_06, SUM(pay)/SUM(acres*pv*0.01) cov_10, SUM(CASE WHEN pay&gt;=acres*pv*0.006 THEN 1 ELSE 0 END) states_cover_06 FROM s</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://pilt.doi.gov/counties.cfm">DOI PILT county payments FY2024</a> <span class="note">— queried via lands.pilt_county_payments</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT fiscal_year, SUM(payment_dollars) AS total_pilt, SUM(total_acres) AS total_acres FROM lands.pilt_county_payments WHERE fiscal_year IN (2020,2021,2022,2023,2024) GROUP BY fiscal_year ORDER BY fiscal_year</code></pre></details></li>
-<li><a href="https://www.census.gov/data/datasets/2023/econ/local/public-use-datasets.html">Census county government finance, property tax (T01) by state and government type</a> <span class="note">— fiscal.govt_finance_by_unit, item_code=T01</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, SUM(amount_thousands)*1000 AS tax_dollars FROM fiscal.govt_finance_by_unit WHERE item_code='T01' AND &quot;year&quot;='2023' GROUP BY state_fips</code></pre></details></li>
-<li><a href="https://www.census.gov/geo/">Census TIGER county land area by state</a> <span class="note">— geo.counties, land_area summed by state, 2023 vintage</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, SUM(land_area)/4046.8564224 AS total_acres FROM geo.counties WHERE &quot;year&quot;='2023' GROUP BY state_fips</code></pre></details></li>
-<li><a href="https://www.congress.gov/crs_external_products/R/PDF/R46260/R46260.16.pdf">CRS R46260, The Payments in Lieu of Taxes (PILT) Program: An Overview (updated Nov 19, 2025)</a> <span class="note">— statutory per-acre rates, payment formula, Section 6904/6905 mechanisms</span></li>
-<li><a href="https://www.nass.usda.gov/Publications/Highlights/2024/2024LandValuesCashRents.pdf">USDA NASS, Land Values 2024 Summary (national and Mountain-region pastureland values)</a></li>
-<li><a href="https://pilt.doi.gov">USDA Forest Service, 1999 national PILT/property-tax equivalency study (FY1997 data, ~30% implied coverage) -- cited as the stale prior estimate, not relied on as current</a></li>
+<li><a href="https://pilt.doi.gov/counties.cfm">lands.pilt_county_payments (DOI PILT)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT fiscal_year, SUM(payment_dollars), SUM(total_acres) FROM lands.pilt_county_payments GROUP BY fiscal_year</code></pre></details></li>
+<li><a href="https://quickstats.nass.usda.gov/">ag.nass_land_values pasture value 2025</a></li>
+<li><a href="https://www.fs.usda.gov/rm/pubs/rmrs_gtr036.pdf">Forest Service RMRS-GTR-36</a></li>
+<li><a href="https://www.everycrsreport.com/files/20151228_RL31392_0dc6a68f26620f8d8e1e956b8a446661c36a4512.pdf">CRS RL31392 PILT</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Coverage ratios are modeled estimates, not a precise accounting figure -- no federal source publishes a direct property-tax-equivalent for federal land. The rural-land-value proxy (USDA NASS Mountain-region pastureland, $900-$1,800/acre) is a reasonable stand-in for typical federal rangeland/forest but likely still overstates value for the least productive federal acreage (bare desert, high alpine, Arctic tundra), meaning true coverage could be even lower than 5-20% in places. ag.nass_land_values returned no rows in this corpus (logged as a sourcing gap); the land-value figures used come from USDA NASS's own published summary instead.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
