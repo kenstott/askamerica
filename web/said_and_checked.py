@@ -67,6 +67,20 @@ LEGEND = [
 CHECKED_KINDS = ("factual", "premised_prediction")
 SLUG_PREFIX = "said-and-checked-"
 SAID_ARCHIVE_SLUG = "said-and-checked-archive"
+# Postal codes for speaker_state and about_states: the 50 states and DC.
+US_STATES = {
+    "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California",
+    "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware", "DC": "District of Columbia",
+    "FL": "Florida", "GA": "Georgia", "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois",
+    "IN": "Indiana", "IA": "Iowa", "KS": "Kansas", "KY": "Kentucky", "LA": "Louisiana",
+    "ME": "Maine", "MD": "Maryland", "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota",
+    "MS": "Mississippi", "MO": "Missouri", "MT": "Montana", "NE": "Nebraska", "NV": "Nevada",
+    "NH": "New Hampshire", "NJ": "New Jersey", "NM": "New Mexico", "NY": "New York",
+    "NC": "North Carolina", "ND": "North Dakota", "OH": "Ohio", "OK": "Oklahoma", "OR": "Oregon",
+    "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina", "SD": "South Dakota",
+    "TN": "Tennessee", "TX": "Texas", "UT": "Utah", "VT": "Vermont", "VA": "Virginia",
+    "WA": "Washington", "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming",
+}
 
 
 class InvalidStatements(Exception):
@@ -111,6 +125,14 @@ def validate(doc, where):
             _require(_is_url(src.get("url")), w, "source.url is required when the original was found")
         _require(s.get("broad_topic") in topics.SAID_TOPICS, w,
                  "broad_topic must be one of topics.SAID_TOPICS")
+        # speaker_state: the state a member of Congress or governor represents, else null.
+        # about_states: the states the statement is mainly about (possibly none).
+        _require("speaker_state" in s and (s["speaker_state"] is None
+                                           or s["speaker_state"] in US_STATES), w,
+                 "speaker_state must be a state postal code or null")
+        ab = s.get("about_states")
+        _require(isinstance(ab, list) and all(c in US_STATES for c in ab) and len(set(ab)) == len(ab),
+                 w, "about_states must be a list of distinct state postal codes")
         _require(s.get("kind") in KINDS, w, "bad kind")
         if s["kind"] in CHECKED_KINDS:
             _require(s.get("result") in RESULTS, w, s["kind"] + " statement needs a result")
@@ -646,6 +668,15 @@ def topic_feed_path(topic):
     return "/studies/%s/%s.xml" % (TOPIC_FEED_DIR, topics.slug(topic))
 
 
+def state_feed_path(code):
+    return "/studies/%s/states/%s.xml" % (TOPIC_FEED_DIR, code.lower())
+
+
+def in_state(s, code):
+    """A statement is in a state's feed if its speaker represents the state or it is about it."""
+    return s["speaker_state"] == code or code in s["about_states"]
+
+
 def _reader_links(path, style=""):
     """'RSS · Feedly · Inoreader' for one feed. The reader links add the feed in one click."""
     from urllib.parse import quote
@@ -663,7 +694,15 @@ def subscribe_links(style=""):
     """'Subscribe: RSS · Feedly · Inoreader · by topic' for the all-statements feed."""
     st = ' style="%s"' % style if style else ""
     return ("Subscribe: " + _reader_links(FEED_PATH, style)
-            + ' &middot; <a href="/studies/%s/#topics"%s>by topic</a>' % (SAID_ARCHIVE_SLUG, st))
+            + ' &middot; <a href="/studies/%s/#topics"%s>by topic</a>' % (SAID_ARCHIVE_SLUG, st)
+            + ' &middot; <a href="/studies/%s/#states"%s>by state</a>' % (SAID_ARCHIVE_SLUG, st))
+
+
+def state_subscribe_rows():
+    """One row per state for the all-days page."""
+    return ['<li class="study-row">%s<span class="study-date">%s</span></li>'
+            % (html.escape(name), _reader_links(state_feed_path(code)))
+            for code, name in sorted(US_STATES.items(), key=lambda kv: kv[1])]
 
 
 def topic_subscribe_rows():
@@ -672,11 +711,11 @@ def topic_subscribe_rows():
             % (html.escape(t), _reader_links(topic_feed_path(t))) for t in topics.SAID_TOPICS]
 
 
-def _feed_title(date, stmts, topic=None):
+def _feed_title(date, stmts, label=None):
     found = ["%d %s" % (n, RESULTS[r].lower()) for r in FEED_LEAD_RESULTS
              for n in [sum(1 for s in stmts if s.get("result") == r)] if n]
     return "Said & Checked%s, %s: %s" % (
-        ", " + topic if topic else "", date,
+        ", " + label if label else "", date,
         ", ".join(found) if found else "none false or contradicted")
 
 
@@ -704,31 +743,41 @@ def _feed_description(stmts, page_url):
     return "".join(parts)
 
 
-def feed_xml(days, topic=None):
-    """RSS 2.0 feed of the latest FEED_DAYS days, of every statement or of one broad topic.
-    A topic feed has an item only for days with a statement on that topic. A day keeps its
-    guid as it is republished during the day, so a reader lists it once."""
+def feed_xml(days, topic=None, state=None):
+    """RSS 2.0 feed of the latest FEED_DAYS days: every statement, one broad topic, or one state
+    (postal code). A topic or state feed has an item only for days with a matching statement.
+    A day keeps its guid as it is republished during the day, so a reader lists it once."""
     import datetime
     from email.utils import format_datetime
     from xml.sax.saxutils import escape
 
+    _require(topic is None or state is None, "feed_xml", "a feed is by topic or by state, not both")
+    if topic is not None:
+        label, path, anchor = topic, topic_feed_path(topic), "#topic-" + topics.slug(topic)
+        keep = lambda s: s["broad_topic"] == topic
+    elif state is not None:
+        label, path, anchor = US_STATES[state], state_feed_path(state), "#state-" + state.lower()
+        keep = lambda s: in_state(s, state)
+    else:
+        label, path, anchor = None, FEED_PATH, ""
+        keep = lambda s: True
     items = []
     for day in days[:FEED_DAYS]:
-        stmts = [s for s in day["statements"] if topic is None or s["broad_topic"] == topic]
+        stmts = [s for s in day["statements"] if keep(s)]
         if not stmts:
             continue
         url = "%s/studies/%s/" % (SITE, slug(day))
-        guid = url if topic is None else url + "#topic-" + topics.slug(topic)
         y, m, d = (int(p) for p in day["date"].split("-"))
         pub = format_datetime(datetime.datetime(y, m, d, tzinfo=datetime.timezone.utc))
         items.append(
             "<item><title>%s</title><link>%s</link><guid isPermaLink=\"false\">%s</guid>"
             "<pubDate>%s</pubDate><description>%s</description></item>"
-            % (escape(_feed_title(day["date"], stmts, topic)), escape(url), escape(guid), pub,
-               escape(_feed_description(stmts, url))))
-    path = FEED_PATH if topic is None else topic_feed_path(topic)
-    title = "Said & Checked" + (": " + topic if topic else "")
-    about = ("What officeholders said each day" + (" about " + topic if topic else "")
+            % (escape(_feed_title(day["date"], stmts, label)), escape(url), escape(url + anchor),
+               pub, escape(_feed_description(stmts, url))))
+    title = "Said & Checked" + (": " + label if label else "")
+    about = ("What officeholders said each day"
+             + (" about " + topic if topic else "")
+             + (" from or about " + label if state else "")
              + ", and which statements government data supports, contradicts or rules out.")
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
