@@ -600,6 +600,7 @@ def render_day(day, back_banner):
     from {speakers} speaker{"s" if speakers != 1 else ""}</p>
   <p class="tally">{summary}</p>
   <div class="lede">{lede}</div>
+  <p class="meta">{subscribe_links()}</p>
   <details>
     <summary>How to read this page</summary>
     <dl>{legend}</dl>
@@ -632,6 +633,19 @@ FEED_PATH = "/studies/" + FEED_FILE
 FEED_DAYS = 14
 # The feed leads with these results, most decisive first.
 FEED_LEAD_RESULTS = ("false", "contradicted")
+
+
+def subscribe_links(style=""):
+    """'Subscribe: RSS · Feedly · Inoreader'. The reader links add the feed in one click."""
+    from urllib.parse import quote
+    feed = quote(SITE + FEED_PATH, safe="")
+    a = '<a href="%s"%s>%s</a>'
+    st = ' style="%s"' % style if style else ""
+    return "Subscribe: " + " &middot; ".join([
+        a % (FEED_PATH, st, "RSS"),
+        a % ("https://feedly.com/i/subscription/feed/" + feed, st, "Feedly"),
+        a % ("https://www.inoreader.com/?add_feed=" + feed, st, "Inoreader"),
+    ])
 
 
 def _feed_title(day):

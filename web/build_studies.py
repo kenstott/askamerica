@@ -403,9 +403,10 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
         all_days_link = (
             f'<div style="margin-top:0.6rem;"><a href="/studies/{SAID_ARCHIVE_SLUG}/" '
             'style="color:var(--text-dim);font-size:12px;">'
-            f'All days ({len(rows)}) &rarr;</a> &middot; '
-            f'<a href="{said_and_checked.FEED_PATH}" style="color:var(--text-dim);font-size:12px;">'
-            'Subscribe (RSS)</a></div>'
+            f'All days ({len(rows)}) &rarr;</a>'
+            '<span style="color:var(--text-dim);font-size:12px;"> &middot; '
+            + said_and_checked.subscribe_links("color:var(--text-dim);")
+            + '</span></div>'
         )
         cards.append(
             '<div class="study-cat" id="sandc"><h2>Said &amp; Checked</h2>'
