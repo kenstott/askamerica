@@ -403,7 +403,10 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
         all_days_link = (
             f'<div style="margin-top:0.6rem;"><a href="/studies/{SAID_ARCHIVE_SLUG}/" '
             'style="color:var(--text-dim);font-size:12px;">'
-            f'All days ({len(rows)}) &rarr;</a></div>'
+            f'All days ({len(rows)}) &rarr;</a>'
+            '<span style="color:var(--text-dim);font-size:12px;"> &middot; '
+            + said_and_checked.subscribe_links("color:var(--text-dim);")
+            + '</span></div>'
         )
         cards.append(
             '<div class="study-cat" id="sandc"><h2>Said &amp; Checked</h2>'
@@ -562,6 +565,8 @@ def main():
         with open(os.path.join(dest_dir, "index.html"), "w") as fh:
             fh.write(said_and_checked.render_day(day, BACK_BANNER))
     build_said_archive(said_days)
+    with open(os.path.join(OUT, said_and_checked.FEED_FILE), "w") as fh:
+        fh.write(said_and_checked.feed_xml(said_days))
 
     live_slugs = ({q["id"] for q, e in zip(bank, entries) if e} | {h["slug"] for h in headlines}
                   | {"headlines-archive", SAID_ARCHIVE_SLUG} | {said_and_checked.slug(d) for d in said_days})

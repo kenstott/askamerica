@@ -487,6 +487,7 @@ def render_day(day, back_banner):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{html.escape(title)} — AskAmerica</title>
+<link rel="alternate" type="application/rss+xml" title="Said &amp; Checked" href="{FEED_PATH}">
 <link rel="icon" type="image/svg+xml" href="/icon.svg">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
@@ -599,6 +600,7 @@ def render_day(day, back_banner):
     from {speakers} speaker{"s" if speakers != 1 else ""}</p>
   <p class="tally">{summary}</p>
   <div class="lede">{lede}</div>
+  <p class="meta">{subscribe_links()}</p>
   <details>
     <summary>How to read this page</summary>
     <dl>{legend}</dl>
@@ -623,6 +625,87 @@ def render_day(day, back_banner):
 </body>
 </html>
 """
+
+
+SITE = "https://askamerica.ai"
+FEED_FILE = "said-and-checked.xml"
+FEED_PATH = "/studies/" + FEED_FILE
+FEED_DAYS = 14
+# The feed leads with these results, most decisive first.
+FEED_LEAD_RESULTS = ("false", "contradicted")
+
+
+def subscribe_links(style=""):
+    """'Subscribe: RSS · Feedly · Inoreader'. The reader links add the feed in one click."""
+    from urllib.parse import quote
+    feed = quote(SITE + FEED_PATH, safe="")
+    a = '<a href="%s"%s>%s</a>'
+    st = ' style="%s"' % style if style else ""
+    return "Subscribe: " + " &middot; ".join([
+        a % (FEED_PATH, st, "RSS"),
+        a % ("https://feedly.com/i/subscription/feed/" + feed, st, "Feedly"),
+        a % ("https://www.inoreader.com/?add_feed=" + feed, st, "Inoreader"),
+    ])
+
+
+def _feed_title(day):
+    stmts = day["statements"]
+    found = ["%d %s" % (n, RESULTS[r].lower()) for r in FEED_LEAD_RESULTS
+             for n in [sum(1 for s in stmts if s.get("result") == r)] if n]
+    return "Said & Checked, %s: %s" % (
+        day["date"], ", ".join(found) if found else "none false or contradicted")
+
+
+def _feed_description(day, page_url):
+    """The day's false and contradicted statements first, then the day's tally and a link."""
+    leads = sorted((s for s in day["statements"] if s.get("result") in FEED_LEAD_RESULTS),
+                   key=lambda s: (FEED_LEAD_RESULTS.index(s["result"]), s["id"]))
+    parts = []
+    if leads:
+        items = "".join(
+            "<li><strong>%s</strong>, %s: &ldquo;%s&rdquo; <em>%s.</em> %s</li>" % (
+                html.escape(s["speaker"]), html.escape(s["office"]),
+                html.escape(_excerpt(s["quote"], 40)), RESULTS[s["result"]],
+                html.escape(s["finding"]))
+            for s in leads)
+        parts.append("<p><strong>False or contradicted</strong></p><ul>%s</ul>" % items)
+    else:
+        parts.append("<p>No statement was found false or contradicted.</p>")
+    n, speakers, _ = counts(day)
+    parts.append("<p>%d statements by %d officeholders. %s.</p>"
+                 % (n, speakers, result_summary(day)))
+    parts.append('<p><a href="%s">Read every statement and how each was checked</a></p>'
+                 % html.escape(page_url, quote=True))
+    return "".join(parts)
+
+
+def feed_xml(days):
+    """RSS 2.0 feed of the latest FEED_DAYS days. A day keeps its address (the guid) as it is
+    republished during the day, so a reader lists it once."""
+    import datetime
+    from email.utils import format_datetime
+    from xml.sax.saxutils import escape
+
+    items = []
+    for day in days[:FEED_DAYS]:
+        url = "%s/studies/%s/" % (SITE, slug(day))
+        y, m, d = (int(p) for p in day["date"].split("-"))
+        pub = format_datetime(datetime.datetime(y, m, d, tzinfo=datetime.timezone.utc))
+        items.append(
+            "<item><title>%s</title><link>%s</link><guid isPermaLink=\"true\">%s</guid>"
+            "<pubDate>%s</pubDate><description>%s</description></item>"
+            % (escape(_feed_title(day)), escape(url), escape(url), pub,
+               escape(_feed_description(day, url))))
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
+        "<title>Said &amp; Checked &#8212; AskAmerica</title>"
+        "<link>%s/studies/said-and-checked-archive/</link>"
+        '<atom:link href="%s%s" rel="self" type="application/rss+xml"/>'
+        "<description>What officeholders said each day, and which statements government data "
+        "supports, contradicts or rules out.</description>"
+        "<language>en-us</language>%s</channel></rss>\n"
+        % (SITE, SITE, FEED_PATH, "".join(items)))
 
 
 def index_rows(days):
