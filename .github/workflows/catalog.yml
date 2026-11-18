@@ -34,10 +34,19 @@ jobs:
       - name: Checkout askamerica
         uses: actions/checkout@v4
 
-      - name: Checkout govdata schema YAMLs (calcite)
+      - name: Find the latest engine release (calcite)
+        id: release
+        run: |
+          tag=$(git ls-remote --tags --refs https://github.com/kenstott/calcite 'engine-v*' \
+            | sed 's#.*refs/tags/##' | sort -V | tail -1)
+          test -n "$tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout govdata schema YAMLs and seed of the released engine (calcite)
         uses: actions/checkout@v4
         with:
           repository: kenstott/calcite
+          ref: ${{ steps.release.outputs.tag }}
           path: calcite
           sparse-checkout: |
             govdata/src/main/resources

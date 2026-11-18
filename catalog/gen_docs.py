@@ -89,7 +89,25 @@ EXTRA_CSS = """/* snake_case identifiers break only at the <wbr> after each unde
 """
 
 
+def seeded_tables():
+    """schema.table for every table and view in the release's seed listing.
+
+    The engine serves only what its seed carries, so the catalog lists only those names.
+    """
+    path = os.path.join(GOVDATA, "duckdb", "seed", "govdata-seed.schema")
+    names = set()
+    with open(path) as fh:
+        for line in fh:
+            parts = line.strip().rsplit(":", 1)[0].split(".")
+            if len(parts) >= 3:
+                names.add(f"{parts[0]}.{parts[1]}".lower())
+    if not names:
+        raise SystemExit(f"{path} declares no tables; refusing to publish an empty catalog")
+    return names
+
+
 def load():
+    served = seeded_tables()
     files = sorted(glob.glob(os.path.join(GOVDATA, "*", "*-schema.yaml")))
     files = [f for f in files if "deprecated" not in f]
     cat = []
@@ -103,6 +121,8 @@ def load():
                 if not name or name in seen or f"{sch['schema']}.{name}" in NOT_YET_LOADED:
                     continue
                 seen.add(name)
+                if f"{sch['schema']}.{name}".lower() not in served:
+                    continue
                 cols = [{"name": c.get("name"), "type": c.get("type"),
                          "nullable": c.get("nullable", True), "comment": clean(c.get("comment"))}
                         for c in (t.get("columns") or [])]
