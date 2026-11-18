@@ -8,6 +8,7 @@ import { handleAdminCreateKey, handleAdminGrant } from './admin';
 import { handleIssueReport } from './issues';
 import { syncIssuesToGithub } from './github-sync';
 import { handleTelemetry } from './telemetry';
+import { handleSaidSubscribe, handleSaidConfirm, handleSaidSend } from './said-and-checked';
 import {
   handleStudiesRegister, handleStudiesMe, handleStudiesUpload, handleStudyDelete,
   handleStudiesIndex, handleStudyPage, STUDIES_ROOT_DOMAIN, RESERVED_HANDLES,
@@ -91,6 +92,12 @@ export default {
       // Awaited, unlike metering's waitUntil: the caller has just written up a report and
       // must be told whether it was stored, rather than getting an unconditional ok.
       response = await handleIssueReport(request, env);
+    } else if (method === 'POST' && path === '/v1/said-and-checked/subscribe') {
+      response = await handleSaidSubscribe(request, env);
+    } else if (method === 'GET' && path === '/v1/said-and-checked/confirm') {
+      response = await handleSaidConfirm(request, env);
+    } else if (method === 'POST' && path === '/v1/said-and-checked/send') {
+      response = await handleSaidSend(request, env);
     } else if (method === 'POST' && path === '/v1/admin/keys') {
       response = await handleAdminCreateKey(request, env);
     } else if (method === 'POST' && path === '/v1/admin/grant') {

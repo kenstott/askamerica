@@ -284,6 +284,10 @@ def build_said_archive(said_days):
     first (already sorted by load_days). The main studies page lists only the latest
     SAID_DAYS_SHOWN days and links here."""
     topic_section = (
+        '<div class="study-cat" id="email" style="margin-top:2.5rem;"><h2>Get it by email</h2>'
+        + said_and_checked.email_signup_form("font-size:14px;") + '</div>'
+    )
+    topic_section += (
         '<div class="study-cat" id="topics" style="margin-top:2.5rem;"><h2>Subscribe by topic</h2>'
         f'<ul>{"".join(said_and_checked.topic_subscribe_rows())}</ul></div>'
     )
@@ -391,7 +395,9 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
             f'All days ({len(rows)}) &rarr;</a>'
             '<span style="color:var(--text-dim);font-size:12px;"> &middot; '
             + said_and_checked.subscribe_links("color:var(--text-dim);")
-            + '</span></div>'
+            + '</span>'
+            + said_and_checked.email_signup_form("margin-top:0.6rem;font-size:13px;")
+            + '</div>'
         )
         cards.append(
             '<div class="study-cat" id="sandc"><h2>Said &amp; Checked</h2>'

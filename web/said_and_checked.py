@@ -628,6 +628,7 @@ def render_day(day, back_banner):
   <p class="tally">{summary}</p>
   <div class="lede">{lede}</div>
   <p class="meta">{subscribe_links()}</p>
+  <div class="meta">{email_signup_form()}</div>
   <details>
     <summary>How to read this page</summary>
     <dl>{legend}</dl>
@@ -930,6 +931,81 @@ def feed_xml(days, topic=None, state=None):
            escape(about), "".join(items)))
 
 
+API = "https://api.askamerica.ai"
+# The daily run's copy of the api Worker's SAID_CHECKED_SEND_SECRET, which authorizes only the
+# day's send.
+SEND_SECRET_FILE = os.path.expanduser("~/.askamerica/sc-send-secret")
+
+
+def email_signup_form(style=""):
+    """A one-field form that asks the api Worker to email a confirmation link."""
+    st = ' style="%s"' % style if style else ""
+    return (
+        '<form class="sc-signup"%s onsubmit="return scSignup(this)">'
+        '<label>Get Said &amp; Checked by email, once a day: '
+        '<input type="email" name="email" required placeholder="you@example.com" '
+        'style="font:inherit;padding:4px 8px;border-radius:4px;border:1px solid #444;'
+        'background:transparent;color:inherit;max-width:100%%"></label> '
+        '<button type="submit" style="font:inherit;padding:4px 12px;border-radius:4px;'
+        'border:1px solid #e8a24a;background:#e8a24a;color:#080b0f;cursor:pointer">'
+        'Subscribe</button> <span class="sc-signup-msg" role="status"></span></form>'
+        "<script>function scSignup(f){var m=f.querySelector('.sc-signup-msg');"
+        "m.textContent='Sending\\u2026';"
+        "fetch('%s/v1/said-and-checked/subscribe',{method:'POST',"
+        "headers:{'Content-Type':'application/json'},"
+        "body:JSON.stringify({email:f.email.value})}).then(function(r){"
+        "m.textContent=r.ok?'Check your inbox for a confirmation link.':"
+        "r.status===429?'Too many tries; please wait an hour.':"
+        "r.status===400?'That address does not look right.':"
+        "'Something went wrong; please try again later.';})"
+        ".catch(function(){m.textContent='Something went wrong; please try again later.';});"
+        "return false;}</script>" % (st, API))
+
+
+def email_subject(day):
+    return _feed_title(day["date"], day["statements"])
+
+
+def email_html(day):
+    """The day's email body: the same lead, tally card and link as the main feed's item. The
+    api Worker adds the unsubscribe link and postal address."""
+    stmts = day["statements"]
+    url = "%s/studies/%s/" % (SITE, slug(day))
+    image = SITE + feed_image_path("all", day["date"])
+    alt = "Said & Checked %s: %s" % (day["date"], html.unescape(statements_summary(stmts)))
+    return ('<div style="max-width:640px;margin:0 auto;font:16px/1.55 -apple-system,'
+            'BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif;color:#1f2328">%s</div>'
+            % _feed_description(stmts, url, image, alt))
+
+
+def send_email(path):
+    """Sends one validated day's email through the api Worker. The Worker sends each date
+    once; a second call reports the first send instead of sending again."""
+    import urllib.error
+    import urllib.request
+
+    with open(path) as fh:
+        doc = json.load(fh)
+    validate(doc, path)
+    with open(SEND_SECRET_FILE) as fh:
+        secret = fh.read().strip()
+    _require(bool(secret), SEND_SECRET_FILE, "is empty")
+    body = json.dumps({"date": doc["date"], "subject": email_subject(doc),
+                       "html": email_html(doc)}).encode()
+    req = urllib.request.Request(API + "/v1/said-and-checked/send", data=body, method="POST",
+                                 headers={"Content-Type": "application/json",
+                                          "Authorization": "Bearer " + secret})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            print("SENT %s: broadcast %s" % (doc["date"], json.load(resp)["broadcast_id"]))
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode()
+        if e.code == 409:
+            print("ALREADY SENT %s: %s" % (doc["date"], detail))
+            return
+        sys.exit("SEND FAILED %s: HTTP %d %s" % (doc["date"], e.code, detail))
+
+
 def index_rows(days):
     rows = []
     for day in days:
@@ -944,9 +1020,13 @@ def index_rows(days):
 
 def main(argv):
     """python3 said_and_checked.py <statements.json>: validate one day's file without building.
-    The unattended daily run uses this to decide whether a day is published or held."""
+    The unattended daily run uses this to decide whether a day is published or held.
+    python3 said_and_checked.py send-email <statements.json>: send that day's email, once."""
+    if len(argv) == 3 and argv[1] == "send-email":
+        send_email(argv[2])
+        return
     if len(argv) != 2:
-        sys.exit("usage: said_and_checked.py <statements.json>")
+        sys.exit("usage: said_and_checked.py <statements.json> | send-email <statements.json>")
     path = argv[1]
     with open(path) as fh:
         doc = json.load(fh)
