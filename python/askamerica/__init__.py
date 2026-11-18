@@ -4,7 +4,7 @@ from .quota import get_quota, get_checkout
 from .config import get_api_key
 from .exceptions import AskAmericaError, AuthError, QuotaExceededError, QueryError
 
-__version__ = "0.128.6"
+__version__ = "0.128.7"
 __all__ = [
     "query",
     "connect",
