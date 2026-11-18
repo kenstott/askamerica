@@ -657,6 +657,8 @@ def render_day(day, back_banner):
 SITE = "https://askamerica.ai"
 FEED_FILE = "said-and-checked.xml"
 FEED_PATH = "/studies/" + FEED_FILE
+# Renders a feed as a readable page when a browser opens it; feed readers ignore it.
+FEED_STYLESHEET = "/studies/said-and-checked.xsl"
 # One feed per broad topic, in a directory the build keeps as a standing page.
 TOPIC_FEED_DIR = "said-and-checked-feeds"
 FEED_DAYS = 14
@@ -685,7 +687,7 @@ def _reader_links(path, style=""):
     st = ' style="%s"' % style if style else ""
     return " &middot; ".join([
         a % (path, st, "RSS"),
-        a % ("https://feedly.com/i/subscription/feed/" + feed, st, "Feedly"),
+        a % ("https://feedly.com/i/subscription/feed%2F" + feed, st, "Feedly"),
         a % ("https://www.inoreader.com/?add_feed=" + feed, st, "Inoreader"),
     ])
 
@@ -781,13 +783,14 @@ def feed_xml(days, topic=None, state=None):
              + ", and which statements government data supports, contradicts or rules out.")
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<?xml-stylesheet type="text/xsl" href="%s"?>\n'
         '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
         "<title>%s &#8212; AskAmerica</title>"
         "<link>%s/studies/%s/</link>"
         '<atom:link href="%s%s" rel="self" type="application/rss+xml"/>'
         "<description>%s</description>"
         "<language>en-us</language>%s</channel></rss>\n"
-        % (escape(title), SITE, SAID_ARCHIVE_SLUG, SITE, escape(path), escape(about),
+        % (FEED_STYLESHEET, escape(title), SITE, SAID_ARCHIVE_SLUG, SITE, escape(path), escape(about),
            "".join(items)))
 
 
