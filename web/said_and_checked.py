@@ -657,6 +657,8 @@ def render_day(day, back_banner):
 SITE = "https://askamerica.ai"
 FEED_FILE = "said-and-checked.xml"
 FEED_PATH = "/studies/" + FEED_FILE
+# Renders a feed as a readable page when a browser opens it; feed readers ignore it.
+FEED_STYLESHEET = "/studies/said-and-checked.xsl"
 # One feed per broad topic, in a directory the build keeps as a standing page.
 TOPIC_FEED_DIR = "said-and-checked-feeds"
 FEED_DAYS = 14
@@ -681,11 +683,11 @@ def _reader_links(path, style=""):
     """'RSS · Feedly · Inoreader' for one feed. The reader links add the feed in one click."""
     from urllib.parse import quote
     feed = quote(SITE + path, safe="")
-    a = '<a href="%s"%s>%s</a>'
+    a = '<a href="%s" target="_blank" rel="noopener"%s>%s</a>'
     st = ' style="%s"' % style if style else ""
     return " &middot; ".join([
         a % (path, st, "RSS"),
-        a % ("https://feedly.com/i/subscription/feed/" + feed, st, "Feedly"),
+        a % ("https://feedly.com/i/subscription/feed%2F" + feed, st, "Feedly"),
         a % ("https://www.inoreader.com/?add_feed=" + feed, st, "Inoreader"),
     ])
 
@@ -711,19 +713,54 @@ def topic_subscribe_rows():
             % (html.escape(t), _reader_links(topic_feed_path(t))) for t in topics.SAID_TOPICS]
 
 
+# On a day with nothing false or contradicted, the feed leads with up to FEED_FALLBACK_MAX of these.
+FEED_FALLBACK_RESULTS = ("unsupported", "unsettled")
+FEED_FALLBACK_MAX = 3
+FEED_TITLE_NAMES = 3
+FEED_IMAGE_DIR = TOPIC_FEED_DIR + "/img"
+# Result colors on the tally image, matching the day page.
+RESULT_COLORS = {"supported": "#57ab5a", "unsettled": "#6cb6ff", "unsupported": "#c69026",
+                 "contradicted": "#e5534b", "false": "#ff7b72", "citejacked": "#b083f0",
+                 "not_checked": "#768390"}
+
+
+def _feed_leads(stmts):
+    """(heading, statements) the feed item leads with: every false and contradicted statement,
+    or, when there are none, up to FEED_FALLBACK_MAX unsupported then unsettled ones."""
+    leads = sorted((s for s in stmts if s.get("result") in FEED_LEAD_RESULTS),
+                   key=lambda s: (FEED_LEAD_RESULTS.index(s["result"]), int(s["id"])))
+    if leads:
+        return "False or contradicted", leads
+    rest = sorted((s for s in stmts if s.get("result") in FEED_FALLBACK_RESULTS),
+                  key=lambda s: (FEED_FALLBACK_RESULTS.index(s["result"]), int(s["id"])))
+    rest = rest[:FEED_FALLBACK_MAX]
+    heading = " and ".join(RESULTS[r] for r in FEED_FALLBACK_RESULTS
+                           if any(s["result"] == r for s in rest))
+    return heading, rest
+
+
 def _feed_title(date, stmts, label=None):
     found = ["%d %s" % (n, RESULTS[r].lower()) for r in FEED_LEAD_RESULTS
              for n in [sum(1 for s in stmts if s.get("result") == r)] if n]
-    return "Said & Checked%s, %s: %s" % (
-        ", " + label if label else "", date,
-        ", ".join(found) if found else "none false or contradicted")
+    if not found:
+        found = ["none false or contradicted"] + [
+            "%d %s" % (n, RESULTS[r].lower()) for r in FEED_FALLBACK_RESULTS
+            for n in [sum(1 for s in stmts if s.get("result") == r)] if n]
+    names = []
+    for s in _feed_leads(stmts)[1]:
+        if s["speaker"] not in names:
+            names.append(s["speaker"])
+    who = ", ".join(names[:FEED_TITLE_NAMES]) + (" and others" if len(names) > FEED_TITLE_NAMES else "")
+    return "Said & Checked%s, %s: %s%s" % (
+        ", " + label if label else "", date, ", ".join(found), " (" + who + ")" if who else "")
 
 
-def _feed_description(stmts, page_url):
-    """The false and contradicted statements first, then the tally and a link to the day."""
-    leads = sorted((s for s in stmts if s.get("result") in FEED_LEAD_RESULTS),
-                   key=lambda s: (FEED_LEAD_RESULTS.index(s["result"]), s["id"]))
-    parts = []
+def _feed_description(stmts, page_url, image_url, image_alt):
+    """The tally image, the lead statements, then the tally line and a link to the day."""
+    heading, leads = _feed_leads(stmts)
+    parts = ['<p><a href="%s"><img src="%s" alt="%s" width="600" height="315"/></a></p>'
+             % (html.escape(page_url, quote=True), html.escape(image_url, quote=True),
+                html.escape(image_alt, quote=True))]
     if leads:
         items = "".join(
             "<li><strong>%s</strong>, %s: &ldquo;%s&rdquo; <em>%s.</em> %s</li>" % (
@@ -731,16 +768,122 @@ def _feed_description(stmts, page_url):
                 html.escape(_excerpt(s["quote"], 40)), RESULTS[s["result"]],
                 html.escape(s["finding"]))
             for s in leads)
-        parts.append("<p><strong>False or contradicted</strong></p><ul>%s</ul>" % items)
+        if heading != "False or contradicted":
+            parts.append("<p>No statement was found false or contradicted.</p>")
+        parts.append("<p><strong>%s</strong></p><ul>%s</ul>" % (heading, items))
     else:
         parts.append("<p>No statement was found false or contradicted.</p>")
-    n, speakers = len(stmts), len({s["speaker"] for s in stmts})
-    parts.append("<p>%d statement%s by %d officeholder%s. %s.</p>"
-                 % (n, "" if n == 1 else "s", speakers, "" if speakers == 1 else "s",
-                    statements_summary(stmts)))
+    parts.append("<p>%s. %s.</p>" % (_speaker_count(stmts), statements_summary(stmts)))
     parts.append('<p><a href="%s">Read every statement and how each was checked</a></p>'
                  % html.escape(page_url, quote=True))
     return "".join(parts)
+
+
+def _speaker_count(stmts):
+    n, speakers = len(stmts), len({s["speaker"] for s in stmts})
+    return "%d statement%s by %d officeholder%s" % (
+        n, "" if n == 1 else "s", speakers, "" if speakers == 1 else "s")
+
+
+def _feed_selection(topic, state):
+    """(label, feed path, page anchor, statement filter, image key) for one feed."""
+    _require(topic is None or state is None, "feed_xml", "a feed is by topic or by state, not both")
+    if topic is not None:
+        return (topic, topic_feed_path(topic), "#topic-" + topics.slug(topic),
+                lambda s: s["broad_topic"] == topic, topics.slug(topic))
+    if state is not None:
+        return (US_STATES[state], state_feed_path(state), "#state-" + state.lower(),
+                lambda s: in_state(s, state), "states/" + state.lower())
+    return None, FEED_PATH, "", lambda s: True, "all"
+
+
+def _feed_days(days, keep):
+    """(day, matching statements) for the latest FEED_DAYS days that have a match."""
+    out = []
+    for day in days[:FEED_DAYS]:
+        stmts = [s for s in day["statements"] if keep(s)]
+        if stmts:
+            out.append((day, stmts))
+    return out
+
+
+def feed_image_path(key, date):
+    return "/studies/%s/%s/%s.png" % (FEED_IMAGE_DIR, key, date)
+
+
+def _hex(color):
+    return tuple(int(color[i:i + 2], 16) for i in (1, 3, 5))
+
+
+def tally_png(date, stmts, label=None):
+    """A 1200x630 card for one feed item: the date, the feed, the statement count and a bar of
+    the checked statements by result."""
+    import io
+    from PIL import Image, ImageDraw, ImageFont
+
+    W, H, M = 1200, 630, 64
+    img = Image.new("RGB", (W, H), _hex("#0d1117"))
+    d = ImageDraw.Draw(img)
+    font = lambda size: ImageFont.load_default(size=size)
+    d.text((M, M), "SAID & CHECKED", font=font(34), fill=_hex("#e8a24a"))
+    d.text((M, M + 56), date + (" \u00b7 " + label if label else ""), font=font(58),
+           fill=_hex("#f0f6fc"))
+    d.text((M, M + 140), _speaker_count(stmts), font=font(34), fill=_hex("#cdd9e5"))
+    tally = [(r, sum(1 for s in stmts if is_checked(s) and s["result"] == r)) for r in RESULTS]
+    tally = [(r, n) for r, n in tally if n]
+    checked = sum(n for _, n in tally)
+    bar_y, bar_h = M + 220, 64
+    if checked:
+        x = M
+        for i, (r, n) in enumerate(tally):
+            w = (W - 2 * M) * n // checked if i < len(tally) - 1 else W - M - x
+            d.rectangle([x, bar_y, x + w, bar_y + bar_h], fill=_hex(RESULT_COLORS[r]))
+            x += w
+        lx, ly = M, bar_y + bar_h + 40
+        for r, n in tally:
+            text = "%d %s" % (n, RESULTS[r].lower())
+            d.rectangle([lx, ly + 8, lx + 26, ly + 34], fill=_hex(RESULT_COLORS[r]))
+            d.text((lx + 38, ly), text, font=font(34), fill=_hex("#cdd9e5"))
+            lx += 38 + int(d.textlength(text, font=font(34))) + 44
+            if lx > W - M - 260:
+                lx, ly = M, ly + 56
+    else:
+        d.text((M, bar_y), "None checked yet", font=font(40), fill=_hex("#768390"))
+    d.text((M, H - M - 34), "askamerica.ai", font=font(30), fill=_hex("#768390"))
+    buf = io.BytesIO()
+    img.save(buf, "PNG", optimize=True)
+    return buf.getvalue()
+
+
+def feed_images(days, topic=None, state=None):
+    """(site path, PNG bytes) for every item in one feed."""
+    label, _, _, keep, key = _feed_selection(topic, state)
+    return [(feed_image_path(key, day["date"]), tally_png(day["date"], stmts, label))
+            for day, stmts in _feed_days(days, keep)]
+
+
+OPML_FILE = "said-and-checked-feeds.opml"
+
+
+def feeds_opml():
+    """Every Said & Checked feed in one OPML list, to add them all to a reader in one import."""
+    from xml.sax.saxutils import quoteattr
+
+    def outline(title, path):
+        return ('<outline type="rss" text=%s title=%s xmlUrl=%s htmlUrl=%s/>'
+                % (quoteattr(title), quoteattr(title), quoteattr(SITE + path),
+                   quoteattr("%s/studies/%s/" % (SITE, SAID_ARCHIVE_SLUG))))
+    groups = [
+        ("Said & Checked", [outline("Said & Checked", FEED_PATH)]),
+        ("Said & Checked by topic", [outline("Said & Checked: " + t, topic_feed_path(t))
+                                     for t in topics.SAID_TOPICS]),
+        ("Said & Checked by state", [outline("Said & Checked: " + name, state_feed_path(code))
+                                     for code, name in sorted(US_STATES.items(), key=lambda kv: kv[1])]),
+    ]
+    body = "".join('<outline text=%s title=%s>%s</outline>' % (quoteattr(g), quoteattr(g), "".join(o))
+                   for g, o in groups)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<opml version="2.0"><head>'
+            "<title>Said &amp; Checked feeds</title></head><body>%s</body></opml>\n" % body)
 
 
 def feed_xml(days, topic=None, state=None):
@@ -749,31 +892,25 @@ def feed_xml(days, topic=None, state=None):
     A day keeps its guid as it is republished during the day, so a reader lists it once."""
     import datetime
     from email.utils import format_datetime
-    from xml.sax.saxutils import escape
+    from xml.sax.saxutils import escape, quoteattr
 
-    _require(topic is None or state is None, "feed_xml", "a feed is by topic or by state, not both")
-    if topic is not None:
-        label, path, anchor = topic, topic_feed_path(topic), "#topic-" + topics.slug(topic)
-        keep = lambda s: s["broad_topic"] == topic
-    elif state is not None:
-        label, path, anchor = US_STATES[state], state_feed_path(state), "#state-" + state.lower()
-        keep = lambda s: in_state(s, state)
-    else:
-        label, path, anchor = None, FEED_PATH, ""
-        keep = lambda s: True
+    label, path, anchor, keep, key = _feed_selection(topic, state)
     items = []
-    for day in days[:FEED_DAYS]:
-        stmts = [s for s in day["statements"] if keep(s)]
-        if not stmts:
-            continue
+    for day, stmts in _feed_days(days, keep):
         url = "%s/studies/%s/" % (SITE, slug(day))
+        image = SITE + feed_image_path(key, day["date"])
+        alt = "Said & Checked %s%s: %s" % (day["date"], ", " + label if label else "",
+                                          html.unescape(statements_summary(stmts)))
         y, m, d = (int(p) for p in day["date"].split("-"))
-        pub = format_datetime(datetime.datetime(y, m, d, tzinfo=datetime.timezone.utc))
+        # Noon US Eastern (17:00 UTC), so every US reader sees the day's own date.
+        pub = format_datetime(datetime.datetime(y, m, d, 17, tzinfo=datetime.timezone.utc))
         items.append(
             "<item><title>%s</title><link>%s</link><guid isPermaLink=\"false\">%s</guid>"
-            "<pubDate>%s</pubDate><description>%s</description></item>"
+            "<pubDate>%s</pubDate><description>%s</description>"
+            '<media:content url=%s medium="image" type="image/png" width="1200" height="630"/>'
+            "</item>"
             % (escape(_feed_title(day["date"], stmts, label)), escape(url), escape(url + anchor),
-               pub, escape(_feed_description(stmts, url))))
+               pub, escape(_feed_description(stmts, url, image, alt)), quoteattr(image)))
     title = "Said & Checked" + (": " + label if label else "")
     about = ("What officeholders said each day"
              + (" about " + topic if topic else "")
@@ -781,14 +918,16 @@ def feed_xml(days, topic=None, state=None):
              + ", and which statements government data supports, contradicts or rules out.")
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
+        '<?xml-stylesheet type="text/xsl" href="%s"?>\n'
+        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"'
+        ' xmlns:media="http://search.yahoo.com/mrss/"><channel>'
         "<title>%s &#8212; AskAmerica</title>"
         "<link>%s/studies/%s/</link>"
         '<atom:link href="%s%s" rel="self" type="application/rss+xml"/>'
         "<description>%s</description>"
         "<language>en-us</language>%s</channel></rss>\n"
-        % (escape(title), SITE, SAID_ARCHIVE_SLUG, SITE, escape(path), escape(about),
-           "".join(items)))
+        % (FEED_STYLESHEET, escape(title), SITE, SAID_ARCHIVE_SLUG, SITE, escape(path),
+           escape(about), "".join(items)))
 
 
 def index_rows(days):
