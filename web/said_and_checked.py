@@ -935,6 +935,7 @@ API = "https://api.askamerica.ai"
 # The daily run's copy of the api Worker's SAID_CHECKED_SEND_SECRET, which authorizes only the
 # day's send.
 SEND_SECRET_FILE = os.path.expanduser("~/.askamerica/sc-send-secret")
+SEND_USER_AGENT = "askamerica-said-and-checked/1.0"
 
 
 def email_signup_form(style=""):
@@ -992,9 +993,11 @@ def send_email(path):
     _require(bool(secret), SEND_SECRET_FILE, "is empty")
     body = json.dumps({"date": doc["date"], "subject": email_subject(doc),
                        "html": email_html(doc)}).encode()
+    # Cloudflare's Browser Integrity Check rejects urllib's default User-Agent with 403 / 1010.
     req = urllib.request.Request(API + "/v1/said-and-checked/send", data=body, method="POST",
                                  headers={"Content-Type": "application/json",
-                                          "Authorization": "Bearer " + secret})
+                                          "Authorization": "Bearer " + secret,
+                                          "User-Agent": SEND_USER_AGENT})
     try:
         with urllib.request.urlopen(req, timeout=60) as resp:
             print("SENT %s: broadcast %s" % (doc["date"], json.load(resp)["broadcast_id"]))
