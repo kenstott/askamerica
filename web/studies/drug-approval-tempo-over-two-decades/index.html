@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FDA's own review clock is flat-to-slightly-faster over 20 years, but overall drug development time has not shortened</title>
+<title>Median FDA review time for new drugs has been roughly flat at 11-12 months for twenty years; the big drop came before 2005</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -88,23 +96,6 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
-@media screen{
-#s3-t1-s1:checked ~ table tbody.s0{display:none}
-#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
-#s3-t1-s1:checked ~ .srtreset{display:inline-block}
-#s3-t1-s2:checked ~ table tbody.s0{display:none}
-#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
-#s3-t1-s2:checked ~ .srtreset{display:inline-block}
-#s3-t1-s3:checked ~ table tbody.s0{display:none}
-#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
-#s3-t1-s3:checked ~ .srtreset{display:inline-block}
-}
 </style>
 </head>
 <body>
@@ -116,41 +107,196 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>FDA's own review clock is flat-to-slightly-faster over 20 years, but overall drug development time has not shortened</h1>
-<p class="subtitle">FDA PDUFA Performance Reports to Congress, 2005-2022 cohorts; Tufts CSDD clinical-development data</p>
+<h1>Median FDA review time for new drugs has been roughly flat at 11-12 months for twenty years; the big drop came before 2005</h1>
+<p class="subtitle">Published sources (FDA PDUFA FY2025 report, Pink Sheet, Tufts CSDD, ISPOR); warehouse cannot compute review time</p>
 </header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 457" width="880" height="457" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="457" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Median review time, new drugs (months)</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Selected periods, median months (mixed sources and scopes)</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="126" y1="56" x2="126" y2="232" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-0" class="tick" x="126" y="248" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <line class="grid" x1="164.50" y1="56" x2="164.50" y2="232" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-1" class="tick" x="164.50" y="248" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5</text>
+      <line class="grid" x1="203" y1="56" x2="203" y2="232" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-2" class="tick" x="203" y="248" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <line class="grid" x1="241.50" y1="56" x2="241.50" y2="232" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-3" class="tick" x="241.50" y="248" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">15</text>
+      <line class="grid" x1="280" y1="56" x2="280" y2="232" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-4" class="tick" x="280" y="248" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <line class="grid" x1="318.50" y1="56" x2="318.50" y2="232" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-5" class="tick" x="318.50" y="248" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">25</text>
+      <line class="grid" x1="357" y1="56" x2="357" y2="232" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-6" class="tick" x="357" y="248" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">30</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="126" y1="56" x2="126" y2="232" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="126" y1="232" x2="357" y2="232" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-value-axis-title" class="axis-title" x="241.50" y="276" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Months</text>
+    <g id="p1-category-axis-labels">
+      <text id="p1-xtick-pre-pdufa-1980-92" class="tick" x="118" y="71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Pre-PDUFA 1980-92</text>
+      <text id="p1-xtick-2004-07-standard" class="tick" x="118" y="93" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2004-07 standard</text>
+      <text id="p1-xtick-2004-07-priority" class="tick" x="118" y="115" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2004-07 priority</text>
+      <text id="p1-xtick-2014-cder-novel" class="tick" x="118" y="137" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2014 CDER novel</text>
+      <text id="p1-xtick-2016-cder-novel" class="tick" x="118" y="159" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2016 CDER novel</text>
+      <text id="p1-xtick-2022-cder-novel" class="tick" x="118" y="181" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2022 CDER novel</text>
+      <text id="p1-xtick-2023-cder-novel" class="tick" x="118" y="203" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2023 CDER novel</text>
+      <text id="p1-xtick-2024-all-novel" class="tick" x="118" y="225" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2024 all novel</text>
+    </g>
+    <g id="p1-series-months" class="series">
+      <g class="hover">
+        <title>Pre-PDUFA 1980-92 — Months: 26.6</title>
+        <rect id="p1-mark-months-pre-pdufa-1980-92" class="bar" x="126" y="59.96" width="204.82" height="13.08" fill="#2563eb"/>
+        <rect class="hit" x="126" y="58.50" width="231" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-months-pre-pdufa-1980-92" class="value-label" x="334.82" y="71" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">26.6</text>
+      <g class="hover">
+        <title>2004-07 standard — Months: 12.9</title>
+        <rect id="p1-mark-months-2004-07-standard" class="bar" x="126" y="81.96" width="99.33" height="13.08" fill="#2563eb"/>
+        <rect class="hit" x="126" y="80.50" width="231" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-months-2004-07-standard" class="value-label" x="229.33" y="93" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">12.9</text>
+      <g class="hover">
+        <title>2004-07 priority — Months: 6</title>
+        <rect id="p1-mark-months-2004-07-priority" class="bar" x="126" y="103.96" width="46.20" height="13.08" fill="#2563eb"/>
+        <rect class="hit" x="126" y="102.50" width="231" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-months-2004-07-priority" class="value-label" x="176.20" y="115" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">6</text>
+      <g class="hover">
+        <title>2014 CDER novel — Months: 11</title>
+        <rect id="p1-mark-months-2014-cder-novel" class="bar" x="126" y="125.96" width="84.70" height="13.08" fill="#2563eb"/>
+        <rect class="hit" x="126" y="124.50" width="231" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-months-2014-cder-novel" class="value-label" x="214.70" y="137" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">11</text>
+      <g class="hover">
+        <title>2016 CDER novel — Months: 11</title>
+        <rect id="p1-mark-months-2016-cder-novel" class="bar" x="126" y="147.96" width="84.70" height="13.08" fill="#2563eb"/>
+        <rect class="hit" x="126" y="146.50" width="231" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-months-2016-cder-novel" class="value-label" x="214.70" y="159" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">11</text>
+      <g class="hover">
+        <title>2022 CDER novel — Months: 11</title>
+        <rect id="p1-mark-months-2022-cder-novel" class="bar" x="126" y="169.96" width="84.70" height="13.08" fill="#2563eb"/>
+        <rect class="hit" x="126" y="168.50" width="231" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-months-2022-cder-novel" class="value-label" x="214.70" y="181" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">11</text>
+      <g class="hover">
+        <title>2023 CDER novel — Months: 11</title>
+        <rect id="p1-mark-months-2023-cder-novel" class="bar" x="126" y="191.96" width="84.70" height="13.08" fill="#2563eb"/>
+        <rect class="hit" x="126" y="190.50" width="231" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-months-2023-cder-novel" class="value-label" x="214.70" y="203" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">11</text>
+      <g class="hover">
+        <title>2024 all novel — Months: 11.7</title>
+        <rect id="p1-mark-months-2024-all-novel" class="bar" x="126" y="213.96" width="90.09" height="13.08" fill="#2563eb"/>
+        <rect class="hit" x="126" y="212.50" width="231" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-months-2024-all-novel" class="value-label" x="220.09" y="225" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">11.7</text>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="footnote" x="20" y="390" fill="#6b7280">Sources differ in scope (all NDAs vs novel, CDER vs CDER+CBER); not one continuous series. 2004-07 values come from search-result summaries of an</text>
+  <text class="footnote" x="20" y="404" fill="#6b7280">FDA page that would not load.</text>
+  <g id="brand">
+  <svg x="20" y="416" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="431" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:51995/a/73ac0ef4edf4aa4ef5fc5d917bf4d51c.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
 <section>
 <h2>Summary</h2>
-<p>Over the last twenty years, the FDA's own review clock has NOT gotten dramatically faster or slower &mdash; it plateaued after a sharp drop that occurred in the 1990s/early-2000s following the Prescription Drug User Fee Act (PDUFA, 1992). Comparing 2005 to 2022 application cohorts: <strong>standard-review</strong> approval time fell modestly, from a median of about 13.1 months to 10.0 months (about 24% faster). <strong>Priority-review</strong> approval time actually got a bit slower, from about 6.0 months to 8.0 months (about 33% longer), though it remains far faster than standard review. Meanwhile the FDA has approved roughly twice as many novel drugs per year (about 25/year in the 2000s vs. about 50/year in 2018-2024), driven by heavier use of expedited pathways. But the part of the process BEFORE FDA review &mdash; clinical development &mdash; has gotten somewhat LONGER, not shorter (Tufts CSDD: 83.1 months average for 2008-2013 approvals vs. 89.8 months for 2014-2018 approvals). So the honest answer depends on which clock you mean: FDA's own decision time is flat-to-modestly-improved; the full bench-to-approval pipeline that a drug actually experiences is roughly unchanged at 10-15 years, if anything slightly longer on the clinical-trial side.</p>
+<p>Over the last twenty years the FDA's median time to approve a new drug has barely moved: about 11 to 12 months for novel drugs in 2014-2016, 2022, 2023 and 2024 (11.7 months in 2024). Standard reviews were about 12-13 months in the mid-2000s and about 12 months in recent FDA data; priority reviews run about 6-8 months. The big drop (26.6 months pre-1993 to about 10 months) came with PDUFA, before 2005. Total development time (IND to approval) did not shrink: Tufts CSDD puts it at 101.5 months for 2014-2018, up 5% from 2008-2013.</p>
 </section>
 <section>
-<h2>What the AskAmerica corpus could and couldn't do</h2>
-<p><code>health.fda_drug_approvals</code> (openFDA-sourced) carries only the final approval status and date &mdash; per its own documented column description, openFDA's drugsfda feed carries no separate application-submission/filing date anywhere in the record. That means review time (submission-to-approval duration) is <strong>not computable from this connector's own tables</strong>. This is a genuine data gap, confirmed via describe_table and search_catalog, not a query mistake. Accordingly, every number in this report comes from FDA's own primary PDUFA Performance Reports to Congress, fetched and read directly, plus one industry-standard clinical-development benchmark (Tufts Center for the Study of Drug Development) for the pre-FDA-review portion of the timeline.</p>
+<h2>Evidence</h2>
+<ul><li>FDA PDUFA FY2025 report (read): median time to approval for receipt cohorts FY2016-FY2025 is about 8 months for priority and roughly 11.7-12.0 for standard, with an FY2023 bump due to NME three-month extensions.</li><li>Pink Sheet (read): 2024 median 11.7 months for novel approvals (CDER 11.8, CBER 10.6); 2023 CDER 11 months, matching 2022.</li><li>Pink Sheet via search (page body not retrievable): CDER novel median 11 months in 2014-2016; 2004-2007 FDA figures 6.0 (priority) and 12.9 (standard), from an FDA archive page that failed to load, so treat as search-summarized.</li><li>ISPOR 2025 poster (read): median 26.6 months pre-PDUFA vs 10.0 months in the FDASIA-2024 period.</li><li>Tufts CSDD (read): regulatory phase 11.7 months in 2014-2018, down 1.9 months (14%) from 2008-2013; clinical phase 89.8 months, up 8.1%; total 101.5 months.</li><li>Warehouse: health.fda_drug_approvals holds only approval dates (e.g., 74 NDAs in 2005, 91 in 2024, 110 in 2025) with no submission date, so review time cannot be computed from it.</li></ul>
 </section>
 <section>
-<h2>FDA's own review/approval time, 2005-2022</h2>
-<p>FDA publishes, cohort by year of application receipt, the median time from receipt to approval for two tracks: <strong>priority review</strong> (serious conditions, target ~6 months) and <strong>standard review</strong> (target ~10 months). Pulling the values directly from FDA's own tables:</p><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><table border="1" cellpadding="4"><tr><th><label class="srth" for="s3-t1-s1">Cohort year<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s2">Priority (months)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">Standard (months)<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>2005</td><td>6.0</td><td>13.1</td></tr><tr><td>2008</td><td>6.0</td><td>13.1</td></tr><tr><td>2012</td><td>6.0</td><td>10.0</td></tr><tr><td>2016</td><td>8.0</td><td>11.9</td></tr><tr><td>2019</td><td>7.9</td><td>12.0</td></tr><tr><td>2022</td><td>8.0</td><td>10.0</td></tr></tbody><tbody class="srt s1"><tr><td>2022</td><td>8.0</td><td>10.0</td></tr><tr><td>2019</td><td>7.9</td><td>12.0</td></tr><tr><td>2016</td><td>8.0</td><td>11.9</td></tr><tr><td>2012</td><td>6.0</td><td>10.0</td></tr><tr><td>2008</td><td>6.0</td><td>13.1</td></tr><tr><td>2005</td><td>6.0</td><td>13.1</td></tr></tbody><tbody class="srt s2"><tr><td>2016</td><td>8.0</td><td>11.9</td></tr><tr><td>2022</td><td>8.0</td><td>10.0</td></tr><tr><td>2019</td><td>7.9</td><td>12.0</td></tr><tr><td>2005</td><td>6.0</td><td>13.1</td></tr><tr><td>2008</td><td>6.0</td><td>13.1</td></tr><tr><td>2012</td><td>6.0</td><td>10.0</td></tr></tbody><tbody class="srt s3"><tr><td>2005</td><td>6.0</td><td>13.1</td></tr><tr><td>2008</td><td>6.0</td><td>13.1</td></tr><tr><td>2019</td><td>7.9</td><td>12.0</td></tr><tr><td>2016</td><td>8.0</td><td>11.9</td></tr><tr><td>2012</td><td>6.0</td><td>10.0</td></tr><tr><td>2022</td><td>8.0</td><td>10.0</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Standard review shows a modest net improvement (13.1 &rarr; 10.0 months, -24%) but with no steady trend in between &mdash; it actually rose back to ~12 months for several years (2013-2020) before falling again in 2021-2022. Priority review shows a modest net lengthening (6.0 &rarr; 8.0 months, +33%), which FDA itself partly attributes to procedural changes such as the Program for Enhanced Review Transparency and Communication (which added review-clock time starting FY2013) and to more first-in-class/complex applications using the priority track. Neither track shows the kind of dramatic multi-decade acceleration that occurred between 1993 (26.6-month median pre-PDUFA) and the mid-1990s/2000s; that big drop happened BEFORE the twenty-year window this question asks about, and the last twenty years have been a plateau by comparison.</p>
+<h2>Caveats</h2>
+<p>I did not obtain a clean year-by-year 2005-2021 series. Sources mix medians and means, CDER-only and all-application scopes, and fiscal vs calendar years. Approval counts are not review times. Priority review now covers about half of approvals, so a flat overall median can hide faster priority reviews. Review time is a small share of the roughly 8.5-year development path.</p>
 </section>
 <section>
-<h2>More drugs are being approved, largely via expedited pathways</h2>
-<p>Even as the per-application review clock has been roughly flat, the number of novel drugs approved per year has grown substantially: about 25 per year in 2000-2010, about 34 per year in 2011-2017, and about 50 per year in 2018-2024 (CDER novel drug approval counts). In 2025, 74% of the year's 50 novel approvals used at least one expedited regulatory pathway (fast track, breakthrough therapy, priority review, and/or accelerated approval). A separate peer-reviewed analysis of all 1980-2022 FDA approvals (Seoane-Vazquez et al., Scientific Reports 2024) corroborates this: the median FDA review time fell from 26.6 months before PDUFA (1992) to 9.9 months after the 2012 FDASIA reforms, and more than half of new-drug approvals since then have used a pathway that did not require demonstrating added therapeutic benefit over existing treatments &mdash; i.e., speed has been bought partly by lowering the evidentiary bar for a given application, not solely by FDA working faster on a fixed bar.</p>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Complete year-by-year 2005-2024 series</strong>: Not found in sources read; warehouse has no submission dates; used selected years.</li></ul>
 </section>
 <section>
-<h2>The part before FDA review has gotten longer, not shorter</h2>
-<p>"Time to get a drug approved" is ambiguous between FDA's own review clock and the full pipeline a drug goes through, most of which happens before FDA ever sees the application. Per Tufts Center for the Study of Drug Development, drugs approved in 2014-2018 spent an average of 89.8 months in clinical trials, up from 83.1 months for drugs approved in 2008-2013 &mdash; a roughly 8% increase over that decade, moving in the opposite direction from FDA's own (flat-to-improving) review clock. Combined with preclinical research, total bench-to-approval time for a drug has remained in the broad 10-15 year range across the last twenty years, essentially unchanged in the big picture despite the faster FDA decision component, because slower/larger clinical trials have offset the FDA-side gains.</p>
+<h2>Every query behind this report</h2>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 22 rows — 2280 ms</summary><pre><code>SELECT substr(CAST(original_approval_date AS VARCHAR),1,4) AS yr, COUNT(*) AS n FROM health.fda_drug_approvals WHERE application_number LIKE 'NDA%' AND original_approval_date &gt;= '2005-01-01' GROUP BY substr(CAST(original_approval_date AS VARCHAR),1,4) ORDER BY yr</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.fda.gov/media/102796/download">FDA: NDA and BLA Calendar Year Approval Times, 1993-2016 (CDER primary data table)</a> <span class="note">— Fetched and parsed directly; median FDA review time and median total approval time by calendar year and priority/standard track</span></li>
-<li><a href="https://www.fda.gov/media/177956/download">FDA: Prescription Drug User Fee Act (PDUFA) Performance Report to Congress, FY 2023</a> <span class="note">— Fetched directly, PDUFA Trend Graphs section (Figure 2): median time to application approval, FY2013-FY2022 cohorts, priority vs. standard</span></li>
-<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10858128/">Seoane-Vazquez, Rodriguez-Monguio, Powers (2024), &quot;Analysis of US FDA new drug and biologic approvals, regulatory pathways, and review times, 1980-2022,&quot; Scientific Reports 14:3325</a> <span class="note">— Peer-reviewed cross-check of the PDUFA/FDASIA-era review-time decline and expedited-pathway usage</span></li>
-<li><a href="https://www.fda.gov/drugs/novel-drug-approvals-fda/novel-drug-approvals-2025">FDA Novel Drug Approvals for 2025</a> <span class="note">— 2025 approval count and share using expedited pathways</span></li>
+<li><a href="https://insights.citeline.com/pink-sheet/pink-sheet-perspectives/us-fdas-median-review-time-remains-less-than-one-year-despite-swell-of-missed-goal-dates-VIEE6AVOQRGMZNKB53B52GPQG4">Pink Sheet: median review time 2024</a></li>
+<li><a href="https://insights.citeline.com/PS149637/Consistency-Not-Fireworks-US-FDAs-Novel-Approvals-Times-Stick-Close-To-PDUFA-Schedule">Pink Sheet: 2023</a></li>
+<li><a href="https://www.fda.gov/media/191112/download">FDA PDUFA Performance Report FY2025</a></li>
+<li><a href="https://www.ispor.org/heor-resources/presentations-database/presentation-cti/ispor-2025/poster-session-1/us-food-and-drug-administration-approvals-regulatory-pathways-and-review-time-of-new-drugs-and-biologics-1980-2024">ISPOR 2025 poster, 1980-2024</a></li>
+<li><a href="https://www.appliedclinicaltrialsonline.com/view/applying-pre-pandemic-benchmarks-to-assess-future-speed-strategies">Tufts CSDD via Applied Clinical Trials</a></li>
+<li><a href="https://pink.citeline.com/PS119755/Novel-Approvals-Were-Fewer-But-Faster-At-US-FDA-In-2016">Pink Sheet 2016 (search summary only)</a></li>
+<li><a href="https://api.fda.gov">health.fda_drug_approvals</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT substr(CAST(original_approval_date AS VARCHAR),1,4) AS yr, COUNT(*) AS n FROM health.fda_drug_approvals WHERE application_number LIKE 'NDA%' AND original_approval_date &gt;= '2005-01-01' GROUP BY 1 ORDER BY yr</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">FDA review-time figures are FDA's own primary PDUFA performance-report data, fetched directly from fda.gov. This connector's health.fda_drug_approvals table cannot compute review time itself (no filing/submission date in the openFDA source feed) -- a confirmed data gap, not a query limitation. Clinical-development-time figures are third-party (Tufts CSDD) industry benchmarks, not government primary data.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

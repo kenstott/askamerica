@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Marketplace enrollment fell roughly 20% as enhanced ACA subsidies lapsed — and the people leaving are the healthier ones</title>
+<title>ACA marketplace enrollment is down roughly 12-18% since enhanced subsidies lapsed; who left is unmeasured directly, and the public data show only a slight tilt older, with sicker-pool evidence coming from insurer pricing, not claims</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -99,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Marketplace enrollment fell roughly 20% as enhanced ACA subsidies lapsed — and the people leaving are the healthier ones</h1>
-<p class="subtitle">CMS Open Enrollment reports, KFF analysis of CMS public-use files, Wakely Consulting Group's HHS-HCC risk-score study, and insurer rate filings</p>
+<h1>ACA marketplace enrollment is down roughly 12-18% since enhanced subsidies lapsed; who left is unmeasured directly, and the public data show only a slight tilt older, with sicker-pool evidence coming from insurer pricing, not claims</h1>
+<p class="subtitle">CMS effectuated and open-enrollment files (HealthCare.gov states only for the mix), KFF, insurer 2027 filings; as of 2026-11-18</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 787" width="880" height="787" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 886" width="880" height="886" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,116 +155,196 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="787" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:19px">ACA Marketplace Enrollment Shift as Enhanced Subsidies Lapsed, 2025 to …</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">CMS Open Enrollment data, KFF analysis, Wakely Consulting Group HHS-HCC risk-score study</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="886" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">ACA marketplace: enrollment and who stayed</text>
   <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Effectuated enrollment, 2025 to 2026 (est.)</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">22.3M -&gt; ~17.5M</text>
-  <text class="stat-delta" x="36" y="168" fill="#dc2626">-21.5%</text>
+  <rect class="panel-edge" x="20" y="198.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="234.50" fill="#6b7280">Effectuated enrollment, Feb 2025 to Feb 2026</text>
+  <text class="stat-value" x="36" y="264.50" fill="#1f2328">21.78M to 19.17M</text>
+  <text class="stat-delta" x="36" y="284.50" fill="#dc2626">-12.0%</text>
   </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">KFF/Wakely estimate; range 16.5M-18.5M depending on mid-year attrition</text>
-  <text class="caption" x="24" y="216" fill="#6b7280">assumptions</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Estimated market morbidity change</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">+2.5% to +6.0%</text>
-  <text class="stat-delta" x="464" y="168" fill="#059669">sicker risk pool</text>
-  </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">Wakely HHS-HCC normalized risk-score model, Stayer+Joiner blend vs.</text>
-  <text class="caption" x="452" y="216" fill="#6b7280">2025 baseline</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">ACA Marketplace Enrollment, 2025 vs 2026</text>
+  <rect class="panel-edge" x="448" y="64" width="412" height="377" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="64" width="412" height="377" viewBox="0 0 412 377" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="377" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Change in plan selections 2025 to 2026, HealthCare.gov states, by age (%)</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="48" y1="323" x2="390" y2="323" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="40" y="327" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-15</text>
+      <line class="grid" x1="48" y1="256.25" x2="390" y2="256.25" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="40" y="260.25" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="48" y1="189.50" x2="390" y2="189.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="40" y="193.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-5</text>
+      <line class="grid" x1="48" y1="122.75" x2="390" y2="122.75" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="40" y="126.75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="48" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="40" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="48" y1="56" x2="48" y2="323" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="48" y1="323" x2="390" y2="323" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-0-17" class="tick" x="72.43" y="341" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0-17</text>
+      <text id="p2-xtick-18-25" class="tick" x="121.29" y="341" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">18-25</text>
+      <text id="p2-xtick-26-34" class="tick" x="170.14" y="341" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">26-34</text>
+      <text id="p2-xtick-35-44" class="tick" x="219" y="341" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">35-44</text>
+      <text id="p2-xtick-45-54" class="tick" x="267.86" y="341" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">45-54</text>
+      <text id="p2-xtick-55-64" class="tick" x="316.71" y="341" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">55-64</text>
+      <text id="p2-xtick-65" class="tick" x="365.57" y="341" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">65+</text>
+    </g>
+    <g id="p2-series-change" class="series">
+      <g class="hover">
+        <title>0-17 — % change: 4.1</title>
+        <rect id="p2-mark-change-0-17" class="bar" x="56.79" y="68.01" width="30.27" height="54.74" fill="#2563eb"/>
+        <rect class="hit" x="56.79" y="56" width="30.27" height="267" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>18-25 — % change: -11.1</title>
+        <rect id="p2-mark-change-18-25" class="bar" x="105.65" y="122.75" width="30.27" height="148.19" fill="#2563eb"/>
+        <rect class="hit" x="105.65" y="56" width="30.27" height="267" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>26-34 — % change: -12.7</title>
+        <rect id="p2-mark-change-26-34" class="bar" x="154.51" y="122.75" width="30.27" height="169.55" fill="#2563eb"/>
+        <rect class="hit" x="154.51" y="56" width="30.27" height="267" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>35-44 — % change: -6</title>
+        <rect id="p2-mark-change-35-44" class="bar" x="203.37" y="122.75" width="30.27" height="80.10" fill="#2563eb"/>
+        <rect class="hit" x="203.37" y="56" width="30.27" height="267" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>45-54 — % change: -9.1</title>
+        <rect id="p2-mark-change-45-54" class="bar" x="252.22" y="122.75" width="30.27" height="121.48" fill="#2563eb"/>
+        <rect class="hit" x="252.22" y="56" width="30.27" height="267" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>55-64 — % change: -10</title>
+        <rect id="p2-mark-change-55-64" class="bar" x="301.08" y="122.75" width="30.27" height="133.50" fill="#2563eb"/>
+        <rect class="hit" x="301.08" y="56" width="30.27" height="267" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>65+ — % change: 0.1</title>
+        <rect id="p2-mark-change-65" class="bar" x="349.94" y="121.41" width="30.27" height="1.34" fill="#2563eb"/>
+        <rect class="hit" x="349.94" y="56" width="30.27" height="267" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="20" y="457" width="412" height="377" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="457" width="412" height="377" viewBox="0 0 412 377" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="377" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">Change in plan selections by income (% of FPL)</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="52" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-      <line class="grid" x1="60" y1="102.80" x2="390" y2="102.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="52" y="106.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="52" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
-      <line class="grid" x1="60" y1="71.60" x2="390" y2="71.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="52" y="75.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+      <line class="grid" x1="64" y1="56" x2="64" y2="323" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-0" class="tick" x="64" y="339" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-50</text>
+      <line class="grid" x1="118.33" y1="56" x2="118.33" y2="323" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-1" class="tick" x="118.33" y="339" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-40</text>
+      <line class="grid" x1="172.67" y1="56" x2="172.67" y2="323" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-2" class="tick" x="172.67" y="339" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-30</text>
+      <line class="grid" x1="227" y1="56" x2="227" y2="323" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-3" class="tick" x="227" y="339" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-20</text>
+      <line class="grid" x1="281.33" y1="56" x2="281.33" y2="323" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-4" class="tick" x="281.33" y="339" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-10</text>
+      <line class="grid" x1="335.67" y1="56" x2="335.67" y2="323" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-5" class="tick" x="335.67" y="339" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <line class="grid" x1="390" y1="56" x2="390" y2="323" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-6" class="tick" x="390" y="339" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="335.67" y1="56" x2="335.67" y2="323" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="64" y1="323" x2="390" y2="323" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Measure</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="9" style="font-size:9px" text-anchor="middle" transform="rotate(-90 14 95)">Millions enrolled</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-2025-effectuated" class="tick" x="115" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 115 148)">2025 Effectuated</text>
-      <text id="p3-xtick-2026-oep-plan-selections" class="tick" x="225" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 148)">2026 OEP Plan Selections</text>
-      <text id="p3-xtick-2026-effectuated-est-midpoint" class="tick" x="335" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 335 148)">2026 Effectuated (est. midpoint)</text>
+    <g id="p3-category-axis-labels">
+      <text id="p3-xtick-100" class="tick" x="56" y="79.07" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">&lt;100</text>
+      <text id="p3-xtick-100-150" class="tick" x="56" y="117.21" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100-150</text>
+      <text id="p3-xtick-150-200" class="tick" x="56" y="155.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150-200</text>
+      <text id="p3-xtick-200-250" class="tick" x="56" y="193.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200-250</text>
+      <text id="p3-xtick-250-300" class="tick" x="56" y="231.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">250-300</text>
+      <text id="p3-xtick-300-400" class="tick" x="56" y="269.79" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300-400</text>
+      <text id="p3-xtick-400" class="tick" x="56" y="307.93" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">&gt;400</text>
     </g>
-    <g id="p3-series-enrollment-millions" class="series">
-      <path id="p3-line-enrollment-millions" class="line" d="M 115 64.42 L 225 61.93 L 335 79.40" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle id="p3-mark-enrollment-millions-2025-effectuated" class="point" cx="115" cy="64.42" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-enrollment-millions-2026-oep-plan-selections" class="point" cx="225" cy="61.93" r="3" fill="#2563eb"/>
-      <circle id="p3-mark-enrollment-millions-2026-effectuated-est-midpoint" class="point" cx="335" cy="79.40" r="3" fill="#2563eb"/>
+    <g id="p3-series-change" class="series">
+      <g class="hover">
+        <title>&lt;100 — % change: -44.6</title>
+        <rect id="p3-mark-change-100" class="bar" x="93.34" y="62.87" width="242.33" height="23.41" fill="#2563eb"/>
+        <rect class="hit" x="64" y="62.87" width="326" height="23.41" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>100-150 — % change: -4.6</title>
+        <rect id="p3-mark-change-100-150" class="bar" x="310.67" y="101.01" width="24.99" height="23.41" fill="#2563eb"/>
+        <rect class="hit" x="64" y="101.01" width="326" height="23.41" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>150-200 — % change: -9.8</title>
+        <rect id="p3-mark-change-150-200" class="bar" x="282.42" y="139.15" width="53.25" height="23.41" fill="#2563eb"/>
+        <rect class="hit" x="64" y="139.15" width="326" height="23.41" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>200-250 — % change: -8.9</title>
+        <rect id="p3-mark-change-200-250" class="bar" x="287.31" y="177.29" width="48.36" height="23.41" fill="#2563eb"/>
+        <rect class="hit" x="64" y="177.29" width="326" height="23.41" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>250-300 — % change: -11.9</title>
+        <rect id="p3-mark-change-250-300" class="bar" x="271.01" y="215.44" width="64.66" height="23.41" fill="#2563eb"/>
+        <rect class="hit" x="64" y="215.44" width="326" height="23.41" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>300-400 — % change: 3</title>
+        <rect id="p3-mark-change-300-400" class="bar" x="335.67" y="253.58" width="16.30" height="23.41" fill="#2563eb"/>
+        <rect class="hit" x="64" y="253.58" width="326" height="23.41" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>&gt;400 — % change: -38.9</title>
+        <rect id="p3-mark-change-400" class="bar" x="124.31" y="291.72" width="211.36" height="23.41" fill="#2563eb"/>
+        <rect class="hit" x="64" y="291.72" width="326" height="23.41" fill="#000" fill-opacity="0"/>
+      </g>
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="519" fill="#6b7280">Plan-selection counts overstate coverage: ~14% of Jan. 2026 members</text>
-  <text class="caption" x="24" y="532" fill="#6b7280">had not paid their first premium (Wakely)</text>
-  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Share of 2025-2026 Sign-up Decline by Income Group</text>
+  <rect class="panel-edge" x="448" y="457" width="412" height="377" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="457" width="412" height="377" viewBox="0 0 412 377" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="377" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Bronze share of selections (%)</text>
     <g id="p4-gridlines">
-      <line class="grid" x1="60" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="52" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="114.50" x2="390" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="52" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="52" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="75.50" x2="390" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="52" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="42" y1="323" x2="390" y2="323" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="34" y="327" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="42" y1="269.60" x2="390" y2="269.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="34" y="273.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="42" y1="216.20" x2="390" y2="216.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="34" y="220.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="42" y1="162.80" x2="390" y2="162.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="34" y="166.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="42" y1="109.40" x2="390" y2="109.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="34" y="113.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="42" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="34" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
     </g>
     <g id="p4-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="134" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="42" y1="56" x2="42" y2="323" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="42" y1="323" x2="390" y2="323" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p4-x-axis-title" class="axis-title" x="225" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Income (% Federal Poverty Level)</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 95)">% of decline</text>
     <g id="p4-x-axis-labels">
-      <text id="p4-xtick-150-fpl" class="tick" x="93" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 93 148)">&lt;150% FPL</text>
-      <text id="p4-xtick-150-250-fpl" class="tick" x="159" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 159 148)">150-250% FPL</text>
-      <text id="p4-xtick-250-400-fpl" class="tick" x="225" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 148)">250-400% FPL</text>
-      <text id="p4-xtick-400-500-fpl-cliff" class="tick" x="291" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 291 148)">400-500% FPL (cliff)</text>
-      <text id="p4-xtick-500-fpl" class="tick" x="357" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 357 148)">500%+ FPL</text>
+      <text id="p4-xtick-2025" class="tick" x="129" y="341" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
+      <text id="p4-xtick-2026" class="tick" x="303" y="341" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2026</text>
     </g>
-    <g id="p4-series-share-of-total-decline-in-plan-selections" class="series">
-      <rect id="p4-mark-share-of-total-decline-in-plan-selections-150-fpl" class="bar" x="71.88" y="61.85" width="41.24" height="72.15" fill="#2563eb"/>
-      <rect id="p4-mark-share-of-total-decline-in-plan-selections-150-250-fpl" class="bar" x="137.88" y="75.50" width="41.24" height="58.50" fill="#2563eb"/>
-      <rect id="p4-mark-share-of-total-decline-in-plan-selections-250-400-fpl" class="bar" x="203.88" y="134" width="41.24" height="0" fill="#2563eb"/>
-      <rect id="p4-mark-share-of-total-decline-in-plan-selections-400-500-fpl-cliff" class="bar" x="269.88" y="81.35" width="41.24" height="52.65" fill="#2563eb"/>
-      <rect id="p4-mark-share-of-total-decline-in-plan-selections-500-fpl" class="bar" x="335.88" y="93.05" width="41.24" height="40.95" fill="#2563eb"/>
+    <g id="p4-series-bronze" class="series">
+      <g class="hover">
+        <title>2025 — Bronze: 31.6</title>
+        <rect id="p4-mark-bronze-2025" class="bar" x="73.32" y="154.26" width="110.36" height="168.74" fill="#2563eb"/>
+        <rect class="hit" x="73.32" y="56" width="110.36" height="267" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2026 — Bronze: 42.7</title>
+        <rect id="p4-mark-bronze-2026" class="bar" x="247.32" y="94.98" width="110.36" height="228.02" fill="#2563eb"/>
+        <rect class="hit" x="247.32" y="56" width="110.36" height="267" fill="#000" fill-opacity="0"/>
+      </g>
     </g>
     <g id="p4-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="452" y="519" fill="#6b7280">Group just above the subsidy cliff (400-500% FPL) was 3% of 2025</text>
-  <text class="caption" x="452" y="532" fill="#6b7280">enrollment but 27% of the drop (KFF analysis of CMS OEP files)</text>
-  <g id="p5-stat">
-  <rect class="panel-edge" x="20" y="554" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="590" fill="#6b7280">Morbidity gap, paid vs. unpaid returning enrollees</text>
-  <text class="stat-value" x="36" y="620" fill="#1f2328">+10.2%</text>
-  <text class="stat-delta" x="36" y="640" fill="#059669">paid members sicker</text>
-  </g>
-  <text class="caption" x="24" y="675" fill="#6b7280">Wakely: aggregate normalized risk score of Stayers who paid January</text>
-  <text class="caption" x="24" y="688" fill="#6b7280">premium vs. Stayers who did not (state-average gap: +6.2%)</text>
-  <text class="footnote" x="20" y="720" fill="#6b7280">Sources: CMS Marketplace Open Enrollment Period reports; KFF, &quot;What We Know So Far About 2026 ACA Marketplace Enrollment&quot; (May 2026); Wakely</text>
-  <text class="footnote" x="20" y="734" fill="#6b7280">Consulting Group, &quot;Who Paid, and Who Stayed?&quot; (April 2026), based on WNRAR data covering ~80% of the individual market.</text>
   <g id="brand">
-  <svg x="20" y="746" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="845" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -265,42 +353,47 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="761" fill="#374151">AskAmerica · askamerica.ai</text>
-    <text class="byline" x="860" y="761" fill="#6b7280" text-anchor="end">Prepared 2026-09-14</text>
+    <text class="brand-mark" x="45" y="860" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:53759/a/eeb9a75045a8cdf2cc4598fefc8cd528.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:53110/a/372a5e083478ed74c962fad092bb8c6c.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
-<h2>Summary</h2>
-<p>Marketplace sign-ups for 2026 fell to 23.1 million, down about 1 million (4.9%) from 24.3 million in 2025 &mdash; the first year-over-year decline since 2020. But sign-ups overstate actual coverage: roughly 14% of January 2026 sign-ups had not paid their first premium, and KFF/Wakely estimate that <strong>average effectuated (paid) enrollment for 2026 will land around 17.5 million, down roughly 21% (a drop of about 4.8 million people) from 22.3 million in 2025</strong>, with plausible outcomes ranging from a 17% to 26% decline; the Urban Institute separately projects 4.8 million people becoming uninsured because of the lapse. On the health-mix question: <strong>every independent source that has looked at this &mdash; KFF's enrollee survey, Wakely's HHS-HCC risk-score analysis of 80% of the individual market, insurers' own state rate filings, and Peterson-KFF's tracking of 2027 rate filings &mdash; agrees the people leaving are healthier on average than those who stay</strong>, which is pushing the remaining risk pool toward higher morbidity and is already showing up as an explicit line item in 2027 premium filings.</p>
+<h2>Answer</h2>
+<p>Enrollment fell sharply. Paid (effectuated) marketplace enrollment was 19.17M in February 2026 versus 21.78M in February 2025, down 12% (CMS; the warehouse table ends at February 2026). KFF puts individual-market enrollment (on and off exchange) down 18% from June 2025 to June 2026 (25.2M to 20.5M), and CBO had projected about 25%. Plan sign-ups fell about 1.2M to roughly 23.1M nationally, so the larger loss shows up in people who did not pay or dropped after enrolling.</p><p>Whether leavers are healthier or sicker than stayers cannot be measured from public data: no claims, diagnosis or risk-score data for leavers exists. The observable proxies show only a slight tilt older among those remaining, and insurers are pricing for a sicker pool. My judgment is that leavers skew somewhat healthier on average (the usual adverse-selection pattern), but the size is unproven and the group that lost the most is mainly higher-income people priced out of subsidies, not a health-selected group.</p>
 </section>
 <section>
-<h2>How much has enrollment shifted</h2>
-<p>The 2021 American Rescue Plan enhanced premium tax credits (extended through 2025 by the Inflation Reduction Act) expired at the end of 2025 with no further extension from Congress, despite a government shutdown fight over the issue and a narrow House vote (17 Republicans joined Democrats) that failed in the Senate. This was the first year since 2020 that enrollees lacked access to the enhanced subsidies, and it produced the sharpest single-year enrollment drop in the ACA Marketplaces' history.</p><ul><li><strong>Plan selections (sign-ups):</strong> CMS's final snapshot put 2026 sign-ups at 23.1 million vs. 24.3 million in 2025 (a 4.9% decline); an earlier CMS snapshot in mid-January (before open enrollment fully closed) already showed about 22.8 million signed up, down 1.5 million from the same point a year earlier.</li><li><strong>Effectuated (paid) enrollment</strong> is the more meaningful figure because it reflects who actually keeps coverage. Wakely's analysis of proprietary payment data covering ~80% of the individual market (75+ issuers, 30+ states) found only about 86% of January 2026 enrollees had paid their first premium (state range: 82nd to 94th percentile), and net attrition will likely continue through the year via non-renewal, grace-period lapses, and disenrollments that predate January entirely (and so never show up in sign-up counts at all). Wakely's central estimate is a 17%-26% decline in average 2026 individual-market enrollment vs. 2025; applying that range to the ACA Marketplace specifically implies effectuated enrollment of roughly 16.5-18.5 million, centered near 17.5 million &mdash; a drop of 3.8 to 5.8 million people from 2025's 22.3 million. This is close to CBO's own February 2026 projection of ~16.9 million average 2026 Marketplace enrollment (a ~25% contraction), and to the Urban Institute's separate estimate that 4.8 million people will become uninsured in 2026 because of the lapse (with another roughly 2.5 million dropping ACA coverage but finding other insurance, e.g. employer or Medicaid).</li><li><strong>Who left, by income:</strong> the decline is heavily concentrated just above the "subsidy cliff" (400% of the federal poverty line, where premium tax credit eligibility ends entirely under un-enhanced rules). Consumers between 400-500% FPL were only 3% of 2025 enrollment but accounted for 27% of the sign-up decline (a 44% drop in that group alone, over 321,000 people); everyone above 400% FPL was just 7% of 2025 enrollment but 48% of the total decline. Lower-income enrollees (under 150% FPL, the largest single income group) still accounted for 37% of the decline in absolute terms, even though their exit rate was much lower (about 4%), simply because that group is so large.</li><li><strong>Who left, by age:</strong> adults 18-34 accounted for 46% of the total decline in sign-ups (down 542,000, or 8%, from 6.7 million to 6.2 million) &mdash; more than any other age group.</li><li><strong>Plan-tier shifts among those who stayed:</strong> silver-plan share fell from 57% to 43% of sign-ups (a record low, and the first time under half chose silver), while bronze rose from 30% to 40% and gold from 13% to 17%, as enrollees who kept coverage bought down to cheaper, higher-deductible plans. The average Marketplace deductible rose 37% ($1,027) to a record $3,786.</li><li><strong>Context:</strong> total ACA Marketplace enrollment had more than doubled since 2020 (from roughly 11-12 million to 24.3 million in 2025) once the enhanced subsidies took effect, with 88% of that growth (11.4 of 12.9 million new enrollees) concentrated in states that voted for Trump in 2024 &mdash; enrollment there grew 157% on average versus 36% in states that voted for Harris. The 2026 pullback is unwinding a large share of that growth in the same states that gained the most from it.</li></ul>
+<h2>Enrollment shift (computed)</h2>
+<ul><li>Effectuated, National, platform All: Jan 2025 22.22M, Jan 2026 20.19M (-9.1%); Feb 2025 21.78M, Feb 2026 19.17M (-12.0%). Source: health.aca_effectuated_enrollment_monthly.</li><li>Open-enrollment selections in the 30 HealthCare.gov states: 17.13M (2025) to 15.77M (2026), -7.9%. This footprint excludes state-based marketplaces and Illinois moved to its own exchange in 2026, so it overstates the decline slightly. New consumers fell from 2.84M to 2.52M (-11%); returning fell 14.28M to 13.25M (-7%).</li><li>KFF: enrollment fell in nearly every state; states that backfilled subsidies did better.</li></ul>
 </section>
 <section>
-<h2>Is the group leaving healthier or sicker than the group staying</h2>
-<p>Healthier. This is the consistent finding across four independent kinds of evidence:</p><ul><li><strong>Insurer risk-score data (Wakely Consulting Group, April 2026):</strong> using data from 75+ issuers across 30+ states (~80% of the ACA-compliant individual market), Wakely compared normalized HHS-HCC risk scores &mdash; the government's own actuarial measure of how sick a population is &mdash; for enrollees who paid their January 2026 premium ("Stayers, paid") against enrollees who had not yet paid ("Stayers, unpaid," i.e., on track to lapse). <strong>The paid (staying) group's aggregate risk score was 10.2% higher than the unpaid (leaving) group's</strong> (a 6.2% gap on a state-by-state simple-average basis) &mdash; direct, individual-level evidence that people exiting the market are healthier than people who keep paying. Wakely's separate market-wide model, which also has to account for new/switching enrollees ("Joiners") whose risk scores aren't yet observable, estimates that this selection effect will raise overall market morbidity by 2.5% to 6.0% in 2026 relative to 2025 (their headline range, folding in additional model uncertainty, is 2.9% to 6.5%). The model's own working assumption is that new entrants are 5%-20% sicker than the leaver population, built explicitly on the premise that people willing to pay much higher premiums to newly join or stay are sicker than those forgoing coverage.</li><li><strong>Age-based selection (KFF, CMS OEP data):</strong> the group with the largest sign-up decline &mdash; young adults 18-34 &mdash; is also the demographic insurers' own rate filings describe as "typically healthier." KFF notes this pattern is exactly what insurers projected in their 2026 rate filings.</li><li><strong>Insurer rate filings, stated directly:</strong> Multiple insurers said this outright in their state regulatory filings. Maine Community Health Options wrote that "healthier individual consumers are more likely to lapse coverage." UnitedHealthcare's Maryland filing stated that "healthier members are expected to leave at a disproportionately higher rate than those with significant healthcare needs, increasing market morbidity in 2026." Antidote Health, filing in Texas for 2027, built in an explicit "morbidity adjustment of 6.0%" to account for the same shift.</li><li><strong>Measured effect on pricing, confirmed in two consecutive years of rate filings (Peterson-KFF Health System Tracker, analyzing 77 insurers in 16 states plus DC):</strong> this adverse-selection dynamic is estimated to have added about 4 percentage points to 2026 premium increases, and insurers are layering on roughly another 4 percentage points for 2027 (median proposed 2027 increase: 14%, after a finalized 20% increase for 2026) specifically because the pool that remained after the 2026 exodus is sicker than the 2025 pool was.</li></ul><p>One caveat from Wakely's own methodology: they cannot fully separate people who switched insurers ("Joiners," who remain in the market) from people who dropped ACA coverage entirely, among their "Leaver" cohort, so their market-wide morbidity-shift range carries real model uncertainty. But the direct Stayer paid-vs-unpaid risk-score comparison sidesteps that ambiguity and is the cleanest available evidence: within the same issuer and the same year, the people not paying (and therefore losing coverage) carry meaningfully lower risk scores than those who pay to keep it &mdash; and every insurer statement, rate filing, and independent analyst reviewed here points the same direction.</p>
+<h2>Who left: proxies for health status (computed, selections not effectuated)</h2>
+<ul><li>Age: 45+ share of selections 41.8% to 41.2%; 18-34 share 27.4% to 26.2%. Young adults fell 11-13%, 55-64 fell 10%, children rose 4%. That is a small tilt older, not a collapse of the young.</li><li>Income: above 400% FPL (no subsidy cliff protection) fell 39%, the largest loss; under 100% FPL fell 45% (small group). The 100-150% FPL group, most of the base, fell only 5%. Leavers are largely people who lost the most subsidy, not a health-sorted group.</li><li>Plan choice: Bronze share rose from 31.6% to 42.7% and Silver fell from 55.7% to 39.1%. Trading down to high-deductible plans is typically done by those expecting less care, while those expecting more care are pushed toward Gold (12.6% to 17.9%). This is a within-pool selection signal and is consistent with some sorting, but it is not a measure of illness.</li><li>Insurers: KFF's review of 276 insurers finds a median 15% proposed 2027 increase, with roughly 4 points added on average for further enrollment declines and a sicker pool. Filings (for example one Pennsylvania filing) state healthier, price-sensitive people leave. These are expectations, not observed claims.</li><li>Counter-evidence: Manatt notes increases are similar whether or not states backfilled subsidies, so medical trend matters too. KFF's survey shows 22% of 2025 enrollees moved to other coverage and 9% became uninsured, with no health data.</li></ul>
 </section>
 <section>
-<h2>Data and methodology notes</h2>
-<p>The AskAmerica/askengine connector's own tables (census.acs_health_insurance, census.sahie_insurance, and the health schema) do not carry ACA Marketplace enrollment, plan-selection, or risk-adjustment data at all &mdash; a confirmed catalog gap (search_catalog returned no match on "marketplace" or "exchange" against any table or column in the corpus). All figures in this report are therefore drawn directly from primary and near-primary sources fetched and read in full: CMS's own Open Enrollment Period reports and public-use files (via KFF's and CNBC's direct citations of the CMS releases), KFF's published analysis of those CMS files plus its own survey of 1,117 2025 enrollees (fielded Feb 12-Mar 2, 2026), Wakely Consulting Group's April 2026 report built on the Wakely National Risk Adjustment Reporting (WNRAR) project's issuer-submitted risk-score and payment data, and Peterson-KFF Health System Tracker's analysis of 2027 insurer rate filings. Effectuated 2026 enrollment is still an estimate as of this writing &mdash; CMS's own Effectuated Enrollment: Early Snapshot is expected around July 2026 and the Full Year report (net of grace-period retroactive terminations) not until summer 2027 &mdash; so the 17.5 million figure and the morbidity-shift estimates above are the best available projections, not yet a finalized government tally.</p>
+<h2>Caveats</h2>
+<p>Selections are not paid enrollment; mix data cover only HealthCare.gov states; age and income are weak proxies for morbidity. Warehouse effectuated data stop at February 2026, so later attrition (KFF notes continued falls through June) is cited from KFF, not computed. Not tested for single-state influence. A definitive answer needs 2026 risk-adjustment transfer reports (CMS, expected mid-2027) or insurer claims data.</p>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>2 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 12 rows — 625 ms</summary><pre><code>select benefit_year, month_num, effectuated_enrollment from health.aca_effectuated_enrollment_monthly where geo_level='National' and platform='All' and benefit_year&gt;=2024 and month_num in (1,2,3,6,12) order by benefit_year, month_num</code></pre></details>
+<details class="sqltoggle"><summary>query — 3 rows — 647 ms</summary><pre><code>select plan_year, sum(plan_selections) sel, sum(new_consumers) new_c, sum(returning_consumers) ret, sum(aptc_consumers) aptc, sum(age_0_17) a0, sum(age_18_25) a18, sum(age_26_34) a26, sum(age_35_44) a35, sum(age_45_54) a45, sum(age_55_64) a55, sum(age_65_plus) a65, sum(metal_bronze) bronze, sum(metal_silver) silver, sum(metal_gold) gold, sum(metal_catastrophic) cat, sum(fpl_100_150) f100, sum(fpl_150_200) f150, sum(fpl_200_250) f200, sum(fpl_250_300) f250, sum(fpl_300_400) f300, sum(fpl_gt400) f400, sum(fpl_lt100) f0, sum(female) fem, sum(male) mal from health.aca_oep_county_plan_selections where plan_year in (2024,2025,2026) group by plan_year order by plan_year</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.kff.org/affordable-care-act/what-we-know-so-far-about-2026-aca-marketplace-enrollment-premiums-and-deductibles/">KFF: What We Know So Far About 2026 ACA Marketplace Enrollment, Premiums, and Deductibles (May 19, 2026)</a> <span class="note">— Primary source fetched in full via web_fetch; enrollment, income-group, age-group and metal-tier figures</span></li>
-<li><a href="https://www.kff.org/affordable-care-act/aca-marketplace-enrollment-is-down-in-2026-but-all-of-the-data-isnt-in-yet/">KFF: ACA Marketplace Enrollment is Down in 2026—But All of the Data Isn't in Yet (Feb 5, 2026)</a> <span class="note">— Primary source fetched in full via web_fetch; effectuation-rate methodology and reporting timeline</span></li>
-<li><a href="https://www.wakely.com/blog/who-paid-and-who-stayed-early-2026enrollment-trends-in-the-individual-market/">Wakely Consulting Group: Who Paid, and Who Stayed? Early 2026 Enrollment Trends in the Individual Market (April 2026)</a> <span class="note">— Primary source fetched in full via web_fetch; HHS-HCC risk-score Stayer/Joiner/Leaver morbidity analysis, paid-vs-unpaid risk-score gap</span></li>
-<li><a href="https://www.cnbc.com/2026/01/13/enhanced-aca-subsidies-lapse-uninsured.html">CNBC: As enhanced ACA subsidies lapse, millions may drop health insurance (Jan 13, 2026)</a> <span class="note">— Fetched in full via web_fetch; CMS mid-January snapshot, Urban Institute uninsured projection, growth-by-state data</span></li>
-<li><a href="https://www.medicaldaily.com/aca-marketplace-2027-premiums-risk-pool-adverse-selection-476621">Medical Daily: Insurers Say a Sicker Remaining Risk Pool Is Pushing 2027 Marketplace Premiums Up Again</a> <span class="note">— Fetched in full via web_fetch; Peterson-KFF Health System Tracker 2027 rate-filing analysis, direct insurer filing quotes</span></li>
-<li>AskAmerica catalog search (census/health schemas) <span class="note">— Confirmed no marketplace/exchange enrollment table exists in this connector's corpus</span><details class="sqltoggle"><summary>Show tool call</summary><pre><code>search_catalog(query=&quot;ACA marketplace enrollment health insurance exchange&quot;)</code></pre></details></li>
+<li><a href="https://www.kff.org/affordable-care-act/individual-market-enrollment-continues-to-fall-through-mid-2026/">KFF: Individual market enrollment continues to fall through mid-2026</a></li>
+<li><a href="https://www.kff.org/affordable-care-act/how-much-and-why-aca-marketplace-premiums-are-going-up-in-2027/">KFF: How much and why ACA premiums are going up in 2027</a></li>
+<li><a href="https://www.kff.org/affordable-care-act/what-we-know-so-far-about-2026-aca-marketplace-enrollment-premiums-and-deductibles/">KFF: What we know so far about 2026 enrollment</a></li>
+<li><a href="https://www.manatt.com/insights/newsletters/health-highlights/preliminary-2027-aca-rates-are-up-regardless-of-marketplace-type-or-state-subsidies">Manatt: Preliminary 2027 ACA rates</a></li>
+<li><a href="https://data.cms.gov">health.aca_effectuated_enrollment_monthly (CMS)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>select benefit_year, month_num, effectuated_enrollment from health.aca_effectuated_enrollment_monthly where geo_level='National' and platform='All' and benefit_year&gt;=2024</code></pre></details></li>
+<li><a href="https://www.cms.gov/marketplace/resources/data/public-use-files">health.aca_oep_county_plan_selections (CMS OEP PUF)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>select plan_year, sum(plan_selections), sum(age_18_25) ... from health.aca_oep_county_plan_selections where plan_year in (2024,2025,2026) group by plan_year</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Effectuated 2026 enrollment and morbidity-shift figures are the best available estimates as of September 2026 (KFF/Wakely), not yet a finalized CMS tally; CMS's Full Year Effectuated Enrollment report is not expected until summer 2027.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-14</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
