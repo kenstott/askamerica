@@ -564,6 +564,8 @@ def main():
     for code in said_and_checked.US_STATES:
         with open(os.path.join(feed_dir, "states", code.lower() + ".xml"), "w") as fh:
             fh.write(said_and_checked.feed_xml(said_days, state=code))
+    with open(os.path.join(OUT, said_and_checked.OPML_FILE), "w") as fh:
+        fh.write(said_and_checked.feeds_opml())
     # One tally image per feed item, at the path each item's description names.
     feeds = ([{}] + [{"topic": tp} for tp in topics.SAID_TOPICS]
              + [{"state": code} for code in said_and_checked.US_STATES])

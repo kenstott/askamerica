@@ -69,8 +69,8 @@
             <p><strong>Get this in a feed reader.</strong> Each day's Said &amp; Checked arrives
               there as it is published, with the false and contradicted statements first.</p>
             <div class="btns">
-              <a href="https://feedly.com/i/subscription/feed%2F{$enc}">Add to Feedly</a>
-              <a href="https://www.inoreader.com/?add_feed={$enc}">Add to Inoreader</a>
+              <a href="https://feedly.com/i/subscription/feed%2F{$enc}" target="_blank" rel="noopener">Add to Feedly</a>
+              <a href="https://www.inoreader.com/?add_feed={$enc}" target="_blank" rel="noopener">Add to Inoreader</a>
             </div>
             <p class="hint">Other readers (NetNewsWire, Reeder, Outlook, Thunderbird): add this
               address.<span class="url"><xsl:value-of select="$feed"/></span></p>

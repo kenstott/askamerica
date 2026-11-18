@@ -683,7 +683,7 @@ def _reader_links(path, style=""):
     """'RSS · Feedly · Inoreader' for one feed. The reader links add the feed in one click."""
     from urllib.parse import quote
     feed = quote(SITE + path, safe="")
-    a = '<a href="%s"%s>%s</a>'
+    a = '<a href="%s" target="_blank" rel="noopener"%s>%s</a>'
     st = ' style="%s"' % style if style else ""
     return " &middot; ".join([
         a % (path, st, "RSS"),
@@ -860,6 +860,30 @@ def feed_images(days, topic=None, state=None):
     label, _, _, keep, key = _feed_selection(topic, state)
     return [(feed_image_path(key, day["date"]), tally_png(day["date"], stmts, label))
             for day, stmts in _feed_days(days, keep)]
+
+
+OPML_FILE = "said-and-checked-feeds.opml"
+
+
+def feeds_opml():
+    """Every Said & Checked feed in one OPML list, to add them all to a reader in one import."""
+    from xml.sax.saxutils import quoteattr
+
+    def outline(title, path):
+        return ('<outline type="rss" text=%s title=%s xmlUrl=%s htmlUrl=%s/>'
+                % (quoteattr(title), quoteattr(title), quoteattr(SITE + path),
+                   quoteattr("%s/studies/%s/" % (SITE, SAID_ARCHIVE_SLUG))))
+    groups = [
+        ("Said & Checked", [outline("Said & Checked", FEED_PATH)]),
+        ("Said & Checked by topic", [outline("Said & Checked: " + t, topic_feed_path(t))
+                                     for t in topics.SAID_TOPICS]),
+        ("Said & Checked by state", [outline("Said & Checked: " + name, state_feed_path(code))
+                                     for code, name in sorted(US_STATES.items(), key=lambda kv: kv[1])]),
+    ]
+    body = "".join('<outline text=%s title=%s>%s</outline>' % (quoteattr(g), quoteattr(g), "".join(o))
+                   for g, o in groups)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<opml version="2.0"><head>'
+            "<title>Said &amp; Checked feeds</title></head><body>%s</body></opml>\n" % body)
 
 
 def feed_xml(days, topic=None, state=None):
