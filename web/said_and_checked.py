@@ -770,7 +770,8 @@ def feed_xml(days, topic=None, state=None):
             continue
         url = "%s/studies/%s/" % (SITE, slug(day))
         y, m, d = (int(p) for p in day["date"].split("-"))
-        pub = format_datetime(datetime.datetime(y, m, d, tzinfo=datetime.timezone.utc))
+        # Noon US Eastern (17:00 UTC), so every US reader sees the day's own date.
+        pub = format_datetime(datetime.datetime(y, m, d, 17, tzinfo=datetime.timezone.utc))
         items.append(
             "<item><title>%s</title><link>%s</link><guid isPermaLink=\"false\">%s</guid>"
             "<pubDate>%s</pubDate><description>%s</description></item>"
