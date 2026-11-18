@@ -44,10 +44,12 @@ function escapeHtml(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+// Contacts, segments and broadcasts need a full-access Resend key; the login-code key is
+// send-only. Every Said & Checked call uses this module's own key.
 function resend(env: Env, method: string, path: string, body?: unknown): Promise<Response> {
   return fetch(RESEND + path, {
     method,
-    headers: { 'Authorization': `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    headers: { 'Authorization': `Bearer ${env.RESEND_SC_API_KEY}`, 'Content-Type': 'application/json' },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
 }
