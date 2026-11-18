@@ -21,7 +21,7 @@ function confirm(token: string): Promise<Response> {
     `https://api.askamerica.ai/v1/said-and-checked/confirm?token=${token}`), env);
 }
 
-function send(body: object, secret = 'test-admin'): Promise<Response> {
+function send(body: object, secret = 'test-send'): Promise<Response> {
   return handleSaidSend(new Request('https://api.askamerica.ai/v1/said-and-checked/send', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${secret}` },
@@ -100,8 +100,9 @@ describe('confirm', () => {
 });
 
 describe('send', () => {
-  it('requires the admin secret', async () => {
+  it('requires the send secret, not the admin secret', async () => {
     expect((await send({ date: '2026-11-17', subject: 's', html: 'h' }, 'wrong')).status).toBe(401);
+    expect((await send({ date: '2026-11-17', subject: 's', html: 'h' }, 'test-admin')).status).toBe(401);
   });
 
   it('sends one broadcast per day, with the unsubscribe link and postal address', async () => {

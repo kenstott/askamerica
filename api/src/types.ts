@@ -24,6 +24,7 @@ export interface Env {
   GITHUB_TOKEN: string;         // PAT w/ repo:issues scope on kenstott/govdata-ops (github-sync.ts)
   SAID_CHECKED_SEGMENT_ID: string; // Resend segment that receives the Said & Checked email
   MAIL_POSTAL_ADDRESS: string;     // sender postal address in that email's footer (CAN-SPAM)
+  SAID_CHECKED_SEND_SECRET: string; // authorizes only the daily Said & Checked send
 
   // Vars
   ENVIRONMENT: string;

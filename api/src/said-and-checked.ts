@@ -4,7 +4,7 @@ import { Env } from './types';
 //
 // subscribe → a confirmation email with a one-use link; nothing is stored at Resend yet.
 // confirm   → the address becomes a Resend contact in the Said & Checked segment.
-// send      → (admin) the day's email goes out once as a Resend broadcast to that segment.
+// send      → (SAID_CHECKED_SEND_SECRET) the day's email goes out once as a Resend broadcast to that segment.
 //
 // Every broadcast gets the same footer here: why the reader is getting it, the unsubscribe
 // link Resend fills in, and the sender's postal address, which US law requires in
@@ -154,7 +154,7 @@ export async function handleSaidConfirm(request: Request, env: Env): Promise<Res
 
 export async function handleSaidSend(request: Request, env: Env): Promise<Response> {
   const auth = request.headers.get('Authorization') || '';
-  if (!auth.startsWith('Bearer ') || auth.slice(7) !== env.ADMIN_SECRET) {
+  if (!auth.startsWith('Bearer ') || auth.slice(7) !== env.SAID_CHECKED_SEND_SECRET) {
     return json({ error: 'unauthorized' }, 401);
   }
   const { date, subject, html } = await request.json<{ date: string; subject: string; html: string }>();

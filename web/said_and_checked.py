@@ -932,8 +932,9 @@ def feed_xml(days, topic=None, state=None):
 
 
 API = "https://api.askamerica.ai"
-# The daily run's copy of the api Worker's ADMIN_SECRET, which authorizes the day's send.
-ADMIN_SECRET_FILE = os.path.expanduser("~/.askamerica/admin-secret")
+# The daily run's copy of the api Worker's SAID_CHECKED_SEND_SECRET, which authorizes only the
+# day's send.
+SEND_SECRET_FILE = os.path.expanduser("~/.askamerica/sc-send-secret")
 
 
 def email_signup_form(style=""):
@@ -986,9 +987,9 @@ def send_email(path):
     with open(path) as fh:
         doc = json.load(fh)
     validate(doc, path)
-    with open(ADMIN_SECRET_FILE) as fh:
+    with open(SEND_SECRET_FILE) as fh:
         secret = fh.read().strip()
-    _require(bool(secret), ADMIN_SECRET_FILE, "is empty")
+    _require(bool(secret), SEND_SECRET_FILE, "is empty")
     body = json.dumps({"date": doc["date"], "subject": email_subject(doc),
                        "html": email_html(doc)}).encode()
     req = urllib.request.Request(API + "/v1/said-and-checked/send", data=body, method="POST",

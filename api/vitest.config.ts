@@ -21,6 +21,7 @@ export default defineWorkersConfig(async () => {
               RESEND_API_KEY: 'test-resend',
               ADMIN_SECRET: 'test-admin',
               SAID_CHECKED_SEGMENT_ID: 'seg_test',
+              SAID_CHECKED_SEND_SECRET: 'test-send',
               MAIL_POSTAL_ADDRESS: '1 Test St., Testville, NC 00000',
               R2_ACCOUNT_ID: 'test-acct',
               R2_BUCKET: 'test-bucket',
