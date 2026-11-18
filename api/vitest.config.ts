@@ -19,6 +19,7 @@ export default defineWorkersConfig(async () => {
               STRIPE_PRICE_STARTER: 'price_test_starter',
               STRIPE_PRICE_PRO: 'price_test_pro',
               RESEND_API_KEY: 'test-resend',
+              RESEND_SC_API_KEY: 'test-resend-sc',
               ADMIN_SECRET: 'test-admin',
               SAID_CHECKED_SEGMENT_ID: 'seg_test',
               SAID_CHECKED_SEND_SECRET: 'test-send',

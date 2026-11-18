@@ -12,7 +12,8 @@ export interface Env {
   TELEMETRY: AnalyticsEngineDataset;  // MCP tool telemetry — separate event shape
 
   // Secrets (set via: wrangler secret put <NAME>)
-  RESEND_API_KEY: string;
+  RESEND_API_KEY: string;        // send-only key (login codes)
+  RESEND_SC_API_KEY: string;     // full-access key, Said & Checked only (contacts, segment, broadcasts)
   R2_ACCESS_KEY_ID: string;      // parent R2 access key id (for temp-cred minting)
   R2_SECRET_ACCESS_KEY: string;  // parent R2 secret (never shipped to clients)
   R2_ACCOUNT_ID: string;

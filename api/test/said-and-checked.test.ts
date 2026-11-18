@@ -4,6 +4,8 @@ import { handleSaidSubscribe, handleSaidConfirm, handleSaidSend } from '../src/s
 
 const E = env as any;
 const RESEND = 'https://api.resend.com';
+// Said & Checked must use its own full-access key, never the send-only login-code key.
+const SC_AUTH = { Authorization: 'Bearer test-resend-sc' };
 
 beforeAll(() => { fetchMock.activate(); fetchMock.disableNetConnect(); });
 afterEach(() => fetchMock.assertNoPendingInterceptors());
@@ -32,7 +34,7 @@ function send(body: object, secret = 'test-send'): Promise<Response> {
 /** Subscribes and returns the token from the confirmation link Resend was asked to send. */
 async function subscribeAndGetToken(email: string): Promise<string> {
   let sent: any;
-  fetchMock.get(RESEND).intercept({ path: '/emails', method: 'POST' })
+  fetchMock.get(RESEND).intercept({ path: '/emails', method: 'POST', headers: SC_AUTH })
     .reply(200, (opts: any) => { sent = JSON.parse(opts.body); return { id: 'em_1' }; });
   expect((await subscribe(email)).status).toBe(200);
   expect(sent.to).toBe(email.toLowerCase());
@@ -65,10 +67,10 @@ describe('subscribe', () => {
 describe('confirm', () => {
   it('creates a new contact in the segment and burns the token', async () => {
     const token = await subscribeAndGetToken('fresh@example.com');
-    fetchMock.get(RESEND).intercept({ path: '/contacts/fresh%40example.com', method: 'PATCH' })
+    fetchMock.get(RESEND).intercept({ path: '/contacts/fresh%40example.com', method: 'PATCH', headers: SC_AUTH })
       .reply(404, { message: 'not found' });
     let created: any;
-    fetchMock.get(RESEND).intercept({ path: '/contacts', method: 'POST' })
+    fetchMock.get(RESEND).intercept({ path: '/contacts', method: 'POST', headers: SC_AUTH })
       .reply(200, (opts: any) => { created = JSON.parse(opts.body); return { id: 'c_1' }; });
     const r = await confirm(token);
     expect(r.status).toBe(200);
@@ -79,9 +81,9 @@ describe('confirm', () => {
 
   it('resubscribes a known contact and adds it to the segment', async () => {
     const token = await subscribeAndGetToken('back@example.com');
-    fetchMock.get(RESEND).intercept({ path: '/contacts/back%40example.com', method: 'PATCH' })
+    fetchMock.get(RESEND).intercept({ path: '/contacts/back%40example.com', method: 'PATCH', headers: SC_AUTH })
       .reply(200, { id: 'c_2' });
-    fetchMock.get(RESEND).intercept({ path: '/contacts/back%40example.com/segments/seg_test', method: 'POST' })
+    fetchMock.get(RESEND).intercept({ path: '/contacts/back%40example.com/segments/seg_test', method: 'POST', headers: SC_AUTH })
       .reply(200, { id: 'seg_test' });
     expect((await confirm(token)).status).toBe(200);
   });
@@ -107,7 +109,7 @@ describe('send', () => {
 
   it('sends one broadcast per day, with the unsubscribe link and postal address', async () => {
     let body: any;
-    fetchMock.get(RESEND).intercept({ path: '/broadcasts', method: 'POST' })
+    fetchMock.get(RESEND).intercept({ path: '/broadcasts', method: 'POST', headers: SC_AUTH })
       .reply(200, (opts: any) => { body = JSON.parse(opts.body); return { id: 'b_1' }; });
     const r = await send({ date: '2026-11-17', subject: 'Said & Checked, 2026-11-17', html: '<p>day</p>' });
     expect(r.status).toBe(200);
