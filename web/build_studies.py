@@ -564,6 +564,15 @@ def main():
     for code in said_and_checked.US_STATES:
         with open(os.path.join(feed_dir, "states", code.lower() + ".xml"), "w") as fh:
             fh.write(said_and_checked.feed_xml(said_days, state=code))
+    # One tally image per feed item, at the path each item's description names.
+    feeds = ([{}] + [{"topic": tp} for tp in topics.SAID_TOPICS]
+             + [{"state": code} for code in said_and_checked.US_STATES])
+    for feed in feeds:
+        for site_path, png in said_and_checked.feed_images(said_days, **feed):
+            dest = os.path.join(OUT, site_path[len("/studies/"):])
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            with open(dest, "wb") as fh:
+                fh.write(png)
 
     live_slugs = ({q["id"] for q, e in zip(bank, entries) if e} | {h["slug"] for h in headlines}
                   | {"headlines-archive", SAID_ARCHIVE_SLUG, said_and_checked.TOPIC_FEED_DIR} | {said_and_checked.slug(d) for d in said_days})
