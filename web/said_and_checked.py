@@ -774,10 +774,37 @@ def _feed_description(stmts, page_url, image_url, image_alt):
         parts.append("<p><strong>%s</strong></p><ul>%s</ul>" % (heading, items))
     else:
         parts.append("<p>No statement was found false or contradicted.</p>")
+    pairs = _feed_pairs(stmts)
+    if pairs:
+        items = "".join(
+            '<li>%s<br/>%s<br/><a href="%s#s%d">Both statements in context</a></li>'
+            % (_pair_side(a), _pair_side(b), html.escape(page_url, quote=True), a["id"])
+            for a, b in pairs)
+        parts.append("<p><strong>Disagreements</strong></p><ul>%s</ul>" % items)
     parts.append("<p>%s. %s.</p>" % (_speaker_count(stmts), statements_summary(stmts)))
     parts.append('<p><a href="%s">Read every statement and how each was checked</a></p>'
                  % html.escape(page_url, quote=True))
     return "".join(parts)
+
+
+def _feed_pairs(stmts):
+    """Every counter-statement pair with both statements in stmts, once each, in id order.
+    All pairs are shown: which statements answer each other is recorded by the run, never
+    picked for the feed."""
+    by_id = {s["id"]: s for s in stmts}
+    return [(s, by_id[o]) for s in sorted(stmts, key=lambda s: int(s["id"]))
+            for o in sorted(s.get("counter_statements") or [], key=int)
+            if o in by_id and int(s["id"]) < int(o)]
+
+
+def _pair_side(s):
+    rating = ""
+    if is_checked(s):
+        what = "premise " if s["kind"] == "premised_prediction" else ""
+        rating = " <em>(%s%s)</em>" % (what, RESULTS[s["result"]].lower())
+    return "<strong>%s</strong>, %s: &ldquo;%s&rdquo;%s" % (
+        html.escape(s["speaker"]), html.escape(s["office"]),
+        html.escape(_excerpt(s["quote"], 40)), rating)
 
 
 def _speaker_count(stmts):
