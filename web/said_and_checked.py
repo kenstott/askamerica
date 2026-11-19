@@ -774,26 +774,32 @@ def _feed_description(stmts, page_url, image_url, image_alt):
         parts.append("<p><strong>%s</strong></p><ul>%s</ul>" % (heading, items))
     else:
         parts.append("<p>No statement was found false or contradicted.</p>")
-    pairs = _feed_pairs(stmts)
-    if pairs:
+    # Contradictions: one speaker, two statements that cannot both be true. Disagreements:
+    # two speakers answering each other. The heading names only what the day has.
+    groups = [(name, _feed_pairs(stmts, field)) for name, field in
+              (("Contradictions", "self_contradictions"), ("Disagreements", "counter_statements"))]
+    groups = [(name, pairs) for name, pairs in groups if pairs]
+    if groups:
         items = "".join(
-            '<li>%s<br/>%s<br/><a href="%s#s%d">Both statements in context</a></li>'
-            % (_pair_side(a), _pair_side(b), html.escape(page_url, quote=True), a["id"])
-            for a, b in pairs)
-        parts.append("<p><strong>Disagreements</strong></p><ul>%s</ul>" % items)
+            '<li>%s%s<br/>%s<br/><a href="%s#s%d">Both statements in context</a></li>'
+            % ("<em>Contradicts own statement.</em><br/>" if name == "Contradictions" else "",
+               _pair_side(a), _pair_side(b), html.escape(page_url, quote=True), a["id"])
+            for name, pairs in groups for a, b in pairs)
+        parts.append("<p><strong>%s</strong></p><ul>%s</ul>"
+                     % (" and ".join(name for name, _ in groups), items))
     parts.append("<p>%s. %s.</p>" % (_speaker_count(stmts), statements_summary(stmts)))
     parts.append('<p><a href="%s">Read every statement and how each was checked</a></p>'
                  % html.escape(page_url, quote=True))
     return "".join(parts)
 
 
-def _feed_pairs(stmts):
-    """Every counter-statement pair with both statements in stmts, once each, in id order.
-    All pairs are shown: which statements answer each other is recorded by the run, never
-    picked for the feed."""
+def _feed_pairs(stmts, field):
+    """Every pair linked by field (counter_statements or self_contradictions) with both
+    statements in stmts, once each, in id order. All pairs are shown: the run records them,
+    nothing is picked for the feed."""
     by_id = {s["id"]: s for s in stmts}
     return [(s, by_id[o]) for s in sorted(stmts, key=lambda s: int(s["id"]))
-            for o in sorted(s.get("counter_statements") or [], key=int)
+            for o in sorted(s.get(field) or [], key=int)
             if o in by_id and int(s["id"]) < int(o)]
 
 
