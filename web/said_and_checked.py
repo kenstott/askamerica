@@ -774,10 +774,43 @@ def _feed_description(stmts, page_url, image_url, image_alt):
         parts.append("<p><strong>%s</strong></p><ul>%s</ul>" % (heading, items))
     else:
         parts.append("<p>No statement was found false or contradicted.</p>")
+    # Contradictions: one speaker, two statements that cannot both be true. Disagreements:
+    # two speakers answering each other. The heading names only what the day has.
+    groups = [(name, _feed_pairs(stmts, field)) for name, field in
+              (("Contradictions", "self_contradictions"), ("Disagreements", "counter_statements"))]
+    groups = [(name, pairs) for name, pairs in groups if pairs]
+    if groups:
+        items = "".join(
+            '<li>%s%s<br/>%s<br/><a href="%s#s%d">Both statements in context</a></li>'
+            % ("<em>Contradicts own statement.</em><br/>" if name == "Contradictions" else "",
+               _pair_side(a), _pair_side(b), html.escape(page_url, quote=True), a["id"])
+            for name, pairs in groups for a, b in pairs)
+        parts.append("<p><strong>%s</strong></p><ul>%s</ul>"
+                     % (" and ".join(name for name, _ in groups), items))
     parts.append("<p>%s. %s.</p>" % (_speaker_count(stmts), statements_summary(stmts)))
     parts.append('<p><a href="%s">Read every statement and how each was checked</a></p>'
                  % html.escape(page_url, quote=True))
     return "".join(parts)
+
+
+def _feed_pairs(stmts, field):
+    """Every pair linked by field (counter_statements or self_contradictions) with both
+    statements in stmts, once each, in id order. All pairs are shown: the run records them,
+    nothing is picked for the feed."""
+    by_id = {s["id"]: s for s in stmts}
+    return [(s, by_id[o]) for s in sorted(stmts, key=lambda s: int(s["id"]))
+            for o in sorted(s.get(field) or [], key=int)
+            if o in by_id and int(s["id"]) < int(o)]
+
+
+def _pair_side(s):
+    rating = ""
+    if is_checked(s):
+        what = "premise " if s["kind"] == "premised_prediction" else ""
+        rating = " <em>(%s%s)</em>" % (what, RESULTS[s["result"]].lower())
+    return "<strong>%s</strong>, %s: &ldquo;%s&rdquo;%s" % (
+        html.escape(s["speaker"]), html.escape(s["office"]),
+        html.escape(_excerpt(s["quote"], 40)), rating)
 
 
 def _speaker_count(stmts):
