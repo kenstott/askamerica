@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Federal land burns roughly 4-6x more than state/private land per acre owned — but the gap is mostly the arid West, not ownership itself</title>
+<title>Federally managed land burned about 4.7x the rate of private land and about 1.7x state land in 2020-2025 mapped wildfires</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -88,38 +96,6 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
-@media screen{
-#s2-t1-s1:checked ~ table tbody.s0{display:none}
-#s2-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s2-t1-s1:checked ~ table label[for="s2-t1-s1"]{color:var(--link)}
-#s2-t1-s1:checked ~ table label[for="s2-t1-s1"] .srtcue{opacity:1}
-#s2-t1-s1:checked ~ .srtreset{display:inline-block}
-#s2-t1-s2:checked ~ table tbody.s0{display:none}
-#s2-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s2-t1-s2:checked ~ table label[for="s2-t1-s2"]{color:var(--link)}
-#s2-t1-s2:checked ~ table label[for="s2-t1-s2"] .srtcue{opacity:1}
-#s2-t1-s2:checked ~ .srtreset{display:inline-block}
-#s2-t1-s3:checked ~ table tbody.s0{display:none}
-#s2-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s2-t1-s3:checked ~ table label[for="s2-t1-s3"]{color:var(--link)}
-#s2-t1-s3:checked ~ table label[for="s2-t1-s3"] .srtcue{opacity:1}
-#s2-t1-s3:checked ~ .srtreset{display:inline-block}
-#s2-t1-s4:checked ~ table tbody.s0{display:none}
-#s2-t1-s4:checked ~ table tbody.s4{display:table-row-group}
-#s2-t1-s4:checked ~ table label[for="s2-t1-s4"]{color:var(--link)}
-#s2-t1-s4:checked ~ table label[for="s2-t1-s4"] .srtcue{opacity:1}
-#s2-t1-s4:checked ~ .srtreset{display:inline-block}
-#s2-t1-s5:checked ~ table tbody.s0{display:none}
-#s2-t1-s5:checked ~ table tbody.s5{display:table-row-group}
-#s2-t1-s5:checked ~ table label[for="s2-t1-s5"]{color:var(--link)}
-#s2-t1-s5:checked ~ table label[for="s2-t1-s5"] .srtcue{opacity:1}
-#s2-t1-s5:checked ~ .srtreset{display:inline-block}
-#s2-t1-s6:checked ~ table tbody.s0{display:none}
-#s2-t1-s6:checked ~ table tbody.s6{display:table-row-group}
-#s2-t1-s6:checked ~ table label[for="s2-t1-s6"]{color:var(--link)}
-#s2-t1-s6:checked ~ table label[for="s2-t1-s6"] .srtcue{opacity:1}
-#s2-t1-s6:checked ~ .srtreset{display:inline-block}
-}
 </style>
 </head>
 <body>
@@ -131,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Federal land burns roughly 4-6x more than state/private land per acre owned — but the gap is mostly the arid West, not ownership itself</h1>
-<p class="subtitle">CRS Wildfire Statistics (IF10244), NICC data 2018-2022; AskAmerica corpus cross-check, 2018-2023</p>
+<h1>Federally managed land burned about 4.7x the rate of private land and about 1.7x state land in 2020-2025 mapped wildfires</h1>
+<p class="subtitle">NIFC WFIGS mapped wildfire perimeters 2020-2025 by point-of-origin owner; denominators are approximate CRS/other acreage</p>
 </header>
 <figure class="board">
 <!--
@@ -152,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 801" width="880" height="801" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -179,187 +155,61 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="801" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">Federal land burns roughly 4-6x more than state/private land, but much of that gap tracks the arid West, no…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:11px">CRS Wildfire Statistics (IF10244) from NICC data, 2018-2022; AskAmerica corpus state-level check (PAD-US x WFIGS, 2018-2023)</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Federal land's share of total US land</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">~28%</text>
-  </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">~640M of ~2.27B acres</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">Federal share of acres burned (10-yr avg, 2013-2022)</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">64%</text>
-  </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">vs. only ~20-30% of federal share of the LAND</text>
-  <g id="p3-stat">
-  <rect class="panel-edge" x="20" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="274" fill="#6b7280">Est. annual burn rate: federal vs nonfederal land</text>
-  <text class="stat-value" x="36" y="304" fill="#1f2328">0.72% vs 0.16%</text>
-  <text class="stat-delta" x="36" y="324" fill="#059669">~4.5x higher on federal land</text>
-  </g>
-  <text class="caption" x="24" y="359" fill="#6b7280">Share of each ownership class's total acreage burned per year, 10-yr</text>
-  <text class="caption" x="24" y="372" fill="#6b7280">avg</text>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="238" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="274" fill="#6b7280">Avg. fire size, federal vs nonfederal (2018-2022)</text>
-  <text class="stat-value" x="464" y="304" fill="#1f2328">378 vs 62 acres</text>
-  <text class="stat-delta" x="464" y="324" fill="#059669">~6.1x larger on federal land</text>
-  </g>
-  <text class="caption" x="452" y="359" fill="#6b7280">NICC/CRS Table 1</text>
-  <rect class="panel-edge" x="20" y="394" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="394" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p5-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Acres burned by land ownership, 2018-2022 (millions)</text>
-    <g id="p5-gridlines">
-      <line class="grid" x1="53" y1="176" x2="390" y2="176" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-0" class="tick" x="45" y="180" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="53" y1="161" x2="390" y2="161" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-1" class="tick" x="45" y="165" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
-      <line class="grid" x1="53" y1="146" x2="390" y2="146" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-2" class="tick" x="45" y="150" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
-      <line class="grid" x1="53" y1="131" x2="390" y2="131" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-3" class="tick" x="45" y="135" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
-      <line class="grid" x1="53" y1="116" x2="390" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-4" class="tick" x="45" y="120" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
-      <line class="grid" x1="53" y1="101" x2="390" y2="101" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-5" class="tick" x="45" y="105" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-      <line class="grid" x1="53" y1="86" x2="390" y2="86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-6" class="tick" x="45" y="90" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
-      <line class="grid" x1="53" y1="71" x2="390" y2="71" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-7" class="tick" x="45" y="75" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">7</text>
-      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p5-ytick-8" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">8</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Burn rate by owner, 2020-2025</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Acres burned per 1,000 owned acres per year</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="35" y1="276" x2="390" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="27" y="280" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="35" y1="239.33" x2="390" y2="239.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="27" y="243.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
+      <line class="grid" x1="35" y1="202.67" x2="390" y2="202.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="27" y="206.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
+      <line class="grid" x1="35" y1="166" x2="390" y2="166" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="27" y="170" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
+      <line class="grid" x1="35" y1="129.33" x2="390" y2="129.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="27" y="133.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
+      <line class="grid" x1="35" y1="92.67" x2="390" y2="92.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="27" y="96.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="35" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-6" class="tick" x="27" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
     </g>
-    <g id="p5-axes">
-      <line class="axis" x1="53" y1="56" x2="53" y2="176" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="53" y1="176" x2="390" y2="176" stroke="#9ca3af" stroke-width="1"/>
+    <g id="p1-axes">
+      <line class="axis" x1="35" y1="56" x2="35" y2="276" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="35" y1="276" x2="390" y2="276" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p5-x-axis-title" class="axis-title" x="221.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
-    <text id="p5-y-axis-title" class="axis-title" x="14" y="116" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 116)">Acres burned (M)</text>
-    <g id="p5-x-axis-labels">
-      <text id="p5-xtick-2018" class="tick" x="86.70" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2018</text>
-      <text id="p5-xtick-2019" class="tick" x="154.10" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
-      <text id="p5-xtick-2020" class="tick" x="221.50" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
-      <text id="p5-xtick-2021" class="tick" x="288.90" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
-      <text id="p5-xtick-2022" class="tick" x="356.30" y="194" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-federal-5-agencies" class="tick" x="94.17" y="294" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Federal (5 agencies)</text>
+      <text id="p1-xtick-state" class="tick" x="212.50" y="294" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">State</text>
+      <text id="p1-xtick-private" class="tick" x="330.83" y="294" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Private</text>
     </g>
-    <g id="p5-series-federal" class="series">
-      <rect id="p5-mark-federal-2018" class="bar" x="65.13" y="107" width="20.57" height="69" fill="#2563eb"/>
-      <rect id="p5-mark-federal-2019" class="bar" x="132.53" y="129.50" width="20.57" height="46.50" fill="#2563eb"/>
-      <rect id="p5-mark-federal-2020" class="bar" x="199.93" y="69.50" width="20.57" height="106.50" fill="#2563eb"/>
-      <rect id="p5-mark-federal-2021" class="bar" x="267.33" y="98" width="20.57" height="78" fill="#2563eb"/>
-      <rect id="p5-mark-federal-2022" class="bar" x="334.73" y="116" width="20.57" height="60" fill="#2563eb"/>
+    <g id="p1-series-rate" class="series">
+      <g class="hover">
+        <title>Federal (5 agencies) — Rate: 5.7</title>
+        <rect id="p1-mark-rate-federal-5-agencies" class="bar" x="56.30" y="67.00" width="74.73" height="209.00" fill="#2563eb"/>
+        <rect class="hit" x="56.30" y="56" width="74.73" height="220" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-rate-federal-5-agencies" class="value-label" x="93.67" y="63.00" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">5.7</text>
+      <g class="hover">
+        <title>State — Rate: 3.3</title>
+        <rect id="p1-mark-rate-state" class="bar" x="174.63" y="155" width="74.73" height="121" fill="#2563eb"/>
+        <rect class="hit" x="174.63" y="56" width="74.73" height="220" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-rate-state" class="value-label" x="212" y="151" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">3.3</text>
+      <g class="hover">
+        <title>Private — Rate: 1.2</title>
+        <rect id="p1-mark-rate-private" class="bar" x="292.97" y="232" width="74.73" height="44" fill="#2563eb"/>
+        <rect class="hit" x="292.97" y="56" width="74.73" height="220" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-rate-private" class="value-label" x="330.33" y="228" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">1.2</text>
     </g>
-    <g id="p5-series-nonfederal-state-local-private" class="series">
-      <rect id="p5-mark-nonfederal-state-local-private-2018" class="bar" x="86.70" y="114.50" width="20.57" height="61.50" fill="#ea580c"/>
-      <rect id="p5-mark-nonfederal-state-local-private-2019" class="bar" x="154.10" y="152" width="20.57" height="24" fill="#ea580c"/>
-      <rect id="p5-mark-nonfederal-state-local-private-2020" class="bar" x="221.50" y="129.50" width="20.57" height="46.50" fill="#ea580c"/>
-      <rect id="p5-mark-nonfederal-state-local-private-2021" class="bar" x="288.90" y="147.50" width="20.57" height="28.50" fill="#ea580c"/>
-      <rect id="p5-mark-nonfederal-state-local-private-2022" class="bar" x="356.30" y="122" width="20.57" height="54" fill="#ea580c"/>
-    </g>
-    <g id="p5-legend">
-      <rect id="p5-legend-swatch-federal" x="77.50" y="234" width="11" height="11" fill="#2563eb"/>
-      <text id="p5-legend-label-federal" class="legend-label" x="93.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Federal</text>
-      <rect id="p5-legend-swatch-nonfederal-state-local-private" x="148.50" y="234" width="11" height="11" fill="#ea580c"/>
-      <text id="p5-legend-label-nonfederal-state-local-private" class="legend-label" x="164.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Nonfederal (state/local/private)</text>
-    </g>
-    <g id="p5-annotations"><!-- panel annotations --></g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="675" fill="#6b7280">Source: NICC Wildland Fire Summary and Statistics, via CRS IF10244</text>
-  <rect class="panel-edge" x="448" y="394" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="394" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p6-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">State-level check: % federal land vs. burn rate (corpus data)</text>
-    <g id="p6-gridlines">
-      <line class="grid" x1="63" y1="196" x2="386" y2="196" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-0" class="tick" x="55" y="200" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="63" y1="161" x2="386" y2="161" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-1" class="tick" x="55" y="165" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
-      <line class="grid" x1="63" y1="126" x2="386" y2="126" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-2" class="tick" x="55" y="130" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
-      <line class="grid" x1="63" y1="91.00" x2="386" y2="91.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-3" class="tick" x="55" y="95.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
-      <line class="grid" x1="63" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p6-ytick-4" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.8</text>
-    </g>
-    <g id="p6-axes">
-      <line class="axis" x1="63" y1="56" x2="63" y2="196" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="63" y1="196" x2="386" y2="196" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p6-x-axis-title" class="axis-title" x="224.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Federal land share of state (%)</text>
-    <text id="p6-y-axis-title" class="axis-title" x="14" y="126" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle" transform="rotate(-90 14 126)">% of state land burned/yr</text>
-    <g id="p6-x-axis-labels">
-      <text id="p6-xtick-0" class="tick" x="63" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
-      <text id="p6-xtick-1" class="tick" x="127.60" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
-      <text id="p6-xtick-2" class="tick" x="192.20" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">40</text>
-      <text id="p6-xtick-3" class="tick" x="256.80" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">60</text>
-      <text id="p6-xtick-4" class="tick" x="321.40" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">80</text>
-      <text id="p6-xtick-5" class="tick" x="386" y="214" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">100</text>
-    </g>
-    <g id="p6-series-states" class="series">
-      <circle id="p6-mark-states-0" class="point" cx="291.36" cy="135.45" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-1" class="point" cx="95.95" cy="95.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-2" class="point" cx="209.32" cy="116.38" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-3" class="point" cx="99.18" cy="188.83" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-4" class="point" cx="189.62" cy="110.95" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-5" class="point" cx="215.78" cy="99.93" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-6" class="point" cx="86.90" cy="179.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-7" class="point" cx="92.72" cy="195.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-8" class="point" cx="71.08" cy="190.93" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-9" class="point" cx="81.73" cy="194.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-10" class="point" cx="73.66" cy="190.05" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-11" class="point" cx="78.83" cy="193.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-12" class="point" cx="66.88" cy="185.15" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-13" class="point" cx="297.17" cy="171.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-14" class="point" cx="100.79" cy="189.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-15" class="point" cx="83.03" cy="189.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-16" class="point" cx="89.81" cy="192.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-17" class="point" cx="290.39" cy="187.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-18" class="point" cx="108.87" cy="181.30" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-19" class="point" cx="100.79" cy="185.85" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-20" class="point" cx="90.13" cy="175.88" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-21" class="point" cx="73.66" cy="191.45" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-22" class="point" cx="95.95" cy="194.08" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-23" class="point" cx="86.90" cy="193.90" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-24" class="point" cx="209.32" cy="185.33" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-25" class="point" cx="92.72" cy="194.60" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-26" class="point" cx="81.73" cy="193.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-27" class="point" cx="99.18" cy="62.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-28" class="point" cx="71.08" cy="195.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-29" class="point" cx="75.60" cy="195.83" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-30" class="point" cx="119.20" cy="192.33" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-31" class="point" cx="177.02" cy="188.83" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-32" class="point" cx="70.75" cy="195.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-33" class="point" cx="68.17" cy="195.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-34" class="point" cx="68.49" cy="195.90" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-35" class="point" cx="82.38" cy="195.93" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-36" class="point" cx="69.46" cy="195.98" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-37" class="point" cx="67.52" cy="195.97" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-38" class="point" cx="184.45" cy="185.85" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-39" class="point" cx="64.29" cy="195.86" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-40" class="point" cx="69.46" cy="194.08" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-41" class="point" cx="68.17" cy="189.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-42" class="point" cx="237.42" cy="194.08" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-43" class="point" cx="70.75" cy="195.65" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-44" class="point" cx="274.89" cy="147.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-45" class="point" cx="152.79" cy="191.80" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-46" class="point" cx="344.66" cy="175.53" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-47" class="point" cx="81.73" cy="193.38" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-48" class="point" cx="309.45" cy="178.68" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p6-mark-states-49" class="point" cx="229.99" cy="176.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
-    </g>
-    <g id="p6-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="675" fill="#6b7280">Zero-order r=0.46 (p&lt;0.001, n=50); controlling for West-vs-East</text>
-  <text class="caption" x="452" y="688" fill="#6b7280">region, partial r=-0.19 (p=0.20, not significant)</text>
-  <text class="footnote" x="20" y="720" fill="#6b7280">Federal vs nonfederal figures are official CRS/NICC ownership tallies (primary source). The corpus's own disasters.wildfire_perimeters table</text>
-  <text class="footnote" x="20" y="734" fill="#6b7280">declares per-fire ownership columns (landowner_kind, landowner_category) that are NOT actually populated in the live data (reported as a defect),</text>
-  <text class="footnote" x="20" y="748" fill="#6b7280">so the state-grain scatter uses a proxy instead (PAD-US federal-fee land share by state vs. total acres burned per state, 2018-2023 WFIGS…</text>
   <g id="brand">
-  <svg x="20" y="760" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -368,138 +218,43 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="775" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:62009/a/a1dd8428a15b46d25794cbb79e6d1be8.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:64855/a/14f8a572c63deb724290e0b76ea9c0ca.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p><strong>Federally managed land burns considerably more than state and private land, on every measure that adjusts for land ownership size</strong> — but a large share of that gap is really about geography, not ownership itself. Nationally (NICC/CRS data, 2018-2022): federal land accounts for only ~28% of total U.S. acreage, yet averaged about 64% of all acres burned annually over the last decade. Normalizing by ownership size, federal land burns roughly <strong>4-5x more of its own acreage each year</strong> than nonfederal (state/local/private) land, and the average federal fire is roughly <strong>6x larger</strong> than the average nonfederal fire. However, an AskAmerica state-level cross-check finds that most of this federal-land effect is explained by federal land being disproportionately concentrated in the arid West: once region (West vs. East) is controlled for, the state-by-state relationship between % federal land and burn rate is no longer statistically significant (partial r = -0.19, p = 0.20, vs. a raw r = 0.46, p&lt;0.001 before controlling for region).</p>
+<p>Federally managed land burned at roughly <strong>5.7 acres per 1,000 acres per year</strong> in 2020-2025, versus about 1.2 for private land (<strong>about 4.7x</strong>, plausible range 4-5x) and about 3.3 for state land (<strong>about 1.7x</strong>, range 1.3-2.2x). The state comparison is the least certain because state acreage is approximate.</p>
 </section>
 <section>
-<h2>National comparison: federal vs. nonfederal acres burned</h2>
-<p>The Congressional Research Service's <em>Wildfire Statistics</em> report (IF10244), sourced from the National Interagency Coordination Center (NICC)'s official Wildland Fire Summary and Statistics annual reports, is the standard federal reference for this comparison. Its Table 1 (2018-2022):</p><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s5"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s6"><table border='1' cellpadding='4'><tr><th><label class="srth" for="s2-t1-s1"><span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">2018<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">2019<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">2020<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s5">2021<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s6">2022<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Federal acres burned (M)</td><td>4.6</td><td>3.1</td><td>7.1</td><td>5.2</td><td>4.0</td></tr><tr><td>Nonfederal acres burned (M)</td><td>4.1</td><td>1.6</td><td>3.1</td><td>1.9</td><td>3.6</td></tr><tr><td>Federal fires (thousands)</td><td>12.5</td><td>10.9</td><td>14.4</td><td>14.0</td><td>11.7</td></tr><tr><td>Nonfederal fires (thousands)</td><td>45.6</td><td>39.6</td><td>44.6</td><td>45.0</td><td>57.2</td></tr></tbody><tbody class="srt s1"><tr><td>Federal acres burned (M)</td><td>4.6</td><td>3.1</td><td>7.1</td><td>5.2</td><td>4.0</td></tr><tr><td>Federal fires (thousands)</td><td>12.5</td><td>10.9</td><td>14.4</td><td>14.0</td><td>11.7</td></tr><tr><td>Nonfederal acres burned (M)</td><td>4.1</td><td>1.6</td><td>3.1</td><td>1.9</td><td>3.6</td></tr><tr><td>Nonfederal fires (thousands)</td><td>45.6</td><td>39.6</td><td>44.6</td><td>45.0</td><td>57.2</td></tr></tbody><tbody class="srt s2"><tr><td>Nonfederal fires (thousands)</td><td>45.6</td><td>39.6</td><td>44.6</td><td>45.0</td><td>57.2</td></tr><tr><td>Federal fires (thousands)</td><td>12.5</td><td>10.9</td><td>14.4</td><td>14.0</td><td>11.7</td></tr><tr><td>Federal acres burned (M)</td><td>4.6</td><td>3.1</td><td>7.1</td><td>5.2</td><td>4.0</td></tr><tr><td>Nonfederal acres burned (M)</td><td>4.1</td><td>1.6</td><td>3.1</td><td>1.9</td><td>3.6</td></tr></tbody><tbody class="srt s3"><tr><td>Nonfederal fires (thousands)</td><td>45.6</td><td>39.6</td><td>44.6</td><td>45.0</td><td>57.2</td></tr><tr><td>Federal fires (thousands)</td><td>12.5</td><td>10.9</td><td>14.4</td><td>14.0</td><td>11.7</td></tr><tr><td>Federal acres burned (M)</td><td>4.6</td><td>3.1</td><td>7.1</td><td>5.2</td><td>4.0</td></tr><tr><td>Nonfederal acres burned (M)</td><td>4.1</td><td>1.6</td><td>3.1</td><td>1.9</td><td>3.6</td></tr></tbody><tbody class="srt s4"><tr><td>Nonfederal fires (thousands)</td><td>45.6</td><td>39.6</td><td>44.6</td><td>45.0</td><td>57.2</td></tr><tr><td>Federal fires (thousands)</td><td>12.5</td><td>10.9</td><td>14.4</td><td>14.0</td><td>11.7</td></tr><tr><td>Federal acres burned (M)</td><td>4.6</td><td>3.1</td><td>7.1</td><td>5.2</td><td>4.0</td></tr><tr><td>Nonfederal acres burned (M)</td><td>4.1</td><td>1.6</td><td>3.1</td><td>1.9</td><td>3.6</td></tr></tbody><tbody class="srt s5"><tr><td>Nonfederal fires (thousands)</td><td>45.6</td><td>39.6</td><td>44.6</td><td>45.0</td><td>57.2</td></tr><tr><td>Federal fires (thousands)</td><td>12.5</td><td>10.9</td><td>14.4</td><td>14.0</td><td>11.7</td></tr><tr><td>Federal acres burned (M)</td><td>4.6</td><td>3.1</td><td>7.1</td><td>5.2</td><td>4.0</td></tr><tr><td>Nonfederal acres burned (M)</td><td>4.1</td><td>1.6</td><td>3.1</td><td>1.9</td><td>3.6</td></tr></tbody><tbody class="srt s6"><tr><td>Nonfederal fires (thousands)</td><td>45.6</td><td>39.6</td><td>44.6</td><td>45.0</td><td>57.2</td></tr><tr><td>Federal fires (thousands)</td><td>12.5</td><td>10.9</td><td>14.4</td><td>14.0</td><td>11.7</td></tr><tr><td>Federal acres burned (M)</td><td>4.6</td><td>3.1</td><td>7.1</td><td>5.2</td><td>4.0</td></tr><tr><td>Nonfederal acres burned (M)</td><td>4.1</td><td>1.6</td><td>3.1</td><td>1.9</td><td>3.6</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>Over 2018-2022: federal land burned an average of 24.0M acres across 63,500 fires (avg. fire size ≈ 378 acres); nonfederal land burned 14.3M acres across 232,000 fires (avg. fire size ≈ 62 acres) — federal fires average about <strong>6.1x larger</strong>. CRS states the federal share of total acreage burned averaged <strong>64% over the 2013-2022 decade</strong>, even though only 20-30% of fires by count start on federal land — nonfederal land accounts for the large majority of ignitions (70-80%) but federal fires, once they start, tend to be far larger, especially in the West.</p>
+<h2>Method</h2>
+<p>Numerator: disasters.wildfire_perimeters, wildfires only (WF), fire_year 2020-2025 (the only years the layer is complete), acres = COALESCE(gis_acres, incident_size_acres), grouped by point-of-origin owner. Burned acres: USFS 14.67M, BLM 4.17M, FWS 0.98M, NPS 0.77M, DOD 0.45M (about 21.1M federal, excluding BIA trust land 1.53M); private 9.74M plus ANCSA 0.33M; state 3.97M. Denominators: federal 615.2M acres (CRS R42346, 2026 edition, five agencies); state about 200M and private about 1.37B (my approximations: 2.27B US land minus federal, state, tribal), not warehouse values.</p><p>Year by year, the federal/private ratio was 9.4, 8.4, 5.4, 4.0, 2.2 and 4.9 (2020-2025); 2024 was lower because private land had a very large fire year (3.9M acres).</p>
 </section>
 <section>
-<h2>Normalizing by how much land each group actually owns</h2>
-<p>Raw acreage-burned shares overstate the ownership effect unless divided by how much land each group holds. The federal government owns roughly 640 million acres (~28% of the ~2.27 billion acres of total U.S. land area, per CRS/BLM), leaving about 1.63 billion acres (~72%) as state, local, and private land.</p><p>Applying the CRS 10-year-average federal share of acres burned (64%) to the 10-year average total burned (7.2M acres/year, per CRS): federal land burns an estimated 4.6M acres/year against its 640M-acre base (a <strong>0.72%/year burn rate</strong>), while nonfederal land burns an estimated 2.6M acres/year against its 1.63B-acre base (a <strong>0.16%/year burn rate</strong>). That implies federal land burns at roughly <strong>4.5x the rate</strong> of nonfederal land, measured as share of owned acreage burned per year.</p>
+<h2>Caveats</h2>
+<ul><li>Only mapped perimeters are counted; small and agricultural fires on private land are underrepresented, which biases private rates downward and the ratio upward.</li><li>Ownership is the fire's point of origin, not area burned by owner; fires cross ownership lines.</li><li>Federal land is concentrated in the arid, fire-prone West, so this is not a pure ownership effect. I ran no within-state or climate-adjusted test.</li><li>Six years is a short window dominated by 2020-2021 western fires.</li></ul>
 </section>
 <section>
-<h2>AskAmerica corpus cross-check — and a real defect found along the way</h2>
-<p>AskAmerica's <code>disasters.wildfire_perimeters</code> table (NIFC WFIGS perimeters, ~10,000 fires loaded, 2018-2023) is documented as carrying per-fire ownership fields (<code>landowner_kind</code>, <code>landowner_category</code>, <code>jurisdictional_agency</code>) specifically so a federal-vs-nonfederal comparison could be run directly. On querying, none of these three columns actually exist in the live table — only the declared schema metadata lists them; a plain SELECT on any of the three fails with a binder error, while every other declared column works normally. This is reported as a data defect (see below) and blocks the direct per-fire national comparison from this corpus; the national comparison above instead rests on CRS/NICC's official tallies.</p><p>To still use the corpus for an independent check, we joined <code>lands.county_federal_fee_land_share</code> (a PAD-US-derived spatial estimate of % federal-fee land per county, rolled up to state, land-area-weighted) against <code>disasters.wildfire_perimeters</code> totals aggregated by state, normalized by each state's land area. Across the 50 states, the raw (zero-order) correlation between % federal land and the annual share of state land burned is positive and significant: r = 0.46, p &lt; 0.001, n = 50. On its own, this appears to confirm the federal-land-burns-more finding at a finer grain.</p><p>But federal land is heavily concentrated in the 12 CRS-defined "Western" states (AK, AZ, CA, CO, HI, ID, MT, NV, NM, OR, UT, WA, WY), which are also the most fire-prone due to aridity and vegetation type — a classic confound. Controlling for West-vs-East region with a partial correlation collapses the relationship: partial r = -0.19, p = 0.20 — no longer statistically distinguishable from zero. In other words, at the state level, most of the apparent "federal ownership causes more burning" signal is actually "the arid West burns more, and the arid West happens to be where most federal land is" — the corpus data does not support a strong independent ownership effect once region is accounted for.</p><p>This does not overturn the national CRS finding (federal land does account for a disproportionate share of acres burned relative to its size) — federal land management practices, fuel loads, and fire suppression policy differences between agencies plausibly still matter. But it does mean the ~4-5x national ratio should be read as "federal land, which is concentrated in fire-prone terrain, burns more," not as clean evidence that federal management itself burns land at a higher rate than equivalent land under state or private ownership in the same region.</p><p><strong>Exclusion disclosure:</strong> the 50-state correlation and the scatter chart above exclude the District of Columbia and the five inhabited territories (Guam, Puerto Rico, American Samoa, U.S. Virgin Islands, Northern Mariana Islands), which the underlying SQL filtered out with <code>state_fips NOT IN ('11','60','66','69','72','78')</code> and <code>state_fips IS NOT NULL</code>. Re-running the same query with DC included (n=51) changes essentially nothing: DC computes a federal-land share of 17.4% and zero recorded acres burned in the 2018-2023 window, so it sits at the origin of the burn-rate axis and would very slightly weaken, not strengthen, the raw federal-share/burn-rate correlation. No territory carries a comparable federal-fee-land estimate in this corpus, so they could not be added rather than being deliberately dropped for another reason.</p>
-</section>
-<section>
-<h2>Data quality issue reported</h2>
-<p>Filed as a defect: <code>disasters.wildfire_perimeters</code>'s catalog description states the table's <code>landowner_kind</code>/<code>landowner_category</code>/<code>jurisdictional_agency</code> columns exist specifically to answer "federal-vs-nonfederal wildfire comparisons directly from this table," and <code>describe_table</code> lists them — but querying any of the three returns a binder error (column not found), while every other declared column (state_fips, county_fips, fire_cause, gis_acres, etc.) works. The WFIGS source fields (attr_POOLandownerKind, etc.) appear not to have actually been materialized into the live table despite being declared in the schema. Recommend re-running the ETL for this table to backfill these columns.</p>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Within-state paired test / aridity confound</strong>: Not run; national pooled ratio only. Federal land is concentrated in the arid West, so the ratio likely overstates a pure ownership effect.</li><li><strong>Exact state/private denominators</strong>: State land (~200M ac) and private (~1.37B ac) acreage are approximations, not warehouse values; sensitivity range shown.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>8 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 3 rows — 1232 ms</summary><pre><code>SELECT incident_id, fire_year, state_fips, county_fips, poo_state, fire_cause, gis_acres, final_acres, type FROM disasters.wildfire_perimeters LIMIT 3</code></pre></details>
-<details class="sqltoggle"><summary>query — 51 rows — 57661 ms</summary><pre><code>SELECT c.state_fips,
-  SUM(f.federal_fee_land_share_pct/100.0 * c.land_area) / NULLIF(SUM(c.land_area),0) AS federal_share,
-  SUM(c.land_area) AS land_area_sqm
-FROM lands.county_federal_fee_land_share f
-JOIN geo.counties c ON f.county_fips = c.county_fips AND c.year = '2025'
-GROUP BY c.state_fips</code></pre></details>
-<details class="sqltoggle"><summary>query — 48 rows — 1456 ms</summary><pre><code>SELECT state_fips, SUM(gis_acres) AS acres_burned, COUNT(*) n_fires
-FROM disasters.wildfire_perimeters
-WHERE state_fips IS NOT NULL
-GROUP BY state_fips</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 11429 ms</summary><pre><code>SELECT MIN(fire_year) miny, MAX(fire_year) maxy, COUNT(DISTINCT fire_year) ny, COUNT(*) n FROM disasters.wildfire_perimeters</code></pre></details>
-<details class="sqltoggle"><summary>query — 50 rows — 50928 ms</summary><pre><code>WITH federal AS (
-  SELECT c.state_fips,
-    SUM(f.federal_fee_land_share_pct/100.0 * c.land_area) / NULLIF(SUM(c.land_area),0) AS federal_share,
-    SUM(c.land_area) AS land_area_sqm
-  FROM lands.county_federal_fee_land_share f
-  JOIN geo.counties c ON f.county_fips = c.county_fips AND c.year = '2025'
-  GROUP BY c.state_fips
-),
-fires AS (
-  SELECT state_fips, SUM(gis_acres) AS acres_burned, COUNT(*) n_fires
-  FROM disasters.wildfire_perimeters
-  WHERE state_fips IS NOT NULL
-  GROUP BY state_fips
-)
-SELECT fe.state_fips, fe.federal_share, fe.land_area_sqm,
-  COALESCE(fi.acres_burned,0) AS acres_burned,
-  COALESCE(fi.acres_burned,0) / (fe.land_area_sqm * 0.000247105) AS burn_rate_pct_of_land
-FROM federal fe
-LEFT JOIN fires fi ON fe.state_fips = fi.state_fips
-WHERE fe.state_fips NOT IN ('11','60','66','69','72','78')</code></pre></details>
-<details class="sqltoggle"><summary>correlation_matrix — 53261 ms</summary><pre><code>WITH federal AS (
-  SELECT c.state_fips,
-    SUM(f.federal_fee_land_share_pct/100.0 * c.land_area) / NULLIF(SUM(c.land_area),0) AS federal_share,
-    SUM(c.land_area) AS land_area_sqm
-  FROM lands.county_federal_fee_land_share f
-  JOIN geo.counties c ON f.county_fips = c.county_fips AND c.year = '2025'
-  GROUP BY c.state_fips
-),
-fires AS (
-  SELECT state_fips, SUM(gis_acres) AS acres_burned
-  FROM disasters.wildfire_perimeters
-  WHERE state_fips IS NOT NULL
-  GROUP BY state_fips
-)
-SELECT fe.state_fips, fe.federal_share,
-  COALESCE(fi.acres_burned,0) / (fe.land_area_sqm * 0.000247105) AS burn_rate_pct_of_land
-FROM federal fe
-LEFT JOIN fires fi ON fe.state_fips = fi.state_fips
-WHERE fe.state_fips NOT IN ('11','60','66','69','72','78')</code></pre></details>
-<details class="sqltoggle"><summary>partial_correlation — 52314 ms</summary><pre><code>WITH federal AS (
-  SELECT c.state_fips,
-    SUM(f.federal_fee_land_share_pct/100.0 * c.land_area) / NULLIF(SUM(c.land_area),0) AS federal_share,
-    SUM(c.land_area) AS land_area_sqm
-  FROM lands.county_federal_fee_land_share f
-  JOIN geo.counties c ON f.county_fips = c.county_fips AND c.year = '2025'
-  GROUP BY c.state_fips
-),
-fires AS (
-  SELECT state_fips, SUM(gis_acres) AS acres_burned
-  FROM disasters.wildfire_perimeters
-  WHERE state_fips IS NOT NULL
-  GROUP BY state_fips
-)
-SELECT fe.state_fips, fe.federal_share,
-  COALESCE(fi.acres_burned,0) / (fe.land_area_sqm * 0.000247105) AS burn_rate_pct_of_land,
-  CASE WHEN fe.state_fips IN ('02','04','06','08','16','30','32','35','41','49','53','56') THEN 1 ELSE 0 END AS is_west
-FROM federal fe
-LEFT JOIN fires fi ON fe.state_fips = fi.state_fips
-WHERE fe.state_fips NOT IN ('11','60','66','69','72','78')</code></pre></details>
-<details class="sqltoggle"><summary>query — 51 rows — 68285 ms</summary><pre><code>WITH federal AS (
-  SELECT c.state_fips,
-    SUM(f.federal_fee_land_share_pct/100.0 * c.land_area) / NULLIF(SUM(c.land_area),0) AS federal_share,
-    SUM(c.land_area) AS land_area_sqm
-  FROM lands.county_federal_fee_land_share f
-  JOIN geo.counties c ON f.county_fips = c.county_fips AND c.year = '2025'
-  GROUP BY c.state_fips
-),
-fires AS (
-  SELECT state_fips, SUM(gis_acres) AS acres_burned
-  FROM disasters.wildfire_perimeters
-  GROUP BY state_fips
-)
-SELECT fe.state_fips, fe.federal_share,
-  COALESCE(fi.acres_burned,0) / (fe.land_area_sqm * 0.000247105) AS burn_rate_pct_of_land
-FROM federal fe
-LEFT JOIN fires fi ON fe.state_fips = fi.state_fips</code></pre></details>
+<p>2 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 22 rows — 5110 ms</summary><pre><code>SELECT fire_year, landowner_kind, count(*) n, sum(coalesce(gis_acres,incident_size_acres)) acres FROM disasters.wildfire_perimeters WHERE incident_type_category='WF' AND fire_year BETWEEN 2020 AND 2025 GROUP BY fire_year, landowner_kind ORDER BY 1,2</code></pre></details>
+<details class="sqltoggle"><summary>query — 41 rows — 523 ms</summary><pre><code>SELECT landowner_kind k, landowner_category c, count(*) n, sum(coalesce(gis_acres,incident_size_acres)) acres FROM disasters.wildfire_perimeters WHERE incident_type_category='WF' AND fire_year BETWEEN 2020 AND 2025 GROUP BY landowner_kind, landowner_category ORDER BY acres DESC</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.congress.gov/crs_external_products/IF/PDF/IF10244/IF10244.67.pdf">CRS IF10244, Wildfire Statistics (Version 67, updated June 1, 2023)</a> <span class="note">— Table 1: Annual Wildfires and Acres Burned, 2018-2022, by federal (FS/DOI) and nonfederal ownership; primary source for the national comparison</span></li>
-<li><a href="https://www.congress.gov/crs_external_products/IF/PDF/IF10244/IF10244.65.pdf">CRS IF10244, Wildfire Statistics (Version 65, updated December 2, 2022)</a> <span class="note">— Cross-checked 2017-2021 figures and the 73%-federal-acreage-burned 2021 statistic</span></li>
-<li>AskAmerica disasters.wildfire_perimeters — state-level acres burned, 2018-2023<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT state_fips, SUM(gis_acres) AS acres_burned, COUNT(*) n_fires FROM disasters.wildfire_perimeters WHERE state_fips IS NOT NULL GROUP BY state_fips</code></pre></details></li>
-<li>AskAmerica lands.county_federal_fee_land_share rolled up to state (land-area weighted)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT c.state_fips, SUM(f.federal_fee_land_share_pct/100.0 * c.land_area) / NULLIF(SUM(c.land_area),0) AS federal_share, SUM(c.land_area) AS land_area_sqm FROM lands.county_federal_fee_land_share f JOIN geo.counties c ON f.county_fips = c.county_fips AND c.year = '2025' GROUP BY c.state_fips</code></pre></details></li>
-<li>Zero-order correlation, % federal land vs. state burn rate<details class="sqltoggle"><summary>Show tool call</summary><pre><code>correlation_matrix(columns=[&quot;federal_share&quot;,&quot;burn_rate_pct_of_land&quot;])</code></pre></details></li>
-<li>Partial correlation controlling for West/East region<details class="sqltoggle"><summary>Show tool call</summary><pre><code>partial_correlation(x=&quot;federal_share&quot;, y=&quot;burn_rate_pct_of_land&quot;, controls=[&quot;is_west&quot;])</code></pre></details></li>
+<li><a href="https://data-nifc.opendata.arcgis.com/">disasters.wildfire_perimeters (NIFC WFIGS)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT landowner_kind, landowner_category, sum(coalesce(gis_acres,incident_size_acres)) FROM disasters.wildfire_perimeters WHERE incident_type_category='WF' AND fire_year BETWEEN 2020 AND 2025 GROUP BY 1,2</code></pre></details></li>
+<li><a href="https://www.everycrsreport.com/reports/R42346.html">CRS R42346 Federal Land Ownership (via search summary; page fetch returned 403)</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Federal land total acreage (~640M acres) and total U.S. land area (~2.27B acres) are standard published figures (CRS/BLM); not independently recomputed here. The AskAmerica wildfire_perimeters table appears to hold a partial (~10,000-row) sample rather than the full ~39,000-feature WFIGS dataset its own description cites — treated as a sampled cross-check, not a census, and reported alongside the ownership-column defect.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>No dataset — including this corpus — reports small-business loan approval rates by census-tract racial composition; the closest evidence points to roughly 20-50% less lending activity in majority-minority tracts</title>
+<title>Small-business approval rates by tract minority status cannot be computed from public data; a mortgage proxy shows denial rates about 6.5 points higher in majority-minority tracts</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -99,202 +107,38 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>No dataset — including this corpus — reports small-business loan approval rates by census-tract racial composition; the closest evidence points to roughly 20-50% less lending activity in majority-minority tracts</h1>
-<p class="subtitle">CRA aggregate lending data (checked in this corpus) has no application/denial counts; CFPB's Section 1071 rule, built to collect exactly this, is still phasing in through 2026</p>
+<h1>Small-business approval rates by tract minority status cannot be computed from public data; a mortgage proxy shows denial rates about 6.5 points higher in majority-minority tracts</h1>
 </header>
-<figure class="board">
-<!--
-  Dashboard from AskAmerica compose_dashboard. Self-contained: no
-  external assets, no scripts. Drop it into an artifact or an HTML
-  page as-is.
-
-  Each panel is a nested <svg> with its own viewBox, so a panel's
-  internal coordinates are exactly what its own data produced. Panel
-  ids are namespaced p1-, p2-, ... so the per-chart editing contract
-  still works: p2-mark-california, p3-series-nominal, and so on.
-
-  Safe to edit: panel captions (<text class="caption">), the
-  dashboard title/subtitle/footnote, any panel's fills, and the
-  per-panel <g id="pN-annotations"> groups, which paint last.
-  Do NOT move a panel's internal geometry, and do NOT change one
-  panel's axis domain: panels sharing a scale_group were given one
-  domain deliberately so they can be compared.
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
-  <style>
-    .dash-title { font-size: 20px; font-weight: 650 }
-    .dash-subtitle { font-size: 13px }
-    .caption { font-size: 11px }
-    .footnote { font-size: 11px; font-style: italic }
-    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
-    .byline { font-size: 11px }
-    .stat-label { font-size: 12px }
-    .stat-value { font-size: 30px; font-weight: 650 }
-    .stat-delta { font-size: 13px; font-weight: 600 }
-    .title { font-size: 15px; font-weight: 600 }
-    .axis-title { font-size: 12px }
-    .tick { font-size: 11px }
-    .value-label { font-size: 11px; font-weight: 600 }
-    .callout { font-size: 11px; font-style: italic }
-    @media (prefers-color-scheme: dark) {
-      .dash-bg, .chart-bg { fill: #16181d }
-      .panel-edge { stroke: #2c3038 }
-      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
-      .stat-value, .title, .axis-title, .tick, .value-label,
-      .callout, .legend-label, .byline { fill: #e6e8eb }
-      .brand-mark { fill: #9aa4b2 }
-      .axis { stroke: #6b7280 }
-      .grid { stroke: #2c3038 }
-    }
-  </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="590" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">No true tract-level small-business approval-rate data exists yet — every available proxy still finds majority-…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:9px">banking.cra_small_business_lending (this corpus) reports originations only, no denials; CFPB Section 1071 tract-level application data is still phasing in through 2026</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">CRA small-business table (this corpus)</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">Originations only</text>
-  <text class="stat-delta" x="36" y="168" fill="#6b7280">No application or denial count exists</text>
-  </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">banking.cra_small_business_lending — confirmed via describe_table,</text>
-  <text class="caption" x="24" y="216" fill="#6b7280">2026-09-26</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280">CFPB Section 1071 (the fix)</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:22px">Not yet public at tract grain</text>
-  <text class="stat-delta" x="464" y="168" fill="#6b7280">Compliance phasing in through Oct. 2026</text>
-  </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">Designed to collect tract + applicant race + action-taken together;</text>
-  <text class="caption" x="452" y="216" fill="#6b7280">bulk tract data not yet released</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Los Angeles metro: PPP small-business loans per business, by tract racial …</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="77" y1="148.96" x2="390" y2="148.96" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="69" y="152.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="77" y1="130.37" x2="390" y2="130.37" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="69" y="134.37" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
-      <line class="grid" x1="77" y1="111.78" x2="390" y2="111.78" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="69" y="115.78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
-      <line class="grid" x1="77" y1="93.18" x2="390" y2="93.18" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="69" y="97.18" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.6</text>
-      <line class="grid" x1="77" y1="74.59" x2="390" y2="74.59" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="69" y="78.59" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.8</text>
-      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
-    </g>
-    <g id="p3-axes">
-      <line class="axis" x1="77" y1="56" x2="77" y2="148.96" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="77" y1="148.96" x2="390" y2="148.96" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p3-x-axis-title" class="axis-title" x="233.50" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Tract racial majority</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="102.48" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 102.48)">Relative lending rate</text>
-    <text id="p3-y-axis-title-2" class="axis-title" x="24" y="102.48" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 24 102.48)">(white tracts = 1.0)</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-majority-white" class="tick" x="116.13" y="162.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 116.13 162.96)">Majority-White</text>
-      <text id="p3-xtick-majority-asian" class="tick" x="194.38" y="162.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 194.38 162.96)">Majority-Asian</text>
-      <text id="p3-xtick-majority-black" class="tick" x="272.63" y="162.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 272.63 162.96)">Majority-Black</text>
-      <text id="p3-xtick-majority-latino" class="tick" x="350.88" y="162.96" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 350.88 162.96)">Majority-Latino</text>
-    </g>
-    <g id="p3-series-relative-loans-per-business-rate" class="series">
-      <rect id="p3-mark-relative-loans-per-business-rate-majority-white" class="bar" x="91.09" y="56" width="49.08" height="92.96" fill="#2563eb"/>
-      <rect id="p3-mark-relative-loans-per-business-rate-majority-asian" class="bar" x="169.34" y="71.80" width="49.08" height="77.16" fill="#2563eb"/>
-      <rect id="p3-mark-relative-loans-per-business-rate-majority-black" class="bar" x="247.59" y="86.68" width="49.08" height="62.28" fill="#2563eb"/>
-      <rect id="p3-mark-relative-loans-per-business-rate-majority-latino" class="bar" x="325.84" y="102.48" width="49.08" height="46.48" fill="#2563eb"/>
-    </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="519" fill="#6b7280">Majority-white LA tracts received PPP loans at 2x the rate of</text>
-  <text class="caption" x="24" y="532" fill="#6b7280">majority-Latino tracts, 1.5x majority-Black, 1.2x majority-Asian…</text>
-  <rect class="panel-edge" x="448" y="238" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="238" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Chicago region 2008–2012: share of businesses receiving a bank loan, by t…</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="74" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="66" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="74" y1="114.50" x2="390" y2="114.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="66" y="118.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="74" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="66" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="74" y1="75.50" x2="390" y2="75.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="66" y="79.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">60</text>
-      <line class="grid" x1="74" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="66" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">80</text>
-    </g>
-    <g id="p4-axes">
-      <line class="axis" x1="74" y1="56" x2="74" y2="134" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="74" y1="134" x2="390" y2="134" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p4-x-axis-title" class="axis-title" x="232" y="244" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Tract type</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="95" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 95)">Share of businesses</text>
-    <text id="p4-y-axis-title-2" class="axis-title" x="24" y="95" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 24 95)">receiving a loan (%)</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-low-income-majority-minority" class="tick" x="113.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 113.50 148)">Low-income majority-minority</text>
-      <text id="p4-xtick-upper-income-majority-minority" class="tick" x="192.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 192.50 148)">Upper-income majority-minority</text>
-      <text id="p4-xtick-low-income-majority-white" class="tick" x="271.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 271.50 148)">Low-income majority-white</text>
-      <text id="p4-xtick-upper-income-majority-white" class="tick" x="350.50" y="148" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 350.50 148)">Upper-income majority-white</text>
-    </g>
-    <g id="p4-series-of-businesses-receiving-a-loan" class="series">
-      <rect id="p4-mark-of-businesses-receiving-a-loan-low-income-majority-minority" class="bar" x="88.22" y="105.73" width="49.56" height="28.28" fill="#2563eb"/>
-      <rect id="p4-mark-of-businesses-receiving-a-loan-upper-income-majority-minority" class="bar" x="167.22" y="75.50" width="49.56" height="58.50" fill="#2563eb"/>
-      <rect id="p4-mark-of-businesses-receiving-a-loan-low-income-majority-white" class="bar" x="246.22" y="95" width="49.56" height="39" fill="#2563eb"/>
-      <rect id="p4-mark-of-businesses-receiving-a-loan-upper-income-majority-white" class="bar" x="325.22" y="60.88" width="49.56" height="73.13" fill="#2563eb"/>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="519" fill="#6b7280">Income tier alone drives a ~2x gap in the same corridor; race and</text>
-  <text class="caption" x="452" y="532" fill="#6b7280">tract-income are correlated but not identical.</text>
-  <g id="brand">
-  <svg x="20" y="549" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
-    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
-    <g clip-path="url(#brand-tile)">
-      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
-      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
-    </g>
-    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
-    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
-  </svg>
-    <text class="brand-mark" x="45" y="564" fill="#374151">AskAmerica · askamerica.ai</text>
-  </g>
-  <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:52269/a/7b8b250d554b236c06b0db3ea018359a.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
-</figure>
 <section>
-<h2>Summary</h2>
-<p><strong>No dataset anywhere — including this corpus — currently reports small-business loan applications and denials broken out by census-tract racial composition, so a true "approval rate" gap cannot be computed.</strong> Confirmed live: the one federal source with small-business lending at census-tract grain, CRA aggregate data (<code>banking.cra_small_business_lending</code> in this corpus, 2009–2020, 879,084 rows), reports only loans <em>originated</em> — it has no applications-received or denials column, so there is no denominator to build an approval rate from, at any grain. The Consumer Financial Protection Bureau's Section 1071 rule, enacted specifically to collect small-business credit applications with tract and denial data together, is still phasing in compliance (largest lenders since July 2025, mid-size lenders January 2026, smaller lenders October 2026); the CFPB does not expect to review this data until mid-2026 and no bulk tract-level results are public yet.</p><p>Using the best available proxies, published studies consistently find majority-minority census tracts receive noticeably less small-business credit than other tracts in the same metro area. The most directly relevant primary data point: an analysis of over 5 million Paycheck Protection Program (PPP) loans by Reveal/Center for Investigative Reporting and the Los Angeles Times, published in the LA Times (fetched directly, 2021), found that <strong>in the Los Angeles metro area, businesses in majority-white census tracts received PPP loans at twice the rate of majority-Latino tracts, 1.5 times the rate of majority-Black tracts, and 1.2 times the rate of majority-Asian tracts</strong> — all within the same metro. Nationally, the same analysis found that in the vast majority of metro areas with population over 1 million, majority-white tracts had a higher lending rate than any tract with a Latino, Black, or Asian majority. Translated into a "how much smaller" framing, that puts majority-minority tracts at roughly <strong>20% (Asian-majority) to 50% (Latino-majority) lower loans-per-business than majority-white tracts in the same metro</strong> in this dataset — but this is loans-per-business, a proxy for credit access, not a formal application-approval rate, since PPP loans (like CRA data) carry no standardized denial record either.</p>
+<h2>Answer</h2>
+<p><strong>It cannot be measured directly today.</strong> An approval rate needs applications and denials by tract. Public small-business data (CRA, SBA 7(a)/504 approvals in fiscal.sba_loan_approvals) records only loans made or approved. CFPB Section 1071 would supply tract-level action taken, but compliance dates have been pushed back and no approval-rate analysis by tract type has been published. Published evidence is about loan shares: Woodstock Institute found predominantly minority tracts in Chicago had about 15% of businesses but about 8% of small loans under $100,000 (a share gap, not an approval rate).</p><p><strong>Proxy (mortgages, not small business):</strong> in HMDA 2023 loan-level data, across 525 counties with at least 200 decided applications in both tract groups, the denial rate (denials / (originations + denials)) averaged 31.6% in majority-minority tracts (minority share 50% or more) versus 25.1% in other tracts in the same county: a gap of 6.5 points (median 5.9; volume-weighted 6.8; ratio about 1.28). Denial was higher in majority-minority tracts in 90% of counties. Equivalent approval rates are about 68% vs 75%.</p><p>Caveats: this is home-loan data, county stands in for metro (the table has no MSA field), and there are no controls for income, credit, or loan type.</p>
 </section>
 <section>
-<h2>What this corpus can and cannot answer</h2>
-<p><code>banking.cra_small_business_lending</code> (confirmed via describe_table) carries <code>loans_lt_100k_count</code>, <code>loans_100k_to_250k_count</code>, <code>loans_250k_to_1m_count</code>, and the small-business-revenue subset — all counts of loans <strong>made</strong>, by census tract, county, MSA and income tier. There is no applications-received or denials column anywhere in this table, confirmed directly against its schema, so no approval rate can be derived from it no matter how the SQL is written.</p><p>This corpus also has no census-tract-level race/ethnicity table: <code>census.acs_race_ethnicity</code> and <code>census.acs_population</code> are state/county grain only. The one place a tract-level minority-population-percent field exists in this corpus is <code>housing.hmda_lending_by_tract</code> — which does carry real application, origination, and denial counts — but that table covers home <em>mortgages</em> for 2024 only, a different credit market and a four-year vintage gap from the CRA small-business table's 2020 endpoint. Joining the two to manufacture a single number would conflate mortgage lending with small-business lending and misalign vintages by four years, so it is reported here as a genuine, confirmed corpus gap rather than bridged into a single figure.</p>
-</section>
-<section>
-<h2>What the published record actually shows instead</h2>
-<ul><li><strong>PPP loans by tract racial majority, Los Angeles metro (Reveal/CIR + LA Times, 2021, fetched directly):</strong> majority-white tracts received loans at 2x the rate of majority-Latino tracts, 1.5x majority-Black, 1.2x majority-Asian; nationally, majority-white tracts out-lent every minority-majority tract type in most metros over 1 million population. Neighborhood examples cited in the article: Playa del Rey (majority-white) 61% of businesses received a PPP loan vs. Inglewood (Black enclave) roughly half that rate, vs. a predominantly Latino South L.A. tract at only 10%.</li><li><strong>NCRC "Disinvestment, Discouragement and Inequity in Small Business Lending" (2008–2016, 7 metro areas, fetched directly):</strong> business owners in wealthier tracts received the largest share of CRA-reported loans — 85% in Milwaukee — and in 6 of 7 metros studied, over 70% of loans went to middle- and upper-income neighborhoods; SBA 7(a) lending to Black-owned businesses fell from ~8% to ~3% of loans during the Great Recession and has not recovered.</li><li><strong>Brookings/Johns Hopkins 21st Century Cities analysis of Black-majority communities (2021, fetched directly):</strong> by 2021, majority-Black census tracts were markedly less likely to have a bank branch at all than non-majority-Black tracts (mapped concretely in Philadelphia); majority-Black ZIP codes in large metros had a median banking-competition HHI of 4,584 vs. 3,106 in non-majority-Black ZIP codes (higher HHI = less competition, typically worse loan terms).</li><li><strong>CFPB matched-pair testing pilot (Fairfax County, VA and Nassau County, NY, fetched directly from CFPB's official release):</strong> not a tract-composition study, but the closest thing to a controlled experiment on differential treatment — lenders expressed interest in lending to 40% of white test participants but only 23% of Black participants who had equal-or-better financial profiles, a 17-point gap in willingness to lend before a formal application was ever filed.</li><li><strong>Chicago region, 2008–2012 (Woodstock Institute):</strong> only ~29% of businesses in low-income majority-minority tracts received a loan vs. ~60% in upper-income majority-minority tracts and ~75% in upper-income majority-white tracts — showing tract income tier compounds but does not fully explain the racial-composition effect.</li></ul>
-</section>
-<section>
-<h2>Bottom line</h2>
-<p>If forced to give one number: the best tract-level evidence (PPP loans by census-tract racial majority, Los Angeles metro) puts majority-minority tracts at roughly <strong>20% to 50% lower small-business lending activity</strong> than majority-white tracts in the same metro, with the size of the gap varying by minority group, city, and the correlated effect of tract income level. This is a lending-intensity proxy (loans per business), not a true application-approval rate, because no dataset currently in existence — public or in this corpus — reports small-business loan applications and denials broken out by census tract. Section 1071 was written specifically to close this gap; its data is not yet available at the scale needed to answer this question directly.</p>
+<h2>Exclusions</h2>
+<p>The first query used the predicate tract_minority_population_percent IS NOT NULL. It removed zero tracts: 0 tracts in 2023 have a null minority share, and the result without the predicate is identical (31.6% vs 25.1%, gap 6.5 points, 525 counties). Counties with fewer than 200 decided applications in either tract group were left out for stability of the rate.</p>
 </section>
 <section>
 <h2>What This Report Does Not Answer</h2>
-<ul><li><strong>A quantified 'how much smaller' approval-rate figure</strong>: Confirmed via describe_table that no public dataset (including this corpus's CRA small-business table) reports small-business loan applications or denials at census-tract grain, so a true approval rate cannot be computed by anyone currently, including CFPB's own Section 1071 program which is still phasing in. Reported the closest available primary-sourced proxy (PPP loans-per-business by tract, fetched directly from LA Times/Reveal) with a real range (roughly 20-50% lower lending activity in majority-minority tracts) instead of fabricating a precise approval-rate percentage.</li></ul>
+<ul><li><strong>Small-business loan approval rate gap, majority-minority vs other tracts, same metro</strong>: No public dataset carries small-business applications/denials by tract. CRA and SBA data are originations/approvals only; CFPB Section 1071 data is not yet published. Delivered a labeled mortgage (HMDA) proxy at county grain instead.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>3 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 1 rows — 2465 ms</summary><pre><code>WITH c AS (SELECT county_fips, CASE WHEN tract_minority_population_percent&gt;=50 THEN 1 ELSE 0 END mm, SUM(denial_count) d, SUM(origination_count) o, COUNT(*) n FROM housing.hmda_lending_by_tract WHERE year=2023 AND tract_minority_population_percent IS NOT NULL GROUP BY county_fips, CASE WHEN tract_minority_population_percent&gt;=50 THEN 1 ELSE 0 END), p AS (SELECT a.county_fips, a.d*1.0/(a.d+a.o) r1, b.d*1.0/(b.d+b.o) r0, a.d+a.o+b.d+b.o w, a.n n1, b.n n0 FROM c a JOIN c b ON a.county_fips=b.county_fips AND a.mm=1 AND b.mm=0 WHERE a.d+a.o&gt;=200 AND b.d+b.o&gt;=200) SELECT COUNT(*) counties, AVG(r1) mm_rate, AVG(r0) other_rate, AVG(r1-r0) avg_gap_pp, median(r1-r0) med_gap, SUM((r1-r0)*w)/SUM(w) wtd_gap, AVG(r1/r0) avg_ratio, AVG(CASE WHEN r1&gt;r0 THEN 1.0 ELSE 0 END) share_higher FROM p</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1296 ms</summary><pre><code>WITH c AS (SELECT county_fips, CASE WHEN tract_minority_population_percent&gt;=50 THEN 1 ELSE 0 END mm, SUM(denial_count) d, SUM(origination_count) o FROM housing.hmda_lending_by_tract WHERE year=2023 GROUP BY county_fips, CASE WHEN tract_minority_population_percent&gt;=50 THEN 1 ELSE 0 END), p AS (SELECT a.d*1.0/(a.d+a.o) r1, b.d*1.0/(b.d+b.o) r0 FROM c a JOIN c b ON a.county_fips=b.county_fips AND a.mm=1 AND b.mm=0 WHERE a.d+a.o&gt;=200 AND b.d+b.o&gt;=200) SELECT COUNT(*) n, AVG(r1) mm_rate, AVG(r0) other_rate, AVG(r1-r0) gap FROM p</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 916 ms</summary><pre><code>SELECT COUNT(*) null_tracts FROM housing.hmda_lending_by_tract WHERE year=2023 AND tract_minority_population_percent IS NULL</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.ffiec.gov/cra/craflatfiles.htm">banking.cra_small_business_lending (AskAmerica/FFIEC CRA Aggregate, table A1-1)</a> <span class="note">— Confirmed via describe_table 2026-09-26: originations only, no application/denial columns, 2009-2020 observed coverage</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT column_name FROM information_schema.columns WHERE table_schema='banking' AND table_name='cra_small_business_lending'</code></pre></details></li>
-<li><a href="https://ffiec.cfpb.gov/data-browser/">housing.hmda_lending_by_tract (AskAmerica/CFPB HMDA loan-level, tract grain)</a> <span class="note">— Confirmed via describe_table 2026-09-26: has application/origination/denial counts and tract_minority_population_percent, but for mortgages (2024 only), not small-business loans</span></li>
-<li><a href="https://www.latimes.com/california/story/2021-05-01/ppp-loans-coronavirus-pandemic-businesses-trump">https://www.latimes.com/california/story/2021-05-01/ppp-loans-coronavirus-pandemic-businesses-trump</a></li>
-<li><a href="https://ncrc.org/disinvestment/">https://ncrc.org/disinvestment/</a></li>
-<li><a href="https://www.brookings.edu/articles/an-analysis-of-financial-institutions-in-black-majority-communities-black-borrowers-and-depositors-face-considerable-challenges-in-accessing-banking-services/">https://www.brookings.edu/articles/an-analysis-of-financial-institutions-in-black-majority-communities-black-borrowers-and-depositors-face-considerable-challenges-in-accessing-banking-services/</a></li>
-<li><a href="https://www.consumerfinance.gov/about-us/newsroom/cfpb-pilot-study-finds-differential-treatment-in-small-business-lending-markets/">https://www.consumerfinance.gov/about-us/newsroom/cfpb-pilot-study-finds-differential-treatment-in-small-business-lending-markets/</a></li>
-<li><a href="https://ncrc.org/cfpb-study-confirms-advocates-findings-that-small-business-lending-has-a-big-racial-discrimination-problem/">https://ncrc.org/cfpb-study-confirms-advocates-findings-that-small-business-lending-has-a-big-racial-discrimination-problem/</a></li>
-<li><a href="https://woodstockinst.org/press-release/new-report-finds-disparities-race-and-income-lending-businesses/">https://woodstockinst.org/press-release/new-report-finds-disparities-race-and-income-lending-businesses/</a> <span class="note">— Fetch blocked (HTTP 403) live; figures relayed via WebSearch summary only, not independently verified against the primary document</span></li>
+<li><a href="https://ffiec.cfpb.gov/v2/data-browser-api/view/nationwide/csv">housing.hmda_lending_by_tract (2023)</a></li>
+<li><a href="https://nextcity.org/urbanist-news/small-business-lending-bank-reporting-dodd-frank">Next City on Section 1071 data</a></li>
+<li><a href="https://ncrc.org/initial-analysis-of-final-section-1071-small-business-lending-rule/">NCRC on final 1071 rule</a></li>
 </ol>
 </section>
 <footer>
+<p class="footnote">Proxy is mortgage denial at county grain, 2023; not small-business lending.</p>
 <p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
