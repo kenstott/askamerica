@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Farm consolidation over 40 years was steady and structural; land values rose far more but moved in volatile boom-bust cycles largely independent of the consolidation trend</title>
+<title>Farmland consolidation is real but concentrated in the largest operations, and it has only loosely tracked land values</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -109,6 +117,21 @@ figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:
 #s2-t1-s4:checked ~ table label[for="s2-t1-s4"]{color:var(--link)}
 #s2-t1-s4:checked ~ table label[for="s2-t1-s4"] .srtcue{opacity:1}
 #s2-t1-s4:checked ~ .srtreset{display:inline-block}
+#s2-t1-s5:checked ~ table tbody.s0{display:none}
+#s2-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s2-t1-s5:checked ~ table label[for="s2-t1-s5"]{color:var(--link)}
+#s2-t1-s5:checked ~ table label[for="s2-t1-s5"] .srtcue{opacity:1}
+#s2-t1-s5:checked ~ .srtreset{display:inline-block}
+#s2-t1-s6:checked ~ table tbody.s0{display:none}
+#s2-t1-s6:checked ~ table tbody.s6{display:table-row-group}
+#s2-t1-s6:checked ~ table label[for="s2-t1-s6"]{color:var(--link)}
+#s2-t1-s6:checked ~ table label[for="s2-t1-s6"] .srtcue{opacity:1}
+#s2-t1-s6:checked ~ .srtreset{display:inline-block}
+#s2-t1-s7:checked ~ table tbody.s0{display:none}
+#s2-t1-s7:checked ~ table tbody.s7{display:table-row-group}
+#s2-t1-s7:checked ~ table label[for="s2-t1-s7"]{color:var(--link)}
+#s2-t1-s7:checked ~ table label[for="s2-t1-s7"] .srtcue{opacity:1}
+#s2-t1-s7:checked ~ .srtreset{display:inline-block}
 }
 </style>
 </head>
@@ -121,41 +144,354 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Farm consolidation over 40 years was steady and structural; land values rose far more but moved in volatile boom-bust cycles largely independent of the consolidation trend</h1>
-<p class="subtitle">USDA NASS Census of Agriculture (1982-2022) and USDA ERS/NASS annual farm real estate value series (1982-2023)</p>
+<h1>Farmland consolidation is real but concentrated in the largest operations, and it has only loosely tracked land values</h1>
+<p class="subtitle">USDA Census of Agriculture (Table 1, Table 9), ERS farm real estate values, NASS state series 2009-2025 (warehouse). Operations, not owners.</p>
 </header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 762" width="880" height="762" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="762" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Farm size vs land value</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">Census years 1992-2022; real value in 2023 dollars</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="306" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="306" viewBox="0 0 412 306" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="306" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Real farm real estate value ($/acre, 2023$)</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="59" y1="252" x2="390" y2="252" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="51" y="256" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="59" y1="203" x2="390" y2="203" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="51" y="207" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="59" y1="154" x2="390" y2="154" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="51" y="158" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="59" y1="105" x2="390" y2="105" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="51" y="109" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,000</text>
+      <line class="grid" x1="59" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="51" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="59" y1="56" x2="59" y2="252" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="59" y1="252" x2="390" y2="252" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-1992" class="tick" x="82.64" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1992</text>
+      <text id="p1-xtick-1997" class="tick" x="129.93" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1997</text>
+      <text id="p1-xtick-2002" class="tick" x="177.21" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2002</text>
+      <text id="p1-xtick-2007" class="tick" x="224.50" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2007</text>
+      <text id="p1-xtick-2012" class="tick" x="271.79" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2012</text>
+      <text id="p1-xtick-2017" class="tick" x="319.07" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+      <text id="p1-xtick-2022" class="tick" x="366.36" y="270" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+    </g>
+    <g id="p1-series-real-acre" class="series">
+      <path id="p1-line-real-acre" class="line" d="M 82.64 184.04 L 129.93 172.23 L 177.21 156.25 L 224.50 112.94 L 271.79 90.40 L 319.07 70.95 L 366.36 59.58" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="hover">
+        <title>1992 — Real $/acre: 1,387</title>
+        <circle id="p1-mark-real-acre-1992" class="point" cx="82.64" cy="184.04" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="82.64" cy="184.04" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>1997 — Real $/acre: 1,628</title>
+        <circle id="p1-mark-real-acre-1997" class="point" cx="129.93" cy="172.23" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="129.93" cy="172.23" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2002 — Real $/acre: 1,954</title>
+        <circle id="p1-mark-real-acre-2002" class="point" cx="177.21" cy="156.25" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="177.21" cy="156.25" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2007 — Real $/acre: 2,838</title>
+        <circle id="p1-mark-real-acre-2007" class="point" cx="224.50" cy="112.94" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="224.50" cy="112.94" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2012 — Real $/acre: 3,298</title>
+        <circle id="p1-mark-real-acre-2012" class="point" cx="271.79" cy="90.40" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="271.79" cy="90.40" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2017 — Real $/acre: 3,695</title>
+        <circle id="p1-mark-real-acre-2017" class="point" cx="319.07" cy="70.95" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="319.07" cy="70.95" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2022 — Real $/acre: 3,927</title>
+        <circle id="p1-mark-real-acre-2022" class="point" cx="366.36" cy="59.58" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="366.36" cy="59.58" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="448" y="82" width="412" height="274" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="82" width="412" height="274" viewBox="0 0 412 274" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="274" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Average farm size (acres)</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="49" y1="220" x2="390" y2="220" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-0" class="tick" x="41" y="224" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="49" y1="187.20" x2="390" y2="187.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-1" class="tick" x="41" y="191.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="49" y1="154.40" x2="390" y2="154.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-2" class="tick" x="41" y="158.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
+      <line class="grid" x1="49" y1="121.60" x2="390" y2="121.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-3" class="tick" x="41" y="125.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
+      <line class="grid" x1="49" y1="88.80" x2="390" y2="88.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-4" class="tick" x="41" y="92.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
+      <line class="grid" x1="49" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-ytick-5" class="tick" x="41" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="49" y1="56" x2="49" y2="220" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="49" y1="220" x2="390" y2="220" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <g id="p2-x-axis-labels">
+      <text id="p2-xtick-1992" class="tick" x="73.36" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1992</text>
+      <text id="p2-xtick-1997" class="tick" x="122.07" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1997</text>
+      <text id="p2-xtick-2002" class="tick" x="170.79" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2002</text>
+      <text id="p2-xtick-2007" class="tick" x="219.50" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2007</text>
+      <text id="p2-xtick-2012" class="tick" x="268.21" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2012</text>
+      <text id="p2-xtick-2017" class="tick" x="316.93" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+      <text id="p2-xtick-2022" class="tick" x="365.64" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+    </g>
+    <g id="p2-series-avg-acres" class="series">
+      <path id="p2-line-avg-acres" class="line" d="M 73.36 58.95 L 122.07 60.26 L 170.79 75.35 L 219.50 82.90 L 268.21 77.65 L 316.93 75.35 L 365.64 68.14" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="hover">
+        <title>1992 — Avg acres: 491</title>
+        <circle id="p2-mark-avg-acres-1992" class="point" cx="73.36" cy="58.95" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="73.36" cy="58.95" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>1997 — Avg acres: 487</title>
+        <circle id="p2-mark-avg-acres-1997" class="point" cx="122.07" cy="60.26" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="122.07" cy="60.26" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2002 — Avg acres: 441</title>
+        <circle id="p2-mark-avg-acres-2002" class="point" cx="170.79" cy="75.35" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="170.79" cy="75.35" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2007 — Avg acres: 418</title>
+        <circle id="p2-mark-avg-acres-2007" class="point" cx="219.50" cy="82.90" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="219.50" cy="82.90" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2012 — Avg acres: 434</title>
+        <circle id="p2-mark-avg-acres-2012" class="point" cx="268.21" cy="77.65" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="268.21" cy="77.65" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2017 — Avg acres: 441</title>
+        <circle id="p2-mark-avg-acres-2017" class="point" cx="316.93" cy="75.35" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="316.93" cy="75.35" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2022 — Avg acres: 463</title>
+        <circle id="p2-mark-avg-acres-2022" class="point" cx="365.64" cy="68.14" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="365.64" cy="68.14" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="369" fill="#6b7280">2002 Census coverage change breaks comparability.</text>
+  <rect class="panel-edge" x="20" y="404" width="412" height="274" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="404" width="412" height="274" viewBox="0 0 412 274" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="274" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Cropland share on 2,000+ acre farms (%)</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="42" y1="220" x2="390" y2="220" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="34" y="224" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="42" y1="187.20" x2="390" y2="187.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="34" y="191.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="42" y1="154.40" x2="390" y2="154.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="34" y="158.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="42" y1="121.60" x2="390" y2="121.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="34" y="125.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="42" y1="88.80" x2="390" y2="88.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="34" y="92.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="42" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="34" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="42" y1="56" x2="42" y2="220" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="42" y1="220" x2="390" y2="220" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-1987" class="tick" x="100" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1987</text>
+      <text id="p3-xtick-2012" class="tick" x="216" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2012</text>
+      <text id="p3-xtick-2017" class="tick" x="332" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+    </g>
+    <g id="p3-series-share" class="series">
+      <g class="hover">
+        <title>1987 — Share: 15</title>
+        <rect id="p3-mark-share-1987" class="bar" x="62.88" y="170.80" width="73.24" height="49.20" fill="#2563eb"/>
+        <rect class="hit" x="62.88" y="56" width="73.24" height="164" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2012 — Share: 36</title>
+        <rect id="p3-mark-share-2012" class="bar" x="178.88" y="101.92" width="73.24" height="118.08" fill="#2563eb"/>
+        <rect class="hit" x="178.88" y="56" width="73.24" height="164" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2017 — Share: 41</title>
+        <rect id="p3-mark-share-2017" class="bar" x="294.88" y="85.52" width="73.24" height="134.48" fill="#2563eb"/>
+        <rect class="hit" x="294.88" y="56" width="73.24" height="164" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="24" y="691" fill="#6b7280">USDA ERS</text>
+  <rect class="panel-edge" x="448" y="404" width="412" height="274" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="404" width="412" height="274" viewBox="0 0 412 274" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="274" class="chart-bg" fill="#ffffff"/>
+    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Share of farm acres on 5,000+ acre farms (%)</text>
+    <g id="p4-gridlines">
+      <line class="grid" x1="42" y1="220" x2="390" y2="220" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-0" class="tick" x="34" y="224" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="42" y1="187.20" x2="390" y2="187.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-1" class="tick" x="34" y="191.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="42" y1="154.40" x2="390" y2="154.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-2" class="tick" x="34" y="158.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="42" y1="121.60" x2="390" y2="121.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-3" class="tick" x="34" y="125.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="42" y1="88.80" x2="390" y2="88.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-4" class="tick" x="34" y="92.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
+      <line class="grid" x1="42" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p4-ytick-5" class="tick" x="34" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+    </g>
+    <g id="p4-axes">
+      <line class="axis" x1="42" y1="56" x2="42" y2="220" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="42" y1="220" x2="390" y2="220" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <g id="p4-x-axis-labels">
+      <text id="p4-xtick-2017" class="tick" x="129" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
+      <text id="p4-xtick-2022" class="tick" x="303" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+    </g>
+    <g id="p4-series-share" class="series">
+      <g class="hover">
+        <title>2017 — Share: 38</title>
+        <rect id="p4-mark-share-2017" class="bar" x="73.32" y="95.36" width="110.36" height="124.64" fill="#2563eb"/>
+        <rect class="hit" x="73.32" y="56" width="110.36" height="164" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2022 — Share: 41.8</title>
+        <rect id="p4-mark-share-2022" class="bar" x="247.32" y="82.90" width="110.36" height="137.10" fill="#2563eb"/>
+        <rect class="hit" x="247.32" y="56" width="110.36" height="164" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p4-annotations"><!-- panel annotations --></g>
+  </svg>
+  <text class="caption" x="452" y="691" fill="#6b7280">Census Table 9</text>
+  <g id="brand">
+  <svg x="20" y="721" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="736" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:50954/a/5e3968084febafc8aa0df6c78412205e.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
 <section>
 <h2>Summary</h2>
-<p>Since 1982 the number of U.S. farms fell from <strong>2.24 million to 1.90 million (-15.2%)</strong> through 2022, a slow, steady decline with no sharp inflection. But the <strong>average</strong> farm size barely moved (440 to 463 acres, +5.2%) because total farmland also shrank (-10.8%, 987M to 880M acres) -- the mean masks the real consolidation story, which is a redistribution: since the 1980s the number of very large crop farms (2,000+ cropland acres) has nearly doubled while midsize farms (100-999 cropland acres) fell by roughly half, and the midpoint acreage of both cropland and harvested cropland farms roughly doubled between 1987 and 2012 (about 650 and 488 acres, respectively, to about 1,200 acres each). Sales are far more concentrated than acreage: by 1997 just 2% of farms accounted for half of all farm sales (versus 17% of farms in 1900). Land values, meanwhile, rose far more than any consolidation metric -- nominal farm real-estate value per acre rose from $823 (1982) to $4,080 (2023), +396%, and even after stripping out inflation rose 86% in real terms. But the land-value series is NOT a smooth complement to the consolidation trend: it crashed roughly 41% in real terms during the 1980s farm-debt crisis (1982-87) while the farm count kept declining anyway, then boomed in 2004-2014 and again in 2021-2023. Across the 8 census years, farm count and land value per acre show only a moderate, statistically insignificant negative correlation (r=-0.50, p=0.20, n=8), and mean farm size shows essentially none (r=-0.04). Consolidation looks like a steady structural trend (mechanization, economies of scale, exit of small operations); land values look like a cyclical asset-price series driven by interest rates, commodity prices and non-farm demand for land -- the two are directionally consistent over four decades but not tightly coupled year to year.</p>
+<p>Over 1982-2022 farms fell about 15% (2.24M to 1.90M) and land in farms 11% (986.8M to 880.1M acres), but average farm size rose only from about 440 to 463 acres. Consolidation is at the top: the share of cropland on farms of 2,000+ acres rose from 15% (1987) to 41% (2017) per USDA ERS, and in 2022 farms of 5,000+ acres (2% of farms) held 42% of farm acres. Land values rose strongly (nominal $823/acre in 1982, $3,846 Census 2022, $4,350 in 2025; real about +79% 1982-2022) but not in lockstep: real values fell 37% from 1982 to 1987 while consolidation continued, and in a 48-state panel for 2009-2023 land value does not predict farm size (coefficient 0.037, p=0.37). Caveat: these data are about operators, not owners; much cropland is rented, and I found no 40-year owner-concentration series.</p>
 </section>
 <section>
-<h2>1. How much has ownership consolidated?</h2>
-<input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><table border='1' cellpadding='4' style='border-collapse:collapse'><tr><th><label class="srth" for="s2-t1-s1">Census year<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s2">Farms<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">Land in farms (acres)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">Avg. farm size (acres)<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>1982</td><td>2,240,976</td><td>986,796,579</td><td>440</td></tr><tr><td>1992</td><td>1,925,300</td><td>945,531,506</td><td>491</td></tr><tr><td>1997</td><td>2,215,876</td><td>954,752,502</td><td>431</td></tr><tr><td>2002</td><td>2,128,982</td><td>938,279,056</td><td>441</td></tr><tr><td>2007</td><td>2,204,792</td><td>922,095,840</td><td>418</td></tr><tr><td>2012</td><td>2,109,303</td><td>914,527,657</td><td>434</td></tr><tr><td>2017</td><td>2,042,220</td><td>900,217,576</td><td>441</td></tr><tr><td>2022</td><td>1,900,487</td><td>880,100,848</td><td>463</td></tr></tbody><tbody class="srt s1"><tr><td>2022</td><td>1,900,487</td><td>880,100,848</td><td>463</td></tr><tr><td>2017</td><td>2,042,220</td><td>900,217,576</td><td>441</td></tr><tr><td>2012</td><td>2,109,303</td><td>914,527,657</td><td>434</td></tr><tr><td>2007</td><td>2,204,792</td><td>922,095,840</td><td>418</td></tr><tr><td>2002</td><td>2,128,982</td><td>938,279,056</td><td>441</td></tr><tr><td>1997</td><td>2,215,876</td><td>954,752,502</td><td>431</td></tr><tr><td>1992</td><td>1,925,300</td><td>945,531,506</td><td>491</td></tr><tr><td>1982</td><td>2,240,976</td><td>986,796,579</td><td>440</td></tr></tbody><tbody class="srt s2"><tr><td>1982</td><td>2,240,976</td><td>986,796,579</td><td>440</td></tr><tr><td>1997</td><td>2,215,876</td><td>954,752,502</td><td>431</td></tr><tr><td>2007</td><td>2,204,792</td><td>922,095,840</td><td>418</td></tr><tr><td>2002</td><td>2,128,982</td><td>938,279,056</td><td>441</td></tr><tr><td>2012</td><td>2,109,303</td><td>914,527,657</td><td>434</td></tr><tr><td>2017</td><td>2,042,220</td><td>900,217,576</td><td>441</td></tr><tr><td>1992</td><td>1,925,300</td><td>945,531,506</td><td>491</td></tr><tr><td>2022</td><td>1,900,487</td><td>880,100,848</td><td>463</td></tr></tbody><tbody class="srt s3"><tr><td>1982</td><td>2,240,976</td><td>986,796,579</td><td>440</td></tr><tr><td>1997</td><td>2,215,876</td><td>954,752,502</td><td>431</td></tr><tr><td>1992</td><td>1,925,300</td><td>945,531,506</td><td>491</td></tr><tr><td>2002</td><td>2,128,982</td><td>938,279,056</td><td>441</td></tr><tr><td>2007</td><td>2,204,792</td><td>922,095,840</td><td>418</td></tr><tr><td>2012</td><td>2,109,303</td><td>914,527,657</td><td>434</td></tr><tr><td>2017</td><td>2,042,220</td><td>900,217,576</td><td>441</td></tr><tr><td>2022</td><td>1,900,487</td><td>880,100,848</td><td>463</td></tr></tbody><tbody class="srt s4"><tr><td>1992</td><td>1,925,300</td><td>945,531,506</td><td>491</td></tr><tr><td>2022</td><td>1,900,487</td><td>880,100,848</td><td>463</td></tr><tr><td>2002</td><td>2,128,982</td><td>938,279,056</td><td>441</td></tr><tr><td>2017</td><td>2,042,220</td><td>900,217,576</td><td>441</td></tr><tr><td>1982</td><td>2,240,976</td><td>986,796,579</td><td>440</td></tr><tr><td>2012</td><td>2,109,303</td><td>914,527,657</td><td>434</td></tr><tr><td>1997</td><td>2,215,876</td><td>954,752,502</td><td>431</td></tr><tr><td>2007</td><td>2,204,792</td><td>922,095,840</td><td>418</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>(Most recent USDA survey, 2024, not a census year: ~1.88M farms, 876M acres, 466-acre average -- consistent continuation of the trend.)</p><p>Because both the number of farms AND total farmland acreage shrank at similar rates, the population-wide average farm size is nearly flat over 40 years -- a genuinely counter-intuitive result given how often 'farms are getting bigger' is stated as a simple fact. The actual consolidation is a shift within the size distribution, documented by USDA ERS: (1) the number of very large crop farms (2,000+ cropland acres) has nearly doubled since the 1980s while midsize farms (100-999 cropland acres) fell by nearly half; (2) the cropland midpoint acreage (the farm size at which half of all cropland is on larger farms and half on smaller ones) roughly doubled from 1987 to 2012, from about 650 acres to about 1,200 acres for total cropland and from about 488 to about 1,200 acres for harvested cropland; (3) production/sales concentration is far starker than acreage concentration -- by 1997, just 2% of U.S. farms accounted for half of all farm sales and 15% of farmland, versus 17% of farms and 43% of land in 1900.</p>
+<h2>Census table</h2>
+<input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s5"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s6"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s7"><table><tr><th><label class="srth" for="s2-t1-s1">Year<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s2">Farms<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">Land (M acres)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">Avg acres<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s5">Farms 1,000+ acres<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s6">Value/acre<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s7">Real 2023$<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>1992</td><td>1,925,300</td><td>945.5</td><td>491</td><td>172,912 (9.0%)</td><td>727</td><td>1,387</td></tr><tr><td>1997</td><td>1,911,859</td><td>931.8</td><td>487</td><td>176,080 (9.2%)</td><td>933</td><td>1,628</td></tr><tr><td>2002</td><td>2,128,982</td><td>938.3</td><td>441</td><td>176,990 (8.3%)</td><td>1,213</td><td>1,954</td></tr><tr><td>2007</td><td>2,204,792</td><td>922.1</td><td>418</td><td>173,049 (7.8%)</td><td>1,892</td><td>2,838</td></tr><tr><td>2012</td><td>2,109,303</td><td>914.5</td><td>434</td><td>173,480 (8.2%)</td><td>2,481</td><td>3,298</td></tr><tr><td>2017</td><td>2,042,220</td><td>900.2</td><td>441</td><td>172,793 (8.5%)</td><td>2,976</td><td>3,695</td></tr><tr><td>2022</td><td>1,900,487</td><td>880.1</td><td>463</td><td>159,619 (8.4%)</td><td>3,846</td><td>3,927</td></tr></tbody><tbody class="srt s1"><tr><td>2022</td><td>1,900,487</td><td>880.1</td><td>463</td><td>159,619 (8.4%)</td><td>3,846</td><td>3,927</td></tr><tr><td>2017</td><td>2,042,220</td><td>900.2</td><td>441</td><td>172,793 (8.5%)</td><td>2,976</td><td>3,695</td></tr><tr><td>2012</td><td>2,109,303</td><td>914.5</td><td>434</td><td>173,480 (8.2%)</td><td>2,481</td><td>3,298</td></tr><tr><td>2007</td><td>2,204,792</td><td>922.1</td><td>418</td><td>173,049 (7.8%)</td><td>1,892</td><td>2,838</td></tr><tr><td>2002</td><td>2,128,982</td><td>938.3</td><td>441</td><td>176,990 (8.3%)</td><td>1,213</td><td>1,954</td></tr><tr><td>1997</td><td>1,911,859</td><td>931.8</td><td>487</td><td>176,080 (9.2%)</td><td>933</td><td>1,628</td></tr><tr><td>1992</td><td>1,925,300</td><td>945.5</td><td>491</td><td>172,912 (9.0%)</td><td>727</td><td>1,387</td></tr></tbody><tbody class="srt s2"><tr><td>2007</td><td>2,204,792</td><td>922.1</td><td>418</td><td>173,049 (7.8%)</td><td>1,892</td><td>2,838</td></tr><tr><td>2002</td><td>2,128,982</td><td>938.3</td><td>441</td><td>176,990 (8.3%)</td><td>1,213</td><td>1,954</td></tr><tr><td>2012</td><td>2,109,303</td><td>914.5</td><td>434</td><td>173,480 (8.2%)</td><td>2,481</td><td>3,298</td></tr><tr><td>2017</td><td>2,042,220</td><td>900.2</td><td>441</td><td>172,793 (8.5%)</td><td>2,976</td><td>3,695</td></tr><tr><td>1992</td><td>1,925,300</td><td>945.5</td><td>491</td><td>172,912 (9.0%)</td><td>727</td><td>1,387</td></tr><tr><td>1997</td><td>1,911,859</td><td>931.8</td><td>487</td><td>176,080 (9.2%)</td><td>933</td><td>1,628</td></tr><tr><td>2022</td><td>1,900,487</td><td>880.1</td><td>463</td><td>159,619 (8.4%)</td><td>3,846</td><td>3,927</td></tr></tbody><tbody class="srt s3"><tr><td>1992</td><td>1,925,300</td><td>945.5</td><td>491</td><td>172,912 (9.0%)</td><td>727</td><td>1,387</td></tr><tr><td>2002</td><td>2,128,982</td><td>938.3</td><td>441</td><td>176,990 (8.3%)</td><td>1,213</td><td>1,954</td></tr><tr><td>1997</td><td>1,911,859</td><td>931.8</td><td>487</td><td>176,080 (9.2%)</td><td>933</td><td>1,628</td></tr><tr><td>2007</td><td>2,204,792</td><td>922.1</td><td>418</td><td>173,049 (7.8%)</td><td>1,892</td><td>2,838</td></tr><tr><td>2012</td><td>2,109,303</td><td>914.5</td><td>434</td><td>173,480 (8.2%)</td><td>2,481</td><td>3,298</td></tr><tr><td>2017</td><td>2,042,220</td><td>900.2</td><td>441</td><td>172,793 (8.5%)</td><td>2,976</td><td>3,695</td></tr><tr><td>2022</td><td>1,900,487</td><td>880.1</td><td>463</td><td>159,619 (8.4%)</td><td>3,846</td><td>3,927</td></tr></tbody><tbody class="srt s4"><tr><td>1992</td><td>1,925,300</td><td>945.5</td><td>491</td><td>172,912 (9.0%)</td><td>727</td><td>1,387</td></tr><tr><td>1997</td><td>1,911,859</td><td>931.8</td><td>487</td><td>176,080 (9.2%)</td><td>933</td><td>1,628</td></tr><tr><td>2022</td><td>1,900,487</td><td>880.1</td><td>463</td><td>159,619 (8.4%)</td><td>3,846</td><td>3,927</td></tr><tr><td>2002</td><td>2,128,982</td><td>938.3</td><td>441</td><td>176,990 (8.3%)</td><td>1,213</td><td>1,954</td></tr><tr><td>2017</td><td>2,042,220</td><td>900.2</td><td>441</td><td>172,793 (8.5%)</td><td>2,976</td><td>3,695</td></tr><tr><td>2012</td><td>2,109,303</td><td>914.5</td><td>434</td><td>173,480 (8.2%)</td><td>2,481</td><td>3,298</td></tr><tr><td>2007</td><td>2,204,792</td><td>922.1</td><td>418</td><td>173,049 (7.8%)</td><td>1,892</td><td>2,838</td></tr></tbody><tbody class="srt s5"><tr><td>2002</td><td>2,128,982</td><td>938.3</td><td>441</td><td>176,990 (8.3%)</td><td>1,213</td><td>1,954</td></tr><tr><td>1997</td><td>1,911,859</td><td>931.8</td><td>487</td><td>176,080 (9.2%)</td><td>933</td><td>1,628</td></tr><tr><td>2012</td><td>2,109,303</td><td>914.5</td><td>434</td><td>173,480 (8.2%)</td><td>2,481</td><td>3,298</td></tr><tr><td>2007</td><td>2,204,792</td><td>922.1</td><td>418</td><td>173,049 (7.8%)</td><td>1,892</td><td>2,838</td></tr><tr><td>1992</td><td>1,925,300</td><td>945.5</td><td>491</td><td>172,912 (9.0%)</td><td>727</td><td>1,387</td></tr><tr><td>2017</td><td>2,042,220</td><td>900.2</td><td>441</td><td>172,793 (8.5%)</td><td>2,976</td><td>3,695</td></tr><tr><td>2022</td><td>1,900,487</td><td>880.1</td><td>463</td><td>159,619 (8.4%)</td><td>3,846</td><td>3,927</td></tr></tbody><tbody class="srt s6"><tr><td>2022</td><td>1,900,487</td><td>880.1</td><td>463</td><td>159,619 (8.4%)</td><td>3,846</td><td>3,927</td></tr><tr><td>2017</td><td>2,042,220</td><td>900.2</td><td>441</td><td>172,793 (8.5%)</td><td>2,976</td><td>3,695</td></tr><tr><td>2012</td><td>2,109,303</td><td>914.5</td><td>434</td><td>173,480 (8.2%)</td><td>2,481</td><td>3,298</td></tr><tr><td>2007</td><td>2,204,792</td><td>922.1</td><td>418</td><td>173,049 (7.8%)</td><td>1,892</td><td>2,838</td></tr><tr><td>2002</td><td>2,128,982</td><td>938.3</td><td>441</td><td>176,990 (8.3%)</td><td>1,213</td><td>1,954</td></tr><tr><td>1997</td><td>1,911,859</td><td>931.8</td><td>487</td><td>176,080 (9.2%)</td><td>933</td><td>1,628</td></tr><tr><td>1992</td><td>1,925,300</td><td>945.5</td><td>491</td><td>172,912 (9.0%)</td><td>727</td><td>1,387</td></tr></tbody><tbody class="srt s7"><tr><td>2022</td><td>1,900,487</td><td>880.1</td><td>463</td><td>159,619 (8.4%)</td><td>3,846</td><td>3,927</td></tr><tr><td>2017</td><td>2,042,220</td><td>900.2</td><td>441</td><td>172,793 (8.5%)</td><td>2,976</td><td>3,695</td></tr><tr><td>2012</td><td>2,109,303</td><td>914.5</td><td>434</td><td>173,480 (8.2%)</td><td>2,481</td><td>3,298</td></tr><tr><td>2007</td><td>2,204,792</td><td>922.1</td><td>418</td><td>173,049 (7.8%)</td><td>1,892</td><td>2,838</td></tr><tr><td>2002</td><td>2,128,982</td><td>938.3</td><td>441</td><td>176,990 (8.3%)</td><td>1,213</td><td>1,954</td></tr><tr><td>1997</td><td>1,911,859</td><td>931.8</td><td>487</td><td>176,080 (9.2%)</td><td>933</td><td>1,628</td></tr><tr><td>1992</td><td>1,925,300</td><td>945.5</td><td>491</td><td>172,912 (9.0%)</td><td>727</td><td>1,387</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>From 2002 Census coverage of small farms improved, so 1997-2002 changes are not comparable. The count of 1,000+ acre farms has been flat near 173,000; the shift is how much land the largest hold (1,000+ acre farms: about 71% of farm acres in 2017, 73% in 2022).</p>
 </section>
 <section>
-<h2>2. Has that tracked with land values?</h2>
-<p>Farm real estate value per acre (USDA ERS/NASS annual series, national average, land+buildings) rose from $823 in 1982 to $4,080 in 2023 nominal (+396%), or from $2,193 to $4,080 in real 2023 dollars (+86%, GDP deflator). This is a much larger multiple than any consolidation measure moved over the same span. But the land-value path was highly cyclical, not a steady complement to the smooth consolidation trend: real land values fell about 41% from 1982 to a 1987 trough (the 1980s farm-debt crisis) even as the number of farms kept falling through that same period; values then rose steadily from the late 1980s through 2008, dipped slightly in the 2008-09 financial crisis, resumed a strong climb through the 2012-14 commodity boom, largely plateaued 2015-2020, then jumped again in 2021-2023 (higher commodity prices, low interest rates turning to inflation, non-farm/investor and renewable-energy demand for land).</p><p>Testing the relationship directly at the 8 census-year grain: correlation between number of farms and $/acre land value is r=-0.50 (p=0.20, not significant at n=8) -- consistent with the plausible mechanism that scarcer, pricier land pushes remaining farmers toward larger, fewer operations, but not a statistically robust finding given how few independent data points a 40-year census series provides and given that both series share a common long-run time trend (a classic confound for any 2-series correlation over time). Correlation between mean farm size and $/acre land value is r=-0.04 -- essentially no relationship, because mean farm size is the least informative of the three consolidation measures (see Section 1).</p><p><strong>Bottom line:</strong> land values and farm consolidation moved in the same broad direction (fewer/bigger operations, much pricier land) over 40 years, but they are not tightly coupled -- consolidation looks driven mainly by structural forces (mechanization, economies of scale, small-farm exit) that continued through a land-value crash, while land values look driven by cyclical macro and commodity forces that produced booms and a bust the consolidation trend never mirrored.</p>
+<h2>Has it tracked land values?</h2>
+<p>Across 7 Census years real value and average size correlate -0.55 (+0.46 from 2002), uninformative with n=7 trending series. Warehouse panel (48 states, AK and HI excluded, 2009-2023, state and year fixed effects, state-clustered): log farm size on log land value = 0.037 (SE 0.041, p=0.37, n=720). Cross-state 2012-2022 change in size vs change in value: r=-0.06 (n=48). Not controlled: interest rates, technology, rental expansion, commodity prices.</p>
+</section>
+<section>
+<h2>Limits</h2>
+<ul><li>Operators, not owners; no 1982 size-class split retrieved.</li><li>Warehouse tables start 2009; the long series is from Census/ERS documents fetched.</li><li>The 41% (2017) ERS share came from a search summary; 1982 farm count (about 2.24M) is from memory, the 1982 acreage from a USDA fact sheet via search.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Ownership specifically</strong>: Census size data are operators, not owners; no owner-concentration series fetched.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 19 rows — 6956 ms</summary><pre><code>SELECT DISTINCT category, subcategory, unit_desc FROM ag.ers_farm_income WHERE state='US' AND (unit_desc ILIKE '%per farm%' OR unit_desc ILIKE '%acre%' OR category ILIKE '%asset%' OR category ILIKE '%value%' OR subcategory ILIKE '%land%') ORDER BY 1,2</code></pre></details>
+<p>16 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 18 rows — 989 ms</summary><pre><code>SELECT DISTINCT variable_description_total, unit_desc FROM ag.ers_farm_income WHERE state='US' AND year=1990 AND (LOWER(variable_description_total) LIKE '%real estate%' OR LOWER(variable_description_total) LIKE '%farms%' OR LOWER(variable_description_total) LIKE '%acres%')</code></pre></details>
+<details class="sqltoggle"><summary>query — 1550 ms</summary><pre><code>SELECT &quot;year&quot;, domaincat_desc, statisticcat_desc, value FROM ag.nass_farm_operations WHERE source_desc='CENSUS' AND agg_level_desc='NATIONAL' AND domain_desc IN ('TOTAL','AREA OPERATED') AND commodity_desc='FARM OPERATIONS' ORDER BY &quot;year&quot;, domaincat_desc FETCH FIRST 200 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 4024 ms</summary><pre><code>SELECT &quot;year&quot;, class_desc, unit_desc, value FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND unit_desc='$ / ACRE' AND agg_level_desc='NATIONAL' AND class_desc='AG LAND, INCL BUILDINGS' ORDER BY &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 935 ms</summary><pre><code>SELECT &quot;year&quot;, source_desc, agg_level_desc, state_alpha, domain_desc, statisticcat_desc, short_desc, value FROM ag.nass_farm_operations WHERE state_alpha='US' AND domain_desc='TOTAL' AND statisticcat_desc IN ('OPERATIONS','AREA OPERATED') AND short_desc LIKE 'FARM OPERATIONS%' ORDER BY &quot;year&quot; FETCH FIRST 60 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 1228 ms</summary><pre><code>SELECT &quot;year&quot;, agg_level_desc, state_alpha, class_desc, value FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND unit_desc='$ / ACRE' AND class_desc='AG LAND, INCL BUILDINGS' AND state_alpha='US' ORDER BY &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 27 rows — 1325 ms</summary><pre><code>SELECT &quot;year&quot;, source_desc, agg_level_desc, count(*) n, min(state_alpha) s FROM ag.nass_land_values WHERE statisticcat_desc='ASSET VALUE' GROUP BY &quot;year&quot;, source_desc, agg_level_desc ORDER BY &quot;year&quot; FETCH FIRST 30 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 24 rows — 689 ms</summary><pre><code>SELECT &quot;year&quot;, source_desc, agg_level_desc, count(*) n FROM ag.nass_farm_operations WHERE statisticcat_desc='OPERATIONS' AND domain_desc='TOTAL' GROUP BY &quot;year&quot;, source_desc, agg_level_desc ORDER BY &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 6 rows — 882 ms</summary><pre><code>SELECT &quot;year&quot;, state_alpha, short_desc, value FROM ag.nass_farm_operations WHERE source_desc='SURVEY' AND domain_desc='TOTAL' AND statisticcat_desc='OPERATIONS' AND state_alpha='IA' ORDER BY &quot;year&quot; FETCH FIRST 6 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 4 rows — 799 ms</summary><pre><code>SELECT DISTINCT short_desc, unit_desc FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND state_alpha='IA'</code></pre></details>
+<details class="sqltoggle"><summary>query — 2 rows — 1245 ms</summary><pre><code>SELECT DISTINCT short_desc, unit_desc, domain_desc FROM ag.nass_farm_operations WHERE source_desc='CENSUS' AND agg_level_desc='STATE' AND &quot;year&quot;=2022 AND domain_desc='TOTAL' AND statisticcat_desc IN ('OPERATIONS','AREA') FETCH FIRST 20 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 8 rows — 1256 ms</summary><pre><code>SELECT &quot;year&quot;, short_desc, domaincat_desc, count(*) n, sum(value) v FROM ag.nass_land_values WHERE source_desc='SURVEY' AND state_alpha='IA' AND statisticcat_desc='ASSET VALUE' AND &quot;year&quot; IN (2012,2022) GROUP BY &quot;year&quot;, short_desc, domaincat_desc</code></pre></details>
+<details class="sqltoggle"><summary>query — 3 rows — 854 ms</summary><pre><code>SELECT short_desc, count(*) n, min(value) mn, max(value) mx FROM ag.nass_farm_operations WHERE source_desc='SURVEY' AND agg_level_desc='STATE' AND &quot;year&quot;=2022 AND domain_desc='TOTAL' AND state_alpha='IA' GROUP BY short_desc</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 1 ms</summary><pre><code>SELECT f.state_alpha, f.&quot;year&quot;, f.acres/f.ops AS avg_size, f.ops, v.lv FROM (SELECT state_alpha, &quot;year&quot;, max(CASE WHEN short_desc='FARM OPERATIONS - NUMBER OF OPERATIONS' THEN value END) ops, max(CASE WHEN short_desc='FARM OPERATIONS - ACRES OPERATED' THEN value END) acres FROM ag.nass_farm_operations WHERE source_desc='SURVEY' AND agg_level_desc='STATE' AND domain_desc='TOTAL' AND state_alpha NOT IN ('US','AK','HI') GROUP BY state_alpha, &quot;year&quot;) f JOIN (SELECT state_alpha, &quot;year&quot;, max(value) lv FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND short_desc='AG LAND, INCL BUILDINGS - ASSET VALUE, MEASURED IN $ / ACRE' GROUP BY state_alpha, &quot;year&quot;) v ON v.state_alpha=f.state_alpha AND v.&quot;year&quot;=f.&quot;year&quot; WHERE f.ops&gt;0 AND f.acres&gt;0</code></pre></details>
+<details class="sqltoggle"><summary>query — 17 rows — 2176 ms</summary><pre><code>WITH panel AS (SELECT f.state_alpha, f.&quot;year&quot;, f.acres/f.ops AS avg_size, f.ops, v.lv FROM (SELECT state_alpha, &quot;year&quot;, max(CASE WHEN short_desc='FARM OPERATIONS - NUMBER OF OPERATIONS' THEN value END) ops, max(CASE WHEN short_desc='FARM OPERATIONS - ACRES OPERATED' THEN value END) acres FROM ag.nass_farm_operations WHERE source_desc='SURVEY' AND agg_level_desc='STATE' AND domain_desc='TOTAL' AND state_alpha NOT IN ('US','AK','HI') GROUP BY state_alpha, &quot;year&quot;) f JOIN (SELECT state_alpha, &quot;year&quot;, max(value) lv FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND short_desc='AG LAND, INCL BUILDINGS - ASSET VALUE, MEASURED IN $ / ACRE' GROUP BY state_alpha, &quot;year&quot;) v ON v.state_alpha=f.state_alpha AND v.&quot;year&quot;=f.&quot;year&quot; WHERE f.ops&gt;0 AND f.acres&gt;0) SELECT &quot;year&quot;, count(*) n, sum(ops) farms, sum(avg_size*ops)/sum(ops) avg_size, avg(lv) mean_lv FROM panel GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 2642 ms</summary><pre><code>WITH panel AS (SELECT f.state_alpha, f.&quot;year&quot;, f.acres/f.ops AS avg_size, f.ops, v.lv FROM (SELECT state_alpha, &quot;year&quot;, max(CASE WHEN short_desc='FARM OPERATIONS - NUMBER OF OPERATIONS' THEN value END) ops, max(CASE WHEN short_desc='FARM OPERATIONS - ACRES OPERATED' THEN value END) acres FROM ag.nass_farm_operations WHERE source_desc='SURVEY' AND agg_level_desc='STATE' AND domain_desc='TOTAL' AND state_alpha NOT IN ('US','AK','HI') GROUP BY state_alpha, &quot;year&quot;) f JOIN (SELECT state_alpha, &quot;year&quot;, max(value) lv FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND short_desc='AG LAND, INCL BUILDINGS - ASSET VALUE, MEASURED IN $ / ACRE' GROUP BY state_alpha, &quot;year&quot;) v ON v.state_alpha=f.state_alpha AND v.&quot;year&quot;=f.&quot;year&quot; WHERE f.ops&gt;0 AND f.acres&gt;0) SELECT corr(ln(a.avg_size/b.avg_size), ln(a.lv/b.lv)) r, regr_slope(ln(a.avg_size/b.avg_size), ln(a.lv/b.lv)) slope, count(*) n FROM panel a JOIN panel b ON a.state_alpha=b.state_alpha AND b.&quot;year&quot;=2012 WHERE a.&quot;year&quot;=2022</code></pre></details>
+<details class="sqltoggle"><summary>panel_fixed_effects — 1543 ms</summary><pre><code>WITH panel AS (SELECT f.state_alpha, f.&quot;year&quot;, f.acres/f.ops AS avg_size, f.ops, v.lv FROM (SELECT state_alpha, &quot;year&quot;, max(CASE WHEN short_desc='FARM OPERATIONS - NUMBER OF OPERATIONS' THEN value END) ops, max(CASE WHEN short_desc='FARM OPERATIONS - ACRES OPERATED' THEN value END) acres FROM ag.nass_farm_operations WHERE source_desc='SURVEY' AND agg_level_desc='STATE' AND domain_desc='TOTAL' AND state_alpha NOT IN ('US','AK','HI') GROUP BY state_alpha, &quot;year&quot;) f JOIN (SELECT state_alpha, &quot;year&quot;, max(value) lv FROM ag.nass_land_values WHERE source_desc='SURVEY' AND statisticcat_desc='ASSET VALUE' AND short_desc='AG LAND, INCL BUILDINGS - ASSET VALUE, MEASURED IN $ / ACRE' GROUP BY state_alpha, &quot;year&quot;) v ON v.state_alpha=f.state_alpha AND v.&quot;year&quot;=f.&quot;year&quot; WHERE f.ops&gt;0 AND f.acres&gt;0) SELECT state_alpha, &quot;year&quot;, ln(avg_size) AS ln_size, ln(lv) AS ln_lv FROM panel WHERE lv&gt;0 AND &quot;year&quot; BETWEEN 2009 AND 2023</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.nass.usda.gov/Publications/AgCensus/2022/Full_Report/Volume_1,_Chapter_1_US/st99_1_001_001.pdf">USDA NASS, 2022 Census of Agriculture, Table 1: Historical Highlights (2022, 2017, 2012, 2007, 2002, 1997, 1992)</a></li>
-<li><a href="https://www.nass.usda.gov/AgCensus/archive/files/1982-United_States-CHAPTER_1_State_Data-121-Table-01.pdf">USDA NASS, 1982 Census of Agriculture, Table 1: Farms, Land in Farms, and Land Use</a></li>
-<li><a href="https://www.ers.usda.gov/data-products/chart-gallery/58268">USDA ERS chart: The number of U.S. farms continues slow decline (2024 estimate)</a></li>
-<li><a href="https://ers.usda.gov/sites/default/files/_laserfiche/Charts/55910/farmrealestatevalue19502023_d.html?v=15399">USDA ERS chart data: Average U.S. farm real estate value, nominal and real (inflation adjusted), 1950-2023</a></li>
-<li><a href="https://www.ers.usda.gov/amber-waves/2020/february/consolidation-in-u-s-agriculture-continues">USDA ERS, Amber Waves: Consolidation in U.S. Agriculture Continues (2020) -- cropland midpoint-acreage and farm-size-class trends</a></li>
-<li><a href="https://ers.usda.gov/amber-waves/2018/march/examining-consolidation-in-u-s-agriculture">USDA ERS, Amber Waves: Examining Consolidation in U.S. Agriculture (2018) -- sales concentration, 1900 vs. 1997</a></li>
-<li><a href="https://www.nass.usda.gov/Publications/AgCensus/2022/Full_Report/Volume_1,_Chapter_1_US/st99_1_001_001.pdf">Correlation of farm count and mean farm size against $/acre land value across 8 census years (computed in this analysis, Python/scipy.stats.pearsonr)</a> <span class="note">— r(farms, value/acre)=-0.50, p=0.20; r(avg size, value/acre)=-0.04, p=0.92; n=8 (1982,1992,1997,2002,2007,2012,2017,2022)</span></li>
+<li><a href="https://www.nass.usda.gov/sites/default/files/publications/agcensus/2022/Full_Report/Volume_1,_Chapter_1_US/st99_1_001_001.pdf">Census of Agriculture 2022 Table 1</a></li>
+<li><a href="https://www.nass.usda.gov/sites/default/files/publications/agcensus/2022/Full_Report/Volume_1,_Chapter_1_US/st99_1_009_010.pdf">Census of Agriculture 2022 Table 9</a></li>
+<li><a href="https://ers.usda.gov/sites/default/files/_laserfiche/Charts/55910/farmrealestatevalue19502023_d.html?v=48323">ERS farm real estate value 1950-2023</a></li>
+<li><a href="https://www.ers.usda.gov/amber-waves/2020/february/consolidation-in-u-s-agriculture-continues">ERS Consolidation in U.S. Agriculture Continues</a></li>
+<li><a href="https://quickstats.nass.usda.gov/">ag.nass_farm_operations / ag.nass_land_values</a></li>
 </ol>
 </section>
 <footer>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-14</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
