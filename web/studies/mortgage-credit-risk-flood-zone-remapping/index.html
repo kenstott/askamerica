@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>No national figure exists for debt in newly FEMA-remapped flood zones — but GSE-level flood exposure ($2.2 trillion) is the closest measured proxy for concentration</title>
+<title>The warehouse cannot say how much mortgage debt sits in newly flood-mapped properties or at which lenders; no public dataset joins the three pieces</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -99,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>No national figure exists for debt in newly FEMA-remapped flood zones — but GSE-level flood exposure ($2.2 trillion) is the closest measured proxy for concentration</h1>
-<p class="subtitle">AskAmerica disasters/housing schemas checked live 2026-09-26; cross-checked against CFPB, NY Fed, Richmond Fed, and Cotality research</p>
+<h1>The warehouse cannot say how much mortgage debt sits in newly flood-mapped properties or at which lenders; no public dataset joins the three pieces</h1>
+<p class="subtitle">HMDA 2018-2025 (CFPB), FEMA/NFIP tables; web literature as of 2026-11-22</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,72 +155,88 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:13px">GSE flood exposure is the closest measured proxy for 'concentration' -- no figure exists for newly-remapped…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">Richmond Fed (Phan 2024) GSE portfolio data; NY Fed (Blickle et al. 2024) lender-behavior findings on a related, non-identical population</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280" style="font-size:9px">Outstanding GSE (Fannie Mae + Freddie Mac) single-family debt, Jan. 2023</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">$8.17 trillion</text>
-  </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">Richmond Fed / Phan (2024), 89.58 million loans -- the two GSEs alone,</text>
-  <text class="caption" x="24" y="216" fill="#6b7280">illustrating how concentrated U.S. conforming mortgage debt already i…</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:9px">Of that, in ZIP codes with material flood risk (flood factor &gt;= 2)</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328" style="font-size:29px">$2.22 trillion (27.2%)</text>
-  </g>
-  <text class="caption" x="452" y="203" fill="#6b7280">Closest available proxy figure for the dollar amount asked about --</text>
-  <text class="caption" x="452" y="216" fill="#6b7280">measures ALL flood-risk exposure at 3-digit ZIP grain, not…</text>
-  <rect class="panel-edge" x="20" y="238" width="412" height="372" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="372" viewBox="0 0 412 372" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="372" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Adjacent published dollar figures (each measures something different fro…</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="63" y1="238" x2="390" y2="238" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="55" y="242" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
-      <line class="grid" x1="63" y1="201.60" x2="390" y2="201.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="55" y="205.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
-      <line class="grid" x1="63" y1="165.20" x2="390" y2="165.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="55" y="169.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.0</text>
-      <line class="grid" x1="63" y1="128.80" x2="390" y2="128.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="55" y="132.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1.5</text>
-      <line class="grid" x1="63" y1="92.40" x2="390" y2="92.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="55" y="96.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.0</text>
-      <line class="grid" x1="63" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="55" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2.5</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">HMDA originations, context only (not flood-mapped debt)</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="303" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="303" viewBox="0 0 412 303" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="303" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Originated mortgage dollars, $bn</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="77" y1="249" x2="390" y2="249" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="69" y="253" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="77" y1="210.40" x2="390" y2="210.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="69" y="214.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
+      <line class="grid" x1="77" y1="171.80" x2="390" y2="171.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="69" y="175.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
+      <line class="grid" x1="77" y1="133.20" x2="390" y2="133.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="69" y="137.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,000</text>
+      <line class="grid" x1="77" y1="94.60" x2="390" y2="94.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="69" y="98.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5,000</text>
     </g>
-    <g id="p3-axes">
-      <line class="axis" x1="63" y1="56" x2="63" y2="238" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="63" y1="238" x2="390" y2="238" stroke="#9ca3af" stroke-width="1"/>
+    <g id="p1-axes">
+      <line class="axis" x1="77" y1="56" x2="77" y2="249" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="77" y1="249" x2="390" y2="249" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="226.50" y="348" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Measure</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="147" fill="#1f2328" font-size="8" style="font-size:8px" text-anchor="middle" transform="rotate(-90 14 147)">USD trillions / billions shown as trillions</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-gse-debt-at-flood-risk-factor-2-richmond-fed" class="tick" x="103.88" y="252" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 103.88 252)">GSE debt at flood risk, factor&gt;=2 (Richmond Fed)</text>
-      <text id="p3-xtick-gse-debt-at-higher-flood-risk-factor-3-richmond-fed" class="tick" x="185.63" y="252" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 185.63 252)">GSE debt at higher flood risk, factor&gt;=3 (Richmond Fed)</text>
-      <text id="p3-xtick-2021-originations-in-fema-mapped-areas-ny-fed" class="tick" x="267.38" y="252" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 267.38 252)">2021 originations in FEMA-mapped areas (NY Fed)</text>
-      <text id="p3-xtick-2021-originations-in-high-risk-unmapped-areas-ny-fed" class="tick" x="349.13" y="252" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 349.13 252)">2021 originations in high-risk unmapped areas (NY Fed)</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="152.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 152.50)">$ billions</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-2018" class="tick" x="96.56" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2018</text>
+      <text id="p1-xtick-2019" class="tick" x="135.69" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2019</text>
+      <text id="p1-xtick-2020" class="tick" x="174.81" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
+      <text id="p1-xtick-2021" class="tick" x="213.94" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
+      <text id="p1-xtick-2022" class="tick" x="253.06" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
+      <text id="p1-xtick-2023" class="tick" x="292.19" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2023</text>
+      <text id="p1-xtick-2024" class="tick" x="331.31" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
+      <text id="p1-xtick-2025" class="tick" x="370.44" y="267" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
     </g>
-    <g id="p3-series-usd-trillions" class="series">
-      <rect id="p3-mark-usd-trillions-gse-debt-at-flood-risk-factor-2-richmond-fed" class="bar" x="77.72" y="76.38" width="51.32" height="161.62" fill="#2563eb"/>
-      <rect id="p3-mark-usd-trillions-gse-debt-at-higher-flood-risk-factor-3-richmond-fed" class="bar" x="159.47" y="208.15" width="51.32" height="29.85" fill="#2563eb"/>
-      <rect id="p3-mark-usd-trillions-2021-originations-in-fema-mapped-areas-ny-fed" class="bar" x="241.22" y="223.44" width="51.32" height="14.56" fill="#2563eb"/>
-      <rect id="p3-mark-usd-trillions-2021-originations-in-high-risk-unmapped-areas-ny-fed" class="bar" x="322.97" y="194.32" width="51.32" height="43.68" fill="#2563eb"/>
+    <g id="p1-series-originations-bn" class="series">
+      <g class="hover">
+        <title>2018 — Originations $bn: 1,990</title>
+        <rect id="p1-mark-originations-bn-2018" class="bar" x="84.04" y="172.19" width="24.04" height="76.81" fill="#2563eb"/>
+        <rect class="hit" x="84.04" y="56" width="24.04" height="193" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2019 — Originations $bn: 2,664</title>
+        <rect id="p1-mark-originations-bn-2019" class="bar" x="123.17" y="146.17" width="24.04" height="102.83" fill="#2563eb"/>
+        <rect class="hit" x="123.17" y="56" width="24.04" height="193" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2020 — Originations $bn: 4,385</title>
+        <rect id="p1-mark-originations-bn-2020" class="bar" x="162.29" y="79.74" width="24.04" height="169.26" fill="#2563eb"/>
+        <rect class="hit" x="162.29" y="56" width="24.04" height="193" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2021 — Originations $bn: 4,785</title>
+        <rect id="p1-mark-originations-bn-2021" class="bar" x="201.42" y="64.30" width="24.04" height="184.70" fill="#2563eb"/>
+        <rect class="hit" x="201.42" y="56" width="24.04" height="193" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2022 — Originations $bn: 2,844</title>
+        <rect id="p1-mark-originations-bn-2022" class="bar" x="240.54" y="139.22" width="24.04" height="109.78" fill="#2563eb"/>
+        <rect class="hit" x="240.54" y="56" width="24.04" height="193" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2023 — Originations $bn: 1,774</title>
+        <rect id="p1-mark-originations-bn-2023" class="bar" x="279.67" y="180.52" width="24.04" height="68.48" fill="#2563eb"/>
+        <rect class="hit" x="279.67" y="56" width="24.04" height="193" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2024 — Originations $bn: 2,040</title>
+        <rect id="p1-mark-originations-bn-2024" class="bar" x="318.79" y="170.26" width="24.04" height="78.74" fill="#2563eb"/>
+        <rect class="hit" x="318.79" y="56" width="24.04" height="193" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2025 — Originations $bn: 2,405</title>
+        <rect id="p1-mark-originations-bn-2025" class="bar" x="357.92" y="156.17" width="24.04" height="92.83" fill="#2563eb"/>
+        <rect class="hit" x="357.92" y="56" width="24.04" height="193" fill="#000" fill-opacity="0"/>
+      </g>
     </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="623" fill="#6b7280">None of these four is the same measure as the question. Richmond Fed</text>
-  <text class="caption" x="24" y="636" fill="#6b7280">figures cover ALL flood risk (any vintage of mapping); NY Fed figures…</text>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="370" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="406" fill="#6b7280" style="font-size:8px">Lender concentration pattern (closest behavioral evidence, different population)</text>
-  <text class="stat-value" x="464" y="436" fill="#1f2328" style="font-size:17px">Large banks retreat; nonbanks/small banks retain &amp; securitize more</text>
-  </g>
-  <text class="caption" x="452" y="623" fill="#6b7280">NY Fed (Blickle, Perry, Santos 2024), measured on</text>
-  <text class="caption" x="452" y="636" fill="#6b7280">risky-but-never-mapped properties, not newly-remapped ones;…</text>
+  <text class="footnote" x="20" y="393" fill="#6b7280">Upper-bound context only; newly flood-mapped share is not in any loaded table.</text>
   <g id="brand">
-  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -221,45 +245,47 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:56443/a/efb6e4afc2b801a5072faf4139f7530d.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:52868/a/a8e8d88245a95e941c0c8a8455054775.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
-<h2>Summary</h2>
-<p><strong>No source -- not this corpus, not FEMA's own data, not academic or Federal Reserve research -- publishes a national dollar total for mortgage debt in properties FEMA has newly mapped into a flood zone.</strong> That specific figure requires matching FEMA's parcel-level map-revision geometry (before/after zone status) to loan-level unpaid balances and servicer identity, a linkage that exists only inside proprietary flood-determination vendor products (Cotality/CoreLogic, First Street Foundation) sold to lenders and servicers, never published as an aggregate.</p><p>On concentration, the best available evidence points to an answer, just not for the exact population asked about: Fannie Mae and Freddie Mac alone hold <strong>$8.17 trillion</strong> in outstanding single-family mortgage balances (as of Jan. 2023), and Federal Reserve Bank of Richmond research estimates <strong>$2.22 trillion (27.2%)</strong> of that sits in ZIP codes with meaningful flood risk. Whatever slice of that is in newly-remapped properties specifically is concentrated, by construction, at essentially two entities -- because that is where the majority of U.S. conforming mortgage debt already sits. Separate research on a related-but-different population (properties with real flood risk FEMA has never mapped, rather than newly remapped) finds large banks retreat from lending there while nonbanks and small local banks keep lending and pass more of that risk along via sale or securitization.</p>
+<h2>Answer</h2>
+<p>I cannot give a dollar figure or a lender ranking. Answering would need three things joined at the property level: (1) which properties were newly mapped into a Special Flood Hazard Area (SFHA) by a map revision, (2) the outstanding balance of the mortgage on each, and (3) the lender or servicer holding it. The warehouse has none of (1), and the public data lacks (2) and (3) in usable form.</p>
 </section>
 <section>
-<h2>What the AskAmerica corpus actually has</h2>
-<p>Checked live (2026-09-26) via <code>search_catalog</code>, <code>list_tables</code>, and <code>describe_table</code> against the <code>disasters</code> and <code>housing</code> schemas:</p><ul><li><code>disasters.nfip_policies</code> / <code>disasters.nfip_claims</code> carry a <code>flood_zone</code> column (current zone at time of policy or claim), but no map-revision date, no 'previously mapped as' field, and no link to a mortgage or lender.</li><li><code>housing.hmda_lar</code>, <code>housing.hmda_loans</code>, <code>housing.hmda_lending_by_tract</code> carry loan amounts, lenders, and census tracts, but no flood-zone designation at all, mapped or not.</li><li>No table in any schema carries FEMA Letter of Map Revision (LOMR) or National Flood Hazard Layer (NFHL) map-change records -- the catalog search for these exact terms returned zero matches.</li></ul><p>The corpus has flood-zone status and it has mortgage-loan data, but nothing that joins the two at the property level, and nothing that captures a map-revision event (before/after status over time) at all. This is a genuine sourcing gap, not a query that could have been written differently.</p>
+<h2>What was checked</h2>
+<ul><li><b>Flood map revisions:</b> no table carries FEMA's flood map layer (NFHL), LOMRs or map-revision history. The catalog search returned no match for NFHL. <code>disasters.nfip_policies</code> and <code>nfip_claims</code> carry a flood_zone label per policy or claim, which is not the same as a property newly mapped in.</li><li><b>Debt balances:</b> HMDA (<code>housing.hmda_lar</code>, 136.6M loan records, 2018-2025) records loan amounts at origination, not balances outstanding. It has census tract and the reporting institution's LEI, but no flood-zone flag. It cannot tell you which loans fall in newly mapped areas.</li><li><b>Lender concentration:</b> HMDA identifies the originator, not the current servicer or holder. Many loans are sold to Fannie Mae, Freddie Mac or Ginnie Mae, so originator shares would not describe who holds the debt.</li></ul><p>Context bound only, not an answer: HMDA originations nationwide were about $2.0 trillion in 2024 and $2.4 trillion in 2025 (CFPB aggregates, <code>housing.hmda_loans</code>, action_taken=1). The newly mapped share of that is unknown.</p>
 </section>
 <section>
-<h2>The closest real evidence found, and exactly how it differs from the question</h2>
-<ul><li><strong>Federal Reserve Bank of Richmond, <a href="https://www.richmondfed.org/publications/research/economic_brief/2024/eb_24-22">"Assessing GSE Mortgage Portfolios' Exposure to Past and Future Flood Risk"</a> (Phan, July 2024)</strong> -- matches 100+ million Fannie Mae/Freddie Mac loans (1999-2023) to First Street Foundation's flood-factor projections at the 3-digit ZIP level. Of $8.17 trillion in GSE loans outstanding in January 2023, an estimated <strong>$2.22 trillion (27.2%)</strong> sits in ZIP codes with an average flood factor of 2 or higher ("at risk"), and <strong>$0.41 trillion (5.0%)</strong> in ZIP codes with a flood factor of 3+ ("higher risk"). This is the single most directly comparable figure to the question's dollar amount -- but it measures forward-looking flood-risk exposure broadly, not specifically debt in properties a FEMA map revision has newly moved into a mapped zone, and it uses 3-digit ZIP (not parcel-level) matching, which the author himself flags likely understates true exposure. A companion finding: Hurricane Irma raised default frequency by 0.40 percentage points in affected Florida ZIP codes over the following 18 months, evidence the exposure has real financial consequence.</li><li><strong>CFPB, <a href="https://files.consumerfinance.gov/f/documents/cfpb_Flood-Risk-and-Mortgages_Report_2025-01.pdf">"Flood Risk and the U.S. Mortgage Market"</a> (Jan. 2025)</strong> -- matches confidential, property-level HMDA records to FEMA Special Flood Hazard Area status and First Street's Flood Factor for 2012-2021 (South Atlantic and South-Central regions). It measures mortgage-application volume and borrower characteristics by flood-risk tier from a single static 2021 FEMA snapshot -- not map-revision events over time, and not outstanding balances.</li><li><strong>NY Fed, <a href="https://libertystreeteconomics.newyorkfed.org/2024/09/flood-risk-outside-flood-zones-a-look-at-mortgage-lending-in-risky-areas/">"Flood Risk Outside Flood Zones"</a> (Blickle, Perry, Santos, 2024)</strong> and its <a href="https://www.newyorkfed.org/research/staff_reports/sr1101">underlying staff report</a> -- the best available lender-behavior evidence, using property-level HMDA matched to CoreLogic flood scores. Studies properties with real flood risk that are <em>never covered by a FEMA map at all</em> -- the inverse population from the question, which asks about properties actively moved <em>into</em> a mapped zone by a revision. Its lender-concentration finding: large banks cut lending roughly 1 percentage point in these risky-but-unmapped areas; nonbanks and small local banks do not pull back and are 1-2+ percentage points more likely to securitize or sell the loans they do originate. In dollar terms, $200 billion in mortgages were originated in 2021 in already-mapped areas versus over $600 billion in high-risk areas with no map coverage at all.</li><li><strong>Cotality (formerly CoreLogic), <a href="https://www.cotality.com/resources/what-femas-upcoming-flood-map-changes-mean-for-lenders-and-servicers">industry brief on FEMA's June 2026 map release</a></strong> -- the only source found that discusses the newly-mapped population specifically, but as process and scale, not an aggregate dollar figure: 100+ communities across 12 states received new maps (the largest single-day release in 5 years), with roughly 75% of Honolulu County newly mapped. Confirms that under Fannie Mae/Freddie Mac servicing rules, a newly-mapped property must obtain flood insurance within 120 days of the revision or the servicer force-places coverage and adds the cost to the loan -- but this is a vendor marketing piece, not primary data, and reports no dollar total.</li><li><strong>Retraction flagged, not used as evidence:</strong> a widely-cited NBER/Review of Financial Studies paper by Ouazad and Kahn ("Mortgage Finance and Climate Change: Securitization Dynamics in the Aftermath of Natural Disasters") argued lenders systematically sell disaster-exposed mortgages to the GSEs after storms. <a href="https://academic.oup.com/rfs/article/38/5/1594/7986119">That paper was formally retracted in 2025</a> after a journal-appointed committee could not reproduce its central results. It is not used as support for the lender-concentration claim in this report.</li></ul>
+<h2>What the literature says</h2>
+<p>I found no study that totals outstanding mortgage debt on newly mapped properties. Related work: a Federal Reserve paper on the 2016 Orleans Parish remapping finds lenders price the change (about 6 basis points higher rates on properties removed from the SFHA, per the search summary; I did not read the full text). A New York Fed staff report finds lenders treat unmapped flood risk differently, with weaker effects for non-banks and small local banks. A CFPB 2025 report notes exposure estimates vary widely by flood-risk measure.</p>
 </section>
 <section>
-<h2>Bottom line</h2>
-<p>The dollar amount specifically for newly-remapped properties has no published answer anywhere. The concentration question has a defensible partial answer through a proxy: because Fannie Mae and Freddie Mac alone hold $8.17 trillion of U.S. single-family mortgage debt and an estimated $2.22 trillion of that sits in flood-risk ZIP codes, any newly-remapped subset of that debt is, by construction, heavily concentrated at those two GSEs before even considering which originating bank or nonbank first made the loan. Layered on top, the NY Fed's finding on the (different, unmapped-risk) population -- that large banks retreat while nonbanks and small local banks retain and offload more flood-exposed risk -- is the best available directional evidence for how newly-remapped-property lending is likely to behave, but it was not measured on that exact population and should not be quoted as if it were.</p>
+<h2>What would be needed</h2>
+<p>Overlay FEMA NFHL effective-date polygons (new SFHA additions) on geocoded loan-level mortgage data with servicer identity, such as a credit bureau or servicer tape. A feasible partial version: tract-level HMDA origination dollars in tracts overlapping new SFHA areas, by originator LEI. That needs NFHL tract overlays, which are not loaded. I have logged this as a sourcing gap.</p>
 </section>
 <section>
 <h2>What This Report Does Not Answer</h2>
-<ul><li><strong>Dollar amount of outstanding mortgage debt in properties newly mapped into a FEMA flood zone</strong>: No dataset in this corpus, FEMA's own OpenFEMA API, HMDA, or the academic/Fed literature links (a) FEMA flood-map revision effective dates/parcels to (b) loan-level unpaid principal balance. This requires proprietary parcel-to-loan matching (the kind Cotality/CoreLogic and First Street Foundation sell commercially to lenders/servicers) not published as a national aggregate anywhere found. Reported the closest adjacent published figures instead, explicitly labeled as not the same measure -- including the one genuinely close figure found (GSE portfolios' flood exposure, Richmond Fed) which measures ALL flood-risk exposure, not specifically newly-remapped exposure.</li></ul>
+<ul><li><strong>Dollar amount of outstanding mortgage debt in newly mapped flood-zone properties</strong>: No flood map revision data and no outstanding-balance data in the warehouse; only origination context given.</li><li><strong>Lender concentration</strong>: HMDA gives originator not servicer, and no flood-zone flag, so concentration cannot be computed.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 8 rows — 1451 ms</summary><pre><code>SELECT &quot;year&quot;, SUM(loan_amount_total)/1e9 AS bn, SUM(loan_count) AS n FROM housing.hmda_loans WHERE action_taken = '1' AND &quot;year&quot; BETWEEN 2018 AND 2025 GROUP BY &quot;year&quot; ORDER BY &quot;year&quot;</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.fema.gov/about/openfema/api">AskAmerica disasters.nfip_policies / nfip_claims / housing.hmda_lar catalog check</a> <span class="note">— Live search_catalog/list_tables/describe_table calls, 2026-09-26 -- confirmed no FEMA map-revision table and no property-level flood-zone-to-mortgage-debt join exists in the corpus</span></li>
-<li><a href="https://www.richmondfed.org/publications/research/economic_brief/2024/eb_24-22">Federal Reserve Bank of Richmond, Assessing GSE Mortgage Portfolios' Exposure to Past and Future Flood Risk (Phan, July 2024)</a></li>
-<li><a href="https://files.consumerfinance.gov/f/documents/cfpb_Flood-Risk-and-Mortgages_Report_2025-01.pdf">CFPB, Flood Risk and the U.S. Mortgage Market (Jan. 2025)</a></li>
-<li><a href="https://libertystreeteconomics.newyorkfed.org/2024/09/flood-risk-outside-flood-zones-a-look-at-mortgage-lending-in-risky-areas/">NY Fed Liberty Street Economics, Flood Risk Outside Flood Zones (Sept. 2024)</a></li>
-<li><a href="https://www.newyorkfed.org/research/staff_reports/sr1101">NY Fed Staff Report 1101, Do Mortgage Lenders Respond to Flood Risk?</a></li>
-<li><a href="https://www.cotality.com/resources/what-femas-upcoming-flood-map-changes-mean-for-lenders-and-servicers">Cotality, What FEMA's upcoming flood map changes mean for lenders and servicers (2026)</a></li>
-<li><a href="https://academic.oup.com/rfs/article/38/5/1594/7986119">Retraction notice, Ouazad &amp; Kahn, Review of Financial Studies (2025)</a></li>
+<li><a href="https://www.federalreserve.gov/econres/feds/files/2025081pap.pdf">Federal Reserve FEDS 2025-081</a></li>
+<li><a href="https://libertystreeteconomics.newyorkfed.org/2024/09/flood-risk-outside-flood-zones-a-look-at-mortgage-lending-in-risky-areas/">NY Fed Liberty Street: flood risk outside flood zones</a></li>
+<li><a href="https://files.consumerfinance.gov/f/documents/cfpb_Flood-Risk-and-Mortgages_Report_2025-01.pdf">CFPB Flood Risk and Mortgages 2025</a></li>
+<li><a href="https://ffiec.cfpb.gov/v2/data-browser-api/view/aggregations">housing.hmda_loans</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT &quot;year&quot;, SUM(loan_amount_total)/1e9 AS bn FROM housing.hmda_loans WHERE action_taken='1' GROUP BY &quot;year&quot;</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">This is primarily a data-gap finding: the exact figure asked for (debt specifically in newly-remapped properties, and its lender concentration) is not published anywhere found. The GSE flood-exposure figures ($8.17T outstanding, $2.22T at flood risk) are a real, cited, peer-reviewed-adjacent measure but cover all flood risk, not specifically newly-remapped properties -- shown as the closest available proxy for concentration, not as a direct answer.</p>
 <p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
