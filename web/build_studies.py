@@ -401,7 +401,8 @@ def build_index(bank, entries, recent_headlines=None, archived_headlines=None, s
         )
         cards.append(
             '<div class="study-cat" id="sandc"><h2>Said &amp; Checked</h2>'
-            f'<ul>{"".join(rows[:SAID_DAYS_SHOWN])}</ul>{all_days_link}</div>'
+            + said_and_checked.topic_summary_html(said_days[:SAID_DAYS_SHOWN])
+            + f'<ul>{"".join(rows[:SAID_DAYS_SHOWN])}</ul>{all_days_link}</div>'
         )
     if recent_headlines or archived_headlines:
         rows = _headline_rows(recent_headlines)
