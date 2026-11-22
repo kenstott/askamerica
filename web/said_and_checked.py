@@ -1042,6 +1042,70 @@ def send_email(path):
         sys.exit("SEND FAILED %s: HTTP %d %s" % (doc["date"], e.code, detail))
 
 
+TOPIC_SUMMARY_COUNT = 5
+REPORTED_AS = "Reported as:"
+# A topic's notable statement: the most decisive checked result, as the feed's lead rule.
+TOPIC_NOTABLE_RESULTS = ("false", "contradicted", "unsupported", "unsettled")
+
+
+def topic_summary(days):
+    """The most discussed topics across days: [(topic, speakers, statements, tally, notable)],
+    ranked by distinct officeholders, then statements, then name. tally is [(result, n)] over
+    checked statements in RESULTS order; notable is (day, statement) or None. Mechanical: no
+    statement or topic is picked by hand."""
+    by_topic = {}
+    for day in days:
+        for s in day["statements"]:
+            by_topic.setdefault(s["broad_topic"], []).append((day, s))
+    rows = []
+    for topic, pairs in by_topic.items():
+        speakers = len({s["speaker"] for _, s in pairs})
+        checked = [s for _, s in pairs if is_checked(s)]
+        tally = [(r, n) for r in RESULTS for n in [sum(1 for s in checked if s["result"] == r)] if n]
+        candidates = [(TOPIC_NOTABLE_RESULTS.index(s["result"]), -i, int(s["id"]), day, s)
+                      for i, (day, s) in enumerate(pairs)
+                      if is_checked(s) and s["result"] in TOPIC_NOTABLE_RESULTS]
+        # Days arrive newest first, so -i prefers the most recent day at equal decisiveness.
+        best = min(candidates, key=lambda c: c[:3]) if candidates else None
+        rows.append((topic, speakers, len(pairs), tally, (best[3], best[4]) if best else None))
+    rows.sort(key=lambda r: (-r[1], -r[2], r[0]))
+    return rows[:TOPIC_SUMMARY_COUNT]
+
+
+def topic_summary_html(days):
+    """The "most discussed" list shown above the latest days on the studies page."""
+    items = []
+    for topic, speakers, n, tally, notable in topic_summary(days):
+        line = ('<strong><a href="%s">%s</a></strong>: %d officeholder%s, %d statement%s.'
+                % (html.escape(topic_feed_path(topic), quote=True), html.escape(topic),
+                   speakers, "" if speakers == 1 else "s", n, "" if n == 1 else "s"))
+        if tally:
+            line += " %d checked: %s." % (sum(c for _, c in tally),
+                                          ", ".join("%d %s" % (c, RESULTS[r].lower())
+                                                    for r, c in tally))
+        if notable:
+            day, s = notable
+            quote = s["quote"]
+            words = 30 if len(quote.split()) > 30 else len(quote.split())
+            if quote.startswith(REPORTED_AS):
+                # A reporter's paraphrase (spec: "Reported as: <sentence>"), not the speaker's
+                # words, so it is not shown in quotation marks.
+                said = "%s, as reported: %s" % (
+                    html.escape(s["speaker"]),
+                    html.escape(_excerpt(quote[len(REPORTED_AS):].strip(), words)))
+            else:
+                said = "%s: &ldquo;%s&rdquo;" % (html.escape(s["speaker"]),
+                                                 html.escape(_excerpt(quote, words)))
+            line += (' Most notable: <a href="/studies/%s/#s%d">%s</a> (%s).'
+                     % (slug(day), s["id"], said, RESULTS[s["result"]].lower()))
+        items.append('<li class="study-row" style="display:block;">%s</li>' % line)
+    if not items:
+        return ""
+    return ('<p style="color:var(--text-dim);font-size:12px;margin:0 0 0.3rem;">Most discussed '
+            'in these days\' sources, ranked by how many officeholders spoke on each topic</p>'
+            '<ul style="margin-bottom:1rem;">%s</ul>' % "".join(items))
+
+
 def index_rows(days):
     rows = []
     for day in days:
