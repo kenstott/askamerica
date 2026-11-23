@@ -1000,16 +1000,27 @@ def email_subject(day):
     return _feed_title(day["date"], day["statements"])
 
 
+EMAIL_GET_STARTED_URL = SITE + "/#download"
+EMAIL_HOW_CHECKED = (
+    '<hr style="border:0;border-top:1px solid #d0d7de;margin:24px 0 16px"/>'
+    '<p style="font-size:14px;color:#57606a"><strong>How these checks are made.</strong> '
+    "Every statement above was checked against AskAmerica&rsquo;s warehouse of government "
+    "data, with each figure traced to its primary source. You can query the same data "
+    "yourself: ask Claude or any MCP client, or use standard SQL from Python, Java, Node or "
+    'DBeaver. <a href="%s">Get started &rarr;</a></p>' % EMAIL_GET_STARTED_URL)
+
+
 def email_html(day):
-    """The day's email body: the same lead, tally card and link as the main feed's item. The
-    api Worker adds the unsubscribe link and postal address."""
+    """The day's email body: the same lead, tally card and link as the main feed's item, then
+    how the checks are made and where to get the data. The api Worker adds the unsubscribe link
+    and postal address."""
     stmts = day["statements"]
     url = "%s/studies/%s/" % (SITE, slug(day))
     image = SITE + feed_image_path("all", day["date"])
     alt = "Said & Checked %s: %s" % (day["date"], html.unescape(statements_summary(stmts)))
     return ('<div style="max-width:640px;margin:0 auto;font:16px/1.55 -apple-system,'
-            'BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif;color:#1f2328">%s</div>'
-            % _feed_description(stmts, url, image, alt))
+            'BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif;color:#1f2328">%s%s</div>'
+            % (_feed_description(stmts, url, image, alt), EMAIL_HOW_CHECKED))
 
 
 def send_email(path):
