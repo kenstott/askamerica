@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Crop insurance drought payouts track measured drought only weakly — strong in the rainfed Corn Belt/Plains, nearly absent in the irrigated arid West</title>
+<title>Drought-coded crop insurance payouts track measured drought moderately (r about 0.46 by county-year) and diverge most in irrigated Western counties</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -99,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Crop insurance drought payouts track measured drought only weakly — strong in the rainfed Corn Belt/Plains, nearly absent in the irrigated arid West</h1>
-<p class="subtitle">USDA RMA Cause-of-Loss indemnity vs. NOAA/USDA Drought Monitor DSCI, state-year grain, 2010-2025 (n=850)</p>
+<h1>Drought-coded crop insurance payouts track measured drought moderately (r about 0.46 by county-year) and diverge most in irrigated Western counties</h1>
+<p class="subtitle">RMA Cause of Loss (drought indemnity / liability) vs US Drought Monitor DSCI, Apr-Sep mean, county-years 2010-2025, n=30,642</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 631" width="880" height="631" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 732" width="880" height="732" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,88 +155,190 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="631" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Crop Insurance Drought Payouts vs. Measured Drought Severity, 2010…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:12px">USDA RMA Cause-of-Loss indemnity data vs. NOAA/USDM Drought Severity and Coverage Index (DSCI), state-year grain, n=850</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="732" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Drought payouts vs measured drought</text>
   <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Correlation (DSCI vs. drought loss rate)</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">r = 0.26</text>
+  <rect class="panel-edge" x="20" y="144" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="180" fill="#6b7280">County-year r (n=30,642)</text>
+  <text class="stat-value" x="36" y="210" fill="#1f2328">0.46</text>
   </g>
-  <text class="caption" x="24" y="203" fill="#6b7280">Weak-to-moderate; a two-way fixed-effects panel (state+year) finds a</text>
-  <text class="caption" x="24" y="216" fill="#6b7280">highly significant coefficient (p&lt;0.001) but it is still small in…</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="98" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="134" fill="#6b7280">Drought's share of all crop-insurance payouts</text>
-  <text class="stat-value" x="464" y="164" fill="#1f2328">17.1%</text>
-  <text class="stat-delta" x="464" y="184" fill="#6b7280">$29.8B of $174.8B, 2009-2025</text>
-  </g>
-  <rect class="panel-edge" x="20" y="238" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="238" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+  <text class="caption" x="24" y="345" fill="#6b7280">0.55 excluding AZ/CA/NM/NV/OR/UT; 0.30 on 1,844 county 10+yr means</text>
+  <rect class="panel-edge" x="448" y="64" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="64" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="10" style="font-size:10px" font-weight="600" text-anchor="middle">State-years where payouts diverge most from measured drought</text>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Correlation by state (selected)</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="33" y1="56" x2="33" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-0" class="tick" x="33" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.0</text>
+      <line class="grid" x1="104.40" y1="56" x2="104.40" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-1" class="tick" x="104.40" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.2</text>
+      <line class="grid" x1="175.80" y1="56" x2="175.80" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-2" class="tick" x="175.80" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.4</text>
+      <line class="grid" x1="247.20" y1="56" x2="247.20" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-3" class="tick" x="247.20" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.6</text>
+      <line class="grid" x1="318.60" y1="56" x2="318.60" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-4" class="tick" x="318.60" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.8</text>
+      <line class="grid" x1="390" y1="56" x2="390" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-5" class="tick" x="390" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1.0</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="33" y1="56" x2="33" y2="246" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="33" y1="246" x2="390" y2="246" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <g id="p2-category-axis-labels">
+      <text id="p2-xtick-ut" class="tick" x="25" y="68.64" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">UT</text>
+      <text id="p2-xtick-nm" class="tick" x="25" y="85.91" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">NM</text>
+      <text id="p2-xtick-az" class="tick" x="25" y="103.18" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">AZ</text>
+      <text id="p2-xtick-ca" class="tick" x="25" y="120.45" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">CA</text>
+      <text id="p2-xtick-or" class="tick" x="25" y="137.73" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">OR</text>
+      <text id="p2-xtick-co" class="tick" x="25" y="155" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">CO</text>
+      <text id="p2-xtick-tx" class="tick" x="25" y="172.27" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">TX</text>
+      <text id="p2-xtick-ks" class="tick" x="25" y="189.55" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">KS</text>
+      <text id="p2-xtick-ia" class="tick" x="25" y="206.82" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">IA</text>
+      <text id="p2-xtick-il" class="tick" x="25" y="224.09" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">IL</text>
+      <text id="p2-xtick-nd" class="tick" x="25" y="241.36" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">ND</text>
+    </g>
+    <g id="p2-series-r" class="series">
+      <g class="hover">
+        <title>UT — r: 0.06</title>
+        <rect id="p2-mark-r-ut" class="bar" x="33" y="59.11" width="21.42" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="56.14" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>NM — r: 0.13</title>
+        <rect id="p2-mark-r-nm" class="bar" x="33" y="76.38" width="46.41" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="73.41" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>AZ — r: 0.13</title>
+        <rect id="p2-mark-r-az" class="bar" x="33" y="93.65" width="46.41" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="90.68" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>CA — r: 0.18</title>
+        <rect id="p2-mark-r-ca" class="bar" x="33" y="110.93" width="64.26" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="107.95" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>OR — r: 0.2</title>
+        <rect id="p2-mark-r-or" class="bar" x="33" y="128.20" width="71.40" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="125.23" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>CO — r: 0.22</title>
+        <rect id="p2-mark-r-co" class="bar" x="33" y="145.47" width="78.54" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="142.50" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>TX — r: 0.44</title>
+        <rect id="p2-mark-r-tx" class="bar" x="33" y="162.75" width="157.08" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="159.77" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>KS — r: 0.7</title>
+        <rect id="p2-mark-r-ks" class="bar" x="33" y="180.02" width="249.90" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="177.05" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>IA — r: 0.66</title>
+        <rect id="p2-mark-r-ia" class="bar" x="33" y="197.29" width="235.62" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="194.32" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>IL — r: 0.74</title>
+        <rect id="p2-mark-r-il" class="bar" x="33" y="214.56" width="264.18" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="211.59" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>ND — r: 0.83</title>
+        <rect id="p2-mark-r-nd" class="bar" x="33" y="231.84" width="296.31" height="10.05" fill="#2563eb"/>
+        <rect class="hit" x="33" y="228.86" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="20" y="380" width="412" height="300" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="380" width="412" height="300" viewBox="0 0 412 300" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="300" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Drought loss cost in very dry county-years (DSCI&gt;=150), % of liability</text>
     <g id="p3-gridlines">
-      <line class="grid" x1="60" y1="184" x2="386" y2="184" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="52" y="188" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="60" y1="162.67" x2="386" y2="162.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="52" y="166.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-      <line class="grid" x1="60" y1="141.33" x2="386" y2="141.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="52" y="145.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="60" y1="120" x2="386" y2="120" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="52" y="124" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
-      <line class="grid" x1="60" y1="98.67" x2="386" y2="98.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="52" y="102.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="60" y1="77.33" x2="386" y2="77.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="52" y="81.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
-      <line class="grid" x1="60" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-6" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
+      <line class="grid" x1="33" y1="56" x2="33" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-0" class="tick" x="33" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <line class="grid" x1="84" y1="56" x2="84" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-1" class="tick" x="84" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">1</text>
+      <line class="grid" x1="135" y1="56" x2="135" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-2" class="tick" x="135" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2</text>
+      <line class="grid" x1="186" y1="56" x2="186" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-3" class="tick" x="186" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">3</text>
+      <line class="grid" x1="237" y1="56" x2="237" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-4" class="tick" x="237" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">4</text>
+      <line class="grid" x1="288" y1="56" x2="288" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-5" class="tick" x="288" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5</text>
+      <line class="grid" x1="339" y1="56" x2="339" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-6" class="tick" x="339" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">6</text>
+      <line class="grid" x1="390" y1="56" x2="390" y2="246" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-value-tick-7" class="tick" x="390" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">7</text>
     </g>
     <g id="p3-axes">
-      <line class="axis" x1="60" y1="56" x2="60" y2="184" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="60" y1="184" x2="386" y2="184" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="33" y1="56" x2="33" y2="246" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="33" y1="246" x2="390" y2="246" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="223" y="232" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Avg. annual DSCI (0-500)</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="120" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 120)">Drought loss rate (%)</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-0" class="tick" x="60" y="202" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
-      <text id="p3-xtick-1" class="tick" x="125.20" y="202" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">100</text>
-      <text id="p3-xtick-2" class="tick" x="190.40" y="202" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">200</text>
-      <text id="p3-xtick-3" class="tick" x="255.60" y="202" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">300</text>
-      <text id="p3-xtick-4" class="tick" x="320.80" y="202" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">400</text>
-      <text id="p3-xtick-5" class="tick" x="386" y="202" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">500</text>
+    <g id="p3-category-axis-labels">
+      <text id="p3-xtick-az" class="tick" x="25" y="71.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">AZ</text>
+      <text id="p3-xtick-nv" class="tick" x="25" y="95.63" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">NV</text>
+      <text id="p3-xtick-ca" class="tick" x="25" y="119.38" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">CA</text>
+      <text id="p3-xtick-fl" class="tick" x="25" y="143.13" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">FL</text>
+      <text id="p3-xtick-ut" class="tick" x="25" y="166.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">UT</text>
+      <text id="p3-xtick-ms" class="tick" x="25" y="190.63" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">MS</text>
+      <text id="p3-xtick-or" class="tick" x="25" y="214.38" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">OR</text>
+      <text id="p3-xtick-nm" class="tick" x="25" y="238.13" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">NM</text>
     </g>
-    <g id="p3-series-under-predicted-corn-belt-plains-drought-years" class="series">
-      <circle id="p3-mark-under-predicted-corn-belt-plains-drought-years-0" class="point" cx="170.38" cy="56.85" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-under-predicted-corn-belt-plains-drought-years-1" class="point" cx="252.47" cy="57.49" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-under-predicted-corn-belt-plains-drought-years-2" class="point" cx="306.52" cy="63.55" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-under-predicted-corn-belt-plains-drought-years-3" class="point" cx="109.49" cy="83.69" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-under-predicted-corn-belt-plains-drought-years-4" class="point" cx="151.21" cy="81.34" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-under-predicted-corn-belt-plains-drought-years-5" class="point" cx="205.66" cy="83.86" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-under-predicted-corn-belt-plains-drought-years-6" class="point" cx="60" cy="101.70" r="4" fill="#2563eb" fill-opacity="0.85"/>
-      <circle id="p3-mark-under-predicted-corn-belt-plains-drought-years-7" class="point" cx="92.80" cy="100.29" r="4" fill="#2563eb" fill-opacity="0.85"/>
-    </g>
-    <g id="p3-series-over-predicted-arid-west-chronic-dryness" class="series">
-      <circle id="p3-mark-over-predicted-arid-west-chronic-dryness-0" class="point" cx="340.36" cy="183.91" r="4" fill="#ea580c" fill-opacity="0.85"/>
-      <circle id="p3-mark-over-predicted-arid-west-chronic-dryness-1" class="point" cx="341.86" cy="183.49" r="4" fill="#ea580c" fill-opacity="0.85"/>
-      <circle id="p3-mark-over-predicted-arid-west-chronic-dryness-2" class="point" cx="334.62" cy="184" r="4" fill="#ea580c" fill-opacity="0.85"/>
-      <circle id="p3-mark-over-predicted-arid-west-chronic-dryness-3" class="point" cx="310.69" cy="184" r="4" fill="#ea580c" fill-opacity="0.85"/>
-      <circle id="p3-mark-over-predicted-arid-west-chronic-dryness-4" class="point" cx="311.35" cy="183.57" r="4" fill="#ea580c" fill-opacity="0.85"/>
-      <circle id="p3-mark-over-predicted-arid-west-chronic-dryness-5" class="point" cx="303.52" cy="184" r="4" fill="#ea580c" fill-opacity="0.85"/>
-      <circle id="p3-mark-over-predicted-arid-west-chronic-dryness-6" class="point" cx="300.26" cy="184" r="4" fill="#ea580c" fill-opacity="0.85"/>
-      <circle id="p3-mark-over-predicted-arid-west-chronic-dryness-7" class="point" cx="283.83" cy="184" r="4" fill="#ea580c" fill-opacity="0.85"/>
-    </g>
-    <g id="p3-legend">
-      <rect id="p3-legend-swatch-under-predicted-corn-belt-plains-drought-years" x="65" y="246" width="11" height="11" fill="#2563eb"/>
-      <text id="p3-legend-label-under-predicted-corn-belt-plains-drought-years" class="legend-label" x="81" y="255" fill="#1f2328" font-size="11" style="font-size:11px">Under-predicted (Corn Belt/Plains drought years)</text>
-      <rect id="p3-legend-swatch-over-predicted-arid-west-chronic-dryness" x="80" y="266" width="11" height="11" fill="#ea580c"/>
-      <text id="p3-legend-label-over-predicted-arid-west-chronic-dryness" class="legend-label" x="96" y="275" fill="#1f2328" font-size="11" style="font-size:11px">Over-predicted (arid West, chronic dryness)</text>
+    <g id="p3-series-drought-indemnity-liability" class="series">
+      <g class="hover">
+        <title>AZ — drought indemnity % liability: 0</title>
+        <rect id="p3-mark-drought-indemnity-liability-az" class="bar" x="33" y="60.28" width="0.01" height="14.20" fill="#2563eb"/>
+        <rect class="hit" x="33" y="59.38" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>NV — drought indemnity % liability: 0.04</title>
+        <rect id="p3-mark-drought-indemnity-liability-nv" class="bar" x="33" y="84.03" width="2.04" height="14.20" fill="#2563eb"/>
+        <rect class="hit" x="33" y="83.13" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>CA — drought indemnity % liability: 0.65</title>
+        <rect id="p3-mark-drought-indemnity-liability-ca" class="bar" x="33" y="107.78" width="33.15" height="14.20" fill="#2563eb"/>
+        <rect class="hit" x="33" y="106.88" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>FL — drought indemnity % liability: 1.3</title>
+        <rect id="p3-mark-drought-indemnity-liability-fl" class="bar" x="33" y="131.53" width="66.30" height="14.20" fill="#2563eb"/>
+        <rect class="hit" x="33" y="130.63" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>UT — drought indemnity % liability: 2.97</title>
+        <rect id="p3-mark-drought-indemnity-liability-ut" class="bar" x="33" y="155.28" width="151.47" height="14.20" fill="#2563eb"/>
+        <rect class="hit" x="33" y="154.38" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>MS — drought indemnity % liability: 5.92</title>
+        <rect id="p3-mark-drought-indemnity-liability-ms" class="bar" x="33" y="179.03" width="301.92" height="14.20" fill="#2563eb"/>
+        <rect class="hit" x="33" y="178.13" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>OR — drought indemnity % liability: 6</title>
+        <rect id="p3-mark-drought-indemnity-liability-or" class="bar" x="33" y="202.78" width="306" height="14.20" fill="#2563eb"/>
+        <rect class="hit" x="33" y="201.88" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>NM — drought indemnity % liability: 6.25</title>
+        <rect id="p3-mark-drought-indemnity-liability-nm" class="bar" x="33" y="226.53" width="318.75" height="14.20" fill="#2563eb"/>
+        <rect class="hit" x="33" y="225.63" width="357" height="16" fill="#000" fill-opacity="0"/>
+      </g>
     </g>
     <g id="p3-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="footnote" x="20" y="564" fill="#6b7280">Indemnity attributed to RMA cause-of-loss code 'Drought' only; loss rate = drought indemnity / total insured liability for that state-year. DSCI</text>
-  <text class="footnote" x="20" y="578" fill="#6b7280">averaged across all weeks and counties in the state-year.</text>
   <g id="brand">
-  <svg x="20" y="590" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="691" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -237,261 +347,53 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="605" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="706" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:51280/a/a8132b9ced326b11b3f3df7bf1fbb7bf.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:57040/a/3301e2b62626daa139f1b34b27f51efc.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>Federal crop-insurance drought payouts track measured drought only loosely at the state level: the raw correlation between a state-year's average NOAA/USDA Drought Monitor severity (DSCI, 0-500) and its drought-indemnity loss rate (drought payouts as a share of insured liability) is r = 0.26 (n=850 state-years, 2010-2025). Controlling for each state's baseline exposure and nationwide year effects (two-way fixed effects), the drought-severity coefficient becomes highly statistically significant (p&lt;0.001) but stays modest in size &mdash; going from no drought to a state entirely blanketed in exceptional drought all year raises the drought loss rate by roughly 8-9 percentage points of insured liability, on average. The two series diverge most sharply in opposite directions: rainfed Corn Belt and Southern Plains states (Missouri, Oklahoma, Texas, Illinois, Kentucky in the 2011-2012 drought) paid out FAR more than their measured drought severity alone would predict, while chronically arid Western states (California, Nevada, Utah, New Mexico) show near-zero drought payouts despite carrying some of the highest DSCI readings in the country. Drought is nonetheless the single largest named peril in the crop-insurance program, accounting for $29.8B of $174.8B (17.1%) of all indemnities paid 2009-2025.</p>
+<p>Drought-coded crop insurance indemnities track measured drought only moderately. Across 30,642 county-years (2010-2025), drought indemnity as a share of insured liability correlates r=0.46 with the growing-season (Apr-Sep) mean Drought Severity and Coverage Index. Dollars rather than rates give 0.40. Excluding six Western states (AZ, CA, NM, NV, OR, UT) the correlation rises to 0.55. At the county level, using 1,844 county means over 10 or more years, it falls to 0.30. The match is tight in the Corn Belt and northern Plains (ND 0.83, IL 0.74, SD 0.71, KS 0.70) and loose or absent in the irrigated and specialty-crop West (UT 0.06, NM 0.13, AZ 0.13, CA 0.18).</p><p>Drought is the largest single cause: $54.1B of $167.7B total indemnity in the sample (32%).</p>
 </section>
 <section>
-<h2>Data and method</h2>
-<p>Two USDA/NOAA sources were joined at state-year grain: <code>ag.rma_cause_of_loss</code> (USDA RMA Summary of Business, cause-of-loss detail, indemnity_amount for cause_of_loss_desc='Drought') and <code>weather.drought_monitor_weekly</code> (NOAA/USDA Drought Monitor, county-week DSCI averaged up to state-year). Payouts were normalized as drought indemnity divided by total insured liability for that state-year (from <code>ag.rma_crop_insurance</code>) rather than compared in raw dollars, since raw dollar comparisons are dominated by which states simply insure the most acreage. The overlapping coverage window across all three tables is 2010-2025 (drought_monitor_weekly's declared floor), giving 850 state-year observations across 50 states and 17 years.</p><p><strong>Exclusion disclosure:</strong> the joining query's WHERE clause included the predicate <code>d.state_abbr IS NOT NULL</code> as a defensive guard against a join fan-out on a null key. Checked directly against the source: <code>SELECT COUNT(*) FROM weather.drought_monitor_weekly WHERE state_abbr IS NULL AND year BETWEEN 2009 AND 2025</code> returns 0 rows. So <code>d.state_abbr IS NOT NULL</code> excluded zero rows, dropped nothing, and omitted no state or year from the panel &mdash; every county-week in the table over the study window already carries a non-null state_abbr, so the 850-row state-year panel is the complete overlap across all three tables, and the headline statistics (r=0.26, the fixed-effects coefficient, and the divergence list) are identical whether or not that guard is present.</p><p>A plain bivariate correlation is confounded by structural differences between states &mdash; crop mix, irrigation share, and total insured acreage all differ enormously and are correlated with both drought exposure and insurance participation. A two-way fixed-effects panel regression (state and year absorbed) isolates the within-state, year-to-year relationship: coefficient on avg_dsci = 0.0169 (SE 0.0018, p&lt;0.001, n=850, 50 states x 17 years). This says that within a given state, a year with markedly worse measured drought does produce measurably higher drought payouts &mdash; the relationship is real and not noise &mdash; but it explains a small share of the variation (bivariate R&sup2; = 0.065), meaning most of the year-to-year swing in drought payouts is driven by something other than measured areal drought severity: which specific counties and growth stages were hit, crop type, and coverage take-up.</p>
+<h2>Where they diverge most</h2>
+<p>In county-years with DSCI of 150 or more (very dry), drought indemnity per dollar of liability was about 0.0001% in Arizona, 0.04% in Nevada, 0.65% in California and 1.3% in Florida, against 6% in Oregon and New Mexico.</p><p>California almonds, pistachios, cherries and tomatoes show zero drought indemnity over 2010-2025 despite 26-47% overall loss ratios; Arizona pasture/rangeland shows zero drought indemnity yet a 53% overall loss ratio. Rollup caveat for these commodity_name figures: the column mixes a rollup row ('All Other Crops') with individual crops, so summing across commodities would double count; each figure here is a single crop's own row, so it is unaffected, and the rollup row is not quoted. Irrigated or water-allocated crops evidently lose to other causes; with no irrigated-practice column this is suggestive, not a direct test.</p><p>The opposite divergence is rare: a few Texas and Georgia county-years (for example Texas 48317 in 2017) show loss ratios above 60% with DSCI under 40, which fits short flash droughts, drought outside Apr-Sep, or drought on part of a county.</p>
 </section>
 <section>
-<h2>Where the two diverge most</h2>
-<p><strong>Under-predicted (drought paid out far more than its DSCI alone implied):</strong> Missouri 2012 (DSCI 169, drought loss rate 29.8% of liability, $1.04B in drought indemnity), Oklahoma 2011 (DSCI 295, loss rate 29.7%, $297M), Texas 2011 (DSCI 378, loss rate 28.2%, $1.55B), Kentucky 2012 (DSCI 76, loss rate 23.5%, $370M), and Illinois 2012 (DSCI 140, loss rate 24.1%, $2.93B). These are the classic 2011-2012 central-U.S. drought years hitting extensively insured, largely rainfed corn, soybean, and wheat acreage &mdash; a moderate-looking DSCI reading translated into some of the largest drought payouts in program history because the affected cropland is both highly drought-sensitive (rainfed, not irrigated) and heavily insured.</p><p><strong>Over-predicted (severe measured drought, almost no drought payout):</strong> California 2014-2015 (DSCI ~430, loss rate 0.02-0.12%), Nevada 2014-2021 (DSCI 368-385, loss rate ~0%), Utah 2021 (DSCI 421, loss rate 0%), and New Mexico 2021 (DSCI 343, loss rate 0%). These states carry some of the highest sustained DSCI values in the country &mdash; their climate is chronically arid, which USDM measures as widespread abnormal dryness/drought essentially every year &mdash; but their insured cropland is disproportionately irrigated (or is low-acreage relative to the state's land area), so a drought classification on dry rangeland or fallow desert does not translate into an insured-crop loss the way it does for a rainfed Iowa cornfield.</p><p>The practical read: DSCI is a land-area index (what fraction of a state's area is in each drought category), not a crop-exposure index. It matches insurance payouts well where insured farmland is rainfed and drought-vulnerable, and matches poorly where farmland is irrigated or drought severity is chronic/structural rather than an anomalous shock in a given year.</p>
+<h2>Year by year</h2>
+<p>Annual cross-sectional r ranges from 0.64 (2011) to 0.16 (2015) and -0.03 (2025). The 2025 value is likely depressed by incomplete settlement, which I did not verify. The biggest drought payout years were 2012 ($12.9B) and 2022 ($7.6B), matching DSCI peaks.</p>
+</section>
+<section>
+<h2>Exclusions and caveats</h2>
+<p>Exclusions: I filtered county_fips IS NOT NULL, but a check found 0 rows with a null county FIPS in 2010-2025, so that filter removed nothing (0 rows, $0 indemnity) and the headline is identical with and without it. County-years with under $1M of insured liability were dropped (a deliberate size floor), as were county-years with no drought record. The six Western states were left out only in the stated sensitivity (r 0.46 to 0.55). This is association, not causation; no leave-one-out or fixed-effects tests were run. Drought indemnity uses RMA causes starting 'Drought' (heat and hot wind are separate). Indemnity is by crop year, the index by calendar year, and Apr-Sep suits spring crops.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Test of irrigation mechanism directly</strong>: No irrigated/non-irrigated practice column in the table; commodity mix used instead.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>10 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 1 rows — 9693 ms</summary><pre><code>SELECT DISTINCT cause_of_loss_desc FROM ag.rma_cause_of_loss WHERE cause_of_loss_desc ILIKE '%drought%'</code></pre></details>
-<details class="sqltoggle"><summary>query — 867 rows — 54918 ms</summary><pre><code>
-WITH drought_indem AS (
-  SELECT year, state_abbr, SUM(indemnity_amount) AS drought_indemnity
-  FROM ag.rma_cause_of_loss
-  WHERE cause_of_loss_desc = 'Drought' AND year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-total_indem AS (
-  SELECT year, state_abbr, SUM(indemnity_amount) AS total_indemnity
-  FROM ag.rma_crop_insurance
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-dsci AS (
-  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
-  FROM weather.drought_monitor_weekly
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-)
-SELECT d.year, d.state_abbr, d.avg_dsci, COALESCE(di.drought_indemnity,0) AS drought_indemnity, COALESCE(ti.total_indemnity,0) AS total_indemnity
-FROM dsci d
-LEFT JOIN drought_indem di ON d.year=di.year AND d.state_abbr=di.state_abbr
-LEFT JOIN total_indem ti ON d.year=ti.year AND d.state_abbr=ti.state_abbr
-WHERE d.state_abbr IS NOT NULL
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 69702 ms</summary><pre><code>
-WITH drought_indem AS (
-  SELECT year, state_abbr, SUM(indemnity_amount) AS drought_indemnity
-  FROM ag.rma_cause_of_loss
-  WHERE cause_of_loss_desc = 'Drought' AND year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-total_indem AS (
-  SELECT year, state_abbr, SUM(indemnity_amount) AS total_indemnity
-  FROM ag.rma_crop_insurance
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-dsci AS (
-  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
-  FROM weather.drought_monitor_weekly
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-combo AS (
-  SELECT d.year, d.state_abbr, d.avg_dsci, COALESCE(di.drought_indemnity,0) AS drought_indemnity, COALESCE(ti.total_indemnity,0) AS total_indemnity
-  FROM dsci d
-  LEFT JOIN drought_indem di ON d.year=di.year AND d.state_abbr=di.state_abbr
-  LEFT JOIN total_indem ti ON d.year=ti.year AND d.state_abbr=ti.state_abbr
-  WHERE d.state_abbr IS NOT NULL
-)
-SELECT COUNT(*) AS n, corr(avg_dsci, drought_indemnity) AS corr_dsci_drought_indem, corr(avg_dsci, total_indemnity) AS corr_dsci_total_indem
-FROM combo
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 16690 ms</summary><pre><code>
-WITH drought_indem AS (
-  SELECT year, state_abbr, SUM(indemnity_amount) AS drought_indemnity, SUM(liability_amount) AS drought_liability
-  FROM ag.rma_cause_of_loss
-  WHERE cause_of_loss_desc = 'Drought' AND year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-total_liab AS (
-  SELECT year, state_abbr, SUM(liability_amount) AS total_liability, SUM(indemnity_amount) AS total_indemnity
-  FROM ag.rma_crop_insurance
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-dsci AS (
-  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
-  FROM weather.drought_monitor_weekly
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-combo AS (
-  SELECT d.year, d.state_abbr, d.avg_dsci,
-         COALESCE(di.drought_indemnity,0) AS drought_indemnity,
-         tl.total_liability,
-         COALESCE(di.drought_indemnity,0) / NULLIF(tl.total_liability,0) AS drought_loss_rate
-  FROM dsci d
-  LEFT JOIN drought_indem di ON d.year=di.year AND d.state_abbr=di.state_abbr
-  LEFT JOIN total_liab tl ON d.year=tl.year AND d.state_abbr=tl.state_abbr
-  WHERE d.state_abbr IS NOT NULL AND tl.total_liability &gt; 0
-)
-SELECT COUNT(*) AS n, corr(avg_dsci, drought_loss_rate) AS corr_dsci_loss_rate
-FROM combo
-</code></pre></details>
-<details class="sqltoggle"><summary>panel_fixed_effects — 18211 ms</summary><pre><code>
-WITH drought_indem AS (
-  SELECT year, state_abbr, SUM(indemnity_amount) AS drought_indemnity
-  FROM ag.rma_cause_of_loss
-  WHERE cause_of_loss_desc = 'Drought' AND year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-total_liab AS (
-  SELECT year, state_abbr, SUM(liability_amount) AS total_liability
-  FROM ag.rma_crop_insurance
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-dsci AS (
-  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
-  FROM weather.drought_monitor_weekly
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-)
-SELECT d.year, d.state_abbr, d.avg_dsci,
-       COALESCE(di.drought_indemnity,0) / NULLIF(tl.total_liability,0) * 100 AS drought_loss_rate_pct
-FROM dsci d
-LEFT JOIN drought_indem di ON d.year=di.year AND d.state_abbr=di.state_abbr
-LEFT JOIN total_liab tl ON d.year=tl.year AND d.state_abbr=tl.state_abbr
-WHERE d.state_abbr IS NOT NULL AND tl.total_liability &gt; 0
-</code></pre></details>
-<details class="sqltoggle"><summary>ols_regression — 19537 ms</summary><pre><code>
-WITH drought_indem AS (
-  SELECT year, state_abbr, SUM(indemnity_amount) AS drought_indemnity
-  FROM ag.rma_cause_of_loss
-  WHERE cause_of_loss_desc = 'Drought' AND year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-total_liab AS (
-  SELECT year, state_abbr, SUM(liability_amount) AS total_liability
-  FROM ag.rma_crop_insurance
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-dsci AS (
-  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
-  FROM weather.drought_monitor_weekly
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-)
-SELECT d.year, d.state_abbr, d.avg_dsci,
-       COALESCE(di.drought_indemnity,0) / NULLIF(tl.total_liability,0) * 100 AS drought_loss_rate_pct
-FROM dsci d
-LEFT JOIN drought_indem di ON d.year=di.year AND d.state_abbr=di.state_abbr
-LEFT JOIN total_liab tl ON d.year=tl.year AND d.state_abbr=tl.state_abbr
-WHERE d.state_abbr IS NOT NULL AND tl.total_liability &gt; 0
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 8 rows — 21639 ms</summary><pre><code>
-WITH drought_indem AS (
-  SELECT year, state_abbr, SUM(indemnity_amount) AS drought_indemnity
-  FROM ag.rma_cause_of_loss
-  WHERE cause_of_loss_desc = 'Drought' AND year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-total_liab AS (
-  SELECT year, state_abbr, SUM(liability_amount) AS total_liability
-  FROM ag.rma_crop_insurance
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-dsci AS (
-  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
-  FROM weather.drought_monitor_weekly
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-combo AS (
-  SELECT d.year, d.state_abbr, d.avg_dsci,
-         COALESCE(di.drought_indemnity,0) AS drought_indemnity,
-         tl.total_liability,
-         COALESCE(di.drought_indemnity,0) / NULLIF(tl.total_liability,0) * 100 AS drought_loss_rate_pct
-  FROM dsci d
-  LEFT JOIN drought_indem di ON d.year=di.year AND d.state_abbr=di.state_abbr
-  LEFT JOIN total_liab tl ON d.year=tl.year AND d.state_abbr=tl.state_abbr
-  WHERE d.state_abbr IS NOT NULL AND tl.total_liability &gt; 0
-),
-resid AS (
-  SELECT *, drought_loss_rate_pct - (0.5642840454632312 + 0.01170979979536616*avg_dsci) AS residual
-  FROM combo
-)
-SELECT year, state_abbr, ROUND(avg_dsci,1) AS avg_dsci, ROUND(drought_loss_rate_pct,2) AS loss_rate_pct, ROUND(drought_indemnity/1e6,1) AS indemnity_millions, ROUND(residual,2) AS residual
-FROM resid
-ORDER BY residual DESC
-LIMIT 8
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 8 rows — 22322 ms</summary><pre><code>
-WITH drought_indem AS (
-  SELECT year, state_abbr, SUM(indemnity_amount) AS drought_indemnity
-  FROM ag.rma_cause_of_loss
-  WHERE cause_of_loss_desc = 'Drought' AND year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-total_liab AS (
-  SELECT year, state_abbr, SUM(liability_amount) AS total_liability
-  FROM ag.rma_crop_insurance
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-dsci AS (
-  SELECT year, state_abbr, AVG(dsci) AS avg_dsci
-  FROM weather.drought_monitor_weekly
-  WHERE year BETWEEN 2009 AND 2025
-  GROUP BY year, state_abbr
-),
-combo AS (
-  SELECT d.year, d.state_abbr, d.avg_dsci,
-         COALESCE(di.drought_indemnity,0) AS drought_indemnity,
-         tl.total_liability,
-         COALESCE(di.drought_indemnity,0) / NULLIF(tl.total_liability,0) * 100 AS drought_loss_rate_pct
-  FROM dsci d
-  LEFT JOIN drought_indem di ON d.year=di.year AND d.state_abbr=di.state_abbr
-  LEFT JOIN total_liab tl ON d.year=tl.year AND d.state_abbr=tl.state_abbr
-  WHERE d.state_abbr IS NOT NULL AND tl.total_liability &gt; 0
-),
-resid AS (
-  SELECT *, drought_loss_rate_pct - (0.5642840454632312 + 0.01170979979536616*avg_dsci) AS residual
-  FROM combo
-)
-SELECT year, state_abbr, ROUND(avg_dsci,1) AS avg_dsci, ROUND(drought_loss_rate_pct,2) AS loss_rate_pct, ROUND(drought_indemnity/1e6,1) AS indemnity_millions, ROUND(residual,2) AS residual
-FROM resid
-ORDER BY residual ASC
-LIMIT 8
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 45664 ms</summary><pre><code>
-SELECT
-  (SELECT SUM(indemnity_amount) FROM ag.rma_cause_of_loss WHERE cause_of_loss_desc='Drought' AND year BETWEEN 2009 AND 2025) AS total_drought_indemnity,
-  (SELECT SUM(indemnity_amount) FROM ag.rma_crop_insurance WHERE year BETWEEN 2009 AND 2025) AS total_all_indemnity
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 1597 ms</summary><pre><code>SELECT COUNT(*) AS null_state_rows, COUNT(DISTINCT county_fips) AS distinct_counties FROM weather.drought_monitor_weekly WHERE state_abbr IS NULL AND year BETWEEN 2009 AND 2025</code></pre></details>
+<p>9 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>define_dataset — 2 ms</summary><pre><code>SELECT r.county_fips, r.state_abbr, r.year, r.dr_ind, r.tot_ind, r.liab, d.dsci, d.d2plus, 100.0*r.dr_ind/r.liab AS dr_lc FROM (SELECT county_fips, state_abbr, year, SUM(CASE WHEN cause_of_loss_desc ILIKE 'Drought%' THEN indemnity_amount ELSE 0 END) AS dr_ind, SUM(indemnity_amount) AS tot_ind, SUM(liability_amount) AS liab FROM ag.rma_cause_of_loss WHERE year BETWEEN 2010 AND 2025 AND county_fips IS NOT NULL GROUP BY county_fips, state_abbr, year HAVING SUM(liability_amount)&gt;1000000) r JOIN (SELECT county_fips, year, AVG(dsci) AS dsci, AVG(d2_pct+d3_pct+d4_pct) AS d2plus FROM weather.drought_monitor_weekly WHERE CAST(SUBSTR(week_date,6,2) AS INT) BETWEEN 4 AND 9 AND year BETWEEN 2010 AND 2025 GROUP BY county_fips, year) d ON d.county_fips=r.county_fips AND d.year=r.year</code></pre></details>
+<details class="sqltoggle"><summary>query — 43 rows — 1913 ms</summary><pre><code>WITH cy AS (SELECT r.county_fips, r.state_abbr, r.year, r.dr_ind, r.tot_ind, r.liab, d.dsci, d.d2plus, 100.0*r.dr_ind/r.liab AS dr_lc FROM (SELECT county_fips, state_abbr, year, SUM(CASE WHEN cause_of_loss_desc ILIKE 'Drought%' THEN indemnity_amount ELSE 0 END) AS dr_ind, SUM(indemnity_amount) AS tot_ind, SUM(liability_amount) AS liab FROM ag.rma_cause_of_loss WHERE year BETWEEN 2010 AND 2025 AND county_fips IS NOT NULL GROUP BY county_fips, state_abbr, year HAVING SUM(liability_amount)&gt;1000000) r JOIN (SELECT county_fips, year, AVG(dsci) AS dsci, AVG(d2_pct+d3_pct+d4_pct) AS d2plus FROM weather.drought_monitor_weekly WHERE CAST(SUBSTR(week_date,6,2) AS INT) BETWEEN 4 AND 9 AND year BETWEEN 2010 AND 2025 GROUP BY county_fips, year) d ON d.county_fips=r.county_fips AND d.year=r.year) SELECT state_abbr, COUNT(*) n, corr(dr_lc,dsci) r, AVG(dsci) avg_dsci, AVG(dr_lc) avg_lc, SUM(dr_ind)/1e6 dr_m FROM cy GROUP BY state_abbr HAVING COUNT(*)&gt;=40 ORDER BY r</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1594 ms</summary><pre><code>WITH cy AS (SELECT r.county_fips, r.state_abbr, r.year, r.dr_ind, r.tot_ind, r.liab, d.dsci, d.d2plus, 100.0*r.dr_ind/r.liab AS dr_lc FROM (SELECT county_fips, state_abbr, year, SUM(CASE WHEN cause_of_loss_desc ILIKE 'Drought%' THEN indemnity_amount ELSE 0 END) AS dr_ind, SUM(indemnity_amount) AS tot_ind, SUM(liability_amount) AS liab FROM ag.rma_cause_of_loss WHERE year BETWEEN 2010 AND 2025 AND county_fips IS NOT NULL GROUP BY county_fips, state_abbr, year HAVING SUM(liability_amount)&gt;1000000) r JOIN (SELECT county_fips, year, AVG(dsci) AS dsci, AVG(d2_pct+d3_pct+d4_pct) AS d2plus FROM weather.drought_monitor_weekly WHERE CAST(SUBSTR(week_date,6,2) AS INT) BETWEEN 4 AND 9 AND year BETWEEN 2010 AND 2025 GROUP BY county_fips, year) d ON d.county_fips=r.county_fips AND d.year=r.year) SELECT COUNT(*) n, corr(dr_lc, dsci) r_lc_dsci, corr(dr_lc,d2plus) r_lc_d2, corr(dr_ind,dsci) r_dollar, regr_slope(dr_lc,dsci) slope, SUM(dr_ind)/1e9 dr_bn, SUM(tot_ind)/1e9 tot_bn, corr(CASE WHEN state_abbr IN ('AZ','CA','NM','NV','OR','UT') THEN NULL ELSE dr_lc END, CASE WHEN state_abbr IN ('AZ','CA','NM','NV','OR','UT') THEN NULL ELSE dsci END) r_exwest FROM cy</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1810 ms</summary><pre><code>WITH cy AS (SELECT r.county_fips, r.state_abbr, r.year, r.dr_ind, r.tot_ind, r.liab, d.dsci, d.d2plus, 100.0*r.dr_ind/r.liab AS dr_lc FROM (SELECT county_fips, state_abbr, year, SUM(CASE WHEN cause_of_loss_desc ILIKE 'Drought%' THEN indemnity_amount ELSE 0 END) AS dr_ind, SUM(indemnity_amount) AS tot_ind, SUM(liability_amount) AS liab FROM ag.rma_cause_of_loss WHERE year BETWEEN 2010 AND 2025 AND county_fips IS NOT NULL GROUP BY county_fips, state_abbr, year HAVING SUM(liability_amount)&gt;1000000) r JOIN (SELECT county_fips, year, AVG(dsci) AS dsci, AVG(d2_pct+d3_pct+d4_pct) AS d2plus FROM weather.drought_monitor_weekly WHERE CAST(SUBSTR(week_date,6,2) AS INT) BETWEEN 4 AND 9 AND year BETWEEN 2010 AND 2025 GROUP BY county_fips, year) d ON d.county_fips=r.county_fips AND d.year=r.year) SELECT COUNT(*) n, corr(m_lc, m_dsci) r_county_means FROM (SELECT county_fips, 100.0*SUM(dr_ind)/SUM(liab) m_lc, AVG(dsci) m_dsci FROM cy GROUP BY county_fips HAVING COUNT(*)&gt;=10) t</code></pre></details>
+<details class="sqltoggle"><summary>query — 16 rows — 2434 ms</summary><pre><code>WITH cy AS (SELECT r.county_fips, r.state_abbr, r.year, r.dr_ind, r.tot_ind, r.liab, d.dsci, d.d2plus, 100.0*r.dr_ind/r.liab AS dr_lc FROM (SELECT county_fips, state_abbr, year, SUM(CASE WHEN cause_of_loss_desc ILIKE 'Drought%' THEN indemnity_amount ELSE 0 END) AS dr_ind, SUM(indemnity_amount) AS tot_ind, SUM(liability_amount) AS liab FROM ag.rma_cause_of_loss WHERE year BETWEEN 2010 AND 2025 AND county_fips IS NOT NULL GROUP BY county_fips, state_abbr, year HAVING SUM(liability_amount)&gt;1000000) r JOIN (SELECT county_fips, year, AVG(dsci) AS dsci, AVG(d2_pct+d3_pct+d4_pct) AS d2plus FROM weather.drought_monitor_weekly WHERE CAST(SUBSTR(week_date,6,2) AS INT) BETWEEN 4 AND 9 AND year BETWEEN 2010 AND 2025 GROUP BY county_fips, year) d ON d.county_fips=r.county_fips AND d.year=r.year) SELECT year, COUNT(*) n, corr(dr_lc,dsci) r, SUM(dr_ind)/1e9 dr_bn, AVG(dsci) dsci FROM cy GROUP BY year ORDER BY year</code></pre></details>
+<details class="sqltoggle"><summary>query — 8 rows — 1585 ms</summary><pre><code>WITH cy AS (SELECT r.county_fips, r.state_abbr, r.year, r.dr_ind, r.tot_ind, r.liab, d.dsci, d.d2plus, 100.0*r.dr_ind/r.liab AS dr_lc FROM (SELECT county_fips, state_abbr, year, SUM(CASE WHEN cause_of_loss_desc ILIKE 'Drought%' THEN indemnity_amount ELSE 0 END) AS dr_ind, SUM(indemnity_amount) AS tot_ind, SUM(liability_amount) AS liab FROM ag.rma_cause_of_loss WHERE year BETWEEN 2010 AND 2025 AND county_fips IS NOT NULL GROUP BY county_fips, state_abbr, year HAVING SUM(liability_amount)&gt;1000000) r JOIN (SELECT county_fips, year, AVG(dsci) AS dsci, AVG(d2_pct+d3_pct+d4_pct) AS d2plus FROM weather.drought_monitor_weekly WHERE CAST(SUBSTR(week_date,6,2) AS INT) BETWEEN 4 AND 9 AND year BETWEEN 2010 AND 2025 GROUP BY county_fips, year) d ON d.county_fips=r.county_fips AND d.year=r.year) SELECT state_abbr, COUNT(*) n_cy, AVG(dsci) avg_dsci, 100.0*SUM(dr_ind)/SUM(liab) lc_pct FROM cy WHERE dsci&gt;=150 GROUP BY state_abbr HAVING COUNT(*)&gt;=30 ORDER BY lc_pct LIMIT 8</code></pre></details>
+<details class="sqltoggle"><summary>query — 12 rows — 1003 ms</summary><pre><code>SELECT state_abbr, commodity_name, SUM(liability_amount)/1e9 liab_bn, 100.0*SUM(CASE WHEN cause_of_loss_desc ILIKE 'Drought%' THEN indemnity_amount ELSE 0 END)/SUM(liability_amount) dr_lc, 100.0*SUM(indemnity_amount)/SUM(liability_amount) all_lc FROM ag.rma_cause_of_loss WHERE year BETWEEN 2010 AND 2025 AND state_abbr IN ('AZ','CA') GROUP BY state_abbr, commodity_name HAVING SUM(liability_amount)&gt;5e8 ORDER BY liab_bn DESC LIMIT 12</code></pre></details>
+<details class="sqltoggle"><summary>query — 4 rows — 1749 ms</summary><pre><code>WITH cy AS (SELECT r.county_fips, r.state_abbr, r.year, r.dr_ind, r.tot_ind, r.liab, d.dsci, d.d2plus, 100.0*r.dr_ind/r.liab AS dr_lc FROM (SELECT county_fips, state_abbr, year, SUM(CASE WHEN cause_of_loss_desc ILIKE 'Drought%' THEN indemnity_amount ELSE 0 END) AS dr_ind, SUM(indemnity_amount) AS tot_ind, SUM(liability_amount) AS liab FROM ag.rma_cause_of_loss WHERE year BETWEEN 2010 AND 2025 AND county_fips IS NOT NULL GROUP BY county_fips, state_abbr, year HAVING SUM(liability_amount)&gt;1000000) r JOIN (SELECT county_fips, year, AVG(dsci) AS dsci, AVG(d2_pct+d3_pct+d4_pct) AS d2plus FROM weather.drought_monitor_weekly WHERE CAST(SUBSTR(week_date,6,2) AS INT) BETWEEN 4 AND 9 AND year BETWEEN 2010 AND 2025 GROUP BY county_fips, year) d ON d.county_fips=r.county_fips AND d.year=r.year) SELECT county_fips, state_abbr, year, ROUND(dsci) dsci, ROUND(dr_ind/1e6,1) dr_m, ROUND(dr_lc,1) lc FROM cy WHERE dr_lc&gt;=60 AND dsci&lt;40 ORDER BY dr_ind DESC LIMIT 8</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1279 ms</summary><pre><code>SELECT COUNT(*) rows_null, SUM(indemnity_amount)/1e6 ind_m FROM ag.rma_cause_of_loss WHERE county_fips IS NULL AND year BETWEEN 2010 AND 2025</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li>USDA RMA Summary of Business — Cause of Loss (drought indemnity by state/year) <span class="note">— ag.rma_cause_of_loss, 2009-2025 coverage</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, state_abbr, SUM(indemnity_amount) AS drought_indemnity FROM ag.rma_cause_of_loss WHERE cause_of_loss_desc = 'Drought' AND year BETWEEN 2009 AND 2025 GROUP BY year, state_abbr</code></pre></details></li>
-<li>USDA RMA Summary of Business — total insured liability by state/year<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, state_abbr, SUM(liability_amount) AS total_liability FROM ag.rma_crop_insurance WHERE year BETWEEN 2009 AND 2025 GROUP BY year, state_abbr</code></pre></details></li>
-<li>NOAA/USDA Drought Monitor weekly DSCI, averaged to state-year<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, state_abbr, AVG(dsci) AS avg_dsci FROM weather.drought_monitor_weekly WHERE year BETWEEN 2009 AND 2025 GROUP BY year, state_abbr</code></pre></details></li>
-<li>Two-way fixed-effects panel: drought loss rate ~ avg DSCI, state+year effects<details class="sqltoggle"><summary>Show tool call</summary><pre><code>panel_fixed_effects(outcome=&quot;drought_loss_rate_pct&quot;, predictors=[&quot;avg_dsci&quot;], entity_col=&quot;state_abbr&quot;, time_col=&quot;year&quot;)</code></pre></details></li>
-<li>National totals — drought vs. all-cause indemnity, 2009-2025<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT SUM(indemnity_amount) FROM ag.rma_cause_of_loss WHERE cause_of_loss_desc='Drought' AND year BETWEEN 2009 AND 2025; SELECT SUM(indemnity_amount) FROM ag.rma_crop_insurance WHERE year BETWEEN 2009 AND 2025</code></pre></details></li>
+<li><a href="https://www.rma.usda.gov/tools-reports/summary-of-business/cause-loss">ag.rma_cause_of_loss (USDA RMA)</a></li>
+<li><a href="https://droughtmonitor.unl.edu/">weather.drought_monitor_weekly (US Drought Monitor)</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Correlation and fixed-effects estimates are descriptive of state-year aggregates, not a causal claim about any single loss event. DSCI is a land-area drought classification, not a crop-loss measure; the mismatch documented here (rainfed vs. irrigated states) is the main structural reason the two series diverge.</p>
 <p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>

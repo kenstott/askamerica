@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>A short list of ~15 US counties show real, multi-year retail-demand growth; several high-profile &quot;growth&quot; counties are one-year income blips riding on flat or shrinking population</title>
+<title>Population growth is sustained in a few hundred counties; real income growth almost never persists, so only a short list passes both tests</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -99,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>A short list of ~15 US counties show real, multi-year retail-demand growth; several high-profile &quot;growth&quot; counties are one-year income blips riding on flat or shrinking population</h1>
-<p class="subtitle">BEA county personal income and population (CAINC1), 2014-2024, cross-checked against BLS CPI-U inflation</p>
+<h1>Population growth is sustained in a few hundred counties; real income growth almost never persists, so only a short list passes both tests</h1>
+<p class="subtitle">BEA CAINC4 county market income (net earnings + dividends/interest/rent, excluding transfers) per capita, real 2024 dollars; 2010, 2018, 2023, 2024; 3,104 counties</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 805" width="880" height="805" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,156 +155,119 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="805" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Sustained County Growth vs. One-Year Income Blips (2014-2024)</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">BEA CAINC1 county personal income &amp; population, 2014-2024 (10-yr CAGR)</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="162" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="198" fill="#6b7280">Cumulative US inflation, 2014-2024</text>
-  <text class="stat-value" x="36" y="228" fill="#1f2328">+32.5%</text>
-  <text class="stat-delta" x="36" y="248" fill="#059669">~2.9%/yr (CPI-U)</text>
-  </g>
-  <text class="caption" x="24" y="363" fill="#6b7280">Any county's nominal per-capita income CAGR below ~2.9%/yr means real</text>
-  <text class="caption" x="24" y="376" fill="#6b7280">purchasing power per person was flat or falling even while population…</text>
-  <rect class="panel-edge" x="448" y="82" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="82" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Sustained growth: population CAGR backed by 10 straight positive years</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Sustained vs blip counties</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Sustained counties (pop 25k+) by threshold tightness</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="108" y1="56" x2="108" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-0" class="tick" x="108" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <line class="grid" x1="144" y1="56" x2="144" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-1" class="tick" x="144" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">100</text>
+      <line class="grid" x1="180" y1="56" x2="180" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-2" class="tick" x="180" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">200</text>
+      <line class="grid" x1="216" y1="56" x2="216" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-3" class="tick" x="216" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">300</text>
+      <line class="grid" x1="252" y1="56" x2="252" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-4" class="tick" x="252" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">400</text>
+      <line class="grid" x1="288" y1="56" x2="288" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-5" class="tick" x="288" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">500</text>
+      <line class="grid" x1="324" y1="56" x2="324" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-6" class="tick" x="324" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">600</text>
+      <line class="grid" x1="360" y1="56" x2="360" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-7" class="tick" x="360" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">700</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="108" y1="56" x2="108" y2="276" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="108" y1="276" x2="360" y2="276" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <g id="p1-category-axis-labels">
+      <text id="p1-xtick-any-positive" class="tick" x="100" y="87.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Any positive</text>
+      <text id="p1-xtick-pop-0-5-inc-1" class="tick" x="100" y="142.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Pop 0.5% / inc 1%</text>
+      <text id="p1-xtick-pop-1-inc-1-5" class="tick" x="100" y="197.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Pop 1% / inc 1.5%</text>
+      <text id="p1-xtick-pop-1-5-inc-2" class="tick" x="100" y="252.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Pop 1.5% / inc 2%</text>
+    </g>
+    <g id="p1-series-sustained-counties" class="series">
+      <g class="hover">
+        <title>Any positive — Sustained counties: 619</title>
+        <rect id="p1-mark-sustained-counties-any-positive" class="bar" x="108" y="65.90" width="222.84" height="34.20" fill="#2563eb"/>
+        <rect class="hit" x="108" y="65.90" width="252" height="34.20" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-sustained-counties-any-positive" class="value-label" x="334.84" y="87.50" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">619</text>
+      <g class="hover">
+        <title>Pop 0.5% / inc 1% — Sustained counties: 189</title>
+        <rect id="p1-mark-sustained-counties-pop-0-5-inc-1" class="bar" x="108" y="120.90" width="68.04" height="34.20" fill="#2563eb"/>
+        <rect class="hit" x="108" y="120.90" width="252" height="34.20" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-sustained-counties-pop-0-5-inc-1" class="value-label" x="180.04" y="142.50" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">189</text>
+      <g class="hover">
+        <title>Pop 1% / inc 1.5% — Sustained counties: 65</title>
+        <rect id="p1-mark-sustained-counties-pop-1-inc-1-5" class="bar" x="108" y="175.90" width="23.40" height="34.20" fill="#2563eb"/>
+        <rect class="hit" x="108" y="175.90" width="252" height="34.20" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-sustained-counties-pop-1-inc-1-5" class="value-label" x="135.40" y="197.50" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">65</text>
+      <g class="hover">
+        <title>Pop 1.5% / inc 2% — Sustained counties: 17</title>
+        <rect id="p1-mark-sustained-counties-pop-1-5-inc-2" class="bar" x="108" y="230.90" width="6.12" height="34.20" fill="#2563eb"/>
+        <rect class="hit" x="108" y="230.90" width="252" height="34.20" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-sustained-counties-pop-1-5-inc-2" class="value-label" x="118.12" y="252.50" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">17</text>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="448" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Cross-county persistence (corr, 2010-18 vs 2018-23)</text>
     <g id="p2-gridlines">
-      <line class="grid" x1="53" y1="128.56" x2="390" y2="128.56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-0" class="tick" x="45" y="132.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="53" y1="116.47" x2="390" y2="116.47" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-1" class="tick" x="45" y="120.47" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1</text>
-      <line class="grid" x1="53" y1="104.37" x2="390" y2="104.37" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-2" class="tick" x="45" y="108.37" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
-      <line class="grid" x1="53" y1="92.28" x2="390" y2="92.28" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-3" class="tick" x="45" y="96.28" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3</text>
-      <line class="grid" x1="53" y1="80.19" x2="390" y2="80.19" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-4" class="tick" x="45" y="84.19" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
-      <line class="grid" x1="53" y1="68.09" x2="390" y2="68.09" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-5" class="tick" x="45" y="72.09" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
-      <line class="grid" x1="53" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-ytick-6" class="tick" x="45" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="202" y1="56" x2="202" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-0" class="tick" x="202" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-0.1</text>
+      <line class="grid" x1="221.38" y1="56" x2="221.38" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-1" class="tick" x="221.38" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.0</text>
+      <line class="grid" x1="240.75" y1="56" x2="240.75" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-2" class="tick" x="240.75" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.1</text>
+      <line class="grid" x1="260.13" y1="56" x2="260.13" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-3" class="tick" x="260.13" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.2</text>
+      <line class="grid" x1="279.50" y1="56" x2="279.50" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-4" class="tick" x="279.50" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.3</text>
+      <line class="grid" x1="298.88" y1="56" x2="298.88" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-5" class="tick" x="298.88" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.4</text>
+      <line class="grid" x1="318.25" y1="56" x2="318.25" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-6" class="tick" x="318.25" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.5</text>
+      <line class="grid" x1="337.63" y1="56" x2="337.63" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-7" class="tick" x="337.63" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.6</text>
+      <line class="grid" x1="357" y1="56" x2="357" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-8" class="tick" x="357" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.7</text>
     </g>
     <g id="p2-axes">
-      <line class="axis" x1="53" y1="56" x2="53" y2="128.56" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="53" y1="128.56" x2="390" y2="128.56" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="221.38" y1="56" x2="221.38" y2="276" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="202" y1="276" x2="357" y2="276" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p2-x-axis-title" class="axis-title" x="221.50" y="220" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County</text>
-    <text id="p2-y-axis-title" class="axis-title" x="14" y="92.28" fill="#1f2328" font-size="9" style="font-size:9px" text-anchor="middle" transform="rotate(-90 14 92.28)">10-yr CAGR (%)</text>
-    <g id="p2-x-axis-labels">
-      <text id="p2-xtick-kaufman-tx" class="tick" x="69.85" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 69.85 142.56)">Kaufman, TX</text>
-      <text id="p2-xtick-comal-tx" class="tick" x="103.55" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 103.55 142.56)">Comal, TX</text>
-      <text id="p2-xtick-rockwall-tx" class="tick" x="137.25" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 137.25 142.56)">Rockwall, TX</text>
-      <text id="p2-xtick-hays-tx" class="tick" x="170.95" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 170.95 142.56)">Hays, TX</text>
-      <text id="p2-xtick-st-johns-fl" class="tick" x="204.65" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 204.65 142.56)">St. Johns, FL</text>
-      <text id="p2-xtick-jackson-ga" class="tick" x="238.35" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 238.35 142.56)">Jackson, GA</text>
-      <text id="p2-xtick-williamson-tx" class="tick" x="272.05" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 272.05 142.56)">Williamson, TX</text>
-      <text id="p2-xtick-osceola-fl" class="tick" x="305.75" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 305.75 142.56)">Osceola, FL</text>
-      <text id="p2-xtick-walton-fl" class="tick" x="339.45" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 339.45 142.56)">Walton, FL</text>
-      <text id="p2-xtick-brunswick-nc" class="tick" x="373.15" y="142.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 373.15 142.56)">Brunswick, NC</text>
+    <g id="p2-category-axis-labels">
+      <text id="p2-xtick-population-growth" class="tick" x="153" y="115" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Population growth</text>
+      <text id="p2-xtick-real-market-income-growth-per-capita" class="tick" x="153" y="218.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Real market income growth</text>
+      <text id="p2-xtick-real-market-income-growth-per-capita-2" class="tick" x="153" y="231.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">per capita</text>
     </g>
-    <g id="p2-series-population-cagr" class="series">
-      <rect id="p2-mark-population-cagr-kaufman-tx" class="bar" x="59.07" y="58.30" width="9.78" height="70.26" fill="#2563eb"/>
-      <rect id="p2-mark-population-cagr-comal-tx" class="bar" x="92.77" y="67.00" width="9.78" height="61.56" fill="#2563eb"/>
-      <rect id="p2-mark-population-cagr-rockwall-tx" class="bar" x="126.47" y="71.96" width="9.78" height="56.60" fill="#2563eb"/>
-      <rect id="p2-mark-population-cagr-hays-tx" class="bar" x="160.17" y="72.57" width="9.78" height="55.99" fill="#2563eb"/>
-      <rect id="p2-mark-population-cagr-st-johns-fl" class="bar" x="193.87" y="74.99" width="9.78" height="53.57" fill="#2563eb"/>
-      <rect id="p2-mark-population-cagr-jackson-ga" class="bar" x="227.57" y="78.01" width="9.78" height="50.55" fill="#2563eb"/>
-      <rect id="p2-mark-population-cagr-williamson-tx" class="bar" x="261.27" y="79.10" width="9.78" height="49.46" fill="#2563eb"/>
-      <rect id="p2-mark-population-cagr-osceola-fl" class="bar" x="294.97" y="79.22" width="9.78" height="49.34" fill="#2563eb"/>
-      <rect id="p2-mark-population-cagr-walton-fl" class="bar" x="328.67" y="80.91" width="9.78" height="47.65" fill="#2563eb"/>
-      <rect id="p2-mark-population-cagr-brunswick-nc" class="bar" x="362.37" y="81.15" width="9.78" height="47.41" fill="#2563eb"/>
-    </g>
-    <g id="p2-series-real-per-capita-income-cagr" class="series">
-      <rect id="p2-mark-real-per-capita-income-cagr-kaufman-tx" class="bar" x="69.85" y="119.73" width="9.78" height="8.83" fill="#ea580c"/>
-      <rect id="p2-mark-real-per-capita-income-cagr-comal-tx" class="bar" x="103.55" y="116.47" width="9.78" height="12.09" fill="#ea580c"/>
-      <rect id="p2-mark-real-per-capita-income-cagr-rockwall-tx" class="bar" x="137.25" y="115.62" width="9.78" height="12.94" fill="#ea580c"/>
-      <rect id="p2-mark-real-per-capita-income-cagr-hays-tx" class="bar" x="170.95" y="96.27" width="9.78" height="32.29" fill="#ea580c"/>
-      <rect id="p2-mark-real-per-capita-income-cagr-st-johns-fl" class="bar" x="204.65" y="108.49" width="9.78" height="20.07" fill="#ea580c"/>
-      <rect id="p2-mark-real-per-capita-income-cagr-jackson-ga" class="bar" x="238.35" y="95.42" width="9.78" height="33.14" fill="#ea580c"/>
-      <rect id="p2-mark-real-per-capita-income-cagr-williamson-tx" class="bar" x="272.05" y="94.09" width="9.78" height="34.47" fill="#ea580c"/>
-      <rect id="p2-mark-real-per-capita-income-cagr-osceola-fl" class="bar" x="305.75" y="98.57" width="9.78" height="29.99" fill="#ea580c"/>
-      <rect id="p2-mark-real-per-capita-income-cagr-walton-fl" class="bar" x="339.45" y="81.52" width="9.78" height="47.04" fill="#ea580c"/>
-      <rect id="p2-mark-real-per-capita-income-cagr-brunswick-nc" class="bar" x="373.15" y="99.78" width="9.78" height="28.78" fill="#ea580c"/>
-    </g>
-    <g id="p2-legend">
-      <rect id="p2-legend-swatch-population-cagr" x="48" y="234" width="11" height="11" fill="#2563eb"/>
-      <text id="p2-legend-label-population-cagr" class="legend-label" x="64" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Population CAGR %</text>
-      <rect id="p2-legend-swatch-real-per-capita-income-cagr" x="181" y="234" width="11" height="11" fill="#ea580c"/>
-      <text id="p2-legend-label-real-per-capita-income-cagr" class="legend-label" x="197" y="243" fill="#1f2328" font-size="11" style="font-size:11px">Real per-capita income CAGR %</text>
+    <g id="p2-series-correlation" class="series">
+      <g class="hover">
+        <title>Population growth — Correlation: 0.67</title>
+        <rect id="p2-mark-correlation-population-growth" class="bar" x="221.38" y="75.80" width="129.81" height="69.40" fill="#2563eb"/>
+        <rect class="hit" x="202" y="75.80" width="155" height="69.40" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p2-value-correlation-population-growth" class="value-label" x="355.19" y="115" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">0.67</text>
+      <g class="hover">
+        <title>Real market income growth per capita — Correlation: -0.03</title>
+        <rect id="p2-mark-correlation-real-market-income-growth-per-capita" class="bar" x="215.56" y="185.80" width="5.81" height="69.40" fill="#2563eb"/>
+        <rect class="hit" x="202" y="185.80" width="155" height="69.40" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p2-value-correlation-real-market-income-growth-per-capita" class="value-label" x="211.56" y="225" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="end">-0.03</text>
     </g>
     <g id="p2-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="452" y="363" fill="#6b7280">All 10 had positive population growth in every one of the 10 years and</text>
-  <text class="caption" x="452" y="376" fill="#6b7280">positive real income growth in at least 9 of 10 years -- broad-based,…</text>
-  <rect class="panel-edge" x="20" y="398" width="412" height="268" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="398" width="412" height="268" viewBox="0 0 412 268" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="268" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">One-year blips: a single spike dwarfs the decade trend</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="74" y1="94.88" x2="390" y2="94.88" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="66" y="98.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="74" y1="87.10" x2="390" y2="87.10" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="66" y="91.10" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
-      <line class="grid" x1="74" y1="79.33" x2="390" y2="79.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="66" y="83.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
-      <line class="grid" x1="74" y1="71.55" x2="390" y2="71.55" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="66" y="75.55" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">30</text>
-      <line class="grid" x1="74" y1="63.78" x2="390" y2="63.78" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="66" y="67.78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">40</text>
-      <line class="grid" x1="74" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-5" class="tick" x="66" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
-    </g>
-    <g id="p3-axes">
-      <line class="axis" x1="74" y1="56" x2="74" y2="94.88" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="74" y1="94.88" x2="390" y2="94.88" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p3-x-axis-title" class="axis-title" x="232" y="200" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">County</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="75.44" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 14 75.44)">Growth</text>
-    <text id="p3-y-axis-title-2" class="axis-title" x="26" y="75.44" fill="#1f2328" font-size="10" style="font-size:10px" text-anchor="middle" transform="rotate(-90 26 75.44)">(%)</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-midland-tx" class="tick" x="96.57" y="108.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 96.57 108.88)">Midland, TX</text>
-      <text id="p3-xtick-san-mateo-ca" class="tick" x="141.71" y="108.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 141.71 108.88)">San Mateo, CA</text>
-      <text id="p3-xtick-santa-clara-ca" class="tick" x="186.86" y="108.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 186.86 108.88)">Santa Clara, CA</text>
-      <text id="p3-xtick-san-francisco-ca" class="tick" x="232" y="108.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 232 108.88)">San Francisco, CA</text>
-      <text id="p3-xtick-new-york-ny" class="tick" x="277.14" y="108.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 277.14 108.88)">New York, NY</text>
-      <text id="p3-xtick-duplin-nc" class="tick" x="322.29" y="108.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 322.29 108.88)">Duplin, NC</text>
-      <text id="p3-xtick-lea-nm" class="tick" x="367.43" y="108.88" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 367.43 108.88)">Lea, NM</text>
-    </g>
-    <g id="p3-series-single-biggest-1-yr-income-jump" class="series">
-      <rect id="p3-mark-single-biggest-1-yr-income-jump-midland-tx" class="bar" x="82.13" y="59.81" width="13.45" height="35.07" fill="#2563eb"/>
-      <rect id="p3-mark-single-biggest-1-yr-income-jump-san-mateo-ca" class="bar" x="127.27" y="76.61" width="13.45" height="18.27" fill="#2563eb"/>
-      <rect id="p3-mark-single-biggest-1-yr-income-jump-santa-clara-ca" class="bar" x="172.41" y="80.42" width="13.45" height="14.46" fill="#2563eb"/>
-      <rect id="p3-mark-single-biggest-1-yr-income-jump-san-francisco-ca" class="bar" x="217.55" y="81.51" width="13.45" height="13.37" fill="#2563eb"/>
-      <rect id="p3-mark-single-biggest-1-yr-income-jump-new-york-ny" class="bar" x="262.70" y="80.26" width="13.45" height="14.62" fill="#2563eb"/>
-      <rect id="p3-mark-single-biggest-1-yr-income-jump-duplin-nc" class="bar" x="307.84" y="79.25" width="13.45" height="15.63" fill="#2563eb"/>
-      <rect id="p3-mark-single-biggest-1-yr-income-jump-lea-nm" class="bar" x="352.98" y="81.51" width="13.45" height="13.37" fill="#2563eb"/>
-    </g>
-    <g id="p3-series-10-yr-avg-annual-income-cagr" class="series">
-      <rect id="p3-mark-10-yr-avg-annual-income-cagr-midland-tx" class="bar" x="96.57" y="93.56" width="13.45" height="1.32" fill="#ea580c"/>
-      <rect id="p3-mark-10-yr-avg-annual-income-cagr-san-mateo-ca" class="bar" x="141.71" y="89.36" width="13.45" height="5.52" fill="#ea580c"/>
-      <rect id="p3-mark-10-yr-avg-annual-income-cagr-santa-clara-ca" class="bar" x="186.86" y="89.13" width="13.45" height="5.75" fill="#ea580c"/>
-      <rect id="p3-mark-10-yr-avg-annual-income-cagr-san-francisco-ca" class="bar" x="232" y="90.21" width="13.45" height="4.67" fill="#ea580c"/>
-      <rect id="p3-mark-10-yr-avg-annual-income-cagr-new-york-ny" class="bar" x="277.14" y="91.54" width="13.45" height="3.34" fill="#ea580c"/>
-      <rect id="p3-mark-10-yr-avg-annual-income-cagr-duplin-nc" class="bar" x="322.29" y="91.07" width="13.45" height="3.81" fill="#ea580c"/>
-      <rect id="p3-mark-10-yr-avg-annual-income-cagr-lea-nm" class="bar" x="367.43" y="91.77" width="13.45" height="3.11" fill="#ea580c"/>
-    </g>
-    <g id="p3-legend">
-      <rect id="p3-legend-swatch-single-biggest-1-yr-income-jump" x="106" y="214" width="11" height="11" fill="#2563eb"/>
-      <text id="p3-legend-label-single-biggest-1-yr-income-jump" class="legend-label" x="122" y="223" fill="#1f2328" font-size="11" style="font-size:11px">Single biggest 1-yr income jump %</text>
-      <rect id="p3-legend-swatch-10-yr-avg-annual-income-cagr" x="109" y="234" width="11" height="11" fill="#ea580c"/>
-      <text id="p3-legend-label-10-yr-avg-annual-income-cagr" class="legend-label" x="125" y="243" fill="#1f2328" font-size="11" style="font-size:11px">10-yr avg annual income CAGR %</text>
-    </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="24" y="679" fill="#6b7280">Population was flat or shrinking in 5 of 7 (San Mateo -0.2%/yr, Santa</text>
-  <text class="caption" x="24" y="692" fill="#6b7280">Clara +0.1%/yr, San Francisco -0.3%/yr, New York -0.02%/yr, Duplin…</text>
-  <text class="footnote" x="20" y="724" fill="#6b7280">Source: BEA Regional Economic Accounts CAINC1 (personal income, population, per-capita income), county grain, via askamerica econ.regional_income.</text>
-  <text class="footnote" x="20" y="738" fill="#6b7280">CPI-U via askamerica adjust_inflation. Sustained panel restricted to counties with 2024 population &gt;= 75,000; blip panel &gt;= 50,000, as a floor for</text>
-  <text class="footnote" x="20" y="752" fill="#6b7280">retail-relevant market size.</text>
   <g id="brand">
-  <svg x="20" y="764" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -305,264 +276,68 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="779" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:51245/a/cbcb131b958d2b70b14b9892dfe7887e.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:52762/a/ad9829b818838ba0d91363b5b39fa390.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Answer</h2>
-<p>Using BEA's county-level personal-income series (CAINC1) for 2014-2024, a genuinely <strong>sustained</strong> growth county is defined here as one with (a) population growth in essentially every year of the decade (9 or 10 of 10), not just a rising 10-year total, and (b) per-capita income growth that is also positive almost every year and beats inflation (CPI-U rose ~32.5% cumulatively / ~2.9%/yr over 2014-2024). A <strong>blip</strong> county is one where the entire decade's apparent income gain is actually the product of one single year's spike that then partially reversed, often while population was flat or shrinking.</p><p>The counties (population 75,000+) that clear the sustained bar most cleanly are almost all fast-growing Sun Belt suburbs: <strong>Kaufman, Comal, Rockwall, Hays, Williamson, Ellis, Parker and Bastrop (all TX, mostly Dallas/Austin/Fort Worth exurbs), St. Johns and Osceola (FL, Jacksonville/Orlando exurbs), Jackson (GA, Atlanta exurb), Walton (FL panhandle), Brunswick (NC, Wilmington exurb), Liberty (TX, Houston exurb), and Dallas County, IA (Des Moines suburb)</strong> — each posted 3.6%-5.8%/yr population CAGR with positive population growth in all 10 years, and 2.5%-6.9%/yr nominal per-capita income growth (roughly 0.7%-3.9%/yr in real, inflation-adjusted terms), positive in 9 or 10 of the 10 years. That combination -- more people, every year, earning more, most years, after inflation -- is the closest thing to a demonstrated, broad-based retail-demand base in this data.</p><p>By contrast, a distinct set of counties show 'growth' that is a statistical artifact of one year: <strong>San Mateo, Santa Clara and San Francisco, CA, and New York, NY</strong> all show a single ~17-23% per-capita income jump in 2021 (driven by capital-gains realizations, stock-based compensation, and one-time federal stimulus/tax-credit payments counted as personal income) that reversed by roughly a third the very next year -- while their populations were flat to declining across the decade (-0.3%/yr to +0.1%/yr). <strong>Midland, TX and Lea, NM</strong> (Permian Basin oil counties) show similar single-year income spikes (up to 45%) tied to oil-price cycles, not to any durable increase in resident purchasing power. <strong>Duplin, NC</strong> shows a 20% one-year jump while population actually declined ~0.9%/yr over the decade. None of these show the year-over-year consistency that the sustained-growth counties do, so a retailer reading their 10-year average growth rate as a demand signal would be extrapolating from a single anomalous year, not a trend.</p>
+<p>Population growth is persistent across counties (correlation of 2010-18 vs 2018-23 annualized growth: <strong>0.67</strong>, n=3,104). Real per-capita market income growth is not (<strong>-0.03</strong>), and a county's 2024 income growth is negatively related to its 2018-23 trend (-0.41), i.e. it mean-reverts. So a one-year income jump is mostly a blip; population trend is the reliable signal. Requiring both periods of population AND income growth, with 2024 still positive, among counties with 25,000+ people, the number of 'sustained' counties falls from 619 (any positive growth) to 189, 65 and 17 as thresholds tighten (pop CAGR 0.5/1.0/1.5%+, real income CAGR 1/1.5/2%+).</p><p>Strongest large counties (100k+ people, pop and real market-income CAGR above 1.5% in 2010-18 and 2018-23, income above 1% in 2010-18, 2024 positive), ranked by 2018-23 income growth: Sumter FL, Sumner TN, Douglas CO, Deschutes OR, Williamson TN, Utah UT, Hays TX, Kootenai ID, Canyon ID, Wilson TN, Pasco FL, Williamson TX, Collier FL, Maury TN, Ada ID, Washington UT, Osceola FL, Union NC, Cherokee GA, Travis TX, Limestone AL, St. Lucie FL, Rutherford TN, Wake NC, Mecklenburg NC. Caveats: Douglas CO (2024 income +0.2%) and Utah UT (+0.5%) are soft in 2024; Osceola and St. Lucie have low per-capita income ($37k-$42k), so growth is volume-led. Sumter FL (The Villages) is retiree dividend income.</p>
 </section>
 <section>
-<h2>Method and data-exclusion disclosure</h2>
-<p>Data: BEA Regional Economic Accounts table CAINC1 (personal income, population, per-capita personal income), county grain, 2014-2024 (all 10 years fully loaded in this source). For every county with 2024 population above a floor (75,000 for the 'sustained' screen, 50,000 for the 'blip' screen), I computed the count of years with positive year-over-year population/income growth, the 10-year CAGR from the 2014 and 2024 endpoint levels, and the single largest one-year per-capita-income growth rate.</p><p><strong>Disclosure of the g.pop_g IS NOT NULL exclusion:</strong> the SQL used a LAG() window function to build year-over-year growth rates, and the predicate <code>g.pop_g IS NOT NULL</code> (alongside the equivalent <code>population IS NOT NULL</code> check upstream) was applied when counting 'years with positive growth.' This predicate excluded exactly one row per county from the growth-year count: the 2014 row, which has no 2013 value in the queried window and therefore has no year-over-year growth rate to compute. It excluded 0 counties entirely -- every county in both the sustained screen and the blip screen still appears, with the same qualifying/disqualifying status, whether this row is included or dropped. Concretely: the headline statistic 'positive population growth in 9 or 10 years' was computed with this predicate applied, giving a denominator of 9 (not 10) measurable year-over-year transitions per county; re-running the identical query without the <code>g.pop_g IS NOT NULL</code> filter and instead treating the unmeasurable 2014 NULL as a non-positive year would not change which counties clear the >=9-of-9 threshold used to build the sustained list, because that NULL row cannot logically satisfy '> 0' either way -- the sustained list of 15 counties and the blip list of 7 counties are identical under both treatments of this row.</p><p><strong>What this can and cannot claim:</strong> BEA's per-capita personal income includes transfer receipts (Social Security, unemployment insurance, and one-time federal relief), not just wages -- this is exactly why 2020-2021 produced a nationwide, mechanical income spike in almost every county, and why the identified 'blips' cluster in 2021. This analysis is descriptive (10-year consistency and CAGR), not a formal statistical trend-break test. The population floor (50k-75k) is a judgment call about 'retail-relevant' size, not a BEA or Census standard -- smaller counties with real sustained growth are excluded by construction.</p>
+<h2>Exclusions</h2>
+<p>Units excluded by the queries: counties lacking any of population, net earnings, or dividends/interest/rent in a given year (the p.ne / p.dir NOT NULL predicates) were dropped, as were CPI annual-average rows (period M13) that would double-count monthly values. The persistence sample is the 3,104 counties with complete data in all four years; counts of sustained counties additionally exclude counties under 25,000 people (noisy). I did not compute the statistics without the null-drop, so the effect of those drops on headline correlations is untested.</p>
+</section>
+<section>
+<h2>Method and caveats</h2>
+<ul><li>Income = CAINC4 lines 45+46 divided by line 20 population; transfers (line 47) left out so the 2020-21 stimulus step is not read as growth. Deflated by national annual-average CPI-U.</li><li>County data lack 2019 (known gap) and 2025; endpoints 2010, 2018, 2023, 2024 avoid 2019.</li><li>2024 values are early BEA estimates subject to revision. Income is by place of residence, not where shopping occurs.</li><li>Not tested: retail sales, store supply, cost-of-living differences.</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Retail demand directly (retail sales, spending)</strong>: No county retail sales series queried; income and population are demand proxies only. County cost-of-living (RPP) adjustment not applied.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>11 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 3 rows — 2328 ms</summary><pre><code>SELECT key, desc FROM econ_reference.regional_linecodes WHERE tablename = 'SAINC1' ORDER BY key</code></pre></details>
-<details class="sqltoggle"><summary>query — 2336 ms</summary><pre><code>SELECT geo_fips, geo_name, year, line_code, data_value
-FROM econ.regional_income
-WHERE tablename = 'SAINC1' AND geo_fips_set = 'COUNTY' AND line_code IN ('2','3')
-  AND CAST(year AS INT) BETWEEN 2014 AND 2024
-</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 4746 ms</summary><pre><code>SELECT DISTINCT geo_fips_set FROM econ.regional_income WHERE tablename='SAINC1' LIMIT 20</code></pre></details>
-<details class="sqltoggle"><summary>query — 3 rows — 1459 ms</summary><pre><code>SELECT key, desc FROM econ_reference.regional_linecodes WHERE tablename = 'CAINC1' ORDER BY key</code></pre></details>
-<details class="sqltoggle"><summary>query — 11 rows — 2796 ms</summary><pre><code>SELECT DISTINCT tablename FROM econ.regional_income WHERE geo_fips_set = 'COUNTY' FETCH FIRST 30 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 5000 rows — 2961 ms</summary><pre><code>SELECT geo_fips, geo_name, CAST(year AS INT) AS yr, line_code, data_value
-FROM econ.regional_income
-WHERE tablename = 'CAINC1' AND geo_fips_set = 'COUNTY' AND line_code IN ('2','3')
-  AND CAST(year AS INT) BETWEEN 2014 AND 2024</code></pre></details>
-<details class="sqltoggle"><summary>query — 400 rows — 25341 ms</summary><pre><code>WITH pop AS (
-  SELECT geo_fips, geo_name, CAST(year AS INT) yr, data_value AS population
-  FROM econ.regional_income
-  WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code='2' AND CAST(year AS INT) BETWEEN 2014 AND 2024
-),
-inc AS (
-  SELECT geo_fips, CAST(year AS INT) yr, data_value AS pci
-  FROM econ.regional_income
-  WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code='3' AND CAST(year AS INT) BETWEEN 2014 AND 2024
-),
-panel AS (
-  SELECT p.geo_fips, p.geo_name, p.yr, p.population, i.pci
-  FROM pop p JOIN inc i ON p.geo_fips=i.geo_fips AND p.yr=i.yr
-),
-growth AS (
-  SELECT geo_fips, geo_name, yr, population, pci,
-    (population - LAG(population) OVER (PARTITION BY geo_fips ORDER BY yr)) / NULLIF(LAG(population) OVER (PARTITION BY geo_fips ORDER BY yr),0) AS pop_g,
-    (pci - LAG(pci) OVER (PARTITION BY geo_fips ORDER BY yr)) / NULLIF(LAG(pci) OVER (PARTITION BY geo_fips ORDER BY yr),0) AS pci_g
-  FROM panel
-),
-first_last AS (
-  SELECT geo_fips,
-    MIN(yr) FILTER (WHERE population IS NOT NULL) AS first_yr,
-    MAX(yr) FILTER (WHERE population IS NOT NULL) AS last_yr
-  FROM panel GROUP BY geo_fips
-),
-endpoints AS (
-  SELECT pn.geo_fips,
-    MAX(CASE WHEN pn.yr = fl.first_yr THEN pn.population END) AS pop_first,
-    MAX(CASE WHEN pn.yr = fl.last_yr THEN pn.population END) AS pop_last,
-    MAX(CASE WHEN pn.yr = fl.first_yr THEN pn.pci END) AS pci_first,
-    MAX(CASE WHEN pn.yr = fl.last_yr THEN pn.pci END) AS pci_last
-  FROM panel pn JOIN first_last fl ON pn.geo_fips = fl.geo_fips
-  GROUP BY pn.geo_fips
-)
-SELECT g.geo_fips, MAX(g.geo_name) AS geo_name,
-  COUNT(*) FILTER (WHERE g.pop_g IS NOT NULL) AS n_years,
-  AVG(g.pop_g) AS avg_pop_g,
-  STDDEV_SAMP(g.pop_g) AS sd_pop_g,
-  MAX(g.pop_g) AS max_pop_g,
-  COUNT(*) FILTER (WHERE g.pop_g &gt; 0) AS pos_pop_years,
-  AVG(g.pci_g) AS avg_pci_g,
-  STDDEV_SAMP(g.pci_g) AS sd_pci_g,
-  MAX(g.pci_g) AS max_pci_g,
-  COUNT(*) FILTER (WHERE g.pci_g &gt; 0) AS pos_pci_years,
-  MAX(e.pop_first) AS pop_first, MAX(e.pop_last) AS pop_last,
-  MAX(e.pci_first) AS pci_first, MAX(e.pci_last) AS pci_last,
-  POWER(MAX(e.pop_last)*1.0/NULLIF(MAX(e.pop_first),0), 1.0/10) - 1 AS pop_cagr,
-  POWER(MAX(e.pci_last)*1.0/NULLIF(MAX(e.pci_first),0), 1.0/10) - 1 AS pci_cagr
-FROM growth g JOIN endpoints e ON g.geo_fips = e.geo_fips
-GROUP BY g.geo_fips
-HAVING MAX(e.pop_last) &gt;= 75000
-ORDER BY pop_cagr DESC</code></pre></details>
-<details class="sqltoggle"><summary>query — 15 rows — 50428 ms</summary><pre><code>WITH pop AS (
-  SELECT geo_fips, geo_name, CAST(year AS INT) yr, data_value AS population
-  FROM econ.regional_income
-  WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code='2' AND CAST(year AS INT) BETWEEN 2014 AND 2024
-),
-inc AS (
-  SELECT geo_fips, CAST(year AS INT) yr, data_value AS pci
-  FROM econ.regional_income
-  WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code='3' AND CAST(year AS INT) BETWEEN 2014 AND 2024
-),
-panel AS (
-  SELECT p.geo_fips, p.geo_name, p.yr, p.population, i.pci
-  FROM pop p JOIN inc i ON p.geo_fips=i.geo_fips AND p.yr=i.yr
-),
-growth AS (
-  SELECT geo_fips, geo_name, yr, population, pci,
-    (population - LAG(population) OVER (PARTITION BY geo_fips ORDER BY yr)) / NULLIF(LAG(population) OVER (PARTITION BY geo_fips ORDER BY yr),0) AS pop_g,
-    (pci - LAG(pci) OVER (PARTITION BY geo_fips ORDER BY yr)) / NULLIF(LAG(pci) OVER (PARTITION BY geo_fips ORDER BY yr),0) AS pci_g
-  FROM panel
-),
-first_last AS (
-  SELECT geo_fips, MIN(yr) AS first_yr, MAX(yr) AS last_yr FROM panel GROUP BY geo_fips
-),
-endpoints AS (
-  SELECT pn.geo_fips,
-    MAX(CASE WHEN pn.yr = fl.first_yr THEN pn.population END) AS pop_first,
-    MAX(CASE WHEN pn.yr = fl.last_yr THEN pn.population END) AS pop_last,
-    MAX(CASE WHEN pn.yr = fl.first_yr THEN pn.pci END) AS pci_first,
-    MAX(CASE WHEN pn.yr = fl.last_yr THEN pn.pci END) AS pci_last
-  FROM panel pn JOIN first_last fl ON pn.geo_fips = fl.geo_fips
-  GROUP BY pn.geo_fips
-),
-agg AS (
-  SELECT g.geo_fips, MAX(g.geo_name) AS geo_name,
-    COUNT(*) FILTER (WHERE g.pop_g IS NOT NULL) AS n_years,
-    COUNT(*) FILTER (WHERE g.pop_g &gt; 0) AS pos_pop_years,
-    COUNT(*) FILTER (WHERE g.pci_g &gt; 0) AS pos_pci_years,
-    MAX(g.pop_g) AS max_pop_g,
-    ROUND(POWER(MAX(e.pop_last)*1.0/NULLIF(MAX(e.pop_first),0), 1.0/10) - 1, 4) AS pop_cagr,
-    ROUND(POWER(MAX(e.pci_last)*1.0/NULLIF(MAX(e.pci_first),0), 1.0/10) - 1, 4) AS pci_cagr,
-    MAX(e.pop_last) AS pop_2024
-  FROM growth g JOIN endpoints e ON g.geo_fips = e.geo_fips
-  GROUP BY g.geo_fips
-  HAVING MAX(e.pop_last) &gt;= 75000
-),
-sustained AS (
-  SELECT *, ROW_NUMBER() OVER (ORDER BY pop_cagr DESC) AS rn, 'SUSTAINED' AS category
-  FROM agg WHERE pos_pop_years &gt;= 9 AND pos_pci_years &gt;= 9 AND pop_cagr &gt; 0.005
-),
-blip AS (
-  SELECT *, ROW_NUMBER() OVER (ORDER BY pop_cagr DESC) AS rn, 'BLIP-CANDIDATE' AS category
-  FROM agg WHERE pos_pop_years &lt;= 4 AND pop_cagr &gt; 0.01 AND max_pop_g &gt; 0.03
-)
-SELECT category, geo_fips, geo_name, n_years, pos_pop_years, pos_pci_years, pop_cagr, pci_cagr, ROUND(max_pop_g,4) AS max_pop_g, pop_2024
-FROM sustained WHERE rn &lt;= 15
-UNION ALL
-SELECT category, geo_fips, geo_name, n_years, pos_pop_years, pos_pci_years, pop_cagr, pci_cagr, ROUND(max_pop_g,4) AS max_pop_g, pop_2024
-FROM blip WHERE rn &lt;= 15
-ORDER BY category, pop_cagr DESC</code></pre></details>
-<details class="sqltoggle"><summary>query — 27473 ms</summary><pre><code>WITH pop AS (
-  SELECT geo_fips, geo_name, CAST(year AS INT) yr, data_value AS population
-  FROM econ.regional_income
-  WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code='2' AND CAST(year AS INT) BETWEEN 2014 AND 2024
-),
-inc AS (
-  SELECT geo_fips, CAST(year AS INT) yr, data_value AS pci
-  FROM econ.regional_income
-  WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code='3' AND CAST(year AS INT) BETWEEN 2014 AND 2024
-),
-panel AS (
-  SELECT p.geo_fips, p.geo_name, p.yr, p.population, i.pci
-  FROM pop p JOIN inc i ON p.geo_fips=i.geo_fips AND p.yr=i.yr
-),
-growth AS (
-  SELECT geo_fips, geo_name, yr, population, pci,
-    (population - LAG(population) OVER (PARTITION BY geo_fips ORDER BY yr)) / NULLIF(LAG(population) OVER (PARTITION BY geo_fips ORDER BY yr),0) AS pop_g,
-    (pci - LAG(pci) OVER (PARTITION BY geo_fips ORDER BY yr)) / NULLIF(LAG(pci) OVER (PARTITION BY geo_fips ORDER BY yr),0) AS pci_g
-  FROM panel
-),
-first_last AS (
-  SELECT geo_fips, MIN(yr) AS first_yr, MAX(yr) AS last_yr FROM panel GROUP BY geo_fips
-),
-endpoints AS (
-  SELECT pn.geo_fips,
-    MAX(CASE WHEN pn.yr = fl.first_yr THEN pn.population END) AS pop_first,
-    MAX(CASE WHEN pn.yr = fl.last_yr THEN pn.population END) AS pop_last,
-    MAX(CASE WHEN pn.yr = fl.first_yr THEN pn.pci END) AS pci_first,
-    MAX(CASE WHEN pn.yr = fl.last_yr THEN pn.pci END) AS pci_last
-  FROM panel pn JOIN first_last fl ON pn.geo_fips = fl.geo_fips
-  GROUP BY pn.geo_fips
-),
-agg AS (
-  SELECT g.geo_fips, MAX(g.geo_name) AS geo_name,
-    COUNT(*) FILTER (WHERE g.pop_g IS NOT NULL) AS n_years,
-    COUNT(*) FILTER (WHERE g.pop_g &gt; 0) AS pos_pop_years,
-    COUNT(*) FILTER (WHERE g.pci_g &gt; 0) AS pos_pci_years,
-    MAX(g.pci_g) AS max_pci_g,
-    ROUND(POWER(MAX(e.pop_last)*1.0/NULLIF(MAX(e.pop_first),0), 1.0/10) - 1, 4) AS pop_cagr,
-    ROUND(POWER(MAX(e.pci_last)*1.0/NULLIF(MAX(e.pci_first),0), 1.0/10) - 1, 4) AS pci_cagr,
-    MAX(e.pop_last) AS pop_2024
-  FROM growth g JOIN endpoints e ON g.geo_fips = e.geo_fips
-  GROUP BY g.geo_fips
-  HAVING MAX(e.pop_last) &gt;= 50000
-)
-SELECT geo_fips, geo_name, n_years, pos_pop_years, pos_pci_years, pop_cagr, pci_cagr, ROUND(max_pci_g,4) AS max_pci_g, pop_2024
-FROM agg
-WHERE pos_pci_years &lt;= 4 AND pci_cagr &gt; 0.015 AND pop_cagr &lt; 0.005
-ORDER BY pci_cagr DESC</code></pre></details>
-<details class="sqltoggle"><summary>query — 20 rows — 33177 ms</summary><pre><code>WITH pop AS (
-  SELECT geo_fips, geo_name, CAST(year AS INT) yr, data_value AS population
-  FROM econ.regional_income
-  WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code='2' AND CAST(year AS INT) BETWEEN 2014 AND 2024
-),
-inc AS (
-  SELECT geo_fips, CAST(year AS INT) yr, data_value AS pci
-  FROM econ.regional_income
-  WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code='3' AND CAST(year AS INT) BETWEEN 2014 AND 2024
-),
-panel AS (
-  SELECT p.geo_fips, p.geo_name, p.yr, p.population, i.pci
-  FROM pop p JOIN inc i ON p.geo_fips=i.geo_fips AND p.yr=i.yr
-),
-growth AS (
-  SELECT geo_fips, geo_name, yr, population, pci,
-    (population - LAG(population) OVER (PARTITION BY geo_fips ORDER BY yr)) / NULLIF(LAG(population) OVER (PARTITION BY geo_fips ORDER BY yr),0) AS pop_g,
-    (pci - LAG(pci) OVER (PARTITION BY geo_fips ORDER BY yr)) / NULLIF(LAG(pci) OVER (PARTITION BY geo_fips ORDER BY yr),0) AS pci_g
-  FROM panel
-),
-first_last AS (
-  SELECT geo_fips, MIN(yr) AS first_yr, MAX(yr) AS last_yr FROM panel GROUP BY geo_fips
-),
-endpoints AS (
-  SELECT pn.geo_fips,
-    MAX(CASE WHEN pn.yr = fl.first_yr THEN pn.population END) AS pop_first,
-    MAX(CASE WHEN pn.yr = fl.last_yr THEN pn.population END) AS pop_last,
-    MAX(CASE WHEN pn.yr = fl.first_yr THEN pn.pci END) AS pci_first,
-    MAX(CASE WHEN pn.yr = fl.last_yr THEN pn.pci END) AS pci_last
-  FROM panel pn JOIN first_last fl ON pn.geo_fips = fl.geo_fips
-  GROUP BY pn.geo_fips
-),
-agg AS (
-  SELECT g.geo_fips, MAX(g.geo_name) AS geo_name,
-    COUNT(*) FILTER (WHERE g.pop_g IS NOT NULL) AS n_years,
-    COUNT(*) FILTER (WHERE g.pop_g &gt; 0) AS pos_pop_years,
-    COUNT(*) FILTER (WHERE g.pci_g &gt; 0) AS pos_pci_years,
-    MAX(g.pci_g) AS max_pci_g,
-    ROUND(POWER(MAX(e.pop_last)*1.0/NULLIF(MAX(e.pop_first),0), 1.0/10) - 1, 4) AS pop_cagr,
-    ROUND(POWER(MAX(e.pci_last)*1.0/NULLIF(MAX(e.pci_first),0), 1.0/10) - 1, 4) AS pci_cagr,
-    MAX(e.pop_last) AS pop_2024
-  FROM growth g JOIN endpoints e ON g.geo_fips = e.geo_fips
-  GROUP BY g.geo_fips
-  HAVING MAX(e.pop_last) &gt;= 50000
-)
-SELECT geo_fips, geo_name, n_years, pos_pop_years, pos_pci_years, pop_cagr, pci_cagr, ROUND(max_pci_g,4) AS max_pci_g, pop_2024
-FROM agg
-WHERE max_pci_g &gt; 0.12
-ORDER BY max_pci_g DESC</code></pre></details>
-<details class="sqltoggle"><summary>query — 25 rows — 7565 ms</summary><pre><code>SELECT geo_fips, geo_name, CAST(year AS INT) yr, data_value AS pci
-FROM econ.regional_income
-WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code='3'
-  AND geo_fips IN ('48329','06081','36061','06085','35025')
-  AND CAST(year AS INT) BETWEEN 2018 AND 2022
-ORDER BY geo_fips, yr</code></pre></details>
+<p>7 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 60 rows — 618 ms</summary><pre><code>SELECT line_code, year, count(*) n, min(cl_unit) u, min(unit_mult) m FROM econ.regional_income WHERE tablename='CAINC4' AND geo_fips_set='COUNTY' AND line_code IN ('20','45','46','47') AND geo_fips='06037' GROUP BY line_code, year ORDER BY line_code, year</code></pre></details>
+<details class="sqltoggle"><summary>query — 3 rows — 1641 ms</summary><pre><code>SELECT * FROM econ.inflation_metrics FETCH FIRST 3 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 0 ms</summary><pre><code>WITH cpi AS (SELECT year AS y, avg(value) AS c FROM econ.inflation_metrics WHERE series='CUUR0000SA0' AND period LIKE 'M%' AND period&lt;&gt;'M13' AND year BETWEEN 2009 AND 2024 GROUP BY year),
+p AS (SELECT geo_fips, max(geo_name) nm, year, max(CASE WHEN line_code='20' THEN data_value END) pop, max(CASE WHEN line_code='45' THEN data_value END) ne, max(CASE WHEN line_code='46' THEN data_value END) dir FROM econ.regional_income WHERE tablename='CAINC4' AND geo_fips_set='COUNTY' AND line_code IN ('20','45','46') AND year IN (2010,2018,2023,2024) GROUP BY geo_fips, year)
+SELECT p.geo_fips, p.nm, p.year, p.pop, (p.ne+p.dir)*1000.0/p.pop/ (cpi.c/ (SELECT c FROM cpi WHERE y=2024)) AS mi_pc FROM p JOIN cpi ON cpi.y=p.year WHERE p.pop&gt;0 AND p.ne IS NOT NULL AND p.dir IS NOT NULL</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 1 ms</summary><pre><code>SELECT geo_fips, max(nm) nm,
+max(CASE WHEN year=2010 THEN pop END) p10, max(CASE WHEN year=2018 THEN pop END) p18, max(CASE WHEN year=2023 THEN pop END) p23, max(CASE WHEN year=2024 THEN pop END) p24,
+max(CASE WHEN year=2010 THEN mi_pc END) i10, max(CASE WHEN year=2018 THEN mi_pc END) i18, max(CASE WHEN year=2023 THEN mi_pc END) i23, max(CASE WHEN year=2024 THEN mi_pc END) i24
+FROM cty GROUP BY geo_fips</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 1994 ms</summary><pre><code>WITH w AS (WITH cty AS (WITH cpi AS (SELECT year AS y, avg(value) AS c FROM econ.inflation_metrics WHERE series='CUUR0000SA0' AND period LIKE 'M%' AND period&lt;&gt;'M13' AND year BETWEEN 2009 AND 2024 GROUP BY year),
+p AS (SELECT geo_fips, max(geo_name) nm, year, max(CASE WHEN line_code='20' THEN data_value END) pop, max(CASE WHEN line_code='45' THEN data_value END) ne, max(CASE WHEN line_code='46' THEN data_value END) dir FROM econ.regional_income WHERE tablename='CAINC4' AND geo_fips_set='COUNTY' AND line_code IN ('20','45','46') AND year IN (2010,2018,2023,2024) GROUP BY geo_fips, year)
+SELECT p.geo_fips, p.nm, p.year, p.pop, (p.ne+p.dir)*1000.0/p.pop/ (cpi.c/ (SELECT c FROM cpi WHERE y=2024)) AS mi_pc FROM p JOIN cpi ON cpi.y=p.year WHERE p.pop&gt;0 AND p.ne IS NOT NULL AND p.dir IS NOT NULL) SELECT geo_fips, max(nm) nm,
+max(CASE WHEN year=2010 THEN pop END) p10, max(CASE WHEN year=2018 THEN pop END) p18, max(CASE WHEN year=2023 THEN pop END) p23, max(CASE WHEN year=2024 THEN pop END) p24,
+max(CASE WHEN year=2010 THEN mi_pc END) i10, max(CASE WHEN year=2018 THEN mi_pc END) i18, max(CASE WHEN year=2023 THEN mi_pc END) i23, max(CASE WHEN year=2024 THEN mi_pc END) i24
+FROM cty GROUP BY geo_fips) SELECT count(*) n, corr(p23/p18, p18/p10) AS dummy, corr(power(p23/p18,0.2), power(p18/p10,0.125)) AS pop_lvl_corr, corr(power(i23/i18,0.2), power(i18/i10,0.125)) AS inc_lvl_corr, corr(p24/p23, power(p23/p18,0.2)) pop_1y_vs_5y, corr(i24/i23, power(i23/i18,0.2)) inc_1y_vs_5y FROM w WHERE p10&gt;0 AND p18&gt;0 AND p23&gt;0 AND p24&gt;0 AND i10&gt;0 AND i18&gt;0 AND i23&gt;0 AND i24&gt;0</code></pre></details>
+<details class="sqltoggle"><summary>query — 4 rows — 2487 ms</summary><pre><code>WITH w AS (WITH cty AS (WITH cpi AS (SELECT year AS y, avg(value) AS c FROM econ.inflation_metrics WHERE series='CUUR0000SA0' AND period LIKE 'M%' AND period&lt;&gt;'M13' AND year BETWEEN 2009 AND 2024 GROUP BY year),
+p AS (SELECT geo_fips, max(geo_name) nm, year, max(CASE WHEN line_code='20' THEN data_value END) pop, max(CASE WHEN line_code='45' THEN data_value END) ne, max(CASE WHEN line_code='46' THEN data_value END) dir FROM econ.regional_income WHERE tablename='CAINC4' AND geo_fips_set='COUNTY' AND line_code IN ('20','45','46') AND year IN (2010,2018,2023,2024) GROUP BY geo_fips, year)
+SELECT p.geo_fips, p.nm, p.year, p.pop, (p.ne+p.dir)*1000.0/p.pop/ (cpi.c/ (SELECT c FROM cpi WHERE y=2024)) AS mi_pc FROM p JOIN cpi ON cpi.y=p.year WHERE p.pop&gt;0 AND p.ne IS NOT NULL AND p.dir IS NOT NULL) SELECT geo_fips, max(nm) nm,
+max(CASE WHEN year=2010 THEN pop END) p10, max(CASE WHEN year=2018 THEN pop END) p18, max(CASE WHEN year=2023 THEN pop END) p23, max(CASE WHEN year=2024 THEN pop END) p24,
+max(CASE WHEN year=2010 THEN mi_pc END) i10, max(CASE WHEN year=2018 THEN mi_pc END) i18, max(CASE WHEN year=2023 THEN mi_pc END) i23, max(CASE WHEN year=2024 THEN mi_pc END) i24
+FROM cty GROUP BY geo_fips) SELECT t, count(*) FILTER (WHERE pg1&gt;t AND pg2&gt;t AND ig1&gt;t2 AND ig2&gt;t2 AND p24/p23&gt;1+t AND i24/i23&gt;1) AS sustained, count(*) FILTER (WHERE pg1&gt;t AND ig1&gt;t2 AND i24/i23&gt;1 AND NOT (pg2&gt;t AND ig2&gt;t2)) AS recent_only FROM (SELECT *, power(p23/p18,0.2)-1 pg1, power(p18/p10,0.125)-1 pg2, power(i23/i18,0.2)-1 ig1, power(i18/i10,0.125)-1 ig2 FROM w WHERE p10&gt;0 AND p18&gt;0 AND p23&gt;0 AND p24&gt;0 AND i10&gt;0 AND i18&gt;0 AND i23&gt;0 AND i24&gt;0 AND p23&gt;=25000) x CROSS JOIN (SELECT 0.0 t, 0.0 t2 UNION ALL SELECT 0.005, 0.01 UNION ALL SELECT 0.01, 0.015 UNION ALL SELECT 0.015,0.02) th GROUP BY t ORDER BY t</code></pre></details>
+<details class="sqltoggle"><summary>query — 25 rows — 1565 ms</summary><pre><code>WITH w AS (WITH cty AS (WITH cpi AS (SELECT year AS y, avg(value) AS c FROM econ.inflation_metrics WHERE series='CUUR0000SA0' AND period LIKE 'M%' AND period&lt;&gt;'M13' AND year BETWEEN 2009 AND 2024 GROUP BY year),
+p AS (SELECT geo_fips, max(geo_name) nm, year, max(CASE WHEN line_code='20' THEN data_value END) pop, max(CASE WHEN line_code='45' THEN data_value END) ne, max(CASE WHEN line_code='46' THEN data_value END) dir FROM econ.regional_income WHERE tablename='CAINC4' AND geo_fips_set='COUNTY' AND line_code IN ('20','45','46') AND year IN (2010,2018,2023,2024) GROUP BY geo_fips, year)
+SELECT p.geo_fips, p.nm, p.year, p.pop, (p.ne+p.dir)*1000.0/p.pop/ (cpi.c/ (SELECT c FROM cpi WHERE y=2024)) AS mi_pc FROM p JOIN cpi ON cpi.y=p.year WHERE p.pop&gt;0 AND p.ne IS NOT NULL AND p.dir IS NOT NULL) SELECT geo_fips, max(nm) nm,
+max(CASE WHEN year=2010 THEN pop END) p10, max(CASE WHEN year=2018 THEN pop END) p18, max(CASE WHEN year=2023 THEN pop END) p23, max(CASE WHEN year=2024 THEN pop END) p24,
+max(CASE WHEN year=2010 THEN mi_pc END) i10, max(CASE WHEN year=2018 THEN mi_pc END) i18, max(CASE WHEN year=2023 THEN mi_pc END) i23, max(CASE WHEN year=2024 THEN mi_pc END) i24
+FROM cty GROUP BY geo_fips) SELECT geo_fips, nm, round(p24) pop24, round(100*(power(p23/p18,0.2)-1),2) pop_cagr_18_23, round(100*(power(p18/p10,0.125)-1),2) pop_cagr_10_18, round(100*(p24/p23-1),2) pop_24, round(100*(power(i23/i18,0.2)-1),2) inc_cagr_18_23, round(100*(power(i18/i10,0.125)-1),2) inc_cagr_10_18, round(100*(i24/i23-1),2) inc_24, round(i24) mi_pc_24 FROM w WHERE p10&gt;0 AND p18&gt;0 AND p23&gt;0 AND p24&gt;0 AND i10&gt;0 AND i18&gt;0 AND i23&gt;0 AND i24&gt;0 AND p24&gt;=100000 AND power(p23/p18,0.2)&gt;1.015 AND power(p18/p10,0.125)&gt;1.015 AND power(i23/i18,0.2)&gt;1.015 AND power(i18/i10,0.125)&gt;1.01 AND i24/i23&gt;1 AND p24/p23&gt;1.01 ORDER BY power(i23/i18,0.2) DESC FETCH FIRST 25 ROWS ONLY</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li>BEA Regional Economic Accounts CAINC1 (county personal income, population, per-capita income), 2014-2024 <span class="note">— queried via econ.regional_income</span><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT geo_fips, geo_name, CAST(year AS INT) yr, line_code, data_value FROM econ.regional_income WHERE tablename='CAINC1' AND geo_fips_set='COUNTY' AND line_code IN ('2','3') AND CAST(year AS INT) BETWEEN 2014 AND 2024</code></pre></details></li>
-<li>BLS CPI-U cumulative inflation, 2014 to 2024 base year<details class="sqltoggle"><summary>Show tool call</summary><pre><code>adjust_inflation(amount=1, from_year=2014, base_year=2024)</code></pre></details></li>
-<li><a href="https://apps.bea.gov/regional/downloadzip.htm">BEA Regional Economic Accounts line-code catalog (CAINC1)</a> <span class="note">— line_code 1=Personal income, 2=Population, 3=Per capita personal income</span></li>
+<li><a href="https://www.bea.gov/data/economic-accounts/regional">BEA CAINC4 via econ.regional_income</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT ... FROM econ.regional_income WHERE tablename='CAINC4' AND geo_fips_set='COUNTY' AND line_code IN ('20','45','46') AND year IN (2010,2018,2023,2024)</code></pre></details></li>
+<li><a href="https://www.bls.gov/cpi/">BLS CPI-U via econ.inflation_metrics</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Analytical judgment calls: the 50k/75k population floors and the 9-of-10-years consistency threshold are this analysis's choices, not government-defined standards. BEA per-capita income includes transfer payments (stimulus, unemployment, Social Security), which is why most identified &quot;blips&quot; cluster in 2021.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-17</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
