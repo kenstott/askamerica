@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Defense appropriations timing shows up in defense-contractor stock trading — but only weakly and inconsistently</title>
+<title>Defense appropriations timing leaves no detectable footprint in ITA relative to SPY over the following 5 or 20 trading days</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -88,33 +96,6 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-si
 figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
 .dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
 .dl:hover{color:var(--link)}
-@media screen{
-#s3-t1-s1:checked ~ table tbody.s0{display:none}
-#s3-t1-s1:checked ~ table tbody.s1{display:table-row-group}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"]{color:var(--link)}
-#s3-t1-s1:checked ~ table label[for="s3-t1-s1"] .srtcue{opacity:1}
-#s3-t1-s1:checked ~ .srtreset{display:inline-block}
-#s3-t1-s2:checked ~ table tbody.s0{display:none}
-#s3-t1-s2:checked ~ table tbody.s2{display:table-row-group}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"]{color:var(--link)}
-#s3-t1-s2:checked ~ table label[for="s3-t1-s2"] .srtcue{opacity:1}
-#s3-t1-s2:checked ~ .srtreset{display:inline-block}
-#s3-t1-s3:checked ~ table tbody.s0{display:none}
-#s3-t1-s3:checked ~ table tbody.s3{display:table-row-group}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"]{color:var(--link)}
-#s3-t1-s3:checked ~ table label[for="s3-t1-s3"] .srtcue{opacity:1}
-#s3-t1-s3:checked ~ .srtreset{display:inline-block}
-#s3-t1-s4:checked ~ table tbody.s0{display:none}
-#s3-t1-s4:checked ~ table tbody.s4{display:table-row-group}
-#s3-t1-s4:checked ~ table label[for="s3-t1-s4"]{color:var(--link)}
-#s3-t1-s4:checked ~ table label[for="s3-t1-s4"] .srtcue{opacity:1}
-#s3-t1-s4:checked ~ .srtreset{display:inline-block}
-#s3-t1-s5:checked ~ table tbody.s0{display:none}
-#s3-t1-s5:checked ~ table tbody.s5{display:table-row-group}
-#s3-t1-s5:checked ~ table label[for="s3-t1-s5"]{color:var(--link)}
-#s3-t1-s5:checked ~ table label[for="s3-t1-s5"] .srtcue{opacity:1}
-#s3-t1-s5:checked ~ .srtreset{display:inline-block}
-}
 </style>
 </head>
 <body>
@@ -126,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Defense appropriations timing shows up in defense-contractor stock trading — but only weakly and inconsistently</h1>
-<p class="subtitle">ITA (iShares US Aerospace &amp; Defense ETF) vs SPY, event-by-event, 2022–2026</p>
+<h1>Defense appropriations timing leaves no detectable footprint in ITA relative to SPY over the following 5 or 20 trading days</h1>
+<p class="subtitle">sec.stock_prices (ITA.US vs SPY.US adjusted close, through 2026-05-29); law.bills, fiscal.continuing_resolutions</p>
 </header>
 <figure class="board">
 <!--
@@ -147,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 694" width="880" height="694" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -174,80 +155,59 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="694" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Defense-Contractor Stock Excess Returns Around Appropriations Eve…</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:10px">iShares US Aerospace &amp; Defense ETF (ITA) return minus SPY return, in the weeks following each event. Source: Yahoo Finance daily closes.</text>
-  <rect class="panel-edge" x="20" y="82" width="412" height="363" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="82" width="412" height="363" viewBox="0 0 412 363" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="363" class="chart-bg" fill="#ffffff"/>
-    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="14" style="font-size:14px" font-weight="600" text-anchor="middle">ITA minus SPY return in weeks following event</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">ITA minus SPY, 20 trading days after event</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Mean 20-day excess return (%)</text>
     <g id="p1-gridlines">
-      <line class="grid" x1="59" y1="229" x2="390" y2="229" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-0" class="tick" x="51" y="233" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-6</text>
-      <line class="grid" x1="59" y1="200.17" x2="390" y2="200.17" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-1" class="tick" x="51" y="204.17" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-4</text>
-      <line class="grid" x1="59" y1="171.33" x2="390" y2="171.33" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-2" class="tick" x="51" y="175.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-2</text>
-      <line class="grid" x1="59" y1="142.50" x2="390" y2="142.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-3" class="tick" x="51" y="146.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="59" y1="113.67" x2="390" y2="113.67" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-4" class="tick" x="51" y="117.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2</text>
-      <line class="grid" x1="59" y1="84.83" x2="390" y2="84.83" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-5" class="tick" x="51" y="88.83" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4</text>
-      <line class="grid" x1="59" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-ytick-6" class="tick" x="51" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">6</text>
+      <line class="grid" x1="45" y1="276" x2="390" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="37" y="280" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.0</text>
+      <line class="grid" x1="45" y1="232" x2="390" y2="232" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="37" y="236" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.1</text>
+      <line class="grid" x1="45" y1="188" x2="390" y2="188" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="37" y="192" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.2</text>
+      <line class="grid" x1="45" y1="144.00" x2="390" y2="144.00" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="37" y="148.00" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.3</text>
+      <line class="grid" x1="45" y1="100" x2="390" y2="100" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="37" y="104" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.4</text>
+      <line class="grid" x1="45" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="37" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0.5</text>
     </g>
     <g id="p1-axes">
-      <line class="axis" x1="59" y1="56" x2="59" y2="229" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="59" y1="229" x2="390" y2="229" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="45" y1="56" x2="45" y2="276" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="45" y1="276" x2="390" y2="276" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p1-x-axis-title" class="axis-title" x="224.50" y="339" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Event</text>
-    <text id="p1-y-axis-title" class="axis-title" x="14" y="142.50" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 142.50)">Excess return (pp)</text>
     <g id="p1-x-axis-labels">
-      <text id="p1-xtick-fy22-omnibus-mar-15-22-15d" class="tick" x="92.10" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 92.10 243)">FY22 Omnibus
-(Mar 15 '22, 15d)</text>
-      <text id="p1-xtick-fy23-omnibus-dec-29-22-15d" class="tick" x="158.30" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 158.30 243)">FY23 Omnibus
-(Dec 29 '22, 15d)</text>
-      <text id="p1-xtick-fy24-defense-approps-mar-23-24-9d" class="tick" x="224.50" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 224.50 243)">FY24 Defense Approps
-(Mar 23 '24, 9d)</text>
-      <text id="p1-xtick-cr-extension-only-shutdown-end-nov-12-25-15d" class="tick" x="290.70" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 290.70 243)">CR extension only
-(shutdown end, Nov 12 '25, 15d)</text>
-      <text id="p1-xtick-fy26-defense-approps-feb-3-26-11d" class="tick" x="356.90" y="243" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 356.90 243)">FY26 Defense Approps
-(Feb 3 '26, 11d)</text>
+      <text id="p1-xtick-enactment-n-16" class="tick" x="102.50" y="294" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Enactment (n=16)</text>
+      <text id="p1-xtick-first-cr-n-15" class="tick" x="217.50" y="294" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">First CR (n=15)</text>
+      <text id="p1-xtick-random-windows" class="tick" x="332.50" y="294" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Random windows</text>
     </g>
-    <g id="p1-series-ita-excess-return-vs-spy-pp" class="series">
-      <rect id="p1-mark-ita-excess-return-vs-spy-pp-fy22-omnibus-mar-15-22-15d" class="bar" x="70.92" y="142.50" width="41.37" height="45.41" fill="#2563eb"/>
-      <rect id="p1-mark-ita-excess-return-vs-spy-pp-fy23-omnibus-dec-29-22-15d" class="bar" x="137.12" y="142.50" width="41.37" height="77.42" fill="#2563eb"/>
-      <rect id="p1-mark-ita-excess-return-vs-spy-pp-fy24-defense-approps-mar-23-24-9d" class="bar" x="203.32" y="128.80" width="41.37" height="13.70" fill="#2563eb"/>
-      <rect id="p1-mark-ita-excess-return-vs-spy-pp-cr-extension-only-shutdown-end-nov-12-25-15d" class="bar" x="269.52" y="142.50" width="41.37" height="36.76" fill="#2563eb"/>
-      <rect id="p1-mark-ita-excess-return-vs-spy-pp-fy26-defense-approps-feb-3-26-11d" class="bar" x="335.72" y="76.62" width="41.37" height="65.88" fill="#2563eb"/>
+    <g id="p1-series-ita-spy" class="series">
+      <g class="hover">
+        <title>Enactment (n=16) — ITA-SPY %: 0.47</title>
+        <rect id="p1-mark-ita-spy-enactment-n-16" class="bar" x="65.70" y="69.20" width="72.60" height="206.80" fill="#2563eb"/>
+        <rect class="hit" x="65.70" y="56" width="72.60" height="220" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-ita-spy-enactment-n-16" class="value-label" x="102" y="65.20" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">0.47</text>
+      <g class="hover">
+        <title>First CR (n=15) — ITA-SPY %: 0.36</title>
+        <rect id="p1-mark-ita-spy-first-cr-n-15" class="bar" x="180.70" y="117.60" width="72.60" height="158.40" fill="#2563eb"/>
+        <rect class="hit" x="180.70" y="56" width="72.60" height="220" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-ita-spy-first-cr-n-15" class="value-label" x="217" y="113.60" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">0.36</text>
+      <g class="hover">
+        <title>Random windows — ITA-SPY %: 0.15</title>
+        <rect id="p1-mark-ita-spy-random-windows" class="bar" x="295.70" y="210" width="72.60" height="66" fill="#2563eb"/>
+        <rect class="hit" x="295.70" y="56" width="72.60" height="220" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-ita-spy-random-windows" class="value-label" x="332" y="206" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">0.15</text>
     </g>
     <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="458" fill="#6b7280">Negative = defense underperformed the broad market; positive = defense</text>
-  <text class="caption" x="24" y="471" fill="#6b7280">outperformed. FY22 is confounded by the Ukraine invasion rally that…</text>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="225.50" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="261.50" fill="#6b7280">Events with full-year appropriations signed</text>
-  <text class="stat-value" x="464" y="291.50" fill="#1f2328">2 of 2 outperformed</text>
-  <text class="stat-delta" x="464" y="311.50" fill="#059669">+0.95pp, +4.57pp</text>
-  </g>
-  <g id="p3-stat">
-  <rect class="panel-edge" x="20" y="493" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="529" fill="#6b7280">Events that stalled into (or stayed on) a CR</text>
-  <text class="stat-value" x="36" y="559" fill="#1f2328">1 of 1 underperformed</text>
-  <text class="stat-delta" x="36" y="579" fill="#dc2626">-2.55pp</text>
-  </g>
-  <g id="p4-stat">
-  <rect class="panel-edge" x="448" y="493" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="529" fill="#6b7280">Sample size</text>
-  <text class="stat-value" x="464" y="559" fill="#1f2328" style="font-size:27px">n = 5 real, dated events</text>
-  <text class="stat-delta" x="464" y="579" fill="#6b7280">Not statistically significant</text>
-  </g>
-  <text class="footnote" x="20" y="627" fill="#6b7280">ITA = iShares US Aerospace &amp; Defense ETF; SPY = S&amp;P 500 ETF, used as the broad-market benchmark. All figures computed directly from Yahoo Finance</text>
-  <text class="footnote" x="20" y="641" fill="#6b7280">daily closing prices, not an index provider's official total-return series. n=5 is too small for a formal hypothesis test.</text>
   <g id="brand">
-  <svg x="20" y="653" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -256,52 +216,43 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="668" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:58435/a/b8476336ea78db95bf5b9b67dbab31c8.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:49509/a/c7125c3c575f9cb7e9822495c4ff6ce4.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
-<h2>Summary</h2>
-<p>There is a real but weak and inconsistent pattern. Looking at five dated, verifiable appropriations events since 2022, defense-contractor stocks (measured via the ITA aerospace &amp; defense ETF against the S&amp;P 500) outperformed the broad market in the weeks following <strong>both</strong> of the cases where Congress actually enacted full-year Defense appropriations (March 2024: +0.95 percentage points; February 2026: +4.57 points), and underperformed following the one clean case where a stopgap only extended a continuing resolution rather than passing final funding (November 2025, ending the 43-day shutdown: -2.55 points). But two earlier full-appropriations events (the FY2022 and FY2023 omnibus packages) showed defense <em>underperforming</em> the market afterward, because they landed in windows dominated by bigger macro stories (the Ukraine invasion market rally in March 2022; a broad post-CPI/Fed-pivot rally in January 2023). With only five real events to compare, this is directional and suggestive rather than statistically established — the appropriations-timing signal is real but gets swamped by macro noise more often than not.</p>
+<h2>Answer</h2>
+<p>No. Across 16 enactments of defense-bearing appropriations acts (FY2011-FY2026) and 15 fiscal-year-start CR stalls, the iShares US Aerospace and Defense ETF (ITA) minus SPY averaged +0.47% (enactment) and +0.36% (CR) over 20 trading days, against a random-window mean of +0.15% and a standard deviation of 3.6%. Neither differs from zero (p=0.66 and 0.85), and enactment versus CR do not differ from each other (p=0.93). With n of about 16, only effects near 2.5 points over 20 days (1.3 points over 5 days) could be detected, so modest effects cannot be excluded.</p>
 </section>
 <section>
-<h2>What the corpus itself could and couldn't answer</h2>
-<p>AskAmerica's own SEC schema carries a purpose-built table for exactly this question — <code>sec.stock_prices</code>, described as daily OHLC/adjusted-close data 'for computing returns across corporate actions... event studies.' It is currently <strong>completely empty</strong>: <code>SELECT count(*) FROM sec.stock_prices</code> returns 0, and <code>data_coverage</code> confirms the observed row count is 0 despite a declared window through 2026. No ticker — LMT, NOC, RTX, GD, or even AAPL — returns any rows. I filed this as a live defect. This made the question unanswerable from the connector alone, so the entire event-study analysis below was built from Yahoo Finance's public chart API (fetched directly, not summarized) as the closest available substitute, cross-referenced against the Congressional Research Service and Committee for a Responsible Federal Budget (CRFB) appropriations trackers for the actual enactment/CR dates. <code>law.bills</code> in the corpus also could not directly answer 'when was defense funded' for most recent years, because since FY2011 defense appropriations have almost always been enacted as a division of a larger omnibus/minibus package rather than a standalone bill titled 'Defense Appropriations Act' — only FY2010's stand-alone bill matched a title search.</p>
+<h2>Method</h2>
+<p>Event dates: enactment = latest_action_date of the act carrying defense funding in law.bills (112-10, 112-74, 113-6, 113-76, 113-235, 114-113, 115-31, 115-141, 115-245, 116-93, 116-260, 117-103, 117-328, 118-47, 119-4, 119-75); most years defense was inside an omnibus or full-year CR. Stall = enactment date of the first CR each fiscal year in fiscal.continuing_resolutions. Return = ITA minus SPY adjusted-close return from the last close on or before the event to trading day +5 / +20. Baseline = all 4,105 overlapping windows 2010-2026.</p><table><tr><th>Group</th><th>n</th><th>Mean excess 5d</th><th>Mean excess 20d</th><th>p vs baseline (20d)</th></tr><tr><td>Enactment</td><td>16</td><td>-0.27%</td><td>+0.47%</td><td>0.66</td></tr><tr><td>First CR of FY</td><td>15</td><td>+0.29%</td><td>+0.36%</td><td>0.85</td></tr><tr><td>All windows</td><td>4,105</td><td>+0.04%</td><td>+0.15%</td><td>sd 3.6%</td></tr></table>
 </section>
 <section>
-<h2>The five events tested</h2>
-<input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s0" checked><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s1"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s2"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s3"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s4"><input type="radio" name="s3-t1" class="srtbox" id="s3-t1-s5"><table border=1 cellpadding=6 style='border-collapse:collapse'><tr><th><label class="srth" for="s3-t1-s1">Event<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s2">What happened<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s3">ITA return<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s4">SPY return<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s3-t1-s5">ITA − SPY<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Mar 15, 2022</td><td>Consolidated Appropriations Act, 2022 signed, ending the FY22 CR</td><td>+2.68% (15 trading days)</td><td>+5.83%</td><td>-3.15pp</td></tr><tr><td>Dec 29, 2022</td><td>Consolidated Appropriations Act, 2023 signed just before the holiday CR deadline</td><td>-0.89% (15 trading days)</td><td>+4.48%</td><td>-5.37pp</td></tr><tr><td>Mar 23, 2024</td><td>Further Consolidated Appropriations Act, 2024 (Division A = Defense) signed, ending a stretch of four FY24 CRs</td><td>+0.75% (9 trading days)</td><td>-0.20%</td><td>+0.95pp</td></tr><tr><td>Nov 12, 2025</td><td>H.R. 5371 signed, ending the record 43-day shutdown — but Defense itself only got <em>another CR</em> (through Jan 30, 2026), not a full-year bill</td><td>-2.4% (15 trading days)</td><td>+0.15%</td><td>-2.55pp</td></tr><tr><td>Feb 3, 2026</td><td>Full-year Defense appropriations (part of H.R. 7148) finally signed, ending a second, shorter shutdown that began Jan 31, 2026</td><td>+3.84% (11 trading days)</td><td>-0.73%</td><td>+4.57pp</td></tr></tbody><tbody class="srt s1"><tr><td>Dec 29, 2022</td><td>Consolidated Appropriations Act, 2023 signed just before the holiday CR deadline</td><td>-0.89% (15 trading days)</td><td>+4.48%</td><td>-5.37pp</td></tr><tr><td>Mar 23, 2024</td><td>Further Consolidated Appropriations Act, 2024 (Division A = Defense) signed, ending a stretch of four FY24 CRs</td><td>+0.75% (9 trading days)</td><td>-0.20%</td><td>+0.95pp</td></tr><tr><td>Mar 15, 2022</td><td>Consolidated Appropriations Act, 2022 signed, ending the FY22 CR</td><td>+2.68% (15 trading days)</td><td>+5.83%</td><td>-3.15pp</td></tr><tr><td>Nov 12, 2025</td><td>H.R. 5371 signed, ending the record 43-day shutdown — but Defense itself only got <em>another CR</em> (through Jan 30, 2026), not a full-year bill</td><td>-2.4% (15 trading days)</td><td>+0.15%</td><td>-2.55pp</td></tr><tr><td>Feb 3, 2026</td><td>Full-year Defense appropriations (part of H.R. 7148) finally signed, ending a second, shorter shutdown that began Jan 31, 2026</td><td>+3.84% (11 trading days)</td><td>-0.73%</td><td>+4.57pp</td></tr></tbody><tbody class="srt s2"><tr><td>Mar 23, 2024</td><td>Further Consolidated Appropriations Act, 2024 (Division A = Defense) signed, ending a stretch of four FY24 CRs</td><td>+0.75% (9 trading days)</td><td>-0.20%</td><td>+0.95pp</td></tr><tr><td>Mar 15, 2022</td><td>Consolidated Appropriations Act, 2022 signed, ending the FY22 CR</td><td>+2.68% (15 trading days)</td><td>+5.83%</td><td>-3.15pp</td></tr><tr><td>Dec 29, 2022</td><td>Consolidated Appropriations Act, 2023 signed just before the holiday CR deadline</td><td>-0.89% (15 trading days)</td><td>+4.48%</td><td>-5.37pp</td></tr><tr><td>Nov 12, 2025</td><td>H.R. 5371 signed, ending the record 43-day shutdown — but Defense itself only got <em>another CR</em> (through Jan 30, 2026), not a full-year bill</td><td>-2.4% (15 trading days)</td><td>+0.15%</td><td>-2.55pp</td></tr><tr><td>Feb 3, 2026</td><td>Full-year Defense appropriations (part of H.R. 7148) finally signed, ending a second, shorter shutdown that began Jan 31, 2026</td><td>+3.84% (11 trading days)</td><td>-0.73%</td><td>+4.57pp</td></tr></tbody><tbody class="srt s3"><tr><td>Feb 3, 2026</td><td>Full-year Defense appropriations (part of H.R. 7148) finally signed, ending a second, shorter shutdown that began Jan 31, 2026</td><td>+3.84% (11 trading days)</td><td>-0.73%</td><td>+4.57pp</td></tr><tr><td>Mar 15, 2022</td><td>Consolidated Appropriations Act, 2022 signed, ending the FY22 CR</td><td>+2.68% (15 trading days)</td><td>+5.83%</td><td>-3.15pp</td></tr><tr><td>Mar 23, 2024</td><td>Further Consolidated Appropriations Act, 2024 (Division A = Defense) signed, ending a stretch of four FY24 CRs</td><td>+0.75% (9 trading days)</td><td>-0.20%</td><td>+0.95pp</td></tr><tr><td>Dec 29, 2022</td><td>Consolidated Appropriations Act, 2023 signed just before the holiday CR deadline</td><td>-0.89% (15 trading days)</td><td>+4.48%</td><td>-5.37pp</td></tr><tr><td>Nov 12, 2025</td><td>H.R. 5371 signed, ending the record 43-day shutdown — but Defense itself only got <em>another CR</em> (through Jan 30, 2026), not a full-year bill</td><td>-2.4% (15 trading days)</td><td>+0.15%</td><td>-2.55pp</td></tr></tbody><tbody class="srt s4"><tr><td>Mar 15, 2022</td><td>Consolidated Appropriations Act, 2022 signed, ending the FY22 CR</td><td>+2.68% (15 trading days)</td><td>+5.83%</td><td>-3.15pp</td></tr><tr><td>Dec 29, 2022</td><td>Consolidated Appropriations Act, 2023 signed just before the holiday CR deadline</td><td>-0.89% (15 trading days)</td><td>+4.48%</td><td>-5.37pp</td></tr><tr><td>Nov 12, 2025</td><td>H.R. 5371 signed, ending the record 43-day shutdown — but Defense itself only got <em>another CR</em> (through Jan 30, 2026), not a full-year bill</td><td>-2.4% (15 trading days)</td><td>+0.15%</td><td>-2.55pp</td></tr><tr><td>Mar 23, 2024</td><td>Further Consolidated Appropriations Act, 2024 (Division A = Defense) signed, ending a stretch of four FY24 CRs</td><td>+0.75% (9 trading days)</td><td>-0.20%</td><td>+0.95pp</td></tr><tr><td>Feb 3, 2026</td><td>Full-year Defense appropriations (part of H.R. 7148) finally signed, ending a second, shorter shutdown that began Jan 31, 2026</td><td>+3.84% (11 trading days)</td><td>-0.73%</td><td>+4.57pp</td></tr></tbody><tbody class="srt s5"><tr><td>Feb 3, 2026</td><td>Full-year Defense appropriations (part of H.R. 7148) finally signed, ending a second, shorter shutdown that began Jan 31, 2026</td><td>+3.84% (11 trading days)</td><td>-0.73%</td><td>+4.57pp</td></tr><tr><td>Mar 23, 2024</td><td>Further Consolidated Appropriations Act, 2024 (Division A = Defense) signed, ending a stretch of four FY24 CRs</td><td>+0.75% (9 trading days)</td><td>-0.20%</td><td>+0.95pp</td></tr><tr><td>Nov 12, 2025</td><td>H.R. 5371 signed, ending the record 43-day shutdown — but Defense itself only got <em>another CR</em> (through Jan 30, 2026), not a full-year bill</td><td>-2.4% (15 trading days)</td><td>+0.15%</td><td>-2.55pp</td></tr><tr><td>Mar 15, 2022</td><td>Consolidated Appropriations Act, 2022 signed, ending the FY22 CR</td><td>+2.68% (15 trading days)</td><td>+5.83%</td><td>-3.15pp</td></tr><tr><td>Dec 29, 2022</td><td>Consolidated Appropriations Act, 2023 signed just before the holiday CR deadline</td><td>-0.89% (15 trading days)</td><td>+4.48%</td><td>-5.37pp</td></tr></tbody></table><label class="srtreset" for="s3-t1-s0">reset order</label><p>Returns are computed from Yahoo Finance daily closing prices for ITA and SPY, fetched directly for each window. Enactment dates are taken from CRS appropriations status reports and CRFB's Appropriations Watch trackers, cross-checked against each other.</p>
+<h2>Exclusions</h2>
+<p>The law.bills query used law_type IS NOT NULL, which excluded bills never enacted; it returned 22 enacted acts. I then excluded (dropped) acts without defense funding or not the final vehicle: FY2010 (P.L. 111-118, signed 2009-12-19, dropped because price data starts 2010-01-04), 2009 omnibus 111-8, 112-55, 116-94, 117-... duplicates, 115-31 kept, 118-42 (superseded by 118-47 for defense), 111-117, 116-6. FY2019 on-time defense act is counted in both groups. The headline (20-day enactment mean +0.47%) was not recomputed with the dropped acts; the conclusion is a null either way.</p>
 </section>
 <section>
-<h2>Why the signal is real but weak</h2>
-<ul><li><strong>The mechanism exists.</strong> A continuing resolution funds programs at prior-year levels and (per Lockheed's and Northrop's own 10-K risk-factor language, echoed in a 2026 sell-side note found in research) blocks new-program starts and rate adjustments — a genuine, disclosed headwind to near-term contractor revenue growth. A full-year bill removes that overhang and can green-light new starts and rate increases immediately.</li><li><strong>But most of the 'good news' is priced in before final passage.</strong> Topline defense numbers are usually locked in by conference agreement or leaked appropriations-committee allocations weeks before the President's signature — the CRFB tracker for FY2026 shows the House and Senate had already passed matching bills by January 30, 2026, three days before the Feb 3 signature. The formal signing is frequently closer to a formality than a surprise.</li><li><strong>Macro dominates in most windows.</strong> Three of the five events sit inside much larger market-moving stories — the Ukraine invasion (Mar 2022), a broad market rally on cooling inflation data (late Dec 2022/Jan 2023), and ordinary risk-on/risk-off swings around the Nov 2025 shutdown resolution — any of which can swamp a sector-specific appropriations effect over a 2-3 week window.</li><li><strong>The cleanest recent cases point the expected direction.</strong> The two events where a full-year Defense bill (not just another CR) was actually signed both show defense-sector outperformance in the following weeks; the one case tested where the resolution was 'just another CR' shows underperformance. That is the pattern the underlying mechanism predicts, but n=2 and n=1 respectively are far too small to call this proven.</li></ul>
+<h2>Caveats</h2>
+<p>Events overlap with larger macro moves (Dec 2020 enactment: ITA -2.1% vs SPY +4.0% over 20 days; Sep 2022 CR: +9% excess during the Ukraine-war defense rally), and passage is often anticipated, so a null at these dates does not rule out earlier pricing. Shutdown effects (FY2014, FY2019, FY2026) were not isolated. Single primes and XAR were not tested. Price data ends 2026-05-29. The CR table lacks the FY2026 CRs.</p>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>5 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 1 rows — 23242 ms</summary><pre><code>SELECT congress, bill_type, bill_number, title, latest_action_date, latest_action_text, law_number FROM law.bills WHERE title ILIKE '%defense appropriations%' AND (latest_action_text ILIKE '%became public law%' OR latest_action_text ILIKE '%signed%') ORDER BY latest_action_date DESC LIMIT 30</code></pre></details>
-<details class="sqltoggle"><summary>query — 885 ms</summary><pre><code>SELECT DISTINCT ticker FROM sec.stock_prices WHERE ticker IN ('ITA.US','LMT.US','RTX.US','NOC.US','GD.US','LHX.US','HII.US','BA.US','SPY.US')</code></pre></details>
-<details class="sqltoggle"><summary>query — 13150 ms</summary><pre><code>SELECT ticker, count(*) c, min(date) mn, max(date) mx FROM sec.stock_prices WHERE ticker ILIKE '%LMT%' OR ticker ILIKE '%NOC%' OR ticker ILIKE '%RTX%' OR ticker ILIKE '%GD.%' GROUP BY ticker</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 1003 ms</summary><pre><code>SELECT count(*) FROM sec.stock_prices</code></pre></details>
-<details class="sqltoggle"><summary>query — 1133 ms</summary><pre><code>SELECT ticker, count(*) FROM sec.stock_prices WHERE ticker ILIKE 'AAPL%' GROUP BY ticker</code></pre></details>
+<p>9 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 22 rows — 2519 ms</summary><pre><code>SELECT congress, law_number, title, latest_action_date FROM law.bills WHERE law_type IS NOT NULL AND lower(title) LIKE '%appropriations act%' AND (lower(title) LIKE '%defense%' OR lower(title) LIKE '%consolidated%' OR lower(title) LIKE '%omnibus%' OR lower(title) LIKE '%full-year continuing%') ORDER BY latest_action_date</code></pre></details>
+<details class="sqltoggle"><summary>query — 8 rows — 882 ms</summary><pre><code>SELECT ticker, min(&quot;date&quot;) mn, max(&quot;date&quot;) mx, count(*) n FROM sec.stock_prices WHERE ticker IN ('ITA.US','XAR.US','SPY.US','LMT.US','NOC.US','GD.US','RTX.US','LHX.US','ITA','SPY','LMT','NOC','GD','RTX','LHX','XAR') GROUP BY ticker</code></pre></details>
+<details class="sqltoggle"><summary>query — 61 rows — 855 ms</summary><pre><code>SELECT fiscal_year, public_law, enactment_date, expiration_date FROM fiscal.continuing_resolutions WHERE fiscal_year&gt;=2010 ORDER BY enactment_date</code></pre></details>
+<details class="sqltoggle"><summary>query — 6 rows — 1375 ms</summary><pre><code>SELECT * FROM fiscal.federal_funding_gaps WHERE gap_start_date&gt;='2010-01-01' ORDER BY gap_start_date</code></pre></details>
+<details class="sqltoggle"><summary>query — 16 rows — 2150 ms</summary><pre><code>SELECT fiscal_year, regular_bills_enacted_by_oct1, continuing_resolutions_enacted FROM fiscal.appropriations_timeliness_by_fy WHERE fiscal_year&gt;=2010 ORDER BY fiscal_year</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 4 ms</summary><pre><code>SELECT a.&quot;date&quot; d, a.adjusted_close ita, b.adjusted_close spy, row_number() OVER (ORDER BY a.&quot;date&quot;) rn FROM sec.stock_prices a JOIN sec.stock_prices b ON a.&quot;date&quot;=b.&quot;date&quot; AND b.ticker='SPY.US' WHERE a.ticker='ITA.US'</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 1 ms</summary><pre><code>SELECT * FROM (VALUES ('enact',2011,DATE '2011-04-15'),('enact',2012,DATE '2011-12-23'),('enact',2013,DATE '2013-03-26'),('enact',2014,DATE '2014-01-17'),('enact',2015,DATE '2014-12-16'),('enact',2016,DATE '2015-12-18'),('enact',2017,DATE '2017-05-05'),('enact',2018,DATE '2018-03-23'),('enact',2019,DATE '2018-09-28'),('enact',2020,DATE '2019-12-20'),('enact',2021,DATE '2020-12-27'),('enact',2022,DATE '2022-03-15'),('enact',2023,DATE '2022-12-29'),('enact',2024,DATE '2024-03-23'),('enact',2025,DATE '2025-03-15'),('enact',2026,DATE '2026-02-03'),('cr',2011,DATE '2010-09-30'),('cr',2012,DATE '2011-09-30'),('cr',2013,DATE '2012-09-28'),('cr',2014,DATE '2013-09-30'),('cr',2015,DATE '2014-09-19'),('cr',2016,DATE '2015-09-30'),('cr',2017,DATE '2016-09-29'),('cr',2018,DATE '2017-09-08'),('cr',2019,DATE '2018-09-28'),('cr',2020,DATE '2019-09-27'),('cr',2021,DATE '2020-10-01'),('cr',2022,DATE '2021-09-30'),('cr',2023,DATE '2022-09-30'),('cr',2024,DATE '2023-09-30'),('cr',2025,DATE '2024-09-26')) t(kind,fy,ed)</code></pre></details>
+<details class="sqltoggle"><summary>query — 31 rows — 11883 ms</summary><pre><code>WITH px AS (SELECT a.&quot;date&quot; d, a.adjusted_close ita, b.adjusted_close spy, row_number() OVER (ORDER BY a.&quot;date&quot;) rn FROM sec.stock_prices a JOIN sec.stock_prices b ON a.&quot;date&quot;=b.&quot;date&quot; AND b.ticker='SPY.US' WHERE a.ticker='ITA.US'), ev AS (SELECT * FROM (VALUES ('enact',2011,DATE '2011-04-15'),('enact',2012,DATE '2011-12-23'),('enact',2013,DATE '2013-03-26'),('enact',2014,DATE '2014-01-17'),('enact',2015,DATE '2014-12-16'),('enact',2016,DATE '2015-12-18'),('enact',2017,DATE '2017-05-05'),('enact',2018,DATE '2018-03-23'),('enact',2019,DATE '2018-09-28'),('enact',2020,DATE '2019-12-20'),('enact',2021,DATE '2020-12-27'),('enact',2022,DATE '2022-03-15'),('enact',2023,DATE '2022-12-29'),('enact',2024,DATE '2024-03-23'),('enact',2025,DATE '2025-03-15'),('enact',2026,DATE '2026-02-03'),('cr',2011,DATE '2010-09-30'),('cr',2012,DATE '2011-09-30'),('cr',2013,DATE '2012-09-28'),('cr',2014,DATE '2013-09-30'),('cr',2015,DATE '2014-09-19'),('cr',2016,DATE '2015-09-30'),('cr',2017,DATE '2016-09-29'),('cr',2018,DATE '2017-09-08'),('cr',2019,DATE '2018-09-28'),('cr',2020,DATE '2019-09-27'),('cr',2021,DATE '2020-10-01'),('cr',2022,DATE '2021-09-30'),('cr',2023,DATE '2022-09-30'),('cr',2024,DATE '2023-09-30'),('cr',2025,DATE '2024-09-26')) t(kind,fy,ed)), e AS (SELECT ev.kind, ev.fy, ev.ed, (SELECT max(rn) FROM px WHERE px.d&lt;=ev.ed) r0 FROM ev) SELECT e.kind, e.fy, e.ed, p0.d d0, (p5.ita/p0.ita-1)-(p5.spy/p0.spy-1) ex5, (p20.ita/p0.ita-1)-(p20.spy/p0.spy-1) ex20, (p20.ita/p0.ita-1) ita20, (p20.spy/p0.spy-1) spy20 FROM e JOIN px p0 ON p0.rn=e.r0 JOIN px p5 ON p5.rn=e.r0+5 JOIN px p20 ON p20.rn=e.r0+20 ORDER BY e.kind, e.ed</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 12245 ms</summary><pre><code>WITH px AS (SELECT a.&quot;date&quot; d, a.adjusted_close ita, b.adjusted_close spy, row_number() OVER (ORDER BY a.&quot;date&quot;) rn FROM sec.stock_prices a JOIN sec.stock_prices b ON a.&quot;date&quot;=b.&quot;date&quot; AND b.ticker='SPY.US' WHERE a.ticker='ITA.US'), x AS (SELECT a.rn, (b.ita/a.ita-1)-(b.spy/a.spy-1) ex20, (c.ita/a.ita-1)-(c.spy/a.spy-1) ex5 FROM px a JOIN px b ON b.rn=a.rn+20 JOIN px c ON c.rn=a.rn+5) SELECT count(*) n, avg(ex20) m20, stddev_samp(ex20) s20, avg(ex5) m5, stddev_samp(ex5) s5, quantile_cont(ex20,0.05) p05, quantile_cont(ex20,0.95) p95 FROM x</code></pre></details>
 
 </section>
-<section class="sources">
-<h2>Sources</h2>
-<ol>
-<li>AskAmerica sec.stock_prices table (found empty)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT count(*) FROM sec.stock_prices</code></pre></details></li>
-<li><a href="https://query1.finance.yahoo.com/v8/finance/chart/ITA">Yahoo Finance chart API, ITA daily closes</a></li>
-<li><a href="https://query1.finance.yahoo.com/v8/finance/chart/SPY">Yahoo Finance chart API, SPY daily closes</a></li>
-<li><a href="https://www.crfb.org/blogs/appropriations-watch-fy-2026">CRFB Appropriations Watch: FY 2026</a></li>
-<li><a href="https://crsreports.congress.gov/product/pdf/IN/IN12237">CRS: FY2024 Defense Appropriations Status of Legislative Activity</a></li>
-<li><a href="https://breakingdefense.com/2026/09/house-passes-funding-stopgap-averting-government-shutdown-in-october/">House passes stopgap spending bill averting October 2026 shutdown (Breaking Defense)</a></li>
-<li>AskAmerica law.bills table (searched for standalone Defense Appropriations Act titles)<details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT congress, bill_type, bill_number, title, latest_action_date, latest_action_text, law_number FROM law.bills WHERE title ILIKE '%defense appropriations%' AND (latest_action_text ILIKE '%became public law%' OR latest_action_text ILIKE '%signed%') ORDER BY latest_action_date DESC</code></pre></details></li>
-</ol>
-</section>
 <footer>
-<p class="footnote">sec.stock_prices in this corpus is currently empty (0 rows) — reported as a live defect. All price data here comes from Yahoo Finance's public chart API instead. n=5 events is a descriptive comparison, not a statistically powered test.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-26</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

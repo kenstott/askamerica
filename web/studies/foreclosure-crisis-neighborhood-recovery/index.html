@@ -1,14 +1,125 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How much have the neighbourhoods hit hardest by the 2008 foreclosure crisis recovered since?</title>
+<title>Counties hit hardest by the housing bust have fully recovered in dollars, but in real terms only just broken even</title>
 <style>
-  body { background:#080b0f; color:#cdd9e5; font-family:'JetBrains Mono',monospace;
-          font-size:14px; line-height:1.7; margin:0; }
-  main { max-width:800px; margin:0 auto; padding:2rem; }
-  h1 { color:#f0f6fc; font-size:1.3rem; }
-  pre { white-space:pre-wrap; word-wrap:break-word; }
-</style></head>
+:root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
+@media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+main{max-width:60rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
+h3{font-size:1rem;margin:1.4rem 0 .4rem}
+.subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
+.board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
+.board svg{display:block;width:100%;height:auto}
+p{margin:0 0 .9rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0 1.2rem;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-weight:600;color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+@media screen{
+th{position:sticky;top:0;z-index:1;background:var(--bg);box-shadow:inset 0 -1px 0 var(--rule)}
+tbody tr:hover{background:color-mix(in srgb,var(--rule) 30%,transparent)}
+pre{overflow-x:auto}
+}
+details{border:1px solid var(--rule);border-radius:8px;margin:.9rem 0}
+summary{cursor:pointer;padding:.5rem .7rem;font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+summary:hover{color:var(--link)}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--rule)}
+details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
+pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
+pre code{background:none;padding:0;font-size:inherit}
+tbody.srt:not(.s0){display:none}
+.srtbox{position:absolute;left:-9999px;width:1px;height:1px}
+th .srth{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit}
+th .srth:hover{color:var(--link)}
+th .srth:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.srtcue{font-size:.85em;opacity:.28;line-height:1}
+.srtreset{display:none;margin:-.6rem 0 1.2rem;font-size:.75rem;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.srtreset:hover{color:var(--link)}
+.fltbox{position:absolute;left:-9999px;width:1px;height:1px}
+.filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.4rem;padding:.6rem .75rem;border:1px solid var(--rule);border-radius:8px}
+.fltlead{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:.15rem}
+.fltlabel{display:inline-flex;flex-direction:column;cursor:pointer;font-size:.8rem;line-height:1.3;padding:.3rem .6rem;border-radius:999px;background:color-mix(in srgb,var(--rule) 55%,transparent);color:var(--ink)}
+.fltlabel:hover{color:var(--link)}
+.fltbox:focus-visible + * .fltlabel,.fltlabel:focus-within{outline:2px solid var(--link);outline-offset:2px}
+.fltnote{font-size:.68rem;color:var(--muted)}
+abbr[title]{text-decoration:underline dotted;text-underline-offset:2px;cursor:help}
+.printhint{position:fixed;right:1rem;bottom:1rem;padding:.35rem .6rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font-size:.72rem;color:var(--muted);letter-spacing:.03em;opacity:.35;transition:opacity .15s}
+.printhint:hover{opacity:1}
+.printhint kbd{font:inherit;font-weight:600;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.printhint{transition:none}}
+@media print{
+details{border:0;margin:.6rem 0}
+details > *:not(summary){display:block;margin:.4rem 0}
+details[open] summary{border-bottom:0}
+summary{padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+pre{overflow:visible;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule)}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+.printhint{display:none}
+.filterbar{display:none}
+.srtcue{display:none}
+.srtreset{display:none}
+}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 55%,transparent);padding:.1em .35em;border-radius:4px}
+blockquote{margin:1rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted)}
+a{color:var(--link)}
+.sources ol{padding-left:1.2rem;font-size:.92rem}
+.sources li{margin:.3rem 0}
+.note{color:var(--muted)}
+.sqltoggle{display:inline-block;margin-left:.4rem}
+.sqltoggle summary{display:inline;cursor:pointer;font-size:.82rem;color:var(--link)}
+.sqltoggle summary:hover{text-decoration:underline}
+.sqltoggle[open] summary{margin-bottom:.4rem}
+.sqltoggle pre{margin:.3rem 0 0;padding:.6rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--rule) 40%,transparent);border-radius:6px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.sqltoggle pre code{background:none;padding:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.footnote{font-style:italic}
+.brand{display:flex;align-items:center;gap:.45rem;margin:.8rem 0 0}
+.brand strong{color:var(--ink)}
+.byline{margin-left:auto}
+.mark{flex:none;display:block}
+figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:1px solid var(--rule)}
+.dl{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;text-decoration:none;color:var(--muted);letter-spacing:.03em}
+.dl:hover{color:var(--link)}
+@media screen{
+#s2-t1-s1:checked ~ table tbody.s0{display:none}
+#s2-t1-s1:checked ~ table tbody.s1{display:table-row-group}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"]{color:var(--link)}
+#s2-t1-s1:checked ~ table label[for="s2-t1-s1"] .srtcue{opacity:1}
+#s2-t1-s1:checked ~ .srtreset{display:inline-block}
+#s2-t1-s2:checked ~ table tbody.s0{display:none}
+#s2-t1-s2:checked ~ table tbody.s2{display:table-row-group}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"]{color:var(--link)}
+#s2-t1-s2:checked ~ table label[for="s2-t1-s2"] .srtcue{opacity:1}
+#s2-t1-s2:checked ~ .srtreset{display:inline-block}
+#s2-t1-s3:checked ~ table tbody.s0{display:none}
+#s2-t1-s3:checked ~ table tbody.s3{display:table-row-group}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"]{color:var(--link)}
+#s2-t1-s3:checked ~ table label[for="s2-t1-s3"] .srtcue{opacity:1}
+#s2-t1-s3:checked ~ .srtreset{display:inline-block}
+#s2-t1-s4:checked ~ table tbody.s0{display:none}
+#s2-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s2-t1-s4:checked ~ table label[for="s2-t1-s4"]{color:var(--link)}
+#s2-t1-s4:checked ~ table label[for="s2-t1-s4"] .srtcue{opacity:1}
+#s2-t1-s4:checked ~ .srtreset{display:inline-block}
+}
+</style>
+</head>
 <body>
 <div style="position:sticky;top:0;z-index:999;background:#080b0f;border-bottom:1px solid #1e2d3d;
 padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
@@ -17,77 +128,248 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   <a href="/" style="color:#768390;text-decoration:none;">askamerica.ai</a>
 </div>
 <main>
-<h1>How much have the neighbourhoods hit hardest by the 2008 foreclosure crisis recovered since?</h1>
-<p style="color:#768390;">askamerica run &middot; 2026-09-26</p>
+<header>
+<h1>Counties hit hardest by the housing bust have fully recovered in dollars, but in real terms only just broken even</h1>
+</header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
 
-<pre># How much have the neighbourhoods hit hardest by the 2008 foreclosure crisis recovered since?
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
 
-**Note on delivery:** `publish_report` returned an identical, stale validation error across four attempts with substantively different content (it claimed I never called `search_catalog`/`describe_table`/`web_fetch` when I had called all three, several times, including 4 successful `web_fetch` reads of primary sources) — logged as a tool defect via `report_issue`. Delivering the full report here instead. The dashboard image (2 bar charts + 2 stat tiles) was produced via `compose_dashboard` earlier in the session and is attached to this run.
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Recovery of counties by severity of housing-bust decline</text>
+  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">FHFA county HPI (2000=100), median per decline quintile, 2025 vs 2005-08 peak</text>
+  <rect class="panel-edge" x="20" y="82" width="412" height="312" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="82" width="412" height="312" viewBox="0 0 412 312" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="312" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Median change 2025 vs peak and vs trough (nominal, %)</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="49" y1="234" x2="390" y2="234" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="41" y="238" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-50</text>
+      <line class="grid" x1="49" y1="189.50" x2="390" y2="189.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="41" y="193.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="49" y1="145" x2="390" y2="145" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="41" y="149" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">50</text>
+      <line class="grid" x1="49" y1="100.50" x2="390" y2="100.50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="41" y="104.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
+      <line class="grid" x1="49" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="41" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">150</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="49" y1="56" x2="49" y2="234" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="49" y1="234" x2="390" y2="234" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-q1-worst" class="tick" x="83.10" y="252" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Q1 worst</text>
+      <text id="p1-xtick-q2" class="tick" x="151.30" y="252" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Q2</text>
+      <text id="p1-xtick-q3" class="tick" x="219.50" y="252" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Q3</text>
+      <text id="p1-xtick-q4" class="tick" x="287.70" y="252" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Q4</text>
+      <text id="p1-xtick-q5-mildest" class="tick" x="355.90" y="252" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Q5 mildest</text>
+    </g>
+    <g id="p1-series-peak-to-trough" class="series">
+      <g class="hover">
+        <title>Q1 worst — Peak-to-trough: -30</title>
+        <rect id="p1-mark-peak-to-trough-q1-worst" class="bar" x="61.28" y="189.50" width="13.55" height="26.70" fill="#2563eb"/>
+        <rect class="hit" x="60.05" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-peak-to-trough-q1-worst" class="value-label" x="68.05" y="230.20" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">-30</text>
+      <g class="hover">
+        <title>Q2 — Peak-to-trough: -17.2</title>
+        <rect id="p1-mark-peak-to-trough-q2" class="bar" x="129.48" y="189.50" width="13.55" height="15.31" fill="#2563eb"/>
+        <rect class="hit" x="128.25" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-peak-to-trough-q2" class="value-label" x="136.25" y="218.81" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">-17.2</text>
+      <g class="hover">
+        <title>Q3 — Peak-to-trough: -10.3</title>
+        <rect id="p1-mark-peak-to-trough-q3" class="bar" x="197.68" y="189.50" width="13.55" height="9.17" fill="#2563eb"/>
+        <rect class="hit" x="196.45" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-peak-to-trough-q3" class="value-label" x="204.45" y="212.67" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">-10.3</text>
+      <g class="hover">
+        <title>Q4 — Peak-to-trough: -5.5</title>
+        <rect id="p1-mark-peak-to-trough-q4" class="bar" x="265.88" y="189.50" width="13.55" height="4.89" fill="#2563eb"/>
+        <rect class="hit" x="264.65" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-peak-to-trough-q4" class="value-label" x="272.65" y="208.39" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">-5.5</text>
+      <g class="hover">
+        <title>Q5 mildest — Peak-to-trough: -1.5</title>
+        <rect id="p1-mark-peak-to-trough-q5-mildest" class="bar" x="334.08" y="189.50" width="13.55" height="1.34" fill="#2563eb"/>
+        <rect class="hit" x="332.85" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-peak-to-trough-q5-mildest" class="value-label" x="340.85" y="204.84" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">-1.5</text>
+    </g>
+    <g id="p1-series-2025-vs-peak" class="series">
+      <g class="hover">
+        <title>Q1 worst — 2025 vs peak: 56.3</title>
+        <rect id="p1-mark-2025-vs-peak-q1-worst" class="bar" x="75.83" y="139.39" width="13.55" height="50.11" fill="#ea580c"/>
+        <rect class="hit" x="74.60" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-peak-q1-worst" class="value-label" x="82.60" y="135.39" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">56.3</text>
+      <g class="hover">
+        <title>Q2 — 2025 vs peak: 70</title>
+        <rect id="p1-mark-2025-vs-peak-q2" class="bar" x="144.03" y="127.20" width="13.55" height="62.30" fill="#ea580c"/>
+        <rect class="hit" x="142.80" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-peak-q2" class="value-label" x="150.80" y="123.20" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">70</text>
+      <g class="hover">
+        <title>Q3 — 2025 vs peak: 79.1</title>
+        <rect id="p1-mark-2025-vs-peak-q3" class="bar" x="212.23" y="119.10" width="13.55" height="70.40" fill="#ea580c"/>
+        <rect class="hit" x="211" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-peak-q3" class="value-label" x="219" y="115.10" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">79.1</text>
+      <g class="hover">
+        <title>Q4 — 2025 vs peak: 81.8</title>
+        <rect id="p1-mark-2025-vs-peak-q4" class="bar" x="280.43" y="116.70" width="13.55" height="72.80" fill="#ea580c"/>
+        <rect class="hit" x="279.20" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-peak-q4" class="value-label" x="287.20" y="112.70" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">81.8</text>
+      <g class="hover">
+        <title>Q5 mildest — 2025 vs peak: 84.5</title>
+        <rect id="p1-mark-2025-vs-peak-q5-mildest" class="bar" x="348.63" y="114.30" width="13.55" height="75.21" fill="#ea580c"/>
+        <rect class="hit" x="347.40" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-peak-q5-mildest" class="value-label" x="355.40" y="110.30" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">84.5</text>
+    </g>
+    <g id="p1-series-2025-vs-trough" class="series">
+      <g class="hover">
+        <title>Q1 worst — 2025 vs trough: 135.5</title>
+        <rect id="p1-mark-2025-vs-trough-q1-worst" class="bar" x="90.37" y="68.91" width="13.55" height="120.60" fill="#059669"/>
+        <rect class="hit" x="89.15" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-trough-q1-worst" class="value-label" x="97.15" y="64.91" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">135.5</text>
+      <g class="hover">
+        <title>Q2 — 2025 vs trough: 105.7</title>
+        <rect id="p1-mark-2025-vs-trough-q2" class="bar" x="158.57" y="95.43" width="13.55" height="94.07" fill="#059669"/>
+        <rect class="hit" x="157.35" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-trough-q2" class="value-label" x="165.35" y="91.43" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">105.7</text>
+      <g class="hover">
+        <title>Q3 — 2025 vs trough: 99.3</title>
+        <rect id="p1-mark-2025-vs-trough-q3" class="bar" x="226.77" y="101.12" width="13.55" height="88.38" fill="#059669"/>
+        <rect class="hit" x="225.55" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-trough-q3" class="value-label" x="233.55" y="97.12" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">99.3</text>
+      <g class="hover">
+        <title>Q4 — 2025 vs trough: 93.2</title>
+        <rect id="p1-mark-2025-vs-trough-q4" class="bar" x="294.97" y="106.55" width="13.55" height="82.95" fill="#059669"/>
+        <rect class="hit" x="293.75" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-trough-q4" class="value-label" x="301.75" y="102.55" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">93.2</text>
+      <g class="hover">
+        <title>Q5 mildest — 2025 vs trough: 87.5</title>
+        <rect id="p1-mark-2025-vs-trough-q5-mildest" class="bar" x="363.17" y="111.63" width="13.55" height="77.88" fill="#059669"/>
+        <rect class="hit" x="361.95" y="56" width="16" height="178" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-2025-vs-trough-q5-mildest" class="value-label" x="369.95" y="107.63" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">87.5</text>
+    </g>
+    <g id="p1-legend">
+      <rect id="p1-legend-swatch-peak-to-trough" x="47" y="278" width="11" height="11" fill="#2563eb"/>
+      <text id="p1-legend-label-peak-to-trough" class="legend-label" x="63" y="287" fill="#1f2328" font-size="11" style="font-size:11px">Peak-to-trough</text>
+      <rect id="p1-legend-swatch-2025-vs-peak" x="163" y="278" width="11" height="11" fill="#ea580c"/>
+      <text id="p1-legend-label-2025-vs-peak" class="legend-label" x="179" y="287" fill="#1f2328" font-size="11" style="font-size:11px">2025 vs peak</text>
+      <rect id="p1-legend-swatch-2025-vs-trough" x="266" y="278" width="11" height="11" fill="#059669"/>
+      <text id="p1-legend-label-2025-vs-trough" class="legend-label" x="282" y="287" fill="#1f2328" font-size="11" style="font-size:11px">2025 vs trough</text>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <g id="brand">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:57572/a/274e6a8631bf0f6da37c14e2e5288b72.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
+<section>
+<h2>Answer</h2>
+<p>In price terms, the hardest-hit counties have recovered fully in nominal dollars and roughly broken even in real terms. I ranked 2,395 counties by FHFA house-price fall from the 2005-08 peak to the 2008-14 trough. The worst fifth (479 counties) fell a median 30%. By 2025 their median price was 56% above the old peak and 135% above the trough. After CPI adjustment (about +58% since 2006-07) that is about -1% real: back to the peak in purchasing power, no more. The mildest-hit fifth is about 17% above its peak in real terms.</p>
+</section>
+<section>
+<h2>Evidence</h2>
+<input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><table><tr><th><label class="srth" for="s2-t1-s1">Decline quintile<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s2">Median peak-to-trough<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">2025 vs peak (nominal)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">2025 vs trough<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>1 (worst)</td><td>-30.0%</td><td>+56.3%</td><td>+135.5%</td></tr><tr><td>2</td><td>-17.2%</td><td>+70.0%</td><td>+105.7%</td></tr><tr><td>3</td><td>-10.3%</td><td>+79.1%</td><td>+99.3%</td></tr><tr><td>4</td><td>-5.5%</td><td>+81.8%</td><td>+93.2%</td></tr><tr><td>5 (mildest)</td><td>-1.5%</td><td>+84.5%</td><td>+87.5%</td></tr></tbody><tbody class="srt s1"><tr><td>5 (mildest)</td><td>-1.5%</td><td>+84.5%</td><td>+87.5%</td></tr><tr><td>4</td><td>-5.5%</td><td>+81.8%</td><td>+93.2%</td></tr><tr><td>3</td><td>-10.3%</td><td>+79.1%</td><td>+99.3%</td></tr><tr><td>2</td><td>-17.2%</td><td>+70.0%</td><td>+105.7%</td></tr><tr><td>1 (worst)</td><td>-30.0%</td><td>+56.3%</td><td>+135.5%</td></tr></tbody><tbody class="srt s2"><tr><td>5 (mildest)</td><td>-1.5%</td><td>+84.5%</td><td>+87.5%</td></tr><tr><td>4</td><td>-5.5%</td><td>+81.8%</td><td>+93.2%</td></tr><tr><td>3</td><td>-10.3%</td><td>+79.1%</td><td>+99.3%</td></tr><tr><td>2</td><td>-17.2%</td><td>+70.0%</td><td>+105.7%</td></tr><tr><td>1 (worst)</td><td>-30.0%</td><td>+56.3%</td><td>+135.5%</td></tr></tbody><tbody class="srt s3"><tr><td>5 (mildest)</td><td>-1.5%</td><td>+84.5%</td><td>+87.5%</td></tr><tr><td>4</td><td>-5.5%</td><td>+81.8%</td><td>+93.2%</td></tr><tr><td>3</td><td>-10.3%</td><td>+79.1%</td><td>+99.3%</td></tr><tr><td>2</td><td>-17.2%</td><td>+70.0%</td><td>+105.7%</td></tr><tr><td>1 (worst)</td><td>-30.0%</td><td>+56.3%</td><td>+135.5%</td></tr></tbody><tbody class="srt s4"><tr><td>1 (worst)</td><td>-30.0%</td><td>+56.3%</td><td>+135.5%</td></tr><tr><td>2</td><td>-17.2%</td><td>+70.0%</td><td>+105.7%</td></tr><tr><td>3</td><td>-10.3%</td><td>+79.1%</td><td>+99.3%</td></tr><tr><td>4</td><td>-5.5%</td><td>+81.8%</td><td>+93.2%</td></tr><tr><td>5 (mildest)</td><td>-1.5%</td><td>+84.5%</td><td>+87.5%</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>Within the worst quintile, median 2025 level vs peak: NV +52%, FL +54%, AZ +57%, CA +33%, MD +26%, VA +38%, GA +82%, ID +117%. Trough declines were deepest in NV (-53%), FL (-45%), CA (-45%), AZ (-40%). National 90+ day mortgage delinquency peaked at 4.7% (Dec 2009), fell to 0.5% in 2021-22 and was 1.0% in Dec 2025 (CFPB).</p>
+</section>
+<section>
+<h2>Exclusions</h2>
+<p>Filter hpi_2000_base IS NOT NULL: this excluded counties with no 2000 index value, leaving 2,420 counties. A further 25 were excluded because they lacked a positive peak, trough or 2025 value, leaving 2,395 (479 per quintile). These are small-sample counties FHFA does not publish in some years. I did not rerun the headline including them, since they cannot be scored; the quintile ranking would shift only at the margins.</p>
+</section>
+<section>
+<h2>Caveats</h2>
+<ul><li>Hardest hit is defined by price decline, not foreclosure counts; they overlap but are not identical.</li><li>County grain, not neighbourhoods; pockets within counties may have recovered less.</li><li>FHFA measures price recovery only, not income, employment or wealth recovery of displaced owners.</li><li>Peak (2005-08) and trough (2008-14) windows are my choice, to cover market-specific timing. The real-terms figure uses a CPI ratio of about 1.58 (2006-07 vs 2025 average, CPIAUCNS).</li></ul>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Neighbourhood grain</strong>: County is the finest price grain found; ZIP/tract not available.</li></ul>
+</section>
+<section>
+<h2>Every query behind this report</h2>
+<p>6 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 3 rows — 2246 ms</summary><pre><code>SELECT * FROM housing.cfpb_mortgage_performance FETCH FIRST 3 ROWS ONLY</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 2765 ms</summary><pre><code>SELECT min(data_year), max(data_year), count(distinct county_fips) FROM housing.county_house_price_index WHERE hpi_2000_base IS NOT NULL</code></pre></details>
+<details class="sqltoggle"><summary>query — 5 rows — 885 ms</summary><pre><code>WITH p AS (SELECT county_fips, max(CASE WHEN data_year BETWEEN 2005 AND 2008 THEN hpi_2000_base END) pk, min(CASE WHEN data_year BETWEEN 2008 AND 2014 THEN hpi_2000_base END) tr, max(CASE WHEN data_year=(SELECT max(data_year) FROM housing.county_house_price_index) THEN hpi_2000_base END) lt FROM housing.county_house_price_index GROUP BY county_fips), q AS (SELECT *, (tr/pk-1)*100 dd, (lt/pk-1)*100 vs_peak, (lt/tr-1)*100 from_trough, ntile(5) OVER (ORDER BY tr/pk) quint FROM p WHERE pk&gt;0 AND tr&gt;0 AND lt&gt;0) SELECT quint, count(*) n, round(avg(dd),1) avg_decline, round(median(dd),1) med_decline, round(median(vs_peak),1) med_vs_peak, round(median(from_trough),1) med_from_trough, round(avg(CASE WHEN lt&gt;=pk THEN 1.0 ELSE 0 END)*100,1) pct_above_peak, (SELECT max(data_year) FROM housing.county_house_price_index) ly FROM q GROUP BY quint ORDER BY quint</code></pre></details>
+<details class="sqltoggle"><summary>query — 18 rows — 383 ms</summary><pre><code>SELECT data_year, pct_90_plus_delinquent FROM housing.cfpb_mortgage_performance WHERE geo_level='national' AND month LIKE '%-12' ORDER BY data_year</code></pre></details>
+<details class="sqltoggle"><summary>query — 16 rows — 492 ms</summary><pre><code>WITH p AS (SELECT county_fips, max(state_abbr) st, max(CASE WHEN data_year BETWEEN 2005 AND 2008 THEN hpi_2000_base END) pk, min(CASE WHEN data_year BETWEEN 2008 AND 2014 THEN hpi_2000_base END) tr, max(CASE WHEN data_year=2025 THEN hpi_2000_base END) lt FROM housing.county_house_price_index GROUP BY county_fips), q AS (SELECT *, ntile(5) OVER (ORDER BY tr/pk) quint FROM p WHERE pk&gt;0 AND tr&gt;0 AND lt&gt;0) SELECT st, count(*) n, round(median(lt/pk-1)*100,1) vs_peak, round(median(tr/pk-1)*100,1) dd FROM q WHERE quint=1 GROUP BY st HAVING count(*)&gt;=8 ORDER BY n DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 46 rows — 29499 ms</summary><pre><code>SELECT &quot;date&quot;, value FROM econ.fred_indicators WHERE series='CPIAUCNS' AND &quot;date&quot; &gt;= '2006-01-01' AND (&quot;date&quot; &lt;= '2007-12-31' OR &quot;date&quot; &gt;= '2025-01-01') ORDER BY &quot;date&quot;</code></pre></details>
 
-## Summary
-
-At the metro level — the finest geography this corpus&#x27;s price data supports — the U.S. housing markets hit hardest in the 2008 crash have **not** recovered as strongly as nominal headlines suggest. Across the 15 metro areas (MSAs) with the steepest FHFA House Price Index declines from their 2004–2007 peak to their 2011 trough (Las Vegas, Stockton, Cape Coral, Riverside, Phoenix, Bakersfield, and similar Sand-state/inland-California markets), nominal prices today are up a median of **+53%** versus their pre-crash peak. But once adjusted for inflation (CPI-U, expressed in 2026 dollars), the median hardest-hit metro is still **1.3% BELOW** its 2006-07 real peak — essentially flat after roughly two decades — and **8 of the 15 metros remain underwater in real terms**, some (Bakersfield, Stockton) by 17-21%. Only a handful — Miami, West Palm Beach, Tampa, and Phoenix — have genuinely exceeded their pre-crisis real price level.
-
-Separately, primary research fetched directly for this report finds that the specific **neighborhoods** hit hardest by foreclosure — disproportionately Black and Latino communities that received a disproportionate share of subprime loans — have recovered even less than these metro averages imply, because most original owners never re-entered as buyers to capture the subsequent price rebound.
-
-## What the data can and can&#x27;t show
-
-This corpus&#x27;s FHFA `house_price_index` table tracks home prices at the state and metro (CBSA) level back to 1975. It does **not** carry a foreclosure-rate series, and has no census-tract or ZIP-level price index — `search_catalog` confirmed no table anywhere in the corpus contains the word &quot;foreclosure&quot; (returned in `unmatched_terms`). So a true within-city &quot;which neighborhoods were hit hardest&quot; cut is not something this connector&#x27;s tables can answer directly. Metro-level recovery is the closest computable proxy, and the level at which FHFA, Case-Shiller, and most academic foreclosure studies themselves report price data.
-
-**Method:** For each of the ~400 MSAs in `housing.house_price_index` (traditional, purchase-only, quarterly, `index_nsa`), found the peak annual-average index in 2004-2008, the trough in 2008-2013, and the latest (2026) reading; ranked by peak-to-trough decline to identify the 15 hardest-hit metros nationally; deflated peak-year and current values to 2026 dollars using BLS CPI-U (`adjust_inflation` tool) to get an inflation-adjusted, apples-to-apples recovery percentage. No rows were excluded from this ranking by hand. No causal/regression model was applied — figures are descriptive index ratios and CPI-deflation arithmetic.
-
-To address the neighborhood-grain gap, I directly fetched and read three primary/peer-linked sources rather than relying on search snippets:
-- NLIHC&#x27;s summary of the Alliance for a Just Society&#x27;s &quot;Wasted Wealth&quot; report
-- Pew Research Center&#x27;s 2009 county-level regression study of foreclosure determinants
-- Mother Jones&#x27; reporting on Kermani &amp; Wong&#x27;s NBER working paper (w29306), a 6-million-transaction, 1990-2017 dataset on realized housing returns by race
-
-## The metro-level numbers
-
-| Metro | Peak year | Nominal decline to trough (2006-2011) | Nominal vs. peak today | Real (CPI-adj.) vs. peak today |
-|---|---|---|---|---|
-| Las Vegas, NV | 2006 | -61.6% | +46.1% | -11.2% |
-| Stockton-Lodi, CA | 2006 | -58.2% | +33.1% | -19.1% |
-| Cape Coral-Ft Myers, FL | 2006 | -55.9% | +35.4% | -17.7% |
-| Riverside-San Bernardino, CA | 2006 | -51.9% | +52.9% | -7.1% |
-| Phoenix-Mesa-Chandler, AZ | 2006 | -51.7% | +85.0% | +12.4% |
-| Bakersfield-Delano, CA | 2006 | -51.5% | +29.8% | -21.1% |
-| North Port-Sarasota, FL | 2006 | -50.5% | +62.4% | -1.3% |
-| West Palm Beach, FL | 2006 | -50.5% | +99.7% | +21.4% |
-| Sacramento, CA | 2005 | -49.3% | +44.3% | -15.0% |
-| Lakeland-Winter Haven, FL | 2006 | -48.8% | +80.0% | +9.4% |
-| Orlando, FL | 2006 | -48.8% | +71.4% | +4.2% |
-| Fresno, CA | 2006 | -48.6% | +40.7% | -14.5% |
-| Ft Lauderdale, FL | 2006 | -48.3% | +70.7% | +3.7% |
-| Miami, FL | 2007 | -47.1% | +96.2% | +22.6% |
-| Tampa, FL | 2006 | -46.0% | +91.5% | +16.4% |
-
-*Note on a diagnostic: the query engine flagged the decline column as &quot;out of domain&quot; because every value is negative — expected and correct for a column defined as a percent decline, not evidence the underlying FHFA readings are wrong. Cross-checked against the raw FHFA `hpi_master.csv` fetched directly, and the largest declines match well-documented facts about Las Vegas and inland California losing roughly half to three-fifths of peak value by 2011.*
-
-**Pattern:** Inland California&#x27;s Central Valley/Inland Empire metros (Stockton, Bakersfield, Fresno, Sacramento, Riverside) and Las Vegas — markets whose 2000s boom was driven heavily by subprime and speculative investor purchases — remain furthest below their real 2006 peak nearly two decades later. Coastal Florida metros with strong post-pandemic in-migration (Miami, West Palm Beach, Tampa) and Phoenix have decisively exceeded their pre-crisis real peak.
-
-## The neighborhood-level literature this data can&#x27;t reach
-
-- **NLIHC / Alliance for a Just Society (&quot;Wasted Wealth&quot;)**: ZIP codes that were majority-people-of-color had 17 foreclosures per 1,000 households versus 10 per 1,000 in majority-white ZIP codes (as of 2012); average wealth lost per household was $2,200 in majority-people-of-color ZIP codes versus $1,300 in majority-white ones. Black and Latino borrowers were 80% and 70% more likely, respectively, to receive subprime loans than white borrowers controlling for income and credit score, and 76%/71% more likely to actually lose the home once in foreclosure.
-- **Pew Research (2009)**: County-level regression confirms geographic concentration (33 counties nationally with foreclosure rates above 5%, concentrated in California, Florida, Arizona, Nevada) and finds immigrant population share and local home-price declines were both independently associated with higher county foreclosure rates.
-- **Kermani &amp; Wong, NBER w29306 (via Mother Jones)**: Using 6 million housing transactions from 1990-2017, found Black and Latino home sellers realized annualized returns 3.7 and 2.0 percentage points lower than white sellers on average — a 44% smaller decade-long return for Black sellers, 22% smaller for Latino sellers — driven almost entirely by higher rates of foreclosures and short sales, which are more steeply discounted in communities of color. Remove distressed sales from the comparison and the racial return gap nearly disappears. The paper estimates equalizing housing investment *returns* (not just homeownership rates) across races would cut the Black-white retirement-age housing wealth gap by 39%, versus just 1% from equalizing homeownership rates alone.
-
-The upshot: households who were foreclosed on and never got back into ownership missed the metro-level price recovery entirely, converting a temporary price crash into a permanent, uncaptured wealth loss.
-
-## Bottom line
-
-At the metro level, the hardest-hit housing markets have only partially recovered: nominal prices look fully recovered (and then some) almost everywhere, but in real terms the typical hardest-hit metro is roughly back to breakeven with its 2006 peak, and several — the inland-California/Nevada cluster — remain meaningfully below it. At the true neighborhood/community level that actually experienced the foreclosure wave — disproportionately Black and Latino communities targeted by subprime lending — primary research indicates the recovery has been substantially weaker still: those households lost roughly 20-44% more of their potential housing-wealth return than white households, mostly because the metro-level price rebound came after most of them had already lost the home and never bought back in.
-
-This report quantifies the metro-level claim directly from FHFA government price data; the neighborhood-level claim is drawn from primary research read directly for this report (NLIHC/Alliance for a Just Society, Pew Research Center, Mother Jones reporting on NBER research), not computed from any table in this corpus, because no table here carries a foreclosure count or a homeowner-outcome-after-foreclosure measure.
-
-## Sources
-
-- FHFA House Price Index master file (fhfa.gov/hpi/download/monthly/hpi_master.csv) — via `housing.house_price_index` table, and fetched directly for cross-check
-- BLS CPI-U (CUUR0000SA0) via `adjust_inflation` tool, base year 2026
-- [Foreclosure Crisis Causes Disproportionate Loss of Wealth among Communities of Color (NLIHC)](https://nlihc.org/resource/foreclosure-crisis-causes-disproportionate-loss-wealth-among-communities-color)
-- [V. Foreclosures in the U.S. in 2008 (Pew Research Center)](https://www.pewresearch.org/race-and-ethnicity/2009/05/12/v-foreclosures-in-the-u-s-in-2008/)
-- [Foreclosures Are Fueling America&#x27;s Racial Wealth Gap (Mother Jones, reporting on Kermani &amp; Wong NBER w29306)](https://www.motherjones.com/politics/2021/12/homeownership-race-wealth-gap-housing-discrimination-black-latino-kermani-wong-brookings-research/)
-
-*Footnote: FHFA HPI is at the metro (CBSA) and state level, not neighborhood/tract level; no table in this corpus carries a foreclosure-rate series, so neighborhood-specific recovery draws on primary research fetched directly rather than this connector&#x27;s own data. All dollar comparisons deflated with BLS CPI-U to 2026 dollars.*
-</pre>
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://www.fhfa.gov/hpi/download/annual/hpi_at_county.xlsx">FHFA county HPI (housing.county_house_price_index)</a></li>
+<li><a href="https://www.consumerfinance.gov/data-research/mortgage-performance-trends/">CFPB mortgage performance</a></li>
+<li><a href="https://www.bls.gov/cpi/">BLS CPI-U via econ.fred_indicators CPIAUCNS</a></li>
+</ol>
+</section>
+<footer>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
+</footer>
 </main>
-</body></html>
+<aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>
+</body>
+</html>
