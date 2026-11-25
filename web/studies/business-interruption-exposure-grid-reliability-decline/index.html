@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Data-center growth is triggering a new, escalating type of grid disturbance — but a broad rise in outages for ordinary local businesses remains a documented risk, not yet a measured trend</title>
+<title>Outage duration has risen modestly in data-center states, but about as much as everywhere else; frequency is flat, and business-interruption exposure cannot be measured here</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -14,6 +14,9 @@ h1{font-size:1.9rem;line-height:1.25;margin:0 0 .4rem;letter-spacing:-.01em}
 h2{font-size:1.15rem;margin:2.2rem 0 .6rem;letter-spacing:-.005em}
 h3{font-size:1rem;margin:1.4rem 0 .4rem}
 .subtitle{color:var(--muted);margin:0 0 1.6rem;font-size:.95rem}
+.under-review{margin:0 0 1.6rem;padding:.7rem 1rem;border:1px solid var(--rule);border-left:4px solid var(--link);border-radius:6px;overflow-wrap:anywhere}
+.under-review span{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.under-review a{font-weight:600}
 .board{margin:0 0 2rem;padding:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg)}
 .board svg{display:block;width:100%;height:auto}
 p{margin:0 0 .9rem}
@@ -31,6 +34,11 @@ summary:hover{color:var(--link)}
 summary:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
 details[open] summary{border-bottom:1px solid var(--rule)}
 details > *:not(summary){margin:.7rem}
+.claim-detail dl{display:grid;grid-template-columns:11rem 1fr;gap:.45rem 1rem;align-items:baseline}
+.claim-detail dt{color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.claim-detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.claim-detail dd ul{margin:0;padding-left:1.1rem}
+@media(max-width:600px){.claim-detail dl{grid-template-columns:1fr;gap:.1rem}.claim-detail dd{margin:0 0 .5rem}}
 pre{padding:.7rem;border-radius:6px;font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:color-mix(in srgb,var(--rule) 45%,transparent)}
 pre code{background:none;padding:0;font-size:inherit}
 tbody.srt:not(.s0){display:none}
@@ -99,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Data-center growth is triggering a new, escalating type of grid disturbance — but a broad rise in outages for ordinary local businesses remains a documented risk, not yet a measured trend</h1>
-<p class="subtitle">EIA reliability data, NERC's 2025 Long-Term Reliability Assessment and Level 3 alert, and PJM/Dominion incident reports</p>
+<h1>Outage duration has risen modestly in data-center states, but about as much as everywhere else; frequency is flat, and business-interruption exposure cannot be measured here</h1>
+<p class="subtitle">EIA-861 reliability, 2013-2023, customer-weighted, excluding major event days; IEEE and non-IEEE reporters combined</p>
 </header>
 <figure class="board">
 <!--
@@ -120,7 +128,7 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
   panel's axis domain: panels sharing a scale_group were given one
   domain deliberately so they can be compared.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <style>
     .dash-title { font-size: 20px; font-weight: 650 }
     .dash-subtitle { font-size: 13px }
@@ -147,101 +155,108 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
       .grid { stroke: #2c3038 }
     }
   </style>
-  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Data-Center Load Growth vs. Grid Reliability</text>
-  <text class="dash-subtitle" x="20" y="66" fill="#6b7280" style="font-size:13px">EIA reliability data (national) + NERC/PJM incident reports, 2013-2026</text>
-  <g id="p1-stat">
-  <rect class="panel-edge" x="20" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="36" y="118" fill="#6b7280">Largest data-center load-loss event in PJM history</text>
-  <text class="stat-value" x="36" y="148" fill="#1f2328">3,800 MW</text>
-  <text class="stat-delta" x="36" y="168" fill="#059669">Jul 22, 2026, Dominion (Northern VA) zone</text>
-  </g>
-  <g id="p2-stat">
-  <rect class="panel-edge" x="448" y="82" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
-  <text class="stat-label" x="464" y="118" fill="#6b7280" style="font-size:10px">NERC areas at elevated/high resource-adequacy risk (next 5 yrs)</text>
-  <text class="stat-value" x="464" y="148" fill="#1f2328">13 of 23</text>
-  <text class="stat-delta" x="464" y="168" fill="#059669" style="font-size:11px">PJM, ERCOT, MISO among them; Level 3 alert issued May 2026</text>
-  </g>
-  <rect class="panel-edge" x="20" y="206" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="20" y="206" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
-    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Escalating data-center-linked grid disturbance events (PJM/Dominion, No…</text>
-    <g id="p3-gridlines">
-      <line class="grid" x1="77" y1="212" x2="390" y2="212" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-0" class="tick" x="69" y="216" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="77" y1="173" x2="390" y2="173" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-1" class="tick" x="69" y="177" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">1,000</text>
-      <line class="grid" x1="77" y1="134" x2="390" y2="134" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-2" class="tick" x="69" y="138" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">2,000</text>
-      <line class="grid" x1="77" y1="95" x2="390" y2="95" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-3" class="tick" x="69" y="99" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">3,000</text>
-      <line class="grid" x1="77" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p3-ytick-4" class="tick" x="69" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">4,000</text>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">SAIDI without major events, early vs late</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Change in outage minutes, 2013-15 avg to 2021-23 avg (%)</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="100" y1="56" x2="100" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-0" class="tick" x="100" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-40</text>
+      <line class="grid" x1="133.50" y1="56" x2="133.50" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-1" class="tick" x="133.50" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-30</text>
+      <line class="grid" x1="167" y1="56" x2="167" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-2" class="tick" x="167" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-20</text>
+      <line class="grid" x1="200.50" y1="56" x2="200.50" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-3" class="tick" x="200.50" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-10</text>
+      <line class="grid" x1="234" y1="56" x2="234" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-4" class="tick" x="234" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <line class="grid" x1="267.50" y1="56" x2="267.50" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-5" class="tick" x="267.50" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <line class="grid" x1="301" y1="56" x2="301" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-6" class="tick" x="301" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <line class="grid" x1="334.50" y1="56" x2="334.50" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-7" class="tick" x="334.50" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">30</text>
+      <line class="grid" x1="368" y1="56" x2="368" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-8" class="tick" x="368" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">40</text>
     </g>
-    <g id="p3-axes">
-      <line class="axis" x1="77" y1="56" x2="77" y2="212" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="77" y1="212" x2="390" y2="212" stroke="#9ca3af" stroke-width="1"/>
+    <g id="p1-axes">
+      <line class="axis" x1="234" y1="56" x2="234" y2="262" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="100" y1="262" x2="368" y2="262" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <text id="p3-x-axis-title" class="axis-title" x="233.50" y="256" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Event date</text>
-    <text id="p3-y-axis-title" class="axis-title" x="14" y="134" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 134)">MW dropped from grid</text>
-    <g id="p3-x-axis-labels">
-      <text id="p3-xtick-2024" class="tick" x="129.17" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2024</text>
-      <text id="p3-xtick-2025" class="tick" x="233.50" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2025</text>
-      <text id="p3-xtick-jul-22-2026" class="tick" x="337.83" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">Jul 22, 2026</text>
+    <text id="p1-value-axis-title" class="axis-title" x="234" y="306" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">% change</text>
+    <g id="p1-category-axis-labels">
+      <text id="p1-xtick-nv" class="tick" x="62" y="71.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">NV</text>
+      <text id="p1-xtick-ga" class="tick" x="62" y="94.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">GA</text>
+      <text id="p1-xtick-or" class="tick" x="62" y="117.22" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">OR</text>
+      <text id="p1-xtick-va" class="tick" x="62" y="140.11" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">VA</text>
+      <text id="p1-xtick-rest-of-us" class="tick" x="62" y="163" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Rest of US</text>
+      <text id="p1-xtick-az" class="tick" x="62" y="185.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">AZ</text>
+      <text id="p1-xtick-tx" class="tick" x="62" y="208.78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">TX</text>
+      <text id="p1-xtick-oh" class="tick" x="62" y="231.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">OH</text>
+      <text id="p1-xtick-il" class="tick" x="62" y="254.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">IL</text>
     </g>
-    <g id="p3-series-mw-lost-when-data-centers-tripped-off" class="series">
-      <rect id="p3-mark-mw-lost-when-data-centers-tripped-off-2024" class="bar" x="95.78" y="153.50" width="65.77" height="58.50" fill="#2563eb"/>
-      <rect id="p3-mark-mw-lost-when-data-centers-tripped-off-2025" class="bar" x="200.11" y="153.50" width="65.77" height="58.50" fill="#2563eb"/>
-      <rect id="p3-mark-mw-lost-when-data-centers-tripped-off-jul-22-2026" class="bar" x="304.45" y="63.80" width="65.77" height="148.20" fill="#2563eb"/>
+    <g id="p1-series-change" class="series">
+      <g class="hover">
+        <title>NV — % change: 33</title>
+        <rect id="p1-mark-change-nv" class="bar" x="234" y="60.12" width="110.55" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="100" y="58.94" width="268" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-change-nv" class="value-label" x="348.55" y="71.44" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">33</text>
+      <g class="hover">
+        <title>GA — % change: 32</title>
+        <rect id="p1-mark-change-ga" class="bar" x="234" y="83.01" width="107.20" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="100" y="81.83" width="268" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-change-ga" class="value-label" x="345.20" y="94.33" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">32</text>
+      <g class="hover">
+        <title>OR — % change: 18</title>
+        <rect id="p1-mark-change-or" class="bar" x="234" y="105.90" width="60.30" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="100" y="104.72" width="268" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-change-or" class="value-label" x="298.30" y="117.22" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">18</text>
+      <g class="hover">
+        <title>VA — % change: 17</title>
+        <rect id="p1-mark-change-va" class="bar" x="234" y="128.79" width="56.95" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="100" y="127.61" width="268" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-change-va" class="value-label" x="294.95" y="140.11" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">17</text>
+      <g class="hover">
+        <title>Rest of US — % change: 13</title>
+        <rect id="p1-mark-change-rest-of-us" class="bar" x="234" y="151.68" width="43.55" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="100" y="150.50" width="268" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-change-rest-of-us" class="value-label" x="281.55" y="163" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">13</text>
+      <g class="hover">
+        <title>AZ — % change: 12</title>
+        <rect id="p1-mark-change-az" class="bar" x="234" y="174.56" width="40.20" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="100" y="173.39" width="268" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-change-az" class="value-label" x="278.20" y="185.89" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">12</text>
+      <g class="hover">
+        <title>TX — % change: 8</title>
+        <rect id="p1-mark-change-tx" class="bar" x="234" y="197.45" width="26.80" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="100" y="196.28" width="268" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-change-tx" class="value-label" x="264.80" y="208.78" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">8</text>
+      <g class="hover">
+        <title>OH — % change: 6</title>
+        <rect id="p1-mark-change-oh" class="bar" x="234" y="220.34" width="20.10" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="100" y="219.17" width="268" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-change-oh" class="value-label" x="258.10" y="231.67" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600">6</text>
+      <g class="hover">
+        <title>IL — % change: -32</title>
+        <rect id="p1-mark-change-il" class="bar" x="126.80" y="243.23" width="107.20" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="100" y="242.06" width="268" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <text id="p1-value-change-il" class="value-label" x="122.80" y="254.56" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="end">-32</text>
     </g>
-    <g id="p3-annotations"><!-- panel annotations --></g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
-  <text class="caption" x="24" y="499" fill="#6b7280">Each event: dozens of data centers rode through a routine transmission</text>
-  <text class="caption" x="24" y="512" fill="#6b7280">fault and switched to backup power, per NERC/PJM incident reviews.…</text>
-  <rect class="panel-edge" x="448" y="206" width="412" height="280" fill="none" stroke="#e5e7eb" rx="6"/>
-  <svg x="448" y="206" width="412" height="280" viewBox="0 0 412 280" preserveAspectRatio="xMidYMid meet">
-    <rect x="0" y="0" width="412" height="280" class="chart-bg" fill="#ffffff"/>
-    <text id="p4-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">National avg. annual power-interruption duration per customer (SAIDI, all …</text>
-    <g id="p4-gridlines">
-      <line class="grid" x1="67" y1="212" x2="390" y2="212" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-0" class="tick" x="59" y="216" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
-      <line class="grid" x1="67" y1="180.80" x2="390" y2="180.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-1" class="tick" x="59" y="184.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">100</text>
-      <line class="grid" x1="67" y1="149.60" x2="390" y2="149.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-2" class="tick" x="59" y="153.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">200</text>
-      <line class="grid" x1="67" y1="118.40" x2="390" y2="118.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-3" class="tick" x="59" y="122.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">300</text>
-      <line class="grid" x1="67" y1="87.20" x2="390" y2="87.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-4" class="tick" x="59" y="91.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">400</text>
-      <line class="grid" x1="67" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p4-ytick-5" class="tick" x="59" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">500</text>
-    </g>
-    <g id="p4-axes">
-      <line class="axis" x1="67" y1="56" x2="67" y2="212" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="67" y1="212" x2="390" y2="212" stroke="#9ca3af" stroke-width="1"/>
-    </g>
-    <text id="p4-x-axis-title" class="axis-title" x="228.50" y="256" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Year</text>
-    <text id="p4-y-axis-title" class="axis-title" x="14" y="134" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 134)">Minutes/yr</text>
-    <g id="p4-x-axis-labels">
-      <text id="p4-xtick-2017" class="tick" x="99.30" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2017</text>
-      <text id="p4-xtick-2018" class="tick" x="163.90" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2018</text>
-      <text id="p4-xtick-2020" class="tick" x="228.50" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2020</text>
-      <text id="p4-xtick-2021" class="tick" x="293.10" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2021</text>
-      <text id="p4-xtick-2022" class="tick" x="357.70" y="230" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">2022</text>
-    </g>
-    <g id="p4-series-saidi-all-events" class="series">
-      <rect id="p4-mark-saidi-all-events-2017" class="bar" x="78.63" y="68.48" width="40.34" height="143.52" fill="#2563eb"/>
-      <rect id="p4-mark-saidi-all-events-2018" class="bar" x="143.23" y="99.68" width="40.34" height="112.32" fill="#2563eb"/>
-      <rect id="p4-mark-saidi-all-events-2020" class="bar" x="207.83" y="61.30" width="40.34" height="150.70" fill="#2563eb"/>
-      <rect id="p4-mark-saidi-all-events-2021" class="bar" x="272.43" y="69.73" width="40.34" height="142.27" fill="#2563eb"/>
-      <rect id="p4-mark-saidi-all-events-2022" class="bar" x="337.03" y="107.17" width="40.34" height="104.83" fill="#2563eb"/>
-    </g>
-    <g id="p4-annotations"><!-- panel annotations --></g>
-  </svg>
-  <text class="caption" x="452" y="499" fill="#6b7280">EIA Form 861. Year-to-year swings track major-storm activity, not</text>
-  <text class="caption" x="452" y="512" fill="#6b7280">baseline grid reliability. Excluding major events, duration has held…</text>
   <g id="brand">
-  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
     <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
     <g clip-path="url(#brand-tile)">
       <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
@@ -250,53 +265,65 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
     <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
   </svg>
-    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:60172/a/dabd569d42dc1b5bd090471f437885b4.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:51222/a/53bbc54eb15e1b350cd732b8e37601d2.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p><strong>Short answer: not yet at scale for ordinary customers, but the underlying risk is real, worsening fast, and now serious enough that grid regulators have escalated to mandatory action — while broad-based business-interruption impact on non-data-center businesses remains a documented risk rather than a measured trend.</strong> National outage-duration statistics (EIA SAIDI) show no clean upward trend attributable to data centers: year-to-year swings since 2013 track major storm years (e.g., 2020's record ~483 minutes/customer was a bad-hurricane year; 2022 was back down to 336 minutes), and when major events are excluded, average interruption duration has held essentially flat around two hours per customer per year nationwide since EIA started tracking in 2013. But in the specific regions where data-center growth is heaviest — Dominion Energy's Northern Virginia zone within PJM, and ERCOT in Texas — grid operators have documented a new, escalating, and mechanically distinct failure mode: large numbers of data centers simultaneously disconnecting from the grid during routine transmission faults because their internal voltage/frequency protection is oversensitive. Three such events have hit PJM's Dominion zone: ~1,500 MW in July 2024, ~1,500 MW in February 2025, and a record ~3,800 MW event on July 22, 2026 — the largest in PJM's history, per PJM's own August 2026 presentation. None has yet caused a sustained blackout for ordinary customers (grid operators recovered control within minutes each time), but the trend is escalating fast enough that NERC issued a rare, highest-severity Level 3 alert in May 2026 mandating seven specific actions from every transmission planner, operator, and balancing authority in North America. NERC's own January 2026 assessment now rates 13 of 23 North American grid regions — including PJM, ERCOT, and MISO — at elevated or high risk of energy shortfalls within five years, driven mostly by data-center demand growth. On business-interruption exposure: insurers treat power supply as the single largest driver of BI losses at data centers themselves (45% of data-center outages, per the Uptime Institute, cited in Swiss Re's 2026 sigma report), and Swiss Re documents insurers already pricing regional "accumulation risk" — the danger that one grid event could trigger correlated claims across many co-located data centers and their programs at once. What is not yet documented anywhere found in this research is a quantified rise in BI claims, premiums, or actual outage exposure for ordinary local businesses (not data centers) specifically because of nearby data-center growth; the connecting evidence is rising electricity costs and explicit rolling-blackout warnings from utility and grid officials in these regions, not a measured change in those businesses' own outage statistics.</p>
+<p>Outage minutes per customer (SAIDI, normal conditions) rose from the 2013-15 average to the 2021-23 average in most big data-center states: Virginia +17% (145 to 171 min), Georgia +32% (100 to 132), Nevada +33%, Oregon +18%, Arizona +12%, Texas +8%, Ohio +6%. Illinois fell 32%. All other states combined rose 13% (108 to 122). So Virginia is only modestly above the national drift, and the group is not clearly different from the rest. Outage frequency (SAIFI) is roughly flat: Virginia 1.21 to 1.29, Texas 1.24 to 1.19, Ohio 1.07 to 1.05, rest of US 0.99 to 1.02.</p><p>Business-interruption exposure: this warehouse has no data on losses, claims, insurance or commercial outage costs, so that half of the question is not answered with data. Longer outages imply some more exposure, but nothing here ties the change to data centers.</p>
 </section>
 <section>
-<h2>What the AskAmerica corpus does and doesn't cover</h2>
-<p>askengine's catalog was searched directly (search_catalog, find_recipe) for outage, reliability, SAIDI/SAIFI, and business-interruption measures. <strong>Confirmed gap: no table in this corpus carries power-outage frequency, duration, or reliability-index data</strong> — the term "outage" matched zero columns or tables across all ~26 schemas. The closest tables are energy.eia_power_plants, energy.eia_electricity_generation, energy.eia_electricity_prices, and energy.eia_utility_annual, all of which cover generation, capacity, and retail prices, not interruption events. This is a genuine sourcing gap rather than a query-shape problem, so the entire outage/reliability/insurance analysis below is built from primary and near-primary external sources — EIA's own published reliability releases, NERC's own assessment, alert, and incident-review documents, PJM's own August 2026 event presentation (via Utility Dive's direct reporting), and Swiss Re Institute's own sigma research (via Risk & Insurance) — fetched directly rather than from this connector's warehouse.</p>
+<h2>Exclusions</h2>
+<p>Excluded rows: utility-years where SAIDI, SAIFI, with-MED SAIDI (saidi_m IS NOT NULL) or a customer count was missing under both the IEEE and utility-own standards. Those utilities were not named. Checking the effect: without the saidi_m filter, Virginia SAIDI goes from 146.6 to 170.5 min (+16%) versus 145.4 to 170.6 (+17%) with it, and the non-data-center states rise about 12% versus 13%. Also excluded from the 'rest of US' group are the eight chosen states (VA, TX, GA, AZ, OH, IL, OR, NV), shown separately. A cross-check query also excluded rows where ieee_saidi_without_med IS NOT NULL failed only in the sense of the coalesced saidi being null; it did not use the IEEE column alone, so Dominion remains included. Major event days are excluded by using the without-MED series.</p>
 </section>
 <section>
-<h2>1. Has outage frequency or duration actually gone up?</h2>
-<p><strong>Nationally: no clean trend tied to data centers.</strong> EIA has collected SAIDI (System Average Interruption Duration Index, hours of non-momentary interruption per customer per year) and SAIFI (frequency of interruptions) from utilities since 2013. U.S. customers experienced the longest average interruption duration on record in 2020 (~483 minutes, roughly eight hours, including major events). By 2022 the national average had fallen to 336 minutes (5.6 hours), a decline EIA attributes directly to fewer major weather disasters that year versus 2021 (18 billion-dollar weather disasters in 2022, including Hurricane Ian, Hurricane Nicole, and Winter Storm Elliott). <strong>Critically, EIA's own analysis states that "since 2013, the average duration of electricity interruptions each year has remained consistently around two hours after excluding major events"</strong> — i.e., the swings in the headline national number are a weather-events story, not a baseline-grid-degradation story, and EIA's releases do not attribute the trend to data-center load growth. States with the longest interruptions in the most recent data (Florida, West Virginia, Maine, Vermont, New Hampshire) are hurricane- and forest-exposed states, not the data-center-heavy states (Virginia, Texas).</p><p><strong>In the specific regions with the heaviest data-center concentration, a new and escalating disturbance pattern has emerged</strong> that the standard SAIDI/SAIFI index doesn't directly capture, because in every documented case so far it did not reach retail customers as a sustained outage. PJM's own presentation to its Operating Committee (Aug. 6, 2026) documents three successive events in Dominion Energy's Northern Virginia zone — home to the world's largest data-center cluster: roughly 1,500 MW of data-center load tripped off in 2024, another ~1,500 MW in 2025, and a record 3,800 MW on July 22, 2026, the largest such event in PJM's history, triggered by a normally-cleared fault on a single 230-kV line. PJM's Operating Committee chair stated bluntly that "these data centers are too sensitive to the kind of voltage that they like, and we feel they are disconnecting too early." PJM recovered system balance within nine minutes (versus NERC's 30-minute standard) each time, and no sustained customer blackout resulted, though the July 2024 event caused roughly 10 minutes of voltage flicker felt from Chicago to Boston to Miami. A parallel pattern has occurred in ERCOT, where cryptocurrency-mining and other large flexible loads caused 25 separate load-loss events (100-400 MW each) since November 2023.</p><p><strong>Regulators have now escalated this from a monitored curiosity to a mandatory compliance issue.</strong> After a Level 2 warning in 2025 drew what NERC called insufficient responses ("entities generally did not have sufficient processes, procedures, or methods to address emerging computational loads"), NERC issued a rare Level 3 "Essential Actions" alert — its highest severity level, previously used only for inverter-based-resource risks — in May 2026, requiring transmission planners, operators, and balancing authorities across North America to collect detailed modeling data from computational loads, revise reliability-study triggers, and install dynamic fault-recording devices, with compliance responses due Aug. 3, 2026. Separately, NERC's January 2026 Long-Term Reliability Assessment rates 13 of 23 North American assessment areas — including PJM, ERCOT, MISO, and SERC-Central — at elevated or high resource-adequacy risk over the next five years, citing data-center-driven demand as the largest single contributor to a projected 224 GW rise in summer peak demand (a rate NERC says is the highest it has tracked since 1995). Virginia's own Joint Legislative Audit and Review Commission (JLARC) reached the same regional conclusion independently, and Central Virginia Electric Cooperative's CEO told Cardinal News he personally expects rolling blackouts in the PJM footprint within three to five years. <strong>Net effect: the frequency of grid-stress events mechanically tied to data centers has clearly and measurably increased and is still escalating (1,500 MW → 1,500 MW → 3,800 MW across three successive years), but this has not yet translated into a measured rise in sustained outage frequency or duration for ordinary customers — it is a forward risk indicator that grid regulators are now treating as urgent, not a realized outage-statistics trend.</strong></p>
+<h2>Method and caveats</h2>
+<p>Table energy.eia_utility_reliability. Each utility-year uses the IEEE value where reported, else the utility's own standard, weighted by covered customers (so Dominion is included). With-MED values swing wildly with storms (Texas 2021 1,197 min, Oregon 2021 1,567 min, Georgia 2017 1,045 min). Data end in 2023, and much data-center build-out is later, so an effect may not show yet. Statewide averages are not data-center-county averages; I chose the eight states from general knowledge, not a load table. Utility reporting coverage varies by year and I did not hold the utility panel fixed or test dropping the largest contributor. Windows are 3 years each, endpoints noisy: Virginia ranged 142-188 between years. Association only; weather, aging lines and reporting changes are not controlled.</p>
 </section>
 <section>
-<h2>2. Does that translate into more business-interruption exposure for other local businesses?</h2>
-<p><strong>For data centers themselves, yes, clearly and with quantified figures.</strong> Swiss Re Institute's 2026 sigma report (via Risk & Insurance) states that power supply is the largest single driver of business-interruption risk at data centers, responsible for 45% of data-center outages per the Uptime Institute, and that global insurance premiums tied to data centers are projected to more than double from $10.6 billion to $24.2 billion by 2030. Swiss Re explicitly flags "accumulation risk": developers cluster multiple data centers within roughly 20-mile radiuses (e.g., Abilene, TX), meaning a single regional grid or catastrophe event can trigger correlated claims across many insured facilities and separate insurance programs (building, equipment, and power-plant coverage are often placed separately, making total exposure hard to track) simultaneously. Swiss Re's engineering lead is quoted saying the industry must move "beyond passive risk transfer to actively enabling resilience" given how concentrated, energy-dependent, and systemically critical these facilities have become.</p><p><strong>For ordinary local businesses that are not themselves data centers, no source found in this research quantifies a rise in BI claims, premiums, or realized outages specifically attributable to nearby data-center load growth.</strong> The documented connecting mechanisms are: (a) <em>rising electricity costs</em> that raise operating costs for every business in the region — Virginia's JLARC study found that data centers currently cover their own cost of service, but that future demand growth (projected to require Virginia to use 15% more energy even before new data-center demand, doubling within a decade) is likely to raise costs for other customers, and PJM capacity prices have risen sharply amid data-center-driven demand growth; (b) <em>explicit, named rolling-blackout warnings</em> from utility and grid officials serving these same regions — Central Virginia Electric Cooperative's CEO stated plainly "I believe we will have rotating blackouts before this gets resolved" within three to five years in PJM, a warning that applies to every customer on that grid, not just data centers; and (c) <em>regulatory and legislative responses treating the spillover as a real, expected risk</em> — JLARC recommended legislation clarifying that Virginia utilities may delay (though not deny) new large-customer service specifically to protect existing customers' reliability, and Georgia adopted a 2025 rule requiring large-load customers to co-fund grid upgrades, both of which are policy actions premised on an expected, not-yet-fully-realized, spillover risk to other ratepayers and businesses.</p>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Business-interruption exposure for local businesses</strong>: No loss, claims or insurance data in the warehouse; not computed and no outside sources fetched.</li></ul>
 </section>
 <section>
-<h2>Bottom line and what would resolve this more precisely</h2>
-<p>These are two separate, honestly-labeled findings, not one: (1) a <strong>new, mechanically well-documented, and rapidly escalating grid-disturbance pattern</strong> tied directly to data-center concentration in PJM/Dominion (Northern Virginia) and ERCOT (Texas) — three successive Virginia events growing from 1,500 MW to a record 3,800 MW in three years, serious enough that NERC escalated to its highest-severity Level 3 mandatory alert in May 2026, with 13 of 23 North American grid regions now rated at elevated or high resource-adequacy risk; and (2) <strong>no published measurement yet</strong> that ordinary local businesses in those regions are experiencing more or longer outages, or higher business-interruption losses, specifically because of that data-center growth. What exists instead is a chain of documented, named risk: rising electricity costs, explicit rolling-blackout warnings from the same utility executives serving those businesses, and regulatory bodies (JLARC, Georgia PSC) treating cost/reliability spillover as expected enough to legislate against. A rigorous causal test would require utility-territory-level SAIDI/SAIFI data (EIA Form 861 detail, not yet in this corpus, would need to be pulled at the individual-utility rather than national level) compared before and after major data-center interconnection in specific counties like Loudoun, VA, against a comparable non-data-center-growth region — that comparison was outside the scope of what could be completed here but is the next step that would convert this from a documented risk into a measured trend.</p>
+<h2>Every query behind this report</h2>
+<p>3 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 88 rows — 1866 ms</summary><pre><code>WITH u AS (SELECT report_year yr, state_abbr st, utility_id,
+ COALESCE(ieee_saidi_without_med, other_saidi_without_med) saidi,
+ COALESCE(ieee_saifi_without_med, other_saifi_without_med) saifi,
+ COALESCE(ieee_saidi_with_med, other_saidi_with_med) saidi_m,
+ CASE WHEN ieee_saidi_without_med IS NOT NULL THEN ieee_customers ELSE other_customers END c
+ FROM energy.eia_utility_reliability)
+SELECT st, yr, SUM(saidi*c)/SUM(c) saidi, SUM(saifi*c)/SUM(c) saifi, SUM(saidi_m*c)/SUM(c) saidi_med, SUM(c) cust
+FROM u WHERE saidi IS NOT NULL AND saifi IS NOT NULL AND saidi_m IS NOT NULL AND c&gt;0 AND st IN ('VA','TX','GA','AZ','OH','IL','OR','NV')
+GROUP BY st, yr ORDER BY st, yr</code></pre></details>
+<details class="sqltoggle"><summary>query — 11 rows — 1516 ms</summary><pre><code>WITH u AS (SELECT report_year yr, state_abbr st,
+ COALESCE(ieee_saidi_without_med, other_saidi_without_med) saidi,
+ COALESCE(ieee_saifi_without_med, other_saifi_without_med) saifi,
+ COALESCE(ieee_saidi_with_med, other_saidi_with_med) saidi_m,
+ CASE WHEN ieee_saidi_without_med IS NOT NULL THEN ieee_customers ELSE other_customers END c
+ FROM energy.eia_utility_reliability)
+SELECT yr, SUM(saidi*c)/SUM(c) saidi, SUM(saifi*c)/SUM(c) saifi, SUM(saidi_m*c)/SUM(c) saidi_med, SUM(c) cust
+FROM u WHERE saidi IS NOT NULL AND saifi IS NOT NULL AND saidi_m IS NOT NULL AND c&gt;0 AND st NOT IN ('VA','TX','GA','AZ','OH','IL','OR','NV')
+GROUP BY yr ORDER BY yr</code></pre></details>
+<details class="sqltoggle"><summary>query — 4 rows — 1281 ms</summary><pre><code>WITH u AS (SELECT report_year yr, state_abbr st,
+ COALESCE(ieee_saidi_without_med, other_saidi_without_med) saidi,
+ CASE WHEN ieee_saidi_without_med IS NOT NULL THEN ieee_customers ELSE other_customers END c
+ FROM energy.eia_utility_reliability)
+SELECT CASE WHEN yr&lt;=2015 THEN 'early' ELSE 'late' END per, CASE WHEN st='VA' THEN 'VA' ELSE 'rest' END g, SUM(saidi*c)/SUM(c) saidi
+FROM u WHERE saidi IS NOT NULL AND c&gt;0 AND (yr&lt;=2015 OR yr&gt;=2021) AND st NOT IN ('TX','GA','AZ','OH','IL','OR','NV')
+GROUP BY CASE WHEN yr&lt;=2015 THEN 'early' ELSE 'late' END, CASE WHEN st='VA' THEN 'VA' ELSE 'rest' END</code></pre></details>
+
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://www.eia.gov/electricity/data/eia861/">AskAmerica search_catalog — confirmed no outage/reliability table in corpus</a> <span class="note">— energy schema tables cover generation/prices/capacity only; verified via search_catalog before external research</span></li>
-<li><a href="https://www.nerc.com/globalassets/our-work/assessments/nerc_ltra_2025.pdf">NERC 2025 Long-Term Reliability Assessment (Jan 2026)</a></li>
-<li><a href="https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/">Utility Dive — PJM eyes data center, crypto reliability requirements after 3.8 GW of load trips offline (fetched directly)</a></li>
-<li><a href="https://www.utilitydive.com/news/nerc-issues-rare-level-3-alert-over-data-center-load-losses/819295/">Utility Dive — NERC issues Level 3 alert, mandates action to address data center load losses (fetched directly)</a></li>
-<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=61303">EIA Today in Energy — U.S. electricity customers averaged five and one-half hours of power interruptions in 2022 (fetched directly)</a></li>
-<li><a href="https://riskandinsurance.com/data-centers-powering-ai-create-unprecedented-risk-accumulation-challenges-for-insurers/">Risk &amp; Insurance — Data Centers Powering AI Create Unprecedented Risk Accumulation Challenges for Insurers, citing Swiss Re Institute sigma report (fetched directly)</a></li>
-<li><a href="https://cardinalnews.org/2025/04/11/energy-demand-will-outstrip-supply-in-virginia-as-data-centers-proliferate/">Cardinal News — Energy demand will outstrip supply in Virginia as data centers proliferate, citing JLARC and NERC reports (fetched directly)</a></li>
-<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=43915">EIA Today in Energy — U.S. customers experienced nearly six hours of power interruptions in 2018</a></li>
-<li><a href="https://www.powermag.com/3-gw-off-pjm-again-what-nercs-2024-investigation-already-told-us/">PowerMag — 3 GW Off PJM, Again: What NERC's 2024 Investigation Already Told Us</a></li>
-<li><a href="https://www.nbcwashington.com/news/local/northern-virginia/how-loudoun-county-data-centers-are-linked-to-power-flickering-across-half-the-u-s/4134124/">NBC Washington — How Loudoun County data centers are linked to power flickering across half the U.S.</a></li>
-<li><a href="https://www.ajg.com/news-and-insights/data-center-risks-business-cyber-insurance/">Gallagher (AJG) — 5 Risks Shaping the Future of Data Centers</a></li>
-<li><a href="https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/101425-data-center-grid-power-demand-to-rise-22-in-2025-nearly-triple-by-2030">S&amp;P Global — Data center grid-power demand to rise 22% in 2025, nearly triple by 2030</a></li>
-<li><a href="https://www.belfercenter.org/research-analysis/data-centers-texas-virginia-comparison">Belfer Center — Data Centers and Large-Scale Electric Growth: The Virginia and Texas Experiences</a></li>
-<li><a href="https://grist.org/accountability/data-centers-are-straining-the-grid-can-they-be-forced-to-pay-for-it/">Grist — Data centers are straining the grid. Can they be forced to pay for it?</a></li>
+<li><a href="https://www.eia.gov/electricity/data/eia861/">energy.eia_utility_reliability (EIA-861)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>customer-weighted COALESCE(ieee,other) without_med SAIDI/SAIFI by state-year, 2013-2023</code></pre></details></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">This corpus (AskAmerica/askengine) has no power-outage frequency/duration or SAIDI/SAIFI table -- confirmed via search_catalog before researching externally. All outage, reliability, and insurance figures above come from EIA, NERC, PJM (via Utility Dive), Swiss Re (via Risk &amp;amp; Insurance), and JLARC/Cardinal News reporting, fetched directly rather than pulled from queryable warehouse data.</p>
-<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a><span class="byline">Prepared 2026-09-29</span></p>
+<p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
 <aside class="printhint" aria-hidden="true">Print · <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd></aside>

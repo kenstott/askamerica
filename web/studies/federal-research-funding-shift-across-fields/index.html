@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Federal research money has shifted away from life sciences: about 13 points of share lost FY2005 to FY2025</title>
+<title>Federal research money has shifted about 8-9 points between fields since FY2004, mostly out of life sciences, but only about 7.6 points is measured on a consistent field list</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -117,6 +117,16 @@ figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:
 #s2-t1-s4:checked ~ table label[for="s2-t1-s4"]{color:var(--link)}
 #s2-t1-s4:checked ~ table label[for="s2-t1-s4"] .srtcue{opacity:1}
 #s2-t1-s4:checked ~ .srtreset{display:inline-block}
+#s2-t1-s5:checked ~ table tbody.s0{display:none}
+#s2-t1-s5:checked ~ table tbody.s5{display:table-row-group}
+#s2-t1-s5:checked ~ table label[for="s2-t1-s5"]{color:var(--link)}
+#s2-t1-s5:checked ~ table label[for="s2-t1-s5"] .srtcue{opacity:1}
+#s2-t1-s5:checked ~ .srtreset{display:inline-block}
+#s2-t1-s6:checked ~ table tbody.s0{display:none}
+#s2-t1-s6:checked ~ table tbody.s6{display:table-row-group}
+#s2-t1-s6:checked ~ table label[for="s2-t1-s6"]{color:var(--link)}
+#s2-t1-s6:checked ~ table label[for="s2-t1-s6"] .srtcue{opacity:1}
+#s2-t1-s6:checked ~ .srtreset{display:inline-block}
 }
 </style>
 </head>
@@ -129,27 +139,219 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Federal research money has shifted away from life sciences: about 13 points of share lost FY2005 to FY2025</h1>
-<p class="subtitle">NSF NCSES Survey of Federal Funds, federal obligations for research by field; research.nsf_rd_by_field; current USD, real via CPI-U</p>
+<h1>Federal research money has shifted about 8-9 points between fields since FY2004, mostly out of life sciences, but only about 7.6 points is measured on a consistent field list</h1>
+<p class="subtitle">NSF NCSES Survey of Federal Funds, federal research obligations (basic + applied, all agencies and performers), current dollars, FY2004-FY2025</p>
 </header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Share of federal research obligations by field</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="454" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="454" viewBox="0 0 412 454" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="454" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">Share of research obligations (%)</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="112" y1="56" x2="112" y2="376" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-0" class="tick" x="112" y="392" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <line class="grid" x1="158.33" y1="56" x2="158.33" y2="376" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-1" class="tick" x="158.33" y="392" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <line class="grid" x1="204.67" y1="56" x2="204.67" y2="376" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-2" class="tick" x="204.67" y="392" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <line class="grid" x1="251" y1="56" x2="251" y2="376" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-3" class="tick" x="251" y="392" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">30</text>
+      <line class="grid" x1="297.33" y1="56" x2="297.33" y2="376" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-4" class="tick" x="297.33" y="392" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">40</text>
+      <line class="grid" x1="343.67" y1="56" x2="343.67" y2="376" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-5" class="tick" x="343.67" y="392" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">50</text>
+      <line class="grid" x1="390" y1="56" x2="390" y2="376" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-6" class="tick" x="390" y="392" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">60</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="112" y1="56" x2="112" y2="376" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="112" y1="376" x2="390" y2="376" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <g id="p1-category-axis-labels">
+      <text id="p1-xtick-life-other" class="tick" x="104" y="82.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Life+other</text>
+      <text id="p1-xtick-engineering" class="tick" x="104" y="128.57" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Engineering</text>
+      <text id="p1-xtick-physical" class="tick" x="104" y="174.29" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Physical</text>
+      <text id="p1-xtick-geo" class="tick" x="104" y="220" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Geo</text>
+      <text id="p1-xtick-computing-math" class="tick" x="104" y="265.71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Computing+math</text>
+      <text id="p1-xtick-psychology" class="tick" x="104" y="311.43" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Psychology</text>
+      <text id="p1-xtick-social" class="tick" x="104" y="357.14" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Social</text>
+    </g>
+    <g id="p1-series-fy2004" class="series">
+      <g class="hover">
+        <title>Life+other — FY2004: 55.6</title>
+        <rect id="p1-mark-fy2004-life-other" class="bar" x="112" y="64.23" width="257.61" height="13.63" fill="#2563eb"/>
+        <rect class="hit" x="112" y="63.04" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Engineering — FY2004: 16.6</title>
+        <rect id="p1-mark-fy2004-engineering" class="bar" x="112" y="109.94" width="76.91" height="13.63" fill="#2563eb"/>
+        <rect class="hit" x="112" y="108.76" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Physical — FY2004: 9.8</title>
+        <rect id="p1-mark-fy2004-physical" class="bar" x="112" y="155.66" width="45.41" height="13.63" fill="#2563eb"/>
+        <rect class="hit" x="112" y="154.47" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Geo — FY2004: 7</title>
+        <rect id="p1-mark-fy2004-geo" class="bar" x="112" y="201.37" width="32.43" height="13.63" fill="#2563eb"/>
+        <rect class="hit" x="112" y="200.19" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Computing+math — FY2004: 5.5</title>
+        <rect id="p1-mark-fy2004-computing-math" class="bar" x="112" y="247.09" width="25.48" height="13.63" fill="#2563eb"/>
+        <rect class="hit" x="112" y="245.90" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Psychology — FY2004: 3.5</title>
+        <rect id="p1-mark-fy2004-psychology" class="bar" x="112" y="292.80" width="16.22" height="13.63" fill="#2563eb"/>
+        <rect class="hit" x="112" y="291.61" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Social — FY2004: 2</title>
+        <rect id="p1-mark-fy2004-social" class="bar" x="112" y="338.51" width="9.27" height="13.63" fill="#2563eb"/>
+        <rect class="hit" x="112" y="337.33" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p1-series-fy2024" class="series">
+      <g class="hover">
+        <title>Life+other — FY2024: 47.8</title>
+        <rect id="p1-mark-fy2024-life-other" class="bar" x="112" y="78.86" width="221.47" height="13.63" fill="#ea580c"/>
+        <rect class="hit" x="112" y="77.67" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Engineering — FY2024: 17.6</title>
+        <rect id="p1-mark-fy2024-engineering" class="bar" x="112" y="124.57" width="81.55" height="13.63" fill="#ea580c"/>
+        <rect class="hit" x="112" y="123.39" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Physical — FY2024: 12.8</title>
+        <rect id="p1-mark-fy2024-physical" class="bar" x="112" y="170.29" width="59.31" height="13.63" fill="#ea580c"/>
+        <rect class="hit" x="112" y="169.10" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Geo — FY2024: 5.7</title>
+        <rect id="p1-mark-fy2024-geo" class="bar" x="112" y="216" width="26.41" height="13.63" fill="#ea580c"/>
+        <rect class="hit" x="112" y="214.81" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Computing+math — FY2024: 7.6</title>
+        <rect id="p1-mark-fy2024-computing-math" class="bar" x="112" y="261.71" width="35.21" height="13.63" fill="#ea580c"/>
+        <rect class="hit" x="112" y="260.53" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Psychology — FY2024: 5.3</title>
+        <rect id="p1-mark-fy2024-psychology" class="bar" x="112" y="307.43" width="24.56" height="13.63" fill="#ea580c"/>
+        <rect class="hit" x="112" y="306.24" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Social — FY2024: 3.2</title>
+        <rect id="p1-mark-fy2024-social" class="bar" x="112" y="353.14" width="14.83" height="13.63" fill="#ea580c"/>
+        <rect class="hit" x="112" y="351.96" width="278" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p1-legend">
+      <rect id="p1-legend-swatch-fy2004" x="141" y="420" width="11" height="11" fill="#2563eb"/>
+      <text id="p1-legend-label-fy2004" class="legend-label" x="157" y="429" fill="#1f2328" font-size="11" style="font-size:11px">FY2004</text>
+      <rect id="p1-legend-swatch-fy2024" x="214" y="420" width="11" height="11" fill="#ea580c"/>
+      <text id="p1-legend-label-fy2024" class="legend-label" x="230" y="429" fill="#1f2328" font-size="11" style="font-size:11px">FY2024</text>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="237" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="273" fill="#6b7280">Points shifted FY2004-24 (merged)</text>
+  <text class="stat-value" x="464" y="303" fill="#1f2328">9.0</text>
+  <text class="stat-delta" x="464" y="323" fill="#6b7280">2.9 pre-2021 / 4.3 break / 4.7 post</text>
+  </g>
+  <g id="brand">
+  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:53255/a/a1fcf77f38f095a92fbf9e7d483484f8.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
 <section>
 <h2>Summary</h2>
-<p>Life sciences fell from 52.3% of federal research obligations in FY2005 to 39.2% in FY2025, the biggest shift. Gainers: physical sciences (10.2% to 13.1%), engineering (15.9% to 17.2%), psychology (3.5% to 5.5%), social sciences (2.0% to 3.2%), and the residual 'other' bucket (3.9% to 9.3%). Total obligations rose from $53.7B to $95.2B nominal, about +7.5% in real terms (CPI-U), so life sciences fell about 19% in real terms while everything else grew.</p>
+<p>Using merged field groups that mean the same thing before and after NSF's 2021 field revision, about <b>9.0 percentage points</b> of federal research obligations moved between fields from FY2004 to FY2024 (the last final year). The big mover is life sciences plus 'other' (including NEC), down from <b>55.6% to 47.8%</b> of the total. Physical sciences (9.8% to 12.8%), psychology (3.5% to 5.3%), social sciences (2.0% to 3.2%) and computing plus math (5.5% to 7.6%) gained. Engineering was roughly flat (16.6% to 17.6%) and geosciences fell (7.0% to 5.7%).</p><p>The shift is not smooth. Only <b>2.9 points</b> occurred inside the old taxonomy (FY2004-FY2020). The FY2020 to FY2021 revision year alone moves <b>4.3 points</b>, and FY2021-FY2024 moves <b>4.7 points</b>. Summing the two consistent segments gives about 7.6 points. Treat 8-9 points as the answer, with the 2021 break as a caveat on how much is real.</p>
 </section>
 <section>
-<h2>Table (share of total, %, and real change)</h2>
-<input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><table><tr><th><label class="srth" for="s2-t1-s1">Field<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">FY2005<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">FY2025<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">Real change<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Life sciences</td><td>52.3</td><td>39.2</td><td>-19%</td></tr><tr><td>Engineering</td><td>15.9</td><td>17.2</td><td>+16%</td></tr><tr><td>Physical sciences</td><td>10.2</td><td>13.1</td><td>+38%</td></tr><tr><td>Geo/atmos/ocean</td><td>6.5</td><td>6.1</td><td>+1%</td></tr><tr><td>Computer sci + math</td><td>5.6</td><td>6.3</td><td>+22%</td></tr><tr><td>Other</td><td>3.9</td><td>9.3</td><td>+158%</td></tr><tr><td>Psychology</td><td>3.5</td><td>5.5</td><td>+68%</td></tr><tr><td>Social sciences</td><td>2.0</td><td>3.2</td><td>+69%</td></tr></tbody><tbody class="srt s1"><tr><td>Computer sci + math</td><td>5.6</td><td>6.3</td><td>+22%</td></tr><tr><td>Engineering</td><td>15.9</td><td>17.2</td><td>+16%</td></tr><tr><td>Geo/atmos/ocean</td><td>6.5</td><td>6.1</td><td>+1%</td></tr><tr><td>Life sciences</td><td>52.3</td><td>39.2</td><td>-19%</td></tr><tr><td>Other</td><td>3.9</td><td>9.3</td><td>+158%</td></tr><tr><td>Physical sciences</td><td>10.2</td><td>13.1</td><td>+38%</td></tr><tr><td>Psychology</td><td>3.5</td><td>5.5</td><td>+68%</td></tr><tr><td>Social sciences</td><td>2.0</td><td>3.2</td><td>+69%</td></tr></tbody><tbody class="srt s2"><tr><td>Life sciences</td><td>52.3</td><td>39.2</td><td>-19%</td></tr><tr><td>Engineering</td><td>15.9</td><td>17.2</td><td>+16%</td></tr><tr><td>Physical sciences</td><td>10.2</td><td>13.1</td><td>+38%</td></tr><tr><td>Geo/atmos/ocean</td><td>6.5</td><td>6.1</td><td>+1%</td></tr><tr><td>Computer sci + math</td><td>5.6</td><td>6.3</td><td>+22%</td></tr><tr><td>Other</td><td>3.9</td><td>9.3</td><td>+158%</td></tr><tr><td>Psychology</td><td>3.5</td><td>5.5</td><td>+68%</td></tr><tr><td>Social sciences</td><td>2.0</td><td>3.2</td><td>+69%</td></tr></tbody><tbody class="srt s3"><tr><td>Life sciences</td><td>52.3</td><td>39.2</td><td>-19%</td></tr><tr><td>Engineering</td><td>15.9</td><td>17.2</td><td>+16%</td></tr><tr><td>Physical sciences</td><td>10.2</td><td>13.1</td><td>+38%</td></tr><tr><td>Other</td><td>3.9</td><td>9.3</td><td>+158%</td></tr><tr><td>Computer sci + math</td><td>5.6</td><td>6.3</td><td>+22%</td></tr><tr><td>Geo/atmos/ocean</td><td>6.5</td><td>6.1</td><td>+1%</td></tr><tr><td>Psychology</td><td>3.5</td><td>5.5</td><td>+68%</td></tr><tr><td>Social sciences</td><td>2.0</td><td>3.2</td><td>+69%</td></tr></tbody><tbody class="srt s4"><tr><td>Other</td><td>3.9</td><td>9.3</td><td>+158%</td></tr><tr><td>Social sciences</td><td>2.0</td><td>3.2</td><td>+69%</td></tr><tr><td>Psychology</td><td>3.5</td><td>5.5</td><td>+68%</td></tr><tr><td>Physical sciences</td><td>10.2</td><td>13.1</td><td>+38%</td></tr><tr><td>Computer sci + math</td><td>5.6</td><td>6.3</td><td>+22%</td></tr><tr><td>Engineering</td><td>15.9</td><td>17.2</td><td>+16%</td></tr><tr><td>Geo/atmos/ocean</td><td>6.5</td><td>6.1</td><td>+1%</td></tr><tr><td>Life sciences</td><td>52.3</td><td>39.2</td><td>-19%</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label>
+<h2>Method and numbers</h2>
+<p>I used level-1 fields in research.nsf_rd_by_field. Points shifted = half the sum of absolute share changes. To survive the revision, I merged computer sciences with mathematics and statistics (math was split out in FY2021) and life sciences with other/NEC. Merged shares (%):</p><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s5"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s6"><table><tr><th><label class="srth" for="s2-t1-s1">Group<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">FY2004<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">FY2020<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">FY2021<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s5">FY2024<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s6">FY2025 (prelim.)<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>Life + other</td><td>55.6</td><td>56.6</td><td>52.3</td><td>47.8</td><td>48.6</td></tr><tr><td>Engineering</td><td>16.6</td><td>15.5</td><td>17.1</td><td>17.6</td><td>17.2</td></tr><tr><td>Physical</td><td>9.8</td><td>9.9</td><td>11.7</td><td>12.8</td><td>13.1</td></tr><tr><td>Geosciences</td><td>7.0</td><td>5.9</td><td>5.9</td><td>5.7</td><td>6.1</td></tr><tr><td>Computing + math</td><td>5.5</td><td>6.9</td><td>7.1</td><td>7.6</td><td>6.3</td></tr><tr><td>Psychology</td><td>3.5</td><td>3.8</td><td>4.4</td><td>5.3</td><td>5.5</td></tr><tr><td>Social</td><td>2.0</td><td>1.3</td><td>1.6</td><td>3.2</td><td>3.2</td></tr></tbody><tbody class="srt s1"><tr><td>Computing + math</td><td>5.5</td><td>6.9</td><td>7.1</td><td>7.6</td><td>6.3</td></tr><tr><td>Engineering</td><td>16.6</td><td>15.5</td><td>17.1</td><td>17.6</td><td>17.2</td></tr><tr><td>Geosciences</td><td>7.0</td><td>5.9</td><td>5.9</td><td>5.7</td><td>6.1</td></tr><tr><td>Life + other</td><td>55.6</td><td>56.6</td><td>52.3</td><td>47.8</td><td>48.6</td></tr><tr><td>Physical</td><td>9.8</td><td>9.9</td><td>11.7</td><td>12.8</td><td>13.1</td></tr><tr><td>Psychology</td><td>3.5</td><td>3.8</td><td>4.4</td><td>5.3</td><td>5.5</td></tr><tr><td>Social</td><td>2.0</td><td>1.3</td><td>1.6</td><td>3.2</td><td>3.2</td></tr></tbody><tbody class="srt s2"><tr><td>Life + other</td><td>55.6</td><td>56.6</td><td>52.3</td><td>47.8</td><td>48.6</td></tr><tr><td>Engineering</td><td>16.6</td><td>15.5</td><td>17.1</td><td>17.6</td><td>17.2</td></tr><tr><td>Physical</td><td>9.8</td><td>9.9</td><td>11.7</td><td>12.8</td><td>13.1</td></tr><tr><td>Geosciences</td><td>7.0</td><td>5.9</td><td>5.9</td><td>5.7</td><td>6.1</td></tr><tr><td>Computing + math</td><td>5.5</td><td>6.9</td><td>7.1</td><td>7.6</td><td>6.3</td></tr><tr><td>Psychology</td><td>3.5</td><td>3.8</td><td>4.4</td><td>5.3</td><td>5.5</td></tr><tr><td>Social</td><td>2.0</td><td>1.3</td><td>1.6</td><td>3.2</td><td>3.2</td></tr></tbody><tbody class="srt s3"><tr><td>Life + other</td><td>55.6</td><td>56.6</td><td>52.3</td><td>47.8</td><td>48.6</td></tr><tr><td>Engineering</td><td>16.6</td><td>15.5</td><td>17.1</td><td>17.6</td><td>17.2</td></tr><tr><td>Physical</td><td>9.8</td><td>9.9</td><td>11.7</td><td>12.8</td><td>13.1</td></tr><tr><td>Computing + math</td><td>5.5</td><td>6.9</td><td>7.1</td><td>7.6</td><td>6.3</td></tr><tr><td>Geosciences</td><td>7.0</td><td>5.9</td><td>5.9</td><td>5.7</td><td>6.1</td></tr><tr><td>Psychology</td><td>3.5</td><td>3.8</td><td>4.4</td><td>5.3</td><td>5.5</td></tr><tr><td>Social</td><td>2.0</td><td>1.3</td><td>1.6</td><td>3.2</td><td>3.2</td></tr></tbody><tbody class="srt s4"><tr><td>Life + other</td><td>55.6</td><td>56.6</td><td>52.3</td><td>47.8</td><td>48.6</td></tr><tr><td>Engineering</td><td>16.6</td><td>15.5</td><td>17.1</td><td>17.6</td><td>17.2</td></tr><tr><td>Physical</td><td>9.8</td><td>9.9</td><td>11.7</td><td>12.8</td><td>13.1</td></tr><tr><td>Computing + math</td><td>5.5</td><td>6.9</td><td>7.1</td><td>7.6</td><td>6.3</td></tr><tr><td>Geosciences</td><td>7.0</td><td>5.9</td><td>5.9</td><td>5.7</td><td>6.1</td></tr><tr><td>Psychology</td><td>3.5</td><td>3.8</td><td>4.4</td><td>5.3</td><td>5.5</td></tr><tr><td>Social</td><td>2.0</td><td>1.3</td><td>1.6</td><td>3.2</td><td>3.2</td></tr></tbody><tbody class="srt s5"><tr><td>Life + other</td><td>55.6</td><td>56.6</td><td>52.3</td><td>47.8</td><td>48.6</td></tr><tr><td>Engineering</td><td>16.6</td><td>15.5</td><td>17.1</td><td>17.6</td><td>17.2</td></tr><tr><td>Physical</td><td>9.8</td><td>9.9</td><td>11.7</td><td>12.8</td><td>13.1</td></tr><tr><td>Computing + math</td><td>5.5</td><td>6.9</td><td>7.1</td><td>7.6</td><td>6.3</td></tr><tr><td>Geosciences</td><td>7.0</td><td>5.9</td><td>5.9</td><td>5.7</td><td>6.1</td></tr><tr><td>Psychology</td><td>3.5</td><td>3.8</td><td>4.4</td><td>5.3</td><td>5.5</td></tr><tr><td>Social</td><td>2.0</td><td>1.3</td><td>1.6</td><td>3.2</td><td>3.2</td></tr></tbody><tbody class="srt s6"><tr><td>Life + other</td><td>55.6</td><td>56.6</td><td>52.3</td><td>47.8</td><td>48.6</td></tr><tr><td>Engineering</td><td>16.6</td><td>15.5</td><td>17.1</td><td>17.6</td><td>17.2</td></tr><tr><td>Physical</td><td>9.8</td><td>9.9</td><td>11.7</td><td>12.8</td><td>13.1</td></tr><tr><td>Computing + math</td><td>5.5</td><td>6.9</td><td>7.1</td><td>7.6</td><td>6.3</td></tr><tr><td>Geosciences</td><td>7.0</td><td>5.9</td><td>5.9</td><td>5.7</td><td>6.1</td></tr><tr><td>Psychology</td><td>3.5</td><td>3.8</td><td>4.4</td><td>5.3</td><td>5.5</td></tr><tr><td>Social</td><td>2.0</td><td>1.3</td><td>1.6</td><td>3.2</td><td>3.2</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>Points shifted (merged groups): FY2004-FY2024 = 9.0; FY2004-FY2020 = 2.9; FY2020-FY2021 = 4.3; FY2021-FY2024 = 4.7; FY2004-FY2025 (preliminary end) = 7.8. Unmerged life sciences alone fell from 52.0% to 38.8% (FY2004 to FY2024), but part of that is reclassification into 'other fields'.</p><p>Merging does not fully neutralize the break: life plus other still drops 4.3 points in FY2020-21, so some money genuinely moved in classification between life sciences and physical/engineering/psychology categories. The 9.0 headline therefore likely overstates real change by some amount; 7.6 (the two clean segments, omitting the break year) is the lower bound.</p><p>In dollars, total research obligations grew from $53.4B to $99.6B (current dollars, nominal; not inflation-adjusted), so even shrinking-share fields such as life sciences grew in dollars ($27.7B to $38.6B). FY2025 is preliminary and fell back in total ($95.2B).</p>
 </section>
 <section>
-<h2>Caveats</h2>
-<ul><li>Research only (basic+applied), not development; defense development is excluded, so engineering and computing are understated versus total R&D tallies.</li><li>NCSES revised the field taxonomy in 2021: computer sciences and mathematics were split, and 'Other sciences nec' became 'Other fields' (likely absorbing reclassified items), so part of the 'other' jump is reclassification. I combined CS and math for comparability.</li><li>Endpoints are noisy: life sciences peaked at $42.5B in FY2020 (pandemic funding) and was 39.2% in FY2025; FY2025 is preliminary. Deflation uses CPI-U with an 11-month 2025 average, not a research-specific price index (biomedical research prices rose faster, so the real life-sciences drop would be larger).</li></ul>
+<h2>Scope caveats</h2>
+<p>This covers research (basic and applied) obligations, not development. Development, which is dominated by defense, has no field breakdown, so the shift among sciences excludes most DOD spending. Field assignment is by agency-reported categories, and a few agency reclassifications can move shares. I did not run an independent second source (for example AAAS or the HERD university table) and did not test the sensitivity to dropping the largest category.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Independent second source / drop-largest robustness</strong>: Not run; the single NSF table was the only source.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>2 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 28 rows — 4577 ms</summary><pre><code>SELECT &quot;year&quot;, rd_field, field_level, obligations_usd_million FROM research.nsf_rd_by_field WHERE field_level IN (0,1) AND &quot;year&quot; IN (2005,2015,2025) ORDER BY &quot;year&quot;, obligations_usd_million DESC</code></pre></details>
-<details class="sqltoggle"><summary>query — 34 rows — 1113 ms</summary><pre><code>SELECT &quot;year&quot;, rd_field, obligations_usd_million FROM research.nsf_rd_by_field WHERE field_level=1 AND &quot;year&quot; IN (2019,2020,2021,2022) ORDER BY &quot;year&quot;, obligations_usd_million DESC</code></pre></details>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 212 rows — 787 ms</summary><pre><code>SELECT year, rd_field, obligations_usd_million AS v FROM research.nsf_rd_by_field WHERE field_level IN (0,1) AND year BETWEEN 2003 AND 2025 ORDER BY year, rd_field</code></pre></details>
 
+</section>
+<section class="sources">
+<h2>Sources</h2>
+<ol>
+<li><a href="https://ncses.nsf.gov/surveys/federal-funds-research-development">AskAmerica research.nsf_rd_by_field (NSF NCSES Survey of Federal Funds for R&amp;D)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, rd_field, obligations_usd_million FROM research.nsf_rd_by_field WHERE field_level IN (0,1) AND year BETWEEN 2003 AND 2025</code></pre></details></li>
+</ol>
 </section>
 <footer>
 <p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
