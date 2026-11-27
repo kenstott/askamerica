@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Spending barely predicts results across districts: Camden, Chester-Upland, Canton and Toledo are high-spend/low-result; Forsyth, Oak Park and Elkhorn are low-spend/high-result (FY2018)</title>
+<title>Within each state, high-spending districts with weak results are mostly high-poverty urban districts, and spending barely predicts results once poverty is held fixed</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -107,44 +107,258 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Spending barely predicts results across districts: Camden, Chester-Upland, Canton and Toledo are high-spend/low-result; Forsyth, Oak Park and Elkhorn are low-spend/high-result (FY2018)</h1>
+<h1>Within each state, high-spending districts with weak results are mostly high-poverty urban districts, and spending barely predicts results once poverty is held fixed</h1>
+<p class="subtitle">Census F-33 FY2018 per-pupil current spending x EDFacts 2018 grades 3-8 proficiency (math+reading); 6,417 districts, 46 states; enrollment &gt;=1,000</p>
 </header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Spending vs results, within-state</text>
+  <rect class="panel-edge" x="20" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">High spenders, weak results: proficiency vs state average (pts)</text>
+    <g id="p1-gridlines">
+      <line class="grid" x1="119" y1="56" x2="119" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-0" class="tick" x="119" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-40</text>
+      <line class="grid" x1="186.75" y1="56" x2="186.75" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-1" class="tick" x="186.75" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-30</text>
+      <line class="grid" x1="254.50" y1="56" x2="254.50" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-2" class="tick" x="254.50" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-20</text>
+      <line class="grid" x1="322.25" y1="56" x2="322.25" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-3" class="tick" x="322.25" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-10</text>
+      <line class="grid" x1="390" y1="56" x2="390" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-value-tick-4" class="tick" x="390" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+    </g>
+    <g id="p1-axes">
+      <line class="axis" x1="390" y1="56" x2="390" y2="262" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="119" y1="262" x2="390" y2="262" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p1-value-axis-title" class="axis-title" x="254.50" y="306" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">points</text>
+    <g id="p1-category-axis-labels">
+      <text id="p1-xtick-chester-upland-pa" class="tick" x="111" y="71.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Chester-Upland PA</text>
+      <text id="p1-xtick-gary-in" class="tick" x="111" y="94.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Gary IN</text>
+      <text id="p1-xtick-flint-mi" class="tick" x="111" y="117.22" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Flint MI</text>
+      <text id="p1-xtick-normandy-mo" class="tick" x="111" y="140.11" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Normandy MO</text>
+      <text id="p1-xtick-east-chicago-in" class="tick" x="111" y="163" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">East Chicago IN</text>
+      <text id="p1-xtick-pine-bluff-ar" class="tick" x="111" y="185.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Pine Bluff AR</text>
+      <text id="p1-xtick-battle-creek-mi" class="tick" x="111" y="208.78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Battle Creek MI</text>
+      <text id="p1-xtick-st-louis-city" class="tick" x="111" y="231.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">St. Louis City</text>
+      <text id="p1-xtick-indianapolis" class="tick" x="111" y="254.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Indianapolis</text>
+    </g>
+    <g id="p1-series-proficiency-minus-state-avg" class="series">
+      <g class="hover">
+        <title>Chester-Upland PA — Proficiency minus state avg: -39.8</title>
+        <rect id="p1-mark-proficiency-minus-state-avg-chester-upland-pa" class="bar" x="120.36" y="60.12" width="269.65" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="119" y="58.94" width="271" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Gary IN — Proficiency minus state avg: -34.1</title>
+        <rect id="p1-mark-proficiency-minus-state-avg-gary-in" class="bar" x="158.97" y="83.01" width="231.03" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="119" y="81.83" width="271" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Flint MI — Proficiency minus state avg: -33.5</title>
+        <rect id="p1-mark-proficiency-minus-state-avg-flint-mi" class="bar" x="163.04" y="105.90" width="226.96" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="119" y="104.72" width="271" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Normandy MO — Proficiency minus state avg: -33</title>
+        <rect id="p1-mark-proficiency-minus-state-avg-normandy-mo" class="bar" x="166.43" y="128.79" width="223.58" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="119" y="127.61" width="271" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>East Chicago IN — Proficiency minus state avg: -31.7</title>
+        <rect id="p1-mark-proficiency-minus-state-avg-east-chicago-in" class="bar" x="175.23" y="151.68" width="214.77" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="119" y="150.50" width="271" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Pine Bluff AR — Proficiency minus state avg: -31.2</title>
+        <rect id="p1-mark-proficiency-minus-state-avg-pine-bluff-ar" class="bar" x="178.62" y="174.56" width="211.38" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="119" y="173.39" width="271" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Battle Creek MI — Proficiency minus state avg: -30.6</title>
+        <rect id="p1-mark-proficiency-minus-state-avg-battle-creek-mi" class="bar" x="182.69" y="197.45" width="207.32" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="119" y="196.28" width="271" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>St. Louis City — Proficiency minus state avg: -26.4</title>
+        <rect id="p1-mark-proficiency-minus-state-avg-st-louis-city" class="bar" x="211.14" y="220.34" width="178.86" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="119" y="219.17" width="271" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Indianapolis — Proficiency minus state avg: -25.6</title>
+        <rect id="p1-mark-proficiency-minus-state-avg-indianapolis" class="bar" x="216.56" y="243.23" width="173.44" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="119" y="242.06" width="271" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p1-annotations"><!-- panel annotations --></g>
+  </svg>
+  <rect class="panel-edge" x="448" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="448" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="11" style="font-size:11px" font-weight="600" text-anchor="middle">Low spenders, strong results: proficiency vs state average (pts)</text>
+    <g id="p2-gridlines">
+      <line class="grid" x1="120" y1="56" x2="120" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-0" class="tick" x="120" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <line class="grid" x1="165" y1="56" x2="165" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-1" class="tick" x="165" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5</text>
+      <line class="grid" x1="210" y1="56" x2="210" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-2" class="tick" x="210" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <line class="grid" x1="255" y1="56" x2="255" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-3" class="tick" x="255" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">15</text>
+      <line class="grid" x1="300" y1="56" x2="300" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-4" class="tick" x="300" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <line class="grid" x1="345" y1="56" x2="345" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-5" class="tick" x="345" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">25</text>
+      <line class="grid" x1="390" y1="56" x2="390" y2="262" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-6" class="tick" x="390" y="278" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">30</text>
+    </g>
+    <g id="p2-axes">
+      <line class="axis" x1="120" y1="56" x2="120" y2="262" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="120" y1="262" x2="390" y2="262" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p2-value-axis-title" class="axis-title" x="255" y="306" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">points</text>
+    <g id="p2-category-axis-labels">
+      <text id="p2-xtick-north-palos-il" class="tick" x="112" y="71.44" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">North Palos IL</text>
+      <text id="p2-xtick-clinton-ms" class="tick" x="112" y="94.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Clinton MS</text>
+      <text id="p2-xtick-newhall-ca" class="tick" x="112" y="117.22" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Newhall CA</text>
+      <text id="p2-xtick-whitehouse-tx" class="tick" x="112" y="140.11" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Whitehouse TX</text>
+      <text id="p2-xtick-etiwanda-ca" class="tick" x="112" y="163" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Etiwanda CA</text>
+      <text id="p2-xtick-vermilion-parish-la" class="tick" x="112" y="185.89" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Vermilion Parish LA</text>
+      <text id="p2-xtick-webb-city-mo" class="tick" x="112" y="208.78" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Webb City MO</text>
+      <text id="p2-xtick-dorchester-2-sc" class="tick" x="112" y="231.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Dorchester 2 SC</text>
+      <text id="p2-xtick-desoto-co-ms" class="tick" x="112" y="254.56" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">DeSoto Co MS</text>
+    </g>
+    <g id="p2-series-proficiency-minus-state-avg" class="series">
+      <g class="hover">
+        <title>North Palos IL — Proficiency minus state avg: 26.4</title>
+        <rect id="p2-mark-proficiency-minus-state-avg-north-palos-il" class="bar" x="120" y="60.12" width="237.60" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="120" y="58.94" width="270" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Clinton MS — Proficiency minus state avg: 24.3</title>
+        <rect id="p2-mark-proficiency-minus-state-avg-clinton-ms" class="bar" x="120" y="83.01" width="218.70" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="120" y="81.83" width="270" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Newhall CA — Proficiency minus state avg: 23.2</title>
+        <rect id="p2-mark-proficiency-minus-state-avg-newhall-ca" class="bar" x="120" y="105.90" width="208.80" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="120" y="104.72" width="270" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Whitehouse TX — Proficiency minus state avg: 21.4</title>
+        <rect id="p2-mark-proficiency-minus-state-avg-whitehouse-tx" class="bar" x="120" y="128.79" width="192.60" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="120" y="127.61" width="270" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Etiwanda CA — Proficiency minus state avg: 20.2</title>
+        <rect id="p2-mark-proficiency-minus-state-avg-etiwanda-ca" class="bar" x="120" y="151.68" width="181.80" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="120" y="150.50" width="270" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Vermilion Parish LA — Proficiency minus state avg: 15.3</title>
+        <rect id="p2-mark-proficiency-minus-state-avg-vermilion-parish-la" class="bar" x="120" y="174.56" width="137.70" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="120" y="173.39" width="270" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Webb City MO — Proficiency minus state avg: 13.8</title>
+        <rect id="p2-mark-proficiency-minus-state-avg-webb-city-mo" class="bar" x="120" y="197.45" width="124.20" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="120" y="196.28" width="270" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Dorchester 2 SC — Proficiency minus state avg: 13.8</title>
+        <rect id="p2-mark-proficiency-minus-state-avg-dorchester-2-sc" class="bar" x="120" y="220.34" width="124.20" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="120" y="219.17" width="270" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>DeSoto Co MS — Proficiency minus state avg: 13.6</title>
+        <rect id="p2-mark-proficiency-minus-state-avg-desoto-co-ms" class="bar" x="120" y="243.23" width="122.40" height="13.65" fill="#2563eb"/>
+        <rect class="hit" x="120" y="242.06" width="270" height="16" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p2-annotations"><!-- panel annotations --></g>
+  </svg>
+  <g id="brand">
+  <svg x="20" y="405" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:53053/a/0a233f374e5af16f18b1c7629e05267c.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
 <section>
-<h2>Summary</h2>
-<p>Using FY2018 Census F-33 current spending per pupil and EDFacts math+reading proficiency (grades 3-8, enrollment-weighted) for 5,427 districts of 1,500+ students, spending and results are almost unrelated nationally (r = +0.04); poverty matters far more (r = -0.69 with proficiency). Within states, districts spending 15%+ above the state average still scored far below state peers: Camden NJ (1.24x state average, 13% proficient, 41 points below state average), Chester-Upland PA (1.29x, 15%, -41), Canton OH (1.29x, 38%, -34), Toledo OH (1.24x, 34%, -37), Cincinnati OH (1.28x, 48%, -23). Strong results at low cost: Oak Park Unified CA ($9,613, 0.85x state avg, 77%, +32), Forsyth County GA ($9,315, 74%, +32), Fountain Valley CA, Dublin CA, Redondo Beach CA, York 04 SC, Elkhorn NE, Brownsburg IN, Catalina Foothills AZ ($6,732, 68%, +29). Adjusting for poverty, North Palos IL, Wise/Henry/Scott Co. VA, Sampson Co. NC and Sayreville/Dover/Lodi NJ over-perform on low budgets.</p>
+<h2>Answer</h2>
+<p>Using the only district-level spending and results data available here (Census F-33 FY2018 spending; state-test proficiency, 2018), the high-spend/weak-result group is dominated by high-poverty urban districts: Chester-Upland PA ($18,957 per pupil, 128% of its state average, proficiency 39.8 points below the state), Gary IN (143%, -34.1), Flint MI (154%, -33.5), Normandy MO (126%, -33.0), East Chicago IN (135%, -31.7), Pine Bluff AR (127%, -31.2), Battle Creek MI (143%, -30.6), St. Louis City (141%, -26.4), Indianapolis (152%, -25.6); Lansing, Pontiac and St. Paul also appear. Most have 65-100% free/reduced lunch rates.</p><p>Strongest results at the lowest spending (spending at 85% of the state average or less, FRPL 40%+): North Palos IL ($11,320, 79% of state, +26.4 points above state), Clinton MS (+24.3, $7,624), Newhall CA (+23.2), Whitehouse TX (+21.4), Etiwanda CA (+20.2), Vermilion Parish LA (+15.3), Webb City MO, Dorchester 2 SC, DeSoto Co MS, Wise County VA (89% proficient on $9,222).</p><p>Key finding: within states, after controlling for district poverty, spending has no detectable association with proficiency (coefficient -0.000035 points per dollar, p=0.34, n=6,373); poverty explains most variation (R2 0.64). High-spend districts often spend more because they serve high-need students, so the list shows poverty, not necessarily waste.</p>
 </section>
 <section>
-<h2>Exclusions</h2>
-<p>Excluded: the 352 districts whose frpl_rate is NULL (5,075 of 5,427 have a value), because the predicate frpl_rate IS NOT NULL was applied to the within-state and poverty-adjusted analysis. They are mostly Community Eligibility states. The national spend-proficiency correlation with all 5,427 districts is r = +0.04; the within-state analysis on the 5,075 shows r = -0.09 (log spend vs state-demeaned proficiency, states with 10+ districts). Named lists also exclude districts under 3,000 students.</p>
-</section>
-<section>
-<h2>Caveats</h2>
-<ul><li>Proficiency cutoffs differ by state, so ranks are relative to the state average only; no national ranking is possible with this data.</li><li>California county offices of education and special districts (e.g. St. Louis County special school district, $93,185 per pupil) top the spend/low-score lists but serve special populations; they are not typical districts and I left them out of the headline names.</li><li>Poverty adjustment used district FRPL with a pooled within-state slope (-51.6 points per 1.0 FRPL); some FRPL values look unreliable (Canton 0.0, Sayreville 1.0), so poverty-adjusted names are indicative only.</li><li>Higher-spending districts tend to serve higher-need students; association, not proof money fails.</li><li>Data window: 2018, the latest year with both sources before the 2019-2020 gap; not current.</li></ul>
-</section>
-<section>
-<h2>What This Report Does Not Answer</h2>
-<ul><li><strong>Current-year data</strong>: District proficiency data ends 2020 (2019 missing); used FY2018.</li><li><strong>Cross-state comparable outcomes</strong>: State tests are not comparable across states, so comparison is within-state only.</li></ul>
+<h2>Exclusions and caveats</h2>
+<p><strong>Exclusion disclosure.</strong> The predicate <code>frpl_rate IS NOT NULL</code> excluded 404 of 6,821 districts (1,000+ students, 300+ valid test-takers): those whose state publishes no free/reduced lunch rate (Community Eligibility states such as MA, TN, WV, DE). The predicates <code>a.math IS NOT NULL</code> and <code>a.rd IS NOT NULL</code> excluded districts with no usable math or reading proficiency (sentinel/suppressed values). Without the frpl exclusion the raw spending-proficiency correlation is 0.068 (n=6,821); with it 0.054 (n=6,417), so the exclusion changes nothing material. The unfiltered count of districts lacking math or reading was not separately measured. Also excluded: districts under 1,000 students (F-33 includes tiny non-operating units with per-pupil figures in the millions), FRPL values above 100% (miscoded), states with under 20 qualifying districts (regression n=6,373), and county special-education/vocational operators removed by name from the headline lists.</p><ul><li>Proficiency: enrollment-weighted math and reading, grades 3-8, 2018. State tests have different cutoffs, so each district is compared only to its own state average.</li><li>Spending: per-pupil current expenditure, FY2018, not adjusted for cost of living or student need.</li><li>Data end at 2018 (2019 absent, 2020 anomalous); no post-pandemic results. One year, descriptive not causal. Some FRPL values look miscoded (Canton OH at 0%, Sayreville NJ at 99.7%), so the poverty-adjusted ranking is noisy and I used the raw within-state gap for the named lists.</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
 <p>9 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>define_dataset — 9 ms</summary><pre><code>WITH a AS (SELECT leaid, MAX(lea_name) nm, MAX(fips) fips, SUM(math_test_pct_prof_midpt*math_test_num_valid)/SUM(math_test_num_valid) math, SUM(read_test_pct_prof_midpt*read_test_num_valid)/SUM(read_test_num_valid) rd, SUM(math_test_num_valid) n FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 AND math_test_pct_prof_midpt&gt;=0 AND read_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 AND read_test_num_valid&gt;0 GROUP BY leaid), f AS (SELECT leaid, per_pupil_current_expenditure pp, enrollment FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1500 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018) SELECT a.leaid, a.nm, a.fips, f.pp, f.enrollment, (a.math+a.rd)/2 prof, r.frpl_rate FROM a JOIN f ON a.leaid=f.leaid LEFT JOIN r ON r.leaid=a.leaid</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 6656 ms</summary><pre><code>WITH dpanel AS (WITH a AS (SELECT leaid, MAX(lea_name) nm, MAX(fips) fips, SUM(math_test_pct_prof_midpt*math_test_num_valid)/SUM(math_test_num_valid) math, SUM(read_test_pct_prof_midpt*read_test_num_valid)/SUM(read_test_num_valid) rd, SUM(math_test_num_valid) n FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 AND math_test_pct_prof_midpt&gt;=0 AND read_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 AND read_test_num_valid&gt;0 GROUP BY leaid), f AS (SELECT leaid, per_pupil_current_expenditure pp, enrollment FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1500 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018) SELECT a.leaid, a.nm, a.fips, f.pp, f.enrollment, (a.math+a.rd)/2 prof, r.frpl_rate FROM a JOIN f ON a.leaid=f.leaid LEFT JOIN r ON r.leaid=a.leaid) SELECT count(*) n, count(frpl_rate) nf, corr(pp,prof) c_pp_prof, corr(frpl_rate,prof) c_frpl, corr(pp,frpl_rate) c_pp_frpl, min(prof), max(prof) FROM dpanel</code></pre></details>
-<details class="sqltoggle"><summary>define_dataset — 7 ms</summary><pre><code>SELECT leaid, nm, fips, pp, enrollment, prof, frpl_rate, prof-avg(prof) OVER (PARTITION BY fips) dprof, frpl_rate-avg(frpl_rate) OVER (PARTITION BY fips) dfrpl, ln(pp)-avg(ln(pp)) OVER (PARTITION BY fips) dlpp, count(*) OVER (PARTITION BY fips) ns FROM dpanel WHERE frpl_rate IS NOT NULL AND frpl_rate&lt;=1.0</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 3228 ms</summary><pre><code>WITH dm AS (WITH dpanel AS (WITH a AS (SELECT leaid, MAX(lea_name) nm, MAX(fips) fips, SUM(math_test_pct_prof_midpt*math_test_num_valid)/SUM(math_test_num_valid) math, SUM(read_test_pct_prof_midpt*read_test_num_valid)/SUM(read_test_num_valid) rd, SUM(math_test_num_valid) n FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 AND math_test_pct_prof_midpt&gt;=0 AND read_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 AND read_test_num_valid&gt;0 GROUP BY leaid), f AS (SELECT leaid, per_pupil_current_expenditure pp, enrollment FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1500 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018) SELECT a.leaid, a.nm, a.fips, f.pp, f.enrollment, (a.math+a.rd)/2 prof, r.frpl_rate FROM a JOIN f ON a.leaid=f.leaid LEFT JOIN r ON r.leaid=a.leaid) SELECT leaid, nm, fips, pp, enrollment, prof, frpl_rate, prof-avg(prof) OVER (PARTITION BY fips) dprof, frpl_rate-avg(frpl_rate) OVER (PARTITION BY fips) dfrpl, ln(pp)-avg(ln(pp)) OVER (PARTITION BY fips) dlpp, count(*) OVER (PARTITION BY fips) ns FROM dpanel WHERE frpl_rate IS NOT NULL AND frpl_rate&lt;=1.0) SELECT count(*) n, regr_slope(dprof,dfrpl) b_pov, corr(dprof,dlpp) c_within, regr_slope(dprof,dlpp) b_lpp, max(frpl_rate) mx FROM dm WHERE ns&gt;=10</code></pre></details>
-<details class="sqltoggle"><summary>query — 12 rows — 2142 ms</summary><pre><code>WITH dm AS (WITH dpanel AS (WITH a AS (SELECT leaid, MAX(lea_name) nm, MAX(fips) fips, SUM(math_test_pct_prof_midpt*math_test_num_valid)/SUM(math_test_num_valid) math, SUM(read_test_pct_prof_midpt*read_test_num_valid)/SUM(read_test_num_valid) rd, SUM(math_test_num_valid) n FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 AND math_test_pct_prof_midpt&gt;=0 AND read_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 AND read_test_num_valid&gt;0 GROUP BY leaid), f AS (SELECT leaid, per_pupil_current_expenditure pp, enrollment FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1500 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018) SELECT a.leaid, a.nm, a.fips, f.pp, f.enrollment, (a.math+a.rd)/2 prof, r.frpl_rate FROM a JOIN f ON a.leaid=f.leaid LEFT JOIN r ON r.leaid=a.leaid) SELECT leaid, nm, fips, pp, enrollment, prof, frpl_rate, prof-avg(prof) OVER (PARTITION BY fips) dprof, frpl_rate-avg(frpl_rate) OVER (PARTITION BY fips) dfrpl, ln(pp)-avg(ln(pp)) OVER (PARTITION BY fips) dlpp, count(*) OVER (PARTITION BY fips) ns FROM dpanel WHERE frpl_rate IS NOT NULL AND frpl_rate&lt;=1.0) SELECT nm, fips, enrollment, round(pp) pp, round(exp(dlpp),2) spend_ratio_vs_state_avg, round(frpl_rate,2) frpl, round(prof,1) prof, round(dprof,1) prof_vs_state, round(dprof+51.57*dfrpl,1) resid FROM dm WHERE ns&gt;=10 AND enrollment&gt;=3000 AND dlpp&gt;=0.15 ORDER BY dprof+51.57*dfrpl ASC FETCH FIRST 12 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 12 rows — 2074 ms</summary><pre><code>WITH dm AS (WITH dpanel AS (WITH a AS (SELECT leaid, MAX(lea_name) nm, MAX(fips) fips, SUM(math_test_pct_prof_midpt*math_test_num_valid)/SUM(math_test_num_valid) math, SUM(read_test_pct_prof_midpt*read_test_num_valid)/SUM(read_test_num_valid) rd, SUM(math_test_num_valid) n FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 AND math_test_pct_prof_midpt&gt;=0 AND read_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 AND read_test_num_valid&gt;0 GROUP BY leaid), f AS (SELECT leaid, per_pupil_current_expenditure pp, enrollment FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1500 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018) SELECT a.leaid, a.nm, a.fips, f.pp, f.enrollment, (a.math+a.rd)/2 prof, r.frpl_rate FROM a JOIN f ON a.leaid=f.leaid LEFT JOIN r ON r.leaid=a.leaid) SELECT leaid, nm, fips, pp, enrollment, prof, frpl_rate, prof-avg(prof) OVER (PARTITION BY fips) dprof, frpl_rate-avg(frpl_rate) OVER (PARTITION BY fips) dfrpl, ln(pp)-avg(ln(pp)) OVER (PARTITION BY fips) dlpp, count(*) OVER (PARTITION BY fips) ns FROM dpanel WHERE frpl_rate IS NOT NULL AND frpl_rate&lt;=1.0) SELECT nm, fips, enrollment, round(pp) pp, round(exp(dlpp),2) spend_ratio_vs_state_avg, round(frpl_rate,2) frpl, round(prof,1) prof, round(dprof,1) prof_vs_state, round(dprof+51.57*dfrpl,1) resid FROM dm WHERE ns&gt;=10 AND enrollment&gt;=3000 AND dlpp&lt;=-0.10 ORDER BY dprof+51.57*dfrpl DESC FETCH FIRST 12 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 10 rows — 1879 ms</summary><pre><code>WITH dm AS (WITH dpanel AS (WITH a AS (SELECT leaid, MAX(lea_name) nm, MAX(fips) fips, SUM(math_test_pct_prof_midpt*math_test_num_valid)/SUM(math_test_num_valid) math, SUM(read_test_pct_prof_midpt*read_test_num_valid)/SUM(read_test_num_valid) rd, SUM(math_test_num_valid) n FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 AND math_test_pct_prof_midpt&gt;=0 AND read_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 AND read_test_num_valid&gt;0 GROUP BY leaid), f AS (SELECT leaid, per_pupil_current_expenditure pp, enrollment FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1500 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018) SELECT a.leaid, a.nm, a.fips, f.pp, f.enrollment, (a.math+a.rd)/2 prof, r.frpl_rate FROM a JOIN f ON a.leaid=f.leaid LEFT JOIN r ON r.leaid=a.leaid) SELECT leaid, nm, fips, pp, enrollment, prof, frpl_rate, prof-avg(prof) OVER (PARTITION BY fips) dprof, frpl_rate-avg(frpl_rate) OVER (PARTITION BY fips) dfrpl, ln(pp)-avg(ln(pp)) OVER (PARTITION BY fips) dlpp, count(*) OVER (PARTITION BY fips) ns FROM dpanel WHERE frpl_rate IS NOT NULL AND frpl_rate&lt;=1.0) SELECT nm, fips, enrollment, round(pp) pp, round(exp(dlpp),2) spend_ratio_vs_state_avg, round(frpl_rate,2) frpl, round(prof,1) prof, round(dprof,1) prof_vs_state FROM dm WHERE ns&gt;=10 AND enrollment&gt;=3000 AND dlpp&gt;=0.15 ORDER BY dprof ASC FETCH FIRST 10 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 10 rows — 1909 ms</summary><pre><code>WITH dm AS (WITH dpanel AS (WITH a AS (SELECT leaid, MAX(lea_name) nm, MAX(fips) fips, SUM(math_test_pct_prof_midpt*math_test_num_valid)/SUM(math_test_num_valid) math, SUM(read_test_pct_prof_midpt*read_test_num_valid)/SUM(read_test_num_valid) rd, SUM(math_test_num_valid) n FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 AND math_test_pct_prof_midpt&gt;=0 AND read_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 AND read_test_num_valid&gt;0 GROUP BY leaid), f AS (SELECT leaid, per_pupil_current_expenditure pp, enrollment FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1500 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018) SELECT a.leaid, a.nm, a.fips, f.pp, f.enrollment, (a.math+a.rd)/2 prof, r.frpl_rate FROM a JOIN f ON a.leaid=f.leaid LEFT JOIN r ON r.leaid=a.leaid) SELECT leaid, nm, fips, pp, enrollment, prof, frpl_rate, prof-avg(prof) OVER (PARTITION BY fips) dprof, frpl_rate-avg(frpl_rate) OVER (PARTITION BY fips) dfrpl, ln(pp)-avg(ln(pp)) OVER (PARTITION BY fips) dlpp, count(*) OVER (PARTITION BY fips) ns FROM dpanel WHERE frpl_rate IS NOT NULL AND frpl_rate&lt;=1.0) SELECT nm, fips, enrollment, round(pp) pp, round(exp(dlpp),2) spend_ratio_vs_state_avg, round(frpl_rate,2) frpl, round(prof,1) prof, round(dprof,1) prof_vs_state FROM dm WHERE ns&gt;=10 AND enrollment&gt;=3000 AND dlpp&lt;=-0.10 ORDER BY dprof DESC FETCH FIRST 10 ROWS ONLY</code></pre></details>
-<details class="sqltoggle"><summary>query — 1 rows — 2025 ms</summary><pre><code>WITH dpanel AS (WITH a AS (SELECT leaid, MAX(lea_name) nm, MAX(fips) fips, SUM(math_test_pct_prof_midpt*math_test_num_valid)/SUM(math_test_num_valid) math, SUM(read_test_pct_prof_midpt*read_test_num_valid)/SUM(read_test_num_valid) rd, SUM(math_test_num_valid) n FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 AND math_test_pct_prof_midpt&gt;=0 AND read_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 AND read_test_num_valid&gt;0 GROUP BY leaid), f AS (SELECT leaid, per_pupil_current_expenditure pp, enrollment FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1500 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018) SELECT a.leaid, a.nm, a.fips, f.pp, f.enrollment, (a.math+a.rd)/2 prof, r.frpl_rate FROM a JOIN f ON a.leaid=f.leaid LEFT JOIN r ON r.leaid=a.leaid) SELECT count(*) n_all, count(frpl_rate) n_with_frpl, corr(pp,prof) r_all FROM dpanel</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 1 ms</summary><pre><code>WITH a AS (SELECT leaid, MAX(fips) fips, MAX(lea_name) nm, SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_pct_prof_midpt*math_test_num_valid END)/NULLIF(SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_num_valid END),0) AS math, SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_pct_prof_midpt*read_test_num_valid END)/NULLIF(SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_num_valid END),0) AS rd, SUM(CASE WHEN math_test_num_valid&gt;0 THEN math_test_num_valid END) nvalid FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 GROUP BY leaid), f AS (SELECT leaid, state_fips, district_name, enrollment, per_pupil_current_expenditure pp FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1000 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018 AND frpl_rate IS NOT NULL) SELECT f.leaid, f.state_fips, f.district_name, f.enrollment, f.pp, a.math, a.rd, (a.math+a.rd)/2 AS prof, r.frpl_rate FROM f JOIN a ON a.leaid=f.leaid JOIN r ON r.leaid=f.leaid WHERE a.math IS NOT NULL AND a.rd IS NOT NULL AND a.nvalid&gt;=300</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 5290 ms</summary><pre><code>WITH dd AS (WITH a AS (SELECT leaid, MAX(fips) fips, MAX(lea_name) nm, SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_pct_prof_midpt*math_test_num_valid END)/NULLIF(SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_num_valid END),0) AS math, SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_pct_prof_midpt*read_test_num_valid END)/NULLIF(SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_num_valid END),0) AS rd, SUM(CASE WHEN math_test_num_valid&gt;0 THEN math_test_num_valid END) nvalid FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 GROUP BY leaid), f AS (SELECT leaid, state_fips, district_name, enrollment, per_pupil_current_expenditure pp FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1000 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018 AND frpl_rate IS NOT NULL) SELECT f.leaid, f.state_fips, f.district_name, f.enrollment, f.pp, a.math, a.rd, (a.math+a.rd)/2 AS prof, r.frpl_rate FROM f JOIN a ON a.leaid=f.leaid JOIN r ON r.leaid=f.leaid WHERE a.math IS NOT NULL AND a.rd IS NOT NULL AND a.nvalid&gt;=300) SELECT COUNT(*) n, COUNT(DISTINCT state_fips) st, AVG(pp) pp, AVG(prof) prof, AVG(frpl_rate) frpl, corr(prof,pp) c, corr(prof,frpl_rate) cf, MIN(frpl_rate) mn, MAX(frpl_rate) mx FROM dd</code></pre></details>
+<details class="sqltoggle"><summary>define_dataset — 1 ms</summary><pre><code>SELECT leaid, state_fips, district_name, enrollment, pp, prof, math, rd, frpl_rate, pp - AVG(pp) OVER (PARTITION BY state_fips) AS pp_dm, prof - AVG(prof) OVER (PARTITION BY state_fips) AS prof_dm, frpl_rate - AVG(frpl_rate) OVER (PARTITION BY state_fips) AS frpl_dm, 100.0*pp/AVG(pp) OVER (PARTITION BY state_fips) AS pp_idx FROM dd WHERE frpl_rate&lt;=1 AND state_fips IN (SELECT state_fips FROM dd GROUP BY state_fips HAVING COUNT(*)&gt;=20)</code></pre></details>
+<details class="sqltoggle"><summary>ols_regression — 5269 ms</summary><pre><code>WITH z AS (WITH dd AS (WITH a AS (SELECT leaid, MAX(fips) fips, MAX(lea_name) nm, SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_pct_prof_midpt*math_test_num_valid END)/NULLIF(SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_num_valid END),0) AS math, SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_pct_prof_midpt*read_test_num_valid END)/NULLIF(SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_num_valid END),0) AS rd, SUM(CASE WHEN math_test_num_valid&gt;0 THEN math_test_num_valid END) nvalid FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 GROUP BY leaid), f AS (SELECT leaid, state_fips, district_name, enrollment, per_pupil_current_expenditure pp FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1000 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018 AND frpl_rate IS NOT NULL) SELECT f.leaid, f.state_fips, f.district_name, f.enrollment, f.pp, a.math, a.rd, (a.math+a.rd)/2 AS prof, r.frpl_rate FROM f JOIN a ON a.leaid=f.leaid JOIN r ON r.leaid=f.leaid WHERE a.math IS NOT NULL AND a.rd IS NOT NULL AND a.nvalid&gt;=300) SELECT leaid, state_fips, district_name, enrollment, pp, prof, math, rd, frpl_rate, pp - AVG(pp) OVER (PARTITION BY state_fips) AS pp_dm, prof - AVG(prof) OVER (PARTITION BY state_fips) AS prof_dm, frpl_rate - AVG(frpl_rate) OVER (PARTITION BY state_fips) AS frpl_dm, 100.0*pp/AVG(pp) OVER (PARTITION BY state_fips) AS pp_idx FROM dd WHERE frpl_rate&lt;=1 AND state_fips IN (SELECT state_fips FROM dd GROUP BY state_fips HAVING COUNT(*)&gt;=20)) SELECT prof_dm, pp_dm, frpl_dm FROM z</code></pre></details>
+<details class="sqltoggle"><summary>query — 15 rows — 4517 ms</summary><pre><code>WITH z AS (WITH dd AS (WITH a AS (SELECT leaid, MAX(fips) fips, MAX(lea_name) nm, SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_pct_prof_midpt*math_test_num_valid END)/NULLIF(SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_num_valid END),0) AS math, SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_pct_prof_midpt*read_test_num_valid END)/NULLIF(SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_num_valid END),0) AS rd, SUM(CASE WHEN math_test_num_valid&gt;0 THEN math_test_num_valid END) nvalid FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 GROUP BY leaid), f AS (SELECT leaid, state_fips, district_name, enrollment, per_pupil_current_expenditure pp FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1000 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018 AND frpl_rate IS NOT NULL) SELECT f.leaid, f.state_fips, f.district_name, f.enrollment, f.pp, a.math, a.rd, (a.math+a.rd)/2 AS prof, r.frpl_rate FROM f JOIN a ON a.leaid=f.leaid JOIN r ON r.leaid=f.leaid WHERE a.math IS NOT NULL AND a.rd IS NOT NULL AND a.nvalid&gt;=300) SELECT leaid, state_fips, district_name, enrollment, pp, prof, math, rd, frpl_rate, pp - AVG(pp) OVER (PARTITION BY state_fips) AS pp_dm, prof - AVG(prof) OVER (PARTITION BY state_fips) AS prof_dm, frpl_rate - AVG(frpl_rate) OVER (PARTITION BY state_fips) AS frpl_dm, 100.0*pp/AVG(pp) OVER (PARTITION BY state_fips) AS pp_idx FROM dd WHERE frpl_rate&lt;=1 AND state_fips IN (SELECT state_fips FROM dd GROUP BY state_fips HAVING COUNT(*)&gt;=20)) SELECT state_fips st, district_name, enrollment, pp, pp_idx, prof, frpl_rate, prof_dm + 51.04*frpl_dm AS resid FROM z WHERE pp_idx&gt;=125 AND enrollment&gt;=2000 ORDER BY resid ASC</code></pre></details>
+<details class="sqltoggle"><summary>query — 15 rows — 4271 ms</summary><pre><code>WITH z AS (WITH dd AS (WITH a AS (SELECT leaid, MAX(fips) fips, MAX(lea_name) nm, SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_pct_prof_midpt*math_test_num_valid END)/NULLIF(SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_num_valid END),0) AS math, SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_pct_prof_midpt*read_test_num_valid END)/NULLIF(SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_num_valid END),0) AS rd, SUM(CASE WHEN math_test_num_valid&gt;0 THEN math_test_num_valid END) nvalid FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 GROUP BY leaid), f AS (SELECT leaid, state_fips, district_name, enrollment, per_pupil_current_expenditure pp FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1000 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018 AND frpl_rate IS NOT NULL) SELECT f.leaid, f.state_fips, f.district_name, f.enrollment, f.pp, a.math, a.rd, (a.math+a.rd)/2 AS prof, r.frpl_rate FROM f JOIN a ON a.leaid=f.leaid JOIN r ON r.leaid=f.leaid WHERE a.math IS NOT NULL AND a.rd IS NOT NULL AND a.nvalid&gt;=300) SELECT leaid, state_fips, district_name, enrollment, pp, prof, math, rd, frpl_rate, pp - AVG(pp) OVER (PARTITION BY state_fips) AS pp_dm, prof - AVG(prof) OVER (PARTITION BY state_fips) AS prof_dm, frpl_rate - AVG(frpl_rate) OVER (PARTITION BY state_fips) AS frpl_dm, 100.0*pp/AVG(pp) OVER (PARTITION BY state_fips) AS pp_idx FROM dd WHERE frpl_rate&lt;=1 AND state_fips IN (SELECT state_fips FROM dd GROUP BY state_fips HAVING COUNT(*)&gt;=20)) SELECT state_fips st, district_name, enrollment, pp, pp_idx, prof, frpl_rate, prof_dm + 51.04*frpl_dm AS resid FROM z WHERE pp_idx&lt;=85 AND enrollment&gt;=2000 ORDER BY resid DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 15 rows — 5305 ms</summary><pre><code>WITH z AS (WITH dd AS (WITH a AS (SELECT leaid, MAX(fips) fips, MAX(lea_name) nm, SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_pct_prof_midpt*math_test_num_valid END)/NULLIF(SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_num_valid END),0) AS math, SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_pct_prof_midpt*read_test_num_valid END)/NULLIF(SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_num_valid END),0) AS rd, SUM(CASE WHEN math_test_num_valid&gt;0 THEN math_test_num_valid END) nvalid FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 GROUP BY leaid), f AS (SELECT leaid, state_fips, district_name, enrollment, per_pupil_current_expenditure pp FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1000 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018 AND frpl_rate IS NOT NULL) SELECT f.leaid, f.state_fips, f.district_name, f.enrollment, f.pp, a.math, a.rd, (a.math+a.rd)/2 AS prof, r.frpl_rate FROM f JOIN a ON a.leaid=f.leaid JOIN r ON r.leaid=f.leaid WHERE a.math IS NOT NULL AND a.rd IS NOT NULL AND a.nvalid&gt;=300) SELECT leaid, state_fips, district_name, enrollment, pp, prof, math, rd, frpl_rate, pp - AVG(pp) OVER (PARTITION BY state_fips) AS pp_dm, prof - AVG(prof) OVER (PARTITION BY state_fips) AS prof_dm, frpl_rate - AVG(frpl_rate) OVER (PARTITION BY state_fips) AS frpl_dm, 100.0*pp/AVG(pp) OVER (PARTITION BY state_fips) AS pp_idx FROM dd WHERE frpl_rate&lt;=1 AND state_fips IN (SELECT state_fips FROM dd GROUP BY state_fips HAVING COUNT(*)&gt;=20)) SELECT state_fips st, district_name, enrollment, ROUND(pp) pp, ROUND(pp_idx) pp_idx, ROUND(prof,1) prof, ROUND(prof_dm,1) prof_vs_state, ROUND(frpl_rate*100) frpl FROM z WHERE pp_idx&gt;=125 AND pp_idx&lt;=200 AND enrollment&gt;=3000 AND district_name NOT LIKE '%CO %' AND district_name NOT LIKE '%COUNTY%' AND district_name NOT LIKE '%SPL%' AND district_name NOT LIKE '%SPECIAL%' AND district_name NOT LIKE '%CENTER%' ORDER BY prof_dm ASC</code></pre></details>
+<details class="sqltoggle"><summary>query — 15 rows — 5523 ms</summary><pre><code>WITH z AS (WITH dd AS (WITH a AS (SELECT leaid, MAX(fips) fips, MAX(lea_name) nm, SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_pct_prof_midpt*math_test_num_valid END)/NULLIF(SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_num_valid END),0) AS math, SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_pct_prof_midpt*read_test_num_valid END)/NULLIF(SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_num_valid END),0) AS rd, SUM(CASE WHEN math_test_num_valid&gt;0 THEN math_test_num_valid END) nvalid FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 GROUP BY leaid), f AS (SELECT leaid, state_fips, district_name, enrollment, per_pupil_current_expenditure pp FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1000 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018 AND frpl_rate IS NOT NULL) SELECT f.leaid, f.state_fips, f.district_name, f.enrollment, f.pp, a.math, a.rd, (a.math+a.rd)/2 AS prof, r.frpl_rate FROM f JOIN a ON a.leaid=f.leaid JOIN r ON r.leaid=f.leaid WHERE a.math IS NOT NULL AND a.rd IS NOT NULL AND a.nvalid&gt;=300) SELECT leaid, state_fips, district_name, enrollment, pp, prof, math, rd, frpl_rate, pp - AVG(pp) OVER (PARTITION BY state_fips) AS pp_dm, prof - AVG(prof) OVER (PARTITION BY state_fips) AS prof_dm, frpl_rate - AVG(frpl_rate) OVER (PARTITION BY state_fips) AS frpl_dm, 100.0*pp/AVG(pp) OVER (PARTITION BY state_fips) AS pp_idx FROM dd WHERE frpl_rate&lt;=1 AND state_fips IN (SELECT state_fips FROM dd GROUP BY state_fips HAVING COUNT(*)&gt;=20)) SELECT state_fips st, district_name, enrollment, ROUND(pp) pp, ROUND(pp_idx) pp_idx, ROUND(prof,1) prof, ROUND(prof_dm,1) prof_vs_state, ROUND(frpl_rate*100) frpl FROM z WHERE pp_idx&lt;=85 AND enrollment&gt;=3000 AND frpl_rate&gt;=0.4 AND district_name NOT LIKE '%SPECIAL%' ORDER BY prof_dm DESC</code></pre></details>
+<details class="sqltoggle"><summary>query — 1 rows — 2700 ms</summary><pre><code>WITH a AS (SELECT leaid, SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_pct_prof_midpt*math_test_num_valid END)/NULLIF(SUM(CASE WHEN math_test_pct_prof_midpt&gt;=0 AND math_test_num_valid&gt;0 THEN math_test_num_valid END),0) AS math, SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_pct_prof_midpt*read_test_num_valid END)/NULLIF(SUM(CASE WHEN read_test_pct_prof_midpt&gt;=0 AND read_test_num_valid&gt;0 THEN read_test_num_valid END),0) AS rd, SUM(CASE WHEN math_test_num_valid&gt;0 THEN math_test_num_valid END) nvalid FROM edu.district_assessments WHERE year=2018 AND grade BETWEEN 3 AND 8 GROUP BY leaid), f AS (SELECT leaid, per_pupil_current_expenditure pp FROM edu.f33_district_finance WHERE year=2018 AND enrollment&gt;=1000 AND per_pupil_current_expenditure&gt;0), r AS (SELECT leaid, frpl_rate FROM edu.district_resources WHERE year=2018 AND frpl_rate IS NOT NULL) SELECT COUNT(*) n_all, COUNT(r.leaid) n_with_frpl, corr((a.math+a.rd)/2, f.pp) c_all FROM f JOIN a ON a.leaid=f.leaid LEFT JOIN r ON r.leaid=f.leaid WHERE a.math IS NOT NULL AND a.rd IS NOT NULL AND a.nvalid&gt;=300</code></pre></details>
 
-</section>
-<section class="sources">
-<h2>Sources</h2>
-<ol>
-<li><a href="https://www.census.gov/programs-surveys/school-finances.html">edu.f33_district_finance (Census F-33)</a></li>
-<li><a href="https://educationdata.urban.org">edu.district_assessments (NCES EDFacts via Urban Institute)</a></li>
-</ol>
 </section>
 <footer>
 <p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>

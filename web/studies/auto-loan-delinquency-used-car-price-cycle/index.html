@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Auto delinquency tracks used-car prices only loosely (r about -0.4); lenders are not facing a collapse in collateral, but 2021-22 vintages are underwater-prone</title>
+<title>Auto delinquency does not track used-car prices closely: the link is loose and lagged, and today's record 90+ day delinquency is a borrower-affordability story with modest, not acute, collateral risk</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -112,6 +112,11 @@ figcaption{display:flex;justify-content:flex-end;padding:.4rem .6rem;border-top:
 #s2-t1-s3:checked ~ table label[for="s2-t1-s3"]{color:var(--link)}
 #s2-t1-s3:checked ~ table label[for="s2-t1-s3"] .srtcue{opacity:1}
 #s2-t1-s3:checked ~ .srtreset{display:inline-block}
+#s2-t1-s4:checked ~ table tbody.s0{display:none}
+#s2-t1-s4:checked ~ table tbody.s4{display:table-row-group}
+#s2-t1-s4:checked ~ table label[for="s2-t1-s4"]{color:var(--link)}
+#s2-t1-s4:checked ~ table label[for="s2-t1-s4"] .srtcue{opacity:1}
+#s2-t1-s4:checked ~ .srtreset{display:inline-block}
 }
 </style>
 </head>
@@ -124,43 +129,306 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Auto delinquency tracks used-car prices only loosely (r about -0.4); lenders are not facing a collapse in collateral, but 2021-22 vintages are underwater-prone</h1>
-<p class="subtitle">NY Fed Consumer Credit Panel (warehouse econ.household_debt_credit, 2003Q1-2026Q3) vs BLS CPI used cars and trucks CUSR0000SETA02 (FRED, quarter-end months)</p>
+<h1>Auto delinquency does not track used-car prices closely: the link is loose and lagged, and today's record 90+ day delinquency is a borrower-affordability story with modest, not acute, collateral risk</h1>
+<p class="subtitle">NY Fed Consumer Credit Panel (econ.household_debt_credit) vs BLS CPI used cars and trucks, SA (econ.new_vehicles_cpi), 2003Q1-2026Q3, quarterly</p>
 </header>
+<figure class="board">
+<!--
+  Dashboard from AskAmerica compose_dashboard. Self-contained: no
+  external assets, no scripts. Drop it into an artifact or an HTML
+  page as-is.
+
+  Each panel is a nested <svg> with its own viewBox, so a panel's
+  internal coordinates are exactly what its own data produced. Panel
+  ids are namespaced p1-, p2-, ... so the per-chart editing contract
+  still works: p2-mark-california, p3-series-nominal, and so on.
+
+  Safe to edit: panel captions (<text class="caption">), the
+  dashboard title/subtitle/footnote, any panel's fills, and the
+  per-panel <g id="pN-annotations"> groups, which paint last.
+  Do NOT move a panel's internal geometry, and do NOT change one
+  panel's axis domain: panels sharing a scale_group were given one
+  domain deliberately so they can be compared.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 570" width="880" height="570" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    .dash-title { font-size: 20px; font-weight: 650 }
+    .dash-subtitle { font-size: 13px }
+    .caption { font-size: 11px }
+    .footnote { font-size: 11px; font-style: italic }
+    .brand-mark { font-size: 11px; font-weight: 600; letter-spacing: 0.02em }
+    .byline { font-size: 11px }
+    .stat-label { font-size: 12px }
+    .stat-value { font-size: 30px; font-weight: 650 }
+    .stat-delta { font-size: 13px; font-weight: 600 }
+    .title { font-size: 15px; font-weight: 600 }
+    .axis-title { font-size: 12px }
+    .tick { font-size: 11px }
+    .value-label { font-size: 11px; font-weight: 600 }
+    .callout { font-size: 11px; font-style: italic }
+    @media (prefers-color-scheme: dark) {
+      .dash-bg, .chart-bg { fill: #16181d }
+      .panel-edge { stroke: #2c3038 }
+      .dash-title, .dash-subtitle, .caption, .footnote, .stat-label,
+      .stat-value, .title, .axis-title, .tick, .value-label,
+      .callout, .legend-label, .byline { fill: #e6e8eb }
+      .brand-mark { fill: #9aa4b2 }
+      .axis { stroke: #6b7280 }
+      .grid { stroke: #2c3038 }
+    }
+  </style>
+  <rect class="dash-bg" x="0" y="0" width="880" height="570" fill="#ffffff"/>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Auto delinquency vs used-car prices</text>
+  <g id="p1-stat">
+  <rect class="panel-edge" x="20" y="64" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="36" y="100" fill="#6b7280">Auto 90+ day delinquent share, 2026Q3</text>
+  <text class="stat-value" x="36" y="130" fill="#1f2328">5.66%</text>
+  <text class="stat-delta" x="36" y="150" fill="#059669">series high</text>
+  </g>
+  <g id="p2-stat">
+  <rect class="panel-edge" x="448" y="64" width="412" height="108" fill="none" stroke="#e5e7eb" rx="6"/>
+  <text class="stat-label" x="464" y="100" fill="#6b7280">Used-car CPI vs 2022Q1 peak</text>
+  <text class="stat-value" x="464" y="130" fill="#1f2328">-15%</text>
+  <text class="stat-delta" x="464" y="150" fill="#dc2626">still +30% vs 2019Q4</text>
+  </g>
+  <rect class="panel-edge" x="20" y="188" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
+  <svg x="20" y="188" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
+    <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
+    <text id="p3-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">Used-car CPI/10 (SA) and auto 90+ delinquent share</text>
+    <g id="p3-gridlines">
+      <line class="grid" x1="60" y1="228.32" x2="390" y2="228.32" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-0" class="tick" x="52" y="232.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="60" y1="193.86" x2="390" y2="193.86" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-1" class="tick" x="52" y="197.86" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">5</text>
+      <line class="grid" x1="60" y1="159.39" x2="390" y2="159.39" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-2" class="tick" x="52" y="163.39" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="60" y1="124.93" x2="390" y2="124.93" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-3" class="tick" x="52" y="128.93" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">15</text>
+      <line class="grid" x1="60" y1="90.46" x2="390" y2="90.46" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-4" class="tick" x="52" y="94.46" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
+      <line class="grid" x1="60" y1="56" x2="390" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p3-ytick-5" class="tick" x="52" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">25</text>
+    </g>
+    <g id="p3-axes">
+      <line class="axis" x1="60" y1="56" x2="60" y2="228.32" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="60" y1="228.32" x2="390" y2="228.32" stroke="#9ca3af" stroke-width="1"/>
+    </g>
+    <text id="p3-y-axis-title" class="axis-title" x="14" y="142.16" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 142.16)">index/10 or %</text>
+    <g id="p3-x-axis-labels">
+      <text id="p3-xtick-2008q1" class="tick" x="72.69" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 72.69 242.32)">2008Q1</text>
+      <text id="p3-xtick-2009q2" class="tick" x="98.08" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 98.08 242.32)">2009Q2</text>
+      <text id="p3-xtick-2010q4" class="tick" x="123.46" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 123.46 242.32)">2010Q4</text>
+      <text id="p3-xtick-2015q1" class="tick" x="148.85" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 148.85 242.32)">2015Q1</text>
+      <text id="p3-xtick-2019q4" class="tick" x="174.23" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 174.23 242.32)">2019Q4</text>
+      <text id="p3-xtick-2020q4" class="tick" x="199.62" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 199.62 242.32)">2020Q4</text>
+      <text id="p3-xtick-2021q4" class="tick" x="225" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 225 242.32)">2021Q4</text>
+      <text id="p3-xtick-2022q1" class="tick" x="250.38" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 250.38 242.32)">2022Q1</text>
+      <text id="p3-xtick-2023q1" class="tick" x="275.77" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 275.77 242.32)">2023Q1</text>
+      <text id="p3-xtick-2024q1" class="tick" x="301.15" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 301.15 242.32)">2024Q1</text>
+      <text id="p3-xtick-2025q1" class="tick" x="326.54" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 326.54 242.32)">2025Q1</text>
+      <text id="p3-xtick-2026q1" class="tick" x="351.92" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 351.92 242.32)">2026Q1</text>
+      <text id="p3-xtick-2026q3" class="tick" x="377.31" y="242.32" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end" transform="rotate(-45 377.31 242.32)">2026Q3</text>
+    </g>
+    <g id="p3-series-used-car-cpi-10" class="series">
+      <path id="p3-line-used-car-cpi-10" class="line" d="M 72.69 132.65 L 98.08 143.81 L 123.46 128.44 L 148.85 127.27 L 174.23 131.96 L 199.62 121.48 L 225 87.64 L 250.38 80.81 L 275.77 98.53 L 301.15 101.29 L 326.54 100.32 L 351.92 103.84 L 377.31 103.49" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="hover">
+        <title>2008Q1 — Used-car CPI/10: 13.88</title>
+        <circle id="p3-mark-used-car-cpi-10-2008q1" class="point" cx="72.69" cy="132.65" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="72.69" cy="132.65" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2009Q2 — Used-car CPI/10: 12.26</title>
+        <circle id="p3-mark-used-car-cpi-10-2009q2" class="point" cx="98.08" cy="143.81" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="98.08" cy="143.81" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2010Q4 — Used-car CPI/10: 14.49</title>
+        <circle id="p3-mark-used-car-cpi-10-2010q4" class="point" cx="123.46" cy="128.44" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="123.46" cy="128.44" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2015Q1 — Used-car CPI/10: 14.66</title>
+        <circle id="p3-mark-used-car-cpi-10-2015q1" class="point" cx="148.85" cy="127.27" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="148.85" cy="127.27" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2019Q4 — Used-car CPI/10: 13.98</title>
+        <circle id="p3-mark-used-car-cpi-10-2019q4" class="point" cx="174.23" cy="131.96" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="174.23" cy="131.96" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2020Q4 — Used-car CPI/10: 15.5</title>
+        <circle id="p3-mark-used-car-cpi-10-2020q4" class="point" cx="199.62" cy="121.48" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="199.62" cy="121.48" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2021Q4 — Used-car CPI/10: 20.41</title>
+        <circle id="p3-mark-used-car-cpi-10-2021q4" class="point" cx="225" cy="87.64" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="225" cy="87.64" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2022Q1 — Used-car CPI/10: 21.4</title>
+        <circle id="p3-mark-used-car-cpi-10-2022q1" class="point" cx="250.38" cy="80.81" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="250.38" cy="80.81" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2023Q1 — Used-car CPI/10: 18.83</title>
+        <circle id="p3-mark-used-car-cpi-10-2023q1" class="point" cx="275.77" cy="98.53" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="275.77" cy="98.53" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2024Q1 — Used-car CPI/10: 18.43</title>
+        <circle id="p3-mark-used-car-cpi-10-2024q1" class="point" cx="301.15" cy="101.29" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="301.15" cy="101.29" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2025Q1 — Used-car CPI/10: 18.57</title>
+        <circle id="p3-mark-used-car-cpi-10-2025q1" class="point" cx="326.54" cy="100.32" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="326.54" cy="100.32" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2026Q1 — Used-car CPI/10: 18.06</title>
+        <circle id="p3-mark-used-car-cpi-10-2026q1" class="point" cx="351.92" cy="103.84" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="351.92" cy="103.84" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2026Q3 — Used-car CPI/10: 18.11</title>
+        <circle id="p3-mark-used-car-cpi-10-2026q3" class="point" cx="377.31" cy="103.49" r="3" fill="#2563eb"/>
+        <circle class="hit" cx="377.31" cy="103.49" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p3-series-auto-90-share" class="series">
+      <path id="p3-line-auto-90-share" class="line" d="M 72.69 206.13 L 98.08 197.51 L 123.46 191.99 L 148.85 205.30 L 174.23 194.27 L 199.62 195.44 L 225 200.89 L 250.38 200.75 L 275.77 201.51 L 301.15 197.92 L 326.54 193.92 L 351.92 189.72 L 377.31 189.31" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="hover">
+        <title>2008Q1 — Auto 90+ share, %: 3.22</title>
+        <circle id="p3-mark-auto-90-share-2008q1" class="point" cx="72.69" cy="206.13" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="72.69" cy="206.13" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2009Q2 — Auto 90+ share, %: 4.47</title>
+        <circle id="p3-mark-auto-90-share-2009q2" class="point" cx="98.08" cy="197.51" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="98.08" cy="197.51" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2010Q4 — Auto 90+ share, %: 5.27</title>
+        <circle id="p3-mark-auto-90-share-2010q4" class="point" cx="123.46" cy="191.99" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="123.46" cy="191.99" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2015Q1 — Auto 90+ share, %: 3.34</title>
+        <circle id="p3-mark-auto-90-share-2015q1" class="point" cx="148.85" cy="205.30" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="148.85" cy="205.30" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2019Q4 — Auto 90+ share, %: 4.94</title>
+        <circle id="p3-mark-auto-90-share-2019q4" class="point" cx="174.23" cy="194.27" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="174.23" cy="194.27" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2020Q4 — Auto 90+ share, %: 4.77</title>
+        <circle id="p3-mark-auto-90-share-2020q4" class="point" cx="199.62" cy="195.44" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="199.62" cy="195.44" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2021Q4 — Auto 90+ share, %: 3.98</title>
+        <circle id="p3-mark-auto-90-share-2021q4" class="point" cx="225" cy="200.89" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="225" cy="200.89" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2022Q1 — Auto 90+ share, %: 4</title>
+        <circle id="p3-mark-auto-90-share-2022q1" class="point" cx="250.38" cy="200.75" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="250.38" cy="200.75" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2023Q1 — Auto 90+ share, %: 3.89</title>
+        <circle id="p3-mark-auto-90-share-2023q1" class="point" cx="275.77" cy="201.51" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="275.77" cy="201.51" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2024Q1 — Auto 90+ share, %: 4.41</title>
+        <circle id="p3-mark-auto-90-share-2024q1" class="point" cx="301.15" cy="197.92" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="301.15" cy="197.92" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2025Q1 — Auto 90+ share, %: 4.99</title>
+        <circle id="p3-mark-auto-90-share-2025q1" class="point" cx="326.54" cy="193.92" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="326.54" cy="193.92" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2026Q1 — Auto 90+ share, %: 5.6</title>
+        <circle id="p3-mark-auto-90-share-2026q1" class="point" cx="351.92" cy="189.72" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="351.92" cy="189.72" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>2026Q3 — Auto 90+ share, %: 5.66</title>
+        <circle id="p3-mark-auto-90-share-2026q3" class="point" cx="377.31" cy="189.31" r="3" fill="#ea580c"/>
+        <circle class="hit" cx="377.31" cy="189.31" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p3-legend">
+      <rect id="p3-legend-swatch-used-car-cpi-10" x="88" y="296" width="11" height="11" fill="#2563eb"/>
+      <text id="p3-legend-label-used-car-cpi-10" class="legend-label" x="104" y="305" fill="#1f2328" font-size="11" style="font-size:11px">Used-car CPI/10</text>
+      <rect id="p3-legend-swatch-auto-90-share" x="210" y="296" width="11" height="11" fill="#ea580c"/>
+      <text id="p3-legend-label-auto-90-share" class="legend-label" x="226" y="305" fill="#1f2328" font-size="11" style="font-size:11px">Auto 90+ share, %</text>
+    </g>
+    <g id="p3-annotations"><!-- panel annotations --></g>
+  </svg>
+  <g id="brand">
+  <svg x="20" y="529" width="18" height="18" viewBox="0 0 100 100" role="img" aria-label="AskAmerica">
+    <defs><clipPath id="brand-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+    <g clip-path="url(#brand-tile)">
+      <polygon fill="#1a3a8a" points="0,0 100,0 0,100"/>
+      <polygon fill="#d5322f" points="100,0 100,100 0,100"/>
+    </g>
+    <path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <polygon fill="#ffffff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/>
+  </svg>
+    <text class="brand-mark" x="45" y="544" fill="#374151">AskAmerica · askamerica.ai</text>
+  </g>
+  <g id="annotations"><!-- dashboard-level callouts here --></g>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:58542/a/0a534030af6cf9e8a7310b6770fe0d35.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</figure>
 <section>
 <h2>Answer</h2>
-<p>Loosely, and with the wrong sign for a simple story. Across 2003Q1-2026Q3 (95 quarters) the year-over-year change in used-car CPI correlates about -0.40 with the year-over-year change in both the 90+ day delinquent share of auto balances and the flow into 30+ day delinquency: falling prices go with rising delinquency, but only ~16% of variance is shared. Delinquency is slow-moving and mostly follows credit quality, interest rates and the labor market. Today the used-car index is down about 14% from its Dec 2021 peak but still about 30% above Dec 2019, so on this measure lenders are not facing collapsing collateral. The stress is in borrowers: 90+ day delinquent share is 5.66% in 2026Q3, the highest in this 2003-2026 series, up from 3.73% in 2022Q4.</p>
+<p><strong>Not very closely.</strong> Across 2003Q1-2026Q3 (95 quarters) the year-over-year change in the CPI used-car index correlates only about -0.5 with the same-quarter change in the new-90+-day-delinquency flow, and only -0.44 with the year-over-year change in the 90+ day delinquent balance share. The sign is as expected (falling prices, more delinquency) but the strength swings by sub-period, and the biggest price swing on record (2020-22 surge, then a 15% fall) did not produce the delinquency move a collateral story predicts. <strong>Lenders are exposed, but mainly through borrower stress, not a collateral collapse:</strong> used-car prices are about 30% above 2019Q4 and only 15% below the 2022Q1 peak. Auto 90+ day delinquency (5.66% of balances in 2026Q3) is the highest in the 2003-2026 series, above the 2010Q4 post-crisis peak of 5.27%, while prices are flat to slightly down. Delinquency is rising with prices roughly flat, so affordability, high payments and subprime stress are the driver.</p>
 </section>
 <section>
-<h2>What I computed</h2>
-<input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><table><tr><th><label class="srth" for="s2-t1-s1">Window<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">r: price YoY vs change in 90+ share YoY<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">r: price YoY vs change in 30+ flow YoY<span class="srtcue" aria-hidden="true">↓</span></label></th></tr><tbody class="srt s0"><tr><td>2003-2026 (n=91)</td><td>-0.40</td><td>-0.40</td></tr><tr><td>2003-2019 (n=64)</td><td>-0.12</td><td>-0.40</td></tr><tr><td>2010-2019 (n=40)</td><td>+0.13</td><td>-0.57</td></tr><tr><td>2021-2026 (n=23)</td><td>-0.74</td><td>-0.63</td></tr></tbody><tbody class="srt s1"><tr><td>2003-2019 (n=64)</td><td>-0.12</td><td>-0.40</td></tr><tr><td>2003-2026 (n=91)</td><td>-0.40</td><td>-0.40</td></tr><tr><td>2010-2019 (n=40)</td><td>+0.13</td><td>-0.57</td></tr><tr><td>2021-2026 (n=23)</td><td>-0.74</td><td>-0.63</td></tr></tbody><tbody class="srt s2"><tr><td>2010-2019 (n=40)</td><td>+0.13</td><td>-0.57</td></tr><tr><td>2003-2019 (n=64)</td><td>-0.12</td><td>-0.40</td></tr><tr><td>2003-2026 (n=91)</td><td>-0.40</td><td>-0.40</td></tr><tr><td>2021-2026 (n=23)</td><td>-0.74</td><td>-0.63</td></tr></tbody><tbody class="srt s3"><tr><td>2003-2026 (n=91)</td><td>-0.40</td><td>-0.40</td></tr><tr><td>2003-2019 (n=64)</td><td>-0.12</td><td>-0.40</td></tr><tr><td>2010-2019 (n=40)</td><td>+0.13</td><td>-0.57</td></tr><tr><td>2021-2026 (n=23)</td><td>-0.74</td><td>-0.63</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>The link is unstable: near zero for the 90+ share before 2020, strong only in the post-2021 boom-and-bust. Levels: price vs 30+ flow r=-0.44 (all), but price level vs 90+ share is +0.33 over the full sample (spurious trend overlap). Lags: price YoY leads the 90+ share change most strongly at 1-3 quarters (r about -0.45 to -0.46), faint for the 30+ flow. Quarterly overlapping YoY changes are autocorrelated, so p-values would be overstated; treat these as descriptive, not causal. In 2008-09, delinquency rose while used prices fell sharply into early 2009 (index 122 vs 139 in 2008Q1), consistent with the link, but recession job losses coincided.</p>
+<h2>What the data show</h2>
+<input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s0" checked><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s1"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s2"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s3"><input type="radio" name="s2-t1" class="srtbox" id="s2-t1-s4"><table><tr><th><label class="srth" for="s2-t1-s1">Window<span class="srtcue" aria-hidden="true">↑</span></label></th><th><label class="srth" for="s2-t1-s2">Corr: used-car YoY % vs change in 90+ flow (same qtr)<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s3">Lag pattern<span class="srtcue" aria-hidden="true">↓</span></label></th><th><label class="srth" for="s2-t1-s4">Corr: used-car YoY vs YoY change in 90+ balance share<span class="srtcue" aria-hidden="true">↑</span></label></th></tr><tbody class="srt s0"><tr><td>2003-2026 (n=91)</td><td>-0.51</td><td>fades to +0.05 at 4 qtrs</td><td>-0.44</td></tr><tr><td>2003-2019</td><td>-0.55</td><td>-0.48 at 2 qtrs, ~0 at 8</td><td>-0.15 (-0.5 at 8 qtrs)</td></tr><tr><td>2010-2019</td><td>-0.67</td><td>-0.84 at 2 to 4 qtrs</td><td>+0.13 same qtr, -0.82 at 8 qtrs</td></tr><tr><td>2022Q1-2026Q3 (n=19)</td><td>-0.58 same qtr, +0.53 at 4 qtrs</td><td>unstable</td><td>-0.62</td></tr></tbody><tbody class="srt s1"><tr><td>2003-2019</td><td>-0.55</td><td>-0.48 at 2 qtrs, ~0 at 8</td><td>-0.15 (-0.5 at 8 qtrs)</td></tr><tr><td>2003-2026 (n=91)</td><td>-0.51</td><td>fades to +0.05 at 4 qtrs</td><td>-0.44</td></tr><tr><td>2010-2019</td><td>-0.67</td><td>-0.84 at 2 to 4 qtrs</td><td>+0.13 same qtr, -0.82 at 8 qtrs</td></tr><tr><td>2022Q1-2026Q3 (n=19)</td><td>-0.58 same qtr, +0.53 at 4 qtrs</td><td>unstable</td><td>-0.62</td></tr></tbody><tbody class="srt s2"><tr><td>2003-2026 (n=91)</td><td>-0.51</td><td>fades to +0.05 at 4 qtrs</td><td>-0.44</td></tr><tr><td>2003-2019</td><td>-0.55</td><td>-0.48 at 2 qtrs, ~0 at 8</td><td>-0.15 (-0.5 at 8 qtrs)</td></tr><tr><td>2010-2019</td><td>-0.67</td><td>-0.84 at 2 to 4 qtrs</td><td>+0.13 same qtr, -0.82 at 8 qtrs</td></tr><tr><td>2022Q1-2026Q3 (n=19)</td><td>-0.58 same qtr, +0.53 at 4 qtrs</td><td>unstable</td><td>-0.62</td></tr></tbody><tbody class="srt s3"><tr><td>2003-2026 (n=91)</td><td>-0.51</td><td>fades to +0.05 at 4 qtrs</td><td>-0.44</td></tr><tr><td>2003-2019</td><td>-0.55</td><td>-0.48 at 2 qtrs, ~0 at 8</td><td>-0.15 (-0.5 at 8 qtrs)</td></tr><tr><td>2010-2019</td><td>-0.67</td><td>-0.84 at 2 to 4 qtrs</td><td>+0.13 same qtr, -0.82 at 8 qtrs</td></tr><tr><td>2022Q1-2026Q3 (n=19)</td><td>-0.58 same qtr, +0.53 at 4 qtrs</td><td>unstable</td><td>-0.62</td></tr></tbody><tbody class="srt s4"><tr><td>2010-2019</td><td>-0.67</td><td>-0.84 at 2 to 4 qtrs</td><td>+0.13 same qtr, -0.82 at 8 qtrs</td></tr><tr><td>2003-2019</td><td>-0.55</td><td>-0.48 at 2 qtrs, ~0 at 8</td><td>-0.15 (-0.5 at 8 qtrs)</td></tr><tr><td>2003-2026 (n=91)</td><td>-0.51</td><td>fades to +0.05 at 4 qtrs</td><td>-0.44</td></tr><tr><td>2022Q1-2026Q3 (n=19)</td><td>-0.58 same qtr, +0.53 at 4 qtrs</td><td>unstable</td><td>-0.62</td></tr></tbody></table><label class="srtreset" for="s2-t1-s0">reset order</label><p>Pre-2020 the relationship is moderately negative and strongest when price declines lead delinquency by two to four quarters (2010-19 flow correlation -0.84), consistent with falling collateral values raising defaults on loans with little equity. It is not stable: some lag correlations change sign, and the 2020-21 stimulus and forbearance period (prices +30%, delinquency down) is a regime break. Correlations are descriptive, on small overlapping autocorrelated quarterly samples; none is a causal estimate and I ran no robust or leave-out checks.</p><p>Episodes: in 2008Q1-2009Q2 used-car prices fell about 12% (138.8 to 122.6) while the 90+ flow rose from 2.71% to 3.48%. After the 2022Q1 peak prices fell about 15% to 2026Q3 and the 90+ flow rose from 1.61% to 3.02% and balance share from 4.0% to 5.66%, but that also reflects normalization from artificially low pandemic-era delinquency, higher rates and payments, not just collateral.</p><p>Exclusion disclosure: the CPI queries excluded rows with period = 'M13' (BLS's annual-average row, a duplicate summary of the twelve monthly rows, not a month). Including it would have injected annual averages into the quarterly means; I did not rerun with it included.</p>
 </section>
 <section>
 <h2>Current exposure</h2>
-<ul><li>Used CPI: 179.9 (Oct 2026) vs peak 211.7 (Dec 2021): -14%; vs Dec 2019 (140.1): +30%. Price YoY has hovered within roughly +/-3% since 2025, so there is no current price slide.</li><li>Delinquency is rising without a price drop: 90+ share 5.66% (2026Q3), flow into 90+ 3.02%, flow into 30+ 7.96%; auto balances $1.73T (record).</li><li>Exposure concentrates in loans written 2021-23 at peak prices: the index fell about 9-10% YoY through 2022-24, so those borrowers likely have negative equity, raising loss severity on repossession. That is an inference from index levels; the corpus has no loan-level LTV, vintage or recovery data.</li></ul>
+<ul><li>Used-car CPI (SA) was 179.9 in October 2026 versus 186.3 at the November 2025 high; recent year-over-year changes are about -2% to -3%. A mild drift down, not a 2008-style fall (about -10%).</li><li>Delinquency: 90+ share of auto balances 5.66% (2026Q3, series high), flow into 90+ 3.02% (highest since 2010, below the 3.48% 2009Q2 peak), flow into 30+ 7.96%.</li><li>Collateral buffer: prices remain about 30% above pre-pandemic. Loans originated near the 2021-22 peak at high prices and long terms are the pocket most likely underwater, which the CPI index cannot see. Loan-level LTV and negative-equity data are not in the warehouse.</li><li>Outside context, not independently verified: Fitch reported the subprime auto ABS 60+ day delinquency index at a record 6.90% in January 2026 and recoveries near 33%, per <a href='https://autoremarketing.com/subprime/fitch-continues-dialogue-about-affordability-delinquency'>Autoremarketing's summary</a> (I read a search summary, not the Fitch release); the Philadelphia Fed has an April 2026 report on whether delinquency rates overstate distress (<a href='https://www.philadelphiafed.org/-/media/FRBP/Assets/Consumer-Finance/Reports/cfi-report-april-2026-do-recent-auto-loan-delinquency-rates-overstate-borrower-distress.pdf'>CFI report</a>; not read).</li></ul><p>Bottom line: weak subprime recoveries mean losses per default rise if prices fall further, so a 10%+ drop would hurt, but today's delinquency surge is mostly affordability. Watch used-car year-over-year changes, which lead delinquency by two to four quarters.</p>
 </section>
 <section>
-<h2>Caveats</h2>
-<p>CPI used cars is a retail, quality-adjusted index, not wholesale auction prices (Manheim), which move faster and lead; Manheim is not in the corpus. NY Fed data cover all lenders and all credit tiers, so subprime stress is diluted. The used-car series was fetched from FRED (BLS CUSR0000SETA02, seasonally adjusted, quarter-end months), not the warehouse; I typed quarter-end values into the analysis from that fetch. A 2020-21 stimulus/forbearance period depressed delinquency while prices spiked, which drives the post-2021 negative correlation.</p>
+<h2>Limits</h2>
+<p>CPI used cars is a national retail price index, not the Manheim wholesale index lenders realize on repossession. The NY Fed series is all-lender, all credit tiers, balance-based. CPI was averaged by calendar quarter; correlations were computed in Python on values read from the tables. Windows: full overlap, 2010-19 (post-crisis, pre-pandemic) and 2022+ (post-surge) to show instability.</p>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>4 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 7709 ms</summary><pre><code>select series, count(*) n, min(&quot;date&quot;) a, max(&quot;date&quot;) b from econ.fred_indicators where series ilike '%used%' or series ilike '%CUSR0000SETA02%' or series ilike '%CUUR0000SETA02%' or series ilike '%AUTO%' or series ilike '%MANHEIM%' group by series</code></pre></details>
-<details class="sqltoggle"><summary>query — 4 rows — 2594 ms</summary><pre><code>select distinct loan_type, metric, delinquency_status from econ.household_debt_credit where loan_type='auto' fetch first 20 rows only</code></pre></details>
-<details class="sqltoggle"><summary>query — 124 rows — 819 ms</summary><pre><code>select period, metric, &quot;value&quot; from econ.household_debt_credit where loan_type='auto' and period &gt;= '2019Q1' order by period, metric</code></pre></details>
-<details class="sqltoggle"><summary>query — 64 rows — 912 ms</summary><pre><code>select period, max(case when metric='pct_balance_90plus_delinquent' then &quot;value&quot; end) p90, max(case when metric='flow_into_serious_delinquency_90plus' then &quot;value&quot; end) f90, max(case when metric='flow_into_early_delinquency_30plus' then &quot;value&quot; end) f30 from econ.household_debt_credit where loan_type='auto' and period &lt; '2019Q1' group by period order by period</code></pre></details>
+<p>6 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 5 rows — 1374 ms</summary><pre><code>select * from econ.household_debt_credit where loan_type='auto' and metric in ('pct_balance_90plus_delinquent','flow_into_serious_delinquency_90plus','flow_into_early_delinquency_30plus') order by period fetch first 5 rows only</code></pre></details>
+<details class="sqltoggle"><summary>query — 286 rows — 706 ms</summary><pre><code>select year, period, value from econ.new_vehicles_cpi where series='CUSR0000SETA02' and year&gt;=2003 and period&lt;&gt;'M13' order by year, period</code></pre></details>
+<details class="sqltoggle"><summary>query — 47 rows — 827 ms</summary><pre><code>select d.period, d.year, d.quarter,
+ max(case when metric='pct_balance_90plus_delinquent' then value end) as bal90,
+ max(case when metric='flow_into_serious_delinquency_90plus' then value end) as flow90,
+ max(case when metric='flow_into_early_delinquency_30plus' then value end) as flow30
+from econ.household_debt_credit d where loan_type='auto' and year&gt;=2015 group by d.period, d.year, d.quarter order by d.period</code></pre></details>
+<details class="sqltoggle"><summary>query — 200 rows — 977 ms</summary><pre><code>select year, (cast(substr(period,2,2) as int)+2)/3 as q, avg(value) as cpi from econ.new_vehicles_cpi where series='CUUR0000SETA02' and year&gt;=2002 and period&lt;&gt;'M13' group by year, (cast(substr(period,2,2) as int)+2)/3 order by year, q</code></pre></details>
+<details class="sqltoggle"><summary>query — 100 rows — 756 ms</summary><pre><code>select year, case when period in ('M01','M02','M03') then 1 when period in ('M04','M05','M06') then 2 when period in ('M07','M08','M09') then 3 else 4 end as q, avg(value) as cpi from econ.new_vehicles_cpi where series='CUSR0000SETA02' and year&gt;=2002 and period&lt;&gt;'M13' group by year, case when period in ('M01','M02','M03') then 1 when period in ('M04','M05','M06') then 2 when period in ('M07','M08','M09') then 3 else 4 end order by year, q</code></pre></details>
+<details class="sqltoggle"><summary>query — 144 rows — 675 ms</summary><pre><code>select period, metric, value from econ.household_debt_credit where loan_type='auto' and metric in ('pct_balance_90plus_delinquent','flow_into_serious_delinquency_90plus','flow_into_early_delinquency_30plus') and year&lt;2015 order by period, metric</code></pre></details>
 
 </section>
 <section class="sources">
 <h2>Sources</h2>
 <ol>
-<li><a href="https://fred.stlouisfed.org/series/CUSR0000SETA02">FRED CUSR0000SETA02 used cars and trucks CPI</a> <span class="note">— fetched 2026-11-17 via fredgraph.csv</span></li>
-<li><a href="https://www.newyorkfed.org/microeconomics/hhdc">AskAmerica econ.household_debt_credit (NY Fed CCP)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>select period, metric, &quot;value&quot; from econ.household_debt_credit where loan_type='auto' order by period, metric</code></pre></details></li>
+<li><a href="https://www.newyorkfed.org/microeconomics/hhdc">econ.household_debt_credit (NY Fed CCP, auto)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>select period, metric, value from econ.household_debt_credit where loan_type='auto' and metric in ('pct_balance_90plus_delinquent','flow_into_serious_delinquency_90plus','flow_into_early_delinquency_30plus')</code></pre></details></li>
+<li><a href="https://www.bls.gov/cpi/">econ.new_vehicles_cpi CUSR0000SETA02</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>select year, period, value from econ.new_vehicles_cpi where series='CUSR0000SETA02' and period&lt;&gt;'M13'</code></pre></details></li>
+<li><a href="https://autoremarketing.com/subprime/fitch-continues-dialogue-about-affordability-delinquency">Autoremarketing on Fitch subprime auto ABS</a></li>
+<li><a href="https://www.philadelphiafed.org/-/media/FRBP/Assets/Consumer-Finance/Reports/cfi-report-april-2026-do-recent-auto-loan-delinquency-rates-overstate-borrower-distress.pdf">Philadelphia Fed CFI April 2026</a></li>
 </ol>
 </section>
 <footer>
-<p class="footnote">Descriptive correlations on quarterly data; not causal. Used-car CPI is a retail proxy for collateral value.</p>
 <p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
