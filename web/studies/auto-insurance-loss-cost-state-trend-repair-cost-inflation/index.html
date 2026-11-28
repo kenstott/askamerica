@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Auto physical-damage loss cost per insured car rose a median 8% by state in 2019-2021 (collision severity +27%), and national repair-price inflation explains only about a quarter of the severity jump</title>
+<title>Auto loss cost per car was roughly flat 2019-2021 because claim frequency fell, while claim severity rose 28%; repair and parts CPI explain only a minority of that severity rise</title>
 <style>
 :root{--ink:#1f2328;--muted:#6b7280;--rule:#e5e7eb;--bg:#fff;--link:#1a3a8a}
 @media(prefers-color-scheme:dark){:root{--ink:#e6e8eb;--muted:#9aa4b2;--rule:#2c3038;--bg:#16181d;--link:#8ab4f8}}
@@ -107,8 +107,8 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
 </div>
 <main>
 <header>
-<h1>Auto physical-damage loss cost per insured car rose a median 8% by state in 2019-2021 (collision severity +27%), and national repair-price inflation explains only about a quarter of the severity jump</h1>
-<p class="subtitle">NAIC 2021/2022 Auto Insurance Database Report (total business, Texas n/a) vs BLS CPI motor vehicle maintenance and repair; 50 states + DC</p>
+<h1>Auto loss cost per car was roughly flat 2019-2021 because claim frequency fell, while claim severity rose 28%; repair and parts CPI explain only a minority of that severity rise</h1>
+<p class="subtitle">NAIC 2021/2022 Auto Insurance Database Report (total business, 2019-2021) and BLS CPI via econ.new_vehicles_cpi. Texas not reported.</p>
 </header>
 <figure class="board">
 <!--
@@ -156,148 +156,360 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     }
   </style>
   <rect class="dash-bg" x="0" y="0" width="880" height="446" fill="#ffffff"/>
-  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Auto physical-damage loss cost vs repair inflation</text>
+  <text class="dash-title" x="20" y="42" fill="#1f2328" style="font-size:20px">Loss cost change vs collision severity change, 2019-2021</text>
   <rect class="panel-edge" x="20" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
   <svg x="20" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
-    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="9" style="font-size:9px" font-weight="600" text-anchor="middle">Collision+comprehensive loss cost change 2019-2021 (%), top and botto…</text>
+    <text id="p1-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">State loss cost change vs collision severity change (%)</text>
     <g id="p1-gridlines">
-      <line class="grid" x1="83" y1="56" x2="83" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-value-tick-0" class="tick" x="83" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-40.0</text>
-      <line class="grid" x1="144.40" y1="56" x2="144.40" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-value-tick-1" class="tick" x="144.40" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">-20.0</text>
-      <line class="grid" x1="205.80" y1="56" x2="205.80" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-value-tick-2" class="tick" x="205.80" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.0</text>
-      <line class="grid" x1="267.20" y1="56" x2="267.20" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-value-tick-3" class="tick" x="267.20" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20.0</text>
-      <line class="grid" x1="328.60" y1="56" x2="328.60" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-value-tick-4" class="tick" x="328.60" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">40.0</text>
-      <line class="grid" x1="390" y1="56" x2="390" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p1-value-tick-5" class="tick" x="390" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">60.0</text>
+      <line class="grid" x1="66" y1="258" x2="386" y2="258" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-0" class="tick" x="58" y="262" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-30</text>
+      <line class="grid" x1="66" y1="217.60" x2="386" y2="217.60" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-1" class="tick" x="58" y="221.60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-20</text>
+      <line class="grid" x1="66" y1="177.20" x2="386" y2="177.20" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-2" class="tick" x="58" y="181.20" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">-10</text>
+      <line class="grid" x1="66" y1="136.80" x2="386" y2="136.80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-3" class="tick" x="58" y="140.80" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">0</text>
+      <line class="grid" x1="66" y1="96.40" x2="386" y2="96.40" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-4" class="tick" x="58" y="100.40" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">10</text>
+      <line class="grid" x1="66" y1="56" x2="386" y2="56" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p1-ytick-5" class="tick" x="58" y="60" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">20</text>
     </g>
     <g id="p1-axes">
-      <line class="axis" x1="205.80" y1="56" x2="205.80" y2="276" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="83" y1="276" x2="390" y2="276" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="56" x2="66" y2="258" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="66" y1="258" x2="386" y2="258" stroke="#9ca3af" stroke-width="1"/>
     </g>
-    <g id="p1-category-axis-labels">
-      <text id="p1-xtick-louisiana" class="tick" x="75" y="71" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Louisiana</text>
-      <text id="p1-xtick-new-jersey" class="tick" x="75" y="93" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">New Jersey</text>
-      <text id="p1-xtick-oklahoma" class="tick" x="75" y="115" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Oklahoma</text>
-      <text id="p1-xtick-connecticut" class="tick" x="75" y="137" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Connecticut</text>
-      <text id="p1-xtick-new-york" class="tick" x="75" y="159" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">New York</text>
-      <text id="p1-xtick-median-state" class="tick" x="75" y="181" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Median state</text>
-      <text id="p1-xtick-nebraska" class="tick" x="75" y="203" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Nebraska</text>
-      <text id="p1-xtick-colorado" class="tick" x="75" y="225" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Colorado</text>
-      <text id="p1-xtick-montana" class="tick" x="75" y="247" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Montana</text>
-      <text id="p1-xtick-wyoming" class="tick" x="75" y="269" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Wyoming</text>
+    <text id="p1-x-axis-title" class="axis-title" x="226" y="306" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle">Collision severity change %</text>
+    <text id="p1-y-axis-title" class="axis-title" x="14" y="157" fill="#1f2328" font-size="12" style="font-size:12px" text-anchor="middle" transform="rotate(-90 14 157)">Loss cost change %</text>
+    <g id="p1-x-axis-labels">
+      <text id="p1-xtick-0" class="tick" x="66" y="276" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <text id="p1-xtick-1" class="tick" x="119.33" y="276" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">15</text>
+      <text id="p1-xtick-2" class="tick" x="172.67" y="276" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <text id="p1-xtick-3" class="tick" x="226" y="276" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">25</text>
+      <text id="p1-xtick-4" class="tick" x="279.33" y="276" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">30</text>
+      <text id="p1-xtick-5" class="tick" x="332.67" y="276" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">35</text>
+      <text id="p1-xtick-6" class="tick" x="386" y="276" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">40</text>
     </g>
-    <g id="p1-series-change" class="series">
+    <g id="p1-series-states-n-50" class="series">
       <g class="hover">
-        <title>Louisiana — % change: 49.6</title>
-        <rect id="p1-mark-change-louisiana" class="bar" x="205.80" y="59.96" width="152.27" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="58.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (26.9, 3.3)</title>
+        <circle id="p1-mark-states-n-50-0" class="point" cx="246.27" cy="123.47" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="246.27" cy="123.47" r="8" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>New Jersey — % change: 43.7</title>
-        <rect id="p1-mark-change-new-jersey" class="bar" x="205.80" y="81.96" width="134.16" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="80.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (22.1, -5.3)</title>
+        <circle id="p1-mark-states-n-50-1" class="point" cx="195.07" cy="158.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="195.07" cy="158.21" r="8" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Oklahoma — % change: 22.0</title>
-        <rect id="p1-mark-change-oklahoma" class="bar" x="205.80" y="103.96" width="67.54" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="102.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (28.9, -0.4)</title>
+        <circle id="p1-mark-states-n-50-2" class="point" cx="267.60" cy="138.42" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="267.60" cy="138.42" r="8" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Connecticut — % change: 20.8</title>
-        <rect id="p1-mark-change-connecticut" class="bar" x="205.80" y="125.96" width="63.86" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="124.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (20, 6.3)</title>
+        <circle id="p1-mark-states-n-50-3" class="point" cx="172.67" cy="111.35" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="172.67" cy="111.35" r="8" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>New York — % change: 19.3</title>
-        <rect id="p1-mark-change-new-york" class="bar" x="205.80" y="147.96" width="59.25" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="146.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (23.1, 4.7)</title>
+        <circle id="p1-mark-states-n-50-4" class="point" cx="205.73" cy="117.81" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="205.73" cy="117.81" r="8" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Median state — % change: 8.3</title>
-        <rect id="p1-mark-change-median-state" class="bar" x="205.80" y="169.96" width="25.48" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="168.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (27, -17.5)</title>
+        <circle id="p1-mark-states-n-50-5" class="point" cx="247.33" cy="207.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="247.33" cy="207.50" r="8" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Nebraska — % change: -17.4</title>
-        <rect id="p1-mark-change-nebraska" class="bar" x="152.38" y="191.96" width="53.42" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="190.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (33.4, -3.8)</title>
+        <circle id="p1-mark-states-n-50-6" class="point" cx="315.60" cy="152.15" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="315.60" cy="152.15" r="8" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Colorado — % change: -18.5</title>
-        <rect id="p1-mark-change-colorado" class="bar" x="149.01" y="213.96" width="56.80" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="212.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (27, -8.5)</title>
+        <circle id="p1-mark-states-n-50-7" class="point" cx="247.33" cy="171.14" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="247.33" cy="171.14" r="8" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Montana — % change: -25.7</title>
-        <rect id="p1-mark-change-montana" class="bar" x="126.90" y="235.96" width="78.90" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="234.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (31.5, 1.4)</title>
+        <circle id="p1-mark-states-n-50-8" class="point" cx="295.33" cy="131.14" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="295.33" cy="131.14" r="8" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Wyoming — % change: -28.6</title>
-        <rect id="p1-mark-change-wyoming" class="bar" x="118.00" y="257.96" width="87.80" height="13.08" fill="#2563eb"/>
-        <rect class="hit" x="83" y="256.50" width="307" height="16" fill="#000" fill-opacity="0"/>
+        <title>States (n=50): (38.7, -1)</title>
+        <circle id="p1-mark-states-n-50-9" class="point" cx="372.13" cy="140.84" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="372.13" cy="140.84" r="8" fill="#000" fill-opacity="0"/>
       </g>
+      <g class="hover">
+        <title>States (n=50): (32.7, 5.8)</title>
+        <circle id="p1-mark-states-n-50-10" class="point" cx="308.13" cy="113.37" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="308.13" cy="113.37" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (14.3, -15.4)</title>
+        <circle id="p1-mark-states-n-50-11" class="point" cx="111.87" cy="199.02" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="111.87" cy="199.02" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (25.3, -0.3)</title>
+        <circle id="p1-mark-states-n-50-12" class="point" cx="229.20" cy="138.01" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="229.20" cy="138.01" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (26.8, 1.9)</title>
+        <circle id="p1-mark-states-n-50-13" class="point" cx="245.20" cy="129.12" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="245.20" cy="129.12" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (25.1, 6.6)</title>
+        <circle id="p1-mark-states-n-50-14" class="point" cx="227.07" cy="110.14" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="227.07" cy="110.14" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (21.4, 3.8)</title>
+        <circle id="p1-mark-states-n-50-15" class="point" cx="187.60" cy="121.45" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="187.60" cy="121.45" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (32.5, -2.7)</title>
+        <circle id="p1-mark-states-n-50-16" class="point" cx="306" cy="147.71" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="306" cy="147.71" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (31.8, 0.8)</title>
+        <circle id="p1-mark-states-n-50-17" class="point" cx="298.53" cy="133.57" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="298.53" cy="133.57" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (31, 15.4)</title>
+        <circle id="p1-mark-states-n-50-18" class="point" cx="290" cy="74.58" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="290" cy="74.58" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (29.7, -2.1)</title>
+        <circle id="p1-mark-states-n-50-19" class="point" cx="276.13" cy="145.28" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="276.13" cy="145.28" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (27.8, -5.3)</title>
+        <circle id="p1-mark-states-n-50-20" class="point" cx="255.87" cy="158.21" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="255.87" cy="158.21" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (25.8, 0.4)</title>
+        <circle id="p1-mark-states-n-50-21" class="point" cx="234.53" cy="135.18" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="234.53" cy="135.18" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (21.4, -10.7)</title>
+        <circle id="p1-mark-states-n-50-22" class="point" cx="187.60" cy="180.03" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="187.60" cy="180.03" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (34.9, -7.6)</title>
+        <circle id="p1-mark-states-n-50-23" class="point" cx="331.60" cy="167.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="331.60" cy="167.50" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (26.5, 5.7)</title>
+        <circle id="p1-mark-states-n-50-24" class="point" cx="242" cy="113.77" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="242" cy="113.77" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (22.2, -0.5)</title>
+        <circle id="p1-mark-states-n-50-25" class="point" cx="196.13" cy="138.82" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="196.13" cy="138.82" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (27.2, -21.4)</title>
+        <circle id="p1-mark-states-n-50-26" class="point" cx="249.47" cy="223.26" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="249.47" cy="223.26" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (22.2, -10.8)</title>
+        <circle id="p1-mark-states-n-50-27" class="point" cx="196.13" cy="180.43" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="196.13" cy="180.43" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (25.5, -4.6)</title>
+        <circle id="p1-mark-states-n-50-28" class="point" cx="231.33" cy="155.38" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="231.33" cy="155.38" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (26.3, -8.6)</title>
+        <circle id="p1-mark-states-n-50-29" class="point" cx="239.87" cy="171.54" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="239.87" cy="171.54" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (28.2, 1.1)</title>
+        <circle id="p1-mark-states-n-50-30" class="point" cx="260.13" cy="132.36" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="260.13" cy="132.36" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (29.7, -2.4)</title>
+        <circle id="p1-mark-states-n-50-31" class="point" cx="276.13" cy="146.50" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="276.13" cy="146.50" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (27.5, 3.8)</title>
+        <circle id="p1-mark-states-n-50-32" class="point" cx="252.67" cy="121.45" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="252.67" cy="121.45" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (27.9, -1)</title>
+        <circle id="p1-mark-states-n-50-33" class="point" cx="256.93" cy="140.84" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="256.93" cy="140.84" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (38.2, 2.8)</title>
+        <circle id="p1-mark-states-n-50-34" class="point" cx="366.80" cy="125.49" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="366.80" cy="125.49" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (26.5, 1.6)</title>
+        <circle id="p1-mark-states-n-50-35" class="point" cx="242" cy="130.34" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="242" cy="130.34" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (16.3, 10.5)</title>
+        <circle id="p1-mark-states-n-50-36" class="point" cx="133.20" cy="94.38" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="133.20" cy="94.38" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (36, -3.9)</title>
+        <circle id="p1-mark-states-n-50-37" class="point" cx="343.33" cy="152.56" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="343.33" cy="152.56" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (25, -2.3)</title>
+        <circle id="p1-mark-states-n-50-38" class="point" cx="226" cy="146.09" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="226" cy="146.09" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (31.4, -7.8)</title>
+        <circle id="p1-mark-states-n-50-39" class="point" cx="294.27" cy="168.31" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="294.27" cy="168.31" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (30.2, 4.2)</title>
+        <circle id="p1-mark-states-n-50-40" class="point" cx="281.47" cy="119.83" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="281.47" cy="119.83" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (24.2, 2.4)</title>
+        <circle id="p1-mark-states-n-50-41" class="point" cx="217.47" cy="127.10" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="217.47" cy="127.10" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (12.6, 7)</title>
+        <circle id="p1-mark-states-n-50-42" class="point" cx="93.73" cy="108.52" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="93.73" cy="108.52" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (26.2, -7.7)</title>
+        <circle id="p1-mark-states-n-50-43" class="point" cx="238.80" cy="167.91" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="238.80" cy="167.91" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (28.6, -5.5)</title>
+        <circle id="p1-mark-states-n-50-44" class="point" cx="264.40" cy="159.02" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="264.40" cy="159.02" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (26.4, -3.9)</title>
+        <circle id="p1-mark-states-n-50-45" class="point" cx="240.93" cy="152.56" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="240.93" cy="152.56" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (33.6, -5.5)</title>
+        <circle id="p1-mark-states-n-50-46" class="point" cx="317.73" cy="159.02" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="317.73" cy="159.02" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (21.5, -3.2)</title>
+        <circle id="p1-mark-states-n-50-47" class="point" cx="188.67" cy="149.73" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="188.67" cy="149.73" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (28.4, 2.2)</title>
+        <circle id="p1-mark-states-n-50-48" class="point" cx="262.27" cy="127.91" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="262.27" cy="127.91" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>States (n=50): (25.6, -21.6)</title>
+        <circle id="p1-mark-states-n-50-49" class="point" cx="232.40" cy="224.06" r="4" fill="#2563eb" fill-opacity="0.85"/>
+        <circle class="hit" cx="232.40" cy="224.06" r="8" fill="#000" fill-opacity="0"/>
+      </g>
+    </g>
+    <g id="p1-point-labels" class="labels">
     </g>
     <g id="p1-annotations"><!-- panel annotations --></g>
   </svg>
   <rect class="panel-edge" x="448" y="64" width="412" height="330" fill="none" stroke="#e5e7eb" rx="6"/>
   <svg x="448" y="64" width="412" height="330" viewBox="0 0 412 330" preserveAspectRatio="xMidYMid meet">
     <rect x="0" y="0" width="412" height="330" class="chart-bg" fill="#ffffff"/>
-    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="12" style="font-size:12px" font-weight="600" text-anchor="middle">National 2019-2021 change (%): severity vs price indexes</text>
+    <text id="p2-chart-title" class="title" x="206" y="26" fill="#1f2328" font-size="15" style="font-size:15px" font-weight="600" text-anchor="middle">National change 2019-2021 (%)</text>
     <g id="p2-gridlines">
-      <line class="grid" x1="152" y1="56" x2="152" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-value-tick-0" class="tick" x="152" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0.0</text>
-      <line class="grid" x1="186" y1="56" x2="186" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-value-tick-1" class="tick" x="186" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5.0</text>
-      <line class="grid" x1="220" y1="56" x2="220" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-value-tick-2" class="tick" x="220" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10.0</text>
-      <line class="grid" x1="254" y1="56" x2="254" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-value-tick-3" class="tick" x="254" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">15.0</text>
-      <line class="grid" x1="288" y1="56" x2="288" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-value-tick-4" class="tick" x="288" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20.0</text>
-      <line class="grid" x1="322" y1="56" x2="322" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-value-tick-5" class="tick" x="322" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">25.0</text>
-      <line class="grid" x1="356" y1="56" x2="356" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-value-tick-6" class="tick" x="356" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">30.0</text>
+      <line class="grid" x1="111" y1="56" x2="111" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-0" class="tick" x="111" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">0</text>
+      <line class="grid" x1="150.86" y1="56" x2="150.86" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-1" class="tick" x="150.86" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">5</text>
+      <line class="grid" x1="190.71" y1="56" x2="190.71" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-2" class="tick" x="190.71" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">10</text>
+      <line class="grid" x1="230.57" y1="56" x2="230.57" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-3" class="tick" x="230.57" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">15</text>
+      <line class="grid" x1="270.43" y1="56" x2="270.43" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-4" class="tick" x="270.43" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">20</text>
+      <line class="grid" x1="310.29" y1="56" x2="310.29" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-5" class="tick" x="310.29" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">25</text>
+      <line class="grid" x1="350.14" y1="56" x2="350.14" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text id="p2-value-tick-6" class="tick" x="350.14" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">30</text>
       <line class="grid" x1="390" y1="56" x2="390" y2="276" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3 3"/>
-      <text id="p2-value-tick-7" class="tick" x="390" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">35.0</text>
+      <text id="p2-value-tick-7" class="tick" x="390" y="292" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="middle">35</text>
     </g>
     <g id="p2-axes">
-      <line class="axis" x1="152" y1="56" x2="152" y2="276" stroke="#9ca3af" stroke-width="1"/>
-      <line class="axis" x1="152" y1="276" x2="390" y2="276" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="111" y1="56" x2="111" y2="276" stroke="#9ca3af" stroke-width="1"/>
+      <line class="axis" x1="111" y1="276" x2="390" y2="276" stroke="#9ca3af" stroke-width="1"/>
     </g>
     <g id="p2-category-axis-labels">
-      <text id="p2-xtick-collision-severity-ex-tx" class="tick" x="144" y="87.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Collision severity (ex-TX)</text>
-      <text id="p2-xtick-used-cars-cpi" class="tick" x="144" y="142.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Used cars CPI</text>
-      <text id="p2-xtick-repair-cpi-setd" class="tick" x="144" y="197.50" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Repair CPI (SETD)</text>
-      <text id="p2-xtick-collision-pure-premium-ex-tx" class="tick" x="144" y="246" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Collision pure premium</text>
-      <text id="p2-xtick-collision-pure-premium-ex-tx-2" class="tick" x="144" y="259" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">(ex-TX)</text>
+      <text id="p2-xtick-collision-severity" class="tick" x="103" y="78.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Collision severity</text>
+      <text id="p2-xtick-used-cars-cpi" class="tick" x="103" y="115" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Used cars CPI</text>
+      <text id="p2-xtick-body-work-cpi" class="tick" x="103" y="151.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Body work CPI</text>
+      <text id="p2-xtick-repair-cpi" class="tick" x="103" y="188.33" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Repair CPI</text>
+      <text id="p2-xtick-parts-cpi" class="tick" x="103" y="225" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Parts CPI</text>
+      <text id="p2-xtick-loss-cost-ex-tx" class="tick" x="103" y="261.67" fill="#1f2328" font-size="11" style="font-size:11px" text-anchor="end">Loss cost (ex-TX)</text>
     </g>
-    <g id="p2-series-change" class="series">
+    <g id="p2-series-unnamed" class="series">
       <g class="hover">
-        <title>Collision severity (ex-TX) — % change: 27.2</title>
-        <rect id="p2-mark-change-collision-severity-ex-tx" class="bar" x="152" y="65.90" width="184.96" height="34.20" fill="#2563eb"/>
-        <rect class="hit" x="152" y="65.90" width="238" height="34.20" fill="#000" fill-opacity="0"/>
+        <title>Collision severity — %: 28</title>
+        <rect id="p2-mark-unnamed-collision-severity" class="bar" x="111" y="62.60" width="223.20" height="22.47" fill="#2563eb"/>
+        <rect class="hit" x="111" y="62.60" width="279" height="22.47" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Used cars CPI — % change: 30.7</title>
-        <rect id="p2-mark-change-used-cars-cpi" class="bar" x="152" y="120.90" width="208.76" height="34.20" fill="#2563eb"/>
-        <rect class="hit" x="152" y="120.90" width="238" height="34.20" fill="#000" fill-opacity="0"/>
+        <title>Used cars CPI — %: 30.7</title>
+        <rect id="p2-mark-unnamed-used-cars-cpi" class="bar" x="111" y="99.27" width="244.72" height="22.47" fill="#2563eb"/>
+        <rect class="hit" x="111" y="99.27" width="279" height="22.47" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Repair CPI (SETD) — % change: 7.4</title>
-        <rect id="p2-mark-change-repair-cpi-setd" class="bar" x="152" y="175.90" width="50.32" height="34.20" fill="#2563eb"/>
-        <rect class="hit" x="152" y="175.90" width="238" height="34.20" fill="#000" fill-opacity="0"/>
+        <title>Body work CPI — %: 9.4</title>
+        <rect id="p2-mark-unnamed-body-work-cpi" class="bar" x="111" y="135.93" width="74.93" height="22.47" fill="#2563eb"/>
+        <rect class="hit" x="111" y="135.93" width="279" height="22.47" fill="#000" fill-opacity="0"/>
       </g>
       <g class="hover">
-        <title>Collision pure premium (ex-TX) — % change: 9.9</title>
-        <rect id="p2-mark-change-collision-pure-premium-ex-tx" class="bar" x="152" y="230.90" width="67.32" height="34.20" fill="#2563eb"/>
-        <rect class="hit" x="152" y="230.90" width="238" height="34.20" fill="#000" fill-opacity="0"/>
+        <title>Repair CPI — %: 7.4</title>
+        <rect id="p2-mark-unnamed-repair-cpi" class="bar" x="111" y="172.60" width="58.99" height="22.47" fill="#2563eb"/>
+        <rect class="hit" x="111" y="172.60" width="279" height="22.47" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Parts CPI — %: 5.9</title>
+        <rect id="p2-mark-unnamed-parts-cpi" class="bar" x="111" y="209.27" width="47.03" height="22.47" fill="#2563eb"/>
+        <rect class="hit" x="111" y="209.27" width="279" height="22.47" fill="#000" fill-opacity="0"/>
+      </g>
+      <g class="hover">
+        <title>Loss cost (ex-TX) — %: 5.2</title>
+        <rect id="p2-mark-unnamed-loss-cost-ex-tx" class="bar" x="111" y="245.93" width="41.45" height="22.47" fill="#2563eb"/>
+        <rect class="hit" x="111" y="245.93" width="279" height="22.47" fill="#000" fill-opacity="0"/>
       </g>
     </g>
     <g id="p2-annotations"><!-- panel annotations --></g>
@@ -315,42 +527,35 @@ padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;">
     <text class="brand-mark" x="45" y="420" fill="#374151">AskAmerica · askamerica.ai</text>
   </g>
   <g id="annotations"><!-- dashboard-level callouts here --></g>
-</svg><figcaption><a class="dl" href="http://127.0.0.1:53732/a/b594594b2b37ba46b16302261369b05c.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
+</svg><figcaption><a class="dl" href="http://127.0.0.1:60952/a/951131ad072d67e1ea7d3428d7fd9481.svg" download="askamerica-dashboard.svg" title="Download this chart as SVG"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12v1.5h11V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> SVG</a></figcaption>
 </figure>
 <section>
 <h2>Summary</h2>
-<p>Using NAIC incurred losses per earned exposure, collision-plus-comprehensive loss cost per insured car rose a median <strong>8.3%</strong> across 50 states and DC from 2019 to 2021, with a huge spread: Louisiana +49.6%, New Jersey +43.7%, Oklahoma +22.0% at the top; Wyoming -28.6%, Montana -25.7%, Colorado -18.5% at the bottom (the bottom and several top moves are comprehensive/hail swings; collision alone is steadier, median +8.4%). Collision <em>severity</em> (cost per claim) rose a median <strong>27.0%</strong> in nearly every state (range 12.6% to 38.7%), while the national CPI for vehicle maintenance and repair rose only <strong>7.4%</strong> over the same two years. So repair-price inflation as measured by the CPI tracks roughly a quarter of the severity increase in 2019-2021; the rest came from things the CPI does not capture (used and new vehicle prices, which the CPI shows +30.7% for used cars, newer and costlier-to-repair vehicles, total-loss valuations, and ADAS/sensor content). Repair CPI then accelerated: +28.1% from 2021 to 2024, so the gap probably narrowed in later years, but state loss data for those years was not accessible to me.</p><p>Frequency fell in 2020-21 (national collision frequency 6.03 to 5.21 per 100), which is why pure premium rose far less (+9.9% ex-Texas) than severity.</p>
+<p>Loss cost per insured car (incurred losses per earned exposure: liability + collision + comprehensive, NAIC) rose only about 1% nationally from 2019 to 2021 (about $956 to $956-ish; countrywide $945 to $956 summed by coverage; ex-Texas $821 to $864, +5.2%). The state range was -22% (WY, MT) to +15% (LA). This is a COVID artifact: collision claim frequency fell from 6.03 to 5.21 per 100 cars while severity (loss per claim) rose 28% (+$1,344, from $4,806 to $6,150). Repair and parts price inflation tracked only part of that severity jump: BLS motor vehicle maintenance and repair rose 7.4% and parts 5.9% over 2019-2021 (body work 9.4%), roughly a quarter of the severity increase; used-car prices (+30.7%) matched it much better. Across states, 2019-21 collision severity growth had essentially no correlation with total loss-cost change (r=0.00, n=50), and BLS publishes repair CPI nationally only, so a state-level repair-cost share cannot be measured.</p>
 </section>
 <section>
-<h2>What was measured</h2>
-<ul><li>Loss cost = pure premium = incurred losses / earned exposures, NAIC Table 29C (collision) and 32C (comprehensive), total business; severity from Table 29D. Parsed from the Maryland Insurance Administration's mirror of the NAIC report (the NAIC site returned 403).</li><li>Physical damage only (collision + comprehensive), the coverages that repair and parts prices touch directly. Liability (bodily injury, property damage) is not in the state table here.</li><li>National collision pure premium: $289.77 (2019), $233.80 (2020), $320.37 (2021) incl. Texas; ex-Texas $265.53 to $291.81 (+9.9%). Collision severity ex-Texas $4,404 to $5,601 (+27.2%).</li><li>Repair CPI (CUSR0000SETD annual average, FRED): 296.0 (2019), 306.0 (2020), 317.9 (2021), 344.1 (2022), 383.8 (2023), 407.3 (2024).</li></ul>
+<h2>Loss cost by state</h2>
+<p>Computed as sum of the three coverages' pure premium (NAIC Tables 26C, 29C, 32C). Largest 2019-21 increases: Louisiana +15.4% ($1,238 to $1,428), Oklahoma +10.5%, Tennessee +7.0%, Indiana +6.6%, Arkansas +6.3%, Georgia +5.8%, Mississippi +5.7%, California +4.7%. Largest declines: Wyoming -21.6%, Montana -21.4%, Colorado -17.5%, Hawaii -15.4%, Nebraska -10.8%, Michigan -10.7%. Median state: -1.0%. The 2019 comprehensive figures for WY, MT, CO are inflated by hail/large-loss years, which drives several of the big declines; small-state comprehensive is volatile. The 2022 edition's headline (collision average incurred per claim $6,113 in 2021 to $7,191 in 2022, +17.6%; combined average premium up 14.4% over 2022-2023) indicates the post-2021 rebound, but I could not open that PDF (NAIC returned HTTP 403), so state loss cost for 2022 and later is NOT computed here. Loss cost is a different thing from premium: the BLS motor vehicle insurance CPI rose 56% from 2019 to 2025 (571 to 893).</p>
 </section>
 <section>
-<h2>How much tracks repair inflation</h2>
-<p>BLS publishes repair and parts indexes nationally only, so a state-by-state regression of loss cost on repair inflation cannot be run. The state severity growth is tightly clustered (standard deviation 5.3 points around a 27% median), which itself says the driver is national, not state-specific. 7.4 / 27.2 is about 27%: the CPI repair component accounts for roughly a quarter of 2019-21 severity growth. This is a descriptive ratio, not a causal estimate; severity also moves with the mix of claims (fewer minor claims in 2020-21 raises average severity mechanically) and with vehicle prices. Parts CPI could not be retrieved, so the parts-specific share is not separated.</p><p>State differences in total loss cost (Louisiana, New Jersey, Oklahoma, Florida, Connecticut) are mainly frequency, comprehensive (weather/hail), and state-specific rules, not repair-price differences; no state repair price series exists to test that.</p>
+<h2>How much tracks repair and parts inflation</h2>
+<ul><li>National collision severity 2019-21: +28.0%. Repair CPI (SETD) +7.4%; body work (SETD01) +9.4%; parts (SETC) +5.9%; used cars (SETA02) +30.7%. Naively repair plus parts explain about 20-30% of severity growth; the rest reflects used-car/total-loss values, vehicle complexity and mix, and claim-mix shifts (fewer minor claims during lockdowns lifts average severity).</li><li>Later CPI (annual averages, 2019 to 2025): repair +45.8%, parts +26.1%, so the repair-cost pressure grew after the NAIC loss window and probably explains more of 2022-2025 severity.</li><li>Cross-state: regression of total loss-cost change on collision severity change gave slope 0.005, R2 about 0.00, n=50. State loss cost is dominated by frequency changes, so a state-level repair-inflation attribution is not supported. Severity growth by state (12.6% TN to 38.7% FL) is the only state-level proxy available; it is not repair CPI.</li></ul>
 </section>
 <section>
-<h2>Limits</h2>
-<ul><li>Window ends 2021 because the newer NAIC 2022/2023 edition could not be opened; losses lag about three years and Texas is not reported.</li><li>Comprehensive loss cost is volatile (hail): CO, MT, WY, NE declines largely reflect an unusually bad 2019 for hail.</li><li>The national severity and repair comparison uses two end years; 2020 is a pandemic-distorted year.</li></ul>
+<h2>Caveats</h2>
+<p>Most recent state loss data used is accident year 2021 (the 2022/2023 edition was unreachable). Texas is excluded from pure premium. Losses are developed liability and undeveloped physical damage, so severity is slightly understated for recent years. Window 2019-2021 was chosen because it is the latest with state loss data I could read and 2019 is the pre-pandemic baseline. CPI is national, so no state attribution. The warehouse has no auto-insurance table; the NAIC figures were read from the Maryland Insurance Administration's mirror of the NAIC PDF and computed with Python; CPI came from the warehouse.</p>
+</section>
+<section>
+<h2>What This Report Does Not Answer</h2>
+<ul><li><strong>Most recent years (2022+)</strong>: 2022/2023 NAIC PDF returned HTTP 403; only 2019-2021 state data computed</li></ul>
 </section>
 <section>
 <h2>Every query behind this report</h2>
-<p>2 warehouse calls ran in this session, in order. Each is reproducible against the same snapshot.</p>
-<details class="sqltoggle"><summary>query — 5 rows — 8006 ms</summary><pre><code>SELECT series, MIN(year) y0, MAX(year) y1, COUNT(*) n FROM econ.new_vehicles_cpi GROUP BY series</code></pre></details>
-<details class="sqltoggle"><summary>query — 3 rows — 645 ms</summary><pre><code>SELECT year, AVG(value) v FROM econ.new_vehicles_cpi WHERE series='CUUR0000SETA02' AND year BETWEEN 2019 AND 2021 GROUP BY year ORDER BY year</code></pre></details>
+<p>1 warehouse call ran in this session, in order. Each is reproducible against the same snapshot.</p>
+<details class="sqltoggle"><summary>query — 40 rows — 1415 ms</summary><pre><code>SELECT series, &quot;year&quot;, AVG(&quot;value&quot;) AS v FROM econ.new_vehicles_cpi WHERE series IN ('CUUR0000SETC','CUUR0000SETD','CUUR0000SETD01','CUUR0000SETE','CUUR0000SETA02') AND &quot;year&quot; BETWEEN 2019 AND 2026 GROUP BY series, &quot;year&quot; ORDER BY series, &quot;year&quot;</code></pre></details>
 
 </section>
-<section class="sources">
-<h2>Sources</h2>
-<ol>
-<li><a href="https://insurance.maryland.gov/Consumer/Documents/agencyhearings/NAIC%202021-2022%20Auto%20Insurance%20%20Database%20Report.pdf">NAIC 2021/2022 Auto Insurance Database Report (Maryland Insurance Administration mirror), Tables 29C, 29D, 32C</a></li>
-<li><a href="https://content.naic.org/sites/default/files/publication-aut-pb-auto-insurance-database.pdf">NAIC 2022/2023 Auto Insurance Database Report (403 to fetcher; not read)</a></li>
-<li><a href="https://fred.stlouisfed.org/graph/fredgraph.csv?id=CUSR0000SETD&amp;cosd=2019-01-01&amp;coed=2024-12-01&amp;fq=Annual&amp;fam=avg">FRED CUSR0000SETD motor vehicle maintenance and repair CPI</a></li>
-<li><a href="https://askamerica.ai">AskAmerica econ.new_vehicles_cpi (CUUR0000SETA02 used cars, annual avg 139.8 to 182.6)</a><details class="sqltoggle"><summary>Show SQL</summary><pre><code>SELECT year, AVG(value) FROM econ.new_vehicles_cpi WHERE series='CUUR0000SETA02' AND year BETWEEN 2019 AND 2021 GROUP BY year</code></pre></details></li>
-</ol>
-</section>
 <footer>
-<p class="footnote">Texas not reported by NAIC. Descriptive comparison, not causal. Parts CPI not retrieved.</p>
 <p class="brand"><svg class="mark" width="20" height="20" viewBox="0 0 100 100" role="img" aria-label="AskAmerica"><defs><clipPath id="rp-tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#rp-tile)"><polygon fill="#1a3a8a" points="0,0 100,0 0,100"/><polygon fill="#d5322f" points="100,0 100,100 0,100"/></g><path d="M33 34 A17 17 0 1 1 61 46 C55 52 50 55 50 63" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/><polygon fill="#fff" points="50,68 52.82,76.12 61.4,76.29 54.57,81.48 57.05,89.71 50,84.8 42.95,89.71 45.43,81.48 38.6,76.29 47.18,76.12"/></svg><strong>AskAmerica</strong> · <a href="https://askamerica.ai">askamerica.ai</a></p>
 </footer>
 </main>
